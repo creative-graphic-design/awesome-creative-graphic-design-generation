@@ -13,10 +13,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - name: Check generated README
-        run: python3 scripts/generate_readme.py --check
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Sync generator environment
+        run: uv sync
+
+      - name: Generate README
+        run: |
+          cp README.md /tmp/README.committed.md
+          uv run python scripts/generate_readme.py
+
+      - name: Upload generated maintenance artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-maintenance-files
+          path: |
+            README.md
+            uv.lock
+
+      - name: Check generated README is committed
+        run: diff -u /tmp/README.committed.md README.md
+
       - name: Run awesome-lint
         run: npx awesome-lint
