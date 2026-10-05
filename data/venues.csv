@@ -1,20 +1,24 @@
 type,name,url,note
 Conference,CVPR,https://cvpr.thecvf.com/,Computer vision; frequently publishes layout, poster, multimodal generation, and evaluation work.
 Conference,ICCV,https://iccv.thecvf.com/,Computer vision; relevant for layout generation, content-aware design, and structured visual generation.
-Conference,ECCV,https://eccv.ecva.net/,Computer vision; strong coverage of layout, editable design, and image-generation research.
-Conference,ACM Multimedia,https://acmmm.hosting2.acm.org/,Multimedia; recurring venue for layout generation, poster generation, typography, and multimodal design systems.
+Conference,ECCV,https://eccv.ecva.net/,Computer vision; strong coverage of layout, editable design, slide design, and image-generation research.
+Conference,ACM Multimedia,https://acmmm.hosting2.acm.org/,Multimedia; recurring venue for layout generation, poster generation, typography, slide generation, and multimodal design systems.
 Conference,CIKM,https://www.cikmconference.org/,Information and knowledge management; has published industrial poster-layout and content-aware design work.
 Conference,NeurIPS,https://neurips.cc/,Machine learning; relevant for generative modeling, multimodal agents, evaluation, and scientific-poster automation.
-Conference,ICLR,https://iclr.cc/,Machine learning; relevant for generative models, language-based layout generation, and evaluation.
+Conference,ICLR,https://iclr.cc/,Machine learning; relevant for generative models, language-based layout generation, scientific-poster agents, and evaluation.
 Conference,ICML,https://icml.cc/,Machine learning; relevant for generative modeling and controllable structured generation.
 Conference,AAAI,https://aaai.org/conference/aaai/,Artificial intelligence; includes structured and controllable layout-generation research.
 Conference,IJCAI,https://www.ijcai.org/,Artificial intelligence; includes content-aware advertising and poster-layout generation.
+Conference,ACL,https://aclanthology.org/venues/acl/,Natural language processing; increasingly relevant to paper-to-poster and document-to-design agent systems.
 Conference,CHI,https://chi.acm.org/,Human-computer interaction; relevant for interactive and human-centered graphic-design systems.
+Conference,ICASSP,https://2026.ieeeicassp.org/,Signal processing and multimedia; includes poster and text-layout generation work.
+Conference,ICME,https://www.2026.ieeeicme.org/,Multimedia; relevant for multimodal content generation and visual-design systems.
 Conference,SIGGRAPH,https://www.siggraph.org/,Computer graphics and interactive techniques; important for content-aware design and visual composition.
 Conference,SIGGRAPH Asia,https://asia.siggraph.org/,Computer graphics and interactive techniques; relevant for graphic-design generation and evaluation.
+Conference,BMVC,https://bmvc2026.org/,Computer vision; includes scientific-poster layout datasets and document-layout research.
 Journal,ACM Transactions on Graphics,https://dl.acm.org/journal/tog,Graphics journal associated with SIGGRAPH research in visual synthesis and design.
 Journal,IEEE Transactions on Visualization and Computer Graphics,https://www.computer.org/csdl/journal/tg,Visualization and graphics journal with foundational work on learned graphic layouts.
 Journal,IEEE Transactions on Multimedia,https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia,Multimedia journal covering visual composition, poster layout, and multimodal generation.
-Journal,Pattern Recognition,https://www.sciencedirect.com/journal/pattern-recognition,Pattern-recognition journal publishing scientific-poster and layout-generation research.
+Journal,Pattern Recognition,https://www.sciencedirect.com/journal/pattern-recognition,Pattern-recognition journal publishing scientific-poster and controllable poster-layout generation research.
 Journal,The Visual Computer,https://link.springer.com/journal/371,Graphics and visual-computing journal with work on layout and graphic-design generation.
 Journal,Information Fusion,https://www.sciencedirect.com/journal/information-fusion,Information-fusion journal including surveys and multimodal generative methods.
