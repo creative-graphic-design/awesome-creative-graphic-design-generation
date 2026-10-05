@@ -1,0 +1,77 @@
+# Awesome Creative Graphic Design Generation [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
+<!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
+
+Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific posters, slides, banners, and related visual compositions.
+
+This list focuses on work where layout, typography, visual elements, editable structure, or design-specific evaluation is a first-class part of the problem. Generic text-to-image generation and generic image editing are out of scope unless they make a direct contribution to graphic-design generation.
+
+Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
+
+Implementation metadata is tracked separately in [`data/paper_metadata.csv`](data/paper_metadata.csv). When verified, entries expose project pages, public code status, and released weights directly in this README.
+
+## Contents
+
+- [Surveys and Overviews](#surveys-and-overviews)
+- [Papers](#papers)
+{% for category in paper_category_order %}  - [{{ category }}](#{{ category|anchor }})
+{% endfor %}- [Datasets](#datasets)
+- [Benchmarks and Evaluation](#benchmarks-and-evaluation)
+- [Models and Implementations](#models-and-implementations)
+- [Relevant Venues and Journals](#relevant-venues-and-journals)
+  - [Conferences](#conferences)
+  - [Journals](#journals)
+- [Related Resources](#related-resources)
+
+## Surveys and Overviews
+
+{% for group in survey_groups %}### {{ group.year }}
+
+{% for row in group.entries %}{{ row|entry }}
+{% endfor %}
+{% endfor %}## Papers
+
+Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
+
+- **Layout Generation** outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
+- **Content-Aware Layout Generation** still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
+- **Graphic Design Generation** goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
+- **Typography and Text Rendering** focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
+- **Graphic Design Editing and Reconstruction** focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
+- **Scientific Poster and Slide Generation** covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.
+
+{% for category in paper_category_order %}### {{ category }}
+
+{% for group in paper_groups[category] %}#### {{ group.year }}
+
+{% for row in group.entries %}{{ row|entry }}
+{% endfor %}
+{% endfor %}{% endfor %}{% for section in dated_section_order %}## {{ section }}
+
+{% for group in dated_sections[section] %}### {{ group.year }}
+
+{% for row in group.entries %}{{ row|entry }}
+{% endfor %}
+{% endfor %}{% endfor %}## Models and Implementations
+
+{% for row in models %}{{ row|entry }}
+{% endfor %}
+## Relevant Venues and Journals
+
+Recurring publication venues worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper at the venue is in scope.
+
+### Conferences
+
+{% for row in conference_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% endfor %}
+### Journals
+
+{% for row in journal_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% endfor %}
+## Related Resources
+
+{% for row in related %}{{ row|entry }}
+{% endfor %}
+## Contributing
+
+Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) before opening a pull request.
