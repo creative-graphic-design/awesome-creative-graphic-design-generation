@@ -14,6 +14,7 @@ Strong inclusion signals include:
 - Layered, editable, or structured design outputs.
 - Graphic-design-specific multimodal agents or design assistants.
 - Datasets, benchmarks, or metrics created for graphic-design generation or evaluation.
+- Historically important design-layout systems that establish a technique, representation, or interaction pattern used by later generation work.
 
 Generally out of scope:
 
@@ -59,9 +60,11 @@ Choose the narrowest existing category that fits. Do not create a new top-level 
 
 The current taxonomy is:
 
+- Surveys and Overviews.
 - Papers
   - Layout Generation.
   - Content-Aware Graphic Design.
+  - Typography and Text Rendering.
   - Language and Multimodal Design Agents.
   - End-to-End Graphic Design Generation.
 - Datasets.
