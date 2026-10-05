@@ -1,0 +1,11 @@
+[project]
+name = "awesome-creative-graphic-design-generation-tools"
+version = "0.1.0"
+description = "Maintenance tooling for Awesome Creative Graphic Design Generation"
+requires-python = ">=3.11"
+dependencies = [
+  "jinja2==3.1.6",
+]
+
+[tool.uv]
+package = false
