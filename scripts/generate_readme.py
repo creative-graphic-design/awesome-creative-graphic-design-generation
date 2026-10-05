@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate README.md from structured CSV data."""
+"""Generate README.md from structured CSV data and a Jinja template."""
 
 from __future__ import annotations
 
@@ -8,11 +8,18 @@ import csv
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
+import re
 import sys
+from typing import Any
+
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_PATH = ROOT / "data" / "resources.csv"
-VENUES_PATH = ROOT / "data" / "venues.csv"
+DATA_DIR = ROOT / "data"
+RESOURCE_PATHS = sorted(DATA_DIR.glob("resources*.csv"))
+METADATA_PATH = DATA_DIR / "paper_metadata.csv"
+VENUES_PATH = DATA_DIR / "venues.csv"
+TEMPLATE_DIR = ROOT / "templates"
 README_PATH = ROOT / "README.md"
 
 SECTION_ORDER = [
@@ -33,41 +40,18 @@ PAPER_CATEGORY_ORDER = [
     "Scientific Poster and Slide Generation",
 ]
 
+DATED_SECTION_ORDER = ["Datasets", "Benchmarks and Evaluation"]
 VENUE_TYPE_ORDER = ["Conference", "Journal"]
-
-HEADER = """# Awesome Creative Graphic Design Generation [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-
-<!-- This file is generated from data/resources.csv and data/venues.csv by scripts/generate_readme.py. Do not edit it directly. -->
-
-Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific posters, slides, banners, and related visual compositions.
-
-This list focuses on work where layout, typography, visual elements, editable structure, or design-specific evaluation is a first-class part of the problem. Generic text-to-image generation and generic image editing are out of scope unless they make a direct contribution to graphic-design generation.
-
-Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
-
-## Contents
-
-- [Surveys and Overviews](#surveys-and-overviews)
-- [Papers](#papers)
-  - [Layout Generation](#layout-generation)
-  - [Content-Aware Layout Generation](#content-aware-layout-generation)
-  - [Graphic Design Generation](#graphic-design-generation)
-  - [Typography and Text Rendering](#typography-and-text-rendering)
-  - [Graphic Design Editing and Reconstruction](#graphic-design-editing-and-reconstruction)
-  - [Scientific Poster and Slide Generation](#scientific-poster-and-slide-generation)
-- [Datasets](#datasets)
-- [Benchmarks and Evaluation](#benchmarks-and-evaluation)
-- [Models and Implementations](#models-and-implementations)
-- [Relevant Venues and Journals](#relevant-venues-and-journals)
-  - [Conferences](#conferences)
-  - [Journals](#journals)
-- [Related Resources](#related-resources)
-"""
-
-FOOTER = """## Contributing
-
-Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) before opening a pull request.
-"""
+CODE_STATUSES = {
+    "train+inference",
+    "inference-only",
+    "evaluation-only",
+    "pipeline",
+    "announced",
+    "none",
+    "unknown",
+}
+WEIGHT_STATUSES = {"released", "partial", "announced", "not-applicable", "unknown"}
 
 
 def parse_date(value: str) -> date | None:
@@ -76,14 +60,24 @@ def parse_date(value: str) -> date | None:
 
 
 def first_public_date(row: dict[str, str]) -> date | None:
+    """Return the earliest verified public appearance for a resource."""
     candidates = [parse_date(row["arxiv_date"]), parse_date(row["venue_date"])]
     candidates = [candidate for candidate in candidates if candidate is not None]
     return min(candidates) if candidates else None
 
 
+def load_csv(path: Path) -> list[dict[str, str]]:
+    with path.open(newline="", encoding="utf-8") as file:
+        return list(csv.DictReader(file))
+
+
 def load_rows() -> list[dict[str, str]]:
-    with DATA_PATH.open(newline="", encoding="utf-8") as file:
-        rows = list(csv.DictReader(file))
+    if not RESOURCE_PATHS:
+        raise ValueError("No data/resources*.csv files found")
+
+    rows: list[dict[str, str]] = []
+    for path in RESOURCE_PATHS:
+        rows.extend(load_csv(path))
 
     seen_names: set[tuple[str, str, str]] = set()
     seen_urls: set[str] = set()
@@ -121,10 +115,34 @@ def load_rows() -> list[dict[str, str]]:
     return rows
 
 
-def load_venues() -> list[dict[str, str]]:
-    with VENUES_PATH.open(newline="", encoding="utf-8") as file:
-        rows = list(csv.DictReader(file))
+def load_metadata(paper_names: set[str]) -> dict[str, dict[str, str]]:
+    rows = load_csv(METADATA_PATH)
+    metadata: dict[str, dict[str, str]] = {}
 
+    for row in rows:
+        name = row["name"]
+        if not name:
+            raise ValueError("paper_metadata.csv contains an empty name")
+        if name in metadata:
+            raise ValueError(f"Duplicate paper metadata: {name}")
+        if name not in paper_names:
+            raise ValueError(f"Metadata does not match a paper entry: {name}")
+        if row["code_status"] not in CODE_STATUSES:
+            raise ValueError(f"Unknown code_status for {name}: {row['code_status']}")
+        if row["weights_status"] not in WEIGHT_STATUSES:
+            raise ValueError(
+                f"Unknown weights_status for {name}: {row['weights_status']}"
+            )
+        for field in ("project_url", "code_url", "weights_url"):
+            if row[field] and not row[field].startswith("https://"):
+                raise ValueError(f"{field} must use HTTPS for {name}: {row[field]}")
+        metadata[name] = row
+
+    return metadata
+
+
+def load_venues() -> list[dict[str, str]]:
+    rows = load_csv(VENUES_PATH)
     seen_names: set[str] = set()
     for row in rows:
         if row["type"] not in VENUE_TYPE_ORDER:
@@ -139,13 +157,9 @@ def load_venues() -> list[dict[str, str]]:
     return rows
 
 
-def entry_line(row: dict[str, str]) -> str:
-    return f'- [{row["name"]}]({row["url"]}) - {row["description"]}'
-
-
-def render_dated(rows: list[dict[str, str]], year_heading_level: int) -> list[str]:
-    dated: dict[int, list[tuple[date, dict[str, str]]]] = defaultdict(list)
-    undated: list[dict[str, str]] = []
+def dated_groups(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    dated: dict[int, list[tuple[date, dict[str, Any]]]] = defaultdict(list)
+    undated: list[dict[str, Any]] = []
 
     for row in rows:
         sort_date = first_public_date(row)
@@ -154,98 +168,118 @@ def render_dated(rows: list[dict[str, str]], year_heading_level: int) -> list[st
         else:
             dated[sort_date.year].append((sort_date, row))
 
-    lines: list[str] = []
-    marker = "#" * year_heading_level
+    groups: list[dict[str, Any]] = []
     for year in sorted(dated, reverse=True):
-        lines.extend([f"{marker} {year}", ""])
-        # Publication date is primary. Name is only a deterministic tie-breaker
-        # when two resources have exactly the same first-public date.
-        for sort_date, row in sorted(
-            dated[year],
-            key=lambda pair: (-pair[0].toordinal(), pair[1]["name"].casefold()),
-        ):
-            lines.append(entry_line(row))
-        lines.append("")
+        entries = [
+            row
+            for _, row in sorted(
+                dated[year],
+                key=lambda pair: (-pair[0].toordinal(), pair[1]["name"].casefold()),
+            )
+        ]
+        groups.append({"year": str(year), "entries": entries})
 
     if undated:
-        lines.extend([f"{marker} Other", ""])
-        for row in sorted(undated, key=lambda item: item["name"].casefold()):
-            lines.append(entry_line(row))
-        lines.append("")
+        groups.append(
+            {
+                "year": "Other",
+                "entries": sorted(undated, key=lambda row: row["name"].casefold()),
+            }
+        )
+    return groups
 
-    return lines
+
+def anchor(value: str) -> str:
+    value = value.casefold().replace("&", "and")
+    value = re.sub(r"[^a-z0-9\s-]", "", value)
+    return re.sub(r"[\s-]+", "-", value).strip("-")
 
 
-def render_venues(venues: list[dict[str, str]]) -> list[str]:
-    lines: list[str] = []
-    heading = {"Conference": "Conferences", "Journal": "Journals"}
-    for venue_type in VENUE_TYPE_ORDER:
-        lines.extend([f"### {heading[venue_type]}", ""])
-        for row in sorted(
-            (row for row in venues if row["type"] == venue_type),
-            key=lambda item: item["name"].casefold(),
-        ):
-            lines.append(f'- [{row["name"]}]({row["url"]}) - {row["note"]}')
-        lines.append("")
-    return lines
+def entry(row: dict[str, Any]) -> str:
+    line = f'- [{row["name"]}]({row["url"]}) - {row["description"].strip()}'
+    metadata = row.get("metadata")
+    if not metadata:
+        return line
+
+    links: list[str] = []
+    if metadata["project_url"]:
+        links.append(f'[Project]({metadata["project_url"]})')
+    if metadata["code_url"]:
+        label = "Code"
+        if metadata["code_status"] not in {"unknown", "none"}:
+            label += f' · {metadata["code_status"]}'
+        links.append(f'[{label}]({metadata["code_url"]})')
+    elif metadata["code_status"] == "announced":
+        links.append("Code: announced")
+
+    if metadata["weights_url"]:
+        links.append(f'[Weights]({metadata["weights_url"]})')
+    elif metadata["weights_status"] in {"announced", "partial"}:
+        links.append(f'Weights: {metadata["weights_status"]}')
+    elif metadata["weights_status"] == "not-applicable":
+        links.append("Weights: n/a")
+
+    if links:
+        line = line.rstrip(".") + ". " + " · ".join(links) + "."
+    return line
 
 
 def generate() -> str:
     rows = load_rows()
     venues = load_venues()
-    by_section: dict[str, list[dict[str, str]]] = defaultdict(list)
+    paper_names = {row["name"] for row in rows if row["section"] == "Papers"}
+    metadata = load_metadata(paper_names)
+
+    for row in rows:
+        row["metadata"] = metadata.get(row["name"])
+
+    by_section: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         by_section[row["section"]].append(row)
 
-    lines = [HEADER.rstrip(), ""]
-
-    lines.extend(["## Surveys and Overviews", ""])
-    lines.extend(render_dated(by_section["Surveys and Overviews"], 3))
-
-    lines.extend(["## Papers", ""])
-    lines.extend([
-        "Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.",
-        "",
-        "- **Layout Generation** outputs structured element geometry or arrangement without relying on the visual content of a target canvas.",
-        "- **Content-Aware Layout Generation** still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.",
-        "- **Graphic Design Generation** goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.",
-        "- **Typography and Text Rendering** focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.",
-        "- **Graphic Design Editing and Reconstruction** focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.",
-        "- **Scientific Poster and Slide Generation** covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.",
-        "",
-    ])
     paper_rows = by_section["Papers"]
-    for category in PAPER_CATEGORY_ORDER:
-        lines.extend([f"### {category}", ""])
-        category_rows = [row for row in paper_rows if row["category"] == category]
-        lines.extend(render_dated(category_rows, 4))
+    context = {
+        "paper_category_order": PAPER_CATEGORY_ORDER,
+        "dated_section_order": DATED_SECTION_ORDER,
+        "survey_groups": dated_groups(by_section["Surveys and Overviews"]),
+        "paper_groups": {
+            category: dated_groups(
+                [row for row in paper_rows if row["category"] == category]
+            )
+            for category in PAPER_CATEGORY_ORDER
+        },
+        "dated_sections": {
+            section: dated_groups(by_section[section]) for section in DATED_SECTION_ORDER
+        },
+        "models": sorted(
+            by_section["Models and Implementations"],
+            key=lambda row: row["name"].casefold(),
+        ),
+        "related": sorted(
+            by_section["Related Resources"], key=lambda row: row["name"].casefold()
+        ),
+        "conference_venues": sorted(
+            [row for row in venues if row["type"] == "Conference"],
+            key=lambda row: row["name"].casefold(),
+        ),
+        "journal_venues": sorted(
+            [row for row in venues if row["type"] == "Journal"],
+            key=lambda row: row["name"].casefold(),
+        ),
+    }
 
-    for section in ("Datasets", "Benchmarks and Evaluation"):
-        lines.extend([f"## {section}", ""])
-        lines.extend(render_dated(by_section[section], 3))
-
-    lines.extend(["## Models and Implementations", ""])
-    for row in sorted(
-        by_section["Models and Implementations"],
-        key=lambda item: item["name"].casefold(),
-    ):
-        lines.append(entry_line(row))
-    lines.append("")
-
-    lines.extend(["## Relevant Venues and Journals", ""])
-    lines.append("Recurring publication venues worth monitoring for work in this area.")
-    lines.append("")
-    lines.extend(render_venues(venues))
-
-    lines.extend(["## Related Resources", ""])
-    for row in sorted(
-        by_section["Related Resources"], key=lambda item: item["name"].casefold()
-    ):
-        lines.append(entry_line(row))
-    lines.append("")
-
-    lines.append(FOOTER.rstrip())
-    return "\n".join(lines).rstrip() + "\n"
+    environment = Environment(
+        loader=FileSystemLoader(TEMPLATE_DIR),
+        undefined=StrictUndefined,
+        autoescape=False,
+        keep_trailing_newline=True,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    environment.filters["anchor"] = anchor
+    environment.filters["entry"] = entry
+    template = environment.get_template("README.md.j2")
+    return template.render(**context).rstrip() + "\n"
 
 
 def main() -> int:
@@ -260,7 +294,7 @@ def main() -> int:
         current = README_PATH.read_text(encoding="utf-8")
         if current != generated:
             print(
-                "README.md is out of date. Run: python3 scripts/generate_readme.py",
+                "README.md is out of date. Run: uv run python scripts/generate_readme.py",
                 file=sys.stderr,
             )
             return 1
