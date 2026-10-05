@@ -54,9 +54,11 @@ Requirements:
 - Add venue and year when they are known and useful.
 - Do not add badges to individual entries.
 
-## Categories
+## Categories and Ordering
 
 Choose the narrowest existing category that fits. Do not create a new top-level or paper subsection for a single item. Category changes should be motivated by a meaningful cluster of resources.
+
+Within research-oriented categories, organize entries by publication year from oldest to newest. Use a year heading for each represented year, and order entries alphabetically by canonical resource name within the same year. Use the venue publication year when a peer-reviewed venue is known; otherwise use the primary public release year.
 
 The current taxonomy is:
 
@@ -72,6 +74,8 @@ The current taxonomy is:
 - Models and Implementations.
 - Related Resources.
 
+Repositories and other continuously maintained resources under Models and Implementations or Related Resources do not need artificial year groupings unless a meaningful release year is part of the resource identity.
+
 ## Pull Requests
 
 Keep pull requests focused. A PR that adds one or a few related entries is easier to review than a large unsorted import.
@@ -82,6 +86,8 @@ Before submitting:
 - Search the README for duplicates and alternate names.
 - Confirm the resource is within scope.
 - Write an objective description that explains why it is useful.
+- Place the resource under the correct publication-year heading.
+- Keep entries alphabetized within the same year.
 - Keep Markdown formatting consistent with neighboring entries.
 - Run `npx awesome-lint` from a full Git checkout.
 
