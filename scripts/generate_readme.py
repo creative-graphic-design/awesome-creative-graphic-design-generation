@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate README.md from data/resources.csv."""
+"""Generate README.md from structured CSV data."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "resources.csv"
+VENUES_PATH = ROOT / "data" / "venues.csv"
 README_PATH = ROOT / "README.md"
 
 SECTION_ORDER = [
@@ -25,34 +26,41 @@ SECTION_ORDER = [
 
 PAPER_CATEGORY_ORDER = [
     "Layout Generation",
-    "Content-Aware Graphic Design",
+    "Content-Aware Layout Generation",
+    "Graphic Design Generation",
     "Typography and Text Rendering",
-    "Language and Multimodal Design Agents",
-    "End-to-End Graphic Design Generation",
+    "Graphic Design Editing and Reconstruction",
+    "Scientific Poster and Slide Generation",
 ]
+
+VENUE_TYPE_ORDER = ["Conference", "Journal"]
 
 HEADER = """# Awesome Creative Graphic Design Generation [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-<!-- This file is generated from data/resources.csv by scripts/generate_readme.py. Do not edit it directly. -->
+<!-- This file is generated from data/resources.csv and data/venues.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
-Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, banners, and related visual compositions.
+Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific posters, slides, banners, and related visual compositions.
 
 This list focuses on work where layout, typography, visual elements, editable structure, or design-specific evaluation is a first-class part of the problem. Generic text-to-image generation and generic image editing are out of scope unless they make a direct contribution to graphic-design generation.
 
-Research resources are ordered by **first public appearance** within each category, from oldest to newest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
+Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
 
 ## Contents
 
 - [Surveys and Overviews](#surveys-and-overviews)
 - [Papers](#papers)
   - [Layout Generation](#layout-generation)
-  - [Content-Aware Graphic Design](#content-aware-graphic-design)
+  - [Content-Aware Layout Generation](#content-aware-layout-generation)
+  - [Graphic Design Generation](#graphic-design-generation)
   - [Typography and Text Rendering](#typography-and-text-rendering)
-  - [Language and Multimodal Design Agents](#language-and-multimodal-design-agents)
-  - [End-to-End Graphic Design Generation](#end-to-end-graphic-design-generation)
+  - [Graphic Design Editing and Reconstruction](#graphic-design-editing-and-reconstruction)
+  - [Scientific Poster and Slide Generation](#scientific-poster-and-slide-generation)
 - [Datasets](#datasets)
 - [Benchmarks and Evaluation](#benchmarks-and-evaluation)
 - [Models and Implementations](#models-and-implementations)
+- [Relevant Venues and Journals](#relevant-venues-and-journals)
+  - [Conferences](#conferences)
+  - [Journals](#journals)
 - [Related Resources](#related-resources)
 """
 
@@ -113,6 +121,24 @@ def load_rows() -> list[dict[str, str]]:
     return rows
 
 
+def load_venues() -> list[dict[str, str]]:
+    with VENUES_PATH.open(newline="", encoding="utf-8") as file:
+        rows = list(csv.DictReader(file))
+
+    seen_names: set[str] = set()
+    for row in rows:
+        if row["type"] not in VENUE_TYPE_ORDER:
+            raise ValueError(f"Unknown venue type: {row['type']}")
+        if not row["name"] or not row["url"] or not row["note"]:
+            raise ValueError(f"Missing venue field: {row}")
+        if not row["url"].startswith("https://"):
+            raise ValueError(f"Venue URL must use HTTPS: {row['name']}")
+        if row["name"] in seen_names:
+            raise ValueError(f"Duplicate venue: {row['name']}")
+        seen_names.add(row["name"])
+    return rows
+
+
 def entry_line(row: dict[str, str]) -> str:
     return f'- [{row["name"]}]({row["url"]}) - {row["description"]}'
 
@@ -130,10 +156,13 @@ def render_dated(rows: list[dict[str, str]], year_heading_level: int) -> list[st
 
     lines: list[str] = []
     marker = "#" * year_heading_level
-    for year in sorted(dated):
+    for year in sorted(dated, reverse=True):
         lines.extend([f"{marker} {year}", ""])
+        # Publication date is primary. Name is only a deterministic tie-breaker
+        # when two resources have exactly the same first-public date.
         for sort_date, row in sorted(
-            dated[year], key=lambda pair: (pair[0], pair[1]["name"].casefold())
+            dated[year],
+            key=lambda pair: (-pair[0].toordinal(), pair[1]["name"].casefold()),
         ):
             lines.append(entry_line(row))
         lines.append("")
@@ -147,8 +176,23 @@ def render_dated(rows: list[dict[str, str]], year_heading_level: int) -> list[st
     return lines
 
 
+def render_venues(venues: list[dict[str, str]]) -> list[str]:
+    lines: list[str] = []
+    heading = {"Conference": "Conferences", "Journal": "Journals"}
+    for venue_type in VENUE_TYPE_ORDER:
+        lines.extend([f"### {heading[venue_type]}", ""])
+        for row in sorted(
+            (row for row in venues if row["type"] == venue_type),
+            key=lambda item: item["name"].casefold(),
+        ):
+            lines.append(f'- [{row["name"]}]({row["url"]}) - {row["note"]}')
+        lines.append("")
+    return lines
+
+
 def generate() -> str:
     rows = load_rows()
+    venues = load_venues()
     by_section: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in rows:
         by_section[row["section"]].append(row)
@@ -159,6 +203,17 @@ def generate() -> str:
     lines.extend(render_dated(by_section["Surveys and Overviews"], 3))
 
     lines.extend(["## Papers", ""])
+    lines.extend([
+        "Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.",
+        "",
+        "- **Layout Generation** outputs structured element geometry or arrangement without relying on the visual content of a target canvas.",
+        "- **Content-Aware Layout Generation** still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.",
+        "- **Graphic Design Generation** goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.",
+        "- **Typography and Text Rendering** focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.",
+        "- **Graphic Design Editing and Reconstruction** focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.",
+        "- **Scientific Poster and Slide Generation** covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.",
+        "",
+    ])
     paper_rows = by_section["Papers"]
     for category in PAPER_CATEGORY_ORDER:
         lines.extend([f"### {category}", ""])
@@ -169,11 +224,25 @@ def generate() -> str:
         lines.extend([f"## {section}", ""])
         lines.extend(render_dated(by_section[section], 3))
 
-    for section in ("Models and Implementations", "Related Resources"):
-        lines.extend([f"## {section}", ""])
-        for row in sorted(by_section[section], key=lambda item: item["name"].casefold()):
-            lines.append(entry_line(row))
-        lines.append("")
+    lines.extend(["## Models and Implementations", ""])
+    for row in sorted(
+        by_section["Models and Implementations"],
+        key=lambda item: item["name"].casefold(),
+    ):
+        lines.append(entry_line(row))
+    lines.append("")
+
+    lines.extend(["## Relevant Venues and Journals", ""])
+    lines.append("Recurring publication venues worth monitoring for work in this area.")
+    lines.append("")
+    lines.extend(render_venues(venues))
+
+    lines.extend(["## Related Resources", ""])
+    for row in sorted(
+        by_section["Related Resources"], key=lambda item: item["name"].casefold()
+    ):
+        lines.append(entry_line(row))
+    lines.append("")
 
     lines.append(FOOTER.rstrip())
     return "\n".join(lines).rstrip() + "\n"
