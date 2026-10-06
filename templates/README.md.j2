@@ -33,12 +33,17 @@ Implementation metadata is tracked separately in [`data/paper_metadata.csv`](dat
 
 Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
 
-- **Layout Generation** outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
-- **Content-Aware Layout Generation** still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
-- **Graphic Design Generation** goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
-- **Typography and Text Rendering** focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
-- **Graphic Design Editing and Reconstruction** focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
-- **Scientific Poster and Slide Generation** covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.
+**Layout Generation:** Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
+
+**Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
+
+**Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
+
+**Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
+
+**Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
+
+**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.
 
 {% for category in paper_category_order %}### {{ category }}
 
