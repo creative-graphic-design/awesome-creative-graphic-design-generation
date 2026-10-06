@@ -12,7 +12,7 @@ At the current catalog size, the canonical files are:
 
 - `resources.csv` — rendered catalog resources, the primary task/output taxonomy, and optional paper architecture annotations.
 - `paper_metadata.csv` — audited implementation and reproducibility metadata for papers in the `Papers` section.
-- `venues.csv` — recurring conferences, journals, and workshops monitored for relevant work.
+- `venues.csv` — recurring conferences, journals, and workshop series monitored for relevant work. It intentionally keeps one row per stable series; use an authoritative series/archive URL when one exists, and record concise edition/recurrence evidence in `note`. Add a separate edition table only if concrete query/rendering needs justify the one-to-many model rather than for audit bookkeeping.
 
 This is intentionally a small split by data responsibility, not by research topic. `resources.csv` answers **what the work is, what task/output it belongs to, and the concise architecture annotation shown with it**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**.
 
