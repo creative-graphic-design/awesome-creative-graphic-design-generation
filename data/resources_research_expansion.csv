@@ -1,0 +1,3 @@
+section,category,name,url,description,venue,venue_year,arxiv_date,venue_date,date_note
+Papers,Composable and Layered Asset Generation,TAUE,https://arxiv.org/abs/2511.02580,"Generates coherent foreground, background, and composite layers without fine-tuning by transplanting and cultivating intermediate diffusion noise representations (CVPR Findings 2026).",CVPR Findings,2026,2025-11-04,,arXiv v1
+Papers,Typography and Text Rendering,GlyphDraw2,https://arxiv.org/abs/2407.02252,"Generates complex bilingual glyph posters with controllable fonts and precise text placement using LLM-guided SDXL conditioning (AAAI 2025).",AAAI,2025,2024-07-02,,arXiv v1
