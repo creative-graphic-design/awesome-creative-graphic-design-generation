@@ -14,9 +14,8 @@ At the current catalog size, the canonical files are:
 - `paper_metadata.csv` — audited implementation and reproducibility metadata for papers in the `Papers` section.
 - `paper_methods.csv` — multi-label method/architecture classifications for papers.
 - `venues.csv` — recurring conferences, journals, and workshops monitored for relevant work.
-- `coverage_audit.csv` — non-rendered curation decisions for candidate resources and aliases that have already been reviewed.
 
-This is intentionally a normalized split by data responsibility, not by research topic. `resources.csv` answers **what the work is and what task/output it belongs to**; `paper_methods.csv` answers **how the paper is implemented**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**; `coverage_audit.csv` records **why a candidate was included, mapped to a canonical entry, excluded, or left pending**.
+This is intentionally a normalized split by data responsibility, not by research topic. `resources.csv` answers **what the work is and what task/output it belongs to**; `paper_methods.csv` answers **how the paper is implemented**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**.
 
 If `resources.csv` later becomes operationally unwieldy, split it only as an explicit schema migration along stable semantic roles, and update the generator and validation in the same change. Do not create ad-hoc files for a temporary research sweep or individual topic.
 
@@ -101,29 +100,6 @@ The allowed status values and detailed verification policy are owned by `CONTRIB
 `paper_metadata.csv` currently attaches only to entries whose display section is `Papers`. That keeps the bootstrap schema simple, but it means a research paper intentionally displayed under another role — for example a learned reward model under `Evaluation Methods and Metrics` — cannot yet expose the same project/code/weights details through this table.
 
 If this becomes common, prefer a deliberate migration from `paper_metadata.csv` to a more general method/resource metadata table over adding parallel per-section metadata CSVs. The migration should define which resource roles may carry model/reproducibility fields and update generator validation atomically.
-
-## `coverage_audit.csv`
-
-This file is a non-rendered curation ledger. It is intentionally **not** part of the generated README and does not count toward resource badges.
-
-Use it to preserve decisions that are likely to recur during literature sweeps, especially aliases, borderline resources, and exclusions. It is not an exhaustive list of every paper ever considered.
-
-Columns:
-
-- `candidate` — paper, method, dataset, project, or alias that was reviewed.
-- `disposition` — one of `included`, `alias`, `out-of-scope`, or `pending`.
-- `canonical_entry` — exact catalog entry when `included` or `alias`; blank when no canonical catalog row exists.
-- `reason` — concise, durable explanation of the decision.
-- `checked_at` — date the decision was last verified.
-
-Interpret dispositions as follows:
-
-- `included` — the candidate is represented directly in the catalog.
-- `alias` — the candidate is a method/project/alternate title already represented by another canonical catalog entry.
-- `out-of-scope` — the candidate was reviewed and does not satisfy the current scope.
-- `pending` — the decision needs better primary-source evidence or scope review.
-
-Before adding a seemingly missing resource, check this ledger as well as `resources.csv`. When a pending item is resolved, update its disposition instead of adding a second audit row.
 
 ## `venues.csv`
 
