@@ -11,7 +11,7 @@ Research-topic boundaries change as the taxonomy evolves, and many works span se
 At the current catalog size, the canonical files are:
 
 - `resources.csv` — rendered catalog resources.
-- `paper_metadata.csv` — audited implementation and reproducibility metadata for papers.
+- `paper_metadata.csv` — audited implementation and reproducibility metadata for papers in the `Papers` section.
 - `venues.csv` — recurring publication venues monitored for relevant work.
 
 If `resources.csv` later becomes operationally unwieldy, split it only as an explicit schema migration along stable semantic roles, and update the generator and validation in the same change. Do not create ad-hoc files for a temporary research sweep or individual topic.
@@ -60,6 +60,12 @@ Tracked fields include:
 - `checked_at`, the date the release state was last verified.
 
 The allowed status values and detailed verification policy are owned by `CONTRIBUTING.md` and enforced by `scripts/generate_readme.py`.
+
+### Current metadata-scope limitation
+
+`paper_metadata.csv` currently attaches only to entries whose display section is `Papers`. That keeps the bootstrap schema simple, but it means a research paper intentionally displayed under another role — for example a learned reward model under `Evaluation Methods and Metrics` — cannot yet expose the same project/code/weights details through this table.
+
+If this becomes common, prefer a deliberate migration from `paper_metadata.csv` to a more general method/resource metadata table over adding parallel per-section metadata CSVs. The migration should define which resource roles may carry model/reproducibility fields and update generator validation atomically.
 
 ## `venues.csv`
 
