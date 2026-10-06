@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-229-informational)
-![Papers](https://img.shields.io/badge/papers-174-informational)
+![Total Resources](https://img.shields.io/badge/resources-231-informational)
+![Papers](https://img.shields.io/badge/papers-176-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-46-informational)
 
@@ -333,9 +333,11 @@ Papers are classified by their **primary output and task**, rather than by model
 - [PosterMELD](https://arxiv.org/abs/2608.02218) - Generates controllable, diverse scientific posters with multi-agent planning and editable print-ready PPTX outputs. **Architecture:** Agentic / Multi-stage System.
 - [Personalization as Inverse Planning](https://arxiv.org/abs/2607.00407) - Learns latent page-level design intents for agentic slide personalization through structural denoising and multi-agent reinforcement learning (ECCV 2026). **Architecture:** Agentic / Multi-stage System; Diffusion.
 - [Any2Poster](https://arxiv.org/abs/2606.02915) - Introduces an any-source poster benchmark and agent spanning multiple input modalities and content domains. **Architecture:** Agentic / Multi-stage System; LLM; VLM.
+- [ArcDeck](https://arxiv.org/abs/2604.11969) - Generates polished academic slide decks from papers by reconstructing narrative structure with discourse parsing, multi-agent outline critique, layout planning, and PPTX rendering (ECCV 2026). **Architecture:** Agentic / Multi-stage System; LLM.
 - [Design First Code Later](https://arxiv.org/abs/2605.26451) - Introduces DeepSlides, a template-free design-first slide-generation workflow with SlideDesign data and reinforcement-learned SlideQwen models. **Architecture:** LLM. Project: — · [Code](https://github.com/sxswz213/DeepSlides) (`pipeline`) · Weights: `unknown`.<br>  **Base:** Configurable LLMs plus SlideQwen design/implementation models · **Train:** SlideDesign · **Output:** Editable PPTX; slide images.
 #### 2025
 
+- [SlideTailor](https://arxiv.org/abs/2512.20292) - Generates personalized editable presentation slides from scientific papers by distilling user preferences from paper-slide examples and visual templates with an agentic multimodal pipeline (AAAI 2026). **Architecture:** Agentic / Multi-stage System; VLM.
 - [SlideGen](https://arxiv.org/abs/2512.04529) - Coordinates multimodal agents to transform scientific papers into editable PPTX slide decks with visual-in-the-loop refinement (ACM MM 2026). **Architecture:** Agentic / Multi-stage System. [Project](https://y-research-sbu.github.io/SlideGen/) · [Code](https://github.com/Y-Research-SBU/SlideGen) (`pipeline`) · Weights: `n/a`.<br>  **Base:** API-based multimodal agents · **Train:** None · **Eval:** Scientific slide-generation benchmarks · **Output:** Editable PPTX.
 - [SciPostGen](https://arxiv.org/abs/2511.22490) - Introduces a large-scale paper-poster dataset and retrieval-augmented scientific-poster layout generation (CVPR Findings 2026). **Architecture:** Agentic / Multi-stage System.
 - [PosterForest](https://arxiv.org/abs/2508.21720) - Uses a hierarchical Poster Tree and collaborating agents to jointly optimize scientific-poster content, structure, and layout (ACL 2026). **Architecture:** Agentic / Multi-stage System; LLM; VLM. Project: — · [Code](https://github.com/kaist-cvml/poster-forest) (`pipeline`) · Weights: `n/a`.<br>  **Base:** GPT-4o or local Qwen3/Qwen2.5 models · **Train:** None · **Eval:** Paper2Poster-style evaluation · **Output:** Editable PPTX; JPG.
