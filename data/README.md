@@ -33,10 +33,16 @@ Columns:
 - `venue` — publication venue or release context when useful.
 - `venue_year` — venue/publication year when known.
 - `arxiv_date` — arXiv v1 date in `YYYY-MM-DD`, when applicable.
-- `venue_date` — first presentation/publication/release date when it predates arXiv or when no arXiv date exists.
+- `venue_date` — normalized authoritative venue/release date in `YYYY-MM-DD`: conference start date for conference papers, the specific workshop edition date for workshop papers, first online/publication date for journals, or the authoritative release date for non-publication resources.
 - `date_note` — short provenance note for the chronology decision.
 
 The generator uses the earlier of `arxiv_date` and `venue_date` as the first-public-appearance sort key and orders research from newest to oldest within each category.
+
+### Date semantics
+
+`venue_date` is intentionally a **venue-level chronology field**, not a paper-session timestamp. For a conference paper, use the official start date of the conference edition rather than the individual poster/oral session date, acceptance date, camera-ready deadline, or proceedings publication timestamp. For a workshop paper, use the date of the specific workshop edition rather than the host conference start date. For journal work, use the first authoritative online/publication date. For datasets, models, implementations, or other non-publication resources, use an authoritative public release date when one exists.
+
+When both `arxiv_date` and `venue_date` are present, chronology still uses the earlier date. `date_note` should record the evidence and any non-obvious choice, for example `CVPR 2025 conference start`, `ICCV 2025 HiGen workshop date`, `journal online publication`, or `official repository release date`.
 
 ### Datasets versus benchmarks
 
