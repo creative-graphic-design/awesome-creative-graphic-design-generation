@@ -1,0 +1,11 @@
+candidate,disposition,canonical_entry,reason,checked_at
+LayoutGAN++,alias,Constrained Graphic Layout Generation via Latent Optimization,Method alias for a model contribution inside the canonical paper; avoid a duplicate paper entry,2026-10-06
+LayoutVQ-VAE,alias,Layout Generation for Various Scenarios in Mobile Shopping Apps,Common method alias; the catalog uses the canonical paper title,2026-10-06
+DocLap,alias,Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models,Common method/project alias; the catalog uses the canonical paper title,2026-10-06
+RUITE,out-of-scope,,Targets UI layout refinement for interface prototyping rather than composed graphic-design artifacts,2026-10-06
+Rico,out-of-scope,,Mobile-app UI dataset; broadly useful to layout research but not graphic-design-specific enough for this catalog,2026-10-06
+PubLayNet,out-of-scope,,Document-layout-analysis dataset centered on scientific pages rather than creative graphic-design generation,2026-10-06
+Akin,out-of-scope,,Generates mobile UI wireframes from UI design patterns; interface-specific rather than graphic-design generation,2026-10-06
+UIGrammar,out-of-scope,,UI-specific generation or representation; outside scope unless a direct graphic-design contribution is established,2026-10-06
+LayoutGCN,pending,,Verify the canonical paper and its direct relevance to creative graphic-design generation before deciding inclusion,2026-10-06
+LayoutPGGAN,pending,,Verify the canonical paper and contribution against current scope before deciding inclusion,2026-10-06
