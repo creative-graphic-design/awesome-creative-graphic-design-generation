@@ -6,8 +6,9 @@
 ![Papers](https://img.shields.io/badge/papers-{{ stats.papers }}-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-{{ stats.datasets_benchmarks }}-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-{{ stats.audited_papers }}-informational)
+![Method Classified](https://img.shields.io/badge/method%20classified-{{ stats.method_classified_papers }}-informational)
 
-<!-- This file is generated from data/resources.csv and data/paper_metadata.csv by scripts/generate_readme.py. Do not edit it directly. -->
+<!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
 Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific figures, graphical abstracts, scientific posters, slides, banners, and related visual compositions.
 
@@ -15,19 +16,21 @@ This list focuses on work where layout, typography, visual elements, editable st
 
 Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
 
-Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_metadata.csv). Verified entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
+Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_metadata.csv). The orthogonal model/method taxonomy is tracked in [`data/paper_methods.csv`](data/paper_methods.csv). Verified implementation entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
 
 ## Contents
 
 - [Surveys and Overviews](#surveys-and-overviews)
 - [Papers](#papers)
 {% for category in paper_category_order %}  - [{{ category }}](#{{ category|anchor }})
-{% endfor %}- [Datasets and Benchmarks](#datasets-and-benchmarks)
+{% endfor %}- [Method / Architecture Index](#method-architecture-index)
+- [Datasets and Benchmarks](#datasets-and-benchmarks)
 - [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
 - [Models and Implementations](#models-and-implementations)
-- [Relevant Venues and Journals](#relevant-venues-and-journals)
+- [Relevant Venues and Workshops](#relevant-venues-and-workshops)
   - [Conferences](#conferences)
   - [Journals](#journals)
+  - [Workshops](#workshops)
 - [Related Resources](#related-resources)
 
 ## Surveys and Overviews
@@ -40,21 +43,14 @@ Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_met
 
 Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
 
-**Layout Generation:** Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
-
-**Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
-
-**Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
-
-**Composable and Layered Asset Generation:** Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.
-
-**Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
-
-**Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
-
-**Scientific Figure and Graphical Abstract Generation:** Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.
-
-**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.
+- **Layout Generation:** Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
+- **Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
+- **Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
+- **Composable and Layered Asset Generation:** Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.
+- **Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
+- **Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
+- **Scientific Figure and Graphical Abstract Generation:** Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.
+- **Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.
 
 {% for category in paper_category_order %}### {{ category }}
 
@@ -62,7 +58,15 @@ Papers are classified by their **primary output and task**, rather than by model
 
 {% for row in group.entries %}{{ row|entry }}
 {% endfor %}
-{% endfor %}{% endfor %}{% for section in dated_section_order %}## {{ section }}
+{% endfor %}{% endfor %}## Method / Architecture Index
+
+The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is normalized from the architecture axis used in the SSII technology map while allowing newer LLM/VLM and agentic systems.
+
+{% for group in method_groups %}### {{ group.family }}
+
+{% for row in group.entries %}- [{{ row.name }}]({{ row.url }}) — {{ row.category }}{% if row.note %}; {{ row.note }}{% endif %}.
+{% endfor %}
+{% endfor %}{% for section in dated_section_order %}## {{ section }}
 
 {% if section == "Datasets and Benchmarks" %}Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
 
@@ -76,9 +80,9 @@ Papers are classified by their **primary output and task**, rather than by model
 
 {% for row in models %}{{ row|entry }}
 {% endfor %}
-## Relevant Venues and Journals
+## Relevant Venues and Workshops
 
-Recurring publication venues worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper at the venue is in scope.
+Recurring publication venues and workshop series worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper from a venue is in scope.
 
 ### Conferences
 
@@ -87,6 +91,10 @@ Recurring publication venues worth monitoring for work in this area. Inclusion h
 ### Journals
 
 {% for row in journal_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% endfor %}
+### Workshops
+
+{% for row in workshop_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
 {% endfor %}
 ## Related Resources
 
