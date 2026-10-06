@@ -1,0 +1,65 @@
+name: Audit DOI exact metadata
+
+on:
+  push:
+    branches: [audit/doi-exact-metadata]
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Compare DOI rows with Crossref exact records
+        run: |
+          python - <<'PY'
+          import csv, json, re, urllib.parse, urllib.request
+          from difflib import SequenceMatcher
+          from pathlib import Path
+
+          def norm(s):
+              return ' '.join(re.sub(r'[^a-z0-9]+', ' ', s.lower()).split())
+
+          def year_of(msg):
+              for key in ('published-print','published-online','published','issued'):
+                  parts = (msg.get(key) or {}).get('date-parts')
+                  if parts and parts[0] and parts[0][0]:
+                      return str(parts[0][0]), key
+              return '', ''
+
+          rows = list(csv.DictReader(Path('data/resources.csv').open(encoding='utf-8', newline='')))
+          print('DOI_AUDIT_BEGIN')
+          for row in rows:
+              if row['section'] != 'Papers' or not row['url'].startswith('https://doi.org/'):
+                  continue
+              doi = row['url'].removeprefix('https://doi.org/')
+              req = urllib.request.Request('https://api.crossref.org/works/' + urllib.parse.quote(doi, safe=''), headers={'User-Agent':'awesome-creative-graphic-design-generation/1.0'})
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      msg = json.load(r)['message']
+              except Exception as e:
+                  print('ERROR\t' + row['name'] + '\t' + doi + '\t' + type(e).__name__ + '\t' + str(e))
+                  continue
+              title = (msg.get('title') or [''])[0]
+              container = (msg.get('container-title') or [''])[0]
+              year, basis = year_of(msg)
+              score = SequenceMatcher(None, norm(row['name']), norm(title)).ratio()
+              flags = []
+              if row['venue_year'] and year and row['venue_year'] != year:
+                  flags.append(f'YEAR catalog={row["venue_year"]} crossref={year}({basis})')
+              if score < 0.72:
+                  flags.append(f'TITLE_SIM={score:.3f}')
+              print('\t'.join(['DOI', row['name'], row['venue'], row['venue_year'], doi, title, container, year, basis, f'{score:.3f}', ' | '.join(flags)]))
+          print('DOI_AUDIT_END')
+          PY
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/audit-doi-exact.yml
+          git commit -m 'Remove temporary DOI audit workflow'
+          git push
