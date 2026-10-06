@@ -17,6 +17,7 @@ Designer-RSI,Agentic / Multi-stage System,
 Draw with Thought,Agentic / Multi-stage System,Coarse-to-fine code reconstruction pipeline
 Figures as Programs,Agentic / Multi-stage System,Recursive SVG generation with render-critic refinement
 GenGA,Agentic / Multi-stage System,Source-grounded hierarchical vector generation framework
+Iris: a multi-constraint graphic layout generation system,Agentic / Multi-stage System,"Interactive specification, layout generation, custom editing, and rendering system"
 LayerD,Agentic / Multi-stage System,Iterative matting and inpainting decomposition pipeline
 Multi-Object Advertisement Creative Generation,Agentic / Multi-stage System,"Product pairing, layout, and background-generation modules"
 OpenCOLE,Agentic / Multi-stage System,Open layered design-generation pipeline
@@ -138,6 +139,7 @@ Constrained Graphic Layout Generation via Latent Optimization,GAN,GAN with diffe
 ContentGAN,GAN,Content-aware generative adversarial model
 CreaGAN,GAN,Aesthetics-aware placement plus creative inpainting framework
 LayoutGAN,GAN,Generative adversarial layout model
+Machine Learning Model to Evaluate the Appropriateness of Layout for Automatic Generation of Graphic Design Works,GAN,Adversarial layout generator and discriminator; discriminator also scores layout appropriateness
 PDA-GAN,GAN,Image-aware GAN with pixel-level discriminator and domain adaptation
 PosterLayout,GAN,Content-aware poster layout generation with DS-GAN
 iPoster,Graph Neural Network,Graph-conditioned cross-content reasoning
@@ -145,6 +147,7 @@ AesthetiQ,LLM / VLM,Multimodal LLM preference alignment
 Any2Poster,LLM / VLM,LLM analyzers/planner with VLM feedback
 AutoFigure,LLM / VLM,Agentic scientific illustration generation and iterative refinement
 AutoFigure-Edit,LLM / VLM,LLM/VLM-guided scientific-figure parsing and refinement
+Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models,LLM / VLM,mPLUG-Owl-based multimodal instruction-following layout planner (DocLap)
 BannerAgency,LLM / VLM,Multimodal LLM agents
 CAL-RAG,LLM / VLM,LLM/VLM retrieval-and-grading loop
 Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners,LLM / VLM,
@@ -159,6 +162,7 @@ Graphist,LLM / VLM,Multimodal structural context model
 i-Design,LLM / VLM,InternVL-based multimodal aesthetic policy
 LaDeCo,LLM / VLM,Large multimodal model for layer planning and attributes
 LayoutGPT,LLM / VLM,In-context language-model layout generation
+LayoutKAG: Enhancing Layout Generation in Large Language Models Through Knowledge-Augmented Generation,LLM / VLM,Knowledge-augmented large-language-model layout generation
 LayoutNUWA,LLM / VLM,Code-oriented language model
 LayoutPrompter,LLM / VLM,In-context LLM prompting
 Learning Priority-Aware Controllable Poster Layout Generation,LLM / VLM,
@@ -191,7 +195,10 @@ CLASS,VAE,Variational latent layout representation
 Coarse-to-Fine,VAE,Hierarchical variational layout generation
 Human-aware Design Generation,VAE,VQ-VAE human-pose representation
 ICVT,VAE,Geometry-aligned variational Transformer
+Iris: a multi-constraint graphic layout generation system,VAE,Multi-constraint LayoutVQ-VAE conditioned on background and design-element constraints
+Layout Generation for Various Scenarios in Mobile Shopping Apps,VAE,LayoutVQ-VAE with discrete latent layout representation and multi-constraint conditioning
 LayoutVAE,VAE,Variational autoencoder
 Neural Design Network,VAE,Variational structured design model
+READ: Recursive Autoencoders for Document Layout Generation,VAE,Recursive variational autoencoder (RvNN-VAE) over hierarchical document layouts
 Text2Poster,VAE,Variational visual-textual poster composition model
 VTN,VAE,

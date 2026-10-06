@@ -2,11 +2,11 @@
 
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
-![Total Resources](https://img.shields.io/badge/resources-202-informational)
-![Papers](https://img.shields.io/badge/papers-148-informational)
+![Total Resources](https://img.shields.io/badge/resources-208-informational)
+![Papers](https://img.shields.io/badge/papers-154-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-38-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-43-informational)
-![Method Classified](https://img.shields.io/badge/method%20classified-148-informational)
+![Method Classified](https://img.shields.io/badge/method%20classified-154-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -78,6 +78,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [LGGPT](https://arxiv.org/abs/2502.14005) - Unifies multiple layout-generation tasks and domains with compact instruction and response encodings for a 1.5B-parameter large language model.
 #### 2024
 
+- [LayoutKAG: Enhancing Layout Generation in Large Language Models Through Knowledge-Augmented Generation](https://doi.org/10.1109/AIHCIR65563.2024.00056) - Uses knowledge-augmented generation to improve large-language-model layout generation and control (AIHCIR 2024).
 - [TextLap](https://arxiv.org/abs/2410.12844) - Generates graphic layouts from textual design requirements with language-model-based reasoning.
 - [Layout-Corrector](https://arxiv.org/abs/2409.16689) - Corrects intermediate diffusion layouts to improve structure and constraint satisfaction (ECCV 2024).
 - [CoLay](https://arxiv.org/abs/2405.13045) - Uses multi-conditional latent diffusion to generate layouts with style properties from flexible combinations of text, guidelines, element types, and partial designs.
@@ -93,6 +94,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Learn and Sample Together](https://www.ijcai.org/proceedings/2023/649) - Jointly trains a spatial-graph generator and graph-conditioned layout decoder with collaborative knowledge transfer for constrained graphic-layout generation (IJCAI 2023).
 - [LayoutGPT](https://arxiv.org/abs/2305.15393) - Uses large language models with in-context demonstrations for layout generation (NeurIPS 2023).
 - [LayoutDM: Transformer-Based Diffusion Model for Layout Generation](https://arxiv.org/abs/2305.02567) - Instantiates conditional DDPM layout generation with a purely Transformer-based denoiser for diverse, high-quality conditional layouts (CVPR 2023).
+- [Layout Generation for Various Scenarios in Mobile Shopping Apps](https://doi.org/10.1145/3544548.3581446) - Introduces LayoutVQ-VAE, a discrete latent model for generating layouts under internal and scenario-level constraints in mobile shopping applications (CHI 2023).
 - [FlexDM](https://arxiv.org/abs/2303.18248) - Supports flexible layout generation and completion through masked multi-field diffusion (CVPR 2023).
 - [LayoutDiffusion](https://arxiv.org/abs/2303.11589) - Uses discrete diffusion for controllable layout generation (ICCV 2023).
 - [LayoutDM](https://arxiv.org/abs/2303.08137) - Models layouts with discrete denoising diffusion and supports multiple conditional generation tasks (CVPR 2023). [Project](https://cyberagentailab.github.io/layout-dm) · [Code](https://github.com/CyberAgentAILab/layout-dm) (`training + inference`) · [Weights](https://github.com/CyberAgentAILab/layout-dm/releases/tag/v1.0.0) (`released`).<br>  **Method:** Discrete diffusion model for controllable layout generation · **Base:** Transformer-style discrete denoiser · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes · **Checked:** 2026-10-06.
@@ -100,6 +102,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [DLT](https://arxiv.org/abs/2303.03755) - Applies diffusion modeling to structured layout generation (ICCV 2023).
 - [LayoutAction](https://ojs.aaai.org/index.php/AAAI/article/view/26277) - Frames autoregressive layout generation as a sequence of placement actions (AAAI 2023).
 - [PLay](https://arxiv.org/abs/2301.11529) - Uses parametrically conditioned latent diffusion for controllable layout generation (ICML 2023).
+- [Machine Learning Model to Evaluate the Appropriateness of Layout for Automatic Generation of Graphic Design Works](https://doi.org/10.1109/IMCOM56909.2023.10035646) - Uses adversarial layout generation and a trained discriminator to generate and score graphic-design layouts conditioned on specified materials (IMCOM 2023).
 #### 2022
 
 - [LayoutFormer++](https://arxiv.org/abs/2208.08037) - Treats layout generation as a sequence-to-sequence task with unified conditioning (CVPR 2023). Project: — · [Code](https://github.com/microsoft/LayoutGeneration/tree/main/LayoutFormer%2B%2B) (`training + inference`) · [Weights](https://huggingface.co/jzy124/LayoutFormer) (`released`).<br>  **Method:** Conditional sequence-to-sequence layout generation · **Base:** Transformer encoder-decoder · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Serialized/discretized layout boxes · **Checked:** 2026-10-06.
@@ -118,6 +121,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2019
 
 - [Neural Design Network](https://arxiv.org/abs/1912.09421) - Generates graphic layouts under explicit design constraints with a neural structured model (ECCV 2020).
+- [READ: Recursive Autoencoders for Document Layout Generation](https://arxiv.org/abs/1909.00302) - Generates hierarchical document layouts with a recursive variational autoencoder and introduces a structural similarity metric for dense document compositions (CVPRW 2020).
 - [LayoutVAE](https://arxiv.org/abs/1907.10719) - Uses a label-conditioned variational autoencoder for structured document layout generation (ICCV 2019).
 - [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) - Introduces a GAN formulation for synthesizing layouts represented by labeled geometric elements (ICLR 2019).
 #### 2015
@@ -148,9 +152,11 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [VASCAR](https://arxiv.org/abs/2412.04237) - Uses a large vision-language model to iteratively inspect rendered layouts and self-correct content-aware element placement without additional training.
 - [Design Element Aware Poster Layout Generation](https://doi.org/10.1145/3627673.3679557) - Models poster design elements and their relationships for content-aware poster layout generation (CIKM 2024).
+- [Iris: a multi-constraint graphic layout generation system](https://doi.org/10.1631/FITEE.2300312) - Combines an interactive graphic-layout design system with multi-constraint LayoutVQ-VAE for background-aware generation, editing, and rendering (FITEE 2024).
 - [CGB-DM](https://arxiv.org/abs/2407.15233) - Uses a diffusion transformer for graphic-layout generation with content-aware conditioning.
 - [Visual Layout Composer](https://openaccess.thecvf.com/content/CVPR2024/html/Shabani_Visual_Layout_Composer_Image-Vector_Dual_Diffusion_Model_for_Design_Layout_CVPR_2024_paper.html) - Couples image-space and vector-space diffusion to generate design layouts conditioned on visual content (CVPR 2024).
 - [PosterLLaVA](https://arxiv.org/abs/2406.02884) - Uses multimodal instruction tuning for poster layout generation (IEEE TMM 2024).
+- [Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models](https://arxiv.org/abs/2404.15271) - Uses a multimodal instruction-following model to arrange user-provided visual elements for posters, brochures, book covers, advertisements, and related visually rich documents (ALVR 2024).
 - [Graphist](https://arxiv.org/abs/2404.14368) - Models graphic-design layouts with multimodal and structural context.
 - [PosterLLaMA](https://arxiv.org/abs/2404.00995) - Adapts a multimodal language model to poster layout generation (ECCV 2024). [Project](https://lait-cvlab.github.io/PosterLlama/) · [Code](https://github.com/jaepoong/PosterLlama) (`training + inference`) · [Weights](https://huggingface.co/poong/PosterLlama) (`released`).<br>  **Method:** Vision-language model for content-aware poster layout generation · **Base:** LLaMA2-7B-chat; CodeLLaMA-7B; DINO visual features · **Train:** MiniGPT-4 synthetic caption data; CGL · **Eval:** CGL; poster-layout benchmarks · **Output:** HTML/code-form layout representation · **Checked:** 2026-10-06.
 #### 2023
@@ -332,12 +338,15 @@ The paper categories above describe **what a system produces**. This index descr
 <tbody>
 <tr><td>Human-aware Design Generation</td><td>Graphic Design Generation</td><td>VQ-VAE human-pose representation</td></tr>
 <tr><td>CLASS</td><td>Layout Generation</td><td>Variational latent layout representation</td></tr>
+<tr><td>Iris: a multi-constraint graphic layout generation system</td><td>Content-Aware Layout Generation</td><td>Multi-constraint LayoutVQ-VAE conditioned on background and design-element constraints</td></tr>
+<tr><td>Layout Generation for Various Scenarios in Mobile Shopping Apps</td><td>Layout Generation</td><td>LayoutVQ-VAE with discrete latent layout representation and multi-constraint conditioning</td></tr>
 <tr><td>ICVT</td><td>Content-Aware Layout Generation</td><td>Geometry-aligned variational Transformer</td></tr>
 <tr><td>Text2Poster</td><td>Typography and Text Rendering</td><td>Variational visual-textual poster composition model</td></tr>
 <tr><td>Coarse-to-Fine</td><td>Layout Generation</td><td>Hierarchical variational layout generation</td></tr>
 <tr><td>CanvasVAE</td><td>Layout Generation</td><td>Variational autoencoder</td></tr>
 <tr><td>VTN</td><td>Layout Generation</td><td>—</td></tr>
 <tr><td>Neural Design Network</td><td>Layout Generation</td><td>Variational structured design model</td></tr>
+<tr><td>READ: Recursive Autoencoders for Document Layout Generation</td><td>Layout Generation</td><td>Recursive variational autoencoder (RvNN-VAE) over hierarchical document layouts</td></tr>
 <tr><td>LayoutVAE</td><td>Layout Generation</td><td>Variational autoencoder</td></tr>
 </tbody>
 </table>
@@ -351,6 +360,7 @@ The paper categories above describe **what a system produces**. This index descr
 <tbody>
 <tr><td>PosterLayout</td><td>Content-Aware Layout Generation</td><td>Content-aware poster layout generation with DS-GAN</td></tr>
 <tr><td>PDA-GAN</td><td>Content-Aware Layout Generation</td><td>Image-aware GAN with pixel-level discriminator and domain adaptation</td></tr>
+<tr><td>Machine Learning Model to Evaluate the Appropriateness of Layout for Automatic Generation of Graphic Design Works</td><td>Layout Generation</td><td>Adversarial layout generator and discriminator; discriminator also scores layout appropriateness</td></tr>
 <tr><td>CreaGAN</td><td>Graphic Design Generation</td><td>Aesthetics-aware placement plus creative inpainting framework</td></tr>
 <tr><td>CGL-GAN</td><td>Content-Aware Layout Generation</td><td>Content-aware generative adversarial model</td></tr>
 <tr><td>Constrained Graphic Layout Generation via Latent Optimization</td><td>Layout Generation</td><td>GAN with differentiable rendering</td></tr>
@@ -510,6 +520,7 @@ The paper categories above describe **what a system produces**. This index descr
 <tr><td>PAID</td><td>Graphic Design Generation</td><td>VLM prompt and layout expert models</td></tr>
 <tr><td>LaDeCo</td><td>Graphic Design Generation</td><td>Large multimodal model for layer planning and attributes</td></tr>
 <tr><td>VASCAR</td><td>Content-Aware Layout Generation</td><td>LVLM visual-aware self-correction</td></tr>
+<tr><td>LayoutKAG: Enhancing Layout Generation in Large Language Models Through Knowledge-Augmented Generation</td><td>Layout Generation</td><td>Knowledge-augmented large-language-model layout generation</td></tr>
 <tr><td>TextLap</td><td>Layout Generation</td><td>Customized language model for text-to-layout planning</td></tr>
 <tr><td>SciPostLayout</td><td>Scientific Poster and Slide Generation</td><td>Scientific-poster layout analysis and generation baselines</td></tr>
 <tr><td>GlyphDraw2</td><td>Typography and Text Rendering</td><td>LLM-guided triple-cross-attention diffusion for glyph poster generation</td></tr>
@@ -517,6 +528,7 @@ The paper categories above describe **what a system produces**. This index descr
 <tr><td>PosterLLaVA</td><td>Content-Aware Layout Generation</td><td>Multimodal instruction-tuned language model</td></tr>
 <tr><td>PostDoc</td><td>Scientific Poster and Slide Generation</td><td>LLM paraphrasing for poster content</td></tr>
 <tr><td>Revision Matters</td><td>Graphic Design Editing and Reconstruction</td><td>Gemini multimodal backbone fine-tuned on designer revisions</td></tr>
+<tr><td>Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models</td><td>Content-Aware Layout Generation</td><td>mPLUG-Owl-based multimodal instruction-following layout planner (DocLap)</td></tr>
 <tr><td>Graphist</td><td>Content-Aware Layout Generation</td><td>Multimodal structural context model</td></tr>
 <tr><td>PosterLLaMA</td><td>Content-Aware Layout Generation</td><td>Multimodal language model</td></tr>
 <tr><td>Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners</td><td>Graphic Design Generation</td><td>—</td></tr>
@@ -567,6 +579,7 @@ The paper categories above describe **what a system produces**. This index descr
 <tr><td>Draw with Thought</td><td>Graphic Design Editing and Reconstruction</td><td>Coarse-to-fine code reconstruction pipeline</td></tr>
 <tr><td>BannerAgency</td><td>Graphic Design Generation</td><td>Collaborating multimodal agents</td></tr>
 <tr><td>PAID</td><td>Graphic Design Generation</td><td>Four-stage prompt/layout/background/rendering framework</td></tr>
+<tr><td>Iris: a multi-constraint graphic layout generation system</td><td>Content-Aware Layout Generation</td><td>Interactive specification, layout generation, custom editing, and rendering system</td></tr>
 <tr><td>OpenCOLE</td><td>Graphic Design Generation</td><td>Open layered design-generation pipeline</td></tr>
 <tr><td>PostDoc</td><td>Scientific Poster and Slide Generation</td><td>Content selection, template generation, and harmonization pipeline</td></tr>
 <tr><td>CG4CTR</td><td>Graphic Design Generation</td><td>Generation plus CTR-ranking pipeline</td></tr>
