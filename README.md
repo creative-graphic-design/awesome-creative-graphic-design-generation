@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-235-informational)
 ![Papers](https://img.shields.io/badge/papers-180-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-49-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-51-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -333,7 +333,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [AutoFigure-Edit](https://arxiv.org/abs/2603.06674) - Generates fully editable SVG scientific illustrations from long-form scientific text with reference-guided styling and interactive refinement. **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure-Edit) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable multimodal and segmentation models · **Train:** None · **Output:** Editable SVG.
 - [AutoFigure](https://arxiv.org/abs/2602.03828) - Uses an agentic planning, recombination, validation, and rendering pipeline to generate publication-ready scientific illustrations from long-form text (ICLR 2026). **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable LLM and image-generation APIs · **Train:** None · **Eval:** FigureBench · **Output:** SVG; mxGraph XML; PNG preview.
 - [PaperBanana](https://arxiv.org/abs/2601.23265) - Uses specialized retrieval, planning, styling, visualization, and critique agents to generate publication-ready academic illustrations. **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://dwzhu-pku.github.io/PaperBanana/) · [Code](https://github.com/google-research/papervizagent) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable VLM and image-generation models · **Train:** None · **Eval:** PaperBananaBench · **Output:** Raster methodology diagrams and statistical plots.
-- [SciFig](https://arxiv.org/abs/2601.04390) - Generates visually rich, fully editable scientific methodology figures from paper text using planning, layout, component, and feedback agents with VLM-in-the-loop refinement. **Architecture:** Agentic / Multi-stage System; VLM.
+- [SciFig](https://arxiv.org/abs/2601.04390) - Generates visually rich, fully editable scientific methodology figures from paper text using planning, layout, component, and feedback agents with VLM-in-the-loop refinement. **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://shramanpramanick.github.io/SciFig/) · Code: `announced` · Weights: `unknown`.<br>  **Train:** None · **Eval:** SciFig-Bench (announced) · **Output:** Editable XML.
 
 ### Scientific Poster and Slide Generation
 
@@ -343,7 +343,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [PosterMELD](https://arxiv.org/abs/2608.02218) - Generates controllable, diverse scientific posters with multi-agent planning and editable print-ready PPTX outputs. **Architecture:** Agentic / Multi-stage System.
 - [Personalization as Inverse Planning](https://arxiv.org/abs/2607.00407) - Learns latent page-level design intents for agentic slide personalization through structural denoising and multi-agent reinforcement learning (ECCV 2026). **Architecture:** Agentic / Multi-stage System; Diffusion.
 - [Any2Poster](https://arxiv.org/abs/2606.02915) - Introduces an any-source poster benchmark and agent spanning multiple input modalities and content domains. **Architecture:** Agentic / Multi-stage System; LLM; VLM.
-- [ArcDeck](https://arxiv.org/abs/2604.11969) - Generates polished academic slide decks from papers by reconstructing narrative structure with discourse parsing, multi-agent outline critique, layout planning, and PPTX rendering (ECCV 2026). **Architecture:** Agentic / Multi-stage System; LLM.
+- [ArcDeck](https://arxiv.org/abs/2604.11969) - Generates polished academic slide decks from papers by reconstructing narrative structure with discourse parsing, multi-agent outline critique, layout planning, and PPTX rendering (ECCV 2026). **Architecture:** Agentic / Multi-stage System; LLM. [Project](https://arcdeck.org/) · [Code](https://github.com/RehgLab/ArcDeck) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable GPT/Claude/Qwen/vLLM language models; python-pptx/PptxGenJS rendering · **Train:** None · **Eval:** ArcBench · **Output:** Editable PPTX; slide-planning JSON intermediates.
 - [Design First Code Later](https://arxiv.org/abs/2605.26451) - Introduces DeepSlides, a template-free design-first slide-generation workflow with SlideDesign data and reinforcement-learned SlideQwen models. **Architecture:** LLM. Project: — · [Code](https://github.com/sxswz213/DeepSlides) (`pipeline`) · Weights: `unknown`.<br>  **Base:** Configurable LLMs plus SlideQwen design/implementation models · **Train:** SlideDesign · **Output:** Editable PPTX; slide images.
 #### 2025
 
