@@ -2,8 +2,8 @@
 
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
-![Total Resources](https://img.shields.io/badge/resources-221-informational)
-![Papers](https://img.shields.io/badge/papers-166-informational)
+![Total Resources](https://img.shields.io/badge/resources-222-informational)
+![Papers](https://img.shields.io/badge/papers-167-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-46-informational)
 
@@ -187,6 +187,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Human-aware Design Generation](https://arxiv.org/abs/2609.17689) - Completes graphic designs by jointly composing 3D human poses, 2D framing, and human-image placement (ACM MM 2026). **Architecture:** Autoregressive / Transformer; VAE.
 - [InterIL](https://arxiv.org/abs/2609.11519) - Jointly generates background images and foreground layouts to model bidirectional image-layout interaction in design templates. **Architecture:** Diffusion.
 - [Mise-en-Scène](https://arxiv.org/abs/2608.19000) - Generates editable layered designs by letting layout emerge within a diffusion transformer while preserving source assets. **Architecture:** Autoregressive / Transformer; Diffusion.
+- [PosterAgent: Agentic Poster Generation via Stage-Aware Reinforcement Learning](https://proceedings.mlr.press/v306/yu26br.html) - Frames poster creation as an agentic draft-and-iterative-refinement workflow trained with stage-aware reinforcement learning (ICML 2026). **Architecture:** Agentic / Multi-stage System.
 - [Design Your Ad](https://arxiv.org/abs/2605.12138) - Jointly generates personalized advertising images and text from multimodal user histories with a unified autoregressive model and introduces PAd1M and PBS (CVPR 2026). **Architecture:** Autoregressive / Transformer. Project: — · [Code](https://github.com/JD-GenX/Uni-AdGen) (`inference only`) · [Weights](https://3.cn/11f4I-YYG) (`released`).<br>  **Base:** Janus-Pro-7B; DINOv2-small; SDXL-Base-1.0 · **Train:** PAd1M · **Eval:** PAd1M; PBS; BLEU; ROUGE · **Output:** Personalized advertising image and product text · **Checked:** 2026-10-06.
 - [SIMPLEPOSTER](https://arxiv.org/abs/2605.08784) - Generates product posters with faithful subject preservation and position-controllable text rendering (CVPR 2026). **Architecture:** Autoregressive / Transformer; Diffusion.
 - [Brief2Design](https://arxiv.org/abs/2604.11019) - Supports prompt-based professional graphic design through requirement extraction, element exploration, and compositional recombination. **Architecture:** Agentic / Multi-stage System.
