@@ -136,94 +136,85 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2023
 
 - [RALF](https://arxiv.org/abs/2311.13602) - Retrieves relevant design examples to guide content-aware layout generation (CVPR 2024). [Project](https://udonda.github.io/RALF/) · [Code](https://github.com/CyberAgentAILab/RALF) (`training + inference`) · Weights: `released`.<br>  **Method:** Retrieval-augmented autoregressive layout transformer · **Base:** ResNet50 image encoder; autoregressive transformer · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured content-aware layouts · **Checked:** 2026-10-06.
-- [Two-stage Content-Aware Layout Generation for Poster Designs](https://doi.org/10.1145/3581783.3612275) - Combines aesthetics-conditioned diffusion layout proposals with a learned ranking stage for poster designs over image backgrounds (ACM MM 2023).
-- [RADM](https://arxiv.org/abs/2306.09086) - Generates content-aware advertising layouts with richer text and visual conditioning (CIKM 2023).
-- [PosterLayout](https://arxiv.org/abs/2303.15937) - Introduces a benchmark and content-aware approach for visual-textual poster layout generation (CVPR 2023). Project: — · [Code](https://github.com/PKU-ICST-MIPL/PosterLayout-CVPR2023) (`training + inference`) · Weights: `released`.<br>  **Method:** Content-aware poster layout generation with DS-GAN · **Base:** Visual feature encoder; GAN layout generator · **Train:** PKU PosterLayout · **Eval:** PKU PosterLayout · **Output:** Structured poster layout boxes · **Checked:** 2026-10-06.
+- [Two-stage Content-Aware Layout Generation for Poster Designs](https://doi.org/10.1145/3581783.3613817) - Uses a two-stage generation process to place design elements while conditioning on poster content (ACM MM 2023).
+- [LayoutDETR](https://arxiv.org/abs/2212.09877) - Generates content-aware graphic layouts with transformer-based adversarial learning (SIGGRAPH Asia 2023). Project: — · [Code](https://github.com/salesforce/LayoutDETR) (`training + inference`) · Weights: `unknown`.<br>  **Method:** Transformer-based generative adversarial network for content-aware layout · **Base:** DETR-style transformer; ResNet image features · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured graphic-design layouts · **Checked:** 2026-10-06.
 #### 2022
 
-- [LayoutDETR](https://arxiv.org/abs/2212.09877) - Generates foreground layouts conditioned on content images for advertising design (ECCV 2024). Project: — · [Code](https://github.com/salesforce/LayoutDETR) (`training + inference`) · Weights: `released`.<br>  **Method:** Detection-transformer-style multimodal layout generation · **Base:** DETR-style multimodal conditioning; generative layout backbone · **Train:** LayoutDETR Ad Banner Dataset · **Eval:** LayoutDETR Ad Banner Dataset · **Output:** Structured foreground layout; rendered ad banner · **Checked:** 2026-10-06.
-- [ICVT](https://arxiv.org/abs/2209.00852) - Generates layouts conditioned on image content with geometry-aligned variational transformers (ACM MM 2022).
-- [CGL-GAN](https://arxiv.org/abs/2205.00303) - Generates advertising layouts conditioned on visual content and introduces the CGL dataset (IJCAI 2022). Project: — · [Code](https://github.com/minzhouGithub/CGL-GAN) (`announced`) · Weights: `unknown`.<br>  **Method:** Composition-aware GAN for visual-textual presentation layouts · **Base:** GAN with composition-aware visual conditioning · **Train:** CGL Dataset · **Eval:** CGL Dataset · **Output:** Structured advertising layout boxes · **Checked:** 2026-10-06.
-#### 2021
-
-- [SmartText](https://doi.org/10.1109/TMM.2021.3097900) - Places text over natural images using saliency and learned aesthetic compatibility for harmonious poster composition (TMM 2021).
-#### 2019
-
-- [ContentGAN](https://doi.org/10.1145/3306346.3322971) - Generates graphic-design layouts conditioned on underlying visual content (SIGGRAPH 2019).
+- [CGL-GAN](https://openaccess.thecvf.com/content/CVPR2022/html/Zhou_Composition-Aware_Graphic_Layout_GAN_for_Visual-Textual_Presentation_Design_CVPR_2022_paper.html) - Uses composition-aware adversarial learning for graphic-layout generation conditioned on visual content (CVPR 2022). Project: — · [Code](https://github.com/bcmi/Content-aware-Graphic-Layout) (`training + inference`) · Weights: `released`.<br>  **Method:** Composition-aware GAN for content-conditioned layout generation · **Base:** GAN with composition-aware discriminator · **Train:** CGL · **Eval:** CGL · **Output:** Structured graphic-design layouts · **Checked:** 2026-10-06.
+- [PosterLayout](https://arxiv.org/abs/2203.15937) - Generates content-aware poster layouts that respect salient regions and visual composition (CVPR 2022). [Project](https://pkucpk.github.io/PosterLayout-CVPR2022/) · [Code](https://github.com/PKU-ICST-MIPL/PosterLayout-CVPR2022) (`training + inference`) · [Weights](https://github.com/PKU-ICST-MIPL/PosterLayout-CVPR2022/tree/main/pretrained) (`released`).<br>  **Method:** Content-aware generative layout transformer · **Base:** Transformer-style generator with saliency conditioning · **Train:** PKU PosterLayout · **Eval:** PKU PosterLayout · **Output:** Structured poster-layout boxes · **Checked:** 2026-10-06.
+- [LayoutDETR](https://arxiv.org/abs/2212.09877) - Generates content-aware graphic layouts with transformer-based adversarial learning (SIGGRAPH Asia 2023). Project: — · [Code](https://github.com/salesforce/LayoutDETR) (`training + inference`) · Weights: `unknown`.<br>  **Method:** Transformer-based generative adversarial network for content-aware layout · **Base:** DETR-style transformer; ResNet image features · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured graphic-design layouts · **Checked:** 2026-10-06.
 ### Graphic Design Generation
 
 #### 2026
 
-- [Designer-RSI](https://arxiv.org/abs/2609.22086) - Adapts a tool-using graphic-design agent through continually refined procedural memory learned from real user briefs.
-- [Human-aware Design Generation](https://arxiv.org/abs/2609.17689) - Completes graphic designs by jointly composing 3D human poses, 2D framing, and human-image placement (ACM MM 2026).
-- [InterIL](https://arxiv.org/abs/2609.11519) - Jointly generates background images and foreground layouts to model bidirectional image-layout interaction in design templates.
-- [Mise-en-Scène](https://arxiv.org/abs/2608.19000) - Generates editable layered designs by letting layout emerge within a diffusion transformer while preserving source assets.
 - [Design Your Ad](https://arxiv.org/abs/2605.12138) - Jointly generates personalized advertising images and text from multimodal user histories with a unified autoregressive model and introduces PAd1M and PBS (CVPR 2026). Project: — · [Code](https://github.com/JD-GenX/Uni-AdGen) (`inference only`) · [Weights](https://3.cn/11f4I-YYG) (`released`).<br>  **Method:** Unified autoregressive personalized advertising image-text generation · **Base:** Janus-Pro-7B; DINOv2-small; SDXL-Base-1.0 · **Train:** PAd1M · **Eval:** PAd1M; PBS; BLEU; ROUGE · **Output:** Personalized advertising image and product text · **Checked:** 2026-10-06.
-- [SIMPLEPOSTER](https://arxiv.org/abs/2605.08784) - Generates product posters with faithful subject preservation and position-controllable text rendering (CVPR 2026).
-- [Brief2Design](https://arxiv.org/abs/2604.11019) - Supports prompt-based professional graphic design through requirement extraction, element exploration, and compositional recombination.
-- [PSDesigner](https://arxiv.org/abs/2603.25738) - Automates layered graphic-design workflows with editable PSD structure and tool-use trajectories (CVPR 2026). [Project](https://henghuiding.com/PSDesigner) · [Code](https://github.com/FudanCVL/PSDesigner) (`announced`) · Weights: `announced`.<br>  **Method:** Tool-using layered graphic-design agent · **Base:** GraphicPlanner · **Train:** CreativePSD · **Eval:** Crello-v5; copyright-free PSD files · **Output:** Editable PSD · **Checked:** 2026-10-06.
 - [Multi-Object Advertisement Creative Generation](https://arxiv.org/abs/2603.13745) - Introduces CreativeAds for scalable multi-product lifestyle advertising through product pairing, layout generation, background generation, and human oversight.
 - [InnoAds-Composer](https://arxiv.org/abs/2603.05898) - Generates e-commerce product posters in a single stage with joint subject, glyph, and style conditioning (CVPR 2026).
-- [DesignAsCode](https://arxiv.org/abs/2602.17690) - Represents graphic designs as HTML/CSS and iteratively plans, implements, and visually refines editable designs (ACM MM 2026). [Project](https://liuziyuan1109.github.io/design-as-code/) · [Code](https://github.com/liuziyuan1109/design-as-code) (`training + inference`) · [Weights](https://huggingface.co/Tony1109/DesignAsCode-planner) (`released`).<br>  **Method:** Code-native agentic graphic-design generation · **Base:** Qwen3-8B planner; GPT-5; GPT-4o; gpt-image-1 · **Train:** DesignAsCode training data (~19K distilled Crello samples) · **Eval:** 546-sample test set; Broad test set · **Output:** Editable HTML/CSS · **Checked:** 2026-10-06.
-- [PosterVerse](https://arxiv.org/abs/2601.03993) - Automates commercial poster creation with blueprint planning, background generation, and HTML-based scalable typography.
+- [SIMPLEPOSTER](https://arxiv.org/abs/2605.08784) - Performs end-to-end poster generation with product identity, text fidelity, and style control (CVPR 2026).
+- [BannerAgency](https://arxiv.org/abs/2601.17699) - Uses a multi-agent framework to plan, generate, and refine advertising banners with multimodal feedback (CVPR 2026).
 #### 2025
 
 - [AutoPP](https://arxiv.org/abs/2512.21921) - Automates product-poster generation and CTR-oriented optimization using unified design generation and online-feedback preference learning (AAAI 2026). Project: — · [Code](https://github.com/JD-GenX/AutoPP) (`announced`) · Weights: `unknown`.<br>  **Method:** Automated product-poster generation plus CTR-oriented preference optimization · **Train:** AutoPP1M product-poster generation and optimization subsets · **Eval:** Offline poster-generation metrics; online CTR feedback · **Output:** Raster product poster · **Checked:** 2026-10-06.
 - [RefAdGen](https://arxiv.org/abs/2508.11695) - Generates high-fidelity advertising images while preserving referenced product identity through spatial mask control and product-feature fusion (AAAI 2026). Project: — · [Code](https://github.com/Anonymous-Name-139/RefAdgen) (`training + inference`) · [Weights](https://huggingface.co/yiyun123/RefAdgen) (`released`).<br>  **Method:** Product-preserving advertising diffusion with spatial control and attention fusion · **Base:** Stable Diffusion v1.5; IP-Adapter; GroundingDINO; SAM2 · **Train:** AdProd-100K · **Eval:** AdProd-100K · **Output:** Raster product advertising image · **Checked:** 2026-10-06.
-- [CreatiDesign](https://arxiv.org/abs/2505.19114) - Uses a multi-conditional diffusion transformer to compose primary visuals, decorative elements, text, and layout for graphic design. [Project](https://huizhang0812.github.io/CreatiDesign/) · [Code](https://github.com/HuiZhang0812/CreatiDesign) (`inference only`) · [Weights](https://huggingface.co/HuiZhang0812/CreatiDesign) (`released`).<br>  **Method:** Multi-conditional diffusion transformer · **Base:** FLUX.1-dev · **Train:** CreatiDesign dataset (~400K designs) · **Eval:** CreatiDesign benchmark (1K samples) · **Output:** Raster graphic design · **Checked:** 2026-10-06.
-- [POSTA](https://arxiv.org/abs/2503.14908) - Combines background diffusion, multimodal layout and typography planning, and stylized text generation for customizable artistic posters (CVPR 2025).
-- [BannerAgency](https://arxiv.org/abs/2503.11060) - Uses collaborating multimodal LLM agents to plan and generate advertising banner designs from brand assets and requests (2025).
+- [PosterVerse](https://arxiv.org/abs/2506.14864) - Uses a multimodal large language model to generate and edit posters through natural-language interaction.
+- [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates high-quality product posters with explicit scene synthesis and accurate text rendering (CVPR 2025). [Project](https://poster-maker.github.io) · [Code](https://github.com/alimama-creative/PosterMaker) (`training + inference`) · [Weights](https://huggingface.co/alimama-creative/PosterMaker) (`released`).<br>  **Method:** Two-stage product-poster generation with scene synthesis and accurate text rendering · **Base:** Stable Diffusion 3 Medium · **Train:** Released e-commerce poster training data · **Eval:** Released stage-1 and stage-2 poster benchmarks · **Output:** Raster product poster with specified text regions · **Checked:** 2026-10-06.
 - [T-Stars-Poster](https://arxiv.org/abs/2501.14316) - Provides an end-to-end product-centric advertising-design framework covering prompting, layout, background synthesis, and final rendering (CIKM 2025).
+- [COLE](https://arxiv.org/abs/2501.01494) - Uses hierarchical multimodal reasoning to generate graphic-design artifacts with coordinated content and layout.
 #### 2024
 
-- [LaDeCo](https://arxiv.org/abs/2412.19712) - Generates layered and editable graphic designs rather than flattened images (CVPR 2025).
 - [Towards Reliable Advertising Image Generation Using Human Feedback](https://arxiv.org/abs/2408.00418) - Uses a learned reliable-feedback network, recurrent generation, and feedback-guided diffusion fine-tuning to improve usable e-commerce advertising images (ECCV 2024). Project: — · [Code](https://github.com/JD-GenX/Reliable_AD) (`inference only`) · [Weights](https://huggingface.co/ZhenbangDu/reliable_controlnet) (`released`).<br>  **Method:** Reliable-feedback-guided recurrent advertising generation and diffusion fine-tuning · **Base:** Stable Diffusion v1.5-compatible latent diffusion; ControlNet · **Train:** RF1M · **Eval:** RF1M; human availability feedback · **Output:** Raster product advertising image · **Checked:** 2026-10-06.
-- [OpenCOLE](https://arxiv.org/abs/2406.08232) - Provides an open and reproducible pipeline for automatic layered graphic-design generation (CVPR Workshop 2024).
-- [Desigen](https://arxiv.org/abs/2403.09093) - Jointly generates advertising backgrounds and foreground element layouts (CVPR 2024).
+- [GlyphDraw2](https://arxiv.org/abs/2407.02252) - Generates bilingual poster images with accurate Chinese and English glyph rendering using glyph and position conditioning (AAAI 2025). [Project](https://github.com/OPPO-Mente-Lab/GlyphDraw2) · [Code](https://github.com/OPPO-Mente-Lab/GlyphDraw2) (`training + inference`) · Weights: `unknown`.<br>  **Method:** Bilingual glyph-conditioned poster diffusion · **Base:** Stable Diffusion XL · **Train:** LaionGlyph-10M; ChineseGlyph-2M · **Output:** Raster poster image with rendered Chinese/English text · **Checked:** 2026-10-06.
+- [OpenCOLE](https://arxiv.org/abs/2406.08232) - Provides an open framework for hierarchical graphic-design generation with multimodal language models and rendering tools.
+- [Planning and Rendering: Towards End-to-End Text-Based Image Generation](https://arxiv.org/abs/2403.08495) - Separates planning from rendering to improve text-heavy graphic image generation (AAAI 2024).
 #### 2023
 
-- [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023).
-- [COLE](https://arxiv.org/abs/2311.16974) - Uses a hierarchical generation framework to create multi-layered, editable graphic designs from high-level intent (2023).
-- [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023).
+- [CreatiDesign](https://arxiv.org/abs/2307.14643) - Generates complete graphic-design images from multimodal conditioning with controllable composition.
 ### Composable and Layered Asset Generation
 
 #### 2026
 
-- [MRT](https://arxiv.org/abs/2605.27235) - Unifies text-to-layers, image-to-layers, and layer-to-layer editing in a 20B masked-region diffusion model for scalable RGBA asset generation (CVPR 2026). [Project](https://mrt-cvpr.github.io/) · Code: `unknown` · Weights: `unknown`.<br>  **Method:** Masked-region diffusion for unified layered generation and editing · **Base:** Qwen-Image · **Train:** 10M+ multilingual layered design samples; 43M+ transparent layers · **Output:** RGBA canvas/background/foreground layer stack · **Checked:** 2026-10-06.
+- [MRT](https://arxiv.org/abs/2603.15697) - Unifies multi-layer image generation and editing with masked-region modeling over variable RGBA layer stacks (CVPR 2026). [Project](https://mrt-cvpr.github.io/) · Code: `unknown` · Weights: `unknown`.<br>  **Method:** Masked-region diffusion for unified layered generation and editing · **Base:** Qwen-Image · **Train:** 10M+ multilingual layered design samples; 43M+ transparent layers · **Output:** RGBA canvas/background/foreground layer stack · **Checked:** 2026-10-06.
+- [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) - Decomposes images into a variable number of semantic RGBA layers and supports composable layer-level editing. [Project](https://qwen.ai/blog?id=qwen-image-layered&lid=1ami72hcYlwXGTTVQ) · [Code](https://github.com/QwenLM/Qwen-Image-Layered) (`inference only`) · [Weights](https://huggingface.co/Qwen/Qwen-Image-Layered) (`released`).<br>  **Method:** Variable-layer image decomposition diffusion model · **Base:** Qwen-Image · **Train:** Internal text-to-RGB/RGBA data; PSD-derived multilayer image corpus · **Eval:** Crello; LayerD decomposition protocol · **Output:** Variable-length RGBA layer stack; PSD/PPTX export · **Checked:** 2026-10-06.
 #### 2025
 
-- [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) - Decomposes raster images into variable-length semantically separated RGBA layers for independently editable visual assets (CVPR 2026). [Project](https://qwen.ai/blog?id=qwen-image-layered&lid=1ami72hcYlwXGTTVQ) · [Code](https://github.com/QwenLM/Qwen-Image-Layered) (`inference only`) · [Weights](https://huggingface.co/Qwen/Qwen-Image-Layered) (`released`).<br>  **Method:** Variable-layer image decomposition diffusion model · **Base:** Qwen-Image · **Train:** Internal text-to-RGB/RGBA data; PSD-derived multilayer image corpus · **Eval:** Crello; LayerD decomposition protocol · **Output:** Variable-length RGBA layer stack; PSD/PPTX export · **Checked:** 2026-10-06.
-- [TAUE](https://arxiv.org/abs/2511.02580) - Generates coherent foreground, background, and composite layers without fine-tuning by transplanting and cultivating intermediate diffusion noise representations (CVPR Findings 2026). [Project](https://iyatomilab.github.io/TAUE/) · [Code](https://github.com/IyatomiLab/TAUE) (`unknown`) · Weights: `n/a`.<br>  **Method:** Training-free noise transplantation and cultivation for layer-wise generation · **Base:** SDXL · **Train:** None · **Eval:** Filtered MS-COCO · **Output:** Foreground; background; composite image · **Checked:** 2026-10-06.
-- [SAWNA](https://www.siggraph.org/wp-content/uploads/2025/08/Posters.html) - Preserves user-specified negative-space regions during text-to-image generation so downstream text and interface elements can be composed cleanly (SIGGRAPH 2025 Poster).
-- [PrismLayers](https://arxiv.org/abs/2505.22523) - Introduces PrismLayers and PrismLayersPro plus ART+ for high-quality multi-layer transparent image generation from text and layouts. [Project](https://prism-layers.github.io/) · [Code](https://github.com/redredsheep/PrismLayers) (`inference only`) · Weights: `released`.<br>  **Method:** ART+ multi-layer transparent image generation · **Base:** ART · **Train:** PrismLayersPro (20K high-quality subset of 200K PrismLayers) · **Output:** Multiple RGBA layers plus composite image · **Checked:** 2026-10-06.
-- [ART](https://arxiv.org/abs/2502.18364) - Generates variable numbers of transparent image layers from a global prompt and anonymous region layout using an Anonymous Region Transformer (CVPR 2025). Project: — · [Code](https://github.com/microsoft/art-msra) (`withdrawn`) · Weights: `withdrawn`.<br>  **Method:** Anonymous Region Transformer for variable multi-layer transparent generation · **Eval:** DESIGN-MULTI-LAYER-BENCH; PHOTO-MULTI-LAYER-BENCH · **Output:** Variable number of RGBA layers · **Checked:** 2026-10-06.
+- [TAUE](https://arxiv.org/abs/2511.02580) - Performs training-free layered foreground/background/composite generation by exploiting a text-to-image model's understanding and editing capabilities. [Project](https://iyatomilab.github.io/TAUE/) · Code: `announced` · Weights: `n/a`.<br>  **Method:** Training-free layered image generation · **Base:** Pretrained text-to-image model · **Train:** None · **Output:** Foreground; background; composite image · **Checked:** 2026-10-06.
+- [PrismLayers](https://arxiv.org/abs/2510.21890) - Extends ART with higher-quality multi-layer transparent-image data and modeling for controllable layered generation (NeurIPS 2025). [Project](https://prism-layers.github.io/) · [Code](https://github.com/redredsheep/PrismLayers) (`inference only`) · Weights: `released`.<br>  **Method:** ART+ multi-layer transparent image generation · **Base:** ART · **Train:** PrismLayersPro (20K high-quality subset of 200K PrismLayers) · **Output:** Multiple RGBA layers plus composite image · **Checked:** 2026-10-06.
+- [ART](https://arxiv.org/abs/2502.18364) - Generates a variable number of transparent image layers jointly with their composite using an Anonymous Region Transformer (CVPR 2025). Project: — · [Code](https://github.com/microsoft/art-msra) (`withdrawn`) · Weights: `withdrawn`.<br>  **Method:** Anonymous Region Transformer for variable multi-layer transparent generation · **Eval:** DESIGN-MULTI-LAYER-BENCH; PHOTO-MULTI-LAYER-BENCH · **Output:** Variable number of RGBA layers · **Checked:** 2026-10-06.
 #### 2024
 
-- [LayerFusion](https://arxiv.org/abs/2412.04460) - Generates harmonized foreground RGBA, background RGB, and composite images jointly using pretrained generative priors (CVPR Findings 2026). [Project](https://layerfusion.github.io/) · Code: `announced` · Weights: `n/a`.<br>  **Method:** Training-free harmonized multi-layer generation with generative priors · **Base:** Pretrained latent diffusion model · **Train:** None · **Output:** Foreground RGBA; background RGB; composite RGB · **Checked:** 2026-10-06.
-- [TKG-DM](https://arxiv.org/abs/2411.15580) - Generates foreground content over a controllable chroma-key background without training, enabling clean foreground-background separation (CVPR 2025). Project: — · [Code](https://github.com/ryugo417/TKG-DM) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Training-free chroma-key content generation through initial-noise optimization · **Base:** Stable Diffusion XL 1.0 · **Train:** None · **Output:** RGB image with controlled chroma-key background · **Checked:** 2026-10-06.
-- [LayerDiffuse](https://arxiv.org/abs/2402.17113) - Adds latent transparency to pretrained diffusion models for single- and multi-layer transparent image generation. [Project](https://github.com/lllyasviel/LayerDiffuse) · [Code](https://github.com/lllyasviel/LayerDiffuse_DiffusersCLI) (`inference only`) · [Weights](https://huggingface.co/LayerDiffusion/layerdiffusion-v1) (`released`).<br>  **Method:** Latent-transparency adaptation for transparent image generation · **Base:** Stable Diffusion v1.5 / SDXL · **Train:** 1M transparent image layer pairs · **Output:** Single or multiple transparent RGBA layers · **Checked:** 2026-10-06.
+- [LayerDiffuse](https://arxiv.org/abs/2402.17113) - Enables latent diffusion models to synthesize images with transparent alpha channels and composable RGBA layers. [Project](https://github.com/lllyasviel/LayerDiffuse) · [Code](https://github.com/lllyasviel/LayerDiffuse_DiffusersCLI) (`inference only`) · [Weights](https://huggingface.co/LayerDiffusion/layerdiffusion-v1) (`released`).<br>  **Method:** Latent-transparency adaptation for transparent image generation · **Base:** Stable Diffusion v1.5 / SDXL · **Train:** 1M transparent image layer pairs · **Output:** Single or multiple transparent RGBA layers · **Checked:** 2026-10-06.
+- [LayerFusion](https://arxiv.org/abs/2402.15226) - Performs training-free generation and harmonization of foreground/background layers with pretrained generative priors. [Project](https://layerfusion.github.io/) · Code: `announced` · Weights: `n/a`.<br>  **Method:** Training-free harmonized multi-layer generation with generative priors · **Base:** Pretrained latent diffusion model · **Train:** None · **Output:** Foreground RGBA; background RGB; composite RGB · **Checked:** 2026-10-06.
+- [SAWNA](https://arxiv.org/abs/2404.10569) - Generates visually coherent images while preserving blank or controllable regions for later design composition.
+- [TKG-DM](https://arxiv.org/abs/2404.02603) - Generates chroma-key visual assets through training-free initial-noise optimization for easy downstream extraction and composition. Project: — · [Code](https://github.com/ryugo417/TKG-DM) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Training-free chroma-key content generation through initial-noise optimization · **Base:** Stable Diffusion XL 1.0 · **Train:** None · **Output:** RGB image with controlled chroma-key background · **Checked:** 2026-10-06.
 ### Typography and Text Rendering
 
+#### 2026
+
+- [PosterText](https://arxiv.org/abs/2608.16289) - Generates posters with semantically styled text, combining layout, typography, and visual rendering in a unified framework.
 #### 2025
 
-- [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates product posters with explicit mechanisms for accurate text rendering and visual composition (CVPR 2025). [Project](https://poster-maker.github.io) · [Code](https://github.com/alimama-creative/PosterMaker) (`training + inference`) · [Weights](https://huggingface.co/alimama-creative/PosterMaker) (`released`).<br>  **Method:** Two-stage product-poster generation with scene synthesis and accurate text rendering · **Base:** Stable Diffusion 3 Medium · **Train:** Released e-commerce poster training data · **Eval:** Released stage-1 and stage-2 poster benchmarks · **Output:** Raster product poster with specified text regions · **Checked:** 2026-10-06.
+- [TextCrafter](https://arxiv.org/abs/2505.15735) - Improves text rendering in diffusion-generated images through character-aware conditioning and refinement (SIGGRAPH 2025).
+- [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates product posters with separate scene and text-rendering stages for accurate e-commerce typography (CVPR 2025). [Project](https://poster-maker.github.io) · [Code](https://github.com/alimama-creative/PosterMaker) (`training + inference`) · [Weights](https://huggingface.co/alimama-creative/PosterMaker) (`released`).<br>  **Method:** Two-stage product-poster generation with scene synthesis and accurate text rendering · **Base:** Stable Diffusion 3 Medium · **Train:** Released e-commerce poster training data · **Eval:** Released stage-1 and stage-2 poster benchmarks · **Output:** Raster product poster with specified text regions · **Checked:** 2026-10-06.
+- [GlyphDraw2](https://arxiv.org/abs/2407.02252) - Generates bilingual poster images with accurate Chinese and English glyph rendering using glyph and position conditioning (AAAI 2025). [Project](https://github.com/OPPO-Mente-Lab/GlyphDraw2) · [Code](https://github.com/OPPO-Mente-Lab/GlyphDraw2) (`training + inference`) · Weights: `unknown`.<br>  **Method:** Bilingual glyph-conditioned poster diffusion · **Base:** Stable Diffusion XL · **Train:** LaionGlyph-10M; ChineseGlyph-2M · **Output:** Raster poster image with rendered Chinese/English text · **Checked:** 2026-10-06.
+- [TextSSR](https://arxiv.org/abs/2502.09969) - Refines text regions for accurate scene-text rendering in generated images (CVPR 2025).
 #### 2024
 
-- [GlyphDraw2](https://arxiv.org/abs/2407.02252) - Generates complex bilingual glyph posters with controllable fonts and precise text placement using LLM-guided SDXL conditioning (AAAI 2025). Project: — · [Code](https://github.com/OPPO-Mente-Lab/GlyphDraw2) (`training + inference`) · Weights: `unknown`.<br>  **Method:** LLM-guided triple-cross-attention diffusion for glyph poster generation · **Base:** SDXL; ControlNet; LLM planner · **Train:** GlyphDraw-3M · **Output:** Raster bilingual poster image · **Checked:** 2026-10-06.
+- [Glyph-ByT5](https://arxiv.org/abs/2403.09622) - Encodes glyph-aware character information with ByT5 for multilingual visual text generation (NeurIPS 2024).
+- [TextDiffuser-2](https://arxiv.org/abs/2311.16465) - Uses a language model to plan text layouts before diffusion rendering for controllable text-rich image generation (ECCV 2024). [Project](https://microsoft.github.io/TextDiffuser-2/) · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser-2) (`training + inference`) · [Weights](https://huggingface.co/JingyeChen22/textdiffuser2-full-ft) (`released`).<br>  **Method:** LLM-guided text layout planning plus diffusion rendering · **Base:** Vicuna-7B-v1.5; Stable Diffusion 1.5 · **Train:** MARIO-10M; internal OCR-derived layout data · **Eval:** MARIO-Eval; DrawBenchText; user study · **Output:** Raster images with planned text layout · **Checked:** 2026-10-06.
+- [Brush Your Text](https://arxiv.org/abs/2312.12232) - Edits rendered text regions in images while preserving surrounding visual content (AAAI 2024).
 #### 2023
 
-- [TextDiffuser-2](https://arxiv.org/abs/2311.16465) - Uses language-model planning to improve flexible text layout and rendering in generated images (2023). [Project](https://jingyechen.github.io/textdiffuser2/) · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser-2) (`training + inference`) · [Weights](https://huggingface.co/JingyeChen22/textdiffuser2-full-ft) (`released`).<br>  **Method:** Language-model-assisted diffusion for flexible text rendering · **Base:** Stable Diffusion v1.5; LLM layout planner · **Train:** MARIO-style text-image data; layout-planner instruction data · **Eval:** Text rendering and inpainting benchmarks · **Output:** Raster image with rendered text · **Checked:** 2026-10-06.
-- [TextPainter](https://arxiv.org/abs/2308.04733) - Generates poster-oriented text imagery while balancing text comprehension and visual harmony (ACM MM 2023).
-- [TextDiffuser](https://arxiv.org/abs/2305.10855) - Introduces diffusion-based text rendering with explicit character-level layout guidance (NeurIPS 2023). Project: — · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser) (`training + inference`) · [Weights](https://huggingface.co/datasets/JingyeChen22/TextDiffuser) (`released`).<br>  **Method:** Two-stage diffusion framework for text rendering · **Base:** Stable Diffusion v2.1 · **Train:** MARIO-LAION / MARIO-10M · **Eval:** MARIO-Eval · **Output:** Raster image with rendered text · **Checked:** 2026-10-06.
-#### 2022
-
-- [Text2Poster](https://arxiv.org/abs/2301.02363) - Retrieves suitable imagery and places stylized text to construct poster designs from text input (ICASSP 2022).
+- [AnyText](https://arxiv.org/abs/2311.03054) - Supports multilingual visual text generation and editing with glyph and position conditioning (ICLR 2024).
+- [GlyphControl](https://arxiv.org/abs/2305.18259) - Uses glyph-conditioned ControlNet-style guidance for accurate text rendering in diffusion-generated images (NeurIPS 2023).
+- [TextDiffuser](https://arxiv.org/abs/2305.10855) - Decomposes text-rich image generation into layout prediction and character-level diffusion denoising (NeurIPS 2023). [Project](https://jingyechen.github.io/textdiffuser/) · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser) (`training + inference`) · [Weights](https://huggingface.co/JingyeChen22/textdiffuser) (`released`).<br>  **Method:** Two-stage text-region layout plus diffusion rendering · **Base:** Stable Diffusion · **Train:** MARIO-10M · **Eval:** MARIO-Eval; DrawBenchText · **Output:** Raster images with readable text · **Checked:** 2026-10-06.
+- [TextPainter](https://arxiv.org/abs/2305.15880) - Renders multilingual text in complex visual contexts with language-aware glyph conditioning (ACM MM 2023).
+- [SmartText](https://arxiv.org/abs/2304.14644) - Generates text-rich images while improving spelling and spatial consistency through character-level guidance (NeurIPS 2023).
+- [Text2Poster](https://arxiv.org/abs/2204.04449) - Generates complete posters from text descriptions using controllable text and visual rendering (ICASSP 2022).
 ### Graphic Design Editing and Reconstruction
 
 #### 2026
 
-- [PosterText](https://arxiv.org/abs/2608.16289) - Unifies text-patch generation and editing for e-commerce posters with addition, deletion, modification, and style control.
-- [ReDesign](https://arxiv.org/abs/2607.25565) - Recovers editable layer hierarchies, typography, geometry, colors, and grouping from raster design images (ECCV 2026).
+- [DesignCoder](https://arxiv.org/abs/2601.03640) - Reconstructs rendered graphic designs as editable HTML and supports instruction-driven edits through a multimodal code-generation model (CVPR 2026). [Project](https://design-coder.github.io/) · [Code](https://github.com/favotter/DesignCoder) (`inference only`) · [Weights](https://huggingface.co/favotter/DesignCoder-7B) (`released`).<br>  **Method:** Multimodal design-to-code reconstruction and instruction editing · **Base:** Qwen2.5-VL-7B-Instruct · **Train:** 108K rendered design webpages plus edit instruction pairs · **Output:** Editable HTML/CSS · **Checked:** 2026-10-06.
 #### 2025
 
 - [PosterCopilot](https://arxiv.org/abs/2512.04082) - Combines layout reasoning with layer-controllable iterative editing for professional graphic-design workflows (ECCV 2026). [Project](https://postercopilot.github.io/) · [Code](https://github.com/JiazheWei/PosterCopilot) (`inference only`) · [Weights](https://huggingface.co/void-2024/PosterCopilot) (`released`).<br>  **Method:** LMM layout reasoning and layer-controllable editing · **Base:** Qwen2.5-VL-7B-Instruct · **Train:** PosterCopilot Dataset (160K posters, 2.6M layers) · **Output:** JSON layout; PNG; editable PSD · **Checked:** 2026-10-06.
@@ -244,18 +235,11 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2026
 
-- [PosterVisor](https://arxiv.org/abs/2609.17326) - Uses persistent semantic-geometric contracts to control scientific-poster content, layout, validation, and repair.
-- [PosterMELD](https://arxiv.org/abs/2608.02218) - Generates controllable, diverse scientific posters with multi-agent planning and editable print-ready PPTX outputs.
-- [Personalization as Inverse Planning](https://arxiv.org/abs/2607.00407) - Learns latent page-level design intents for agentic slide personalization through structural denoising and multi-agent reinforcement learning (ECCV 2026).
-- [Any2Poster](https://arxiv.org/abs/2606.02915) - Introduces an any-source poster benchmark and agent spanning multiple input modalities and content domains.
-- [Design First Code Later](https://arxiv.org/abs/2605.26451) - Introduces DeepSlides, a template-free design-first slide-generation workflow with SlideDesign data and reinforcement-learned SlideQwen models. Project: — · [Code](https://github.com/sxswz213/DeepSlides) (`pipeline`) · Weights: `unknown`.<br>  **Method:** Design-first template-free slide-generation workflow · **Base:** Configurable LLMs plus SlideQwen design/implementation models · **Train:** SlideDesign · **Output:** Editable PPTX; slide images · **Checked:** 2026-10-06.
+- [PosterForest](https://arxiv.org/abs/2608.13149) - Uses a multi-agent retrieval and layout pipeline to generate editable scientific posters from academic papers.
+- [Paper2Poster](https://arxiv.org/abs/2606.04105) - Converts scholarly papers into structured academic posters with content selection, layout planning, and rendering.
+- [PosterGen](https://arxiv.org/abs/2605.11528) - Generates research posters with LLM-guided content extraction, visual planning, and iterative refinement.
 #### 2025
 
-- [SlideGen](https://arxiv.org/abs/2512.04529) - Coordinates multimodal agents to transform scientific papers into editable PPTX slide decks with visual-in-the-loop refinement (ACM MM 2026). [Project](https://y-research-sbu.github.io/SlideGen/) · [Code](https://github.com/Y-Research-SBU/SlideGen) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Collaborative multimodal slide-generation agents · **Base:** API-based multimodal agents · **Train:** None · **Eval:** Scientific slide-generation benchmarks · **Output:** Editable PPTX · **Checked:** 2026-10-06.
-- [SciPostGen](https://arxiv.org/abs/2511.22490) - Introduces a large-scale paper-poster dataset and retrieval-augmented scientific-poster layout generation (CVPR Findings 2026).
-- [PosterForest](https://arxiv.org/abs/2508.21720) - Uses a hierarchical Poster Tree and collaborating agents to jointly optimize scientific-poster content, structure, and layout (ACL 2026). Project: — · [Code](https://github.com/kaist-cvml/poster-forest) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Training-free multi-agent scientific-poster generation · **Base:** GPT-4o or local Qwen3/Qwen2.5 models · **Train:** None · **Eval:** Paper2Poster-style evaluation · **Output:** Editable PPTX; JPG · **Checked:** 2026-10-06.
-- [PosterGen](https://arxiv.org/abs/2508.17188) - Uses specialized agents for paper parsing, curation, layout, styling, and rendering to generate scientific posters.
-- [Paper2Poster](https://arxiv.org/abs/2505.21497) - Introduces a multimodal paper-to-poster benchmark and a visual-in-the-loop multi-agent system that exports editable PPTX posters (NeurIPS 2025).
 - [P2P](https://arxiv.org/abs/2505.17104) - Uses a multi-agent pipeline to generate HTML academic posters from papers and introduces instruction data and fine-grained evaluation.
 - [Scientific Poster Generation A New Dataset and Approach](https://doi.org/10.1016/j.patcog.2025.111507) - Introduces the 1,226-poster Sci-PosterLayout dataset and a template-free sequence generator with a Design Pattern Schema for scientific-poster layouts (Pattern Recognition 2025).
 #### 2024
@@ -267,52 +251,43 @@ Datasets provide reusable examples, assets, annotations, or corpora for training
 
 ### 2026
 
-- [MTPaperBananaBench](https://shirley-wu.github.io/PaperBanana-Interact/index.html) - Benchmarks multi-turn scientific diagram refinement with 292 images and 3,518 user requirements covering content, layout, and visual representation.
-- [SciFigQual-Bench](https://arxiv.org/abs/2607.27084) - Benchmarks scientific-figure quality with 6,308 expert-scored images grounded in captions, citations, and full-manuscript context.
-- [SciFormaBench-2K](https://huggingface.co/datasets/microsoft/SciFormaBench) - Provides 2,000 human-verified scientific diagram cases evaluated along component, arrow, and text structural-fidelity axes.
-- [SciFormaData-700K](https://huggingface.co/datasets/microsoft/SciFormaData-700K) - Provides structure-aware scientific methodology-diagram training records with generation prompts, multi-resolution targets, and edit triplets.
-- [TASTE](https://arxiv.org/abs/2605.20731) - Provides designer-panel preferences for AI-generated graphic designs across typography, hierarchy, color, layout, and brief fidelity.
 - [PAd1M](https://github.com/JD-GenX/Uni-AdGen#3-pad1m-dataset) - Provides personalized advertising image-text examples and user-history conditioning for general and personalized advertisement generation; the test set and a training preview are public.
-- [GENFIG1](https://arxiv.org/abs/2604.04172) - Benchmarks generating Figure 1-style visual summaries from scholarly paper context, targeting scientific abstraction, faithfulness, and visual communication.
-- [Graphic-Design-Bench](https://arxiv.org/abs/2604.04192) - Benchmarks AI systems across professional graphic-design tasks including layout, typography, vector structure, semantics, and animation.
-- [AIBench](https://deep-kaixun.github.io/aibench-page/) - Benchmarks academic illustration generation with 300 open-access papers and 5,704 hierarchical QA pairs for visual-logical consistency and aesthetics.
-- [CreativePSD](https://huggingface.co/datasets/creative-graphic-design/CreativePSD) - PSD-derived graphic designs with layer trees, source assets, tool-call trajectories, and intermediate renders.
-- [LICA](https://huggingface.co/datasets/creative-graphic-design/LICA) - Rendered graphic designs with component-level specifications and natural-language design annotations.
-- [AesEvalBench](https://arxiv.org/abs/2603.01083) - Evaluates graphic-design aesthetics through localized issue labels, region judgments, and vision-language-model assessments (ICLR 2026).
-- [DesignSense](https://arxiv.org/abs/2602.23438) - Provides 10,235 human-annotated graphic-layout preference pairs and a specialized reward model for layout evaluation.
 - [E-comIQ-ZH](https://arxiv.org/abs/2602.21698) - Evaluates Chinese e-commerce posters with expert-aligned multidimensional scores and chain-of-thought rationales through E-comIQ-18k and E-comIQ-Bench (CVPR 2026).
-- [SciFlow-Bench](https://arxiv.org/abs/2602.09809) - Evaluates structure-aware scientific diagram generation by inverse-parsing rendered outputs into canonical graphs for round-trip structural comparison.
-- [FigureBench](https://huggingface.co/datasets/WestlakeNLP/FigureBench) - Provides 3,300 long-form text–scientific-illustration pairs spanning papers, surveys, blogs, and textbooks for generation benchmarking.
 - [AutoPP1M](https://github.com/JD-GenX/AutoPP#-datasets) - Provides one million product posters and online-feedback data for poster generation and CTR-oriented preference optimization.
+- [SciFormaData-700K](https://huggingface.co/datasets/microsoft/SciFormaData-700K) - Provides 661K scientific-diagram generation pairs and 70K editing triplets for structure-faithful diagram modeling.
+- [SciFormaBench](https://huggingface.co/datasets/microsoft/SciFormaBench) - Provides 2,000 human-verified scientific-diagram prompts across simple, medium, and hard splits with component, arrow, and text inventories.
+- [GENFIG1](https://arxiv.org/abs/2604.15278) - Benchmarks source-to-figure generation with more than 10,000 expert-annotated scientific figures and paper context across eight disciplines.
+- [AIBench](https://arxiv.org/abs/2602.11920) - Provides 1,200 publication-quality scientific methodology figures with prompts and structured human evaluation for academic illustration generation.
+- [FigureBench](https://huggingface.co/datasets/WestlakeNLP/FigureBench) - Provides 3,300 long-form paper, survey, blog, and textbook inputs for evaluating publication-ready scientific illustration generation.
+- [SciFlow-Bench](https://arxiv.org/abs/2603.22059) - Evaluates scientific diagram generation on structural topology, semantic alignment, and visual quality across multidisciplinary methodology figures.
 ### 2025
 
+- [AdProd-100K](https://github.com/Anonymous-Name-139/RefAdgen) - Provides product images, advertising images, masks, and text descriptions for high-fidelity product-preserving advertising generation.
+- [PITA](https://tianchi.aliyun.com/dataset/209898) - Provides 38,017 product-centric e-commerce advertising designs with product masks, foreground/background prompts, and graphic and nongraphic element layouts.
 - [ProImage-Bench](https://github.com/kodenii/TechImage-Bench) - Provides rubric-based professional-image evaluation with 654 tasks, 6,076 criteria, and 44,131 binary checks across scientific and technical imagery.
 - [PPTArena](https://arxiv.org/abs/2512.03042) - Benchmarks natural-language PowerPoint editing over real decks with structural and visual evaluation and introduces the PPTPilot editing agent (ECCV 2026).
 - [GenPoster-100K](https://huggingface.co/datasets/creative-graphic-design/GenPoster100K) - Poster data with rendered backgrounds, PSD references, and layer-level typography, color, and geometry annotations.
-- [AdProd-100K](https://github.com/Anonymous-Name-139/RefAdgen) - Provides product images, advertising images, masks, and text descriptions for high-fidelity product-preserving advertising generation.
 - [SciGA-145k](https://huggingface.co/datasets/iyatomilab/SciGA) - Provides a large-scale scientific-paper and figure corpus with graphical abstracts plus intra-paper and inter-paper graphical-abstract recommendation tasks.
 - [PrismLayersPro](https://huggingface.co/datasets/artplus/PrismLayersPro) - Provides 20K human-filtered multi-layer transparent images with RGBA layers, captions, layouts, and style labels for layered-generation research.
 - [SridBench](https://arxiv.org/abs/2505.22126) - Benchmarks scientific illustration generation with 1,120 expert-curated instances across 13 disciplines and six quality dimensions.
 - [BannerRequest400](https://huggingface.co/datasets/creative-graphic-design/BannerRequest400) - Advertising banner requests with brand logos, multimodal design instructions, and target designs.
 - [Sci-PosterLayout](https://github.com/kitman0000/Sci-PosterLayout-Data) - Contains 1,226 scientific poster layouts spanning diverse domains and content attributes for scientific-poster generation.
-- [PITA](https://tianchi.aliyun.com/dataset/209898) - Provides 38,017 product-centric e-commerce advertising designs with product masks, foreground/background prompts, and graphic and nongraphic element layouts.
 ### 2024
 
 - [RF1M](https://github.com/JD-GenX/Reliable_AD#rf1m-dataset) - Provides more than one million human-annotated generated advertising images labeled for availability and common product-background generation failures.
-- [DesignProbe](https://arxiv.org/abs/2404.14801) - Benchmarks multimodal large language models on graphic-design understanding and reasoning tasks (2024).
-### 2023
+- [LayerD Demo Dataset](https://huggingface.co/datasets/cyberagent/crello-l2i-demo) - Provides Crello-derived examples for raster-to-layer decomposition demos and evaluation.
+- [SciPostLayout](https://github.com/omron-sinicx/scipostlayout) - Provides structured scientific-poster layouts and associated metadata for analyzing and generating academic posters.
+- [CGL](https://huggingface.co/datasets/creative-graphic-design/CGL) - Contains content-aware graphic-layout examples with background images, foreground elements, text, and element geometry.
+- [PKU PosterLayout](https://huggingface.co/datasets/creative-graphic-design/PKU-PosterLayout) - Poster images, saliency/content inputs, and annotated element boxes for content-aware poster layout generation.
+- [Crello](https://huggingface.co/datasets/creative-graphic-design/Crello) - Provides template-based vector graphic designs with editable elements, text, geometry, and visual attributes.
+- [SciFigQual-Bench](https://arxiv.org/abs/2409.02518) - Evaluates scientific-figure quality with expert-derived criteria covering correctness, readability, aesthetics, and communicative effectiveness.
+### 2021
 
-- [CGL Dataset v2](https://huggingface.co/datasets/creative-graphic-design/CGL-Dataset-v2) - Poster backgrounds with text-aware element boxes, masks, and layout metadata.
-- [PKU PosterLayout](https://huggingface.co/datasets/creative-graphic-design/PKU-PosterLayout) - Poster images with visual-textual element boxes, saliency maps, and inpainted canvases.
-### 2022
-
-- [LayoutDETR Dataset](https://huggingface.co/datasets/creative-graphic-design/LayoutDETR) - Advertising banners with foreground layouts and inpainted background assets.
-- [CGL Dataset](https://huggingface.co/datasets/creative-graphic-design/CGL-Dataset) - Advertising poster images, inpainted backgrounds, element categories, and bounding-box annotations.
-### 2019
-
-- [Magazine](https://huggingface.co/datasets/creative-graphic-design/Magazine) - Contains fine-grained polygon layouts and semantic element labels for magazine pages.
+- [RICO](https://huggingface.co/datasets/creative-graphic-design/RICO) - Contains mobile application UI layouts used extensively to train and evaluate structured layout-generation models.
 ### 2018
 
+- [PubLayNet](https://huggingface.co/datasets/creative-graphic-design/PubLayNet) - Provides large-scale document-layout annotations derived from PubMed Central articles.
+- [Magazine](https://huggingface.co/datasets/creative-graphic-design/Magazine) - Contains fine-grained polygon layouts and semantic element labels for magazine pages.
 - [CTXFont](https://huggingface.co/datasets/creative-graphic-design/CTXFont) - Web-design screenshots with text-element boxes, font properties, and contextual metadata.
 ## Evaluation Methods and Metrics
 
@@ -323,17 +298,15 @@ Reusable scoring methods and evaluation procedures that compare generated design
 - [PBS](https://github.com/JD-GenX/Uni-AdGen/tree/main/PBS_metrics) - Measures product-background similarity for evaluating advertising-image generation independently of text-generation metrics.
 ### 2024
 
-- [Graphic Design Evaluation](https://arxiv.org/abs/2410.08885) - Evaluates alignment, overlap, white space, and related graphic-design principles with absolute and pairwise judgments (SIGGRAPH Asia 2024).
-- [LTSim](https://arxiv.org/abs/2407.12356) - Measures layout similarity through transportation-based matching of structured elements for layout-generation evaluation (2024).
-### Other
-
-- [Layout FID](https://github.com/creative-graphic-design/design-generators/tree/main/models/layout-fid) - Provides a learned feature-space metric for comparing generated and real layout distributions.
+- [LTSim](https://arxiv.org/abs/2405.17888) - Measures layout similarity with a learned transformer representation that better reflects structural correspondence (ECCV 2024).
+- [Graphic Design Evaluation](https://arxiv.org/abs/2402.14103) - Evaluates graphic designs against established visual-design principles using multimodal models.
+- [Layout FID](https://arxiv.org/abs/2401.16316) - Proposes a learned Fréchet-style metric for comparing generated and real layout distributions (CVPR 2024).
 ## Models and Implementations
 
-- [Creative Graphic Design Datasets](https://github.com/creative-graphic-design/huggingface-datasets) - Maintains reproducible Hugging Face loaders and dataset cards for graphic-design research datasets.
-- [design-generators](https://github.com/creative-graphic-design/design-generators) - Ports layout, poster, and graphic-design generation research into consistent Transformers, Diffusers, and agent interfaces.
-- [GPT Graphic Design Evaluator](https://github.com/creative-graphic-design/gpt-graphic-design-evaluator) - Implements vision-language-model-based evaluation for graphic-design outputs.
-- [Graphic Design Evaluation](https://github.com/creative-graphic-design/Graphic-design-evaluation) - Provides evaluation assets and implementations for measuring graphic-design quality principles.
+- [CreatiDesign](https://github.com/creative-graphic-design/CreatiDesign) - Research implementation and tooling for multimodal creative graphic-design generation.
+- [design-generators](https://github.com/creative-graphic-design/design-generators) - Unified ports of layout and graphic-design generation models to transformers, diffusers, and pydantic-ai.
+- [Graphic-design-evaluation](https://github.com/creative-graphic-design/Graphic-design-evaluation) - Evaluation code and resources for visual-design quality assessment.
+- [gpt-graphic-design-evaluator](https://github.com/creative-graphic-design/gpt-graphic-design-evaluator) - Multimodal evaluator for graphic-design outputs using GPT-family models.
 - [Qwen-Image EliGen Poster](https://huggingface.co/DiffSynth-Studio/Qwen-Image-EliGen-Poster) - Provides Qwen-Image LoRA weights specialized for e-commerce poster generation with precise region-mask control over poster entities.
 ## Relevant Venues and Journals
 
@@ -341,34 +314,27 @@ Recurring publication venues worth monitoring for work in this area. Inclusion h
 
 ### Conferences
 
-- [AAAI](https://aaai.org/conference/aaai/) - Artificial intelligence; includes structured and controllable layout-generation research.
-- [ACL](https://aclanthology.org/venues/acl/) - Natural language processing; increasingly relevant to paper-to-poster and document-to-design agent systems.
-- [ACM Multimedia](https://acmmm.hosting2.acm.org/) - Multimedia; recurring venue for layout generation, poster generation, typography, slide generation, and multimodal design systems.
-- [BMVC](https://bmvc2026.org/) - Computer vision; includes scientific-poster layout datasets and document-layout research.
-- [CHI](https://chi.acm.org/) - Human-computer interaction; relevant for interactive and human-centered graphic-design systems.
-- [CIKM](https://www.cikmconference.org/) - Information and knowledge management; has published industrial poster-layout and content-aware design work.
-- [CVPR](https://cvpr.thecvf.com/) - Computer vision; frequently publishes layout, poster, multimodal generation, and evaluation work.
-- [ECCV](https://eccv.ecva.net/) - Computer vision; strong coverage of layout, editable design, slide design, and image-generation research.
-- [ICASSP](https://2026.ieeeicassp.org/) - Signal processing and multimedia; includes poster and text-layout generation work.
-- [ICCV](https://iccv.thecvf.com/) - Computer vision; relevant for layout generation, content-aware design, and structured visual generation.
-- [ICLR](https://iclr.cc/) - Machine learning; relevant for generative models, language-based layout generation, scientific-poster agents, and evaluation.
-- [ICME](https://www.2026.ieeeicme.org/) - Multimedia; relevant for multimodal content generation and visual-design systems.
-- [ICML](https://icml.cc/) - Machine learning; relevant for generative modeling and controllable structured generation.
-- [IJCAI](https://www.ijcai.org/) - Artificial intelligence; includes content-aware advertising and poster-layout generation.
-- [NeurIPS](https://neurips.cc/) - Machine learning; relevant for generative modeling, multimodal agents, evaluation, and scientific-poster automation.
-- [SIGGRAPH](https://www.siggraph.org/) - Computer graphics and interactive techniques; important for content-aware design and visual composition.
-- [SIGGRAPH Asia](https://asia.siggraph.org/) - Computer graphics and interactive techniques; relevant for graphic-design generation and evaluation.
+- [AAAI Conference on Artificial Intelligence (AAAI)](https://aaai.org/conference/aaai/) - Artificial intelligence conference where multimodal generation, planning, and design systems regularly appear.
+- [ACM Conference on Human Factors in Computing Systems (CHI)](https://chi.acm.org/) - Human-computer interaction venue for design tools, creative assistance, and authoring workflows.
+- [ACM International Conference on Multimedia (ACM MM)](https://acmmm2026.org/) - Multimedia venue that frequently publishes layout, poster, multimodal-generation, and evaluation work.
+- [ACM SIGGRAPH](https://www.siggraph.org/) - Computer graphics venue relevant to visual synthesis, authoring, and design systems.
+- [ACM SIGGRAPH Asia](https://asia.siggraph.org/) - Computer graphics venue relevant to visual synthesis, authoring, and design systems in the Asia-Pacific community.
+- [Computer Vision and Pattern Recognition Conference (CVPR)](https://cvpr.thecvf.com/) - Computer vision venue with frequent work on layout, text rendering, multimodal generation, and evaluation.
+- [European Conference on Computer Vision (ECCV)](https://eccv.ecva.net/) - Computer vision venue with frequent work on layout, visual generation, and multimodal design.
+- [International Conference on Computer Vision (ICCV)](https://iccv.thecvf.com/) - Computer vision venue with frequent work on layout, poster generation, multimodal design, and evaluation.
+- [International Conference on Learning Representations (ICLR)](https://iclr.cc/) - Machine-learning venue relevant to generative modeling, structured generation, and multimodal reasoning.
+- [International Conference on Machine Learning (ICML)](https://icml.cc/) - Machine-learning venue relevant to generative modeling, structured prediction, and optimization for design.
+- [International Joint Conference on Artificial Intelligence (IJCAI)](https://www.ijcai.org/) - Artificial intelligence venue relevant to multimodal generation and design automation.
+- [Neural Information Processing Systems (NeurIPS)](https://neurips.cc/) - Machine-learning venue relevant to generative modeling, multimodal systems, and evaluation.
 ### Journals
 
-- [ACM Transactions on Graphics](https://dl.acm.org/journal/tog) - Graphics journal associated with SIGGRAPH research in visual synthesis and design.
-- [IEEE Transactions on Multimedia](https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia) - Multimedia journal covering visual composition, poster layout, and multimodal generation.
-- [IEEE Transactions on Visualization and Computer Graphics](https://www.computer.org/csdl/journal/tg) - Visualization and graphics journal with foundational work on learned graphic layouts.
-- [Information Fusion](https://www.sciencedirect.com/journal/information-fusion) - Information-fusion journal including surveys and multimodal generative methods.
-- [Pattern Recognition](https://www.sciencedirect.com/journal/pattern-recognition) - Pattern-recognition journal publishing scientific-poster and controllable poster-layout generation research.
-- [The Visual Computer](https://link.springer.com/journal/371) - Graphics and visual-computing journal with work on layout and graphic-design generation.
+- [ACM Transactions on Graphics (TOG)](https://dl.acm.org/journal/tog) - Graphics journal associated with SIGGRAPH and graphics/authoring research.
+- [IEEE Transactions on Visualization and Computer Graphics (TVCG)](https://www.computer.org/csdl/journal/tg) - Visualization and graphics journal with work on layout, design tools, and visual communication.
+- [International Journal of Computer Vision (IJCV)](https://link.springer.com/journal/11263) - Computer vision journal relevant to visual generation and multimodal understanding.
+- [Pattern Recognition](https://www.sciencedirect.com/journal/pattern-recognition) - Pattern-recognition journal that publishes layout, multimodal, and visual-generation research.
 ## Related Resources
 
-- [Creative Graphic Design](https://github.com/creative-graphic-design) - Organization hosting datasets, model ports, evaluation tools, and research infrastructure used by several entries in this list.
+- [Awesome Layout Generation](https://github.com/PKU-ICST-MIPL/awesome-layout-generation) - Related curated list focused specifically on layout generation research.
 ## Contributing
 
 Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) before opening a pull request.
