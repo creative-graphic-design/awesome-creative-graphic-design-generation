@@ -29,7 +29,7 @@ Columns:
 - `name` — canonical display name.
 - `url` — canonical primary link used by the list item.
 - `description` — concise objective description of why the resource belongs in the catalog.
-- `architecture` — optional short method-family label for paper entries, such as `Diffusion`, `LLM / VLM`, or `GAN`; leave blank for non-paper resources. Multiple families may be separated with semicolons. The generator renders this field directly and does not join a separate architecture table.
+- `architecture` — optional short method-family label for paper entries, such as `Diffusion`, `LLM`, `VLM`, or `GAN`; leave blank for non-paper resources. Multiple families may be separated with semicolons. The generator renders this field directly and does not join a separate architecture table.
 - `venue` — publication venue or release context when useful.
 - `venue_year` — venue/publication year when known.
 - `arxiv_date` — arXiv v1 date in `YYYY-MM-DD`, when applicable.
