@@ -296,7 +296,7 @@ The paper categories above describe **what a system produces**. This index descr
 - [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) — Layout Generation; Variational latent layout representation.
 - [ICVT](https://arxiv.org/abs/2209.00852) — Content-Aware Layout Generation; Geometry-aligned variational Transformer.
 - [CanvasVAE](https://arxiv.org/abs/2108.01249) — Layout Generation; Variational autoencoder.
-- [VTN](https://arxiv.org/abs/2104.02416) — Layout Generation; Variational autoencoder formulation.
+- [VTN](https://arxiv.org/abs/2104.02416) — Layout Generation.
 - [LayoutVAE](https://arxiv.org/abs/1907.10719) — Layout Generation; Variational autoencoder.
 ### GAN
 
@@ -304,7 +304,7 @@ The paper categories above describe **what a system produces**. This index descr
 - [CreaGAN](https://doi.org/10.1145/3503161.3548763) — Graphic Design Generation; Aesthetics-aware placement plus creative inpainting framework.
 - [CGL-GAN](https://arxiv.org/abs/2205.00303) — Content-Aware Layout Generation; Content-aware generative adversarial model.
 - [LayoutGAN++](https://arxiv.org/abs/2108.00871) — Layout Generation; GAN with differentiable rendering.
-- [AC-LayoutGAN](https://doi.org/10.1109/TVCG.2020.2999335) — Layout Generation; Attribute-conditioned generative adversarial network.
+- [AC-LayoutGAN](https://doi.org/10.1109/TVCG.2020.2999335) — Layout Generation.
 - [ContentGAN](https://doi.org/10.1145/3306346.3322971) — Content-Aware Layout Generation; Content-aware generative adversarial model.
 - [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) — Layout Generation; Generative adversarial layout model.
 ### Autoregressive / Transformer
@@ -317,7 +317,7 @@ The paper categories above describe **what a system produces**. This index descr
 - [Scan-and-Print](https://arxiv.org/abs/2505.20649) — Content-Aware Layout Generation; Autoregressive content-aware layout generation.
 - [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) — Layout Generation; Transformer with structure serialization and disentanglement.
 - [CreatiDesign](https://arxiv.org/abs/2505.19114) — Graphic Design Generation; Multi-conditional diffusion transformer.
-- [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) — Layout Generation; Autoregressive Transformer layout decoder.
+- [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) — Layout Generation.
 - [ART](https://arxiv.org/abs/2502.18364) — Composable and Layered Asset Generation; Anonymous Region Transformer for variable multi-layer transparent generation.
 - [CGB-DM](https://arxiv.org/abs/2407.15233) — Content-Aware Layout Generation.
 - [RALF](https://arxiv.org/abs/2311.13602) — Content-Aware Layout Generation; Retrieval-augmented autoregressive layout transformer.
@@ -328,7 +328,7 @@ The paper categories above describe **what a system produces**. This index descr
 - [ICVT](https://arxiv.org/abs/2209.00852) — Content-Aware Layout Generation; Transformer backbone.
 - [LayoutFormer++](https://arxiv.org/abs/2208.08037) — Layout Generation; Conditional sequence-to-sequence layout generation.
 - [Layout-BLT](https://arxiv.org/abs/2112.05112) — Layout Generation.
-- [LayoutMCL](https://arxiv.org/abs/2301.06629) — Layout Generation; Autoregressive multi-choice layout predictor.
+- [LayoutMCL](https://arxiv.org/abs/2301.06629) — Layout Generation.
 - [VTN](https://arxiv.org/abs/2104.02416) — Layout Generation; Self-attention / Transformer backbone.
 - [DeepLayout](https://arxiv.org/abs/2006.14615) — Layout Generation.
 ### Diffusion

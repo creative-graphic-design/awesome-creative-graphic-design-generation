@@ -16,7 +16,7 @@ PSDesigner,Agentic / Multi-stage System,Tool-using graphic-design agent
 SlideGen,Agentic / Multi-stage System,Collaborative multimodal slide-generation agents
 ART,Autoregressive / Transformer,Anonymous Region Transformer for variable multi-layer transparent generation
 CGB-DM,Autoregressive / Transformer,
-CLASS,Autoregressive / Transformer,Autoregressive Transformer layout decoder
+CLASS,Autoregressive / Transformer,
 CreatiDesign,Autoregressive / Transformer,Multi-conditional diffusion transformer
 DeepLayout,Autoregressive / Transformer,
 Design Your Ad,Autoregressive / Transformer,Unified autoregressive personalized advertising image-text generation
@@ -27,7 +27,7 @@ LayoutAction,Autoregressive / Transformer,
 LayoutDETR,Autoregressive / Transformer,Detection-transformer-style multimodal layout generation
 LayoutDM,Autoregressive / Transformer,Discrete diffusion model for controllable layout generation
 LayoutFormer++,Autoregressive / Transformer,Conditional sequence-to-sequence layout generation
-LayoutMCL,Autoregressive / Transformer,Autoregressive multi-choice layout predictor
+LayoutMCL,Autoregressive / Transformer,
 Mise-en-Scène,Autoregressive / Transformer,
 PosterOmni,Autoregressive / Transformer,Unified multi-task image-to-poster generation and editing via task distillation and reward feedback
 RALF,Autoregressive / Transformer,Retrieval-augmented autoregressive layout transformer
@@ -72,7 +72,7 @@ Visual Layout Composer,Diffusion,
 Learn and Sample Together,Encoder-only Neural Model,BERT-like graph modeling in a collaborative two-stage generator
 LayoutFlow,Flow Matching,Continuous flow-matching layout model
 Learning Priority-Aware Controllable Poster Layout Generation,Flow Matching,
-AC-LayoutGAN,GAN,Attribute-conditioned generative adversarial network
+AC-LayoutGAN,GAN,
 CGL-GAN,GAN,Content-aware generative adversarial model
 ContentGAN,GAN,Content-aware generative adversarial model
 CreaGAN,GAN,Aesthetics-aware placement plus creative inpainting framework
@@ -109,4 +109,4 @@ CanvasVAE,VAE,Variational autoencoder
 CLASS,VAE,Variational latent layout representation
 ICVT,VAE,Geometry-aligned variational Transformer
 LayoutVAE,VAE,Variational autoencoder
-VTN,VAE,Variational autoencoder formulation
+VTN,VAE,
