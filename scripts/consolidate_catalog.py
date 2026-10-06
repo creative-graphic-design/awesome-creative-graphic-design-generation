@@ -60,6 +60,24 @@ def write_rows(path: Path, fields: list[str], rows: list[dict[str, str]]) -> Non
         writer.writerows(rows)
 
 
+def update_guidance() -> None:
+    path = ROOT / "CONTRIBUTING.md"
+    text = path.read_text(encoding="utf-8")
+    text = text.replace("`data/resources*.csv`", "`data/resources.csv`")
+    text = text.replace("`data/paper_metadata*.csv`", "`data/paper_metadata.csv`")
+    text = text.replace("through `paper_metadata*.csv`", "through `data/paper_metadata.csv`")
+    text = text.replace("Search all `data/resources.csv` files", "Search `data/resources.csv`")
+    text = text.replace(
+        "The generator currently normalizes legacy bootstrap section names for compatibility; do not add new records using the legacy names.",
+        "All resource rows must use these canonical section names; legacy bootstrap section names are no longer accepted.",
+    )
+    text = text.replace(
+        "CI regenerates the README and fails if the committed output differs.",
+        "The `Catalog Check` workflow verifies that the committed README exactly matches the canonical CSV data and template.",
+    )
+    path.write_text(text, encoding="utf-8")
+
+
 def main() -> None:
     resource_paths = sorted(DATA.glob("resources*.csv"))
     resources: list[dict[str, str]] = []
@@ -109,6 +127,7 @@ def main() -> None:
         if path.name != "paper_metadata.csv":
             path.unlink()
 
+    update_guidance()
     print(f"Consolidated {len(resources)} resources and {len(metadata)} audited papers.")
 
 
