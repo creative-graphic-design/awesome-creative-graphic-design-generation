@@ -312,7 +312,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation.
 ## Method and Architecture Index
 
-The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is normalized from the architecture axis used in the SSII technology map while allowing newer LLM/VLM and agentic systems. Paper names correspond to the canonical entries above; links are intentionally not repeated so the Awesome list keeps one canonical external link per resource.
+The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is a normalized taxonomy for the research represented in this catalog and can evolve as new model families emerge. Paper names correspond to the canonical entries above; links are intentionally not repeated so the Awesome list keeps one canonical external link per resource.
 
 ### Classical / Optimization
 
