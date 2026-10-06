@@ -8,7 +8,7 @@ This list focuses on work where layout, typography, visual elements, editable st
 
 Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
 
-Implementation metadata is tracked separately in [`data/paper_metadata.csv`](data/paper_metadata.csv). Verified entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
+Implementation metadata is tracked in [`data/paper_metadata*.csv`](data/). Verified entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
 
 ## Contents
 
@@ -17,6 +17,7 @@ Implementation metadata is tracked separately in [`data/paper_metadata.csv`](dat
   - [Layout Generation](#layout-generation)
   - [Content-Aware Layout Generation](#content-aware-layout-generation)
   - [Graphic Design Generation](#graphic-design-generation)
+  - [Composable and Layered Asset Generation](#composable-and-layered-asset-generation)
   - [Typography and Text Rendering](#typography-and-text-rendering)
   - [Graphic Design Editing and Reconstruction](#graphic-design-editing-and-reconstruction)
   - [Scientific Poster and Slide Generation](#scientific-poster-and-slide-generation)
@@ -46,6 +47,8 @@ Papers are classified by their **primary output and task**, rather than by model
 **Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
 
 **Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
+
+**Composable and Layered Asset Generation:** Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.
 
 **Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
 
@@ -149,10 +152,12 @@ Papers are classified by their **primary output and task**, rather than by model
 - [SIMPLEPOSTER](https://arxiv.org/abs/2605.08784) - Generates product posters with faithful subject preservation and position-controllable text rendering (CVPR 2026).
 - [Brief2Design](https://arxiv.org/abs/2604.11019) - Supports prompt-based professional graphic design through requirement extraction, element exploration, and compositional recombination.
 - [PSDesigner](https://arxiv.org/abs/2603.25738) - Automates layered graphic-design workflows with editable PSD structure and tool-use trajectories (CVPR 2026). [Project](https://henghuiding.com/PSDesigner) · [Code](https://github.com/FudanCVL/PSDesigner) (`announced`) · Weights: `announced`.<br>  **Method:** Tool-using layered graphic-design agent · **Base:** GraphicPlanner · **Train:** CreativePSD · **Eval:** Crello-v5; copyright-free PSD files · **Output:** Editable PSD · **Checked:** 2026-10-06.
+- [InnoAds-Composer](https://arxiv.org/abs/2603.05898) - Generates e-commerce product posters in a single stage with joint subject, glyph, and style conditioning (CVPR 2026).
 - [DesignAsCode](https://arxiv.org/abs/2602.17690) - Represents graphic designs as HTML/CSS and iteratively plans, implements, and visually refines editable designs (ACM MM 2026). [Project](https://liuziyuan1109.github.io/design-as-code/) · [Code](https://github.com/liuziyuan1109/design-as-code) (`training + inference`) · [Weights](https://huggingface.co/Tony1109/DesignAsCode-planner) (`released`).<br>  **Method:** Code-native agentic graphic-design generation · **Base:** Qwen3-8B planner; GPT-5; GPT-4o; gpt-image-1 · **Train:** DesignAsCode training data (~19K distilled Crello samples) · **Eval:** 546-sample test set; Broad test set · **Output:** Editable HTML/CSS · **Checked:** 2026-10-06.
 - [PosterVerse](https://arxiv.org/abs/2601.03993) - Automates commercial poster creation with blueprint planning, background generation, and HTML-based scalable typography.
 #### 2025
 
+- [AutoPP](https://arxiv.org/abs/2512.21921) - Automates product-poster generation and CTR-oriented optimization using unified design generation and online-feedback preference learning (AAAI 2026). Project: — · [Code](https://github.com/JD-GenX/AutoPP) (`announced`) · Weights: `unknown`.<br>  **Method:** Automated product-poster generation plus CTR-oriented preference optimization · **Train:** AutoPP1M product-poster generation and optimization subsets · **Eval:** Offline poster-generation metrics; online CTR feedback · **Output:** Raster product poster · **Checked:** 2026-10-06.
 - [CreatiDesign](https://arxiv.org/abs/2505.19114) - Uses a multi-conditional diffusion transformer to compose primary visuals, decorative elements, text, and layout for graphic design. [Project](https://huizhang0812.github.io/CreatiDesign/) · [Code](https://github.com/HuiZhang0812/CreatiDesign) (`inference only`) · [Weights](https://huggingface.co/HuiZhang0812/CreatiDesign) (`released`).<br>  **Method:** Multi-conditional diffusion transformer · **Base:** FLUX.1-dev · **Train:** CreatiDesign dataset (~400K designs) · **Eval:** CreatiDesign benchmark (1K samples) · **Output:** Raster graphic design · **Checked:** 2026-10-06.
 - [POSTA](https://arxiv.org/abs/2503.14908) - Combines background diffusion, multimodal layout and typography planning, and stylized text generation for customizable artistic posters (CVPR 2025).
 - [BannerAgency](https://arxiv.org/abs/2503.11060) - Uses collaborating multimodal LLM agents to plan and generate advertising banner designs from brand assets and requests (2025).
@@ -166,6 +171,22 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023).
 - [COLE](https://arxiv.org/abs/2311.16974) - Uses a hierarchical generation framework to create multi-layered, editable graphic designs from high-level intent (2023).
 - [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023).
+### Composable and Layered Asset Generation
+
+#### 2026
+
+- [MRT](https://arxiv.org/abs/2605.27235) - Unifies text-to-layers, image-to-layers, and layer-to-layer editing in a 20B masked-region diffusion model for scalable RGBA asset generation (CVPR 2026). [Project](https://mrt-cvpr.github.io/) · Code: `unknown` · Weights: `unknown`.<br>  **Method:** Masked-region diffusion for unified layered generation and editing · **Base:** Qwen-Image · **Train:** 10M+ multilingual layered design samples; 43M+ transparent layers · **Output:** RGBA canvas/background/foreground layer stack · **Checked:** 2026-10-06.
+#### 2025
+
+- [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) - Decomposes raster images into variable-length semantically separated RGBA layers for independently editable visual assets (CVPR 2026). [Project](https://qwen.ai/blog?id=qwen-image-layered&lid=1ami72hcYlwXGTTVQ) · [Code](https://github.com/QwenLM/Qwen-Image-Layered) (`inference only`) · [Weights](https://huggingface.co/Qwen/Qwen-Image-Layered) (`released`).<br>  **Method:** Variable-layer image decomposition diffusion model · **Base:** Qwen-Image · **Train:** Internal text-to-RGB/RGBA data; PSD-derived multilayer image corpus · **Eval:** Crello; LayerD decomposition protocol · **Output:** Variable-length RGBA layer stack; PSD/PPTX export · **Checked:** 2026-10-06.
+- [SAWNA](https://www.siggraph.org/wp-content/uploads/2025/08/Posters.html) - Preserves user-specified negative-space regions during text-to-image generation so downstream text and interface elements can be composed cleanly (SIGGRAPH 2025 Poster).
+- [PrismLayers](https://arxiv.org/abs/2505.22523) - Introduces PrismLayers and PrismLayersPro plus ART+ for high-quality multi-layer transparent image generation from text and layouts. [Project](https://prism-layers.github.io/) · [Code](https://github.com/redredsheep/PrismLayers) (`inference only`) · Weights: `released`.<br>  **Method:** ART+ multi-layer transparent image generation · **Base:** ART · **Train:** PrismLayersPro (20K high-quality subset of 200K PrismLayers) · **Output:** Multiple RGBA layers plus composite image · **Checked:** 2026-10-06.
+- [ART](https://arxiv.org/abs/2502.18364) - Generates variable numbers of transparent image layers from a global prompt and anonymous region layout using an Anonymous Region Transformer (CVPR 2025). Project: — · [Code](https://github.com/microsoft/art-msra) (`withdrawn`) · Weights: `withdrawn`.<br>  **Method:** Anonymous Region Transformer for variable multi-layer transparent generation · **Eval:** DESIGN-MULTI-LAYER-BENCH; PHOTO-MULTI-LAYER-BENCH · **Output:** Variable number of RGBA layers · **Checked:** 2026-10-06.
+#### 2024
+
+- [LayerFusion](https://arxiv.org/abs/2412.04460) - Generates harmonized foreground RGBA, background RGB, and composite images jointly using pretrained generative priors (CVPR Findings 2026). [Project](https://layerfusion.github.io/) · Code: `announced` · Weights: `n/a`.<br>  **Method:** Training-free harmonized multi-layer generation with generative priors · **Base:** Pretrained latent diffusion model · **Train:** None · **Output:** Foreground RGBA; background RGB; composite RGB · **Checked:** 2026-10-06.
+- [TKG-DM](https://arxiv.org/abs/2411.15580) - Generates foreground content over a controllable chroma-key background without training, enabling clean foreground-background separation (CVPR 2025). Project: — · [Code](https://github.com/ryugo417/TKG-DM) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Training-free chroma-key content generation through initial-noise optimization · **Base:** Stable Diffusion XL 1.0 · **Train:** None · **Output:** RGB image with controlled chroma-key background · **Checked:** 2026-10-06.
+- [LayerDiffuse](https://arxiv.org/abs/2402.17113) - Adds latent transparency to pretrained diffusion models for single- and multi-layer transparent image generation. [Project](https://github.com/lllyasviel/LayerDiffuse) · [Code](https://github.com/lllyasviel/LayerDiffuse_DiffusersCLI) (`inference only`) · [Weights](https://huggingface.co/LayerDiffusion/layerdiffusion-v1) (`released`).<br>  **Method:** Latent-transparency adaptation for transparent image generation · **Base:** Stable Diffusion v1.5 / SDXL · **Train:** 1M transparent image layer pairs · **Output:** Single or multiple transparent RGBA layers · **Checked:** 2026-10-06.
 ### Typography and Text Rendering
 
 #### 2025
@@ -188,6 +209,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2025
 
 - [PosterCopilot](https://arxiv.org/abs/2512.04082) - Combines layout reasoning with layer-controllable iterative editing for professional graphic-design workflows (ECCV 2026). [Project](https://postercopilot.github.io/) · [Code](https://github.com/JiazheWei/PosterCopilot) (`inference only`) · [Weights](https://huggingface.co/void-2024/PosterCopilot) (`released`).<br>  **Method:** LMM layout reasoning and layer-controllable editing · **Base:** Qwen2.5-VL-7B-Instruct · **Train:** PosterCopilot Dataset (160K posters, 2.6M layers) · **Output:** JSON layout; PNG; editable PSD · **Checked:** 2026-10-06.
+- [LayerD](https://arxiv.org/abs/2509.25134) - Decomposes raster graphic designs into editable layers through iterative foreground extraction and refinement (ICCV 2025). [Project](https://cyberagentailab.github.io/LayerD/) · [Code](https://github.com/CyberAgentAILab/LayerD) (`training + inference`) · [Weights](https://huggingface.co/cyberagent/layerd-birefnet) (`released`).<br>  **Method:** Iterative raster-to-layer decomposition with matting and refinement · **Base:** BiRefNet · **Output:** RGBA layers; SVG; PSD · **Checked:** 2026-10-06.
 ### Scientific Poster and Slide Generation
 
 #### 2026
@@ -218,6 +240,7 @@ Papers are classified by their **primary output and task**, rather than by model
 ### 2025
 
 - [GenPoster-100K](https://huggingface.co/datasets/creative-graphic-design/GenPoster100K) - Poster data with rendered backgrounds, PSD references, and layer-level typography, color, and geometry annotations.
+- [PrismLayersPro](https://huggingface.co/datasets/artplus/PrismLayersPro) - Provides 20K human-filtered multi-layer transparent images with RGBA layers, captions, layouts, and style labels for layered-generation research.
 - [BannerRequest400](https://huggingface.co/datasets/creative-graphic-design/BannerRequest400) - Advertising banner requests with brand logos, multimodal design instructions, and target designs.
 - [Sci-PosterLayout](https://github.com/kitman0000/Sci-PosterLayout-Data) - Contains 1,226 scientific poster layouts spanning diverse domains and content attributes for scientific-poster generation.
 ### 2023
@@ -242,6 +265,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Graphic-Design-Bench](https://arxiv.org/abs/2604.04192) - Benchmarks AI systems across professional graphic-design tasks including layout, typography, vector structure, semantics, and animation.
 - [AesEvalBench](https://arxiv.org/abs/2603.01083) - Evaluates graphic-design aesthetics through localized issue labels, region judgments, and vision-language-model assessments (ICLR 2026).
 - [DesignSense](https://arxiv.org/abs/2602.23438) - Provides 10,235 human-annotated graphic-layout preference pairs and a specialized reward model for layout evaluation.
+- [E-comIQ-ZH](https://arxiv.org/abs/2602.21698) - Evaluates Chinese e-commerce posters with expert-aligned multidimensional scores and chain-of-thought rationales through E-comIQ-18k and E-comIQ-Bench (CVPR 2026).
 ### 2025
 
 - [PPTArena](https://arxiv.org/abs/2512.03042) - Benchmarks natural-language PowerPoint editing over real decks with structural and visual evaluation and introduces the PPTPilot editing agent (ECCV 2026).
@@ -259,6 +283,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [design-generators](https://github.com/creative-graphic-design/design-generators) - Ports layout, poster, and graphic-design generation research into consistent Transformers, Diffusers, and agent interfaces.
 - [GPT Graphic Design Evaluator](https://github.com/creative-graphic-design/gpt-graphic-design-evaluator) - Implements vision-language-model-based evaluation for graphic-design outputs.
 - [Graphic Design Evaluation](https://github.com/creative-graphic-design/Graphic-design-evaluation) - Provides evaluation assets and implementations for measuring graphic-design quality principles.
+- [Qwen-Image EliGen Poster](https://huggingface.co/DiffSynth-Studio/Qwen-Image-EliGen-Poster) - Provides Qwen-Image LoRA weights specialized for e-commerce poster generation with precise region-mask control over poster entities.
 ## Relevant Venues and Journals
 
 Recurring publication venues worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper at the venue is in scope.
