@@ -1,6 +1,12 @@
 # Awesome Creative Graphic Design Generation [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-<!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
+[![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
+[![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
+![Papers](https://img.shields.io/badge/papers-114-informational)
+![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-35-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-41-informational)
+
+<!-- This file is generated from data/resources.csv and data/paper_metadata.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
 Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific figures, graphical abstracts, scientific posters, slides, banners, and related visual compositions.
 
@@ -8,7 +14,7 @@ This list focuses on work where layout, typography, visual elements, editable st
 
 Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
 
-Implementation metadata is tracked in [`data/paper_metadata*.csv`](data/). Verified entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
+Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_metadata.csv). Verified entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
 
 ## Contents
 
