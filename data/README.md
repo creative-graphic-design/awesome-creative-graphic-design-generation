@@ -10,9 +10,12 @@ Research-topic boundaries change as the taxonomy evolves, and many works span se
 
 At the current catalog size, the canonical files are:
 
-- `resources.csv` — rendered catalog resources.
+- `resources.csv` — rendered catalog resources and the primary task/output taxonomy.
 - `paper_metadata.csv` — audited implementation and reproducibility metadata for papers in the `Papers` section.
-- `venues.csv` — recurring publication venues monitored for relevant work.
+- `paper_methods.csv` — multi-label method/architecture classifications for papers.
+- `venues.csv` — recurring conferences, journals, and workshops monitored for relevant work.
+
+This is intentionally a normalized split by data responsibility, not by research topic. `resources.csv` answers **what the work is and what task/output it belongs to**; `paper_methods.csv` answers **how the paper is implemented**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**.
 
 If `resources.csv` later becomes operationally unwieldy, split it only as an explicit schema migration along stable semantic roles, and update the generator and validation in the same change. Do not create ad-hoc files for a temporary research sweep or individual topic.
 
@@ -23,7 +26,7 @@ Each row corresponds to one canonical resource rendered into the root README.
 Columns:
 
 - `section` — top-level resource role. Allowed values are defined by `scripts/generate_readme.py`, currently `Surveys and Overviews`, `Papers`, `Datasets and Benchmarks`, `Evaluation Methods and Metrics`, `Models and Implementations`, and `Related Resources`.
-- `category` — paper taxonomy category. This is populated only for `Papers`; non-paper rows leave it empty.
+- `category` — primary paper task/output taxonomy category. This is populated only for `Papers`; non-paper rows leave it empty.
 - `name` — canonical display name.
 - `url` — canonical primary link used by the list item.
 - `description` — concise objective description of why the resource belongs in the catalog.
@@ -40,6 +43,33 @@ The generator uses the earlier of `arxiv_date` and `venue_date` as the first-pub
 `Datasets and Benchmarks` is deliberately combined. A dataset provides reusable examples, annotations, or assets; a benchmark adds a fixed task, split, protocol, or test set. Many releases provide both and should not be duplicated into mutually exclusive sections.
 
 `Evaluation Methods and Metrics` is separate because those entries define reusable ways to score or compare outputs independently of a single benchmark dataset, such as a learned metric or reward model.
+
+## `paper_methods.csv`
+
+This table provides an orthogonal, multi-label method/architecture index for papers in `resources.csv`. It is deliberately separate from `resources.csv` because a paper has exactly one primary task/output category but may combine several implementation families.
+
+Columns:
+
+- `name` — exact paper name from `resources.csv`.
+- `method_family` — normalized architecture/method family enforced by the generator.
+- `note` — concise paper-specific clarification, such as the particular Transformer role or the form of diffusion.
+
+The normalized vocabulary is inspired by the architecture axis in the SSII technology map and currently includes:
+
+- `Classical / Optimization`
+- `VAE`
+- `GAN`
+- `Autoregressive / Transformer`
+- `Diffusion`
+- `Flow Matching`
+- `LLM / VLM`
+- `Agentic / Multi-stage System`
+- `Graph Neural Network`
+- `Encoder-only Neural Model`
+
+A paper may appear in multiple families. For example, a diffusion Transformer can have both `Diffusion` and `Autoregressive / Transformer`; an LLM-based multi-agent system can have both `LLM / VLM` and `Agentic / Multi-stage System`.
+
+Do not classify methods from a product or model brand name alone. Use the paper, official project page, or implementation to verify the actual architecture. `Qwen-Image`-based diffusion, for example, is not automatically an `LLM / VLM` method merely because the model name contains `Qwen`.
 
 ## `paper_metadata.csv`
 
@@ -69,7 +99,7 @@ If this becomes common, prefer a deliberate migration from `paper_metadata.csv` 
 
 ## `venues.csv`
 
-This file is a monitoring index of recurring conferences and journals relevant to the catalog. A venue being listed does not imply that every paper from that venue is in scope.
+This file is a monitoring index of recurring conferences, journals, and relevant workshop series. A venue or workshop being listed does not imply that every paper from it is in scope.
 
 ## Validation
 
