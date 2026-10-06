@@ -10,12 +10,11 @@ Research-topic boundaries change as the taxonomy evolves, and many works span se
 
 At the current catalog size, the canonical files are:
 
-- `resources.csv` — rendered catalog resources and the primary task/output taxonomy.
+- `resources.csv` — rendered catalog resources, the primary task/output taxonomy, and optional paper architecture annotations.
 - `paper_metadata.csv` — audited implementation and reproducibility metadata for papers in the `Papers` section.
-- `paper_methods.csv` — multi-label method/architecture classifications for papers.
 - `venues.csv` — recurring conferences, journals, and workshops monitored for relevant work.
 
-This is intentionally a normalized split by data responsibility, not by research topic. `resources.csv` answers **what the work is and what task/output it belongs to**; `paper_methods.csv` answers **how the paper is implemented**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**.
+This is intentionally a small split by data responsibility, not by research topic. `resources.csv` answers **what the work is, what task/output it belongs to, and the concise architecture annotation shown with it**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**.
 
 If `resources.csv` later becomes operationally unwieldy, split it only as an explicit schema migration along stable semantic roles, and update the generator and validation in the same change. Do not create ad-hoc files for a temporary research sweep or individual topic.
 
@@ -30,6 +29,7 @@ Columns:
 - `name` — canonical display name.
 - `url` — canonical primary link used by the list item.
 - `description` — concise objective description of why the resource belongs in the catalog.
+- `architecture` — optional short method-family label for paper entries, such as `Diffusion`, `LLM / VLM`, or `GAN`; leave blank for non-paper resources. Multiple families may be separated with semicolons. The generator renders this field directly and does not join a separate architecture table.
 - `venue` — publication venue or release context when useful.
 - `venue_year` — venue/publication year when known.
 - `arxiv_date` — arXiv v1 date in `YYYY-MM-DD`, when applicable.
@@ -49,37 +49,6 @@ When both `arxiv_date` and `venue_date` are present, chronology still uses the e
 `Datasets and Benchmarks` is deliberately combined. A dataset provides reusable examples, annotations, or assets; a benchmark adds a fixed task, split, protocol, or test set. Many releases provide both and should not be duplicated into mutually exclusive sections.
 
 `Evaluation Methods and Metrics` is separate because those entries define reusable ways to score or compare outputs independently of a single benchmark dataset, such as a learned metric or reward model.
-
-## `paper_methods.csv`
-
-This table provides an orthogonal, multi-label method/architecture index for papers in `resources.csv`. It is deliberately separate from `resources.csv` because a paper has exactly one primary task/output category but may combine several implementation families.
-
-Every paper in the catalog should have at least one method classification. The generated `Method Classified` badge therefore acts as a coverage check: when it is lower than the paper count, architecture audit work remains.
-
-Columns:
-
-- `name` — exact paper name from `resources.csv`.
-- `method_family` — normalized architecture/method family enforced by the generator.
-- `note` — concise paper-specific clarification, such as the particular Transformer role or the form of diffusion.
-
-The normalized vocabulary is maintained as a repository-level method/architecture taxonomy and currently includes:
-
-- `Classical / Optimization`
-- `VAE`
-- `GAN`
-- `Autoregressive / Transformer`
-- `Diffusion`
-- `Flow Matching`
-- `LLM / VLM`
-- `Agentic / Multi-stage System`
-- `Graph Neural Network`
-- `Encoder-only Neural Model`
-
-A paper may appear in multiple families. For example, a diffusion Transformer can have both `Diffusion` and `Autoregressive / Transformer`; an LLM-based multi-agent system can have both `LLM / VLM` and `Agentic / Multi-stage System`. The `Agentic / Multi-stage System` family also covers system-framework contributions whose primary contribution is orchestration across multiple specialized stages rather than one monolithic model.
-
-Do not classify methods from a product or model brand name alone. Use the paper, official project page, or implementation to verify the actual architecture. `Qwen-Image`-based diffusion, for example, is not automatically an `LLM / VLM` method merely because the model name contains `Qwen`.
-
-Canonical paper names matter. If a commonly used method name is only one contribution inside a paper (for example, LayoutGAN++ inside *Constrained Graphic Layout Generation via Latent Optimization*), use the paper title as the resource key and explain the method name in the description or architecture note rather than creating a duplicate paper entry.
 
 ## `paper_metadata.csv`
 
