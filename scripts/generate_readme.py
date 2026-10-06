@@ -5,11 +5,11 @@ from __future__ import annotations
 
 import argparse
 import csv
+import re
+import sys
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
-import re
-import sys
 from typing import Any
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
@@ -17,7 +17,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 RESOURCE_PATHS = sorted(DATA_DIR.glob("resources*.csv"))
-METADATA_PATH = DATA_DIR / "paper_metadata.csv"
+METADATA_PATHS = sorted(DATA_DIR.glob("paper_metadata*.csv"))
 VENUES_PATH = DATA_DIR / "venues.csv"
 TEMPLATE_DIR = ROOT / "templates"
 README_PATH = ROOT / "README.md"
@@ -35,6 +35,7 @@ PAPER_CATEGORY_ORDER = [
     "Layout Generation",
     "Content-Aware Layout Generation",
     "Graphic Design Generation",
+    "Composable and Layered Asset Generation",
     "Typography and Text Rendering",
     "Graphic Design Editing and Reconstruction",
     "Scientific Poster and Slide Generation",
@@ -48,16 +49,25 @@ CODE_STATUSES = {
     "evaluation-only",
     "pipeline",
     "announced",
+    "withdrawn",
     "none",
     "unknown",
 }
-WEIGHT_STATUSES = {"released", "partial", "announced", "not-applicable", "unknown"}
+WEIGHT_STATUSES = {
+    "released",
+    "partial",
+    "announced",
+    "withdrawn",
+    "not-applicable",
+    "unknown",
+}
 CODE_STATUS_LABELS = {
     "train+inference": "training + inference",
     "inference-only": "inference only",
     "evaluation-only": "evaluation only",
     "pipeline": "pipeline",
     "announced": "announced",
+    "withdrawn": "withdrawn",
     "none": "no release",
     "unknown": "unknown",
 }
@@ -65,6 +75,7 @@ WEIGHT_STATUS_LABELS = {
     "released": "released",
     "partial": "partial",
     "announced": "announced",
+    "withdrawn": "withdrawn",
     "not-applicable": "n/a",
     "unknown": "unknown",
 }
@@ -76,7 +87,6 @@ def parse_date(value: str) -> date | None:
 
 
 def first_public_date(row: dict[str, str]) -> date | None:
-    """Return the earliest verified public appearance for a resource."""
     candidates = [parse_date(row["arxiv_date"]), parse_date(row["venue_date"])]
     candidates = [candidate for candidate in candidates if candidate is not None]
     return min(candidates) if candidates else None
@@ -97,7 +107,6 @@ def load_rows() -> list[dict[str, str]]:
 
     seen_names: set[tuple[str, str, str]] = set()
     seen_urls: set[str] = set()
-
     for row in rows:
         section = row["section"]
         category = row["category"]
@@ -132,30 +141,28 @@ def load_rows() -> list[dict[str, str]]:
 
 
 def load_metadata(paper_names: set[str]) -> dict[str, dict[str, str]]:
-    rows = load_csv(METADATA_PATH)
     metadata: dict[str, dict[str, str]] = {}
-
-    for row in rows:
-        name = row["name"]
-        if not name:
-            raise ValueError("paper_metadata.csv contains an empty name")
-        if name in metadata:
-            raise ValueError(f"Duplicate paper metadata: {name}")
-        if name not in paper_names:
-            raise ValueError(f"Metadata does not match a paper entry: {name}")
-        if row["code_status"] not in CODE_STATUSES:
-            raise ValueError(f"Unknown code_status for {name}: {row['code_status']}")
-        if row["weights_status"] not in WEIGHT_STATUSES:
-            raise ValueError(
-                f"Unknown weights_status for {name}: {row['weights_status']}"
-            )
-        for field in ("project_url", "code_url", "weights_url"):
-            if row[field] and not row[field].startswith("https://"):
-                raise ValueError(f"{field} must use HTTPS for {name}: {row[field]}")
-        if row.get("checked_at"):
-            parse_date(row["checked_at"])
-        metadata[name] = row
-
+    for path in METADATA_PATHS:
+        for row in load_csv(path):
+            name = row["name"]
+            if not name:
+                raise ValueError(f"{path.name} contains an empty name")
+            if name in metadata:
+                raise ValueError(f"Duplicate paper metadata: {name}")
+            if name not in paper_names:
+                raise ValueError(f"Metadata does not match a paper entry: {name}")
+            if row["code_status"] not in CODE_STATUSES:
+                raise ValueError(f"Unknown code_status for {name}: {row['code_status']}")
+            if row["weights_status"] not in WEIGHT_STATUSES:
+                raise ValueError(
+                    f"Unknown weights_status for {name}: {row['weights_status']}"
+                )
+            for field in ("project_url", "code_url", "weights_url"):
+                if row[field] and not row[field].startswith("https://"):
+                    raise ValueError(f"{field} must use HTTPS for {name}: {row[field]}")
+            if row.get("checked_at"):
+                parse_date(row["checked_at"])
+            metadata[name] = row
     return metadata
 
 
@@ -220,40 +227,37 @@ def entry(row: dict[str, Any]) -> str:
         return line
 
     release_bits: list[str] = []
-    if metadata["project_url"]:
-        release_bits.append(f'[Project]({metadata["project_url"]})')
-    else:
-        release_bits.append("Project: —")
+    release_bits.append(
+        f'[Project]({metadata["project_url"]})' if metadata["project_url"] else "Project: —"
+    )
 
     code_label = CODE_STATUS_LABELS[metadata["code_status"]]
-    if metadata["code_url"]:
-        release_bits.append(f'[Code]({metadata["code_url"]}) (`{code_label}`)')
-    else:
-        release_bits.append(f'Code: `{code_label}`')
+    release_bits.append(
+        f'[Code]({metadata["code_url"]}) (`{code_label}`)'
+        if metadata["code_url"]
+        else f'Code: `{code_label}`'
+    )
 
     weights_label = WEIGHT_STATUS_LABELS[metadata["weights_status"]]
-    if metadata["weights_url"]:
-        release_bits.append(
-            f'[Weights]({metadata["weights_url"]}) (`{weights_label}`)'
-        )
-    else:
-        release_bits.append(f'Weights: `{weights_label}`')
+    release_bits.append(
+        f'[Weights]({metadata["weights_url"]}) (`{weights_label}`)'
+        if metadata["weights_url"]
+        else f'Weights: `{weights_label}`'
+    )
 
     line = line.rstrip(".") + ". " + " · ".join(release_bits) + "."
 
     details: list[str] = []
-    if metadata["model_family"]:
-        details.append(f'**Method:** {metadata["model_family"]}')
-    if metadata["backbone"]:
-        details.append(f'**Base:** {metadata["backbone"]}')
-    if metadata["train_datasets"]:
-        details.append(f'**Train:** {metadata["train_datasets"]}')
-    if metadata["eval_datasets"]:
-        details.append(f'**Eval:** {metadata["eval_datasets"]}')
-    if metadata["output_format"]:
-        details.append(f'**Output:** {metadata["output_format"]}')
-    if metadata.get("checked_at"):
-        details.append(f'**Checked:** {metadata["checked_at"]}')
+    for label, field in (
+        ("Method", "model_family"),
+        ("Base", "backbone"),
+        ("Train", "train_datasets"),
+        ("Eval", "eval_datasets"),
+        ("Output", "output_format"),
+        ("Checked", "checked_at"),
+    ):
+        if metadata.get(field):
+            details.append(f'**{label}:** {metadata[field]}')
 
     if details:
         line += "<br>  " + " · ".join(details) + "."
