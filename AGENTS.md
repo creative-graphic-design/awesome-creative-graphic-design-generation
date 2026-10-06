@@ -15,7 +15,6 @@ This repository is a curated, generated research index for creative graphic desi
 - `data/paper_methods.csv` owns the orthogonal multi-label method/architecture taxonomy for papers.
 - `data/paper_metadata.csv` owns audited implementation and reproducibility metadata for entries in the `Papers` section.
 - `data/venues.csv` owns the monitored conference, journal, and workshop index.
-- `data/coverage_audit.csv` owns non-rendered inclusion, alias, exclusion, and pending decisions for repeatedly encountered candidate resources.
 - `data/README.md` owns the structural rationale and schema-level responsibilities of the canonical data files.
 - `CONTRIBUTING.md` owns curation policy, paper/resource taxonomy definitions, method-family semantics, metadata status semantics, and contributor-facing rules.
 - `templates/README.md.j2` owns README presentation and generated count badges.
@@ -29,8 +28,6 @@ Do not create topical, batch, or migration-time CSV shards for catalog data. The
 Prefer primary sources: official papers, arXiv submission histories, conference programs or proceedings, author project pages, official repositories, model hubs, dataset pages, and publisher records.
 
 Do not stop at a named paper supplied in a task. For a research-line expansion, inspect related work, citations, project pages, and neighboring contemporary work, then curate material omissions rather than mechanically importing every citation.
-
-Before treating a candidate as missing, check both `data/resources.csv` and `data/coverage_audit.csv`. Preserve durable decisions in the coverage ledger: use `alias` for alternate method/project names already represented by a canonical entry, `out-of-scope` for reviewed exclusions, and `pending` when primary evidence or scope fit is still unresolved. Do not surface the coverage ledger in the generated README.
 
 Do not invent or infer reproducibility metadata. A row in `data/paper_metadata.csv` means the public release state was actually inspected. If implementation details have not been verified, leave the paper without a metadata row instead of filling speculative values.
 
