@@ -29,9 +29,8 @@ Generally out of scope:
 
 Structured data is authoritative; `README.md` is generated and should not be edited directly.
 
-- `data/resources.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources.
+- `data/resources.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, related resources, and optional inline paper architecture annotations.
 - `data/paper_metadata.csv` stores optional implementation and reproducibility metadata for paper entries.
-- `data/paper_methods.csv` stores required multi-label method/architecture classifications for paper entries.
 - `data/venues.csv` contains the relevant conference, journal, and workshop index.
 - `templates/README.md.j2` defines the README presentation.
 - `scripts/generate_readme.py` validates, joins, sorts, and renders the data.
@@ -82,28 +81,11 @@ Classify papers by their **primary output and task**, not by model family. `LLM`
 
 When a work spans categories, choose the category that best describes its principal output. For example, a VLM that predicts poster bounding boxes is a layout paper; an agent that creates editable HTML/CSS posters is a graphic-design-generation paper; a model whose main output is a reusable stack of RGBA assets belongs under composable and layered asset generation; a system that turns a paper into an editable methodology SVG belongs under scientific figure and graphical abstract generation.
 
-## Method and Architecture Taxonomy
+## Architecture Annotations
 
-Every paper must have at least one row in `data/paper_methods.csv`. This is an orthogonal taxonomy: the paper category says **what the system produces**, while the method index says **how it is implemented**.
+For paper entries, use the optional `architecture` field in `data/resources.csv` for a short method-family label. Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM / VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, or `Flow Matching`.
 
-Use one or more of the normalized families enforced by `scripts/generate_readme.py`:
-
-- `Classical / Optimization`
-- `VAE`
-- `GAN`
-- `Autoregressive / Transformer`
-- `Diffusion`
-- `Flow Matching`
-- `LLM / VLM`
-- `Agentic / Multi-stage System`
-- `Graph Neural Network`
-- `Encoder-only Neural Model`
-
-Hybrid systems should receive multiple rows. `Agentic / Multi-stage System` also covers system-framework contributions whose main novelty is the orchestration of specialized planning, retrieval, generation, rendering, or evaluation stages.
-
-Classify from the paper, official project page, or implementation rather than model branding. A diffusion model derived from a family whose name contains `Qwen`, for example, is not automatically an `LLM / VLM` method.
-
-Use the canonical paper title as the resource and method-index key. If a well-known method name is only one contribution inside that paper, mention it in the description or method note instead of creating a duplicate paper entry.
+When more than one family materially applies, separate them with semicolons, for example `Diffusion; LLM / VLM`. Keep implementation details in the paper description or reproducibility metadata rather than expanding `architecture` into a long method summary.
 
 ## Resource Taxonomy
 
@@ -181,7 +163,6 @@ Avoid duplicate entries. If one work exposes a paper, code, dataset, and project
 The initial catalog is ready to be treated as **v1** when all of the following are true:
 
 - The scope and task/output taxonomy are documented and stable enough for normal contributions.
-- Every paper has at least one verified method/architecture classification.
 - Publication dates are sufficient for deterministic first-public-appearance ordering, or an explicit `date_note` explains why a date is unavailable.
 - The major task families are represented by foundational work and a useful set of recent work; no known omission changes the shape of the taxonomy itself.
 - `README.md` is fully generated from canonical data and `Catalog Check` passes.
@@ -218,7 +199,7 @@ Before submitting:
 - Confirm every link resolves to the intended resource.
 - Search `data/resources.csv` for duplicates and alternate names.
 - Confirm the resource is within scope and in the narrowest task/output category.
-- Add at least one verified `data/paper_methods.csv` classification for every paper.
+- Add or update the paper `architecture` value in `data/resources.csv` when it materially helps explain the paper.
 - Check related work and neighboring research for obvious omissions in the same line.
 - Verify `arxiv_date` and/or `venue_date` from primary sources and apply the normalized date semantics above.
 - Verify any implementation metadata against the official project/repository/model release.

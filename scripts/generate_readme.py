@@ -18,7 +18,6 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 RESOURCE_PATHS = [DATA_DIR / "resources.csv"]
 METADATA_PATHS = [DATA_DIR / "paper_metadata.csv"]
-METHODS_PATH = DATA_DIR / "paper_methods.csv"
 VENUES_PATH = DATA_DIR / "venues.csv"
 TEMPLATE_DIR = ROOT / "templates"
 README_PATH = ROOT / "README.md"
@@ -41,19 +40,6 @@ PAPER_CATEGORY_ORDER = [
     "Graphic Design Editing and Reconstruction",
     "Scientific Figure and Graphical Abstract Generation",
     "Scientific Poster and Slide Generation",
-]
-
-METHOD_FAMILY_ORDER = [
-    "Classical / Optimization",
-    "VAE",
-    "GAN",
-    "Autoregressive / Transformer",
-    "Diffusion",
-    "Flow Matching",
-    "LLM / VLM",
-    "Agentic / Multi-stage System",
-    "Graph Neural Network",
-    "Encoder-only Neural Model",
 ]
 
 DATED_SECTION_ORDER = ["Datasets and Benchmarks", "Evaluation Methods and Metrics"]
@@ -134,6 +120,8 @@ def load_rows() -> list[dict[str, str]]:
             raise ValueError(f"Unknown paper category for {name}: {category}")
         if section != "Papers" and category:
             raise ValueError(f"Only Papers entries may set category: {name}")
+        if section != "Papers" and row.get("architecture"):
+            raise ValueError(f"Only Papers entries may set architecture: {name}")
         if not name or not url or not row["description"]:
             raise ValueError(f"Missing required field: {row}")
         if not url.startswith("https://"):
@@ -183,25 +171,6 @@ def load_metadata(paper_names: set[str]) -> dict[str, dict[str, str]]:
             metadata[name] = row
     return metadata
 
-
-def load_methods(paper_names: set[str]) -> list[dict[str, str]]:
-    if not METHODS_PATH.exists():
-        return []
-
-    rows = load_csv(METHODS_PATH)
-    seen: set[tuple[str, str]] = set()
-    for row in rows:
-        name = row["name"]
-        family = row["method_family"]
-        if name not in paper_names:
-            raise ValueError(f"Method index does not match a paper entry: {name}")
-        if family not in METHOD_FAMILY_ORDER:
-            raise ValueError(f"Unknown method family for {name}: {family}")
-        key = (name, family)
-        if key in seen:
-            raise ValueError(f"Duplicate method classification: {key}")
-        seen.add(key)
-    return rows
 
 
 def load_venues() -> list[dict[str, str]]:
@@ -258,8 +227,14 @@ def anchor(value: str) -> str:
     return re.sub(r"[\s-]+", "-", value).strip("-")
 
 
+
 def entry(row: dict[str, Any]) -> str:
     line = f'- [{row["name"]}]({row["url"]}) - {row["description"].strip()}'
+
+    architecture = row.get("architecture", "")
+    if architecture:
+        line = line.rstrip(".") + f'. **Architecture:** {architecture}.'
+
     metadata = row.get("metadata")
     if not metadata:
         return line
@@ -287,7 +262,6 @@ def entry(row: dict[str, Any]) -> str:
 
     details: list[str] = []
     for label, field in (
-        ("Method", "model_family"),
         ("Base", "backbone"),
         ("Train", "train_datasets"),
         ("Eval", "eval_datasets"),
@@ -302,47 +276,12 @@ def entry(row: dict[str, Any]) -> str:
     return line
 
 
-def method_groups(
-    method_rows: list[dict[str, str]], paper_by_name: dict[str, dict[str, Any]]
-) -> list[dict[str, Any]]:
-    grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for method_row in method_rows:
-        paper = paper_by_name[method_row["name"]]
-        sort_date = first_public_date(paper)
-        grouped[method_row["method_family"]].append(
-            {
-                "name": paper["name"],
-                "url": paper["url"],
-                "category": paper["category"],
-                "note": method_row.get("note", "").strip(),
-                "sort_date": sort_date,
-            }
-        )
-
-    groups: list[dict[str, Any]] = []
-    for family in METHOD_FAMILY_ORDER:
-        entries = grouped.get(family, [])
-        if not entries:
-            continue
-        entries.sort(
-            key=lambda item: (
-                -(item["sort_date"].toordinal() if item["sort_date"] else 0),
-                item["name"].casefold(),
-            )
-        )
-        groups.append({"family": family, "entries": entries})
-    return groups
-
-
 def generate() -> str:
     rows = load_rows()
     venues = load_venues()
     paper_rows = [row for row in rows if row["section"] == "Papers"]
     paper_names = {row["name"] for row in paper_rows}
-    paper_by_name = {row["name"]: row for row in paper_rows}
     metadata = load_metadata(paper_names)
-    methods = load_methods(paper_names)
-
     for row in rows:
         row["metadata"] = metadata.get(row["name"])
 
@@ -350,7 +289,6 @@ def generate() -> str:
     for row in rows:
         by_section[row["section"]].append(row)
 
-    method_papers = {row["name"] for row in methods}
     context = {
         "stats": {
             "total_resources": len(rows),
@@ -358,7 +296,6 @@ def generate() -> str:
             "datasets_benchmarks": len(by_section["Datasets and Benchmarks"]),
             "evaluation_methods": len(by_section["Evaluation Methods and Metrics"]),
             "audited_papers": len(metadata),
-            "method_classified_papers": len(method_papers),
         },
         "paper_category_order": PAPER_CATEGORY_ORDER,
         "dated_section_order": DATED_SECTION_ORDER,
@@ -369,7 +306,6 @@ def generate() -> str:
             )
             for category in PAPER_CATEGORY_ORDER
         },
-        "method_groups": method_groups(methods, paper_by_name),
         "dated_sections": {
             section: dated_groups(by_section[section]) for section in DATED_SECTION_ORDER
         },

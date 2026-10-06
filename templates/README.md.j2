@@ -6,7 +6,6 @@
 ![Papers](https://img.shields.io/badge/papers-{{ stats.papers }}-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-{{ stats.datasets_benchmarks }}-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-{{ stats.audited_papers }}-informational)
-![Method Classified](https://img.shields.io/badge/method%20classified-{{ stats.method_classified_papers }}-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -16,15 +15,14 @@ This list focuses on work where layout, typography, visual elements, editable st
 
 Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
 
-Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_metadata.csv). The orthogonal model/method taxonomy is tracked in [`data/paper_methods.csv`](data/paper_methods.csv). Verified implementation entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
+Short paper architecture labels are stored directly in [`data/resources.csv`](data/resources.csv) and rendered with each paper. Implementation metadata is tracked separately in [`data/paper_metadata.csv`](data/paper_metadata.csv), including project pages, official code and weight-release status, base models, training and evaluation datasets, output representation, and the date the release status was last checked.
 
 ## Contents
 
 - [Surveys and Overviews](#surveys-and-overviews)
 - [Papers](#papers)
 {% for category in paper_category_order %}  - [{{ category }}](#{{ category|anchor }})
-{% endfor %}- [Method and Architecture Index](#method-and-architecture-index)
-- [Datasets and Benchmarks](#datasets-and-benchmarks)
+{% endfor %}- [Datasets and Benchmarks](#datasets-and-benchmarks)
 - [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
 - [Models and Implementations](#models-and-implementations)
 - [Relevant Venues and Workshops](#relevant-venues-and-workshops)
@@ -60,22 +58,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 {% for row in group.entries %}{{ row|entry }}
 {% endfor %}
-{% endfor %}{% endfor %}## Method and Architecture Index
-
-The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is a normalized taxonomy for the research represented in this catalog and can evolve as new model families emerge. Paper names correspond to the canonical entries above; links are intentionally not repeated so the Awesome list keeps one canonical external link per resource.
-
-{% for group in method_groups %}### {{ group.family }}
-
-<table>
-<thead>
-<tr><th>Paper</th><th>Primary task/output</th><th>Architecture note</th></tr>
-</thead>
-<tbody>
-{% for row in group.entries %}<tr><td>{{ row.name }}</td><td>{{ row.category }}</td><td>{% if row.note %}{{ row.note }}{% else %}—{% endif %}</td></tr>
-{% endfor %}</tbody>
-</table>
-
-{% endfor %}{% for section in dated_section_order %}## {{ section }}
+{% endfor %}{% endfor %}{% for section in dated_section_order %}## {{ section }}
 
 {% if section == "Datasets and Benchmarks" %}Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
 
