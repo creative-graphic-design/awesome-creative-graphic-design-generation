@@ -32,7 +32,7 @@ SECTION_ORDER = [
 ]
 
 PAPER_CATEGORY_ORDER = [
-    "Layout Generation",
+    "Content-Agnostic Layout Generation",
     "Content-Aware Layout Generation",
     "Graphic Design Generation",
     "Composable and Layered Asset Generation",
