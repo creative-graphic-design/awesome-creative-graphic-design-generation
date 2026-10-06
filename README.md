@@ -2,7 +2,7 @@
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
-Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific posters, slides, banners, and related visual compositions.
+Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific figures, graphical abstracts, scientific posters, slides, banners, and related visual compositions.
 
 This list focuses on work where layout, typography, visual elements, editable structure, or design-specific evaluation is a first-class part of the problem. Generic text-to-image generation and generic image editing are out of scope unless they make a direct contribution to graphic-design generation.
 
@@ -20,9 +20,10 @@ Implementation metadata is tracked in [`data/paper_metadata*.csv`](data/). Verif
   - [Composable and Layered Asset Generation](#composable-and-layered-asset-generation)
   - [Typography and Text Rendering](#typography-and-text-rendering)
   - [Graphic Design Editing and Reconstruction](#graphic-design-editing-and-reconstruction)
+  - [Scientific Figure and Graphical Abstract Generation](#scientific-figure-and-graphical-abstract-generation)
   - [Scientific Poster and Slide Generation](#scientific-poster-and-slide-generation)
-- [Datasets](#datasets)
-- [Benchmarks and Evaluation](#benchmarks-and-evaluation)
+- [Datasets and Benchmarks](#datasets-and-benchmarks)
+- [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
 - [Models and Implementations](#models-and-implementations)
 - [Relevant Venues and Journals](#relevant-venues-and-journals)
   - [Conferences](#conferences)
@@ -54,7 +55,9 @@ Papers are classified by their **primary output and task**, rather than by model
 
 **Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
 
-**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.
+**Scientific Figure and Graphical Abstract Generation:** Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.
+
+**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.
 
 ### Layout Generation
 
@@ -179,6 +182,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2025
 
 - [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) - Decomposes raster images into variable-length semantically separated RGBA layers for independently editable visual assets (CVPR 2026). [Project](https://qwen.ai/blog?id=qwen-image-layered&lid=1ami72hcYlwXGTTVQ) · [Code](https://github.com/QwenLM/Qwen-Image-Layered) (`inference only`) · [Weights](https://huggingface.co/Qwen/Qwen-Image-Layered) (`released`).<br>  **Method:** Variable-layer image decomposition diffusion model · **Base:** Qwen-Image · **Train:** Internal text-to-RGB/RGBA data; PSD-derived multilayer image corpus · **Eval:** Crello; LayerD decomposition protocol · **Output:** Variable-length RGBA layer stack; PSD/PPTX export · **Checked:** 2026-10-06.
+- [TAUE](https://arxiv.org/abs/2511.02580) - Generates coherent foreground, background, and composite layers without fine-tuning by transplanting and cultivating intermediate diffusion noise representations (CVPR Findings 2026). [Project](https://iyatomilab.github.io/TAUE/) · [Code](https://github.com/IyatomiLab/TAUE) (`unknown`) · Weights: `n/a`.<br>  **Method:** Training-free noise transplantation and cultivation for layer-wise generation · **Base:** SDXL · **Train:** None · **Eval:** Filtered MS-COCO · **Output:** Foreground; background; composite image · **Checked:** 2026-10-06.
 - [SAWNA](https://www.siggraph.org/wp-content/uploads/2025/08/Posters.html) - Preserves user-specified negative-space regions during text-to-image generation so downstream text and interface elements can be composed cleanly (SIGGRAPH 2025 Poster).
 - [PrismLayers](https://arxiv.org/abs/2505.22523) - Introduces PrismLayers and PrismLayersPro plus ART+ for high-quality multi-layer transparent image generation from text and layouts. [Project](https://prism-layers.github.io/) · [Code](https://github.com/redredsheep/PrismLayers) (`inference only`) · Weights: `released`.<br>  **Method:** ART+ multi-layer transparent image generation · **Base:** ART · **Train:** PrismLayersPro (20K high-quality subset of 200K PrismLayers) · **Output:** Multiple RGBA layers plus composite image · **Checked:** 2026-10-06.
 - [ART](https://arxiv.org/abs/2502.18364) - Generates variable numbers of transparent image layers from a global prompt and anonymous region layout using an Anonymous Region Transformer (CVPR 2025). Project: — · [Code](https://github.com/microsoft/art-msra) (`withdrawn`) · Weights: `withdrawn`.<br>  **Method:** Anonymous Region Transformer for variable multi-layer transparent generation · **Eval:** DESIGN-MULTI-LAYER-BENCH; PHOTO-MULTI-LAYER-BENCH · **Output:** Variable number of RGBA layers · **Checked:** 2026-10-06.
@@ -192,6 +196,9 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2025
 
 - [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates product posters with explicit mechanisms for accurate text rendering and visual composition (CVPR 2025).
+#### 2024
+
+- [GlyphDraw2](https://arxiv.org/abs/2407.02252) - Generates complex bilingual glyph posters with controllable fonts and precise text placement using LLM-guided SDXL conditioning (AAAI 2025). Project: — · [Code](https://github.com/OPPO-Mente-Lab/GlyphDraw2) (`training + inference`) · Weights: `unknown`.<br>  **Method:** LLM-guided triple-cross-attention diffusion for glyph poster generation · **Base:** SDXL; ControlNet; LLM planner · **Train:** GlyphDraw-3M · **Output:** Raster bilingual poster image · **Checked:** 2026-10-06.
 #### 2023
 
 - [TextDiffuser-2](https://arxiv.org/abs/2311.16465) - Uses language-model planning to improve flexible text layout and rendering in generated images (2023). [Project](https://jingyechen.github.io/textdiffuser2/) · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser-2) (`training + inference`) · [Weights](https://huggingface.co/JingyeChen22/textdiffuser2-full-ft) (`released`).<br>  **Method:** Language-model-assisted diffusion for flexible text rendering · **Base:** Stable Diffusion v1.5; LLM layout planner · **Train:** MARIO-style text-image data; layout-planner instruction data · **Eval:** Text rendering and inpainting benchmarks · **Output:** Raster image with rendered text · **Checked:** 2026-10-06.
@@ -210,6 +217,18 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [PosterCopilot](https://arxiv.org/abs/2512.04082) - Combines layout reasoning with layer-controllable iterative editing for professional graphic-design workflows (ECCV 2026). [Project](https://postercopilot.github.io/) · [Code](https://github.com/JiazheWei/PosterCopilot) (`inference only`) · [Weights](https://huggingface.co/void-2024/PosterCopilot) (`released`).<br>  **Method:** LMM layout reasoning and layer-controllable editing · **Base:** Qwen2.5-VL-7B-Instruct · **Train:** PosterCopilot Dataset (160K posters, 2.6M layers) · **Output:** JSON layout; PNG; editable PSD · **Checked:** 2026-10-06.
 - [LayerD](https://arxiv.org/abs/2509.25134) - Decomposes raster graphic designs into editable layers through iterative foreground extraction and refinement (ICCV 2025). [Project](https://cyberagentailab.github.io/LayerD/) · [Code](https://github.com/CyberAgentAILab/LayerD) (`training + inference`) · [Weights](https://huggingface.co/cyberagent/layerd-birefnet) (`released`).<br>  **Method:** Iterative raster-to-layer decomposition with matting and refinement · **Base:** BiRefNet · **Output:** RGBA layers; SVG; PSD · **Checked:** 2026-10-06.
+- [Draw with Thought](https://arxiv.org/abs/2504.09479) - Reconstructs raster scientific diagrams into editable mxGraph XML through coarse-to-fine reasoning and structure-aware code generation.
+### Scientific Figure and Graphical Abstract Generation
+
+#### 2026
+
+- [Figures as Programs](https://arxiv.org/abs/2609.01006) - Generates editable scientific methodology figures as recursively composed SVG programs with source grounding and render-critic refinement.
+- [PaperBanana-Interact](https://arxiv.org/abs/2608.30241) - Supports multi-turn scientific diagram refinement with human feedback using a critique-and-refine multi-agent workflow.
+- [GenGA](https://arxiv.org/abs/2608.05478) - Generates data-grounded graphical abstracts as hierarchical vector elements for element-level post-editing and introduces the SIC editability metric.
+- [SciForma](https://arxiv.org/abs/2607.18091) - Generates structure-faithful scientific methodology diagrams by optimizing component, arrow, and text correctness with structured preference learning. [Project](https://microsoft.github.io/SciForma/index.html) · [Code](https://github.com/microsoft/SciForma) (`training + inference`) · [Weights](https://huggingface.co/LoYuXrqw/SciForma-9B) (`released`).<br>  **Method:** Structure-faithful scientific diagram diffusion with M-DPO · **Base:** FLUX.2-klein-base-9B · **Train:** SciFormaData-700K · **Eval:** SciFormaBench-2K; AIBench · **Output:** Raster scientific methodology diagram · **Checked:** 2026-10-06.
+- [AutoFigure-Edit](https://arxiv.org/abs/2603.06674) - Generates fully editable SVG scientific illustrations from long-form scientific text with reference-guided styling and interactive refinement. [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure-Edit) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Editable scientific illustration generation and refinement · **Base:** Configurable multimodal and segmentation models · **Train:** None · **Output:** Editable SVG · **Checked:** 2026-10-06.
+- [AutoFigure](https://arxiv.org/abs/2602.03828) - Uses an agentic planning, recombination, validation, and rendering pipeline to generate publication-ready scientific illustrations from long-form text (ICLR 2026). [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Agentic scientific illustration generation and iterative refinement · **Base:** Configurable LLM and image-generation APIs · **Train:** None · **Eval:** FigureBench · **Output:** SVG; mxGraph XML; PNG preview · **Checked:** 2026-10-06.
+- [PaperBanana](https://arxiv.org/abs/2601.23265) - Uses specialized retrieval, planning, styling, visualization, and critique agents to generate publication-ready academic illustrations. [Project](https://dwzhu-pku.github.io/PaperBanana/) · [Code](https://github.com/google-research/papervizagent) (`pipeline`) · Weights: `n/a`.<br>  **Method:** Reference-driven multi-agent academic illustration generation · **Base:** Configurable VLM and image-generation models · **Train:** None · **Eval:** PaperBananaBench · **Output:** Raster methodology diagrams and statistical plots · **Checked:** 2026-10-06.
 ### Scientific Poster and Slide Generation
 
 #### 2026
@@ -231,18 +250,40 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2024
 
 - [SciPostLayout](https://arxiv.org/abs/2407.19787) - Targets structured layout generation for scientific posters. Project: — · [Code](https://github.com/omron-sinicx/scipostlayout) (`training + inference`) · Weights: `n/a`.<br>  **Method:** Scientific-poster layout analysis and generation baselines · **Base:** LayoutLMv3; DiT; LayoutDM; LayoutFormer++; GPT-4 · **Train:** SciPostLayout · **Eval:** SciPostLayout · **Output:** Scientific-poster layouts · **Checked:** 2026-10-06.
-## Datasets
+## Datasets and Benchmarks
+
+Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
 
 ### 2026
 
+- [MTPaperBananaBench](https://shirley-wu.github.io/PaperBanana-Interact/index.html) - Benchmarks multi-turn scientific diagram refinement with 292 images and 3,518 user requirements covering content, layout, and visual representation.
+- [SciFigQual-Bench](https://arxiv.org/abs/2607.27084) - Benchmarks scientific-figure quality with 6,308 expert-scored images grounded in captions, citations, and full-manuscript context.
+- [SciFormaBench-2K](https://huggingface.co/datasets/microsoft/SciFormaBench) - Provides 2,000 human-verified scientific diagram cases evaluated along component, arrow, and text structural-fidelity axes.
+- [SciFormaData-700K](https://huggingface.co/datasets/microsoft/SciFormaData-700K) - Provides structure-aware scientific methodology-diagram training records with generation prompts, multi-resolution targets, and edit triplets.
+- [TASTE](https://arxiv.org/abs/2605.20731) - Provides designer-panel preferences for AI-generated graphic designs across typography, hierarchy, color, layout, and brief fidelity.
+- [GENFIG1](https://arxiv.org/abs/2604.04172) - Benchmarks generating Figure 1-style visual summaries from scholarly paper context, targeting scientific abstraction, faithfulness, and visual communication.
+- [Graphic-Design-Bench](https://arxiv.org/abs/2604.04192) - Benchmarks AI systems across professional graphic-design tasks including layout, typography, vector structure, semantics, and animation.
+- [AIBench](https://deep-kaixun.github.io/aibench-page/) - Benchmarks academic illustration generation with 300 open-access papers and 5,704 hierarchical QA pairs for visual-logical consistency and aesthetics.
 - [CreativePSD](https://huggingface.co/datasets/creative-graphic-design/CreativePSD) - PSD-derived graphic designs with layer trees, source assets, tool-call trajectories, and intermediate renders.
 - [LICA](https://huggingface.co/datasets/creative-graphic-design/LICA) - Rendered graphic designs with component-level specifications and natural-language design annotations.
+- [AesEvalBench](https://arxiv.org/abs/2603.01083) - Evaluates graphic-design aesthetics through localized issue labels, region judgments, and vision-language-model assessments (ICLR 2026).
+- [DesignSense](https://arxiv.org/abs/2602.23438) - Provides 10,235 human-annotated graphic-layout preference pairs and a specialized reward model for layout evaluation.
+- [E-comIQ-ZH](https://arxiv.org/abs/2602.21698) - Evaluates Chinese e-commerce posters with expert-aligned multidimensional scores and chain-of-thought rationales through E-comIQ-18k and E-comIQ-Bench (CVPR 2026).
+- [SciFlow-Bench](https://arxiv.org/abs/2602.09809) - Evaluates structure-aware scientific diagram generation by inverse-parsing rendered outputs into canonical graphs for round-trip structural comparison.
+- [FigureBench](https://huggingface.co/datasets/WestlakeNLP/FigureBench) - Provides 3,300 long-form text–scientific-illustration pairs spanning papers, surveys, blogs, and textbooks for generation benchmarking.
 ### 2025
 
+- [ProImage-Bench](https://github.com/kodenii/TechImage-Bench) - Provides rubric-based professional-image evaluation with 654 tasks, 6,076 criteria, and 44,131 binary checks across scientific and technical imagery.
+- [PPTArena](https://arxiv.org/abs/2512.03042) - Benchmarks natural-language PowerPoint editing over real decks with structural and visual evaluation and introduces the PPTPilot editing agent (ECCV 2026).
 - [GenPoster-100K](https://huggingface.co/datasets/creative-graphic-design/GenPoster100K) - Poster data with rendered backgrounds, PSD references, and layer-level typography, color, and geometry annotations.
+- [SciGA-145k](https://huggingface.co/datasets/iyatomilab/SciGA) - Provides a large-scale scientific-paper and figure corpus with graphical abstracts plus intra-paper and inter-paper graphical-abstract recommendation tasks.
 - [PrismLayersPro](https://huggingface.co/datasets/artplus/PrismLayersPro) - Provides 20K human-filtered multi-layer transparent images with RGBA layers, captions, layouts, and style labels for layered-generation research.
+- [SridBench](https://arxiv.org/abs/2505.22126) - Benchmarks scientific illustration generation with 1,120 expert-curated instances across 13 disciplines and six quality dimensions.
 - [BannerRequest400](https://huggingface.co/datasets/creative-graphic-design/BannerRequest400) - Advertising banner requests with brand logos, multimodal design instructions, and target designs.
 - [Sci-PosterLayout](https://github.com/kitman0000/Sci-PosterLayout-Data) - Contains 1,226 scientific poster layouts spanning diverse domains and content attributes for scientific-poster generation.
+### 2024
+
+- [DesignProbe](https://arxiv.org/abs/2404.14801) - Benchmarks multimodal large language models on graphic-design understanding and reasoning tasks (2024).
 ### 2023
 
 - [CGL Dataset v2](https://huggingface.co/datasets/creative-graphic-design/CGL-Dataset-v2) - Poster backgrounds with text-aware element boxes, masks, and layout metadata.
@@ -257,23 +298,14 @@ Papers are classified by their **primary output and task**, rather than by model
 ### 2018
 
 - [CTXFont](https://huggingface.co/datasets/creative-graphic-design/CTXFont) - Web-design screenshots with text-element boxes, font properties, and contextual metadata.
-## Benchmarks and Evaluation
+## Evaluation Methods and Metrics
 
-### 2026
+Reusable scoring methods and evaluation procedures that compare generated designs independently of any single dataset or benchmark.
 
-- [TASTE](https://arxiv.org/abs/2605.20731) - Provides designer-panel preferences for AI-generated graphic designs across typography, hierarchy, color, layout, and brief fidelity.
-- [Graphic-Design-Bench](https://arxiv.org/abs/2604.04192) - Benchmarks AI systems across professional graphic-design tasks including layout, typography, vector structure, semantics, and animation.
-- [AesEvalBench](https://arxiv.org/abs/2603.01083) - Evaluates graphic-design aesthetics through localized issue labels, region judgments, and vision-language-model assessments (ICLR 2026).
-- [DesignSense](https://arxiv.org/abs/2602.23438) - Provides 10,235 human-annotated graphic-layout preference pairs and a specialized reward model for layout evaluation.
-- [E-comIQ-ZH](https://arxiv.org/abs/2602.21698) - Evaluates Chinese e-commerce posters with expert-aligned multidimensional scores and chain-of-thought rationales through E-comIQ-18k and E-comIQ-Bench (CVPR 2026).
-### 2025
-
-- [PPTArena](https://arxiv.org/abs/2512.03042) - Benchmarks natural-language PowerPoint editing over real decks with structural and visual evaluation and introduces the PPTPilot editing agent (ECCV 2026).
 ### 2024
 
 - [Graphic Design Evaluation](https://arxiv.org/abs/2410.08885) - Evaluates alignment, overlap, white space, and related graphic-design principles with absolute and pairwise judgments (SIGGRAPH Asia 2024).
 - [LTSim](https://arxiv.org/abs/2407.12356) - Measures layout similarity through transportation-based matching of structured elements for layout-generation evaluation (2024).
-- [DesignProbe](https://arxiv.org/abs/2404.14801) - Benchmarks multimodal large language models on graphic-design understanding and reasoning tasks (2024).
 ### Other
 
 - [Layout FID](https://github.com/creative-graphic-design/design-generators/tree/main/models/layout-fid) - Provides a learned feature-space metric for comparing generated and real layout distributions.
