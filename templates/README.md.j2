@@ -1,0 +1,114 @@
+# Awesome Creative Graphic Design Generation [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
+[![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
+[![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
+![Total Resources](https://img.shields.io/badge/resources-{{ stats.total_resources }}-informational)
+![Papers](https://img.shields.io/badge/papers-{{ stats.papers }}-informational)
+![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-{{ stats.datasets_benchmarks }}-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-{{ stats.audited_papers }}-informational)
+![Method Classified](https://img.shields.io/badge/method%20classified-{{ stats.method_classified_papers }}-informational)
+
+<!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
+
+Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific figures, graphical abstracts, scientific posters, slides, banners, and related visual compositions.
+
+This list focuses on work where layout, typography, visual elements, editable structure, or design-specific evaluation is a first-class part of the problem. Generic text-to-image generation and generic image editing are out of scope unless they make a direct contribution to graphic-design generation.
+
+Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
+
+Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_metadata.csv). The orthogonal model/method taxonomy is tracked in [`data/paper_methods.csv`](data/paper_methods.csv). Verified implementation entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
+
+## Contents
+
+- [Surveys and Overviews](#surveys-and-overviews)
+- [Papers](#papers)
+{% for category in paper_category_order %}  - [{{ category }}](#{{ category|anchor }})
+{% endfor %}- [Method and Architecture Index](#method-and-architecture-index)
+- [Datasets and Benchmarks](#datasets-and-benchmarks)
+- [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
+- [Models and Implementations](#models-and-implementations)
+- [Relevant Venues and Workshops](#relevant-venues-and-workshops)
+  - [Conferences](#conferences)
+  - [Journals](#journals)
+  - [Workshops](#workshops)
+- [Related Resources](#related-resources)
+
+## Surveys and Overviews
+
+{% for group in survey_groups %}### {{ group.year }}
+
+{% for row in group.entries %}{{ row|entry }}
+{% endfor %}
+{% endfor %}## Papers
+
+Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
+
+<ul>
+<li><strong>Layout Generation:</strong> Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.</li>
+<li><strong>Content-Aware Layout Generation:</strong> Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.</li>
+<li><strong>Graphic Design Generation:</strong> Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.</li>
+<li><strong>Composable and Layered Asset Generation:</strong> Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.</li>
+<li><strong>Typography and Text Rendering:</strong> Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.</li>
+<li><strong>Graphic Design Editing and Reconstruction:</strong> Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.</li>
+<li><strong>Scientific Figure and Graphical Abstract Generation:</strong> Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.</li>
+<li><strong>Scientific Poster and Slide Generation:</strong> Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.</li>
+</ul>
+
+{% for category in paper_category_order %}### {{ category }}
+
+{% for group in paper_groups[category] %}#### {{ group.year }}
+
+{% for row in group.entries %}{{ row|entry }}
+{% endfor %}
+{% endfor %}{% endfor %}## Method and Architecture Index
+
+The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is a normalized taxonomy for the research represented in this catalog and can evolve as new model families emerge. Paper names correspond to the canonical entries above; links are intentionally not repeated so the Awesome list keeps one canonical external link per resource.
+
+{% for group in method_groups %}### {{ group.family }}
+
+<table>
+<thead>
+<tr><th>Paper</th><th>Primary task/output</th><th>Architecture note</th></tr>
+</thead>
+<tbody>
+{% for row in group.entries %}<tr><td>{{ row.name }}</td><td>{{ row.category }}</td><td>{% if row.note %}{{ row.note }}{% else %}—{% endif %}</td></tr>
+{% endfor %}</tbody>
+</table>
+
+{% endfor %}{% for section in dated_section_order %}## {{ section }}
+
+{% if section == "Datasets and Benchmarks" %}Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
+
+{% elif section == "Evaluation Methods and Metrics" %}Reusable scoring methods and evaluation procedures that compare generated designs independently of any single dataset or benchmark.
+
+{% endif %}{% for group in dated_sections[section] %}### {{ group.year }}
+
+{% for row in group.entries %}{{ row|entry }}
+{% endfor %}
+{% endfor %}{% endfor %}## Models and Implementations
+
+{% for row in models %}{{ row|entry }}
+{% endfor %}
+## Relevant Venues and Workshops
+
+Recurring publication venues and workshop series worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper from a venue is in scope.
+
+### Conferences
+
+{% for row in conference_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% endfor %}
+### Journals
+
+{% for row in journal_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% endfor %}
+### Workshops
+
+{% for row in workshop_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% endfor %}
+## Related Resources
+
+{% for row in related %}{{ row|entry }}
+{% endfor %}
+## Contributing
+
+Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) before opening a pull request.
