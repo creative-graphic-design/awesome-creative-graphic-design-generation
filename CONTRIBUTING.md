@@ -29,8 +29,8 @@ Generally out of scope:
 
 Structured data is authoritative; `README.md` is generated and should not be edited directly.
 
-- `data/resources*.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources.
-- `data/paper_metadata*.csv` stores optional implementation and reproducibility metadata for paper entries.
+- `data/resources.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources.
+- `data/paper_metadata.csv` stores optional implementation and reproducibility metadata for paper entries.
 - `data/venues.csv` contains the relevant conference and journal index.
 - `templates/README.md.j2` defines the README presentation.
 - `scripts/generate_readme.py` validates, joins, sorts, and renders the data.
@@ -42,7 +42,7 @@ uv sync
 uv run python scripts/generate_readme.py
 ```
 
-CI regenerates the README and fails if the committed output differs.
+The `Catalog Check` workflow verifies that the committed README exactly matches the canonical CSV data and template.
 
 ## Publication Dates and Ordering
 
@@ -88,11 +88,11 @@ Examples:
 - A resource that includes both a training corpus and an official benchmark is listed once in **Datasets and Benchmarks**, with the description stating both roles.
 - A metric such as Layout FID or LTSim belongs in **Evaluation Methods and Metrics**.
 
-New resource rows should use the canonical section names `Datasets and Benchmarks` or `Evaluation Methods and Metrics`. The generator currently normalizes legacy bootstrap section names for compatibility; do not add new records using the legacy names.
+New resource rows should use the canonical section names `Datasets and Benchmarks` or `Evaluation Methods and Metrics`. All resource rows must use these canonical section names; legacy bootstrap section names are no longer accepted.
 
 ## Implementation Metadata
 
-`data/paper_metadata*.csv` is optional per paper, but strongly encouraged when an official implementation, model release, or project page exists. The row key must exactly match the paper `name`.
+`data/paper_metadata.csv` is optional per paper, but strongly encouraged when an official implementation, model release, or project page exists. The row key must exactly match the paper `name`.
 
 Track the following when they can be verified from primary sources:
 
@@ -141,7 +141,7 @@ Use primary sources whenever possible:
 2. Author-maintained mirror or institutional page.
 3. Reputable archival source when the primary resource is unavailable.
 
-Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `paper_metadata*.csv` when they add material value. If a released dataset is itself the main benchmark artifact, prefer one dataset/benchmark entry rather than duplicating the associated paper under another resource section.
+Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `data/paper_metadata.csv` when they add material value. If a released dataset is itself the main benchmark artifact, prefer one dataset/benchmark entry rather than duplicating the associated paper under another resource section.
 
 ## Entry Format
 
@@ -163,7 +163,7 @@ Keep pull requests focused. A PR that adds one research line or a few related en
 Before submitting:
 
 - Confirm every link resolves to the intended resource.
-- Search all `data/resources*.csv` files for duplicates and alternate names.
+- Search `data/resources.csv` for duplicates and alternate names.
 - Confirm the resource is within scope and in the narrowest task/output category.
 - Check related work and neighboring research for obvious omissions in the same line.
 - Verify `arxiv_date` and/or `venue_date` from primary sources.
