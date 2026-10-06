@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-226-informational)
-![Papers](https://img.shields.io/badge/papers-171-informational)
+![Total Resources](https://img.shields.io/badge/resources-229-informational)
+![Papers](https://img.shields.io/badge/papers-174-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-46-informational)
 
@@ -130,6 +130,15 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2014
 
 - [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014). **Architecture:** Classical / Optimization.
+#### 2012
+
+- [Automatic Stylistic Manga Layout](https://doi.org/10.1145/2366145.2366160) - Generates stylistic manga page layouts from input artworks and user-specified semantics with parametric style models, probabilistic initialization, and joint geometry refinement (SIGGRAPH Asia 2012). **Architecture:** Classical / Optimization.
+#### 2007
+
+- [Specifying Label Layout Style by Example](https://doi.org/10.1145/1294211.1294252) - Learns a designer-specified label-layout style from an example via nonlinear inverse optimization, then synthesizes new labeled-diagram layouts in the learned style (UIST 2007). **Architecture:** Classical / Optimization.
+#### 2003
+
+- [Adaptive Grid-Based Document Layout](https://doi.org/10.1145/882262.882353) - Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003). **Architecture:** Classical / Optimization.
 
 ### Content-Aware Layout Generation
 
