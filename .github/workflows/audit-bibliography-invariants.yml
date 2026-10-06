@@ -1,0 +1,63 @@
+name: Audit bibliography invariants
+
+on:
+  push:
+    branches: [audit/catalog-bibliography-invariants]
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check paper bibliography invariants
+        run: |
+          python - <<'PY'
+          import csv, re, collections
+          rows = list(csv.DictReader(open('data/resources.csv', encoding='utf-8', newline='')))
+          papers = [r for r in rows if r['section'] == 'Papers']
+          journal_venues = {'TMM','TVCG','Pattern Recognition'}
+          allowed_blank_dates = {
+              ('ACM MM','2023'),
+              ('Pattern Recognition','2026'),
+              ('TMM','2026'),
+              ('Technical Report','2025'),
+          }
+          print('BIB_INVARIANT_BEGIN')
+          for r in papers:
+              flags = []
+              if r['venue'] and r['venue'] != 'arXiv' and not r['venue_year']:
+                  flags.append('MISSING_VENUE_YEAR')
+              if r['venue'] == 'arXiv' and r['venue_date']:
+                  flags.append('ARXIV_WITH_VENUE_DATE')
+              if r['venue'] and r['venue'] != 'arXiv' and not r['venue_date'] and (r['venue'], r['venue_year']) not in allowed_blank_dates:
+                  flags.append('UNEXPECTED_MISSING_VENUE_DATE')
+              if r['venue_date'] and r['venue_year'] and r['venue'] not in journal_venues:
+                  if r['venue_date'][:4] != r['venue_year']:
+                      flags.append(f'VENUE_DATE_YEAR_MISMATCH={r["venue_date"][:4]}')
+              if r['venue'] != 'arXiv' and r['venue_year']:
+                  years = set(re.findall(r'(?<!\d)(20\d{2})(?!\d)', r['description']))
+                  if years and r['venue_year'] not in years:
+                      flags.append('DESCRIPTION_YEAR_MISSING_OR_DIFFERENT=' + ','.join(sorted(years)))
+              if flags:
+                  print('\t'.join([r['name'], r['venue'], r['venue_year'], r['venue_date'], r['description'], ' | '.join(flags)]))
+          for field in ['name','url']:
+              d = collections.defaultdict(list)
+              for r in papers:
+                  d[r[field]].append(r['name'])
+              for key, names in d.items():
+                  if key and len(names) > 1:
+                      print(f'DUPLICATE_{field.upper()}\t{key}\t' + ' || '.join(names))
+          print('BIB_INVARIANT_END')
+          PY
+      - name: Remove temporary workflow
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/audit-bibliography-invariants.yml
+          git commit -m 'Remove temporary bibliography invariant workflow'
+          git push
