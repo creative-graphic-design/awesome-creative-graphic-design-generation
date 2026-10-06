@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-225-informational)
-![Papers](https://img.shields.io/badge/papers-170-informational)
+![Total Resources](https://img.shields.io/badge/resources-226-informational)
+![Papers](https://img.shields.io/badge/papers-171-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-46-informational)
 
@@ -314,6 +314,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [AutoFigure-Edit](https://arxiv.org/abs/2603.06674) - Generates fully editable SVG scientific illustrations from long-form scientific text with reference-guided styling and interactive refinement. **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure-Edit) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable multimodal and segmentation models · **Train:** None · **Output:** Editable SVG.
 - [AutoFigure](https://arxiv.org/abs/2602.03828) - Uses an agentic planning, recombination, validation, and rendering pipeline to generate publication-ready scientific illustrations from long-form text (ICLR 2026). **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable LLM and image-generation APIs · **Train:** None · **Eval:** FigureBench · **Output:** SVG; mxGraph XML; PNG preview.
 - [PaperBanana](https://arxiv.org/abs/2601.23265) - Uses specialized retrieval, planning, styling, visualization, and critique agents to generate publication-ready academic illustrations. **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://dwzhu-pku.github.io/PaperBanana/) · [Code](https://github.com/google-research/papervizagent) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable VLM and image-generation models · **Train:** None · **Eval:** PaperBananaBench · **Output:** Raster methodology diagrams and statistical plots.
+- [SciFig](https://arxiv.org/abs/2601.04390) - Generates visually rich, fully editable scientific methodology figures from paper text using planning, layout, component, and feedback agents with VLM-in-the-loop refinement. **Architecture:** Agentic / Multi-stage System; VLM.
 
 ### Scientific Poster and Slide Generation
 
