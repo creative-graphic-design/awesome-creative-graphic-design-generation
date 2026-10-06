@@ -2,12 +2,13 @@
 
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
-![Total Resources](https://img.shields.io/badge/resources-170-informational)
-![Papers](https://img.shields.io/badge/papers-118-informational)
+![Total Resources](https://img.shields.io/badge/resources-181-informational)
+![Papers](https://img.shields.io/badge/papers-128-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-38-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-43-informational)
+![Method Classified](https://img.shields.io/badge/method%20classified-82-informational)
 
-<!-- This file is generated from data/resources.csv and data/paper_metadata.csv by scripts/generate_readme.py. Do not edit it directly. -->
+<!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
 Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific figures, graphical abstracts, scientific posters, slides, banners, and related visual compositions.
 
@@ -15,7 +16,7 @@ This list focuses on work where layout, typography, visual elements, editable st
 
 Research resources are ordered by **first public appearance** within each category, from newest to oldest. The sort key is the earlier of the arXiv v1 date and the venue/presentation date when both are known; journal-only work uses its first public publication date.
 
-Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_metadata.csv). Verified entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
+Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_metadata.csv). The orthogonal model/method taxonomy is tracked in [`data/paper_methods.csv`](data/paper_methods.csv). Verified implementation entries expose project pages, official code and weight-release status, method/base model, training and evaluation datasets, output representation, and the date the release status was last checked.
 
 ## Contents
 
@@ -29,12 +30,14 @@ Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_met
   - [Graphic Design Editing and Reconstruction](#graphic-design-editing-and-reconstruction)
   - [Scientific Figure and Graphical Abstract Generation](#scientific-figure-and-graphical-abstract-generation)
   - [Scientific Poster and Slide Generation](#scientific-poster-and-slide-generation)
+- [Method / Architecture Index](#method-architecture-index)
 - [Datasets and Benchmarks](#datasets-and-benchmarks)
 - [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
 - [Models and Implementations](#models-and-implementations)
-- [Relevant Venues and Journals](#relevant-venues-and-journals)
+- [Relevant Venues and Workshops](#relevant-venues-and-workshops)
   - [Conferences](#conferences)
   - [Journals](#journals)
+  - [Workshops](#workshops)
 - [Related Resources](#related-resources)
 
 ## Surveys and Overviews
@@ -50,21 +53,14 @@ Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_met
 
 Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
 
-**Layout Generation:** Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
-
-**Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
-
-**Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
-
-**Composable and Layered Asset Generation:** Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.
-
-**Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
-
-**Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
-
-**Scientific Figure and Graphical Abstract Generation:** Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.
-
-**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.
+- **Layout Generation:** Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
+- **Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
+- **Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
+- **Composable and Layered Asset Generation:** Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.
+- **Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
+- **Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
+- **Scientific Figure and Graphical Abstract Generation:** Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.
+- **Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.
 
 ### Layout Generation
 
@@ -73,7 +69,9 @@ Papers are classified by their **primary output and task**, rather than by model
 - [i-Design](https://link.springer.com/chapter/10.1007/978-3-032-14826-1_18) - Optimizes graphic layout design step by step with progressive aesthetic policy optimization (ECCV 2026).
 #### 2025
 
-- [PosterO](https://arxiv.org/abs/2505.07843) - Structures layouts as trees so language models can solve generalized layout-generation tasks (CVPR 2025).
+- [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) - Generates layouts from intuitive user sketches and content assets with a multimodal Transformer and releases large-scale synthetic sketch supervision (ICCV 2025 HiGen Workshop).
+- [LayoutRectifier](https://arxiv.org/abs/2508.11177) - Rectifies generated graphic layouts with two-stage optimization over grid alignment, overlap, and containment while limiting deviation from the input layout (Pacific Graphics 2025).
+- [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) - Generates explicitly structured layouts with a Transformer using structure serialization and disentanglement for conditional structure control (TVCG 2025).
 #### 2024
 
 - [TextLap](https://arxiv.org/abs/2410.12844) - Generates graphic layouts from textual design requirements with language-model-based reasoning.
@@ -121,13 +119,20 @@ Papers are classified by their **primary output and task**, rather than by model
 - [iPoster](https://arxiv.org/abs/2603.29469) - Supports interactive content-aware poster layout generation under flexible user-specified constraints (CHI EA 2026).
 #### 2025
 
+- [UniLayDiff](https://arxiv.org/abs/2512.08897) - Unifies diverse content-aware layout constraints in a single multimodal diffusion transformer with relation-aware LoRA adaptation.
 - [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) - Uses LLM- and vision-derived priorities, optimal-transport matching, and flow-based refinement for controllable poster layout generation (Pattern Recognition 2026).
 - [SEGA](https://arxiv.org/abs/2510.15749) - Uses stepwise evolution for content-aware poster layout generation and introduces GenPoster-100K (ICCV 2025).
+- [LLMs as Layout Designers (LaySPA)](https://arxiv.org/abs/2509.16891) - Augments language-model layout agents with reinforcement-learned spatial reasoning over geometric validity, structural fidelity, and visual quality.
 - [Uni-Layout](https://arxiv.org/abs/2508.02374) - Unifies multiple layout-generation conditions with human-feedback-based evaluation and preference alignment (ACM MM 2025).
+- [ReLayout: Relation Reasoning for Content-Aware Layout Generation](https://arxiv.org/abs/2507.05568) - Uses relation chain-of-thought and layout-prototype rebalancing to improve structure, diversity, and explainability in multimodal-LLM content-aware layouts.
+- [CAL-RAG](https://arxiv.org/abs/2506.21934) - Combines multimodal retrieval, an LLM layout recommender, a vision-language grader, and feedback agents for iterative content-aware layout generation.
 - [CreatiPoster](https://arxiv.org/abs/2506.10890) - Generates poster layouts from multimodal content and design requirements.
 - [Scan-and-Print](https://arxiv.org/abs/2505.20649) - Uses patch-level image summarization and data augmentation for efficient content-aware poster layout generation (IJCAI 2025). [Project](https://thekinsley.github.io/Scan-and-Print/) · [Code](https://github.com/theKinsley/Scan-and-Print-IJCAI2025) (`training + inference`) · Weights: `unknown`.<br>  **Method:** Autoregressive content-aware layout generation · **Base:** DeiT3 visual encoder · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured layout boxes · **Checked:** 2026-10-06.
+- [PosterO](https://arxiv.org/abs/2505.07843) - Structures layouts as trees so language models can solve generalized layout-generation tasks (CVPR 2025).
+- [AesthetiQ](https://arxiv.org/abs/2503.00591) - Aligns multimodal language models to aesthetic preferences for content-aware graphic layout prediction using preference optimization (CVPR 2025).
 #### 2024
 
+- [VASCAR](https://arxiv.org/abs/2412.04237) - Uses a large vision-language model to iteratively inspect rendered layouts and self-correct content-aware element placement without additional training.
 - [Design Element Aware Poster Layout Generation](https://doi.org/10.1145/3627673.3679557) - Models poster design elements and their relationships for content-aware poster layout generation (CIKM 2024).
 - [CGB-DM](https://arxiv.org/abs/2407.15233) - Uses a diffusion transformer for graphic-layout generation with content-aware conditioning.
 - [Visual Layout Composer](https://openaccess.thecvf.com/content/CVPR2024/html/Shabani_Visual_Layout_Composer_Image-Vector_Dual_Diffusion_Model_for_Design_Layout_CVPR_2024_paper.html) - Couples image-space and vector-space diffusion to generate design layouts conditioned on visual content (CVPR 2024).
@@ -229,6 +234,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [PosterText](https://arxiv.org/abs/2608.16289) - Unifies text-patch generation and editing for e-commerce posters with addition, deletion, modification, and style control.
 - [ReDesign](https://arxiv.org/abs/2607.25565) - Recovers editable layer hierarchies, typography, geometry, colors, and grouping from raster design images (ECCV 2026).
+- [ReLayout: Structure-Preserving Design Layout Editing](https://arxiv.org/abs/2602.01046) - Edits design layouts from natural-language intents while preserving unedited structure through relation graphs and self-supervised relation-aware design reconstruction.
 #### 2025
 
 - [PosterCopilot](https://arxiv.org/abs/2512.04082) - Combines layout reasoning with layer-controllable iterative editing for professional graphic-design workflows (ECCV 2026). [Project](https://postercopilot.github.io/) · [Code](https://github.com/JiazheWei/PosterCopilot) (`inference only`) · [Weights](https://huggingface.co/void-2024/PosterCopilot) (`released`).<br>  **Method:** LMM layout reasoning and layer-controllable editing · **Base:** Qwen2.5-VL-7B-Instruct · **Train:** PosterCopilot Dataset (160K posters, 2.6M layers) · **Output:** JSON layout; PNG; editable PSD · **Checked:** 2026-10-06.
@@ -266,6 +272,130 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2024
 
 - [SciPostLayout](https://arxiv.org/abs/2407.19787) - Targets structured layout generation for scientific posters. Project: — · [Code](https://github.com/omron-sinicx/scipostlayout) (`training + inference`) · Weights: `n/a`.<br>  **Method:** Scientific-poster layout analysis and generation baselines · **Base:** LayoutLMv3; DiT; LayoutDM; LayoutFormer++; GPT-4 · **Train:** SciPostLayout · **Eval:** SciPostLayout · **Output:** Scientific-poster layouts · **Checked:** 2026-10-06.
+## Method / Architecture Index
+
+The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is normalized from the architecture axis used in the SSII technology map while allowing newer LLM/VLM and agentic systems.
+
+### Classical / Optimization
+
+- [LayoutRectifier](https://arxiv.org/abs/2508.11177) — Layout Generation; Two-stage discrete and continuous layout optimization.
+### VAE
+
+- [ICVT](https://arxiv.org/abs/2209.00852) — Content-Aware Layout Generation; Geometry-aligned variational Transformer.
+- [CanvasVAE](https://arxiv.org/abs/2108.01249) — Layout Generation; Variational autoencoder.
+- [LayoutVAE](https://arxiv.org/abs/1907.10719) — Layout Generation; Variational autoencoder.
+### GAN
+
+- [PosterLayout](https://arxiv.org/abs/2303.15937) — Content-Aware Layout Generation; Content-aware poster layout generation with DS-GAN.
+- [CGL-GAN](https://arxiv.org/abs/2205.00303) — Content-Aware Layout Generation; Content-aware generative adversarial model.
+- [LayoutGAN++](https://arxiv.org/abs/2108.00871) — Layout Generation; GAN with differentiable rendering.
+- [ContentGAN](https://doi.org/10.1145/3306346.3322971) — Content-Aware Layout Generation; Content-aware generative adversarial model.
+- [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) — Layout Generation; Generative adversarial layout model.
+### Autoregressive / Transformer
+
+- [Mise-en-Scène](https://arxiv.org/abs/2608.19000) — Graphic Design Generation.
+- [Design Your Ad](https://arxiv.org/abs/2605.12138) — Graphic Design Generation; Unified autoregressive personalized advertising image-text generation.
+- [PosterOmni](https://arxiv.org/abs/2602.12127) — Graphic Design Generation; Unified multi-task image-to-poster generation and editing via task distillation and reward feedback.
+- [UniLayDiff](https://arxiv.org/abs/2512.08897) — Content-Aware Layout Generation; Diffusion Transformer backbone.
+- [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) — Layout Generation; Multimodal Transformer.
+- [Scan-and-Print](https://arxiv.org/abs/2505.20649) — Content-Aware Layout Generation; Autoregressive content-aware layout generation.
+- [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) — Layout Generation; Transformer with structure serialization and disentanglement.
+- [CreatiDesign](https://arxiv.org/abs/2505.19114) — Graphic Design Generation; Multi-conditional diffusion transformer.
+- [ART](https://arxiv.org/abs/2502.18364) — Composable and Layered Asset Generation; Anonymous Region Transformer for variable multi-layer transparent generation.
+- [CGB-DM](https://arxiv.org/abs/2407.15233) — Content-Aware Layout Generation.
+- [RALF](https://arxiv.org/abs/2311.13602) — Content-Aware Layout Generation; Retrieval-augmented autoregressive layout transformer.
+- [Dolfin](https://arxiv.org/abs/2310.16305) — Layout Generation.
+- [LayoutDM](https://arxiv.org/abs/2303.08137) — Layout Generation; Discrete diffusion model for controllable layout generation.
+- [LayoutAction](https://ojs.aaai.org/index.php/AAAI/article/view/26277) — Layout Generation.
+- [LayoutDETR](https://arxiv.org/abs/2212.09877) — Content-Aware Layout Generation; Detection-transformer-style multimodal layout generation.
+- [ICVT](https://arxiv.org/abs/2209.00852) — Content-Aware Layout Generation; Transformer backbone.
+- [LayoutFormer++](https://arxiv.org/abs/2208.08037) — Layout Generation; Conditional sequence-to-sequence layout generation.
+- [Layout-BLT](https://arxiv.org/abs/2112.05112) — Layout Generation.
+- [DeepLayout](https://arxiv.org/abs/2006.14615) — Layout Generation.
+### Diffusion
+
+- [Mise-en-Scène](https://arxiv.org/abs/2608.19000) — Graphic Design Generation.
+- [SciForma](https://arxiv.org/abs/2607.18091) — Scientific Figure and Graphical Abstract Generation; Structure-faithful scientific diagram diffusion with M-DPO.
+- [Personalization as Inverse Planning](https://arxiv.org/abs/2607.00407) — Scientific Poster and Slide Generation.
+- [MRT](https://arxiv.org/abs/2605.27235) — Composable and Layered Asset Generation; Masked-region diffusion for unified layered generation and editing.
+- [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) — Composable and Layered Asset Generation; Variable-layer image decomposition diffusion model.
+- [UniLayDiff](https://arxiv.org/abs/2512.08897) — Content-Aware Layout Generation; Multimodal diffusion transformer.
+- [TAUE](https://arxiv.org/abs/2511.02580) — Composable and Layered Asset Generation; Training-free noise transplantation and cultivation for layer-wise generation.
+- [RefAdGen](https://arxiv.org/abs/2508.11695) — Graphic Design Generation; Product-preserving advertising diffusion with spatial control and attention fusion.
+- [PosterCraft](https://arxiv.org/abs/2506.10741) — Graphic Design Generation; Unified diffusion poster generation with staged text and aesthetic optimization.
+- [CreatiDesign](https://arxiv.org/abs/2505.19114) — Graphic Design Generation; Multi-conditional diffusion transformer.
+- [PosterMaker](https://arxiv.org/abs/2504.06632) — Typography and Text Rendering; Two-stage product-poster generation with scene synthesis and accurate text rendering.
+- [POSTA](https://arxiv.org/abs/2503.14908) — Graphic Design Generation.
+- [LayerFusion](https://arxiv.org/abs/2412.04460) — Composable and Layered Asset Generation; Training-free harmonized multi-layer generation with generative priors.
+- [TKG-DM](https://arxiv.org/abs/2411.15580) — Composable and Layered Asset Generation; Training-free chroma-key content generation through initial-noise optimization.
+- [Layout-Corrector](https://arxiv.org/abs/2409.16689) — Layout Generation.
+- [Towards Reliable Advertising Image Generation Using Human Feedback](https://arxiv.org/abs/2408.00418) — Graphic Design Generation; Reliable-feedback-guided recurrent advertising generation and diffusion fine-tuning.
+- [CGB-DM](https://arxiv.org/abs/2407.15233) — Content-Aware Layout Generation.
+- [GlyphDraw2](https://arxiv.org/abs/2407.02252) — Typography and Text Rendering; LLM-guided triple-cross-attention diffusion for glyph poster generation.
+- [Visual Layout Composer](https://openaccess.thecvf.com/content/CVPR2024/html/Shabani_Visual_Layout_Composer_Image-Vector_Dual_Diffusion_Model_for_Design_Layout_CVPR_2024_paper.html) — Content-Aware Layout Generation.
+- [LayerDiffuse](https://arxiv.org/abs/2402.17113) — Composable and Layered Asset Generation; Latent-transparency adaptation for transparent image generation.
+- [LACE](https://arxiv.org/abs/2402.04754) — Layout Generation.
+- [TextDiffuser-2](https://arxiv.org/abs/2311.16465) — Typography and Text Rendering; Language-model-assisted diffusion for flexible text rendering.
+- [Two-stage Content-Aware Layout Generation for Poster Designs](https://doi.org/10.1145/3581783.3612275) — Content-Aware Layout Generation.
+- [Dolfin](https://arxiv.org/abs/2310.16305) — Layout Generation.
+- [TextDiffuser](https://arxiv.org/abs/2305.10855) — Typography and Text Rendering; Two-stage diffusion framework for text rendering.
+- [FlexDM](https://arxiv.org/abs/2303.18248) — Layout Generation.
+- [LayoutDiffusion](https://arxiv.org/abs/2303.11589) — Layout Generation.
+- [LayoutDM](https://arxiv.org/abs/2303.08137) — Layout Generation; Discrete diffusion model for controllable layout generation.
+- [LDGM](https://arxiv.org/abs/2303.05049) — Layout Generation.
+- [DLT](https://arxiv.org/abs/2303.03755) — Layout Generation.
+- [PLay](https://arxiv.org/abs/2301.11529) — Layout Generation.
+### Flow Matching
+
+- [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) — Content-Aware Layout Generation.
+- [LayoutFlow](https://arxiv.org/abs/2403.18187) — Layout Generation; Continuous flow-matching layout model.
+### LLM / VLM
+
+- [MRT](https://arxiv.org/abs/2605.27235) — Composable and Layered Asset Generation; Masked-region diffusion for unified layered generation and editing.
+- [Design First Code Later](https://arxiv.org/abs/2605.26451) — Scientific Poster and Slide Generation; Design-first template-free slide-generation workflow.
+- [PSDesigner](https://arxiv.org/abs/2603.25738) — Graphic Design Generation; Multimodal planner.
+- [PosterOmni](https://arxiv.org/abs/2602.12127) — Graphic Design Generation; Unified multi-task image-to-poster generation and editing via task distillation and reward feedback.
+- [DesignAsCode](https://arxiv.org/abs/2602.17690) — Graphic Design Generation; Code-native agentic graphic-design generation.
+- [AutoFigure](https://arxiv.org/abs/2602.03828) — Scientific Figure and Graphical Abstract Generation; Agentic scientific illustration generation and iterative refinement.
+- [ReLayout: Structure-Preserving Design Layout Editing](https://arxiv.org/abs/2602.01046) — Graphic Design Editing and Reconstruction; MLLM-based relation-aware design reconstruction.
+- [PaperBanana](https://arxiv.org/abs/2601.23265) — Scientific Figure and Graphical Abstract Generation; Reference-driven multi-agent academic illustration generation.
+- [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) — Composable and Layered Asset Generation; Variable-layer image decomposition diffusion model.
+- [PosterCopilot](https://arxiv.org/abs/2512.04082) — Graphic Design Editing and Reconstruction; LMM layout reasoning and layer-controllable editing.
+- [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) — Content-Aware Layout Generation.
+- [LLMs as Layout Designers (LaySPA)](https://arxiv.org/abs/2509.16891) — Content-Aware Layout Generation; LLM spatial reasoning with reinforcement learning.
+- [PosterForest](https://arxiv.org/abs/2508.21720) — Scientific Poster and Slide Generation; Training-free multi-agent scientific-poster generation.
+- [ReLayout: Relation Reasoning for Content-Aware Layout Generation](https://arxiv.org/abs/2507.05568) — Content-Aware Layout Generation; Relation-CoT with a multimodal large language model.
+- [CAL-RAG](https://arxiv.org/abs/2506.21934) — Content-Aware Layout Generation; LLM/VLM retrieval-and-grading loop.
+- [PosterCraft](https://arxiv.org/abs/2506.10741) — Graphic Design Generation; Unified diffusion poster generation with staged text and aesthetic optimization.
+- [PosterO](https://arxiv.org/abs/2505.07843) — Content-Aware Layout Generation.
+- [BannerAgency](https://arxiv.org/abs/2503.11060) — Graphic Design Generation; Multimodal LLM agents.
+- [AesthetiQ](https://arxiv.org/abs/2503.00591) — Content-Aware Layout Generation; Multimodal LLM preference alignment.
+- [VASCAR](https://arxiv.org/abs/2412.04237) — Content-Aware Layout Generation; LVLM visual-aware self-correction.
+- [SciPostLayout](https://arxiv.org/abs/2407.19787) — Scientific Poster and Slide Generation; Scientific-poster layout analysis and generation baselines.
+- [GlyphDraw2](https://arxiv.org/abs/2407.02252) — Typography and Text Rendering; LLM-guided triple-cross-attention diffusion for glyph poster generation.
+- [PosterLLaVA](https://arxiv.org/abs/2406.02884) — Content-Aware Layout Generation; Multimodal instruction-tuned language model.
+- [PosterLLaMA](https://arxiv.org/abs/2404.00995) — Content-Aware Layout Generation; Multimodal language model.
+- [Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners](https://arxiv.org/abs/2403.05578) — Graphic Design Generation.
+- [TextDiffuser-2](https://arxiv.org/abs/2311.16465) — Typography and Text Rendering; Language-model-assisted diffusion for flexible text rendering.
+- [LayoutPrompter](https://arxiv.org/abs/2311.06495) — Layout Generation; In-context LLM prompting.
+- [LayoutNUWA](https://arxiv.org/abs/2309.09506) — Layout Generation; Code-oriented language model.
+- [LayoutGPT](https://arxiv.org/abs/2305.15393) — Layout Generation; In-context language-model layout generation.
+### Agentic / Multi-stage System
+
+- [Designer-RSI](https://arxiv.org/abs/2609.22086) — Graphic Design Generation.
+- [PaperBanana-Interact](https://arxiv.org/abs/2608.30241) — Scientific Figure and Graphical Abstract Generation.
+- [PosterMELD](https://arxiv.org/abs/2608.02218) — Scientific Poster and Slide Generation.
+- [Personalization as Inverse Planning](https://arxiv.org/abs/2607.00407) — Scientific Poster and Slide Generation.
+- [PSDesigner](https://arxiv.org/abs/2603.25738) — Graphic Design Generation; Tool-using graphic-design agent.
+- [DesignAsCode](https://arxiv.org/abs/2602.17690) — Graphic Design Generation; Code-native agentic graphic-design generation.
+- [AutoFigure](https://arxiv.org/abs/2602.03828) — Scientific Figure and Graphical Abstract Generation; Agentic scientific illustration generation and iterative refinement.
+- [PaperBanana](https://arxiv.org/abs/2601.23265) — Scientific Figure and Graphical Abstract Generation; Reference-driven multi-agent academic illustration generation.
+- [SlideGen](https://arxiv.org/abs/2512.04529) — Scientific Poster and Slide Generation; Collaborative multimodal slide-generation agents.
+- [PosterForest](https://arxiv.org/abs/2508.21720) — Scientific Poster and Slide Generation; Training-free multi-agent scientific-poster generation.
+- [CAL-RAG](https://arxiv.org/abs/2506.21934) — Content-Aware Layout Generation; Retrieval-augmented collaborative agents.
+- [Paper2Poster](https://arxiv.org/abs/2505.21497) — Scientific Poster and Slide Generation.
+- [P2P](https://arxiv.org/abs/2505.17104) — Scientific Poster and Slide Generation.
+- [BannerAgency](https://arxiv.org/abs/2503.11060) — Graphic Design Generation; Collaborating multimodal agents.
 ## Datasets and Benchmarks
 
 Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
@@ -332,6 +462,7 @@ Reusable scoring methods and evaluation procedures that compare generated design
 - [PosterReward](https://arxiv.org/abs/2603.29855) - Provides poster-specific reward models that score graphic designs across visual quality, artifacts, textual accuracy, prompt fidelity, and aesthetics (CVPR 2026).
 ### 2024
 
+- [Design-o-Meter](https://arxiv.org/abs/2411.14959) - Scores graphic-design quality and proposes refinements within a unified learned evaluation-and-improvement framework (WACV 2025).
 - [Graphic Design Evaluation](https://arxiv.org/abs/2410.08885) - Evaluates alignment, overlap, white space, and related graphic-design principles with absolute and pairwise judgments (SIGGRAPH Asia 2024).
 - [LTSim](https://arxiv.org/abs/2407.12356) - Measures layout similarity through transportation-based matching of structured elements for layout-generation evaluation (2024).
 ### Other
@@ -344,9 +475,9 @@ Reusable scoring methods and evaluation procedures that compare generated design
 - [GPT Graphic Design Evaluator](https://github.com/creative-graphic-design/gpt-graphic-design-evaluator) - Implements vision-language-model-based evaluation for graphic-design outputs.
 - [Graphic Design Evaluation](https://github.com/creative-graphic-design/Graphic-design-evaluation) - Provides evaluation assets and implementations for measuring graphic-design quality principles.
 - [Qwen-Image EliGen Poster](https://huggingface.co/DiffSynth-Studio/Qwen-Image-EliGen-Poster) - Provides Qwen-Image LoRA weights specialized for e-commerce poster generation with precise region-mask control over poster entities.
-## Relevant Venues and Journals
+## Relevant Venues and Workshops
 
-Recurring publication venues worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper at the venue is in scope.
+Recurring publication venues and workshop series worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper from a venue is in scope.
 
 ### Conferences
 
@@ -365,8 +496,10 @@ Recurring publication venues worth monitoring for work in this area. Inclusion h
 - [ICML](https://icml.cc/) - Machine learning; relevant for generative modeling and controllable structured generation.
 - [IJCAI](https://www.ijcai.org/) - Artificial intelligence; includes content-aware advertising and poster-layout generation.
 - [NeurIPS](https://neurips.cc/) - Machine learning; relevant for generative modeling, multimodal agents, evaluation, and scientific-poster automation.
+- [Pacific Graphics](https://pg2025.nccu.edu.tw/) - Computer graphics; includes optimization, authoring, and graphic-layout research.
 - [SIGGRAPH](https://www.siggraph.org/) - Computer graphics and interactive techniques; important for content-aware design and visual composition.
 - [SIGGRAPH Asia](https://asia.siggraph.org/) - Computer graphics and interactive techniques; relevant for graphic-design generation and evaluation.
+- [WACV](https://wacv.thecvf.com/) - Computer vision; includes graphic-design evaluation and multimodal visual-generation work.
 ### Journals
 
 - [ACM Transactions on Graphics](https://dl.acm.org/journal/tog) - Graphics journal associated with SIGGRAPH research in visual synthesis and design.
@@ -375,6 +508,12 @@ Recurring publication venues worth monitoring for work in this area. Inclusion h
 - [Information Fusion](https://www.sciencedirect.com/journal/information-fusion) - Information-fusion journal including surveys and multimodal generative methods.
 - [Pattern Recognition](https://www.sciencedirect.com/journal/pattern-recognition) - Pattern-recognition journal publishing scientific-poster and controllable poster-layout generation research.
 - [The Visual Computer](https://link.springer.com/journal/371) - Graphics and visual-computing journal with work on layout and graphic-design generation.
+### Workshops
+
+- [AI for Content Creation (AI4CC)](https://ai-for-content-creation.github.io/) - Recurring CVPR workshop on AI-assisted content creation across art, design, documents, advertising, photography, video, and related media.
+- [AI for Creative Visual Content Generation, Editing and Understanding (CVEU)](https://openaccess.thecvf.com/CVPR2025_workshops/CVEU) - Workshop series on generative and editing technologies for creative visual content, with editions across CVPR, ICCV, ECCV, and SIGGRAPH-related venues.
+- [Graphic Design Understanding and Generation (GDUG)](https://sites.google.com/view/gdug-workshop) - Dedicated graphic-design workshop series; held at CVPR 2024 and ICCV 2025 with topics spanning layout, typography, datasets, evaluation, and AI-assisted authoring.
+- [Human-Interactive Generation and Editing (HiGen)](https://higen-2025.github.io/) - Human-interactive visual generation and editing workshop; first held at ICCV 2025 and second at CVPR 2026, including multimodal control and sketch-guided design generation.
 ## Related Resources
 
 - [Creative Graphic Design](https://github.com/creative-graphic-design) - Organization hosting datasets, model ports, evaluation tools, and research infrastructure used by several entries in this list.
