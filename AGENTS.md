@@ -5,20 +5,22 @@ This repository is a curated, generated research index for creative graphic desi
 ## Read Before Editing
 
 - Read `CONTRIBUTING.md` for scope, taxonomy, publication-date rules, implementation metadata semantics, and contribution requirements.
+- Read `data/README.md` for the canonical CSV/data model and its current metadata-scope constraints.
 - Read `.github/workflows/catalog-check.yml` and `.github/workflows/awesome-lint.yml` before changing or naming repository validation gates.
-- Treat this file as repository-level workflow guidance, not as a second copy of `CONTRIBUTING.md`.
+- Treat this file as repository-level workflow guidance, not as a second copy of `CONTRIBUTING.md` or the data schema.
 
 ## Sources of Truth
 
 - `data/resources.csv` owns all curated resource records, taxonomy placement, and publication dates.
-- `data/paper_metadata.csv` owns audited implementation and reproducibility metadata.
+- `data/paper_metadata.csv` owns audited implementation and reproducibility metadata for entries in the `Papers` section.
 - `data/venues.csv` owns the monitored venue index.
+- `data/README.md` owns the structural rationale and schema-level responsibilities of the canonical data files.
 - `CONTRIBUTING.md` owns curation policy, paper/resource taxonomy definitions, metadata status semantics, and contributor-facing rules.
 - `templates/README.md.j2` owns README presentation and generated count badges.
 - `scripts/generate_readme.py` owns validation, joins, ordering, statistics, and rendering behavior.
 - `README.md` is generated output. Never edit it directly.
 
-Do not create topical, batch, or migration-time CSV shards for catalog data. The canonical catalogs are intentionally single files at the current repository scale. If they become operationally unwieldy, change the storage model explicitly and update the generator, contribution guidance, and CI in the same change.
+Do not create topical, batch, or migration-time CSV shards for catalog data. The canonical catalogs are intentionally single files at the current repository scale. If they become operationally unwieldy, change the storage model explicitly and update `data/README.md`, the generator, contribution guidance, and CI in the same change.
 
 ## Research and Verification
 
