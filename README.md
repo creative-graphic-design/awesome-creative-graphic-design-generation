@@ -41,12 +41,17 @@ Implementation metadata is tracked separately in [`data/paper_metadata.csv`](dat
 
 Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
 
-- **Layout Generation** outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
-- **Content-Aware Layout Generation** still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
-- **Graphic Design Generation** goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
-- **Typography and Text Rendering** focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
-- **Graphic Design Editing and Reconstruction** focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
-- **Scientific Poster and Slide Generation** covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.
+**Layout Generation:** Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
+
+**Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
+
+**Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
+
+**Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
+
+**Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
+
+**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.
 
 ### Layout Generation
 
@@ -262,25 +267,25 @@ Recurring publication venues worth monitoring for work in this area. Inclusion h
 
 - [AAAI](https://aaai.org/conference/aaai/) - Artificial intelligence; includes structured and controllable layout-generation research.
 - [ACL](https://aclanthology.org/venues/acl/) - Natural language processing; increasingly relevant to paper-to-poster and document-to-design agent systems.
-- [ACM Multimedia](https://acmmm.hosting2.acm.org/) - Multimedia; recurring venue for layout generation
+- [ACM Multimedia](https://acmmm.hosting2.acm.org/) - Multimedia; recurring venue for layout generation, poster generation, typography, slide generation, and multimodal design systems.
 - [BMVC](https://bmvc2026.org/) - Computer vision; includes scientific-poster layout datasets and document-layout research.
 - [CHI](https://chi.acm.org/) - Human-computer interaction; relevant for interactive and human-centered graphic-design systems.
 - [CIKM](https://www.cikmconference.org/) - Information and knowledge management; has published industrial poster-layout and content-aware design work.
-- [CVPR](https://cvpr.thecvf.com/) - Computer vision; frequently publishes layout
-- [ECCV](https://eccv.ecva.net/) - Computer vision; strong coverage of layout
+- [CVPR](https://cvpr.thecvf.com/) - Computer vision; frequently publishes layout, poster, multimodal generation, and evaluation work.
+- [ECCV](https://eccv.ecva.net/) - Computer vision; strong coverage of layout, editable design, slide design, and image-generation research.
 - [ICASSP](https://2026.ieeeicassp.org/) - Signal processing and multimedia; includes poster and text-layout generation work.
-- [ICCV](https://iccv.thecvf.com/) - Computer vision; relevant for layout generation
-- [ICLR](https://iclr.cc/) - Machine learning; relevant for generative models
+- [ICCV](https://iccv.thecvf.com/) - Computer vision; relevant for layout generation, content-aware design, and structured visual generation.
+- [ICLR](https://iclr.cc/) - Machine learning; relevant for generative models, language-based layout generation, scientific-poster agents, and evaluation.
 - [ICME](https://www.2026.ieeeicme.org/) - Multimedia; relevant for multimodal content generation and visual-design systems.
 - [ICML](https://icml.cc/) - Machine learning; relevant for generative modeling and controllable structured generation.
 - [IJCAI](https://www.ijcai.org/) - Artificial intelligence; includes content-aware advertising and poster-layout generation.
-- [NeurIPS](https://neurips.cc/) - Machine learning; relevant for generative modeling
+- [NeurIPS](https://neurips.cc/) - Machine learning; relevant for generative modeling, multimodal agents, evaluation, and scientific-poster automation.
 - [SIGGRAPH](https://www.siggraph.org/) - Computer graphics and interactive techniques; important for content-aware design and visual composition.
 - [SIGGRAPH Asia](https://asia.siggraph.org/) - Computer graphics and interactive techniques; relevant for graphic-design generation and evaluation.
 ### Journals
 
 - [ACM Transactions on Graphics](https://dl.acm.org/journal/tog) - Graphics journal associated with SIGGRAPH research in visual synthesis and design.
-- [IEEE Transactions on Multimedia](https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia) - Multimedia journal covering visual composition
+- [IEEE Transactions on Multimedia](https://signalprocessingsociety.org/publications-resources/ieee-transactions-multimedia) - Multimedia journal covering visual composition, poster layout, and multimodal generation.
 - [IEEE Transactions on Visualization and Computer Graphics](https://www.computer.org/csdl/journal/tg) - Visualization and graphics journal with foundational work on learned graphic layouts.
 - [Information Fusion](https://www.sciencedirect.com/journal/information-fusion) - Information-fusion journal including surveys and multimodal generative methods.
 - [Pattern Recognition](https://www.sciencedirect.com/journal/pattern-recognition) - Pattern-recognition journal publishing scientific-poster and controllable poster-layout generation research.
