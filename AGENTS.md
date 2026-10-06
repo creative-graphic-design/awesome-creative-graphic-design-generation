@@ -13,9 +13,9 @@ This repository is a curated, generated research index for creative graphic desi
 - `data/resources*.csv` owns curated resource records and publication dates.
 - `data/paper_metadata*.csv` owns audited implementation and reproducibility metadata.
 - `data/venues.csv` owns the monitored venue index.
-- `CONTRIBUTING.md` owns curation policy, taxonomy definitions, metadata status semantics, and contributor-facing rules.
+- `CONTRIBUTING.md` owns curation policy, paper/resource taxonomy definitions, metadata status semantics, and contributor-facing rules.
 - `templates/README.md.j2` owns README presentation.
-- `scripts/generate_readme.py` owns validation, joins, ordering, and rendering behavior.
+- `scripts/generate_readme.py` owns validation, joins, compatibility normalization, ordering, and rendering behavior.
 - `README.md` is generated output. Never edit it directly.
 
 New topical CSV files may be added under `data/` when they use the existing resource or paper-metadata schema and are intentionally consumed by the generator globs. Do not create a second catalog format for the same records.
@@ -24,11 +24,13 @@ New topical CSV files may be added under `data/` when they use the existing reso
 
 Prefer primary sources: official papers, arXiv submission histories, conference programs or proceedings, author project pages, official repositories, model hubs, dataset pages, and publisher records.
 
+Do not stop at a named paper supplied in a task. For a research-line expansion, inspect related work, citations, project pages, and neighboring contemporary work, then curate material omissions rather than mechanically importing every citation.
+
 Do not invent or infer reproducibility metadata. A row in `data/paper_metadata*.csv` means the public release state was actually inspected. If implementation details have not been verified, leave the paper without a metadata row instead of filling speculative values.
 
 Release status is time-sensitive. Record `checked_at` whenever implementation metadata is added or refreshed, and preserve explicit states such as announced, withdrawn, inference-only, or training-plus-inference according to `CONTRIBUTING.md`.
 
-Classify papers by their primary task/output, not by architecture family. When a work spans categories, use the narrowest category whose definition in `CONTRIBUTING.md` matches its principal output.
+Classify papers by their primary task/output, not by architecture family. Classify non-paper resources according to the canonical resource taxonomy in `CONTRIBUTING.md`: datasets and fixed benchmark tasks belong in `Datasets and Benchmarks`; reusable scoring procedures belong in `Evaluation Methods and Metrics`.
 
 ## Generated README Workflow
 
