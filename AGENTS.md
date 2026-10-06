@@ -16,7 +16,7 @@ This repository is a curated, generated research index for creative graphic desi
 - `data/paper_metadata.csv` owns audited implementation and reproducibility metadata for entries in the `Papers` section.
 - `data/venues.csv` owns the monitored conference, journal, and workshop index.
 - `data/README.md` owns the structural rationale and schema-level responsibilities of the canonical data files.
-- `CONTRIBUTING.md` owns curation policy, paper/resource taxonomy definitions, method-family semantics, metadata status semantics, and contributor-facing rules.
+- `CONTRIBUTING.md` owns curation policy, paper/resource taxonomy definitions, method-family semantics, metadata status semantics, contributor-facing rules, and the v1 maintenance baseline.
 - `templates/README.md.j2` owns README presentation and generated count badges.
 - `scripts/generate_readme.py` owns validation, joins, ordering, statistics, and rendering behavior.
 - `README.md` is generated output. Never edit it directly.
@@ -29,6 +29,8 @@ Prefer primary sources: official papers, arXiv submission histories, conference 
 
 Do not stop at a named paper supplied in a task. For a research-line expansion, inspect related work, citations, project pages, and neighboring contemporary work, then curate material omissions rather than mechanically importing every citation.
 
+External bibliographies, surveys, spreadsheets, technology maps, and reading lists are discovery aids, not repository completeness targets and not repository-level sources of truth. Do not preserve provenance to a particular external list in durable repository guidance unless that provenance is itself relevant to the resource.
+
 Do not invent or infer reproducibility metadata. A row in `data/paper_metadata.csv` means the public release state was actually inspected. If implementation details have not been verified, leave the paper without a metadata row instead of filling speculative values.
 
 Release status is time-sensitive. Record `checked_at` whenever implementation metadata is added or refreshed, and preserve explicit states such as announced, withdrawn, inference-only, or training-plus-inference according to `CONTRIBUTING.md`.
@@ -36,6 +38,12 @@ Release status is time-sensitive. Record `checked_at` whenever implementation me
 Classify papers by their primary task/output in `data/resources.csv`, not by architecture family. Independently classify verified architectures in `data/paper_methods.csv`; hybrid systems may have multiple method-family rows. Do not infer an architecture from a model brand name alone.
 
 Classify non-paper resources according to the canonical resource taxonomy in `CONTRIBUTING.md`: datasets and fixed benchmark tasks belong in `Datasets and Benchmarks`; reusable scoring procedures belong in `Evaluation Methods and Metrics`.
+
+## V1 Baseline
+
+Treat the initial catalog as complete enough to merge when the v1 conditions in `CONTRIBUTING.md` are satisfied. Do not keep a bootstrap PR open solely to chase exhaustive literature coverage, complete reproducibility metadata for every paper, or reconcile every external bibliography.
+
+After v1, prefer small incremental PRs for newly discovered research lines, metadata refreshes, link repairs, and taxonomy refinements. A new paper should be added because it materially improves the catalog, not because an external list contains it.
 
 ## Generated README Workflow
 
