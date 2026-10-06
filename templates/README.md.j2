@@ -66,10 +66,15 @@ The paper categories above describe **what a system produces**. This index descr
 
 {% for group in method_groups %}### {{ group.family }}
 
-| Paper | Primary task/output | Architecture note |
-| --- | --- | --- |
-{% for row in group.entries %}| {{ row.name }} | {{ row.category }} | {% if row.note %}{{ row.note }}{% else %}—{% endif %} |
-{% endfor %}
+<table>
+<thead>
+<tr><th>Paper</th><th>Primary task/output</th><th>Architecture note</th></tr>
+</thead>
+<tbody>
+{% for row in group.entries %}<tr><td>{{ row.name }}</td><td>{{ row.category }}</td><td>{% if row.note %}{{ row.note }}{% else %}—{% endif %}</td></tr>
+{% endfor %}</tbody>
+</table>
+
 {% endfor %}{% for section in dated_section_order %}## {{ section }}
 
 {% if section == "Datasets and Benchmarks" %}Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
