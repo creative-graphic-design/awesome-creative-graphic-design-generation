@@ -30,7 +30,7 @@ Generally out of scope:
 Structured data is authoritative; `README.md` is generated and should not be edited directly.
 
 - `data/resources*.csv` contains papers, datasets, benchmarks, implementations, and related resources.
-- `data/paper_metadata.csv` stores optional implementation metadata for paper entries.
+- `data/paper_metadata.csv` stores optional implementation and reproducibility metadata for paper entries.
 - `data/venues.csv` contains the relevant conference and journal index.
 - `templates/README.md.j2` defines the README presentation.
 - `scripts/generate_readme.py` validates, joins, sorts, and renders the data.
@@ -74,20 +74,23 @@ When a work spans categories, choose the category that best describes its princi
 
 ## Implementation Metadata
 
-`data/paper_metadata.csv` is optional per paper, but strongly encouraged when an official implementation or model release exists. The row key must exactly match the paper `name`.
+`data/paper_metadata.csv` is optional per paper, but strongly encouraged when an official implementation, model release, or project page exists. The row key must exactly match the paper `name`.
 
 Track the following when they can be verified from primary sources:
 
 - project page;
 - official code repository;
-- released weights;
+- released weights or checkpoints;
 - code release status;
 - weights release status;
 - model family and backbone/base model;
 - training datasets;
 - evaluation datasets or benchmarks;
 - output representation or artifact format;
-- concise notes about partial releases or reproducibility limitations.
+- concise notes about partial releases or reproducibility limitations;
+- `checked_at`, the date on which the implementation/release status was last verified.
+
+A metadata row means the implementation status has actually been inspected. If a paper has not been checked yet, omit the metadata row rather than filling every field with `unknown`. Blank URLs in an inspected row mean no canonical URL was located at `checked_at`; the status fields should explain whether a release is absent, announced, not applicable, or simply uncertain.
 
 Allowed `code_status` values:
 
@@ -101,7 +104,11 @@ Allowed `code_status` values:
 
 Allowed `weights_status` values are `released`, `partial`, `announced`, `not-applicable`, and `unknown`.
 
-Do not infer `train+inference` merely because a paper describes training. Inspect the public repository and distinguish a released training implementation from an inference-only demo.
+Do not infer `train+inference` merely because a paper describes training. Inspect the public repository and distinguish a released training implementation from an inference-only demo. Likewise, mark weights as `released` only when an actual checkpoint/model artifact is linked or the official repository provides a working download path.
+
+For `model_family` and `backbone`, distinguish the task-level architecture from the reused foundation model. For example, `Multi-conditional diffusion transformer` belongs in `model_family`, while `FLUX.1-dev` belongs in `backbone`.
+
+For `train_datasets` and `eval_datasets`, record the datasets actually used by the paper or released implementation, not merely datasets that the codebase could theoretically load. Separate multiple datasets with semicolons.
 
 ## Curation Standard
 
@@ -139,6 +146,7 @@ Before submitting:
 - Confirm the resource is within scope and in the narrowest task/output category.
 - Verify `arxiv_date` and/or `venue_date` from primary sources.
 - Verify any implementation metadata against the official project/repository/model release.
+- Set `checked_at` whenever adding or refreshing implementation metadata.
 - Write an objective description that explains why the resource is useful.
 - Run `uv run python scripts/generate_readme.py`.
 - Run `uv run python scripts/generate_readme.py --check`.
