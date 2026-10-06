@@ -1,0 +1,38 @@
+name: Add verified layout coverage gaps
+on:
+  push:
+    branches: [coverage/layout-awesome-list-delta]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - name: Add verified layout papers
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('data/resources.csv')
+          s = p.read_text()
+          agnostic_anchor = 'Papers,Content-Agnostic Layout Generation,CanvasVAE,https://arxiv.org/abs/2108.01249,Uses a variational autoencoder to model element-level layouts for design documents (ICCV 2021).,VAE,ICCV,2021,2021-08-03,2021-10-11,ICCV 2021 conference edition start\n'
+          agnostic_row = 'Papers,Content-Agnostic Layout Generation,Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models,https://aclanthology.org/2024.alvr-1.14/,"Introduces DocLap, a multimodal instruction-following model that arranges visual design components for posters, book covers, brochures, menus, and related visually rich documents (ALVR 2024).",VLM,ACL Workshop (ALVR),2024,2024-04-23,2024-08-16,arXiv v1 precedes ALVR 2024 workshop date\n'
+          aware_anchor = 'Papers,Content-Aware Layout Generation,Design Element Aware Poster Layout Generation,https://doi.org/10.1145/3627673.3679557,Models poster design elements and their relationships for content-aware poster layout generation (CIKM 2024).,Autoregressive / Transformer,CIKM,2024,,2024-10-21,CIKM 2024 conference start; no arXiv located\n'
+          aware_row = 'Papers,Content-Aware Layout Generation,DensityLayout,https://doi.org/10.1007/978-3-031-46308-2_16,"Generates visual-textual presentation layouts over given images with density-aware conditioning for automated poster design (ICIG 2023).",GAN,ICIG,2023,,2023-09-22,ICIG 2023 conference start; no arXiv located\n'
+          assert agnostic_anchor in s
+          assert aware_anchor in s
+          assert 'Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models' not in s
+          assert ',DensityLayout,' not in s
+          s = s.replace(agnostic_anchor, agnostic_anchor + agnostic_row)
+          s = s.replace(aware_anchor, aware_anchor + aware_row)
+          p.write_text(s)
+          PY
+          uv run python scripts/generate_readme.py
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/resources.csv README.md
+          git commit -m 'Add verified layout coverage gaps'
+          git push
