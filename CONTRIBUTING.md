@@ -70,7 +70,7 @@ Within a year, the exact first-public date determines ordering. The resource nam
 
 Classify papers by their **primary output and task**, not by model family. `LLM`, `VLM`, `diffusion`, `agent`, or similar terms describe a method and should not determine the category by themselves.
 
-- **Layout Generation**: the primary output is structured element geometry or arrangement, without depending on the visual content of a target canvas.
+- **Content-Agnostic Layout Generation**: the primary output is structured element geometry or arrangement, without depending on the visual content of a target canvas.
 - **Content-Aware Layout Generation**: the primary output is still layout or placement, but geometry is conditioned on a background image, product/brand assets, saliency, element content, or another visual canvas.
 - **Graphic Design Generation**: the system goes beyond layout coordinates and creates a composed design artifact, including some combination of background imagery, visual assets, typography, styling, layers, or editable HTML/CSS/PSD/PPTX structure.
 - **Composable and Layered Asset Generation**: the primary output is a transparent, separable, layered, chroma-keyed, or intentionally empty-space visual asset intended for downstream composition or independent editing. This includes RGBA layer generation, layer decomposition when the emphasis is asset extraction, chroma-key generation, and negative-space-preserving generation.
@@ -83,9 +83,9 @@ When a work spans categories, choose the category that best describes its princi
 
 ## Architecture Annotations
 
-For paper entries, use the optional `architecture` field in `data/resources.csv` for a short method-family label. Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM / VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, or `Flow Matching`.
+For paper entries, use the optional `architecture` field in `data/resources.csv` for a short method-family label. Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM`, `VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, or `Flow Matching`. Use `LLM` for language-only model components and `VLM` only when the model materially consumes visual input.
 
-When more than one family materially applies, separate them with semicolons, for example `Diffusion; LLM / VLM`. Keep implementation details in the paper description or reproducibility metadata rather than expanding `architecture` into a long method summary.
+When more than one family materially applies, separate them with semicolons, for example `Diffusion; VLM`. Keep implementation details in the paper description or reproducibility metadata rather than expanding `architecture` into a long method summary.
 
 ## Resource Taxonomy
 
