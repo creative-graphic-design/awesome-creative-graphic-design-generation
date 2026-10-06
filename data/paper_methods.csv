@@ -202,3 +202,26 @@ Neural Design Network,VAE,Variational structured design model
 READ: Recursive Autoencoders for Document Layout Generation,VAE,Recursive variational autoencoder (RvNN-VAE) over hierarchical document layouts
 Text2Poster,VAE,Variational visual-textual poster composition model
 VTN,VAE,
+Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement,LLM / VLM,Qwen2.5-VL-based multimodal layout model with rendered visual feedback
+Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement,Agentic / Multi-stage System,Iterative render-observe-refine loop with reward-model-guided reinforcement learning
+LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition,Diffusion,Latent diffusion model for joint full-design and RGBA-layer generation
+LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition,Autoregressive / Transformer,Latent Diffusion Transformer with 4D RoPE
+LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition,LLM / VLM,LLM prompt expander and VLM-based layer descriptions/evaluation
+LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition,VAE,RGBA VAE for transparency-aware layer decoding
+Rethinking Layered Graphic Design Generation with a Top-Down Approach,LLM / VLM,"VLM used across reference creation, design planning, and layer generation"
+Rethinking Layered Graphic Design Generation with a Top-Down Approach,Agentic / Multi-stage System,Accordion top-down three-stage layered-design pipeline with vision experts
+CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers,Diffusion,Multi-branch RGBA diffusion for background and sticker layers
+CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers,LLM / VLM,Vision-language model parses text into an editable rendering protocol
+CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers,Agentic / Multi-stage System,"Hybrid text parsing, layer generation, and preference-alignment pipeline"
+DesignDiffusion: High-Quality Text-to-Design Image Generation with Diffusion Models,Diffusion,One-stage character-aware diffusion model with self-play DPO
+OmniPSD: Layered PSD Generation with Diffusion Transformer,Diffusion,FLUX-based unified text-to-PSD and image-to-PSD diffusion framework
+OmniPSD: Layered PSD Generation with Diffusion Transformer,Autoregressive / Transformer,Diffusion Transformer backbone with spatial in-context layer modeling
+OmniPSD: Layered PSD Generation with Diffusion Transformer,VAE,Transparency-preserving RGBA VAE
+"LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge",Diffusion,Pretrained generative priors for synthesis and layer decomposition
+"LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge",Agentic / Multi-stage System,Generate-then-disassemble two-stage pipeline
+Generative Image Layer Decomposition with Visual Effects,Diffusion,Generative layer decomposition into clean background and transparent foreground
+Controllable Layered Image Generation for Real-World Editing,Flow Matching,Training objective follows flow matching for layer-conditional generation
+Controllable Layered Image Generation for Real-World Editing,Autoregressive / Transformer,Diffusion Transformer architecture with heterogeneous layer-role embeddings
+PSDiffusion: Harmonized Multi-Layer Image Generation via Layout and Appearance Alignment,Diffusion,Unified simultaneous multi-layer diffusion with global-layer interaction
+Text2Layer: Layered Image Generation using Latent Diffusion Model,Diffusion,Latent diffusion over layered representations
+Text2Layer: Layered Image Generation using Latent Diffusion Model,VAE,Autoencoder learns a joint layered latent representation
