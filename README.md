@@ -48,6 +48,7 @@ Short paper architecture labels are stored directly in [`data/resources.csv`](da
 
 - [Intelligent Layout Generation Based on Deep Generative Models: A Comprehensive Survey](https://doi.org/10.1016/j.inffus.2023.101940) - Reviews deep generative approaches to layout generation, their representations, conditions, datasets, and evaluation (Information Fusion 2023).
 - [A Survey for Graphic Design Intelligence](https://arxiv.org/abs/2309.01371) - Surveys computational methods for understanding and generating graphic design artifacts (2023).
+
 ## Papers
 
 Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
@@ -129,6 +130,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2014
 
 - [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014). **Architecture:** Classical / Optimization.
+
 ### Content-Aware Layout Generation
 
 #### 2026
@@ -180,6 +182,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) - Uses LLM- and vision-derived priorities, optimal-transport matching, and flow-based refinement for controllable poster layout generation (Pattern Recognition 2026). **Architecture:** Flow Matching; LLM.
 - [Two-stage Content-Aware Layout Generation for Poster Designs](https://doi.org/10.1145/3581783.3612275) - Combines aesthetics-conditioned diffusion layout proposals with a learned ranking stage for poster designs over image backgrounds (ACM MM 2023). **Architecture:** Diffusion.
+
 ### Graphic Design Generation
 
 #### 2026
@@ -230,6 +233,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2021
 
 - [Vinci](https://doi.org/10.1145/3411764.3445117) - Introduces an intelligent graphic-design system that composes advertising posters from user-provided product assets and design intent (CHI 2021). **Architecture:** Agentic / Multi-stage System.
+
 ### Composable and Layered Asset Generation
 
 #### 2026
@@ -257,6 +261,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2023
 
 - [Text2Layer: Layered Image Generation using Latent Diffusion Model](https://arxiv.org/abs/2307.09781) - Jointly generates background, foreground, layer mask, and composed image in a learned layered latent space, establishing an early diffusion-based layered compositing formulation. **Architecture:** Diffusion; VAE.
+
 ### Typography and Text Rendering
 
 #### 2025
@@ -273,6 +278,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2022
 
 - [Text2Poster](https://arxiv.org/abs/2301.02363) - Retrieves suitable imagery and places stylized text to construct poster designs from text input (ICASSP 2022). **Architecture:** VAE.
+
 ### Graphic Design Editing and Reconstruction
 
 #### 2026
@@ -293,6 +299,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2021
 
 - [De-Rendering Stylized Texts](https://arxiv.org/abs/2110.01890) - Vectorizes rasterized display text into editable content, geometry, font, styling, effects, and hidden-background parameters through differentiable rendering (ICCV 2021). **Architecture:** Agentic / Multi-stage System.
+
 ### Scientific Figure and Graphical Abstract Generation
 
 #### 2026
@@ -304,6 +311,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [AutoFigure-Edit](https://arxiv.org/abs/2603.06674) - Generates fully editable SVG scientific illustrations from long-form scientific text with reference-guided styling and interactive refinement. **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure-Edit) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable multimodal and segmentation models · **Train:** None · **Output:** Editable SVG · **Checked:** 2026-10-06.
 - [AutoFigure](https://arxiv.org/abs/2602.03828) - Uses an agentic planning, recombination, validation, and rendering pipeline to generate publication-ready scientific illustrations from long-form text (ICLR 2026). **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://deepscientist.cc/) · [Code](https://github.com/ResearAI/AutoFigure) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable LLM and image-generation APIs · **Train:** None · **Eval:** FigureBench · **Output:** SVG; mxGraph XML; PNG preview · **Checked:** 2026-10-06.
 - [PaperBanana](https://arxiv.org/abs/2601.23265) - Uses specialized retrieval, planning, styling, visualization, and critique agents to generate publication-ready academic illustrations. **Architecture:** Agentic / Multi-stage System; VLM. [Project](https://dwzhu-pku.github.io/PaperBanana/) · [Code](https://github.com/google-research/papervizagent) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable VLM and image-generation models · **Train:** None · **Eval:** PaperBananaBench · **Output:** Raster methodology diagrams and statistical plots · **Checked:** 2026-10-06.
+
 ### Scientific Poster and Slide Generation
 
 #### 2026
@@ -326,6 +334,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [SciPostLayout](https://arxiv.org/abs/2407.19787) - Introduces a scientific-poster dataset and targets structured layout analysis and generation for scientific posters (BMVC 2024). **Architecture:** LLM. Project: — · [Code](https://github.com/omron-sinicx/scipostlayout) (`training + inference`) · Weights: `n/a`.<br>  **Base:** LayoutLMv3; DiT; LayoutDM; LayoutFormer++; GPT-4 · **Train:** SciPostLayout · **Eval:** SciPostLayout · **Output:** Scientific-poster layouts · **Checked:** 2026-10-06.
 - [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation (AAAI 2025). **Architecture:** Agentic / Multi-stage System; Classical / Optimization; LLM.
+
 ## Datasets and Benchmarks
 
 Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
@@ -383,6 +392,7 @@ Datasets provide reusable examples, assets, annotations, or corpora for training
 ### 2018
 
 - [CTXFont](https://huggingface.co/datasets/creative-graphic-design/CTXFont) - Web-design screenshots with text-element boxes, font properties, and contextual metadata.
+
 ## Evaluation Methods and Metrics
 
 Reusable scoring methods and evaluation procedures that compare generated designs independently of any single dataset or benchmark.
@@ -402,6 +412,7 @@ Reusable scoring methods and evaluation procedures that compare generated design
 ### Other
 
 - [Layout FID](https://github.com/creative-graphic-design/design-generators/tree/main/models/layout-fid) - Provides a learned feature-space metric for comparing generated and real layout distributions.
+
 ## Models and Implementations
 
 - [Creative Graphic Design Datasets](https://github.com/creative-graphic-design/huggingface-datasets) - Maintains reproducible Hugging Face loaders and dataset cards for graphic-design research datasets.
@@ -409,6 +420,7 @@ Reusable scoring methods and evaluation procedures that compare generated design
 - [GPT Graphic Design Evaluator](https://github.com/creative-graphic-design/gpt-graphic-design-evaluator) - Implements vision-language-model-based evaluation for graphic-design outputs.
 - [Graphic Design Evaluation](https://github.com/creative-graphic-design/Graphic-design-evaluation) - Provides evaluation assets and implementations for measuring graphic-design quality principles.
 - [Qwen-Image EliGen Poster](https://huggingface.co/DiffSynth-Studio/Qwen-Image-EliGen-Poster) - Provides Qwen-Image LoRA weights specialized for e-commerce poster generation with precise region-mask control over poster entities.
+
 ## Relevant Venues and Workshops
 
 Recurring publication venues and workshop series worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper from a venue is in scope.
@@ -434,6 +446,7 @@ Recurring publication venues and workshop series worth monitoring for work in th
 - [SIGGRAPH](https://www.siggraph.org/) - Computer graphics and interactive techniques; important for content-aware design and visual composition.
 - [SIGGRAPH Asia](https://asia.siggraph.org/) - Computer graphics and interactive techniques; relevant for graphic-design generation and evaluation.
 - [WACV](https://wacv.thecvf.com/) - Computer vision; includes graphic-design evaluation and multimodal visual-generation work.
+
 ### Journals
 
 - [ACM Transactions on Graphics](https://dl.acm.org/journal/tog) - Graphics journal associated with SIGGRAPH research in visual synthesis and design.
@@ -442,15 +455,18 @@ Recurring publication venues and workshop series worth monitoring for work in th
 - [Information Fusion](https://www.sciencedirect.com/journal/information-fusion) - Information-fusion journal including surveys and multimodal generative methods.
 - [Pattern Recognition](https://www.sciencedirect.com/journal/pattern-recognition) - Pattern-recognition journal publishing scientific-poster and controllable poster-layout generation research.
 - [The Visual Computer](https://link.springer.com/journal/371) - Graphics and visual-computing journal with work on layout and graphic-design generation.
+
 ### Workshops
 
 - [AI for Content Creation (AI4CC)](https://ai-for-content-creation.github.io/) - Recurring CVPR workshop on AI-assisted content creation across art, design, documents, advertising, photography, video, and related media.
 - [AI for Creative Visual Content Generation, Editing and Understanding (CVEU)](https://openaccess.thecvf.com/CVPR2025_workshops/CVEU) - Workshop series on generative and editing technologies for creative visual content, with editions across CVPR, ICCV, ECCV, and SIGGRAPH-related venues.
 - [Graphic Design Understanding and Generation (GDUG)](https://sites.google.com/view/gdug-workshop) - Dedicated graphic-design workshop series; held at CVPR 2024 and ICCV 2025 with topics spanning layout, typography, datasets, evaluation, and AI-assisted authoring.
 - [Human-Interactive Generation and Editing (HiGen)](https://higen-2025.github.io/) - Human-interactive visual generation and editing workshop; first held at ICCV 2025 and second at CVPR 2026, including multimodal control and sketch-guided design generation.
+
 ## Related Resources
 
 - [Creative Graphic Design](https://github.com/creative-graphic-design) - Organization hosting datasets, model ports, evaluation tools, and research infrastructure used by several entries in this list.
+
 ## Contributing
 
 Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) before opening a pull request.

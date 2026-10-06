@@ -22,8 +22,15 @@ Short paper architecture labels are stored directly in [`data/resources.csv`](da
 
 - [Surveys and Overviews](#surveys-and-overviews)
 - [Papers](#papers)
-{% for category in paper_category_order %}  - [{{ category }}](#{{ category|anchor }})
-{% endfor %}- [Datasets and Benchmarks](#datasets-and-benchmarks)
+  - [Content-Agnostic Layout Generation](#content-agnostic-layout-generation)
+  - [Content-Aware Layout Generation](#content-aware-layout-generation)
+  - [Graphic Design Generation](#graphic-design-generation)
+  - [Composable and Layered Asset Generation](#composable-and-layered-asset-generation)
+  - [Typography and Text Rendering](#typography-and-text-rendering)
+  - [Graphic Design Editing and Reconstruction](#graphic-design-editing-and-reconstruction)
+  - [Scientific Figure and Graphical Abstract Generation](#scientific-figure-and-graphical-abstract-generation)
+  - [Scientific Poster and Slide Generation](#scientific-poster-and-slide-generation)
+- [Datasets and Benchmarks](#datasets-and-benchmarks)
 - [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
 - [Models and Implementations](#models-and-implementations)
 - [Relevant Venues and Workshops](#relevant-venues-and-workshops)
@@ -34,11 +41,15 @@ Short paper architecture labels are stored directly in [`data/resources.csv`](da
 
 ## Surveys and Overviews
 
-{% for group in survey_groups %}### {{ group.year }}
+{% for group in survey_groups %}
+### {{ group.year }}
 
-{% for row in group.entries %}{{ row|entry }}
+{% for row in group.entries %}
+{{ row|entry }}
 {% endfor %}
-{% endfor %}## Papers
+{% endfor %}
+
+## Papers
 
 Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
 
@@ -53,46 +64,144 @@ Papers are classified by their **primary output and task**, rather than by model
 <li><strong>Scientific Poster and Slide Generation:</strong> Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.</li>
 </ul>
 
-{% for category in paper_category_order %}### {{ category }}
+### Content-Agnostic Layout Generation
 
-{% for group in paper_groups[category] %}#### {{ group.year }}
+{% for group in paper_groups["Content-Agnostic Layout Generation"] %}
+#### {{ group.year }}
 
-{% for row in group.entries %}{{ row|entry }}
+{% for row in group.entries %}
+{{ row|entry }}
 {% endfor %}
-{% endfor %}{% endfor %}{% for section in dated_section_order %}## {{ section }}
-
-{% if section == "Datasets and Benchmarks" %}Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
-
-{% elif section == "Evaluation Methods and Metrics" %}Reusable scoring methods and evaluation procedures that compare generated designs independently of any single dataset or benchmark.
-
-{% endif %}{% for group in dated_sections[section] %}### {{ group.year }}
-
-{% for row in group.entries %}{{ row|entry }}
 {% endfor %}
-{% endfor %}{% endfor %}## Models and Implementations
 
-{% for row in models %}{{ row|entry }}
+### Content-Aware Layout Generation
+
+{% for group in paper_groups["Content-Aware Layout Generation"] %}
+#### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
 {% endfor %}
+{% endfor %}
+
+### Graphic Design Generation
+
+{% for group in paper_groups["Graphic Design Generation"] %}
+#### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+### Composable and Layered Asset Generation
+
+{% for group in paper_groups["Composable and Layered Asset Generation"] %}
+#### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+### Typography and Text Rendering
+
+{% for group in paper_groups["Typography and Text Rendering"] %}
+#### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+### Graphic Design Editing and Reconstruction
+
+{% for group in paper_groups["Graphic Design Editing and Reconstruction"] %}
+#### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+### Scientific Figure and Graphical Abstract Generation
+
+{% for group in paper_groups["Scientific Figure and Graphical Abstract Generation"] %}
+#### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+### Scientific Poster and Slide Generation
+
+{% for group in paper_groups["Scientific Poster and Slide Generation"] %}
+#### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+## Datasets and Benchmarks
+
+Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
+
+{% for group in dated_sections["Datasets and Benchmarks"] %}
+### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+## Evaluation Methods and Metrics
+
+Reusable scoring methods and evaluation procedures that compare generated designs independently of any single dataset or benchmark.
+
+{% for group in dated_sections["Evaluation Methods and Metrics"] %}
+### {{ group.year }}
+
+{% for row in group.entries %}
+{{ row|entry }}
+{% endfor %}
+{% endfor %}
+
+## Models and Implementations
+
+{% for row in models %}
+{{ row|entry }}
+{% endfor %}
+
 ## Relevant Venues and Workshops
 
 Recurring publication venues and workshop series worth monitoring for work in this area. Inclusion here indicates relevance to the field, not that every paper from a venue is in scope.
 
 ### Conferences
 
-{% for row in conference_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% for row in conference_venues %}
+- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
 {% endfor %}
+
 ### Journals
 
-{% for row in journal_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% for row in journal_venues %}
+- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
 {% endfor %}
+
 ### Workshops
 
-{% for row in workshop_venues %}- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
+{% for row in workshop_venues %}
+- [{{ row.name }}]({{ row.url }}) - {{ row.note }}
 {% endfor %}
+
 ## Related Resources
 
-{% for row in related %}{{ row|entry }}
+{% for row in related %}
+{{ row|entry }}
 {% endfor %}
+
 ## Contributing
 
 Contributions are welcome. Please read the [contribution guidelines](CONTRIBUTING.md) before opening a pull request.
