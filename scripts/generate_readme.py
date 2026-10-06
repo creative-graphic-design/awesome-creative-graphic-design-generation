@@ -16,8 +16,8 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
-RESOURCE_PATHS = sorted(DATA_DIR.glob("resources*.csv"))
-METADATA_PATHS = sorted(DATA_DIR.glob("paper_metadata*.csv"))
+RESOURCE_PATHS = [DATA_DIR / "resources.csv"]
+METADATA_PATHS = [DATA_DIR / "paper_metadata.csv"]
 VENUES_PATH = DATA_DIR / "venues.csv"
 TEMPLATE_DIR = ROOT / "templates"
 README_PATH = ROOT / "README.md"
@@ -44,17 +44,6 @@ PAPER_CATEGORY_ORDER = [
 
 DATED_SECTION_ORDER = ["Datasets and Benchmarks", "Evaluation Methods and Metrics"]
 VENUE_TYPE_ORDER = ["Conference", "Journal"]
-
-# Compatibility for the bootstrap CSVs. New records should use the canonical
-# section names above. Benchmark datasets and fixed evaluation tasks belong in
-# Datasets and Benchmarks; reusable scoring methods belong in Evaluation Methods
-# and Metrics.
-LEGACY_EVALUATION_METHOD_NAMES = {
-    "Graphic Design Evaluation",
-    "Layout FID",
-    "LTSim",
-}
-
 CODE_STATUSES = {
     "train+inference",
     "inference-only",
@@ -109,22 +98,9 @@ def load_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(file))
 
 
-def normalize_section(row: dict[str, str]) -> None:
-    """Normalize legacy bootstrap section names to the canonical taxonomy."""
-    section = row["section"]
-    if section == "Datasets":
-        row["section"] = "Datasets and Benchmarks"
-    elif section == "Benchmarks and Evaluation":
-        row["section"] = (
-            "Evaluation Methods and Metrics"
-            if row["name"] in LEGACY_EVALUATION_METHOD_NAMES
-            else "Datasets and Benchmarks"
-        )
-
-
 def load_rows() -> list[dict[str, str]]:
-    if not RESOURCE_PATHS:
-        raise ValueError("No data/resources*.csv files found")
+    if not RESOURCE_PATHS[0].exists():
+        raise ValueError("Missing canonical data/resources.csv")
 
     rows: list[dict[str, str]] = []
     for path in RESOURCE_PATHS:
@@ -133,7 +109,6 @@ def load_rows() -> list[dict[str, str]]:
     seen_names: set[tuple[str, str, str]] = set()
     seen_urls: set[str] = set()
     for row in rows:
-        normalize_section(row)
         section = row["section"]
         category = row["category"]
         name = row["name"]
@@ -167,6 +142,9 @@ def load_rows() -> list[dict[str, str]]:
 
 
 def load_metadata(paper_names: set[str]) -> dict[str, dict[str, str]]:
+    if not METADATA_PATHS[0].exists():
+        raise ValueError("Missing canonical data/paper_metadata.csv")
+
     metadata: dict[str, dict[str, str]] = {}
     for path in METADATA_PATHS:
         for row in load_csv(path):
@@ -305,6 +283,13 @@ def generate() -> str:
 
     paper_rows = by_section["Papers"]
     context = {
+        "stats": {
+            "total_resources": len(rows),
+            "papers": len(paper_rows),
+            "datasets_benchmarks": len(by_section["Datasets and Benchmarks"]),
+            "evaluation_methods": len(by_section["Evaluation Methods and Metrics"]),
+            "audited_papers": len(metadata),
+        },
         "paper_category_order": PAPER_CATEGORY_ORDER,
         "dated_section_order": DATED_SECTION_ORDER,
         "survey_groups": dated_groups(by_section["Surveys and Overviews"]),
