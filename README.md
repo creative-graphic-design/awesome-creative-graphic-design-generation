@@ -21,7 +21,7 @@ Short paper architecture labels are stored directly in [`data/resources.csv`](da
 
 - [Surveys and Overviews](#surveys-and-overviews)
 - [Papers](#papers)
-  - [Layout Generation](#layout-generation)
+  - [Content-Agnostic Layout Generation](#content-agnostic-layout-generation)
   - [Content-Aware Layout Generation](#content-aware-layout-generation)
   - [Graphic Design Generation](#graphic-design-generation)
   - [Composable and Layered Asset Generation](#composable-and-layered-asset-generation)
@@ -62,7 +62,7 @@ Papers are classified by their **primary output and task**, rather than by model
 <li><strong>Scientific Poster and Slide Generation:</strong> Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.</li>
 </ul>
 
-### Layout Generation
+### Content-Agnostic Layout Generation
 
 #### 2026
 
