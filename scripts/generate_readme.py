@@ -266,7 +266,6 @@ def entry(row: dict[str, Any]) -> str:
         ("Train", "train_datasets"),
         ("Eval", "eval_datasets"),
         ("Output", "output_format"),
-        ("Checked", "checked_at"),
     ):
         if metadata.get(field):
             details.append(f'**{label}:** {metadata[field]}')
