@@ -83,7 +83,7 @@ When a work spans categories, choose the category that best describes its princi
 
 ## Architecture Annotations
 
-For paper entries, use the optional `architecture` field in `data/resources.csv` for a short method-family label. Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM`, `VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, or `Flow Matching`. Use `LLM` for language-only model components and `VLM` only when the model materially consumes visual input.
+For paper entries, use the optional `architecture` field in `data/resources.csv` for a short method-family label. Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM`, `VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, `Flow Matching`, or `Knowledge-Based / Rule-Based`. Use `LLM` for language-only model components and `VLM` only when the model materially consumes visual input.
 
 When more than one family materially applies, separate them with semicolons, for example `Diffusion; VLM`. Keep implementation details in the paper description or reproducibility metadata rather than expanding `architecture` into a long method summary.
 

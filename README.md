@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-232-informational)
-![Papers](https://img.shields.io/badge/papers-177-informational)
+![Total Resources](https://img.shields.io/badge/resources-235-informational)
+![Papers](https://img.shields.io/badge/papers-180-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-46-informational)
 
@@ -139,6 +139,15 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2003
 
 - [Adaptive Grid-Based Document Layout](https://doi.org/10.1145/882262.882353) - Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003). **Architecture:** Classical / Optimization.
+#### 1994
+
+- [Interactive Graphic Design Using Automatic Presentation Knowledge](https://doi.org/10.1145/191666.191719) - Introduces SageBrush, SageBook, and SAGE to combine knowledge-based automatic presentation with interactive construction, retrieval, and customization of data graphics (CHI 1994). **Architecture:** Knowledge-Based / Rule-Based.
+#### 1988
+
+- [Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces](https://doi.org/10.1145/62402.62431) - Extends automatic graphical-presentation theory to theory-driven design of graphical user interfaces (UIST 1988). **Architecture:** Knowledge-Based / Rule-Based.
+#### 1986
+
+- [Automating the Design of Graphical Presentations of Relational Information](https://doi.org/10.1145/22949.22950) - Codifies expressiveness and effectiveness criteria plus a composition algebra in APT to automatically synthesize graphical presentations of relational information (ACM TOG 1986). **Architecture:** Knowledge-Based / Rule-Based.
 
 ### Content-Aware Layout Generation
 
