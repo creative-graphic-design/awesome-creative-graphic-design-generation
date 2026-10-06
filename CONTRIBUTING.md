@@ -29,9 +29,10 @@ Generally out of scope:
 
 Structured data is authoritative; `README.md` is generated and should not be edited directly.
 
-- `data/resources.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources.
+- `data/resources.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources, including the primary task/output category for papers.
+- `data/paper_methods.csv` stores the orthogonal multi-label method/architecture taxonomy for papers.
 - `data/paper_metadata.csv` stores optional implementation and reproducibility metadata for paper entries.
-- `data/venues.csv` contains the relevant conference and journal index.
+- `data/venues.csv` contains the relevant conference, journal, and workshop index.
 - `templates/README.md.j2` defines the README presentation.
 - `scripts/generate_readme.py` validates, joins, sorts, and renders the data.
 
@@ -73,6 +74,31 @@ Classify papers by their **primary output and task**, not by model family. `LLM`
 - **Scientific Poster and Slide Generation**: the system targets research communication through posters or slide decks and combines source-document understanding or content selection with layout, typography, rendering, and often editable output.
 
 When a work spans categories, choose the category that best describes its principal output. For example, a VLM that predicts poster bounding boxes is a layout paper; an agent that creates editable HTML/CSS posters is a graphic-design-generation paper; a model whose main output is a reusable stack of RGBA assets belongs under composable and layered asset generation; a system that turns a paper into an editable methodology SVG belongs under scientific figure and graphical abstract generation.
+
+## Method / Architecture Taxonomy
+
+The primary paper taxonomy above answers **what the system produces**. `data/paper_methods.csv` provides a second, independent axis that answers **how it is implemented**.
+
+Method classification is multi-label. Hybrid systems should appear under every materially important family needed to understand their architecture. A diffusion Transformer may therefore be both `Diffusion` and `Autoregressive / Transformer`; an LLM-driven multi-agent system may be both `LLM / VLM` and `Agentic / Multi-stage System`.
+
+Allowed method families are:
+
+- `Classical / Optimization`
+- `VAE`
+- `GAN`
+- `Autoregressive / Transformer`
+- `Diffusion`
+- `Flow Matching`
+- `LLM / VLM`
+- `Agentic / Multi-stage System`
+- `Graph Neural Network`
+- `Encoder-only Neural Model`
+
+Each row in `paper_methods.csv` contains the exact paper `name`, one `method_family`, and an optional concise `note`. Multiple rows with the same paper name are expected when a method spans families.
+
+Assign method families from primary evidence in the paper, official project page, or implementation. Do not infer a family from a product or model brand alone. For example, a diffusion model built on Qwen-Image is not automatically an `LLM / VLM` method merely because the model name contains `Qwen`.
+
+This vocabulary is intentionally close to the architecture axis used by the SSII technology map while normalizing older labels (`not NN`, `Auto-regressive`, `System Framework`, etc.) into categories that remain useful for current hybrid systems. Extend the vocabulary only when a genuinely distinct family cannot be represented with the existing multi-label scheme.
 
 ## Resource Taxonomy
 
@@ -167,6 +193,7 @@ Before submitting:
 - Confirm the resource is within scope and in the narrowest task/output category.
 - Check related work and neighboring research for obvious omissions in the same line.
 - Verify `arxiv_date` and/or `venue_date` from primary sources.
+- Add or refresh `data/paper_methods.csv` method labels when architecture evidence is available.
 - Verify any implementation metadata against the official project/repository/model release.
 - Set `checked_at` whenever adding or refreshing implementation metadata.
 - Write an objective description that explains why the resource is useful.
