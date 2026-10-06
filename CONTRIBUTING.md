@@ -159,6 +159,8 @@ Before proposing an entry, verify that it is materially useful to this topic and
 
 Do not stop at a user-supplied paper name. When adding a research line, inspect the paper's related work, citations, project page, and neighboring contemporary work to identify material omissions. Curate the resulting family rather than mechanically importing every cited paper.
 
+External bibliographies, surveys, spreadsheets, technology maps, and reading lists are useful discovery sources, but they are not completeness targets or repository-level sources of truth. Inclusion is determined by this repository's scope and curation standard.
+
 Use primary sources whenever possible:
 
 1. Official paper, project, repository, model, or dataset page.
@@ -166,6 +168,26 @@ Use primary sources whenever possible:
 3. Reputable archival source when the primary resource is unavailable.
 
 Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `data/paper_metadata.csv` when they add material value. If a released dataset is itself the main benchmark artifact, prefer one dataset/benchmark entry rather than duplicating the associated paper under another resource section.
+
+## V1 Baseline and Ongoing Maintenance
+
+The initial catalog is ready to be treated as **v1** when all of the following are true:
+
+- The scope and task/output taxonomy are documented and stable enough for normal contributions.
+- Every paper has at least one verified method/architecture classification.
+- Publication dates are sufficient for deterministic first-public-appearance ordering, or an explicit `date_note` explains why a date is unavailable.
+- The major task families are represented by foundational work and a useful set of recent work; no known omission changes the shape of the taxonomy itself.
+- `README.md` is fully generated from canonical data and `Catalog Check` passes.
+- Awesome-list content checks pass; repository-setting failures such as description/topics are handled separately.
+
+The following are **not** v1 blockers:
+
+- Exhaustively importing every paper from a survey, citation graph, spreadsheet, technology map, workshop, or external bibliography.
+- Completing implementation/reproducibility metadata for every paper.
+- Proving that no relevant paper exists outside the catalog.
+- Listing every potentially relevant venue, workshop, commercial tool, or adjacent UI/document-generation system.
+
+After v1, maintain the catalog incrementally. Prefer focused pull requests that add a coherent research line, refresh implementation status, repair links, or refine taxonomy. Periodic coverage audits are useful, but they should produce concrete, scoped changes rather than keep the bootstrap phase open indefinitely.
 
 ## Entry Format
 
