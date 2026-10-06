@@ -205,7 +205,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [POSTA](https://arxiv.org/abs/2503.14908) - Combines background diffusion, multimodal layout and typography planning, and stylized text generation for customizable artistic posters (CVPR 2025). **Architecture:** Diffusion.
 - [BannerAgency](https://arxiv.org/abs/2503.11060) - Uses collaborating multimodal LLM agents to plan and generate advertising banner designs from brand assets and requests (2025). **Architecture:** Agentic / Multi-stage System; LLM / VLM.
 - [DesignDiffusion: High-Quality Text-to-Design Image Generation with Diffusion Models](https://arxiv.org/abs/2503.01645) - Generates complete design images directly from text with a one-stage diffusion model, character-aware embeddings and localization supervision, plus self-play preference optimization for visual-text quality (CVPR 2025). **Architecture:** Diffusion.
-- [PAID](https://arxiv.org/abs/2501.14316) - Generates product-centric advertising images through VLM prompt and layout experts, SDXL-based background generation, and final graphics rendering (2025). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM / VLM.
+- [T-Stars-Poster](https://doi.org/10.1145/3746252.3761554) - Generates product-centric advertising images through VLM-guided prompt and layout planning, SDXL background generation, and final graphics rendering (CIKM 2025; arXiv preprint titled PAID). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM / VLM.
 #### 2024
 
 - [LaDeCo](https://arxiv.org/abs/2412.19712) - Generates layered and editable graphic designs rather than flattened images (CVPR 2025). **Architecture:** LLM / VLM.
