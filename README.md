@@ -2,11 +2,11 @@
 
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
-![Total Resources](https://img.shields.io/badge/resources-181-informational)
-![Papers](https://img.shields.io/badge/papers-128-informational)
+![Total Resources](https://img.shields.io/badge/resources-189-informational)
+![Papers](https://img.shields.io/badge/papers-135-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-38-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-43-informational)
-![Method Classified](https://img.shields.io/badge/method%20classified-82-informational)
+![Method Classified](https://img.shields.io/badge/method%20classified-89-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -72,6 +72,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) - Generates layouts from intuitive user sketches and content assets with a multimodal Transformer and releases large-scale synthetic sketch supervision (ICCV 2025 HiGen Workshop).
 - [LayoutRectifier](https://arxiv.org/abs/2508.11177) - Rectifies generated graphic layouts with two-stage optimization over grid alignment, overlap, and containment while limiting deviation from the input layout (Pacific Graphics 2025).
 - [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) - Generates explicitly structured layouts with a Transformer using structure serialization and disentanglement for conditional structure control (TVCG 2025).
+- [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) - Unifies layout synthesis and retrieval with a variational latent representation, an autoregressive Transformer layout decoder, and a raster decoder (WACV 2025).
 #### 2024
 
 - [TextLap](https://arxiv.org/abs/2410.12844) - Generates graphic layouts from textual design requirements with language-model-based reasoning.
@@ -84,6 +85,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Dolfin](https://arxiv.org/abs/2310.16305) - Uses a diffusion layout transformer without an autoencoder for structured layout generation (ECCV 2024).
 - [LayoutNUWA](https://arxiv.org/abs/2309.09506) - Represents visual layouts as code for language-model-based generation and reasoning (ICLR 2024). Project: — · [Code](https://github.com/ProjectNUWA/LayoutNUWA) (`training + inference`) · Weights: `unknown`.<br>  **Method:** Code-generation formulation for layout generation · **Base:** LLaMA2-7B; CodeLLaMA-7B · **Train:** RICO; PubLayNet; Magazine · **Eval:** RICO; PubLayNet; Magazine · **Output:** HTML/code-form layout representation · **Checked:** 2026-10-06.
 - [Parse-Then-Place](https://arxiv.org/abs/2308.12700) - Parses textual design descriptions into structured constraints before placing graphic elements (ICCV 2023).
+- [Learn and Sample Together](https://www.ijcai.org/proceedings/2023/649) - Jointly trains a spatial-graph generator and graph-conditioned layout decoder with collaborative knowledge transfer for constrained graphic-layout generation (IJCAI 2023).
 - [LayoutGPT](https://arxiv.org/abs/2305.15393) - Uses large language models with in-context demonstrations for layout generation (NeurIPS 2023).
 - [FlexDM](https://arxiv.org/abs/2303.18248) - Supports flexible layout generation and completion through masked multi-field diffusion (CVPR 2023).
 - [LayoutDiffusion](https://arxiv.org/abs/2303.11589) - Uses discrete diffusion for controllable layout generation (ICCV 2023).
@@ -99,16 +101,22 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2021
 
 - [Layout-BLT](https://arxiv.org/abs/2112.05112) - Uses bidirectional layout transformers to generate and refine object arrangements (ECCV 2022).
+- [LayoutMCL](https://arxiv.org/abs/2301.06629) - Uses an autoregressive multi-choice predictor with winner-takes-all learning to generate diverse multimedia layouts from the same input (ACM MM 2021).
 - [CanvasVAE](https://arxiv.org/abs/2108.01249) - Uses a variational autoencoder to model element-level layouts for design documents (ICCV 2021).
 - [LayoutGAN++](https://arxiv.org/abs/2108.00871) - Improves GAN-based layout generation with differentiable rendering and stronger geometric reasoning (ACM MM 2021). Project: — · [Code](https://github.com/ktrk115/const_layout) (`training + inference`) · Weights: `released`.<br>  **Method:** GAN-based structured layout generation · **Base:** Transformer generator and discriminator · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes · **Checked:** 2026-10-06.
+- [VTN](https://arxiv.org/abs/2104.02416) - Combines self-attention with a variational autoencoder to learn global design rules and synthesize diverse layouts (CVPR 2021).
 #### 2020
 
 - [DeepLayout](https://arxiv.org/abs/2006.14615) - Models layouts autoregressively as sequences for conditional and unconditional generation (ICCV 2021).
+- [AC-LayoutGAN](https://doi.org/10.1109/TVCG.2020.2999335) - Generates graphic layouts conditioned on element attributes such as area, aspect ratio, and reading order with an attribute-conditioned GAN (TVCG).
 #### 2019
 
 - [Neural Design Network](https://arxiv.org/abs/1912.09421) - Generates graphic layouts under explicit design constraints with a neural structured model (ECCV 2020).
 - [LayoutVAE](https://arxiv.org/abs/1907.10719) - Uses a label-conditioned variational autoencoder for structured document layout generation (ICCV 2019).
 - [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) - Introduces a GAN formulation for synthesizing layouts represented by labeled geometric elements (ICLR 2019).
+#### 2015
+
+- [DesignScape](https://doi.org/10.1145/2702123.2702149) - Provides interactive refinement and brainstorming layout suggestions that improve position, scale, and alignment during graphic-design authoring (CHI 2015).
 #### 2014
 
 - [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014).
@@ -195,6 +203,9 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023).
 - [COLE](https://arxiv.org/abs/2311.16974) - Uses a hierarchical generation framework to create multi-layered, editable graphic designs from high-level intent (2023).
 - [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023).
+#### 2022
+
+- [CreaGAN](https://doi.org/10.1145/3503161.3548763) - Automates display-ad creative adaptation with aesthetics-aware product placement and context-aware inpainting while reusing existing design elements (ACM MM 2022).
 ### Composable and Layered Asset Generation
 
 #### 2026
@@ -279,16 +290,21 @@ The paper categories above describe **what a system produces**. This index descr
 ### Classical / Optimization
 
 - [LayoutRectifier](https://arxiv.org/abs/2508.11177) — Layout Generation; Two-stage discrete and continuous layout optimization.
+- [DesignScape](https://doi.org/10.1145/2702123.2702149) — Layout Generation; Interactive layout suggestion and refinement system.
 ### VAE
 
+- [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) — Layout Generation; Variational latent layout representation.
 - [ICVT](https://arxiv.org/abs/2209.00852) — Content-Aware Layout Generation; Geometry-aligned variational Transformer.
 - [CanvasVAE](https://arxiv.org/abs/2108.01249) — Layout Generation; Variational autoencoder.
+- [VTN](https://arxiv.org/abs/2104.02416) — Layout Generation; Variational autoencoder formulation.
 - [LayoutVAE](https://arxiv.org/abs/1907.10719) — Layout Generation; Variational autoencoder.
 ### GAN
 
 - [PosterLayout](https://arxiv.org/abs/2303.15937) — Content-Aware Layout Generation; Content-aware poster layout generation with DS-GAN.
+- [CreaGAN](https://doi.org/10.1145/3503161.3548763) — Graphic Design Generation; Aesthetics-aware placement plus creative inpainting framework.
 - [CGL-GAN](https://arxiv.org/abs/2205.00303) — Content-Aware Layout Generation; Content-aware generative adversarial model.
 - [LayoutGAN++](https://arxiv.org/abs/2108.00871) — Layout Generation; GAN with differentiable rendering.
+- [AC-LayoutGAN](https://doi.org/10.1109/TVCG.2020.2999335) — Layout Generation; Attribute-conditioned generative adversarial network.
 - [ContentGAN](https://doi.org/10.1145/3306346.3322971) — Content-Aware Layout Generation; Content-aware generative adversarial model.
 - [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) — Layout Generation; Generative adversarial layout model.
 ### Autoregressive / Transformer
@@ -301,6 +317,7 @@ The paper categories above describe **what a system produces**. This index descr
 - [Scan-and-Print](https://arxiv.org/abs/2505.20649) — Content-Aware Layout Generation; Autoregressive content-aware layout generation.
 - [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) — Layout Generation; Transformer with structure serialization and disentanglement.
 - [CreatiDesign](https://arxiv.org/abs/2505.19114) — Graphic Design Generation; Multi-conditional diffusion transformer.
+- [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) — Layout Generation; Autoregressive Transformer layout decoder.
 - [ART](https://arxiv.org/abs/2502.18364) — Composable and Layered Asset Generation; Anonymous Region Transformer for variable multi-layer transparent generation.
 - [CGB-DM](https://arxiv.org/abs/2407.15233) — Content-Aware Layout Generation.
 - [RALF](https://arxiv.org/abs/2311.13602) — Content-Aware Layout Generation; Retrieval-augmented autoregressive layout transformer.
@@ -311,6 +328,8 @@ The paper categories above describe **what a system produces**. This index descr
 - [ICVT](https://arxiv.org/abs/2209.00852) — Content-Aware Layout Generation; Transformer backbone.
 - [LayoutFormer++](https://arxiv.org/abs/2208.08037) — Layout Generation; Conditional sequence-to-sequence layout generation.
 - [Layout-BLT](https://arxiv.org/abs/2112.05112) — Layout Generation.
+- [LayoutMCL](https://arxiv.org/abs/2301.06629) — Layout Generation; Autoregressive multi-choice layout predictor.
+- [VTN](https://arxiv.org/abs/2104.02416) — Layout Generation; Self-attention / Transformer backbone.
 - [DeepLayout](https://arxiv.org/abs/2006.14615) — Layout Generation.
 ### Diffusion
 
@@ -351,15 +370,12 @@ The paper categories above describe **what a system produces**. This index descr
 - [LayoutFlow](https://arxiv.org/abs/2403.18187) — Layout Generation; Continuous flow-matching layout model.
 ### LLM / VLM
 
-- [MRT](https://arxiv.org/abs/2605.27235) — Composable and Layered Asset Generation; Masked-region diffusion for unified layered generation and editing.
 - [Design First Code Later](https://arxiv.org/abs/2605.26451) — Scientific Poster and Slide Generation; Design-first template-free slide-generation workflow.
 - [PSDesigner](https://arxiv.org/abs/2603.25738) — Graphic Design Generation; Multimodal planner.
-- [PosterOmni](https://arxiv.org/abs/2602.12127) — Graphic Design Generation; Unified multi-task image-to-poster generation and editing via task distillation and reward feedback.
 - [DesignAsCode](https://arxiv.org/abs/2602.17690) — Graphic Design Generation; Code-native agentic graphic-design generation.
 - [AutoFigure](https://arxiv.org/abs/2602.03828) — Scientific Figure and Graphical Abstract Generation; Agentic scientific illustration generation and iterative refinement.
 - [ReLayout: Structure-Preserving Design Layout Editing](https://arxiv.org/abs/2602.01046) — Graphic Design Editing and Reconstruction; MLLM-based relation-aware design reconstruction.
 - [PaperBanana](https://arxiv.org/abs/2601.23265) — Scientific Figure and Graphical Abstract Generation; Reference-driven multi-agent academic illustration generation.
-- [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) — Composable and Layered Asset Generation; Variable-layer image decomposition diffusion model.
 - [PosterCopilot](https://arxiv.org/abs/2512.04082) — Graphic Design Editing and Reconstruction; LMM layout reasoning and layer-controllable editing.
 - [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) — Content-Aware Layout Generation.
 - [LLMs as Layout Designers (LaySPA)](https://arxiv.org/abs/2509.16891) — Content-Aware Layout Generation; LLM spatial reasoning with reinforcement learning.
@@ -396,6 +412,10 @@ The paper categories above describe **what a system produces**. This index descr
 - [Paper2Poster](https://arxiv.org/abs/2505.21497) — Scientific Poster and Slide Generation.
 - [P2P](https://arxiv.org/abs/2505.17104) — Scientific Poster and Slide Generation.
 - [BannerAgency](https://arxiv.org/abs/2503.11060) — Graphic Design Generation; Collaborating multimodal agents.
+- [CreaGAN](https://doi.org/10.1145/3503161.3548763) — Graphic Design Generation; Two-stage placement and inpainting framework.
+### Encoder-only Neural Model
+
+- [Learn and Sample Together](https://www.ijcai.org/proceedings/2023/649) — Layout Generation; BERT-like graph modeling in a collaborative two-stage generator.
 ## Datasets and Benchmarks
 
 Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
@@ -465,6 +485,9 @@ Reusable scoring methods and evaluation procedures that compare generated design
 - [Design-o-Meter](https://arxiv.org/abs/2411.14959) - Scores graphic-design quality and proposes refinements within a unified learned evaluation-and-improvement framework (WACV 2025).
 - [Graphic Design Evaluation](https://arxiv.org/abs/2410.08885) - Evaluates alignment, overlap, white space, and related graphic-design principles with absolute and pairwise judgments (SIGGRAPH Asia 2024).
 - [LTSim](https://arxiv.org/abs/2407.12356) - Measures layout similarity through transportation-based matching of structured elements for layout-generation evaluation (2024).
+### 2020
+
+- [LayoutGCN](https://research.adobe.com/publication/learning-structural-similarity-of-user-interface-layouts-using-graph-networks/) - Learns structural layout-similarity embeddings with a graph-convolutional encoder and convolutional decoder for retrieval over interface layouts (ECCV 2020).
 ### Other
 
 - [Layout FID](https://github.com/creative-graphic-design/design-generators/tree/main/models/layout-fid) - Provides a learned feature-space metric for comparing generated and real layout distributions.

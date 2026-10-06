@@ -2,6 +2,7 @@ name,method_family,note
 AutoFigure,Agentic / Multi-stage System,Agentic scientific illustration generation and iterative refinement
 BannerAgency,Agentic / Multi-stage System,Collaborating multimodal agents
 CAL-RAG,Agentic / Multi-stage System,Retrieval-augmented collaborative agents
+CreaGAN,Agentic / Multi-stage System,Two-stage placement and inpainting framework
 DesignAsCode,Agentic / Multi-stage System,Code-native agentic graphic-design generation
 Designer-RSI,Agentic / Multi-stage System,
 P2P,Agentic / Multi-stage System,
@@ -15,6 +16,7 @@ PSDesigner,Agentic / Multi-stage System,Tool-using graphic-design agent
 SlideGen,Agentic / Multi-stage System,Collaborative multimodal slide-generation agents
 ART,Autoregressive / Transformer,Anonymous Region Transformer for variable multi-layer transparent generation
 CGB-DM,Autoregressive / Transformer,
+CLASS,Autoregressive / Transformer,Autoregressive Transformer layout decoder
 CreatiDesign,Autoregressive / Transformer,Multi-conditional diffusion transformer
 DeepLayout,Autoregressive / Transformer,
 Design Your Ad,Autoregressive / Transformer,Unified autoregressive personalized advertising image-text generation
@@ -25,6 +27,7 @@ LayoutAction,Autoregressive / Transformer,
 LayoutDETR,Autoregressive / Transformer,Detection-transformer-style multimodal layout generation
 LayoutDM,Autoregressive / Transformer,Discrete diffusion model for controllable layout generation
 LayoutFormer++,Autoregressive / Transformer,Conditional sequence-to-sequence layout generation
+LayoutMCL,Autoregressive / Transformer,Autoregressive multi-choice layout predictor
 Mise-en-Scène,Autoregressive / Transformer,
 PosterOmni,Autoregressive / Transformer,Unified multi-task image-to-poster generation and editing via task distillation and reward feedback
 RALF,Autoregressive / Transformer,Retrieval-augmented autoregressive layout transformer
@@ -32,6 +35,8 @@ Scan-and-Print,Autoregressive / Transformer,Autoregressive content-aware layout 
 Sketch-to-Layout,Autoregressive / Transformer,Multimodal Transformer
 StructLayoutFormer,Autoregressive / Transformer,Transformer with structure serialization and disentanglement
 UniLayDiff,Autoregressive / Transformer,Diffusion Transformer backbone
+VTN,Autoregressive / Transformer,Self-attention / Transformer backbone
+DesignScape,Classical / Optimization,Interactive layout suggestion and refinement system
 LayoutRectifier,Classical / Optimization,Two-stage discrete and continuous layout optimization
 CGB-DM,Diffusion,
 CreatiDesign,Diffusion,Multi-conditional diffusion transformer
@@ -64,10 +69,13 @@ Towards Reliable Advertising Image Generation Using Human Feedback,Diffusion,Rel
 Two-stage Content-Aware Layout Generation for Poster Designs,Diffusion,
 UniLayDiff,Diffusion,Multimodal diffusion transformer
 Visual Layout Composer,Diffusion,
+Learn and Sample Together,Encoder-only Neural Model,BERT-like graph modeling in a collaborative two-stage generator
 LayoutFlow,Flow Matching,Continuous flow-matching layout model
 Learning Priority-Aware Controllable Poster Layout Generation,Flow Matching,
+AC-LayoutGAN,GAN,Attribute-conditioned generative adversarial network
 CGL-GAN,GAN,Content-aware generative adversarial model
 ContentGAN,GAN,Content-aware generative adversarial model
+CreaGAN,GAN,Aesthetics-aware placement plus creative inpainting framework
 LayoutGAN,GAN,Generative adversarial layout model
 LayoutGAN++,GAN,GAN with differentiable rendering
 PosterLayout,GAN,Content-aware poster layout generation with DS-GAN
@@ -84,7 +92,6 @@ LayoutNUWA,LLM / VLM,Code-oriented language model
 LayoutPrompter,LLM / VLM,In-context LLM prompting
 Learning Priority-Aware Controllable Poster Layout Generation,LLM / VLM,
 LLMs as Layout Designers (LaySPA),LLM / VLM,LLM spatial reasoning with reinforcement learning
-MRT,LLM / VLM,Masked-region diffusion for unified layered generation and editing
 PaperBanana,LLM / VLM,Reference-driven multi-agent academic illustration generation
 PosterCopilot,LLM / VLM,LMM layout reasoning and layer-controllable editing
 PosterCraft,LLM / VLM,Unified diffusion poster generation with staged text and aesthetic optimization
@@ -92,14 +99,14 @@ PosterForest,LLM / VLM,Training-free multi-agent scientific-poster generation
 PosterLLaMA,LLM / VLM,Multimodal language model
 PosterLLaVA,LLM / VLM,Multimodal instruction-tuned language model
 PosterO,LLM / VLM,
-PosterOmni,LLM / VLM,Unified multi-task image-to-poster generation and editing via task distillation and reward feedback
 PSDesigner,LLM / VLM,Multimodal planner
-Qwen-Image-Layered,LLM / VLM,Variable-layer image decomposition diffusion model
 ReLayout: Relation Reasoning for Content-Aware Layout Generation,LLM / VLM,Relation-CoT with a multimodal large language model
 ReLayout: Structure-Preserving Design Layout Editing,LLM / VLM,MLLM-based relation-aware design reconstruction
 SciPostLayout,LLM / VLM,Scientific-poster layout analysis and generation baselines
 TextDiffuser-2,LLM / VLM,Language-model-assisted diffusion for flexible text rendering
 VASCAR,LLM / VLM,LVLM visual-aware self-correction
 CanvasVAE,VAE,Variational autoencoder
+CLASS,VAE,Variational latent layout representation
 ICVT,VAE,Geometry-aligned variational Transformer
 LayoutVAE,VAE,Variational autoencoder
+VTN,VAE,Variational autoencoder formulation
