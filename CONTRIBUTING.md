@@ -29,9 +29,9 @@ Generally out of scope:
 
 Structured data is authoritative; `README.md` is generated and should not be edited directly.
 
-- `data/resources.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources, including the primary task/output category for papers.
-- `data/paper_methods.csv` stores the orthogonal multi-label method/architecture taxonomy for papers.
+- `data/resources.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources.
 - `data/paper_metadata.csv` stores optional implementation and reproducibility metadata for paper entries.
+- `data/paper_methods.csv` stores required multi-label method/architecture classifications for paper entries.
 - `data/venues.csv` contains the relevant conference, journal, and workshop index.
 - `templates/README.md.j2` defines the README presentation.
 - `scripts/generate_readme.py` validates, joins, sorts, and renders the data.
@@ -75,13 +75,11 @@ Classify papers by their **primary output and task**, not by model family. `LLM`
 
 When a work spans categories, choose the category that best describes its principal output. For example, a VLM that predicts poster bounding boxes is a layout paper; an agent that creates editable HTML/CSS posters is a graphic-design-generation paper; a model whose main output is a reusable stack of RGBA assets belongs under composable and layered asset generation; a system that turns a paper into an editable methodology SVG belongs under scientific figure and graphical abstract generation.
 
-## Method / Architecture Taxonomy
+## Method and Architecture Taxonomy
 
-The primary paper taxonomy above answers **what the system produces**. `data/paper_methods.csv` provides a second, independent axis that answers **how it is implemented**.
+Every paper must have at least one row in `data/paper_methods.csv`. This is an orthogonal taxonomy: the paper category says **what the system produces**, while the method index says **how it is implemented**.
 
-Method classification is multi-label. Hybrid systems should appear under every materially important family needed to understand their architecture. A diffusion Transformer may therefore be both `Diffusion` and `Autoregressive / Transformer`; an LLM-driven multi-agent system may be both `LLM / VLM` and `Agentic / Multi-stage System`.
-
-Allowed method families are:
+Use one or more of the normalized families enforced by `scripts/generate_readme.py`:
 
 - `Classical / Optimization`
 - `VAE`
@@ -94,11 +92,11 @@ Allowed method families are:
 - `Graph Neural Network`
 - `Encoder-only Neural Model`
 
-Each row in `paper_methods.csv` contains the exact paper `name`, one `method_family`, and an optional concise `note`. Multiple rows with the same paper name are expected when a method spans families.
+Hybrid systems should receive multiple rows. `Agentic / Multi-stage System` also covers system-framework contributions whose main novelty is the orchestration of specialized planning, retrieval, generation, rendering, or evaluation stages.
 
-Assign method families from primary evidence in the paper, official project page, or implementation. Do not infer a family from a product or model brand alone. For example, a diffusion model built on Qwen-Image is not automatically an `LLM / VLM` method merely because the model name contains `Qwen`.
+Classify from the paper, official project page, or implementation rather than model branding. A diffusion model derived from a family whose name contains `Qwen`, for example, is not automatically an `LLM / VLM` method.
 
-This vocabulary is intentionally close to the architecture axis used by the SSII technology map while normalizing older labels (`not NN`, `Auto-regressive`, `System Framework`, etc.) into categories that remain useful for current hybrid systems. Extend the vocabulary only when a genuinely distinct family cannot be represented with the existing multi-label scheme.
+Use the canonical paper title as the resource and method-index key. If a well-known method name is only one contribution inside that paper, mention it in the description or method note instead of creating a duplicate paper entry.
 
 ## Resource Taxonomy
 
@@ -191,9 +189,9 @@ Before submitting:
 - Confirm every link resolves to the intended resource.
 - Search `data/resources.csv` for duplicates and alternate names.
 - Confirm the resource is within scope and in the narrowest task/output category.
+- Add at least one verified `data/paper_methods.csv` classification for every paper.
 - Check related work and neighboring research for obvious omissions in the same line.
 - Verify `arxiv_date` and/or `venue_date` from primary sources.
-- Add or refresh `data/paper_methods.csv` method labels when architecture evidence is available.
 - Verify any implementation metadata against the official project/repository/model release.
 - Set `checked_at` whenever adding or refreshing implementation metadata.
 - Write an objective description that explains why the resource is useful.
