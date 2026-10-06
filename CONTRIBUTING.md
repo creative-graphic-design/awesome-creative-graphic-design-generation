@@ -33,7 +33,6 @@ Structured data is authoritative; `README.md` is generated and should not be edi
 - `data/paper_metadata.csv` stores optional implementation and reproducibility metadata for paper entries.
 - `data/paper_methods.csv` stores required multi-label method/architecture classifications for paper entries.
 - `data/venues.csv` contains the relevant conference, journal, and workshop index.
-- `data/coverage_audit.csv` records non-rendered inclusion, alias, exclusion, and pending decisions for candidates that are likely to be encountered again.
 - `templates/README.md.j2` defines the README presentation.
 - `scripts/generate_readme.py` validates, joins, sorts, and renders the data.
 
@@ -154,19 +153,6 @@ For `model_family` and `backbone`, distinguish the task-level architecture from 
 
 For `train_datasets` and `eval_datasets`, record the datasets actually used by the paper or released implementation, not merely datasets that the codebase could theoretically load. Separate multiple datasets with semicolons.
 
-## Coverage Audit
-
-`data/coverage_audit.csv` is a curation ledger, not a rendered catalog. Use it for candidates that are likely to be rediscovered during literature searches so that the same alias or scope question does not need to be re-researched repeatedly.
-
-Allowed dispositions:
-
-- `included` — directly represented in `data/resources.csv`;
-- `alias` — an alternate paper/method/project name already represented by `canonical_entry`;
-- `out-of-scope` — reviewed and intentionally excluded under the current scope;
-- `pending` — requires stronger primary-source evidence or a scope decision.
-
-Keep reasons concise and durable. Do not use the ledger as a dumping ground for every search result. For `included` and `alias`, `canonical_entry` should exactly match the corresponding name in `data/resources.csv`. When a pending decision is resolved, update the existing row rather than adding another row for the same candidate.
-
 ## Curation Standard
 
 Before proposing an entry, verify that it is materially useful to this topic and that you can explain why it belongs. Prefer leaving borderline resources out rather than broadening the scope.
@@ -202,13 +188,12 @@ Before submitting:
 
 - Confirm every link resolves to the intended resource.
 - Search `data/resources.csv` for duplicates and alternate names.
-- Check `data/coverage_audit.csv` for a prior alias, exclusion, or pending decision.
 - Confirm the resource is within scope and in the narrowest task/output category.
 - Add at least one verified `data/paper_methods.csv` classification for every paper.
 - Check related work and neighboring research for obvious omissions in the same line.
 - Verify `arxiv_date` and/or `venue_date` from primary sources.
 - Verify any implementation metadata against the official project/repository/model release.
-- Set `checked_at` whenever adding or refreshing implementation metadata or a coverage-audit decision.
+- Set `checked_at` whenever adding or refreshing implementation metadata.
 - Write an objective description that explains why the resource is useful.
 - Run `uv run python scripts/generate_readme.py`.
 - Run `uv run python scripts/generate_readme.py --check`.
