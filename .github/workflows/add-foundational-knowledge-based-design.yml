@@ -1,0 +1,48 @@
+name: Add foundational knowledge-based design papers
+on:
+  push:
+    branches: [coverage/foundational-knowledge-based-design]
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - name: Add foundational papers
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import csv
+
+          p = Path('data/resources.csv')
+          s = p.read_text()
+          names = {r['name'] for r in csv.DictReader(s.splitlines())}
+          anchor = 'Papers,Content-Agnostic Layout Generation,Adaptive Grid-Based Document Layout,https://doi.org/10.1145/882262.882353,"Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003).",Classical / Optimization,SIGGRAPH,2003,,2003-07-27,SIGGRAPH 2003 conference start\n'
+          rows = []
+          if 'Automating the Design of Graphical Presentations of Relational Information' not in names:
+              rows.append('Papers,Content-Agnostic Layout Generation,Automating the Design of Graphical Presentations of Relational Information,https://doi.org/10.1145/22949.22950,"Codifies expressiveness and effectiveness criteria plus a composition algebra in APT to automatically synthesize graphical presentations of relational information (ACM TOG 1986).",Knowledge-Based / Rule-Based,ACM TOG,1986,,1986-04-01,journal publication\n')
+          if 'Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces' not in names:
+              rows.append('Papers,Content-Agnostic Layout Generation,Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces,https://doi.org/10.1145/62402.62431,"Extends automatic graphical-presentation theory to theory-driven design of graphical user interfaces (UIST 1988).",Knowledge-Based / Rule-Based,UIST,1988,,1988-10-17,UIST 1988 conference start\n')
+          if 'Interactive Graphic Design Using Automatic Presentation Knowledge' not in names:
+              rows.append('Papers,Content-Agnostic Layout Generation,Interactive Graphic Design Using Automatic Presentation Knowledge,https://doi.org/10.1145/191666.191719,"Introduces SageBrush, SageBook, and SAGE to combine knowledge-based automatic presentation with interactive construction, retrieval, and customization of data graphics (CHI 1994).",Knowledge-Based / Rule-Based,CHI,1994,,1994-04-24,CHI 1994 conference start\n')
+          assert anchor in s
+          assert rows
+          p.write_text(s.replace(anchor, ''.join(rows) + anchor))
+
+          c = Path('CONTRIBUTING.md')
+          cs = c.read_text()
+          old = 'Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM`, `VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, or `Flow Matching`.'
+          new = 'Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM`, `VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, `Flow Matching`, or `Knowledge-Based / Rule-Based`.'
+          assert old in cs
+          c.write_text(cs.replace(old, new))
+          PY
+          uv run python scripts/generate_readme.py
+      - name: Commit
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/resources.csv CONTRIBUTING.md README.md
+          git commit -m 'Add foundational knowledge-based graphic design papers'
+          git push
