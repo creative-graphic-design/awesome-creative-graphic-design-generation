@@ -47,14 +47,21 @@ The `Catalog Check` workflow verifies that the committed README exactly matches 
 
 ## Publication Dates and Ordering
 
-The resource CSV records both `arxiv_date` and `venue_date` when known. The generated list is sorted by **first public appearance**, newest first:
+The resource CSV records both `arxiv_date` and `venue_date` when known. These fields have distinct semantics:
 
-1. Use the arXiv v1 date when it is the earliest public appearance.
-2. If the work was presented or formally published at a venue before its arXiv upload, use the venue/presentation date instead.
-3. Journal-only work uses its first public publication date.
-4. If neither date is known, leave both blank and document the reason in `date_note`; the generator places the resource in `Other`.
+- `arxiv_date` is the arXiv v1 submission date.
+- For a **conference paper**, `venue_date` is the official start date of that conference edition, not the paper's individual poster/oral session date, acceptance date, camera-ready date, or proceedings publication timestamp.
+- For a **workshop paper**, `venue_date` is the date of the specific workshop edition, not the start date of its host conference.
+- For a **journal paper**, `venue_date` is the first authoritative online/publication date.
+- For datasets, models, implementations, or other non-publication resources, `venue_date` may store an authoritative public release date.
 
-Use ISO dates (`YYYY-MM-DD`). Prefer primary evidence such as the arXiv submission history, official conference program/schedule, proceedings page, publisher publication date, or an official model-release changelog. `date_note` should briefly record the basis for any non-obvious date.
+The generated list is sorted by **first public appearance**, newest first, using the earlier of `arxiv_date` and `venue_date` when both are known. Thus an arXiv preprint normally determines chronology when it predates the venue, while a venue or release date determines chronology when no earlier arXiv version exists.
+
+Use ISO dates (`YYYY-MM-DD`). Prefer primary evidence such as the arXiv submission history, the official conference or workshop site, publisher publication metadata, or an official model/dataset release record. `date_note` should briefly state the basis for the date, for example `CVPR 2025 conference start`, `ICCV 2025 HiGen workshop date`, `journal online publication`, or `official repository release date`.
+
+Do not use a paper-specific presentation slot or an early proceedings-publication timestamp as `venue_date` merely because it is easier to locate. The field is normalized deliberately so that two papers at the same conference edition share the same venue date unless they belong to different colocated workshops.
+
+If neither date is known, leave both blank and document the reason in `date_note`; the generator places the resource in `Other`.
 
 The year headings in `README.md` correspond to the first-public-appearance date, not necessarily the eventual conference or journal year. For example, an ECCV 2026 paper first posted to arXiv in December 2025 appears under 2025.
 
@@ -213,7 +220,7 @@ Before submitting:
 - Confirm the resource is within scope and in the narrowest task/output category.
 - Add at least one verified `data/paper_methods.csv` classification for every paper.
 - Check related work and neighboring research for obvious omissions in the same line.
-- Verify `arxiv_date` and/or `venue_date` from primary sources.
+- Verify `arxiv_date` and/or `venue_date` from primary sources and apply the normalized date semantics above.
 - Verify any implementation metadata against the official project/repository/model release.
 - Set `checked_at` whenever adding or refreshing implementation metadata.
 - Write an objective description that explains why the resource is useful.
