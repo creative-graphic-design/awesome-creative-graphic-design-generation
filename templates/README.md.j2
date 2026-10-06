@@ -23,7 +23,7 @@ Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_met
 - [Surveys and Overviews](#surveys-and-overviews)
 - [Papers](#papers)
 {% for category in paper_category_order %}  - [{{ category }}](#{{ category|anchor }})
-{% endfor %}- [Method / Architecture Index](#method-architecture-index)
+{% endfor %}- [Method and Architecture Index](#method-and-architecture-index)
 - [Datasets and Benchmarks](#datasets-and-benchmarks)
 - [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
 - [Models and Implementations](#models-and-implementations)
@@ -43,14 +43,16 @@ Implementation metadata is tracked in [`data/paper_metadata.csv`](data/paper_met
 
 Papers are classified by their **primary output and task**, rather than by model family. LLM-, VLM-, diffusion-, and agent-based approaches can therefore appear in any category.
 
-- **Layout Generation:** Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.
-- **Content-Aware Layout Generation:** Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.
-- **Graphic Design Generation:** Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.
-- **Composable and Layered Asset Generation:** Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.
-- **Typography and Text Rendering:** Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.
-- **Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
-- **Scientific Figure and Graphical Abstract Generation:** Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.
-- **Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.
+<ul>
+<li><strong>Layout Generation:</strong> Outputs structured element geometry or arrangement without relying on the visual content of a target canvas.</li>
+<li><strong>Content-Aware Layout Generation:</strong> Still outputs layout or placement, but conditions that geometry on a background image, product/brand assets, saliency, element content, or another visual canvas.</li>
+<li><strong>Graphic Design Generation:</strong> Goes beyond geometry to create a composed design artifact, such as backgrounds, imagery, typography, styles, layers, or editable HTML/CSS/PSD/PPTX structures.</li>
+<li><strong>Composable and Layered Asset Generation:</strong> Produces transparent, separable, layered, chroma-keyed, or intentionally empty-space visual assets that can be independently composed or edited in downstream design workflows.</li>
+<li><strong>Typography and Text Rendering:</strong> Focuses primarily on legible, faithful, or stylized text generation and placement within designed imagery.</li>
+<li><strong>Graphic Design Editing and Reconstruction:</strong> Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.</li>
+<li><strong>Scientific Figure and Graphical Abstract Generation:</strong> Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.</li>
+<li><strong>Scientific Poster and Slide Generation:</strong> Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.</li>
+</ul>
 
 {% for category in paper_category_order %}### {{ category }}
 
@@ -58,13 +60,15 @@ Papers are classified by their **primary output and task**, rather than by model
 
 {% for row in group.entries %}{{ row|entry }}
 {% endfor %}
-{% endfor %}{% endfor %}## Method / Architecture Index
+{% endfor %}{% endfor %}## Method and Architecture Index
 
-The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is normalized from the architecture axis used in the SSII technology map while allowing newer LLM/VLM and agentic systems.
+The paper categories above describe **what a system produces**. This index describes **how it is implemented** and is deliberately multi-label: hybrid systems may appear under several method families. The vocabulary is normalized from the architecture axis used in the SSII technology map while allowing newer LLM/VLM and agentic systems. Paper names correspond to the canonical entries above; links are intentionally not repeated so the Awesome list keeps one canonical external link per resource.
 
 {% for group in method_groups %}### {{ group.family }}
 
-{% for row in group.entries %}- [{{ row.name }}]({{ row.url }}) — {{ row.category }}{% if row.note %}; {{ row.note }}{% endif %}.
+| Paper | Primary task/output | Architecture note |
+| --- | --- | --- |
+{% for row in group.entries %}| {{ row.name }} | {{ row.category }} | {% if row.note %}{{ row.note }}{% else %}—{% endif %} |
 {% endfor %}
 {% endfor %}{% for section in dated_section_order %}## {{ section }}
 
