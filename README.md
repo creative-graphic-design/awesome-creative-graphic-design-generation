@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-235-informational)
 ![Papers](https://img.shields.io/badge/papers-180-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-54-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-56-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -239,14 +239,14 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [LaDeCo](https://arxiv.org/abs/2412.19712) - Generates layered and editable graphic designs rather than flattened images (CVPR 2025). **Architecture:** VLM.
 - [Towards Reliable Advertising Image Generation Using Human Feedback](https://arxiv.org/abs/2408.00418) - Uses a learned reliable-feedback network, recurrent generation, and feedback-guided diffusion fine-tuning to improve usable e-commerce advertising images (ECCV 2024). **Architecture:** Diffusion. Project: — · [Code](https://github.com/JD-GenX/Reliable_AD) (`inference only`) · [Weights](https://huggingface.co/ZhenbangDu/reliable_controlnet) (`released`).<br>  **Base:** Stable Diffusion v1.5-compatible latent diffusion; ControlNet · **Train:** RF1M · **Eval:** RF1M; human availability feedback · **Output:** Raster product advertising image.
-- [OpenCOLE](https://arxiv.org/abs/2406.08232) - Provides an open and reproducible pipeline for automatic layered graphic-design generation (CVPR Workshop 2024). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM; VLM.
+- [OpenCOLE](https://arxiv.org/abs/2406.08232) - Provides an open and reproducible pipeline for automatic layered graphic-design generation (CVPR Workshop 2024). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM; VLM. Project: — · [Code](https://github.com/CyberAgentAILab/OpenCOLE) (`training + inference`) · [Weights](https://huggingface.co/cyberagent/opencole-stable-diffusion-xl-base-1.0-finetune) (`released`).<br>  **Base:** K-shot LLM; SDXL fine-tune; LLaVA-v1.5-7B typography LoRA; renderer · **Train:** OpenCOLE dataset v1 · **Eval:** GPT-4V-based generated-design evaluation · **Output:** Rendered graphic design.
 - [Desigen](https://arxiv.org/abs/2403.09093) - Jointly generates advertising backgrounds and foreground element layouts (CVPR 2024). **Architecture:** Autoregressive / Transformer.
 - [Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners](https://arxiv.org/abs/2403.05578) - Chains an LLM with text-to-image generation to turn shopper interaction and product metadata into personalized e-commerce banner imagery at scale (KDD 2024). **Architecture:** LLM.
 - [CG4CTR](https://arxiv.org/abs/2401.10934) - Builds a Stable-Diffusion-based advertising-creative generation pipeline that incorporates user preferences and downstream click-through-rate ranking (WWW 2024 Companion). **Architecture:** Agentic / Multi-stage System; Diffusion.
 #### 2023
 
 - [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023). **Architecture:** Agentic / Multi-stage System.
-- [COLE](https://arxiv.org/abs/2311.16974) - Uses a hierarchical generation framework to create multi-layered, editable graphic designs from high-level intent (2023). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM; VLM.
+- [COLE](https://arxiv.org/abs/2311.16974) - Uses a hierarchical generation framework to create multi-layered, editable graphic designs from high-level intent (2023). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM; VLM. [Project](https://graphic-design-generation.github.io/) · Code: `announced` · Weights: `unknown`.<br>  **Base:** Fine-tuned LLMs; large multimodal models; diffusion models · **Train:** Proprietary design data (not publicly released) · **Eval:** DESIGNINTENTION benchmark · **Output:** Multi-layer editable graphic design.
 - [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023). **Architecture:** Agentic / Multi-stage System.
 #### 2022
 
