@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-224-informational)
-![Papers](https://img.shields.io/badge/papers-169-informational)
+![Total Resources](https://img.shields.io/badge/resources-225-informational)
+![Papers](https://img.shields.io/badge/papers-170-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-46-informational)
 
@@ -268,6 +268,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2025
 
+- [UTDesign](https://doi.org/10.1145/3757377.3763923) - Unifies stylized text editing and conditional text generation for graphic-design images and integrates the model into a text-to-design pipeline (SIGGRAPH Asia 2025). **Architecture:** Diffusion; VLM.
 - [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates product posters with explicit mechanisms for accurate text rendering and visual composition (CVPR 2025). **Architecture:** Diffusion. [Project](https://poster-maker.github.io) · [Code](https://github.com/alimama-creative/PosterMaker) (`training + inference`) · [Weights](https://huggingface.co/alimama-creative/PosterMaker) (`released`).<br>  **Base:** Stable Diffusion 3 Medium · **Train:** Released e-commerce poster training data · **Eval:** Released stage-1 and stage-2 poster benchmarks · **Output:** Raster product poster with specified text regions.
 #### 2024
 
