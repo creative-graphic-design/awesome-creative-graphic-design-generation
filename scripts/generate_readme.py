@@ -25,8 +25,8 @@ README_PATH = ROOT / "README.md"
 SECTION_ORDER = [
     "Surveys and Overviews",
     "Papers",
-    "Datasets",
-    "Benchmarks and Evaluation",
+    "Datasets and Benchmarks",
+    "Evaluation Methods and Metrics",
     "Models and Implementations",
     "Related Resources",
 ]
@@ -38,11 +38,23 @@ PAPER_CATEGORY_ORDER = [
     "Composable and Layered Asset Generation",
     "Typography and Text Rendering",
     "Graphic Design Editing and Reconstruction",
+    "Scientific Figure and Graphical Abstract Generation",
     "Scientific Poster and Slide Generation",
 ]
 
-DATED_SECTION_ORDER = ["Datasets", "Benchmarks and Evaluation"]
+DATED_SECTION_ORDER = ["Datasets and Benchmarks", "Evaluation Methods and Metrics"]
 VENUE_TYPE_ORDER = ["Conference", "Journal"]
+
+# Compatibility for the bootstrap CSVs. New records should use the canonical
+# section names above. Benchmark datasets and fixed evaluation tasks belong in
+# Datasets and Benchmarks; reusable scoring methods belong in Evaluation Methods
+# and Metrics.
+LEGACY_EVALUATION_METHOD_NAMES = {
+    "Graphic Design Evaluation",
+    "Layout FID",
+    "LTSim",
+}
+
 CODE_STATUSES = {
     "train+inference",
     "inference-only",
@@ -97,6 +109,19 @@ def load_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(file))
 
 
+def normalize_section(row: dict[str, str]) -> None:
+    """Normalize legacy bootstrap section names to the canonical taxonomy."""
+    section = row["section"]
+    if section == "Datasets":
+        row["section"] = "Datasets and Benchmarks"
+    elif section == "Benchmarks and Evaluation":
+        row["section"] = (
+            "Evaluation Methods and Metrics"
+            if row["name"] in LEGACY_EVALUATION_METHOD_NAMES
+            else "Datasets and Benchmarks"
+        )
+
+
 def load_rows() -> list[dict[str, str]]:
     if not RESOURCE_PATHS:
         raise ValueError("No data/resources*.csv files found")
@@ -108,6 +133,7 @@ def load_rows() -> list[dict[str, str]]:
     seen_names: set[tuple[str, str, str]] = set()
     seen_urls: set[str] = set()
     for row in rows:
+        normalize_section(row)
         section = row["section"]
         category = row["category"]
         name = row["name"]
