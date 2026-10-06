@@ -56,7 +56,7 @@ Columns:
 - `method_family` — normalized architecture/method family enforced by the generator.
 - `note` — concise paper-specific clarification, such as the particular Transformer role or the form of diffusion.
 
-The normalized vocabulary is inspired by the architecture axis in the SSII technology map and currently includes:
+The normalized vocabulary is maintained as a repository-level method/architecture taxonomy and currently includes:
 
 - `Classical / Optimization`
 - `VAE`
@@ -69,7 +69,7 @@ The normalized vocabulary is inspired by the architecture axis in the SSII techn
 - `Graph Neural Network`
 - `Encoder-only Neural Model`
 
-A paper may appear in multiple families. For example, a diffusion Transformer can have both `Diffusion` and `Autoregressive / Transformer`; an LLM-based multi-agent system can have both `LLM / VLM` and `Agentic / Multi-stage System`. The `Agentic / Multi-stage System` family also covers SSII-style system frameworks whose primary contribution is orchestration across multiple specialized stages rather than one monolithic model.
+A paper may appear in multiple families. For example, a diffusion Transformer can have both `Diffusion` and `Autoregressive / Transformer`; an LLM-based multi-agent system can have both `LLM / VLM` and `Agentic / Multi-stage System`. The `Agentic / Multi-stage System` family also covers system-framework contributions whose primary contribution is orchestration across multiple specialized stages rather than one monolithic model.
 
 Do not classify methods from a product or model brand name alone. Use the paper, official project page, or implementation to verify the actual architecture. `Qwen-Image`-based diffusion, for example, is not automatically an `LLM / VLM` method merely because the model name contains `Qwen`.
 
