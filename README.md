@@ -455,19 +455,19 @@ Recurring publication venues and workshop series worth monitoring for work in th
 - [AAAI](https://aaai.org/conference/aaai/) - Artificial intelligence; includes structured and controllable layout-generation research.
 - [ACL](https://aclanthology.org/venues/acl/) - Natural language processing; increasingly relevant to paper-to-poster and document-to-design agent systems.
 - [ACM Multimedia](https://acmmm.hosting2.acm.org/) - Multimedia; recurring venue for layout generation, poster generation, typography, slide generation, and multimodal design systems.
-- [BMVC](https://bmvc2026.org/) - Computer vision; includes scientific-poster layout datasets and document-layout research.
+- [BMVC](https://www.bmva.org/bmvc) - Computer vision; annual BMVA conference with an official proceedings archive and relevant scientific-poster/document-layout research.
 - [CHI](https://chi.acm.org/) - Human-computer interaction; relevant for interactive and human-centered graphic-design systems.
 - [CIKM](https://www.cikmconference.org/) - Information and knowledge management; has published industrial poster-layout and content-aware design work.
 - [CVPR](https://cvpr.thecvf.com/) - Computer vision; frequently publishes layout, poster, multimodal generation, and evaluation work.
 - [ECCV](https://eccv.ecva.net/) - Computer vision; strong coverage of layout, editable design, slide design, and image-generation research.
-- [ICASSP](https://2026.ieeeicassp.org/) - Signal processing and multimedia; includes poster and text-layout generation work.
+- [ICASSP](https://signalprocessingsociety.org/event-names/icassp) - Signal processing and multimedia; annual IEEE Signal Processing Society flagship series that includes poster and text-layout generation work.
 - [ICCV](https://iccv.thecvf.com/) - Computer vision; relevant for layout generation, content-aware design, and structured visual generation.
 - [ICLR](https://iclr.cc/) - Machine learning; relevant for generative models, language-based layout generation, scientific-poster agents, and evaluation.
-- [ICME](https://www.2026.ieeeicme.org/) - Multimedia; relevant for multimodal content generation and visual-design systems.
+- [ICME](https://ieee-cas.org/media-bookdirectory/icme) - Multimedia; recurring IEEE flagship series since 2000 and relevant for multimodal content generation and visual-design systems.
 - [ICML](https://icml.cc/) - Machine learning; relevant for generative modeling and controllable structured generation.
 - [IJCAI](https://www.ijcai.org/) - Artificial intelligence; includes content-aware advertising and poster-layout generation.
 - [NeurIPS](https://neurips.cc/) - Machine learning; relevant for generative modeling, multimodal agents, evaluation, and scientific-poster automation.
-- [Pacific Graphics](https://pg2025.nccu.edu.tw/) - Computer graphics; includes optimization, authoring, and graphic-layout research.
+- [Pacific Graphics](https://asiagraphics.org/) - Annual flagship conference of the Asia Graphics Association; includes optimization, authoring, and graphic-layout research.
 - [SIGGRAPH](https://www.siggraph.org/) - Computer graphics and interactive techniques; important for content-aware design and visual composition.
 - [SIGGRAPH Asia](https://asia.siggraph.org/) - Computer graphics and interactive techniques; relevant for graphic-design generation and evaluation.
 - [WACV](https://wacv.thecvf.com/) - Computer vision; includes graphic-design evaluation and multimodal visual-generation work.
@@ -483,10 +483,10 @@ Recurring publication venues and workshop series worth monitoring for work in th
 
 ### Workshops
 
-- [AI for Content Creation (AI4CC)](https://ai-for-content-creation.github.io/) - Recurring CVPR workshop on AI-assisted content creation across art, design, documents, advertising, photography, video, and related media.
-- [AI for Creative Visual Content Generation, Editing and Understanding (CVEU)](https://openaccess.thecvf.com/CVPR2025_workshops/CVEU) - Workshop series on generative and editing technologies for creative visual content, with editions across CVPR, ICCV, ECCV, and SIGGRAPH-related venues.
-- [Graphic Design Understanding and Generation (GDUG)](https://sites.google.com/view/gdug-workshop) - Dedicated graphic-design workshop series; held at CVPR 2024 and ICCV 2025 with topics spanning layout, typography, datasets, evaluation, and AI-assisted authoring.
-- [Human-Interactive Generation and Editing (HiGen)](https://higen-2025.github.io/) - Human-interactive visual generation and editing workshop; first held at ICCV 2025 and second at CVPR 2026, including multimodal control and sketch-guided design generation.
+- [AI for Content Creation (AI4CC)](https://ai-for-content-creation.github.io/) - Recurring CVPR workshop series; the official archive lists annual editions from 2020 through 2025 and CVPR 2026 hosted another edition, covering art, design, documents, advertising, photography, video, and related media.
+- [AI for Creative Visual Content Generation, Editing and Understanding (CVEU)](https://cveu.github.io/) - Long-running creative-visual-content workshop series with verified editions across ICCV, ECCV, CVPR, SIGGRAPH, and SIGGRAPH Asia; the official series site tracks the continuing edition history.
+- [Graphic Design Understanding and Generation (GDUG)](https://sites.google.com/view/gdug-workshop) - Recurring dedicated graphic-design workshop; CVF proceedings verify editions at CVPR 2024 and ICCV 2025 spanning layout, typography, datasets, evaluation, and AI-assisted authoring.
+- [Human-Interactive Generation and Editing (HiGen)](https://higen-2025.github.io/) - Recurring human-interactive generation/editing workshop; ICCV 2025 was the first edition and CVPR 2026 explicitly hosted the 2nd workshop, including multimodal control and sketch-guided design generation.
 
 ## Related Resources
 
