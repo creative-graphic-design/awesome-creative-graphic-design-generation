@@ -48,6 +48,8 @@ The generator uses the earlier of `arxiv_date` and `venue_date` as the first-pub
 
 This table provides an orthogonal, multi-label method/architecture index for papers in `resources.csv`. It is deliberately separate from `resources.csv` because a paper has exactly one primary task/output category but may combine several implementation families.
 
+Every paper in the catalog should have at least one method classification. The generated `Method Classified` badge therefore acts as a coverage check: when it is lower than the paper count, architecture audit work remains.
+
 Columns:
 
 - `name` — exact paper name from `resources.csv`.
@@ -67,9 +69,11 @@ The normalized vocabulary is inspired by the architecture axis in the SSII techn
 - `Graph Neural Network`
 - `Encoder-only Neural Model`
 
-A paper may appear in multiple families. For example, a diffusion Transformer can have both `Diffusion` and `Autoregressive / Transformer`; an LLM-based multi-agent system can have both `LLM / VLM` and `Agentic / Multi-stage System`.
+A paper may appear in multiple families. For example, a diffusion Transformer can have both `Diffusion` and `Autoregressive / Transformer`; an LLM-based multi-agent system can have both `LLM / VLM` and `Agentic / Multi-stage System`. The `Agentic / Multi-stage System` family also covers SSII-style system frameworks whose primary contribution is orchestration across multiple specialized stages rather than one monolithic model.
 
 Do not classify methods from a product or model brand name alone. Use the paper, official project page, or implementation to verify the actual architecture. `Qwen-Image`-based diffusion, for example, is not automatically an `LLM / VLM` method merely because the model name contains `Qwen`.
+
+Canonical paper names matter. If a commonly used method name is only one contribution inside a paper (for example, LayoutGAN++ inside *Constrained Graphic Layout Generation via Latent Optimization*), use the paper title as the resource key and explain the method name in the description or architecture note rather than creating a duplicate paper entry.
 
 ## `paper_metadata.csv`
 
