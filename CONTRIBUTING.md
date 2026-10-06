@@ -11,7 +11,7 @@ Strong inclusion signals include:
 - Explicit element-level layout or structured composition.
 - Typography or text placement as part of design generation.
 - Content-aware composition over a background, product image, or other visual asset.
-- Layered, editable, or structured design outputs.
+- Layered, editable, transparent, isolated, or otherwise composable design assets.
 - Graphic-design-specific multimodal agents or design assistants.
 - Scientific-poster or slide workflows that combine source understanding with visual communication.
 - Datasets, benchmarks, or metrics created for graphic-design generation or evaluation.
@@ -23,14 +23,14 @@ Generally out of scope:
 - Generic image editing without a composition or design focus.
 - Generic UI, web, floorplan, scene, or document generation unless it materially advances graphic-design generation.
 - Product catalogs, marketing-only pages, prompt collections, or uncurated directories.
-- Resources that are deprecated, inaccessible, or too incomplete to evaluate.
+- Resources that are deprecated, inaccessible, or too incomplete to evaluate, unless their historical or methodological relevance justifies retaining them with an explicit release-status note.
 
 ## Source of Truth
 
 Structured data is authoritative; `README.md` is generated and should not be edited directly.
 
 - `data/resources*.csv` contains papers, datasets, benchmarks, implementations, and related resources.
-- `data/paper_metadata.csv` stores optional implementation and reproducibility metadata for paper entries.
+- `data/paper_metadata*.csv` stores optional implementation and reproducibility metadata for paper entries.
 - `data/venues.csv` contains the relevant conference and journal index.
 - `templates/README.md.j2` defines the README presentation.
 - `scripts/generate_readme.py` validates, joins, sorts, and renders the data.
@@ -53,7 +53,7 @@ The resource CSV records both `arxiv_date` and `venue_date` when known. The gene
 3. Journal-only work uses its first public publication date.
 4. If neither date is known, leave both blank and document the reason in `date_note`; the generator places the resource in `Other`.
 
-Use ISO dates (`YYYY-MM-DD`). Prefer primary evidence such as the arXiv submission history, official conference program/schedule, proceedings page, or publisher publication date. `date_note` should briefly record the basis for any non-obvious date.
+Use ISO dates (`YYYY-MM-DD`). Prefer primary evidence such as the arXiv submission history, official conference program/schedule, proceedings page, publisher publication date, or an official model-release changelog. `date_note` should briefly record the basis for any non-obvious date.
 
 The year headings in `README.md` correspond to the first-public-appearance date, not necessarily the eventual conference or journal year. For example, an ECCV 2026 paper first posted to arXiv in December 2025 appears under 2025.
 
@@ -66,15 +66,16 @@ Classify papers by their **primary output and task**, not by model family. `LLM`
 - **Layout Generation**: the primary output is structured element geometry or arrangement, without depending on the visual content of a target canvas.
 - **Content-Aware Layout Generation**: the primary output is still layout or placement, but geometry is conditioned on a background image, product/brand assets, saliency, element content, or another visual canvas.
 - **Graphic Design Generation**: the system goes beyond layout coordinates and creates a composed design artifact, including some combination of background imagery, visual assets, typography, styling, layers, or editable HTML/CSS/PSD/PPTX structure.
+- **Composable and Layered Asset Generation**: the primary output is a transparent, separable, layered, chroma-keyed, or intentionally empty-space visual asset intended for downstream composition or independent editing. This includes RGBA layer generation, layer decomposition when the emphasis is asset extraction, chroma-key generation, and negative-space-preserving generation.
 - **Typography and Text Rendering**: the primary contribution is faithful, legible, spatially controlled, or stylized text rendering within designed imagery.
 - **Graphic Design Editing and Reconstruction**: the primary contribution is iterative editing, layer-level manipulation, raster-to-editable reconstruction, or recovery of design structure.
 - **Scientific Poster and Slide Generation**: the system targets research communication and combines source-document understanding or content selection with layout, typography, rendering, and often editable poster/slide output.
 
-When a work spans categories, choose the category that best describes its principal output. For example, a VLM that predicts poster bounding boxes is a layout paper; an agent that creates editable HTML/CSS posters is a graphic-design-generation paper.
+When a work spans categories, choose the category that best describes its principal output. For example, a VLM that predicts poster bounding boxes is a layout paper; an agent that creates editable HTML/CSS posters is a graphic-design-generation paper; a model whose main output is a reusable stack of RGBA assets belongs under composable and layered asset generation.
 
 ## Implementation Metadata
 
-`data/paper_metadata.csv` is optional per paper, but strongly encouraged when an official implementation, model release, or project page exists. The row key must exactly match the paper `name`.
+`data/paper_metadata*.csv` is optional per paper, but strongly encouraged when an official implementation, model release, or project page exists. The row key must exactly match the paper `name`.
 
 Track the following when they can be verified from primary sources:
 
@@ -87,24 +88,25 @@ Track the following when they can be verified from primary sources:
 - training datasets;
 - evaluation datasets or benchmarks;
 - output representation or artifact format;
-- concise notes about partial releases or reproducibility limitations;
+- concise notes about partial, withdrawn, or otherwise limited releases;
 - `checked_at`, the date on which the implementation/release status was last verified.
 
-A metadata row means the implementation status has actually been inspected. If a paper has not been checked yet, omit the metadata row rather than filling every field with `unknown`. Blank URLs in an inspected row mean no canonical URL was located at `checked_at`; the status fields should explain whether a release is absent, announced, not applicable, or simply uncertain.
+A metadata row means the implementation status has actually been inspected. If a paper has not been checked yet, omit the metadata row rather than filling every field with `unknown`. Blank URLs in an inspected row mean no canonical URL was located at `checked_at`; the status fields should explain whether a release is absent, announced, withdrawn, not applicable, or simply uncertain.
 
 Allowed `code_status` values:
 
 - `train+inference` — public training and inference paths are available;
 - `inference-only` — released code runs a trained model but does not reproduce training;
 - `evaluation-only` — public code primarily covers evaluation;
-- `pipeline` — an agent/tool workflow without a task-specific training release;
+- `pipeline` — an agent/tool or training-free workflow without a task-specific training release;
 - `announced` — authors state that code is forthcoming;
+- `withdrawn` — code was previously available but the official maintainers explicitly removed or disabled the usable release;
 - `none` — authors explicitly do not release code;
 - `unknown` — release status could not be established.
 
-Allowed `weights_status` values are `released`, `partial`, `announced`, `not-applicable`, and `unknown`.
+Allowed `weights_status` values are `released`, `partial`, `announced`, `withdrawn`, `not-applicable`, and `unknown`.
 
-Do not infer `train+inference` merely because a paper describes training. Inspect the public repository and distinguish a released training implementation from an inference-only demo. Likewise, mark weights as `released` only when an actual checkpoint/model artifact is linked or the official repository provides a working download path.
+Do not infer `train+inference` merely because a paper describes training. Inspect the public repository and distinguish a released training implementation from an inference-only demo. Likewise, mark weights as `released` only when an actual checkpoint/model artifact is linked or the official repository provides a working download path. Use `withdrawn` when an official source states that a previously available release has been removed; do not silently downgrade it to `unknown`.
 
 For `model_family` and `backbone`, distinguish the task-level architecture from the reused foundation model. For example, `Multi-conditional diffusion transformer` belongs in `model_family`, while `FLUX.1-dev` belongs in `backbone`.
 
@@ -116,11 +118,11 @@ Before proposing an entry, verify that it is materially useful to this topic and
 
 Use primary sources whenever possible:
 
-1. Official paper, project, repository, or dataset page.
+1. Official paper, project, repository, model, or dataset page.
 2. Author-maintained mirror or institutional page.
 3. Reputable archival source when the primary resource is unavailable.
 
-Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `paper_metadata.csv` when they add material value.
+Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `paper_metadata*.csv` when they add material value.
 
 ## Entry Format
 
@@ -160,4 +162,4 @@ Commercial systems may be included only when they provide substantial research, 
 
 ## Maintenance
 
-Broken, superseded, or abandoned resources may be removed when they no longer provide enough value to justify inclusion. If an authoritative replacement exists, prefer updating the canonical link over retaining multiple versions.
+Broken, superseded, or abandoned resources may be removed when they no longer provide enough value to justify inclusion. If an authoritative replacement exists, prefer updating the canonical link over retaining multiple versions. When a historically important release is intentionally withdrawn, keep the paper if it remains in scope and record the current release status explicitly.
