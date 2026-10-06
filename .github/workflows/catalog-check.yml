@@ -4,19 +4,19 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   catalog-check:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out pull request branch
+      - name: Check out repository
         uses: actions/checkout@v5
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
 
       - name: Set up uv
         uses: astral-sh/setup-uv@v6
@@ -26,98 +26,5 @@ jobs:
       - name: Sync generator environment
         run: uv sync
 
-      - name: Add independently audited coverage
-        run: |
-          python - <<'PY'
-          import csv
-          from pathlib import Path
-
-          resource_path = Path('data/resources.csv')
-          with resource_path.open(encoding='utf-8', newline='') as f:
-              reader = csv.DictReader(f)
-              resource_fields = reader.fieldnames
-              resources = list(reader)
-          existing = {r['name'] for r in resources}
-          additions = [
-              {'section':'Papers','category':'Content-Aware Layout Generation','name':'Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement','url':'https://arxiv.org/abs/2603.22187','description':'Introduces VFLM, which iteratively renders and visually critiques SVG text layouts over background images, using visually grounded reinforcement learning to improve readability and aesthetics (CVPR 2026).','venue':'CVPR','venue_year':'2026','arxiv_date':'2026-03-23','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Papers','category':'Composable and Layered Asset Generation','name':'LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition','url':'https://arxiv.org/abs/2603.17965','description':'Jointly generates full graphic-media designs and a flexible number of semantically meaningful RGBA layers, while also supporting image-to-layers decomposition with a latent diffusion transformer and RGBA VAE.','venue':'arXiv','venue_year':'2026','arxiv_date':'2026-03-18','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Papers','category':'Graphic Design Generation','name':'Rethinking Layered Graphic Design Generation with a Top-Down Approach','url':'https://arxiv.org/abs/2507.05601','description':'Introduces Accordion, a top-down framework that creates editable layered graphic designs from user intent or sketches by using a VLM for reference creation, design planning, and layer generation (ICCV 2025).','venue':'ICCV','venue_year':'2025','arxiv_date':'2025-07-08','venue_date':'','date_note':'arXiv v1; method name Accordion'},
-              {'section':'Papers','category':'Graphic Design Editing and Reconstruction','name':'CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers','url':'https://arxiv.org/abs/2604.19632','description':'Parses flattened graphic designs into editable text, background, and sticker layers using a VLM text-rendering protocol and multi-branch RGBA diffusion, with preference alignment via ParserReward.','venue':'arXiv','venue_year':'2026','arxiv_date':'2026-04-21','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Papers','category':'Graphic Design Generation','name':'DesignDiffusion: High-Quality Text-to-Design Image Generation with Diffusion Models','url':'https://arxiv.org/abs/2503.01645','description':'Generates complete design images directly from text with a one-stage diffusion model, character-aware embeddings and localization supervision, plus self-play preference optimization for visual-text quality (CVPR 2025).','venue':'CVPR','venue_year':'2025','arxiv_date':'2025-03-03','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Papers','category':'Composable and Layered Asset Generation','name':'OmniPSD: Layered PSD Generation with Diffusion Transformer','url':'https://arxiv.org/abs/2512.09247','description':'Uses a unified FLUX-based diffusion-transformer framework for both text-to-PSD generation and flattened-image-to-PSD decomposition with editable transparent layers and an RGBA VAE.','venue':'arXiv','venue_year':'2025','arxiv_date':'2025-12-10','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Papers','category':'Composable and Layered Asset Generation','name':'LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge','url':'https://arxiv.org/abs/2501.01197','description':'Synthesizes a composite image with an off-the-shelf generator and then disassembles it into foreground and background layers using pretrained generative priors and high-frequency alignment.','venue':'arXiv','venue_year':'2025','arxiv_date':'2025-01-02','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Papers','category':'Composable and Layered Asset Generation','name':'Generative Image Layer Decomposition with Visual Effects','url':'https://arxiv.org/abs/2411.17864','description':'Introduces LayerDecomp for decomposing images into clean backgrounds and transparent foreground layers while preserving visual effects such as shadows and reflections (CVPR 2025).','venue':'CVPR','venue_year':'2025','arxiv_date':'2024-11-26','venue_date':'','date_note':'arXiv v1; method name LayerDecomp'},
-              {'section':'Papers','category':'Composable and Layered Asset Generation','name':'Controllable Layered Image Generation for Real-World Editing','url':'https://arxiv.org/abs/2601.15507','description':'Introduces LASAGNA, a unified controllable framework that jointly generates composites, clean backgrounds, and transparent foreground layers with physically grounded visual effects.','venue':'arXiv','venue_year':'2026','arxiv_date':'2026-01-21','venue_date':'','date_note':'arXiv v1; method name LASAGNA'},
-              {'section':'Papers','category':'Composable and Layered Asset Generation','name':'PSDiffusion: Harmonized Multi-Layer Image Generation via Layout and Appearance Alignment','url':'https://arxiv.org/abs/2505.11468','description':'Generates multiple transparent layers simultaneously with a unified diffusion framework and global-layer interaction for coherent layout, contacts, shadows, and reflections (WACV 2026).','venue':'WACV','venue_year':'2026','arxiv_date':'2025-05-16','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Papers','category':'Composable and Layered Asset Generation','name':'Text2Layer: Layered Image Generation using Latent Diffusion Model','url':'https://arxiv.org/abs/2307.09781','description':'Jointly generates background, foreground, layer mask, and composed image in a learned layered latent space, establishing an early diffusion-based layered compositing formulation.','venue':'arXiv','venue_year':'2023','arxiv_date':'2023-07-19','venue_date':'','date_note':'arXiv v1'},
-              {'section':'Datasets and Benchmarks','category':'','name':'PosterIQ','url':'https://huggingface.co/datasets/ArtmeScienceLab/PosterIQ','description':'Design-driven poster understanding and generation benchmark with 7,765 image-annotation instances and 822 generation prompts covering layout parsing, typography, design quality, semantic intent, and composition-aware synthesis (CVPR 2026).','venue':'CVPR','venue_year':'2026','arxiv_date':'2026-03-25','venue_date':'','date_note':'associated paper arXiv v1; official dataset release'},
-          ]
-          resources.extend(r for r in additions if r['name'] not in existing)
-          with resource_path.open('w', encoding='utf-8', newline='') as f:
-              writer = csv.DictWriter(f, fieldnames=resource_fields)
-              writer.writeheader(); writer.writerows(resources)
-
-          methods_path = Path('data/paper_methods.csv')
-          with methods_path.open(encoding='utf-8', newline='') as f:
-              reader = csv.DictReader(f); method_fields = reader.fieldnames; methods = list(reader)
-          existing_methods = {(r['name'], r['method_family']) for r in methods}
-          method_additions = [
-              ('Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement','LLM / VLM','Qwen2.5-VL-based multimodal layout model with rendered visual feedback'),
-              ('Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement','Agentic / Multi-stage System','Iterative render-observe-refine loop with reward-model-guided reinforcement learning'),
-              ('LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition','Diffusion','Latent diffusion model for joint full-design and RGBA-layer generation'),
-              ('LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition','Autoregressive / Transformer','Latent Diffusion Transformer with 4D RoPE'),
-              ('LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition','LLM / VLM','LLM prompt expander and VLM-based layer descriptions/evaluation'),
-              ('LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition','VAE','RGBA VAE for transparency-aware layer decoding'),
-              ('Rethinking Layered Graphic Design Generation with a Top-Down Approach','LLM / VLM','VLM used across reference creation, design planning, and layer generation'),
-              ('Rethinking Layered Graphic Design Generation with a Top-Down Approach','Agentic / Multi-stage System','Accordion top-down three-stage layered-design pipeline with vision experts'),
-              ('CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers','Diffusion','Multi-branch RGBA diffusion for background and sticker layers'),
-              ('CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers','LLM / VLM','Vision-language model parses text into an editable rendering protocol'),
-              ('CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers','Agentic / Multi-stage System','Hybrid text parsing, layer generation, and preference-alignment pipeline'),
-              ('DesignDiffusion: High-Quality Text-to-Design Image Generation with Diffusion Models','Diffusion','One-stage character-aware diffusion model with self-play DPO'),
-              ('OmniPSD: Layered PSD Generation with Diffusion Transformer','Diffusion','FLUX-based unified text-to-PSD and image-to-PSD diffusion framework'),
-              ('OmniPSD: Layered PSD Generation with Diffusion Transformer','Autoregressive / Transformer','Diffusion Transformer backbone with spatial in-context layer modeling'),
-              ('OmniPSD: Layered PSD Generation with Diffusion Transformer','VAE','Transparency-preserving RGBA VAE'),
-              ('LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge','Diffusion','Pretrained generative priors for synthesis and layer decomposition'),
-              ('LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge','Agentic / Multi-stage System','Generate-then-disassemble two-stage pipeline'),
-              ('Generative Image Layer Decomposition with Visual Effects','Diffusion','Generative layer decomposition into clean background and transparent foreground'),
-              ('Controllable Layered Image Generation for Real-World Editing','Flow Matching','Training objective follows flow matching for layer-conditional generation'),
-              ('Controllable Layered Image Generation for Real-World Editing','Autoregressive / Transformer','Diffusion Transformer architecture with heterogeneous layer-role embeddings'),
-              ('PSDiffusion: Harmonized Multi-Layer Image Generation via Layout and Appearance Alignment','Diffusion','Unified simultaneous multi-layer diffusion with global-layer interaction'),
-              ('Text2Layer: Layered Image Generation using Latent Diffusion Model','Diffusion','Latent diffusion over layered representations'),
-              ('Text2Layer: Layered Image Generation using Latent Diffusion Model','VAE','Autoencoder learns a joint layered latent representation'),
-          ]
-          for name, family, note in method_additions:
-              if (name, family) not in existing_methods:
-                  methods.append({'name':name,'method_family':family,'note':note})
-          with methods_path.open('w', encoding='utf-8', newline='') as f:
-              writer = csv.DictWriter(f, fieldnames=method_fields)
-              writer.writeheader(); writer.writerows(methods)
-
-          meta_path = Path('data/paper_metadata.csv')
-          with meta_path.open(encoding='utf-8', newline='') as f:
-              reader = csv.DictReader(f); meta_fields = reader.fieldnames; metadata = list(reader)
-          audited = {r['name'] for r in metadata}
-          meta_additions = [
-              {'name':'Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement','project_url':'','code_url':'https://github.com/FolSpark/VFLM','weights_url':'','code_status':'train+inference','weights_status':'released','model_family':'Visual-feedback multimodal layout refinement with supervised and reinforcement learning','backbone':'Qwen2.5-VL 3B/7B','train_datasets':'','eval_datasets':'Multiple text-layout benchmarks','output_format':'SVG layout','notes':'Official repository releases supervised fine-tuning, reward-model, reinforcement-learning, and inference code and states that VFLM model checkpoints and the Text Layout Reward Model were released.','checked_at':'2026-10-06'},
-              {'name':'OmniPSD: Layered PSD Generation with Diffusion Transformer','project_url':'https://showlab.github.io/OmniPSD/','code_url':'https://github.com/showlab/OmniPSD','weights_url':'','code_status':'train+inference','weights_status':'unknown','model_family':'Unified layered PSD generation and decomposition','backbone':'FLUX.1-dev / FLUX.1-Kontext-dev with RGBA VAE','train_datasets':'OmniPSD Layered Poster dataset','eval_datasets':'Layered poster evaluation set','output_format':'Editable PSD; RGBA layers','notes':'Official repository provides training and inference code for text-to-PSD and image-to-PSD and links a released 10k-row layered-poster dataset subset; a canonical checkpoint download was not confirmed during this audit.','checked_at':'2026-10-06'},
-              {'name':'PSDiffusion: Harmonized Multi-Layer Image Generation via Layout and Appearance Alignment','project_url':'https://dingbang777.github.io/PSDiffusion_Website/','code_url':'https://github.com/dingbang777/PSDiffusion','weights_url':'','code_status':'announced','weights_status':'announced','model_family':'Simultaneous harmonized multi-layer diffusion generation','backbone':'Pretrained image diffusion model with global-layer interaction','train_datasets':'Inter-Layer Dataset (announced)','eval_datasets':'Layer-generation benchmark datasets','output_format':'RGB background + multiple RGBA foreground layers','notes':'Official repository exists, but its TODO still lists inference code, pretrained model, and Inter-Layer Dataset as future releases.','checked_at':'2026-10-06'},
-          ]
-          metadata.extend(r for r in meta_additions if r['name'] not in audited)
-          with meta_path.open('w', encoding='utf-8', newline='') as f:
-              writer = csv.DictWriter(f, fieldnames=meta_fields)
-              writer.writeheader(); writer.writerows(metadata)
-          PY
-
-      - name: Regenerate README
-        run: uv run python scripts/generate_readme.py
-
-      - name: Commit coverage additions
-        run: |
-          if git diff --quiet -- data README.md; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/resources.csv data/paper_methods.csv data/paper_metadata.csv README.md
-          git commit -m "Expand independent coverage audit"
-          git push origin HEAD:${{ github.head_ref }}
+      - name: Check generated README
+        run: uv run python scripts/generate_readme.py --check
