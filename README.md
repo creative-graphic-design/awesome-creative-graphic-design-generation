@@ -137,12 +137,12 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2025
 
 - [UniLayDiff](https://arxiv.org/abs/2512.08897) - Unifies diverse content-aware layout constraints in a single multimodal diffusion transformer with relation-aware LoRA adaptation (CVPR Findings 2026). **Architecture:** Autoregressive / Transformer; Diffusion.
-- [SEGA](https://arxiv.org/abs/2510.15749) - Uses stepwise evolution for content-aware poster layout generation and introduces GenPoster-100K (ICCV 2025). **Architecture:** Agentic / Multi-stage System; LLM / VLM.
-- [LLMs as Layout Designers (LaySPA)](https://arxiv.org/abs/2509.16891) - Augments language-model layout agents with reinforcement-learned spatial reasoning over geometric validity, structural fidelity, and visual quality. **Architecture:** LLM / VLM.
+- [SEGA](https://arxiv.org/abs/2510.15749) - Uses stepwise evolution for content-aware poster layout generation and introduces GenPoster-100K (ICCV 2025). **Architecture:** Agentic / Multi-stage System; VLM.
+- [LLMs as Layout Designers (LaySPA)](https://arxiv.org/abs/2509.16891) - Augments language-model layout agents with reinforcement-learned spatial reasoning over geometric validity, structural fidelity, and visual quality. **Architecture:** LLM.
 - [Uni-Layout](https://arxiv.org/abs/2508.02374) - Unifies multiple layout-generation conditions with human-feedback-based evaluation and preference alignment (ACM MM 2025). **Architecture:** Agentic / Multi-stage System; LLM / VLM.
 - [ReLayout: Relation Reasoning for Content-Aware Layout Generation](https://arxiv.org/abs/2507.05568) - Uses relation chain-of-thought and layout-prototype rebalancing to improve structure, diversity, and explainability in multimodal-LLM content-aware layouts. **Architecture:** VLM.
 - [CAL-RAG](https://arxiv.org/abs/2506.21934) - Combines multimodal retrieval, an LLM layout recommender, a vision-language grader, and feedback agents for iterative content-aware layout generation. **Architecture:** Agentic / Multi-stage System; LLM; VLM.
-- [CreatiPoster](https://arxiv.org/abs/2506.10890) - Generates poster layouts from multimodal content and design requirements. **Architecture:** Agentic / Multi-stage System; LLM / VLM.
+- [CreatiPoster](https://arxiv.org/abs/2506.10890) - Generates poster layouts from multimodal content and design requirements. **Architecture:** Agentic / Multi-stage System; VLM.
 - [Scan-and-Print](https://arxiv.org/abs/2505.20649) - Uses patch-level image summarization and data augmentation for efficient content-aware poster layout generation (IJCAI 2025). **Architecture:** Autoregressive / Transformer. [Project](https://thekinsley.github.io/Scan-and-Print/) · [Code](https://github.com/theKinsley/Scan-and-Print-IJCAI2025) (`training + inference`) · Weights: `unknown`.<br>  **Base:** DeiT3 visual encoder · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured layout boxes · **Checked:** 2026-10-06.
 - [PosterO](https://arxiv.org/abs/2505.07843) - Structures layouts as trees so language models can solve generalized layout-generation tasks (CVPR 2025). **Architecture:** LLM.
 - [AesthetiQ](https://arxiv.org/abs/2503.00591) - Aligns multimodal language models to aesthetic preferences for content-aware graphic layout prediction using preference optimization (CVPR 2025). **Architecture:** VLM.
@@ -156,7 +156,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Visual Layout Composer](https://openaccess.thecvf.com/content/CVPR2024/html/Shabani_Visual_Layout_Composer_Image-Vector_Dual_Diffusion_Model_for_Design_Layout_CVPR_2024_paper.html) - Couples image-space and vector-space diffusion to generate design layouts conditioned on visual content (CVPR 2024). **Architecture:** Diffusion.
 - [PosterLLaVA](https://arxiv.org/abs/2406.02884) - Uses multimodal instruction tuning for poster layout generation (IEEE TMM 2026). **Architecture:** VLM.
 - [Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models](https://arxiv.org/abs/2404.15271) - Uses a multimodal instruction-following model to arrange user-provided visual elements for posters, brochures, book covers, advertisements, and related visually rich documents (ALVR 2024). **Architecture:** VLM.
-- [Graphist](https://arxiv.org/abs/2404.14368) - Models graphic-design layouts with multimodal and structural context. **Architecture:** LLM / VLM.
+- [Graphist](https://arxiv.org/abs/2404.14368) - Models graphic-design layouts with multimodal and structural context. **Architecture:** VLM.
 - [PosterLLaMA](https://arxiv.org/abs/2404.00995) - Adapts a multimodal language model to poster layout generation (ECCV 2024). **Architecture:** VLM. [Project](https://lait-cvlab.github.io/PosterLlama/) · [Code](https://github.com/jaepoong/PosterLlama) (`training + inference`) · [Weights](https://huggingface.co/poong/PosterLlama) (`released`).<br>  **Base:** LLaMA2-7B-chat; CodeLLaMA-7B; DINO visual features · **Train:** MiniGPT-4 synthetic caption data; CGL · **Eval:** CGL; poster-layout benchmarks · **Output:** HTML/code-form layout representation · **Checked:** 2026-10-06.
 #### 2023
 
@@ -177,7 +177,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [ContentGAN](https://doi.org/10.1145/3306346.3322971) - Generates graphic-design layouts conditioned on underlying visual content (SIGGRAPH 2019). **Architecture:** GAN.
 #### Other
 
-- [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) - Uses LLM- and vision-derived priorities, optimal-transport matching, and flow-based refinement for controllable poster layout generation (Pattern Recognition 2026). **Architecture:** Flow Matching; LLM / VLM.
+- [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) - Uses LLM- and vision-derived priorities, optimal-transport matching, and flow-based refinement for controllable poster layout generation (Pattern Recognition 2026). **Architecture:** Flow Matching; LLM.
 - [Two-stage Content-Aware Layout Generation for Poster Designs](https://doi.org/10.1145/3581783.3612275) - Combines aesthetics-conditioned diffusion layout proposals with a learned ranking stage for poster designs over image backgrounds (ACM MM 2023). **Architecture:** Diffusion.
 ### Graphic Design Generation
 
