@@ -2,8 +2,8 @@
 
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
-![Total Resources](https://img.shields.io/badge/resources-220-informational)
-![Papers](https://img.shields.io/badge/papers-165-informational)
+![Total Resources](https://img.shields.io/badge/resources-221-informational)
+![Papers](https://img.shields.io/badge/papers-166-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-46-informational)
 
@@ -150,6 +150,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [VASCAR](https://arxiv.org/abs/2412.04237) - Uses a large vision-language model to iteratively inspect rendered layouts and self-correct content-aware element placement without additional training. **Architecture:** LLM / VLM.
 - [Design Element Aware Poster Layout Generation](https://doi.org/10.1145/3627673.3679557) - Models poster design elements and their relationships for content-aware poster layout generation (CIKM 2024). **Architecture:** Autoregressive / Transformer.
+- [Image-aware layout generation with user constraints for poster design](https://doi.org/10.1007/s00371-024-03657-z) - Generates poster layouts conditioned on a product image while satisfying user-specified element and partial-layout constraints (The Visual Computer 2025).
 - [Iris: a multi-constraint graphic layout generation system](https://doi.org/10.1631/FITEE.2300312) - Combines an interactive graphic-layout design system with multi-constraint LayoutVQ-VAE for background-aware generation, editing, and rendering (FITEE 2024). **Architecture:** Agentic / Multi-stage System; VAE.
 - [CGB-DM](https://arxiv.org/abs/2407.15233) - Uses a diffusion transformer for graphic-layout generation with content-aware conditioning. **Architecture:** Autoregressive / Transformer; Diffusion.
 - [Visual Layout Composer](https://openaccess.thecvf.com/content/CVPR2024/html/Shabani_Visual_Layout_Composer_Image-Vector_Dual_Diffusion_Model_for_Design_Layout_CVPR_2024_paper.html) - Couples image-space and vector-space diffusion to generate design layouts conditioned on visual content (CVPR 2024). **Architecture:** Diffusion.
