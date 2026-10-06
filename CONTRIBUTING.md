@@ -4,7 +4,7 @@ Thank you for helping curate Awesome Creative Graphic Design Generation. The goa
 
 ## Scope
 
-A resource is in scope when it makes a direct contribution to the generation, editing, representation, understanding, or evaluation of composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine/editorial layouts, scientific posters, slides, banners, and related visual compositions.
+A resource is in scope when it makes a direct contribution to the generation, editing, representation, understanding, or evaluation of composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine/editorial layouts, scientific figures and graphical abstracts, scientific posters, slides, banners, and related visual compositions.
 
 Strong inclusion signals include:
 
@@ -13,7 +13,7 @@ Strong inclusion signals include:
 - Content-aware composition over a background, product image, or other visual asset.
 - Layered, editable, transparent, isolated, or otherwise composable design assets.
 - Graphic-design-specific multimodal agents or design assistants.
-- Scientific-poster or slide workflows that combine source understanding with visual communication.
+- Scientific figures, graphical abstracts, posters, or slide workflows that combine source understanding with visual communication.
 - Datasets, benchmarks, or metrics created for graphic-design generation or evaluation.
 - Historically important design-layout systems that establish a technique, representation, or interaction pattern used by later generation work.
 
@@ -29,7 +29,7 @@ Generally out of scope:
 
 Structured data is authoritative; `README.md` is generated and should not be edited directly.
 
-- `data/resources*.csv` contains papers, datasets, benchmarks, implementations, and related resources.
+- `data/resources*.csv` contains papers, datasets, benchmarks, evaluation methods, implementations, and related resources.
 - `data/paper_metadata*.csv` stores optional implementation and reproducibility metadata for paper entries.
 - `data/venues.csv` contains the relevant conference and journal index.
 - `templates/README.md.j2` defines the README presentation.
@@ -69,9 +69,26 @@ Classify papers by their **primary output and task**, not by model family. `LLM`
 - **Composable and Layered Asset Generation**: the primary output is a transparent, separable, layered, chroma-keyed, or intentionally empty-space visual asset intended for downstream composition or independent editing. This includes RGBA layer generation, layer decomposition when the emphasis is asset extraction, chroma-key generation, and negative-space-preserving generation.
 - **Typography and Text Rendering**: the primary contribution is faithful, legible, spatially controlled, or stylized text rendering within designed imagery.
 - **Graphic Design Editing and Reconstruction**: the primary contribution is iterative editing, layer-level manipulation, raster-to-editable reconstruction, or recovery of design structure.
-- **Scientific Poster and Slide Generation**: the system targets research communication and combines source-document understanding or content selection with layout, typography, rendering, and often editable poster/slide output.
+- **Scientific Figure and Graphical Abstract Generation**: the system converts scholarly papers or long-form technical content into methodology diagrams, Figure 1-style summaries, scientific illustrations, or graphical abstracts. Editable SVG/vector outputs and source-grounded figure refinement belong here when figure generation is the primary task.
+- **Scientific Poster and Slide Generation**: the system targets research communication through posters or slide decks and combines source-document understanding or content selection with layout, typography, rendering, and often editable output.
 
-When a work spans categories, choose the category that best describes its principal output. For example, a VLM that predicts poster bounding boxes is a layout paper; an agent that creates editable HTML/CSS posters is a graphic-design-generation paper; a model whose main output is a reusable stack of RGBA assets belongs under composable and layered asset generation.
+When a work spans categories, choose the category that best describes its principal output. For example, a VLM that predicts poster bounding boxes is a layout paper; an agent that creates editable HTML/CSS posters is a graphic-design-generation paper; a model whose main output is a reusable stack of RGBA assets belongs under composable and layered asset generation; a system that turns a paper into an editable methodology SVG belongs under scientific figure and graphical abstract generation.
+
+## Resource Taxonomy
+
+Do not force `dataset` and `benchmark` into separate, mutually exclusive buckets. Research artifacts frequently serve both roles.
+
+- **Datasets and Benchmarks** contains reusable corpora, design assets, annotations, training examples, benchmark test sets, and fixed evaluation tasks/splits/protocols. A dataset becomes benchmark-like when the release defines how systems should be tested or compared, but it remains a single canonical entry in this section.
+- **Evaluation Methods and Metrics** contains reusable scoring functions or evaluation procedures that can be applied across models or datasets, such as learned layout-distribution distances, structural similarity measures, or design-principle evaluators.
+
+Examples:
+
+- A corpus of posters used for training belongs in **Datasets and Benchmarks**.
+- A fixed scientific-figure test set with prompts and an evaluation protocol also belongs in **Datasets and Benchmarks**.
+- A resource that includes both a training corpus and an official benchmark is listed once in **Datasets and Benchmarks**, with the description stating both roles.
+- A metric such as Layout FID or LTSim belongs in **Evaluation Methods and Metrics**.
+
+New resource rows should use the canonical section names `Datasets and Benchmarks` or `Evaluation Methods and Metrics`. The generator currently normalizes legacy bootstrap section names for compatibility; do not add new records using the legacy names.
 
 ## Implementation Metadata
 
@@ -116,13 +133,15 @@ For `train_datasets` and `eval_datasets`, record the datasets actually used by t
 
 Before proposing an entry, verify that it is materially useful to this topic and that you can explain why it belongs. Prefer leaving borderline resources out rather than broadening the scope.
 
+Do not stop at a user-supplied paper name. When adding a research line, inspect the paper's related work, citations, project page, and neighboring contemporary work to identify material omissions. Curate the resulting family rather than mechanically importing every cited paper.
+
 Use primary sources whenever possible:
 
 1. Official paper, project, repository, model, or dataset page.
 2. Author-maintained mirror or institutional page.
 3. Reputable archival source when the primary resource is unavailable.
 
-Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `paper_metadata*.csv` when they add material value.
+Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `paper_metadata*.csv` when they add material value. If a released dataset is itself the main benchmark artifact, prefer one dataset/benchmark entry rather than duplicating the associated paper under another resource section.
 
 ## Entry Format
 
@@ -139,13 +158,14 @@ Requirements:
 
 ## Pull Requests
 
-Keep pull requests focused. A PR that adds one or a few related entries is easier to review than a large unsorted import.
+Keep pull requests focused. A PR that adds one research line or a few related entries is easier to review than a large unsorted import.
 
 Before submitting:
 
 - Confirm every link resolves to the intended resource.
 - Search all `data/resources*.csv` files for duplicates and alternate names.
 - Confirm the resource is within scope and in the narrowest task/output category.
+- Check related work and neighboring research for obvious omissions in the same line.
 - Verify `arxiv_date` and/or `venue_date` from primary sources.
 - Verify any implementation metadata against the official project/repository/model release.
 - Set `checked_at` whenever adding or refreshing implementation metadata.
