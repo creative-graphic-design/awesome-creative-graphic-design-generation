@@ -43,7 +43,7 @@ Short paper architecture labels are stored directly in [`data/resources.csv`](da
 
 ### 2025
 
-- [From Fragment to One Piece: A Survey on AI-Driven Graphic Design](https://arxiv.org/abs/2503.18641) - Reviews AI-driven graphic-design generation across layout, visual content, text, and integrated systems (2025).
+- [From Fragment to One Piece: A Review on AI-Driven Graphic Design](https://doi.org/10.3390/jimaging11090289) - Reviews AI-driven graphic-design generation across layout, visual content, text, and integrated systems (Journal of Imaging 2025).
 ### 2023
 
 - [Intelligent Layout Generation Based on Deep Generative Models: A Comprehensive Survey](https://doi.org/10.1016/j.inffus.2023.101940) - Reviews deep generative approaches to layout generation, their representations, conditions, datasets, and evaluation (Information Fusion 2023).
