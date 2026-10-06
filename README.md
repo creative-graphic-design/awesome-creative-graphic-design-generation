@@ -114,7 +114,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [VTN](https://arxiv.org/abs/2104.02416) - Combines self-attention with a variational autoencoder to learn global design rules and synthesize diverse layouts (CVPR 2021). **Architecture:** Autoregressive / Transformer; VAE.
 #### 2020
 
-- [DeepLayout](https://arxiv.org/abs/2006.14615) - Models layouts autoregressively as sequences for conditional and unconditional generation (ICCV 2021). **Architecture:** Autoregressive / Transformer.
+- [LayoutTransformer: Layout Generation and Completion With Self-Attention](https://arxiv.org/abs/2006.14615) - Uses self-attention to autoregressively generate and complete layouts by modeling contextual relationships among layout elements across multiple structured-layout domains (ICCV 2021). **Architecture:** Autoregressive / Transformer.
 - [AC-LayoutGAN](https://doi.org/10.1109/TVCG.2020.2999335) - Generates graphic layouts conditioned on element attributes such as area, aspect ratio, and reading order with an attribute-conditioned GAN (TVCG). **Architecture:** GAN.
 #### 2019
 
