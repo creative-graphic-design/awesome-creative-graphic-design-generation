@@ -152,21 +152,26 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Human-aware Design Generation](https://arxiv.org/abs/2609.17689) - Completes graphic designs by jointly composing 3D human poses, 2D framing, and human-image placement (ACM MM 2026).
 - [InterIL](https://arxiv.org/abs/2609.11519) - Jointly generates background images and foreground layouts to model bidirectional image-layout interaction in design templates.
 - [Mise-en-Scène](https://arxiv.org/abs/2608.19000) - Generates editable layered designs by letting layout emerge within a diffusion transformer while preserving source assets.
+- [Design Your Ad](https://arxiv.org/abs/2605.12138) - Jointly generates personalized advertising images and text from multimodal user histories with a unified autoregressive model and introduces PAd1M and PBS (CVPR 2026). Project: — · [Code](https://github.com/JD-GenX/Uni-AdGen) (`inference only`) · [Weights](https://3.cn/11f4I-YYG) (`released`).<br>  **Method:** Unified autoregressive personalized advertising image-text generation · **Base:** Janus-Pro-7B; DINOv2-small; SDXL-Base-1.0 · **Train:** PAd1M · **Eval:** PAd1M; PBS; BLEU; ROUGE · **Output:** Personalized advertising image and product text · **Checked:** 2026-10-06.
 - [SIMPLEPOSTER](https://arxiv.org/abs/2605.08784) - Generates product posters with faithful subject preservation and position-controllable text rendering (CVPR 2026).
 - [Brief2Design](https://arxiv.org/abs/2604.11019) - Supports prompt-based professional graphic design through requirement extraction, element exploration, and compositional recombination.
 - [PSDesigner](https://arxiv.org/abs/2603.25738) - Automates layered graphic-design workflows with editable PSD structure and tool-use trajectories (CVPR 2026). [Project](https://henghuiding.com/PSDesigner) · [Code](https://github.com/FudanCVL/PSDesigner) (`announced`) · Weights: `announced`.<br>  **Method:** Tool-using layered graphic-design agent · **Base:** GraphicPlanner · **Train:** CreativePSD · **Eval:** Crello-v5; copyright-free PSD files · **Output:** Editable PSD · **Checked:** 2026-10-06.
+- [Multi-Object Advertisement Creative Generation](https://arxiv.org/abs/2603.13745) - Introduces CreativeAds for scalable multi-product lifestyle advertising through product pairing, layout generation, background generation, and human oversight.
 - [InnoAds-Composer](https://arxiv.org/abs/2603.05898) - Generates e-commerce product posters in a single stage with joint subject, glyph, and style conditioning (CVPR 2026).
 - [DesignAsCode](https://arxiv.org/abs/2602.17690) - Represents graphic designs as HTML/CSS and iteratively plans, implements, and visually refines editable designs (ACM MM 2026). [Project](https://liuziyuan1109.github.io/design-as-code/) · [Code](https://github.com/liuziyuan1109/design-as-code) (`training + inference`) · [Weights](https://huggingface.co/Tony1109/DesignAsCode-planner) (`released`).<br>  **Method:** Code-native agentic graphic-design generation · **Base:** Qwen3-8B planner; GPT-5; GPT-4o; gpt-image-1 · **Train:** DesignAsCode training data (~19K distilled Crello samples) · **Eval:** 546-sample test set; Broad test set · **Output:** Editable HTML/CSS · **Checked:** 2026-10-06.
 - [PosterVerse](https://arxiv.org/abs/2601.03993) - Automates commercial poster creation with blueprint planning, background generation, and HTML-based scalable typography.
 #### 2025
 
 - [AutoPP](https://arxiv.org/abs/2512.21921) - Automates product-poster generation and CTR-oriented optimization using unified design generation and online-feedback preference learning (AAAI 2026). Project: — · [Code](https://github.com/JD-GenX/AutoPP) (`announced`) · Weights: `unknown`.<br>  **Method:** Automated product-poster generation plus CTR-oriented preference optimization · **Train:** AutoPP1M product-poster generation and optimization subsets · **Eval:** Offline poster-generation metrics; online CTR feedback · **Output:** Raster product poster · **Checked:** 2026-10-06.
+- [RefAdGen](https://arxiv.org/abs/2508.11695) - Generates high-fidelity advertising images while preserving referenced product identity through spatial mask control and product-feature fusion (AAAI 2026). Project: — · [Code](https://github.com/Anonymous-Name-139/RefAdgen) (`training + inference`) · [Weights](https://huggingface.co/yiyun123/RefAdgen) (`released`).<br>  **Method:** Product-preserving advertising diffusion with spatial control and attention fusion · **Base:** Stable Diffusion v1.5; IP-Adapter; GroundingDINO; SAM2 · **Train:** AdProd-100K · **Eval:** AdProd-100K · **Output:** Raster product advertising image · **Checked:** 2026-10-06.
 - [CreatiDesign](https://arxiv.org/abs/2505.19114) - Uses a multi-conditional diffusion transformer to compose primary visuals, decorative elements, text, and layout for graphic design. [Project](https://huizhang0812.github.io/CreatiDesign/) · [Code](https://github.com/HuiZhang0812/CreatiDesign) (`inference only`) · [Weights](https://huggingface.co/HuiZhang0812/CreatiDesign) (`released`).<br>  **Method:** Multi-conditional diffusion transformer · **Base:** FLUX.1-dev · **Train:** CreatiDesign dataset (~400K designs) · **Eval:** CreatiDesign benchmark (1K samples) · **Output:** Raster graphic design · **Checked:** 2026-10-06.
 - [POSTA](https://arxiv.org/abs/2503.14908) - Combines background diffusion, multimodal layout and typography planning, and stylized text generation for customizable artistic posters (CVPR 2025).
 - [BannerAgency](https://arxiv.org/abs/2503.11060) - Uses collaborating multimodal LLM agents to plan and generate advertising banner designs from brand assets and requests (2025).
+- [T-Stars-Poster](https://arxiv.org/abs/2501.14316) - Provides an end-to-end product-centric advertising-design framework covering prompting, layout, background synthesis, and final rendering (CIKM 2025).
 #### 2024
 
 - [LaDeCo](https://arxiv.org/abs/2412.19712) - Generates layered and editable graphic designs rather than flattened images (CVPR 2025).
+- [Towards Reliable Advertising Image Generation Using Human Feedback](https://arxiv.org/abs/2408.00418) - Uses a learned reliable-feedback network, recurrent generation, and feedback-guided diffusion fine-tuning to improve usable e-commerce advertising images (ECCV 2024). Project: — · [Code](https://github.com/JD-GenX/Reliable_AD) (`inference only`) · [Weights](https://huggingface.co/ZhenbangDu/reliable_controlnet) (`released`).<br>  **Method:** Reliable-feedback-guided recurrent advertising generation and diffusion fine-tuning · **Base:** Stable Diffusion v1.5-compatible latent diffusion; ControlNet · **Train:** RF1M · **Eval:** RF1M; human availability feedback · **Output:** Raster product advertising image · **Checked:** 2026-10-06.
 - [OpenCOLE](https://arxiv.org/abs/2406.08232) - Provides an open and reproducible pipeline for automatic layered graphic-design generation (CVPR Workshop 2024).
 - [Desigen](https://arxiv.org/abs/2403.09093) - Jointly generates advertising backgrounds and foreground element layouts (CVPR 2024).
 #### 2023
@@ -195,7 +200,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2025
 
-- [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates product posters with explicit mechanisms for accurate text rendering and visual composition (CVPR 2025).
+- [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates product posters with explicit mechanisms for accurate text rendering and visual composition (CVPR 2025). [Project](https://poster-maker.github.io) · [Code](https://github.com/alimama-creative/PosterMaker) (`training + inference`) · [Weights](https://huggingface.co/alimama-creative/PosterMaker) (`released`).<br>  **Method:** Two-stage product-poster generation with scene synthesis and accurate text rendering · **Base:** Stable Diffusion 3 Medium · **Train:** Released e-commerce poster training data · **Eval:** Released stage-1 and stage-2 poster benchmarks · **Output:** Raster product poster with specified text regions · **Checked:** 2026-10-06.
 #### 2024
 
 - [GlyphDraw2](https://arxiv.org/abs/2407.02252) - Generates complex bilingual glyph posters with controllable fonts and precise text placement using LLM-guided SDXL conditioning (AAAI 2025). Project: — · [Code](https://github.com/OPPO-Mente-Lab/GlyphDraw2) (`training + inference`) · Weights: `unknown`.<br>  **Method:** LLM-guided triple-cross-attention diffusion for glyph poster generation · **Base:** SDXL; ControlNet; LLM planner · **Train:** GlyphDraw-3M · **Output:** Raster bilingual poster image · **Checked:** 2026-10-06.
@@ -261,6 +266,7 @@ Datasets provide reusable examples, assets, annotations, or corpora for training
 - [SciFormaBench-2K](https://huggingface.co/datasets/microsoft/SciFormaBench) - Provides 2,000 human-verified scientific diagram cases evaluated along component, arrow, and text structural-fidelity axes.
 - [SciFormaData-700K](https://huggingface.co/datasets/microsoft/SciFormaData-700K) - Provides structure-aware scientific methodology-diagram training records with generation prompts, multi-resolution targets, and edit triplets.
 - [TASTE](https://arxiv.org/abs/2605.20731) - Provides designer-panel preferences for AI-generated graphic designs across typography, hierarchy, color, layout, and brief fidelity.
+- [PAd1M](https://github.com/JD-GenX/Uni-AdGen#3-pad1m-dataset) - Provides personalized advertising image-text examples and user-history conditioning for general and personalized advertisement generation; the test set and a training preview are public.
 - [GENFIG1](https://arxiv.org/abs/2604.04172) - Benchmarks generating Figure 1-style visual summaries from scholarly paper context, targeting scientific abstraction, faithfulness, and visual communication.
 - [Graphic-Design-Bench](https://arxiv.org/abs/2604.04192) - Benchmarks AI systems across professional graphic-design tasks including layout, typography, vector structure, semantics, and animation.
 - [AIBench](https://deep-kaixun.github.io/aibench-page/) - Benchmarks academic illustration generation with 300 open-access papers and 5,704 hierarchical QA pairs for visual-logical consistency and aesthetics.
@@ -271,18 +277,22 @@ Datasets provide reusable examples, assets, annotations, or corpora for training
 - [E-comIQ-ZH](https://arxiv.org/abs/2602.21698) - Evaluates Chinese e-commerce posters with expert-aligned multidimensional scores and chain-of-thought rationales through E-comIQ-18k and E-comIQ-Bench (CVPR 2026).
 - [SciFlow-Bench](https://arxiv.org/abs/2602.09809) - Evaluates structure-aware scientific diagram generation by inverse-parsing rendered outputs into canonical graphs for round-trip structural comparison.
 - [FigureBench](https://huggingface.co/datasets/WestlakeNLP/FigureBench) - Provides 3,300 long-form text–scientific-illustration pairs spanning papers, surveys, blogs, and textbooks for generation benchmarking.
+- [AutoPP1M](https://github.com/JD-GenX/AutoPP#-datasets) - Provides one million product posters and online-feedback data for poster generation and CTR-oriented preference optimization.
 ### 2025
 
 - [ProImage-Bench](https://github.com/kodenii/TechImage-Bench) - Provides rubric-based professional-image evaluation with 654 tasks, 6,076 criteria, and 44,131 binary checks across scientific and technical imagery.
 - [PPTArena](https://arxiv.org/abs/2512.03042) - Benchmarks natural-language PowerPoint editing over real decks with structural and visual evaluation and introduces the PPTPilot editing agent (ECCV 2026).
 - [GenPoster-100K](https://huggingface.co/datasets/creative-graphic-design/GenPoster100K) - Poster data with rendered backgrounds, PSD references, and layer-level typography, color, and geometry annotations.
+- [AdProd-100K](https://github.com/Anonymous-Name-139/RefAdgen) - Provides product images, advertising images, masks, and text descriptions for high-fidelity product-preserving advertising generation.
 - [SciGA-145k](https://huggingface.co/datasets/iyatomilab/SciGA) - Provides a large-scale scientific-paper and figure corpus with graphical abstracts plus intra-paper and inter-paper graphical-abstract recommendation tasks.
 - [PrismLayersPro](https://huggingface.co/datasets/artplus/PrismLayersPro) - Provides 20K human-filtered multi-layer transparent images with RGBA layers, captions, layouts, and style labels for layered-generation research.
 - [SridBench](https://arxiv.org/abs/2505.22126) - Benchmarks scientific illustration generation with 1,120 expert-curated instances across 13 disciplines and six quality dimensions.
 - [BannerRequest400](https://huggingface.co/datasets/creative-graphic-design/BannerRequest400) - Advertising banner requests with brand logos, multimodal design instructions, and target designs.
 - [Sci-PosterLayout](https://github.com/kitman0000/Sci-PosterLayout-Data) - Contains 1,226 scientific poster layouts spanning diverse domains and content attributes for scientific-poster generation.
+- [PITA](https://tianchi.aliyun.com/dataset/209898) - Provides 38,017 product-centric e-commerce advertising designs with product masks, foreground/background prompts, and graphic and nongraphic element layouts.
 ### 2024
 
+- [RF1M](https://github.com/JD-GenX/Reliable_AD#rf1m-dataset) - Provides more than one million human-annotated generated advertising images labeled for availability and common product-background generation failures.
 - [DesignProbe](https://arxiv.org/abs/2404.14801) - Benchmarks multimodal large language models on graphic-design understanding and reasoning tasks (2024).
 ### 2023
 
@@ -302,6 +312,9 @@ Datasets provide reusable examples, assets, annotations, or corpora for training
 
 Reusable scoring methods and evaluation procedures that compare generated designs independently of any single dataset or benchmark.
 
+### 2026
+
+- [PBS](https://github.com/JD-GenX/Uni-AdGen/tree/main/PBS_metrics) - Measures product-background similarity for evaluating advertising-image generation independently of text-generation metrics.
 ### 2024
 
 - [Graphic Design Evaluation](https://arxiv.org/abs/2410.08885) - Evaluates alignment, overlap, white space, and related graphic-design principles with absolute and pairwise judgments (SIGGRAPH Asia 2024).
