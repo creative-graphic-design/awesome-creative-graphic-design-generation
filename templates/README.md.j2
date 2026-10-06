@@ -2,7 +2,7 @@
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
-Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific posters, slides, banners, and related visual compositions.
+Curated resources for generating, editing, representing, and evaluating composed graphic-design artifacts such as posters, advertisements, social-media graphics, magazine layouts, scientific figures, graphical abstracts, scientific posters, slides, banners, and related visual compositions.
 
 This list focuses on work where layout, typography, visual elements, editable structure, or design-specific evaluation is a first-class part of the problem. Generic text-to-image generation and generic image editing are out of scope unless they make a direct contribution to graphic-design generation.
 
@@ -15,8 +15,8 @@ Implementation metadata is tracked in [`data/paper_metadata*.csv`](data/). Verif
 - [Surveys and Overviews](#surveys-and-overviews)
 - [Papers](#papers)
 {% for category in paper_category_order %}  - [{{ category }}](#{{ category|anchor }})
-{% endfor %}- [Datasets](#datasets)
-- [Benchmarks and Evaluation](#benchmarks-and-evaluation)
+{% endfor %}- [Datasets and Benchmarks](#datasets-and-benchmarks)
+- [Evaluation Methods and Metrics](#evaluation-methods-and-metrics)
 - [Models and Implementations](#models-and-implementations)
 - [Relevant Venues and Journals](#relevant-venues-and-journals)
   - [Conferences](#conferences)
@@ -45,7 +45,9 @@ Papers are classified by their **primary output and task**, rather than by model
 
 **Graphic Design Editing and Reconstruction:** Focuses on iterative editing, layer recovery, or conversion of rendered designs back into editable structures.
 
-**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable output.
+**Scientific Figure and Graphical Abstract Generation:** Converts scientific papers or long-form technical content into methodology figures, diagrams, Figure 1-style summaries, or graphical abstracts, including editable vector outputs.
+
+**Scientific Poster and Slide Generation:** Covers research communication workflows that combine source-document understanding, content selection, layout, typography, rendering, and often editable poster or slide output.
 
 {% for category in paper_category_order %}### {{ category }}
 
@@ -55,7 +57,11 @@ Papers are classified by their **primary output and task**, rather than by model
 {% endfor %}
 {% endfor %}{% endfor %}{% for section in dated_section_order %}## {{ section }}
 
-{% for group in dated_sections[section] %}### {{ group.year }}
+{% if section == "Datasets and Benchmarks" %}Datasets provide reusable examples, assets, annotations, or corpora for training and evaluation. Benchmarks add a fixed task, split, protocol, or test set. Because many resources serve both roles, they are listed once in this combined section.
+
+{% elif section == "Evaluation Methods and Metrics" %}Reusable scoring methods and evaluation procedures that compare generated designs independently of any single dataset or benchmark.
+
+{% endif %}{% for group in dated_sections[section] %}### {{ group.year }}
 
 {% for row in group.entries %}{{ row|entry }}
 {% endfor %}
