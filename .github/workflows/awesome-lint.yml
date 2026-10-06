@@ -6,16 +6,15 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   awesome-lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out pull request branch
+      - name: Check out repository
         uses: actions/checkout@v5
         with:
-          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Set up uv
@@ -26,19 +25,22 @@ jobs:
       - name: Sync generator environment
         run: uv sync
 
-      - name: Regenerate README
-        run: uv run python scripts/generate_readme.py
-
-      - name: Commit generated README
+      - name: Generate README
         run: |
-          if git diff --quiet -- README.md; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Regenerate README from structured data"
-          git push origin HEAD:${{ github.head_ref }}
+          cp README.md /tmp/README.committed.md
+          uv run python scripts/generate_readme.py
+
+      - name: Upload generated maintenance artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-maintenance-files
+          path: |
+            README.md
+            uv.lock
+
+      - name: Check generated README is committed
+        run: diff -u /tmp/README.committed.md README.md
 
       - name: Run awesome-lint
         run: npx awesome-lint
