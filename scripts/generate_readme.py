@@ -52,6 +52,22 @@ CODE_STATUSES = {
     "unknown",
 }
 WEIGHT_STATUSES = {"released", "partial", "announced", "not-applicable", "unknown"}
+CODE_STATUS_LABELS = {
+    "train+inference": "training + inference",
+    "inference-only": "inference only",
+    "evaluation-only": "evaluation only",
+    "pipeline": "pipeline",
+    "announced": "announced",
+    "none": "no release",
+    "unknown": "unknown",
+}
+WEIGHT_STATUS_LABELS = {
+    "released": "released",
+    "partial": "partial",
+    "announced": "announced",
+    "not-applicable": "n/a",
+    "unknown": "unknown",
+}
 
 
 def parse_date(value: str) -> date | None:
@@ -136,6 +152,8 @@ def load_metadata(paper_names: set[str]) -> dict[str, dict[str, str]]:
         for field in ("project_url", "code_url", "weights_url"):
             if row[field] and not row[field].startswith("https://"):
                 raise ValueError(f"{field} must use HTTPS for {name}: {row[field]}")
+        if row.get("checked_at"):
+            parse_date(row["checked_at"])
         metadata[name] = row
 
     return metadata
@@ -201,26 +219,44 @@ def entry(row: dict[str, Any]) -> str:
     if not metadata:
         return line
 
-    links: list[str] = []
+    release_bits: list[str] = []
     if metadata["project_url"]:
-        links.append(f'[Project]({metadata["project_url"]})')
+        release_bits.append(f'[Project]({metadata["project_url"]})')
+    else:
+        release_bits.append("Project: —")
+
+    code_label = CODE_STATUS_LABELS[metadata["code_status"]]
     if metadata["code_url"]:
-        label = "Code"
-        if metadata["code_status"] not in {"unknown", "none"}:
-            label += f' · {metadata["code_status"]}'
-        links.append(f'[{label}]({metadata["code_url"]})')
-    elif metadata["code_status"] == "announced":
-        links.append("Code: announced")
+        release_bits.append(f'[Code]({metadata["code_url"]}) (`{code_label}`)')
+    else:
+        release_bits.append(f'Code: `{code_label}`')
 
+    weights_label = WEIGHT_STATUS_LABELS[metadata["weights_status"]]
     if metadata["weights_url"]:
-        links.append(f'[Weights]({metadata["weights_url"]})')
-    elif metadata["weights_status"] in {"announced", "partial"}:
-        links.append(f'Weights: {metadata["weights_status"]}')
-    elif metadata["weights_status"] == "not-applicable":
-        links.append("Weights: n/a")
+        release_bits.append(
+            f'[Weights]({metadata["weights_url"]}) (`{weights_label}`)'
+        )
+    else:
+        release_bits.append(f'Weights: `{weights_label}`')
 
-    if links:
-        line = line.rstrip(".") + ". " + " · ".join(links) + "."
+    line = line.rstrip(".") + ". " + " · ".join(release_bits) + "."
+
+    details: list[str] = []
+    if metadata["model_family"]:
+        details.append(f'**Method:** {metadata["model_family"]}')
+    if metadata["backbone"]:
+        details.append(f'**Base:** {metadata["backbone"]}')
+    if metadata["train_datasets"]:
+        details.append(f'**Train:** {metadata["train_datasets"]}')
+    if metadata["eval_datasets"]:
+        details.append(f'**Eval:** {metadata["eval_datasets"]}')
+    if metadata["output_format"]:
+        details.append(f'**Output:** {metadata["output_format"]}')
+    if metadata.get("checked_at"):
+        details.append(f'**Checked:** {metadata["checked_at"]}')
+
+    if details:
+        line += "<br>  " + " · ".join(details) + "."
     return line
 
 
