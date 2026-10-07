@@ -1,3 +1,5 @@
+{% set code_status_labels = {"train+inference": "training + inference", "inference-only": "inference only", "evaluation-only": "evaluation only", "pipeline": "pipeline", "announced": "announced", "withdrawn": "withdrawn", "none": "no release", "unknown": "unknown"} %}
+{% set weight_status_labels = {"released": "released", "partial": "partial", "announced": "announced", "withdrawn": "withdrawn", "not-applicable": "n/a", "unknown": "unknown"} %}
 # Awesome Creative Graphic Design Generation [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
@@ -66,7 +68,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### {{ group.year }}
 
 {% for row in group.entries %}
-{{ row|entry }}
+- [{{ row.name }}]({{ row.url }}) - {{ row.description.strip() }}{% if row.architecture or row.metadata %}<br>&nbsp;&nbsp;• {% if row.architecture %}**Architecture:** {{ row.architecture }}{% endif %}{% if row.metadata %}{% if row.architecture %} · {% endif %}{% if row.metadata.project_url %}[Project]({{ row.metadata.project_url }}){% else %}Project: —{% endif %} · {% if row.metadata.code_url %}[Code]({{ row.metadata.code_url }}) (`{{ code_status_labels[row.metadata.code_status] }}`){% else %}Code: `{{ code_status_labels[row.metadata.code_status] }}`{% endif %} · {% if row.metadata.weights_url %}[Weights]({{ row.metadata.weights_url }}) (`{{ weight_status_labels[row.metadata.weights_status] }}`){% else %}Weights: `{{ weight_status_labels[row.metadata.weights_status] }}`{% endif %}{% if row.metadata.backbone %} · **Base:** {{ row.metadata.backbone }}{% endif %}{% if row.metadata.train_datasets %} · **Train:** {{ row.metadata.train_datasets }}{% endif %}{% if row.metadata.eval_datasets %} · **Eval:** {{ row.metadata.eval_datasets }}{% endif %}{% if row.metadata.output_format %} · **Output:** {{ row.metadata.output_format }}{% endif %}{% endif %}.{% endif %}{{ ("\n\n" if loop.last else "\n") -}}
 {% endfor %}
 {% endfor %}
 {% endfor %}
