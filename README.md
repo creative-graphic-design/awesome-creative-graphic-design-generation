@@ -68,7 +68,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2026
 
-- [i-Design](https://link.springer.com/chapter/10.1007/978-3-032-14826-1_18) - Optimizes graphic layout design step by step with progressive aesthetic policy optimization (ECCV 2026). **Architecture:** Autoregressive; Transformer; VLM. Project: — · Code: `unknown` · Weights: `unknown`.<br>  **Base:** Multimodal VLM with progressive rendered-canvas conditioning · **Train:** Graphic-layout pretraining data; Crello · **Eval:** Crello; WebUI · **Output:** Structured layout boxes; progressively rendered canvases.
+- [i-Design](https://link.springer.com/chapter/10.1007/978-3-032-37232-1_35) - Optimizes graphic layout design step by step with progressive aesthetic policy optimization (ECCV 2026). **Architecture:** Autoregressive; Transformer; VLM. Project: — · Code: `unknown` · Weights: `unknown`.<br>  **Base:** Multimodal VLM with progressive rendered-canvas conditioning · **Train:** Graphic-layout pretraining data; Crello · **Eval:** Crello; WebUI · **Output:** Structured layout boxes; progressively rendered canvases.
 #### 2025
 
 - [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) - Generates layouts from intuitive user sketches and content assets with a multimodal Transformer and releases large-scale synthetic sketch supervision (ICCV 2025 HiGen Workshop). **Architecture:** Transformer. [Project](https://github.com/google-deepmind/sketch_to_layout) · Code: `unknown` · Weights: `unknown`.<br>  **Base:** PaLI Gemma 3B · **Train:** PubLayNet; DocLayNet; SlideVQA · **Eval:** PubLayNet; DocLayNet; SlideVQA · **Output:** Structured graphic layouts conditioned on sketches and content assets.
