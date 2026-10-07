@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-235-informational)
 ![Papers](https://img.shields.io/badge/papers-180-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-71-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-72-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -197,7 +197,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [SmartText](https://doi.org/10.1109/TMM.2021.3097900) - Places text over natural images using saliency and learned aesthetic compatibility for harmonious poster composition (TMM 2022). **Architecture:** Agentic / Multi-stage System.
 #### 2019
 
-- [ContentGAN](https://doi.org/10.1145/3306346.3322971) - Generates graphic-design layouts conditioned on underlying visual content (SIGGRAPH 2019). **Architecture:** GAN.
+- [ContentGAN](https://doi.org/10.1145/3306346.3322971) - Generates graphic-design layouts conditioned on underlying visual content (SIGGRAPH 2019). **Architecture:** GAN. [Project](https://xtqiao.com/projects/content_aware_layout/) · [Code](https://portland-my.sharepoint.com/:f:/g/personal/xqiao6-c_my_cityu_edu_hk/EoOt-X32-BlNmdpTPlhNVvEBxEBEHFfTwL1RHWAE_Em-0A?e=U1FYRa) (`unknown`) · Weights: `unknown`.<br>  **Train:** Magazine · **Eval:** Magazine · **Output:** Structured content-aware graphic-design layouts.
 #### Other
 
 - [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) - Uses LLM- and vision-derived priorities, optimal-transport matching, and flow-based refinement for controllable poster layout generation (Pattern Recognition 2026). **Architecture:** Flow Matching; LLM.
