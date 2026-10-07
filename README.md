@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-176-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-179-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -538,11 +538,11 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2026
 
 - [Figures as Programs](https://arxiv.org/abs/2609.01006) - Generates editable scientific methodology figures as recursively composed SVG programs with source grounding and render-critic refinement.
-  - Details: **Architecture:** Multi-stage System; LLM; VLM.
+  - Details: **Architecture:** Multi-stage System; LLM; VLM · Project: — · Code: `announced` · Weights: `n/a` · **Base:** FigTree multi-agent paper grounding; region decomposition; SVG generation; render-critic refinement · **Train:** None · **Eval:** Figure quality and editability evaluations · **Output:** Editable hierarchical SVG program.
 - [PaperBanana-Interact](https://arxiv.org/abs/2608.30241) - Supports multi-turn scientific diagram refinement with human feedback using a critique-and-refine multi-agent workflow.
-  - Details: **Architecture:** Agentic.
+  - Details: **Architecture:** Agentic · Project · [Code](https://github.com/shirley-wu/PaperBanana-Interact) (`pipeline`) · Weights: `n/a` · **Base:** Gemini-compatible reasoning models; generative image model; PaperBanana agent pipeline · **Train:** None · **Eval:** MTPaperBananaBench · **Output:** Raster scientific diagram plus multi-turn refinement history.
 - [GenGA](https://arxiv.org/abs/2608.05478) - Generates data-grounded graphical abstracts as hierarchical vector elements for element-level post-editing and introduces the SIC editability metric.
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Reference retrieval; VLM vectorization; asset-aware vector generation; iterative self-correction · **Train:** None · **Eval:** Graphical-abstract quality; semantic alignment; Structural Independence Coefficient · **Output:** Hierarchical editable vector graphic / SVG.
 - [SciForma](https://arxiv.org/abs/2607.18091) - Generates structure-faithful scientific methodology diagrams by optimizing component, arrow, and text correctness with structured preference learning.
   - Details: **Architecture:** Diffusion · [Project](https://microsoft.github.io/SciForma/index.html) · [Code](https://github.com/microsoft/SciForma) (`training + inference`) · [Weights](https://huggingface.co/LoYuXrqw/SciForma-9B) (`released`) · **Base:** FLUX.2-klein-base-9B · **Train:** SciFormaData-700K · **Eval:** SciFormaBench-2K; AIBench · **Output:** Raster scientific methodology diagram.
 - [AutoFigure-Edit](https://aclanthology.org/2026.acl-demo.6/) - Generates fully editable SVG scientific illustrations from long-form scientific text with reference-guided styling and interactive refinement (ACL System Demonstrations 2026).
