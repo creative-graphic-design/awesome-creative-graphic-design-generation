@@ -27,8 +27,8 @@ Columns:
 - `section` — top-level resource role. Allowed values are defined by `scripts/generate_readme.py`, currently `Surveys and Overviews`, `Papers`, `Datasets and Benchmarks`, `Evaluation Methods and Metrics`, `Models and Implementations`, and `Related Resources`.
 - `category` — primary paper task/output taxonomy category. This is populated only for `Papers`; non-paper rows leave it empty.
 - `name` — canonical display name.
-- `url` — canonical primary link used by the list item. For a published paper, this must be an authoritative publication/proceedings page rather than arXiv. For an arXiv-only paper, this is the arXiv abstract URL.
-- `arxiv_url` — optional canonical `https://arxiv.org/abs/...` link for a published paper that also has an arXiv preprint. Leave it blank when `url` itself is arXiv so the README does not duplicate the same link.
+- `url` — canonical primary link used by the list item. Prefer an authoritative publication/proceedings page once it is verified. Until such a page is available or verified, use the direct arXiv abstract URL; never use an arXiv DOI (`doi.org/10.48550/arXiv.*`) as a publication surrogate.
+- `arxiv_url` — optional canonical `https://arxiv.org/abs/...` link when `url` points to a separate authoritative publication/proceedings page. Leave it blank when `url` itself is arXiv so the README does not duplicate the same link.
 - `description` — concise objective description of why the resource belongs in the catalog.
 - `architecture` — optional short method-family label for paper entries, such as `Diffusion`, `LLM`, `VLM`, or `GAN`; leave blank for non-paper resources. Multiple families may be separated with semicolons. The generator renders this field directly and does not join a separate architecture table.
 - `venue` — publication venue or release context when useful.
@@ -39,15 +39,17 @@ Columns:
 
 ### Bibliographic link contract
 
-Paper links follow one canonical rule:
+Paper links follow one canonical rule based on the best **verified** primary page available:
 
-- **Published paper with arXiv:** `url` is the authoritative publication/proceedings page and `arxiv_url` is the verified arXiv abstract URL.
-- **Published paper without arXiv:** `url` is the authoritative publication/proceedings page and `arxiv_url` is blank.
-- **arXiv-only paper:** `url` is the arXiv abstract URL and `arxiv_url` is blank.
+- **Authoritative publication/proceedings page verified:** `url` points to that page. If an arXiv preprint exists, `arxiv_url` stores the canonical direct arXiv abstract URL and the README renders it as a secondary link.
+- **Publication/proceedings page not yet available or not yet verified:** `url` remains the canonical direct arXiv abstract URL and `arxiv_url` stays blank, even when a venue or future publication year is already known.
+- **No arXiv preprint:** `url` points to the authoritative publication/resource page and `arxiv_url` stays blank.
+
+Do not use `https://doi.org/10.48550/arXiv.*` as `url`: that DOI still identifies the arXiv preprint and is not a substitute for an authoritative venue/publisher page. Use the direct `https://arxiv.org/abs/...` URL until the publication page is verified.
 
 Do not create a separate bibliographic-links CSV. Publication and arXiv links are intrinsic properties of the resource record and stay in `resources.csv`.
 
-`scripts/validate_resource_contract.py` enforces the column schema and these link invariants. The `Catalog Check` workflow runs that validator before checking the generated README, so a contract violation fails CI.
+`scripts/validate_resource_contract.py` enforces the column schema and these structural link invariants. The `Catalog Check` workflow runs that validator before checking the generated README, so a contract violation fails CI. The validator deliberately does not infer publication state from `venue` alone because accepted/future papers can have a venue before proceedings are public.
 
 The generator uses the earlier of `arxiv_date` and `venue_date` as the first-public-appearance sort key and orders research from newest to oldest within each category.
 
