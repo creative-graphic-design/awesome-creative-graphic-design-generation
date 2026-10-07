@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-179-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-185-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -560,11 +560,11 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2026
 
 - [PosterVisor](https://arxiv.org/abs/2609.17326) - Uses persistent semantic-geometric contracts to control scientific-poster content, layout, validation, and repair.
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** LLM/VLM orchestrator; Semantic-Geometric Contract; HTML/CSS and PPTX renderers · **Train:** None · **Eval:** Paper2Poster 100-paper benchmark; 30-paper secondary study · **Output:** HTML/CSS poster; editable PPTX; rendered poster image.
 - [PosterMELD](https://arxiv.org/abs/2608.02218) - Generates controllable, diverse scientific posters with multi-agent planning and editable print-ready PPTX outputs.
   - Details: **Architecture:** Agentic; LLM; VLM · [Project](https://jackey0903.github.io/PosterMELD/) · [Code](https://github.com/Shannon4Science/PosterMELD) (`pipeline`) · Weights: `n/a` · **Base:** Configurable text model; VLM review; image-generation API · **Train:** None · **Eval:** 621-paper benchmark · **Output:** Editable PPTX; PNG.
 - [Personalization as Inverse Planning](https://arxiv.org/abs/2607.00407) - Learns latent page-level design intents for agentic slide personalization through structural denoising and multi-agent reinforcement learning (ECCV 2026).
-  - Details: **Architecture:** Agentic; Diffusion.
+  - Details: **Architecture:** Agentic; Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Planner and Critic agents with black-box slide executor; structural-denoising reinforcement learning · **Output:** Executable slide design specification; rendered personalized slide.
 - [Any2Poster](https://arxiv.org/abs/2606.02915) - Introduces an any-source poster benchmark and agent spanning multiple input modalities and content domains.
   - Details: **Architecture:** Agentic; LLM; VLM · [Project](https://any2poster.github.io/) · [Code](https://github.com/Any2Poster/Any2Poster) (`pipeline`) · Weights: `n/a` · **Base:** Configurable OpenRouter LLM/VLM models; Gemini 3 Pro visual synthesis; Playwright rendering · **Train:** None · **Eval:** Any2Poster Bench; BenchQuiz; VLM-as-Judge · **Output:** HTML artifact; PDF; PNG.
 - [ArcDeck](https://arxiv.org/abs/2604.11969) - Generates polished academic slide decks from papers by reconstructing narrative structure with discourse parsing, multi-agent outline critique, layout planning, and PPTX rendering (ECCV 2026).
@@ -579,24 +579,24 @@ Papers are classified by their **primary output and task**, rather than by model
 - [SlideGen](https://arxiv.org/abs/2512.04529) - Coordinates multimodal agents to transform scientific papers into editable PPTX slide decks with visual-in-the-loop refinement (ACM MM 2026).
   - Details: **Architecture:** Agentic · [Project](https://y-research-sbu.github.io/SlideGen/) · [Code](https://github.com/Y-Research-SBU/SlideGen) (`pipeline`) · Weights: `n/a` · **Base:** API-based multimodal agents · **Train:** None · **Eval:** Scientific slide-generation benchmarks · **Output:** Editable PPTX.
 - [SciPostGen](https://arxiv.org/abs/2511.22490) - Introduces a large-scale paper-poster dataset and retrieval-augmented scientific-poster layout generation (CVPR Findings 2026).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · [Project](https://omron-sinicx.github.io/paper2layout/) · [Code](https://github.com/omron-sinicx/paper2layout) (`training + inference`) · Weights: `unknown` · **Base:** Dual-encoder layout retriever; GPT-5-mini 3-shot layout generator · **Train:** SciPostGen · **Eval:** SciPostGen · **Output:** Structured poster layout; PPTX visualization.
 - [PosterForest](https://arxiv.org/abs/2508.21720) - Uses a hierarchical Poster Tree and collaborating agents to jointly optimize scientific-poster content, structure, and layout (ACL 2026).
   - Details: **Architecture:** Agentic; LLM; VLM · Project: — · [Code](https://github.com/kaist-cvml/poster-forest) (`pipeline`) · Weights: `n/a` · **Base:** GPT-4o or local Qwen3/Qwen2.5 models · **Train:** None · **Eval:** Paper2Poster-style evaluation · **Output:** Editable PPTX; JPG.
 - [PosterGen](https://arxiv.org/abs/2508.17188) - Uses specialized agents for paper parsing, curation, layout, styling, and rendering to generate scientific posters.
-  - Details: **Architecture:** Agentic; LLM.
+  - Details: **Architecture:** Agentic; LLM · [Project](https://Y-Research-SBU.github.io/PosterGen) · [Code](https://github.com/Y-Research-SBU/PosterGen) (`pipeline`) · Weights: `n/a` · **Base:** Configurable GPT-4.1/GPT-4o/Claude agents; LangGraph; Marker; python-pptx · **Train:** None · **Eval:** Automated and human poster-quality evaluation · **Output:** Editable PPTX; PNG poster.
 - [Paper2Poster](https://arxiv.org/abs/2505.21497) - Introduces a multimodal paper-to-poster benchmark and a visual-in-the-loop multi-agent system that exports editable PPTX posters (NeurIPS 2025).
   - Details: **Architecture:** Agentic · [Project](https://paper2poster.github.io/) · [Code](https://github.com/Paper2Poster/Paper2Poster) (`pipeline`) · Weights: `n/a` · **Base:** Configurable GPT-4o or Qwen-2.5 LLM/VLM backends; PPTX rendering · **Train:** None · **Eval:** Paper2Poster dataset; PaperQuiz; VLM-as-Judge · **Output:** Editable PPTX.
 - [P2P](https://arxiv.org/abs/2505.17104) - Uses a multi-agent pipeline to generate HTML academic posters from papers and introduces instruction data and fine-grained evaluation.
   - Details: **Architecture:** Agentic · Project: — · [Code](https://github.com/multimodal-art-projection/P2P) (`pipeline`) · Weights: `n/a` · **Base:** Configurable API language models such as GPT-4o-mini or Claude · **Train:** P2PInstruct · **Eval:** P2PEval · **Output:** Poster JSON; HTML; PNG.
 - [Scientific Poster Generation A New Dataset and Approach](https://doi.org/10.1016/j.patcog.2025.111507) - Introduces the 1,226-poster Sci-PosterLayout dataset and a template-free sequence generator with a Design Pattern Schema for scientific-poster layouts (Pattern Recognition 2025).
-  - Details: **Architecture:** Autoregressive.
+  - Details: **Architecture:** Autoregressive · Project: — · Code: `announced` · Weights: `unknown` · **Base:** Seq2Seq encoder-decoder with Design Pattern Schema · **Train:** Sci-PosterLayout; NJU · **Eval:** Sci-PosterLayout; NJU · **Output:** Structured scientific-poster panel layout.
 
 #### 2024
 
 - [SciPostLayout](https://arxiv.org/abs/2407.19787) - Introduces a scientific-poster dataset and targets structured layout analysis and generation for scientific posters (BMVC 2024).
   - Details: **Architecture:** LLM · Project: — · [Code](https://github.com/omron-sinicx/scipostlayout) (`training + inference`) · Weights: `n/a` · **Base:** LayoutLMv3; DiT; LayoutDM; LayoutFormer++; GPT-4 · **Train:** SciPostLayout · **Eval:** SciPostLayout · **Output:** Scientific-poster layouts.
 - [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation (AAAI 2025).
-  - Details: **Architecture:** Multi-stage System; Optimization; LLM.
+  - Details: **Architecture:** Multi-stage System; Optimization; LLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Deep submodular content selector; BLIP embeddings; LLM paraphraser; content-conditioned template generator · **Output:** Raster scientific poster.
 
 
 ## Datasets and Benchmarks
