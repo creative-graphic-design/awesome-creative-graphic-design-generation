@@ -44,6 +44,17 @@ def is_arxiv_url(value: str) -> bool:
     )
 
 
+def is_arxiv_doi(value: str) -> bool:
+    if not value:
+        return False
+    parsed = urlparse(value)
+    return (
+        parsed.scheme == "https"
+        and (parsed.hostname or "").casefold() == "doi.org"
+        and parsed.path.lstrip("/").casefold().startswith("10.48550/arxiv.")
+    )
+
+
 def fail(message: str) -> None:
     print(f"resources.csv contract violation: {message}", file=sys.stderr)
 
@@ -69,6 +80,7 @@ def main() -> int:
         primary = row["url"].strip()
         arxiv = row["arxiv_url"].strip()
         primary_is_arxiv = is_arxiv_url(primary)
+        primary_is_arxiv_doi = is_arxiv_doi(primary)
 
         if primary in seen_primary_urls:
             fail(f"{name}: duplicate primary url {primary}")
@@ -99,10 +111,10 @@ def main() -> int:
 
         published = row["venue"] not in ARXIV_ONLY_VENUES
 
-        if published and primary_is_arxiv:
+        if published and (primary_is_arxiv or primary_is_arxiv_doi):
             fail(
-                f"{name}: published paper must use an authoritative publication/proceedings "
-                "URL as url; store the preprint in arxiv_url"
+                f"{name}: published paper must use an authoritative publication/proceedings/venue "
+                "URL as url; arXiv URLs and arXiv DOIs are preprint surrogates"
             )
             errors += 1
 
