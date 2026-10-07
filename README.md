@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-168-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-176-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -501,13 +501,13 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2026
 
 - [PosterText](https://arxiv.org/abs/2608.16289) - Unifies text-patch generation and editing for e-commerce posters with addition, deletion, modification, and style control.
-  - Details: **Architecture:** Flow Matching.
+  - Details: **Architecture:** Flow Matching · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Four-stage visual-text model with rendering pretraining; instruction following; preference RL; spatial self-distillation · **Train:** Large-scale patch-level e-commerce poster data · **Eval:** PosterText benchmark · **Output:** Raster e-commerce poster and editable text-patch operations.
 - [ReDesign](https://arxiv.org/abs/2607.25565) - Recovers editable layer hierarchies, typography, geometry, colors, and grouping from raster design images (ECCV 2026).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · [Project](https://jintae-00.github.io/ReDesign/) · [Code](https://github.com/jintae-00/ReDesign) (`pipeline`) · Weights: `n/a` · **Base:** VLM controller; PaddleOCR; Hi-SAM; Qwen-Image-Layered; GroundingDINO; SAM 2; VTracer · **Train:** None · **Eval:** Figma-909; Crello · **Output:** Editable JSON layer hierarchy with text; vector shapes; images; groups; z-order.
 - [CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers](https://arxiv.org/abs/2604.19632) - Parses flattened graphic designs into editable text, background, and sticker layers using a VLM text-rendering protocol and multi-branch RGBA diffusion, with preference alignment via ParserReward.
-  - Details: **Architecture:** Diffusion; VLM; Multi-stage System.
+  - Details: **Architecture:** Diffusion; VLM; Multi-stage System · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** VLM text-rendering protocol parser; multi-branch RGBA diffusion; ParserReward with GRPO · **Train:** Parser-40K; Crello · **Eval:** Parser-40K; Crello · **Output:** Editable text protocol; RGB background; RGBA sticker layers.
 - [ReLayout: Structure-Preserving Design Layout Editing](https://arxiv.org/abs/2602.01046) - Edits design layouts from natural-language intents while preserving unedited structure through relation graphs and self-supervised relation-aware design reconstruction.
-  - Details: **Architecture:** VLM.
+  - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Fine-tuned multimodal large language model with relation graphs and relation-aware design reconstruction · **Output:** Structured edited layout with preserved relations.
 - [APEX](https://arxiv.org/abs/2601.04794) - Edits existing academic posters in PPTX format with a multi-agent planning, API-execution, and visual review-and-adjustment workflow under natural-language instructions.
   - Details: **Architecture:** Agentic; VLM · Project: — · [Code](https://github.com/Breesiu/APEX) (`pipeline`) · Weights: `n/a` · **Base:** Configurable Gemini or Qwen vision-language APIs · **Train:** None · **Eval:** APEX-Bench · **Output:** Editable PPTX.
 
@@ -518,19 +518,19 @@ Papers are classified by their **primary output and task**, rather than by model
 - [LayerD](https://arxiv.org/abs/2509.25134) - Decomposes raster graphic designs into editable layers through iterative foreground extraction and refinement (ICCV 2025).
   - Details: **Architecture:** Multi-stage System · [Project](https://cyberagentailab.github.io/LayerD/) · [Code](https://github.com/CyberAgentAILab/LayerD) (`training + inference`) · [Weights](https://huggingface.co/cyberagent/layerd-birefnet) (`released`) · **Base:** BiRefNet · **Output:** RGBA layers; SVG; PSD.
 - [Draw with Thought](https://arxiv.org/abs/2504.09479) - Reconstructs raster scientific diagrams into editable mxGraph XML through coarse-to-fine reasoning and structure-aware code generation (ACM MM 2025).
-  - Details: **Architecture:** Multi-stage System; VLM.
+  - Details: **Architecture:** Multi-stage System; VLM · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Configurable multimodal large language models · **Train:** None · **Eval:** Plot2XML · **Output:** Editable mxGraph XML.
 
 #### 2024
 
 - [Neural Contrast](https://arxiv.org/abs/2410.07211) - Uses diffusion-based generative editing to create low-saliency, high-contrast regions beneath design assets for improved graphic-design readability (PRICAI 2024).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Generative diffusion editing model · **Output:** Edited design background/composite with low-saliency high-contrast support regions.
 - [Revision Matters](https://arxiv.org/abs/2406.18559) - Fine-tunes a Gemini multimodal backbone on human revision traces to iteratively refine generated layouts toward expert design edits.
-  - Details: **Architecture:** VLM.
+  - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Gemini multimodal backbone with supervised fine-tuning · **Train:** Expert human revision traces · **Eval:** Design FID and iterative-refinement evaluation · **Output:** Revised structured layout/design code.
 
 #### 2021
 
 - [De-Rendering Stylized Texts](https://arxiv.org/abs/2110.01890) - Vectorizes rasterized display text into editable content, geometry, font, styling, effects, and hidden-background parameters through differentiable rendering (ICCV 2021).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · [Project](https://cyberagentailab.github.io/derendering-text/) · [Code](https://github.com/CyberAgentAILab/derendering-text) (`training + inference`) · [Weights](https://drive.google.com/file/d/1HBcfV0nfSluCWCHGgGerx7QNJZJpOv3h/view?usp=sharing) (`released`) · **Base:** Unified text parser; differentiable renderer; inpainting model · **Train:** Synthetically rendered stylized text using Google Fonts · **Eval:** ICCV text de-rendering evaluation · **Output:** Editable text rendering parameters; reconstructed raster image.
 
 
 ### Scientific Figure and Graphical Abstract Generation
