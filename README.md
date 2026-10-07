@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-165-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-168-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -467,7 +467,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2026
 
 - [FreeText](https://proceedings.mlr.press/v306/zhang26ge.html) - Improves precise multi-line and dense text rendering in Diffusion Transformer image generators through attention-based localization and spectral glyph injection without retraining (ICML 2026).
-  - Details: **Architecture:** Transformer; Diffusion.
+  - Details: **Architecture:** Transformer; Diffusion · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Qwen-Image; FLUX.1-dev; Stable Diffusion 3 variants · **Train:** None · **Eval:** longText-Benchmark; CVTG; CLT-Bench · **Output:** Raster image with rendered text.
 
 #### 2025
 
@@ -486,14 +486,14 @@ Papers are classified by their **primary output and task**, rather than by model
 - [TextDiffuser-2](https://arxiv.org/abs/2311.16465) - Uses language-model planning to improve flexible text layout and rendering in generated images (ECCV 2024).
   - Details: **Architecture:** Diffusion; LLM · [Project](https://jingyechen.github.io/textdiffuser2/) · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser-2) (`training + inference`) · [Weights](https://huggingface.co/JingyeChen22/textdiffuser2-full-ft) (`released`) · **Base:** Stable Diffusion v1.5; LLM layout planner · **Train:** MARIO-style text-image data; layout-planner instruction data · **Eval:** Text rendering and inpainting benchmarks · **Output:** Raster image with rendered text.
 - [TextPainter](https://arxiv.org/abs/2308.04733) - Generates poster-oriented text imagery while balancing text comprehension and visual harmony (ACM MM 2023).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Global-local visual conditioning; language-model text-comprehension module; text-image generator · **Train:** PosterT80K · **Eval:** PosterT80K · **Output:** Stylized poster text image.
 - [TextDiffuser](https://arxiv.org/abs/2305.10855) - Introduces diffusion-based text rendering with explicit character-level layout guidance (NeurIPS 2023).
   - Details: **Architecture:** Diffusion · Project: — · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser) (`training + inference`) · [Weights](https://huggingface.co/datasets/JingyeChen22/TextDiffuser) (`released`) · **Base:** Stable Diffusion v2.1 · **Train:** MARIO-LAION / MARIO-10M · **Eval:** MARIO-Eval · **Output:** Raster image with rendered text.
 
 #### 2022
 
 - [Text2Poster](https://arxiv.org/abs/2301.02363) - Retrieves suitable imagery and places stylized text to construct poster designs from text input (ICASSP 2022).
-  - Details: **Architecture:** VAE.
+  - Details: **Architecture:** VAE · Project: — · [Code](https://github.com/chuhaojin/Text2Poster-ICASSP-22) (`inference only`) · [Weights](https://github.com/chuhaojin/Text2Poster-ICASSP-22/tree/master/checkpoint) (`released`) · **Base:** BriVL image-text retrieval; cascaded autoencoders for layout prediction/refinement · **Train:** Weakly and self-supervised poster layout data · **Eval:** Objective and subjective poster-quality evaluation · **Output:** Raster poster image.
 
 
 ### Graphic Design Editing and Reconstruction
