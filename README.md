@@ -72,7 +72,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2025
 
 - [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) - Generates layouts from intuitive user sketches and content assets with a multimodal Transformer and releases large-scale synthetic sketch supervision (ICCV 2025 HiGen Workshop). **Architecture:** Transformer.
-- [LayoutRectifier](https://arxiv.org/abs/2508.11177) - Rectifies generated graphic layouts with two-stage optimization over grid alignment, overlap, and containment while limiting deviation from the input layout (Pacific Graphics 2025). **Architecture:** Classical / Optimization.
+- [LayoutRectifier](https://arxiv.org/abs/2508.11177) - Rectifies generated graphic layouts with two-stage optimization over grid alignment, overlap, and containment while limiting deviation from the input layout (Pacific Graphics 2025). **Architecture:** Optimization.
 - [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) - Generates explicitly structured layouts with a Transformer using structure serialization and disentanglement for conditional structure control (TVCG 2025). **Architecture:** Transformer.
 - [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) - Unifies layout synthesis and retrieval with a variational latent representation, an autoregressive Transformer layout decoder, and a raster decoder (WACV 2025). **Architecture:** Autoregressive; Transformer; VAE.
 - [LGGPT](https://arxiv.org/abs/2502.14005) - Unifies multiple layout-generation tasks and domains with compact instruction and response encodings for a 1.5B-parameter large language model. **Architecture:** LLM.
@@ -112,7 +112,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Layout-BLT](https://arxiv.org/abs/2112.05112) - Uses bidirectional layout transformers to generate and refine object arrangements (ECCV 2022). **Architecture:** Transformer. [Project](https://shawnkx.github.io/blt) · [Code](https://github.com/google-research/google-research/tree/master/layout-blt) (`training + inference`) · Weights: `unknown`.<br>  **Base:** Bidirectional Transformer · **Train:** COCO; RICO; PubLayNet; Magazine · **Eval:** COCO; RICO; PubLayNet; Magazine · **Output:** Structured layout boxes.
 - [LayoutMCL](https://arxiv.org/abs/2301.06629) - Uses an autoregressive multi-choice predictor with winner-takes-all learning to generate diverse multimedia layouts from the same input (ACM MM 2021). **Architecture:** Autoregressive.
 - [CanvasVAE](https://arxiv.org/abs/2108.01249) - Uses a variational autoencoder to model element-level layouts for design documents (ICCV 2021). **Architecture:** VAE. Project: — · [Code](https://github.com/CyberAgentAILab/canvas-vae) (`training + inference`) · Weights: `unknown`.<br>  **Base:** CanvasVAE with learned PixelVAE image embeddings · **Train:** Crello; RICO · **Eval:** Crello; RICO · **Output:** Vector-graphic document structure and element attributes.
-- [Constrained Graphic Layout Generation via Latent Optimization](https://arxiv.org/abs/2108.00871) - Introduces LayoutGAN++ and constrained latent optimization for generating realistic layouts that satisfy alignment, overlap, and other explicit design constraints (ACM MM 2021). **Architecture:** Transformer; Classical / Optimization; GAN. Project: — · [Code](https://github.com/ktrk115/const_layout) (`training + inference`) · Weights: `released`.<br>  **Base:** Transformer generator and discriminator · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes.
+- [Constrained Graphic Layout Generation via Latent Optimization](https://arxiv.org/abs/2108.00871) - Introduces LayoutGAN++ and constrained latent optimization for generating realistic layouts that satisfy alignment, overlap, and other explicit design constraints (ACM MM 2021). **Architecture:** Transformer; Optimization; GAN. Project: — · [Code](https://github.com/ktrk115/const_layout) (`training + inference`) · Weights: `released`.<br>  **Base:** Transformer generator and discriminator · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes.
 - [VTN](https://arxiv.org/abs/2104.02416) - Combines self-attention with a variational autoencoder to learn global design rules and synthesize diverse layouts (CVPR 2021). **Architecture:** Transformer; VAE.
 #### 2020
 
@@ -126,28 +126,28 @@ Papers are classified by their **primary output and task**, rather than by model
 - [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) - Introduces a GAN formulation for synthesizing layouts represented by labeled geometric elements (ICLR 2019). **Architecture:** GAN.
 #### 2015
 
-- [DesignScape](https://doi.org/10.1145/2702123.2702149) - Provides interactive refinement and brainstorming layout suggestions that improve position, scale, and alignment during graphic-design authoring (CHI 2015). **Architecture:** Classical / Optimization.
+- [DesignScape](https://doi.org/10.1145/2702123.2702149) - Provides interactive refinement and brainstorming layout suggestions that improve position, scale, and alignment during graphic-design authoring (CHI 2015). **Architecture:** Optimization.
 #### 2014
 
-- [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014). **Architecture:** Classical / Optimization.
+- [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014). **Architecture:** Optimization.
 #### 2012
 
-- [Automatic Stylistic Manga Layout](https://doi.org/10.1145/2366145.2366160) - Generates stylistic manga page layouts from input artworks and user-specified semantics with parametric style models, probabilistic initialization, and joint geometry refinement (SIGGRAPH Asia 2012). **Architecture:** Classical / Optimization.
+- [Automatic Stylistic Manga Layout](https://doi.org/10.1145/2366145.2366160) - Generates stylistic manga page layouts from input artworks and user-specified semantics with parametric style models, probabilistic initialization, and joint geometry refinement (SIGGRAPH Asia 2012). **Architecture:** Optimization.
 #### 2007
 
-- [Specifying Label Layout Style by Example](https://doi.org/10.1145/1294211.1294252) - Learns a designer-specified label-layout style from an example via nonlinear inverse optimization, then synthesizes new labeled-diagram layouts in the learned style (UIST 2007). **Architecture:** Classical / Optimization.
+- [Specifying Label Layout Style by Example](https://doi.org/10.1145/1294211.1294252) - Learns a designer-specified label-layout style from an example via nonlinear inverse optimization, then synthesizes new labeled-diagram layouts in the learned style (UIST 2007). **Architecture:** Optimization.
 #### 2003
 
-- [Adaptive Grid-Based Document Layout](https://doi.org/10.1145/882262.882353) - Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003). **Architecture:** Classical / Optimization.
+- [Adaptive Grid-Based Document Layout](https://doi.org/10.1145/882262.882353) - Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003). **Architecture:** Template-Based; Optimization.
 #### 1994
 
-- [Interactive Graphic Design Using Automatic Presentation Knowledge](https://doi.org/10.1145/191666.191719) - Introduces SageBrush, SageBook, and SAGE to combine knowledge-based automatic presentation with interactive construction, retrieval, and customization of data graphics (CHI 1994). **Architecture:** Knowledge-Based / Rule-Based.
+- [Interactive Graphic Design Using Automatic Presentation Knowledge](https://doi.org/10.1145/191666.191719) - Introduces SageBrush, SageBook, and SAGE to combine knowledge-based automatic presentation with interactive construction, retrieval, and customization of data graphics (CHI 1994). **Architecture:** Knowledge-Based.
 #### 1988
 
-- [Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces](https://doi.org/10.1145/62402.62431) - Extends automatic graphical-presentation theory to theory-driven design of graphical user interfaces (UIST 1988). **Architecture:** Knowledge-Based / Rule-Based.
+- [Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces](https://doi.org/10.1145/62402.62431) - Extends automatic graphical-presentation theory to theory-driven design of graphical user interfaces (UIST 1988). **Architecture:** Knowledge-Based.
 #### 1986
 
-- [Automating the Design of Graphical Presentations of Relational Information](https://doi.org/10.1145/22949.22950) - Codifies expressiveness and effectiveness criteria plus a composition algebra in APT to automatically synthesize graphical presentations of relational information (ACM TOG 1986). **Architecture:** Knowledge-Based / Rule-Based.
+- [Automating the Design of Graphical Presentations of Relational Information](https://doi.org/10.1145/22949.22950) - Codifies expressiveness and effectiveness criteria plus a composition algebra in APT to automatically synthesize graphical presentations of relational information (ACM TOG 1986). **Architecture:** Knowledge-Based.
 
 ### Content-Aware Layout Generation
 
@@ -358,7 +358,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2024
 
 - [SciPostLayout](https://arxiv.org/abs/2407.19787) - Introduces a scientific-poster dataset and targets structured layout analysis and generation for scientific posters (BMVC 2024). **Architecture:** LLM. Project: — · [Code](https://github.com/omron-sinicx/scipostlayout) (`training + inference`) · Weights: `n/a`.<br>  **Base:** LayoutLMv3; DiT; LayoutDM; LayoutFormer++; GPT-4 · **Train:** SciPostLayout · **Eval:** SciPostLayout · **Output:** Scientific-poster layouts.
-- [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation (AAAI 2025). **Architecture:** Multi-stage System; Classical / Optimization; LLM.
+- [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation (AAAI 2025). **Architecture:** Multi-stage System; Optimization; LLM.
 
 ## Datasets and Benchmarks
 
