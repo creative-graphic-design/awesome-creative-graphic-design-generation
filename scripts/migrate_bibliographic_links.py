@@ -25,7 +25,6 @@ ARXIV_ONLY_VENUES = {"", "arXiv", "Technical Report"}
 USER_AGENT = "awesome-creative-graphic-design-generation/1.0 bibliographic migration"
 MAX_WORKERS = 6
 
-# Only verified exceptions belong here. Automated matching remains fail-closed.
 PUBLICATION_OVERRIDES: dict[str, str] = {}
 ARXIV_OVERRIDES: dict[str, str] = {
     "T-Stars-Poster": "https://arxiv.org/abs/2501.14316",
@@ -64,6 +63,19 @@ def arxiv_id(url: str) -> str:
     return urllib.parse.urlparse(url).path.removeprefix("/abs/").split("v", 1)[0]
 
 
+def semantic_scholar_id(url: str) -> str | None:
+    if is_arxiv_url(url):
+        return f"ARXIV:{arxiv_id(url)}"
+    parsed = urllib.parse.urlparse(url)
+    if (parsed.hostname or "").casefold() == "doi.org":
+        doi = parsed.path.lstrip("/")
+        return f"DOI:{doi}" if doi else None
+    if (parsed.hostname or "").casefold() == "aclanthology.org":
+        acl_id = parsed.path.strip("/")
+        return f"ACL:{acl_id}" if acl_id else None
+    return None
+
+
 def request_json(url: str) -> dict:
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     last_error: Exception | None = None
@@ -74,6 +86,40 @@ def request_json(url: str) -> dict:
         except Exception as exc:
             last_error = exc
             time.sleep(0.75 * (attempt + 1))
+    assert last_error is not None
+    raise last_error
+
+
+def semantic_scholar_batch(ids: list[str]) -> dict[str, dict]:
+    if not ids:
+        return {}
+    url = (
+        "https://api.semanticscholar.org/graph/v1/paper/batch?"
+        + urllib.parse.urlencode({"fields": "title,externalIds"})
+    )
+    body = json.dumps({"ids": ids}).encode("utf-8")
+    request = urllib.request.Request(
+        url,
+        data=body,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    last_error: Exception | None = None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=30) as response:
+                records = json.loads(response.read().decode("utf-8"))
+            return {
+                requested_id: record
+                for requested_id, record in zip(ids, records, strict=True)
+                if record is not None
+            }
+        except Exception as exc:
+            last_error = exc
+            time.sleep(1.0 * (attempt + 1))
     assert last_error is not None
     raise last_error
 
@@ -133,25 +179,19 @@ def score_title(target: str, candidate: str) -> int:
     return 0
 
 
-def canonical_title(name: str, venue_year: str, identifier: str = "") -> str:
-    queries = [identifier, name] if identifier else [name]
-    candidates: list[tuple[int, str]] = []
-    for query in queries:
-        if not query:
-            continue
-        for info in dblp_hits(query):
-            title = info_title(info)
-            score = score_title(name, title)
-            if identifier and identifier in json.dumps(info, ensure_ascii=False):
-                score += 120
-            if venue_year and str(info.get("year", "")) == venue_year:
-                score += 25
-            if score >= 80:
-                candidates.append((score, title))
-    if not candidates:
-        return name
-    candidates.sort(reverse=True)
-    return candidates[0][1]
+def publication_from_external_ids(external_ids: dict) -> str | None:
+    doi = external_ids.get("DOI")
+    if doi:
+        return f"https://doi.org/{doi}"
+    acl = external_ids.get("ACL")
+    if acl:
+        return f"https://aclanthology.org/{acl}/"
+    return None
+
+
+def arxiv_from_external_ids(external_ids: dict) -> str | None:
+    identifier = external_ids.get("ArXiv")
+    return f"https://arxiv.org/abs/{identifier}" if identifier else None
 
 
 def publication_url(title: str, venue_year: str) -> str | None:
@@ -185,19 +225,15 @@ def arxiv_url_for_title(title: str) -> str | None:
     matches: list[tuple[int, str]] = []
     for info in dblp_hits(title):
         candidate = arxiv_from_info(info)
-        if not candidate:
-            continue
-        score = score_title(title, info_title(info))
-        if score >= 100:
-            matches.append((score, candidate))
-    if not matches:
-        return None
-    best = max(score for score, _ in matches)
-    urls = {url for score, url in matches if score == best}
+        if candidate and score_title(title, info_title(info)) >= 100:
+            matches.append((100, candidate))
+    urls = {url for _, url in matches}
     return next(iter(urls)) if len(urls) == 1 else None
 
 
-def resolve_row(row: dict[str, str]) -> tuple[dict[str, str], dict[str, str] | None]:
+def resolve_row(
+    row: dict[str, str], s2_records: dict[str, dict]
+) -> tuple[dict[str, str], dict[str, str] | None]:
     row = dict(row)
     row["arxiv_url"] = (row.get("arxiv_url") or "").strip()
     if row.get("section") != "Papers":
@@ -219,11 +255,16 @@ def resolve_row(row: dict[str, str]) -> tuple[dict[str, str], dict[str, str] | N
         if row["name"] in PUBLICATION_OVERRIDES:
             row["url"] = PUBLICATION_OVERRIDES[row["name"]]
             return row, None
-        try:
-            title = canonical_title(row["name"], row.get("venue_year", ""), identifier)
-            resolved = publication_url(title, row.get("venue_year", ""))
-        except Exception as exc:
-            return row, {"name": row["name"], "kind": "publication", "error": repr(exc)}
+
+        record = s2_records.get(f"ARXIV:{identifier}", {})
+        external_ids = record.get("externalIds") or {}
+        resolved = publication_from_external_ids(external_ids)
+        title = str(record.get("title") or row["name"])
+        if not resolved:
+            try:
+                resolved = publication_url(title, row.get("venue_year", ""))
+            except Exception as exc:
+                return row, {"name": row["name"], "kind": "publication", "error": repr(exc)}
         if not resolved:
             return row, {"name": row["name"], "kind": "publication", "title": title}
         row["url"] = resolved
@@ -233,11 +274,17 @@ def resolve_row(row: dict[str, str]) -> tuple[dict[str, str], dict[str, str] | N
         if row["name"] in ARXIV_OVERRIDES:
             row["arxiv_url"] = ARXIV_OVERRIDES[row["name"]]
             return row, None
-        try:
-            title = canonical_title(row["name"], row.get("venue_year", ""))
-            resolved = arxiv_url_for_title(title)
-        except Exception as exc:
-            return row, {"name": row["name"], "kind": "arxiv", "error": repr(exc)}
+
+        lookup_id = semantic_scholar_id(primary)
+        record = s2_records.get(lookup_id or "", {})
+        external_ids = record.get("externalIds") or {}
+        resolved = arxiv_from_external_ids(external_ids)
+        title = str(record.get("title") or row["name"])
+        if not resolved:
+            try:
+                resolved = arxiv_url_for_title(title)
+            except Exception as exc:
+                return row, {"name": row["name"], "kind": "arxiv", "error": repr(exc)}
         if not resolved:
             return row, {"name": row["name"], "kind": "arxiv", "title": title}
         row["arxiv_url"] = resolved
@@ -258,8 +305,28 @@ def main() -> int:
         for row in rows:
             row["arxiv_url"] = ""
 
+    lookup_ids: list[str] = []
+    for row in rows:
+        if row.get("section") != "Papers":
+            continue
+        primary = row["url"].strip()
+        published = row.get("venue", "") not in ARXIV_ONLY_VENUES
+        if is_arxiv_url(primary) and published:
+            lookup_ids.append(f"ARXIV:{arxiv_id(primary)}")
+        elif row.get("arxiv_date"):
+            lookup_id = semantic_scholar_id(primary)
+            if lookup_id:
+                lookup_ids.append(lookup_id)
+
+    lookup_ids = list(dict.fromkeys(lookup_ids))
+    try:
+        s2_records = semantic_scholar_batch(lookup_ids)
+    except Exception as exc:
+        print(f"Semantic Scholar batch lookup failed: {exc!r}; using DBLP fallback", file=sys.stderr)
+        s2_records = {}
+
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        results = list(executor.map(resolve_row, rows))
+        results = list(executor.map(lambda row: resolve_row(row, s2_records), rows))
 
     resolved_rows = [row for row, _ in results]
     unresolved = [error for _, error in results if error is not None]
