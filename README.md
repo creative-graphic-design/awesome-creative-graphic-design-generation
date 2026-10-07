@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-238-informational)
-![Papers](https://img.shields.io/badge/papers-183-informational)
+![Total Resources](https://img.shields.io/badge/resources-239-informational)
+![Papers](https://img.shields.io/badge/papers-184-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-73-informational)
 
@@ -260,6 +260,7 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2026
 
+- [UniWorld-Design](https://arxiv.org/abs/2608.03971) - Treats semantic RGBA layers as the native design representation, with text-to-RGBA asset generation and instruction-controlled image-to-layer decomposition into ordered complete layers. **Architecture:** Flow Matching; Transformer.
 - [MRT](https://arxiv.org/abs/2605.27235) - Unifies text-to-layers, image-to-layers, and layer-to-layer editing in a 20B masked-region diffusion model for scalable RGBA asset generation (CVPR 2026). **Architecture:** Diffusion. [Project](https://mrt-cvpr.github.io/) · Code: `unknown` · Weights: `unknown`.<br>  **Base:** Qwen-Image · **Train:** 10M+ multilingual layered design samples; 43M+ transparent layers · **Output:** RGBA canvas/background/foreground layer stack.
 - [LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition](https://openaccess.thecvf.com/content/CVPR2026W/CVEU/html/Lungu-Stan_LaDe_Unified_Multi-Layered_Graphic_Media_Generation_and_Decomposition_CVPRW_2026_paper.html) - Jointly generates full graphic-media designs and a flexible number of semantically meaningful RGBA layers, while also supporting image-to-layers decomposition with a latent diffusion transformer and RGBA VAE (CVPRW 2026). **Architecture:** Diffusion; Transformer; LLM; VAE.
 - [Controllable Layered Image Generation for Real-World Editing](https://arxiv.org/abs/2601.15507) - Introduces LASAGNA, a unified controllable framework that jointly generates composites, clean backgrounds, and transparent foreground layers with physically grounded visual effects. **Architecture:** Flow Matching; Transformer.
