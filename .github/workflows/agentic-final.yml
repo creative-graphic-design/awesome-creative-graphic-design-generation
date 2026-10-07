@@ -1,0 +1,68 @@
+name: Finalize agentic taxonomy
+on:
+  push:
+    branches: [taxonomy/agentic-multistage-final]
+permissions:
+  contents: write
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: taxonomy/agentic-multistage-final
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Resolve remaining ambiguous labels
+        run: |
+          git show origin/main:data/resources.csv > /tmp/resources.csv
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('/tmp/resources.csv').read_text()
+          reps = {
+            'CreatiPoster': ('Agentic / Multi-stage System; VLM', 'Multi-stage System; VLM'),
+            'SEGA': ('Agentic / Multi-stage System; VLM', 'Multi-stage System; VLM'),
+            'Uni-Layout': ('Agentic / Multi-stage System; VLM', 'Multi-stage System; VLM'),
+            'AutoPP': ('Agentic / Multi-stage System', 'Multi-stage System'),
+            'Brief2Design': ('Agentic / Multi-stage System', 'Multi-stage System'),
+            'DesignAsCode': ('Agentic / Multi-stage System; LLM; VLM', 'Multi-stage System; LLM; VLM'),
+            'Multi-Object Advertisement Creative Generation': ('Agentic / Multi-stage System', 'Multi-stage System'),
+            'PosterVerse': ('Agentic / Multi-stage System; Diffusion; LLM; VLM', 'Multi-stage System; Diffusion; LLM; VLM'),
+            'PSDesigner': ('Agentic / Multi-stage System; VLM', 'Agentic; VLM'),
+            'Draw with Thought': ('Agentic / Multi-stage System; VLM', 'Multi-stage System; VLM'),
+            'AutoFigure-Edit': ('Agentic / Multi-stage System; VLM', 'Multi-stage System; VLM'),
+            'Figures as Programs': ('Agentic / Multi-stage System; LLM; VLM', 'Multi-stage System; LLM; VLM'),
+            'GenGA': ('Agentic / Multi-stage System', 'Multi-stage System'),
+            'Personalization as Inverse Planning': ('Agentic / Multi-stage System; Diffusion', 'Agentic; Diffusion'),
+            'PosterVisor': ('Agentic / Multi-stage System', 'Multi-stage System'),
+            'SciPostGen': ('Agentic / Multi-stage System', 'Multi-stage System'),
+            'Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement': ('VLM; Agentic / Multi-stage System', 'VLM; Multi-stage System'),
+            'Rethinking Layered Graphic Design Generation with a Top-Down Approach': ('VLM; Agentic / Multi-stage System', 'VLM; Multi-stage System'),
+            'CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers': ('Diffusion; VLM; Agentic / Multi-stage System', 'Diffusion; VLM; Multi-stage System'),
+          }
+          out=[]; seen=set()
+          for line in text.splitlines(True):
+              for name,(old,new) in reps.items():
+                  if f',{name},' in line:
+                      if old not in line:
+                          raise SystemExit(f'old label missing for {name}: {line}')
+                      line=line.replace(old,new,1); seen.add(name); break
+              out.append(line)
+          missing=set(reps)-seen
+          if missing: raise SystemExit(f'missing rows: {sorted(missing)}')
+          result=''.join(out)
+          if 'Agentic / Multi-stage System' in result:
+              leftovers=[line for line in result.splitlines() if 'Agentic / Multi-stage System' in line]
+              raise SystemExit('leftover ambiguous labels:\n'+'\n'.join(leftovers))
+          Path('data/resources.csv').write_text(result)
+          PY
+          uv run python scripts/generate_readme.py
+          rm .github/workflows/agentic-final.yml
+      - name: Commit final tree
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/resources.csv README.md .github/workflows/agentic-final.yml
+          git commit -m "Resolve remaining agentic and multi-stage labels"
+          git push
