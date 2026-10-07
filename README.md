@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-236-informational)
-![Papers](https://img.shields.io/badge/papers-181-informational)
+![Total Resources](https://img.shields.io/badge/resources-237-informational)
+![Papers](https://img.shields.io/badge/papers-182-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-72-informational)
 
@@ -286,6 +286,9 @@ Papers are classified by their **primary output and task**, rather than by model
 
 ### Typography and Text Rendering
 
+#### 2026
+
+- [FreeText](https://proceedings.mlr.press/v306/zhang26ge.html) - Improves precise multi-line and dense text rendering in Diffusion Transformer image generators through attention-based localization and spectral glyph injection without retraining (ICML 2026). **Architecture:** Transformer; Diffusion.
 #### 2025
 
 - [UTDesign](https://doi.org/10.1145/3757377.3763923) - Unifies stylized text editing and conditional text generation for graphic-design images and integrates the model into a text-to-design pipeline (SIGGRAPH Asia 2025). **Architecture:** Diffusion; VLM. [Project](https://utdesign-official.github.io/home/) · [Code](https://github.com/ZYM-PKU/UTDesign) (`training + inference`) · [Weights](https://huggingface.co/UTDesign/UTDesign_v1.0) (`released`).<br>  **Base:** Diffusers; FLUX VAE; DINOv2 visual conditioning; CLIP style encoder; multimodal layout planner · **Train:** Gray-scale and colored font data; annotated design-image data including Kingsoft-provided data · **Output:** RGBA foreground glyphs; raster graphic-design images.
