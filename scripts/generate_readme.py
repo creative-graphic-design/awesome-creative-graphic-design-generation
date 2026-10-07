@@ -99,7 +99,6 @@ WEIGHT_STATUS_LABELS = {
     "unknown": "unknown",
 }
 SIMPLE_ICON_PROVIDERS = {
-    "arxiv.org": {"slug": "arxiv", "label": "arXiv"},
     "github.com": {"slug": "github", "label": "GitHub"},
     "huggingface.co": {"slug": "huggingface", "label": "Hugging Face"},
 }
