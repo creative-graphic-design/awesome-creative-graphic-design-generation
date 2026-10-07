@@ -26,8 +26,6 @@ RESOURCE_COLUMNS = [
     "date_note",
 ]
 
-ARXIV_ONLY_VENUES = {"", "arXiv", "Technical Report"}
-
 
 def is_arxiv_url(value: str) -> bool:
     if not value:
@@ -80,12 +78,21 @@ def main() -> int:
         primary = row["url"].strip()
         arxiv = row["arxiv_url"].strip()
         primary_is_arxiv = is_arxiv_url(primary)
-        primary_is_arxiv_doi = is_arxiv_doi(primary)
 
-        if primary in seen_primary_urls:
+        if not primary:
+            fail(f"{name}: url must not be blank")
+            errors += 1
+        elif primary in seen_primary_urls:
             fail(f"{name}: duplicate primary url {primary}")
             errors += 1
         seen_primary_urls.add(primary)
+
+        if is_arxiv_doi(primary):
+            fail(
+                f"{name}: do not use doi.org/10.48550/arXiv.* as the primary link; "
+                "use the direct arXiv abstract URL until an authoritative publication URL is verified"
+            )
+            errors += 1
 
         if arxiv:
             if not is_arxiv_url(arxiv):
@@ -99,31 +106,22 @@ def main() -> int:
                 fail(f"{name}: arxiv_url requires arxiv_date")
                 errors += 1
 
-        if primary_is_arxiv and arxiv:
-            fail(f"{name}: do not duplicate the primary arXiv URL in arxiv_url")
-            errors += 1
-
         if row["section"] != "Papers":
             if arxiv:
                 fail(f"{name}: arxiv_url is currently defined only for Papers entries")
                 errors += 1
             continue
 
-        published = row["venue"] not in ARXIV_ONLY_VENUES
-
-        if published and (primary_is_arxiv or primary_is_arxiv_doi):
-            fail(
-                f"{name}: published paper must use an authoritative publication/proceedings/venue "
-                "URL as url; arXiv URLs and arXiv DOIs are preprint surrogates"
-            )
-            errors += 1
-
-        if published and row["arxiv_date"] and not arxiv:
-            fail(f"{name}: published paper with arxiv_date must also set arxiv_url")
-            errors += 1
-
-        if not published and primary_is_arxiv and arxiv:
-            fail(f"{name}: arXiv-only paper must not duplicate its primary link")
+        # `url` is the canonical title link. If an authoritative publication
+        # page is known, it goes in `url` and arXiv becomes a secondary link.
+        # If proceedings are not yet available, direct arXiv remains the title
+        # link even when a future/accepted venue is already recorded.
+        if primary_is_arxiv:
+            if arxiv:
+                fail(f"{name}: do not duplicate the primary arXiv URL in arxiv_url")
+                errors += 1
+        elif row["arxiv_date"] and not arxiv:
+            fail(f"{name}: non-arXiv primary with arxiv_date must also set arxiv_url")
             errors += 1
 
         if row["venue"] == "arXiv" and not primary_is_arxiv:
