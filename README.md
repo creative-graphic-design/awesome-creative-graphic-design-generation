@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-157-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-165-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -416,13 +416,13 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2026
 
 - [UniWorld-Design](https://arxiv.org/abs/2608.03971) - Treats semantic RGBA layers as the native design representation, with text-to-RGBA asset generation and instruction-controlled image-to-layer decomposition into ordered complete layers.
-  - Details: **Architecture:** Flow Matching; Transformer.
+  - Details: **Architecture:** Flow Matching; Transformer · [Project](https://rabbitvis.rabbitpre.com/blog) · Code: `unknown` · Weights: `unknown` · **Base:** Rectified-flow RGBA generative models; T2RGBA and instruction-controlled I2L · **Train:** Designer-authored PSD-derived layered design data; transparent RGBA asset mixture · **Eval:** Crello (512 held-out designs) · **Output:** Standalone RGBA assets; ordered semantic RGBA layer stacks.
 - [MRT](https://arxiv.org/abs/2605.27235) - Unifies text-to-layers, image-to-layers, and layer-to-layer editing in a 20B masked-region diffusion model for scalable RGBA asset generation (CVPR 2026).
   - Details: **Architecture:** Diffusion · [Project](https://mrt-cvpr.github.io/) · Code: `unknown` · Weights: `unknown` · **Base:** Qwen-Image · **Train:** 10M+ multilingual layered design samples; 43M+ transparent layers · **Output:** RGBA canvas/background/foreground layer stack.
 - [LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition](https://openaccess.thecvf.com/content/CVPR2026W/CVEU/html/Lungu-Stan_LaDe_Unified_Multi-Layered_Graphic_Media_Generation_and_Decomposition_CVPRW_2026_paper.html) - Jointly generates full graphic-media designs and a flexible number of semantically meaningful RGBA layers, while also supporting image-to-layers decomposition with a latent diffusion transformer and RGBA VAE (CVPRW 2026).
-  - Details: **Architecture:** Diffusion; Transformer; LLM; VAE.
+  - Details: **Architecture:** Diffusion; Transformer; LLM; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** LLM prompt expander; Latent Diffusion Transformer with 4D RoPE; RGBA VAE · **Eval:** Crello test set · **Output:** Full media design plus flexible semantic RGBA layer stack.
 - [Controllable Layered Image Generation for Real-World Editing](https://arxiv.org/abs/2601.15507) - Introduces LASAGNA, a unified controllable framework that jointly generates composites, clean backgrounds, and transparent foreground layers with physically grounded visual effects.
-  - Details: **Architecture:** Flow Matching; Transformer.
+  - Details: **Architecture:** Flow Matching; Transformer · [Project](https://rayjryang.github.io/LASAGNA-Page/) · Code: `announced` · Weights: `unknown` · **Base:** Layer-conditional flow-matching generation model · **Train:** LASAGNA-48K · **Eval:** LASAGNABENCH · **Output:** Composite RGB image; clean RGB background; RGBA foreground with visual effects.
 
 #### 2025
 
@@ -433,7 +433,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [TAUE](https://arxiv.org/abs/2511.02580) - Generates coherent foreground, background, and composite layers without fine-tuning by transplanting and cultivating intermediate diffusion noise representations (CVPR Findings 2026).
   - Details: **Architecture:** Diffusion · [Project](https://iyatomilab.github.io/TAUE/) · [Code](https://github.com/IyatomiLab/TAUE) (`unknown`) · Weights: `n/a` · **Base:** SDXL · **Train:** None · **Eval:** Filtered MS-COCO · **Output:** Foreground; background; composite image.
 - [SAWNA](https://www.siggraph.org/wp-content/uploads/2025/08/Posters.html) - Preserves user-specified negative-space regions during text-to-image generation so downstream text and interface elements can be composed cleanly (SIGGRAPH 2025 Poster).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Pretrained diffusion model with masked nonreactive-noise injection · **Train:** None · **Output:** Raster image preserving user-specified negative-space regions.
 - [PrismLayers](https://arxiv.org/abs/2505.22523) - Introduces PrismLayers and PrismLayersPro plus ART+ for high-quality multi-layer transparent image generation from text and layouts.
   - Details: **Architecture:** Transformer; Diffusion · [Project](https://prism-layers.github.io/) · [Code](https://github.com/redredsheep/PrismLayers) (`inference only`) · Weights: `released` · **Base:** ART · **Train:** PrismLayersPro (20K high-quality subset of 200K PrismLayers) · **Output:** Multiple RGBA layers plus composite image.
 - [PSDiffusion: Harmonized Multi-Layer Image Generation via Layout and Appearance Alignment](https://arxiv.org/abs/2505.11468) - Generates multiple transparent layers simultaneously with a unified diffusion framework and global-layer interaction for coherent layout, contacts, shadows, and reflections (WACV 2026).
@@ -441,25 +441,25 @@ Papers are classified by their **primary output and task**, rather than by model
 - [ART](https://arxiv.org/abs/2502.18364) - Generates variable numbers of transparent image layers from a global prompt and anonymous region layout using an Anonymous Region Transformer (CVPR 2025).
   - Details: **Architecture:** Transformer; Diffusion · Project: — · [Code](https://github.com/microsoft/art-msra) (`withdrawn`) · Weights: `withdrawn` · **Eval:** DESIGN-MULTI-LAYER-BENCH; PHOTO-MULTI-LAYER-BENCH · **Output:** Variable number of RGBA layers.
 - [LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge](https://arxiv.org/abs/2501.01197) - Synthesizes a composite image with an off-the-shelf generator and then disassembles it into foreground and background layers using pretrained generative priors and high-frequency alignment.
-  - Details: **Architecture:** Diffusion; Multi-stage System.
+  - Details: **Architecture:** Diffusion; Multi-stage System · [Project](https://kkang831.github.io/assets/publications/9993_ArXiv_LayeringDiff/) · Code: `unknown` · Weights: `unknown` · **Base:** Off-the-shelf text-to-image generator; Grounding DINO; SAM; ViTMatte; pretrained inpainting diffusion prior with high-frequency alignment · **Eval:** LayerDiffuse comparisons; 24-participant user study · **Output:** Foreground RGBA layer; background RGB layer; composite image.
 
 #### 2024
 
 - [LayerFusion](https://arxiv.org/abs/2412.04460) - Generates harmonized foreground RGBA, background RGB, and composite images jointly using pretrained generative priors (CVPR Findings 2026).
   - Details: **Architecture:** Diffusion · [Project](https://layerfusion.github.io/) · Code: `announced` · Weights: `n/a` · **Base:** Pretrained latent diffusion model · **Train:** None · **Output:** Foreground RGBA; background RGB; composite RGB.
 - [Generative Image Layer Decomposition with Visual Effects](https://arxiv.org/abs/2411.17864) - Introduces LayerDecomp for decomposing images into clean backgrounds and transparent foreground layers while preserving visual effects such as shadows and reflections (CVPR 2025).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · [Project](https://rayjryang.github.io/LayerDecomp/) · Code: `unknown` · Weights: `unknown` · **Base:** Diffusion-based two-layer decomposer conditioned on composite image and object mask · **Train:** Simulated multilayer image triplets; camera-captured background-composite pairs · **Eval:** RORD; MULAN; DESOBAv2 · **Output:** Clean RGB background; RGBA foreground with shadows and reflections.
 - [TKG-DM](https://arxiv.org/abs/2411.15580) - Generates foreground content over a controllable chroma-key background without training, enabling clean foreground-background separation (CVPR 2025).
   - Details: **Architecture:** Diffusion · Project: — · [Code](https://github.com/ryugo417/TKG-DM) (`pipeline`) · Weights: `n/a` · **Base:** Stable Diffusion XL 1.0 · **Train:** None · **Output:** RGB image with controlled chroma-key background.
 - [Alfie](https://arxiv.org/abs/2408.14826) - Modifies the inference behavior of a pretrained Diffusion Transformer to generate easily isolated RGBA-style illustration assets without additional training (ECCV 2024 AI4VA Workshop).
-  - Details: **Architecture:** Transformer; Diffusion.
+  - Details: **Architecture:** Transformer; Diffusion · Project: — · [Code](https://github.com/aimagelab/Alfie) (`pipeline`) · Weights: `n/a` · **Base:** PixArt-Sigma Diffusion Transformer · **Train:** None · **Eval:** User study; composite-scene generation experiments · **Output:** RGBA illustration asset.
 - [LayerDiffuse](https://doi.org/10.1145/3658150) - Adds latent transparency to pretrained diffusion models for single- and multi-layer transparent image generation (ACM TOG 2024).
   - Details: **Architecture:** Diffusion · [Project](https://github.com/lllyasviel/LayerDiffuse) · [Code](https://github.com/lllyasviel/LayerDiffuse_DiffusersCLI) (`inference only`) · [Weights](https://huggingface.co/LayerDiffusion/layerdiffusion-v1) (`released`) · **Base:** Stable Diffusion v1.5 / SDXL · **Train:** 1M transparent image layer pairs · **Output:** Single or multiple transparent RGBA layers.
 
 #### 2023
 
 - [Text2Layer: Layered Image Generation using Latent Diffusion Model](https://arxiv.org/abs/2307.09781) - Jointly generates background, foreground, layer mask, and composed image in a learned layered latent space, establishing an early diffusion-based layered compositing formulation.
-  - Details: **Architecture:** Diffusion; VAE.
+  - Details: **Architecture:** Diffusion; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Layered-image autoencoder plus latent diffusion model · **Output:** Background image; foreground image; layer mask; composed image.
 
 
 ### Typography and Text Rendering
