@@ -1,0 +1,37 @@
+name: Audit Microsoft layout generation methods
+
+on:
+  push:
+    branches:
+      - metadata/microsoft-layout-generation
+    paths:
+      - .github/workflows/audit-microsoft-layout-generation.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: metadata/microsoft-layout-generation
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Add audited metadata
+        run: |
+          git fetch origin main
+          git show origin/main:data/paper_metadata.csv > data/paper_metadata.csv
+          cat >> data/paper_metadata.csv <<'EOF'
+          Coarse-to-Fine,,https://github.com/microsoft/LayoutGeneration/tree/main/Coarse-to-Fine,https://huggingface.co/jzy124/Coarse2Fine/tree/main,train+inference,released,Hierarchical coarse-to-fine generative modeling for graphic layouts,,"RICO; PubLayNet","RICO; PubLayNet",Structured layout boxes,"Official Microsoft repository provides training and inference scripts and links released RICO and PubLayNet checkpoints on Hugging Face.",2026-10-07
+          LayoutDiffusion,https://layoutdiffusion.github.io/,https://github.com/microsoft/LayoutGeneration/tree/main/LayoutDiffusion,https://huggingface.co/Junyi42/layoutdiffusion,train+inference,released,Discrete diffusion probabilistic model for graphic-layout generation,Transformer discrete-diffusion denoiser,"RICO; PubLayNet","RICO; PubLayNet",Structured layout sequences and boxes,"Official Microsoft repository provides training, unconditional and conditional inference, evaluation, visualization, processed data, and released pretrained models on Hugging Face/Google Drive.",2026-10-07
+          Parse-Then-Place,,https://github.com/microsoft/LayoutGeneration/tree/main/Parse-Then-Place,https://huggingface.co/datasets/KyleLin/Parse-Then-Place,train+inference,released,Two-stage text-to-layout parsing and placement,"T5-v1_1-base semantic parser; learned layout-placement model","RICO; WebUI","RICO; WebUI","Intermediate representation plus structured layout boxes","Official Microsoft repository provides stage-1/stage-2 training and inference plus released datasets and checkpoints for RICO and WebUI on Hugging Face.",2026-10-07
+          EOF
+          uv run python scripts/generate_readme.py
+          git rm .github/workflows/audit-microsoft-layout-generation.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/paper_metadata.csv README.md
+          git commit -m 'Audit Microsoft layout-generation reproducibility metadata'
+          git push origin HEAD:metadata/microsoft-layout-generation
