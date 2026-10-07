@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-88-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-90-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -116,14 +116,14 @@ Papers are classified by their **primary output and task**, rather than by model
 - [VTN](https://arxiv.org/abs/2104.02416) - Combines self-attention with a variational autoencoder to learn global design rules and synthesize diverse layouts (CVPR 2021). **Architecture:** Transformer; VAE.
 #### 2020
 
-- [LayoutTransformer: Layout Generation and Completion With Self-Attention](https://arxiv.org/abs/2006.14615) - Uses self-attention to autoregressively generate and complete layouts by modeling contextual relationships among layout elements across multiple structured-layout domains (ICCV 2021). **Architecture:** Autoregressive; Transformer.
+- [LayoutTransformer: Layout Generation and Completion With Self-Attention](https://arxiv.org/abs/2006.14615) - Uses self-attention to autoregressively generate and complete layouts by modeling contextual relationships among layout elements across multiple structured-layout domains (ICCV 2021). **Architecture:** Autoregressive; Transformer. [Project](https://kampta.github.io/layout) · [Code](https://github.com/kampta/DeepLayout) (`training + inference`) · Weights: `unknown`.<br>  **Base:** GPT-style Transformer decoder · **Train:** COCO; PubLayNet; RICO; PartNet · **Eval:** COCO; PubLayNet; RICO; PartNet · **Output:** Serialized layout primitives and structured boxes.
 - [AC-LayoutGAN](https://doi.org/10.1109/TVCG.2020.2999335) - Generates graphic layouts conditioned on element attributes such as area, aspect ratio, and reading order with an attribute-conditioned GAN (TVCG). **Architecture:** GAN.
 #### 2019
 
 - [Neural Design Network](https://arxiv.org/abs/1912.09421) - Generates graphic layouts under explicit design constraints with a neural structured model (ECCV 2020). **Architecture:** VAE.
 - [READ: Recursive Autoencoders for Document Layout Generation](https://arxiv.org/abs/1909.00302) - Generates hierarchical document layouts with a recursive variational autoencoder and introduces a structural similarity metric for dense document compositions (CVPRW 2020). **Architecture:** VAE.
 - [LayoutVAE](https://arxiv.org/abs/1907.10719) - Uses a label-conditioned variational autoencoder for structured document layout generation (ICCV 2019). **Architecture:** VAE.
-- [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) - Introduces a GAN formulation for synthesizing layouts represented by labeled geometric elements (ICLR 2019). **Architecture:** GAN.
+- [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) - Introduces a GAN formulation for synthesizing layouts represented by labeled geometric elements (ICLR 2019). **Architecture:** GAN. Project: — · [Code](https://github.com/JiananLi2016/LayoutGAN-Tensorflow) (`training + inference`) · Weights: `unknown`.<br>  **Base:** Self-attention generator; CNN wireframe discriminator · **Train:** MNIST; document layouts; clipart; tangram · **Eval:** MNIST; document layouts; clipart; tangram · **Output:** Point and bounding-box graphic layouts.
 #### 2015
 
 - [DesignScape](https://doi.org/10.1145/2702123.2702149) - Provides interactive refinement and brainstorming layout suggestions that improve position, scale, and alignment during graphic-design authoring (CHI 2015). **Architecture:** Optimization.
