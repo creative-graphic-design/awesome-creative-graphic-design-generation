@@ -1,0 +1,35 @@
+name: Migrate Bibliographic Links
+
+on:
+  push:
+    branches:
+      - issue-125-provider-icons
+    paths:
+      - scripts/migrate_bibliographic_links.py
+      - .github/workflows/migrate-bibliographic-links.yml
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v5
+        with:
+          ref: issue-125-provider-icons
+
+      - name: Run bibliographic migration
+        run: python scripts/migrate_bibliographic_links.py
+
+      - name: Commit migrated resources
+        run: |
+          if git diff --quiet -- data/resources.csv; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/resources.csv
+          git commit -m "Separate publication and arXiv links"
+          git push origin HEAD:issue-125-provider-icons
