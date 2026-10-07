@@ -1,0 +1,40 @@
+name: Update LGGPT IJCV metadata
+
+on:
+  push:
+    branches:
+      - metadata/lggpt-ijcv-2025
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: metadata/lggpt-ijcv-2025
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Update metadata and regenerate README
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('data/resources.csv')
+          text = path.read_text()
+          old = 'Papers,Content-Agnostic Layout Generation,LGGPT,https://arxiv.org/abs/2502.14005,Unifies multiple layout-generation tasks and domains with compact instruction and response encodings for a 1.5B-parameter large language model.,LLM,arXiv,2025,2025-02-19,,arXiv v1'
+          new = 'Papers,Content-Agnostic Layout Generation,LGGPT,https://doi.org/10.1007/s11263-025-02353-2,Unifies multiple layout-generation tasks and domains with compact instruction and response encodings for a 1.5B-parameter large language model (IJCV 2025).,LLM,IJCV,2025,2025-02-19,2025-02-12,arXiv v1 precedes journal online publication'
+          if old not in text:
+              raise SystemExit('LGGPT row not found exactly once')
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one LGGPT row, found {text.count(old)}')
+          path.write_text(text.replace(old, new))
+          PY
+          uv run python scripts/generate_readme.py
+          git rm .github/workflows/update-lggpt-ijcv.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/resources.csv README.md
+          git commit -m 'Record LGGPT as an IJCV 2025 paper'
+          git push
