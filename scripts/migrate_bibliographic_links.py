@@ -1,71 +1,74 @@
 #!/usr/bin/env python3
-"""One-off migration for publication/arXiv links in canonical resources.csv.
+"""One-off deterministic migration for publication/arXiv links in resources.csv.
 
-The final schema stays in data/resources.csv. This helper is temporary and must
-be removed after the migration lands. It never writes partial/ambiguous results.
+The final schema stays in data/resources.csv. This helper is temporary and will be
+removed after the migration lands. It performs no network requests: authoritative
+publication URLs that have been verified are pinned below, while unresolved
+preprint-primary entries remain direct arXiv links rather than arXiv DOI surrogates.
 """
 
 from __future__ import annotations
 
 import csv
-import functools
-import html
-import json
-import re
-import sys
-import time
-import urllib.parse
-import urllib.request
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_PATH = ROOT / "data" / "resources.csv"
-ARXIV_ONLY_VENUES = {"", "arXiv", "Technical Report"}
-USER_AGENT = "awesome-creative-graphic-design-generation/1.0 bibliographic migration"
-MAX_WORKERS = 6
 
 PUBLICATION_OVERRIDES: dict[str, str] = {
+    "AutoPP": "https://ojs.aaai.org/index.php/AAAI/article/view/37377",
+    "CGL-GAN": "https://www.ijcai.org/proceedings/2022/692",
+    "CreatiDesign": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/b46b78c353f672d83997d4cce5f1b0fb-Abstract-Conference.html",
+    "Design Your Ad": "https://openaccess.thecvf.com/content/CVPR2026/html/Xu_Design_Your_Ad_Personalized_Advertising_Image_and_Text_Generation_with_CVPR_2026_paper.html",
+    "Dolfin": "https://doi.org/10.1007/978-3-031-72983-6_19",
+    "GlyphDraw2": "https://ojs.aaai.org/index.php/AAAI/article/view/32636",
+    "InnoAds-Composer": "https://openaccess.thecvf.com/content/CVPR2026/html/Qin_InnoAds-Composer_Efficient_Condition_Composition_for_E-Commerce_Poster_Generation_CVPR_2026_paper.html",
+    "LACE": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/25d61d11fcbbfb28d1fbcc217141e776-Abstract-Conference.html",
+    "Layout-Corrector": "https://doi.org/10.1007/978-3-031-72754-2_6",
+    "LayoutDETR": "https://link.springer.com/chapter/10.1007/978-3-031-72661-3_10",
+    "LayoutFlow": "https://link.springer.com/chapter/10.1007/978-3-031-72764-1_4",
+    "LayoutGPT": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/3a7f9e485845dac27423375c934cb4db-Abstract.html",
+    "LayoutNUWA": "https://proceedings.iclr.cc/paper_files/paper/2024/hash/a6a1e4c756d700d9aedcc1896a7e6fb0-Abstract-Conference.html",
+    "LayoutPrompter": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/88a129e44f25a571ae8b838057c46855-Abstract-Conference.html",
+    "MRT": "https://openaccess.thecvf.com/content/CVPR2026/html/Tang_Masked_Region_Transformer_for_Layered_Image_Generation_and_Editing_at_CVPR_2026_paper.html",
     "Mise-en-Scène": "https://human-ai-co-creation.github.io/workshop/",
+    "P2P": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/1fe6f635fe265292aba3987b5123ae3d-Abstract-Conference.html",
+    "PLay": "https://proceedings.mlr.press/v202/cheng23b.html",
+    "Paper2Poster": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/17337b1d5eeac8b59c80e025a552fa7a-Abstract-Datasets_and_Benchmarks_Track.html",
+    "PosterForest": "https://aclanthology.org/2026.acl-long.15/",
     "PosterGen": "https://openaccess.thecvf.com/content/CVPR2026F/papers/Zhang_PosterGen_Aesthetic-Aware_Multi-Modal_Paper-to-Poster_Generation_Via_Multi-Agent_LLMs_CVPRF_2026_paper.pdf",
+    "PosterLLaMA": "https://doi.org/10.1007/978-3-031-73007-8_26",
+    "PosterVerse": "https://ojs.aaai.org/index.php/AAAI/article/view/37656",
+    "Qwen-Image-Layered": "https://openaccess.thecvf.com/content/CVPR2026/html/Yin_Qwen-Image-Layered_Towards_Inherent_Editability_via_Layer_Decomposition_CVPR_2026_paper.html",
+    "RefAdGen": "https://ojs.aaai.org/index.php/AAAI/article/view/37307",
+    "SIMPLEPOSTER": "https://openaccess.thecvf.com/content/CVPR2026/html/Cui_SIMPLEPOSTER_A_SIMPLE_BASELINE_FOR_PRODUCT_POSTER_GENERATION_CVPR_2026_paper.html",
+    "SciPostLayout": "https://bmvc2024.org/proceedings/28/",
+    "SlideTailor": "https://ojs.aaai.org/index.php/AAAI/article/view/40758",
+    "TAUE": "https://openaccess.thecvf.com/content/CVPR2026F/html/Nagai_TAUE_Training-free_Noise_Transplant_and_Cultivation_Diffusion_Model_CVPRF_2026_paper.html",
+    "TextDiffuser": "https://proceedings.neurips.cc/paper_files/paper/2023/hash/1df4afb0b4ebf492a41218ce16b6d8df-Abstract-Conference.html",
+    "TextDiffuser-2": "https://doi.org/10.1007/978-3-031-72652-1_23",
+    "TextLap": "https://aclanthology.org/2024.findings-emnlp.833/",
+    "Towards Reliable Advertising Image Generation Using Human Feedback": "https://doi.org/10.1007/978-3-031-72661-3_23",
 }
+
 ARXIV_OVERRIDES: dict[str, str] = {
-    "LayoutGAN": "https://arxiv.org/abs/1901.06767",
-    "Graphist": "https://arxiv.org/abs/2404.14368",
-    "Mirror in the Model: Ad Banner Image Generation via Reflective Multi-LLM and Multi-modal Agents": "https://arxiv.org/abs/2507.03326",
     "AutoFigure-Edit": "https://arxiv.org/abs/2603.06674",
-    "PaperBanana": "https://arxiv.org/abs/2601.23265",
-    "Design First Code Later": "https://arxiv.org/abs/2605.26451",
     "CAL-RAG": "https://arxiv.org/abs/2506.21934",
-    "LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition": "https://arxiv.org/abs/2603.17965",
-    "ReContraster": "https://arxiv.org/abs/2604.10442",
+    "Design First Code Later": "https://arxiv.org/abs/2605.26451",
     "FreeText": "https://arxiv.org/abs/2601.00535",
+    "Graphist": "https://arxiv.org/abs/2404.14368",
+    "LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition": "https://arxiv.org/abs/2603.17965",
+    "LayoutGAN": "https://arxiv.org/abs/1901.06767",
+    "Mirror in the Model: Ad Banner Image Generation via Reflective Multi-LLM and Multi-modal Agents": "https://arxiv.org/abs/2507.03326",
+    "PaperBanana": "https://arxiv.org/abs/2601.23265",
+    "ReContraster": "https://arxiv.org/abs/2604.10442",
     "T-Stars-Poster": "https://arxiv.org/abs/2501.14316",
 }
 
-PREFERRED_PUBLICATION_HOSTS = (
-    "doi.org",
-    "openaccess.thecvf.com",
-    "proceedings.mlr.press",
-    "proceedings.neurips.cc",
-    "aclanthology.org",
-    "openreview.net",
-    "ojs.aaai.org",
-    "ijcai.org",
-    "dl.acm.org",
-    "ieeexplore.ieee.org",
-    "link.springer.com",
-)
 
-
-def normalize_title(value: str) -> str:
-    value = html.unescape(re.sub(r"<[^>]+>", " ", value))
-    value = value.casefold().replace("–", "-").replace("—", "-")
-    return re.sub(r"[^a-z0-9]+", " ", value).strip()
-
-
-def is_arxiv_url(url: str) -> bool:
-    parsed = urllib.parse.urlparse(url)
+def is_arxiv_url(value: str) -> bool:
+    parsed = urlparse(value)
     return (
         parsed.scheme == "https"
         and (parsed.hostname or "").casefold() == "arxiv.org"
@@ -73,8 +76,8 @@ def is_arxiv_url(url: str) -> bool:
     )
 
 
-def is_arxiv_doi(url: str) -> bool:
-    parsed = urllib.parse.urlparse(url)
+def is_arxiv_doi(value: str) -> bool:
+    parsed = urlparse(value)
     return (
         parsed.scheme == "https"
         and (parsed.hostname or "").casefold() == "doi.org"
@@ -82,243 +85,17 @@ def is_arxiv_doi(url: str) -> bool:
     )
 
 
-def arxiv_id(url: str) -> str:
-    if is_arxiv_url(url):
-        return urllib.parse.urlparse(url).path.removeprefix("/abs/").split("v", 1)[0]
-    if is_arxiv_doi(url):
-        doi = urllib.parse.urlparse(url).path.lstrip("/")
-        return doi.split("arXiv.", 1)[1] if "arXiv." in doi else doi.split("arxiv.", 1)[1]
-    raise ValueError(f"Not an arXiv URL or arXiv DOI: {url}")
+def arxiv_id(value: str) -> str:
+    if is_arxiv_url(value):
+        return urlparse(value).path.removeprefix("/abs/").split("v", 1)[0]
+    if is_arxiv_doi(value):
+        doi = urlparse(value).path.lstrip("/")
+        return doi.casefold().split("10.48550/arxiv.", 1)[1]
+    raise ValueError(value)
 
 
-def semantic_scholar_id(url: str) -> str | None:
-    if is_arxiv_url(url) or is_arxiv_doi(url):
-        return f"ARXIV:{arxiv_id(url)}"
-    parsed = urllib.parse.urlparse(url)
-    if (parsed.hostname or "").casefold() == "doi.org":
-        doi = parsed.path.lstrip("/")
-        return f"DOI:{doi}" if doi else None
-    if (parsed.hostname or "").casefold() == "aclanthology.org":
-        acl_id = parsed.path.strip("/")
-        return f"ACL:{acl_id}" if acl_id else None
-    return None
-
-
-def request_json(url: str) -> dict:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    last_error: Exception | None = None
-    for attempt in range(3):
-        try:
-            with urllib.request.urlopen(request, timeout=8) as response:
-                return json.loads(response.read().decode("utf-8"))
-        except Exception as exc:
-            last_error = exc
-            time.sleep(0.75 * (attempt + 1))
-    assert last_error is not None
-    raise last_error
-
-
-def semantic_scholar_batch(ids: list[str]) -> dict[str, dict]:
-    if not ids:
-        return {}
-    url = (
-        "https://api.semanticscholar.org/graph/v1/paper/batch?"
-        + urllib.parse.urlencode({"fields": "title,externalIds"})
-    )
-    body = json.dumps({"ids": ids}).encode("utf-8")
-    request = urllib.request.Request(
-        url,
-        data=body,
-        headers={
-            "User-Agent": USER_AGENT,
-            "Content-Type": "application/json",
-        },
-        method="POST",
-    )
-    last_error: Exception | None = None
-    for attempt in range(3):
-        try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                records = json.loads(response.read().decode("utf-8"))
-            return {
-                requested_id: record
-                for requested_id, record in zip(ids, records, strict=True)
-                if record is not None
-            }
-        except Exception as exc:
-            last_error = exc
-            time.sleep(1.0 * (attempt + 1))
-    assert last_error is not None
-    raise last_error
-
-
-@functools.lru_cache(maxsize=None)
-def dblp_hits(query: str) -> tuple[dict, ...]:
-    url = "https://dblp.org/search/publ/api?" + urllib.parse.urlencode(
-        {"q": query, "format": "json", "h": 30}
-    )
-    payload = request_json(url)
-    hits = payload.get("result", {}).get("hits", {}).get("hit", [])
-    if isinstance(hits, dict):
-        hits = [hits]
-    return tuple(hit.get("info", {}) for hit in hits)
-
-
-def info_title(info: dict) -> str:
-    return " ".join(str(info.get("title", "")).split())
-
-
-def info_ee(info: dict) -> list[str]:
-    ee = info.get("ee", [])
-    if isinstance(ee, str):
-        ee = [ee]
-    return [str(url) for url in ee]
-
-
-def arxiv_from_info(info: dict) -> str | None:
-    for url in info_ee(info):
-        match = re.search(r"https?://arxiv\.org/abs/([^/?#]+)", url)
-        if match:
-            return f"https://arxiv.org/abs/{match.group(1).split('v', 1)[0]}"
-    key = str(info.get("key", ""))
-    match = re.fullmatch(r"journals/corr/abs-(.+)", key)
-    if match:
-        return f"https://arxiv.org/abs/{match.group(1)}"
-    return None
-
-
-def publication_from_info(info: dict) -> list[str]:
-    return [
-        url
-        for url in info_ee(info)
-        if url.startswith("https://") and not is_arxiv_url(url) and not is_arxiv_doi(url)
-    ]
-
-
-def score_title(target: str, candidate: str) -> int:
-    target_norm = normalize_title(target)
-    candidate_norm = normalize_title(candidate)
-    if not target_norm or not candidate_norm:
-        return 0
-    if target_norm == candidate_norm:
-        return 100
-    if target_norm in candidate_norm or candidate_norm in target_norm:
-        return 55
-    return 0
-
-
-def publication_from_external_ids(external_ids: dict) -> str | None:
-    doi = external_ids.get("DOI")
-    if doi and not str(doi).casefold().startswith("10.48550/arxiv."):
-        return f"https://doi.org/{doi}"
-    acl = external_ids.get("ACL")
-    if acl:
-        return f"https://aclanthology.org/{acl}/"
-    return None
-
-
-def arxiv_from_external_ids(external_ids: dict) -> str | None:
-    identifier = external_ids.get("ArXiv")
-    return f"https://arxiv.org/abs/{identifier}" if identifier else None
-
-
-def publication_url(title: str, venue_year: str) -> str | None:
-    matches: list[tuple[int, int, str]] = []
-    for info in dblp_hits(title):
-        title_score = score_title(title, info_title(info))
-        year_score = 25 if venue_year and str(info.get("year", "")) == venue_year else 0
-        if title_score + year_score < 90:
-            continue
-        for url in publication_from_info(info):
-            host_rank = next(
-                (
-                    len(PREFERRED_PUBLICATION_HOSTS) - index
-                    for index, host in enumerate(PREFERRED_PUBLICATION_HOSTS)
-                    if host in url
-                ),
-                0,
-            )
-            matches.append((title_score + year_score, host_rank, url))
-    if not matches:
-        return None
-    matches.sort(reverse=True)
-    top = matches[0]
-    tied = [item for item in matches if item[:2] == top[:2]]
-    if len({item[2] for item in tied}) > 1:
-        return None
-    return top[2]
-
-
-def arxiv_url_for_title(title: str) -> str | None:
-    matches: list[tuple[int, str]] = []
-    for info in dblp_hits(title):
-        candidate = arxiv_from_info(info)
-        if candidate and score_title(title, info_title(info)) >= 100:
-            matches.append((100, candidate))
-    urls = {url for _, url in matches}
-    return next(iter(urls)) if len(urls) == 1 else None
-
-
-def resolve_row(
-    row: dict[str, str], s2_records: dict[str, dict]
-) -> tuple[dict[str, str], dict[str, str] | None]:
-    row = dict(row)
-    row["arxiv_url"] = (row.get("arxiv_url") or "").strip()
-    if row.get("section") != "Papers":
-        row["arxiv_url"] = ""
-        return row, None
-
-    primary = row["url"].strip()
-    published = row.get("venue", "") not in ARXIV_ONLY_VENUES
-    primary_is_preprint = is_arxiv_url(primary) or is_arxiv_doi(primary)
-
-    if primary_is_preprint:
-        identifier = arxiv_id(primary)
-        canonical_arxiv = row["arxiv_url"] or f"https://arxiv.org/abs/{identifier}"
-        if not published:
-            row["url"] = canonical_arxiv
-            row["arxiv_url"] = ""
-            return row, None
-
-        row["arxiv_url"] = canonical_arxiv
-        if row["name"] in PUBLICATION_OVERRIDES:
-            row["url"] = PUBLICATION_OVERRIDES[row["name"]]
-            return row, None
-
-        record = s2_records.get(f"ARXIV:{identifier}", {})
-        external_ids = record.get("externalIds") or {}
-        resolved = publication_from_external_ids(external_ids)
-        title = str(record.get("title") or row["name"])
-        if not resolved:
-            try:
-                resolved = publication_url(title, row.get("venue_year", ""))
-            except Exception as exc:
-                return row, {"name": row["name"], "kind": "publication", "error": repr(exc)}
-        if not resolved:
-            return row, {"name": row["name"], "kind": "publication", "title": title}
-        row["url"] = resolved
-        return row, None
-
-    if row.get("arxiv_date") and not row["arxiv_url"]:
-        if row["name"] in ARXIV_OVERRIDES:
-            row["arxiv_url"] = ARXIV_OVERRIDES[row["name"]]
-            return row, None
-
-        lookup_id = semantic_scholar_id(primary)
-        record = s2_records.get(lookup_id or "", {})
-        external_ids = record.get("externalIds") or {}
-        resolved = arxiv_from_external_ids(external_ids)
-        title = str(record.get("title") or row["name"])
-        if not resolved:
-            try:
-                resolved = arxiv_url_for_title(title)
-            except Exception as exc:
-                return row, {"name": row["name"], "kind": "arxiv", "error": repr(exc)}
-        if not resolved:
-            return row, {"name": row["name"], "kind": "arxiv", "title": title}
-        row["arxiv_url"] = resolved
-
-    return row, None
+def canonical_arxiv(value: str) -> str:
+    return f"https://arxiv.org/abs/{arxiv_id(value)}"
 
 
 def main() -> int:
@@ -334,40 +111,37 @@ def main() -> int:
         for row in rows:
             row["arxiv_url"] = ""
 
-    lookup_ids: list[str] = []
     for row in rows:
+        row["arxiv_url"] = (row.get("arxiv_url") or "").strip()
         if row.get("section") != "Papers":
+            row["arxiv_url"] = ""
             continue
+
+        name = row["name"]
         primary = row["url"].strip()
-        published = row.get("venue", "") not in ARXIV_ONLY_VENUES
-        if (is_arxiv_url(primary) or is_arxiv_doi(primary)) and published:
-            lookup_ids.append(f"ARXIV:{arxiv_id(primary)}")
-        elif row.get("arxiv_date"):
-            lookup_id = semantic_scholar_id(primary)
-            if lookup_id:
-                lookup_ids.append(lookup_id)
+        primary_is_preprint = is_arxiv_url(primary) or is_arxiv_doi(primary)
 
-    lookup_ids = list(dict.fromkeys(lookup_ids))
-    try:
-        s2_records = semantic_scholar_batch(lookup_ids)
-    except Exception as exc:
-        print(f"Semantic Scholar batch lookup failed: {exc!r}; using DBLP fallback", file=sys.stderr)
-        s2_records = {}
+        if primary_is_preprint:
+            arxiv = row["arxiv_url"] or canonical_arxiv(primary)
+            if name in PUBLICATION_OVERRIDES:
+                row["url"] = PUBLICATION_OVERRIDES[name]
+                row["arxiv_url"] = arxiv
+            else:
+                # A venue label may precede proceedings publication. Until an
+                # authoritative publication page is verified, use direct arXiv
+                # as the primary link rather than the arXiv DOI surrogate.
+                row["url"] = arxiv
+                row["arxiv_url"] = ""
+            continue
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        results = list(executor.map(lambda row: resolve_row(row, s2_records), rows))
-
-    resolved_rows = [row for row, _ in results]
-    unresolved = [error for _, error in results if error is not None]
-    if unresolved:
-        print(json.dumps(unresolved, indent=2, ensure_ascii=False), file=sys.stderr)
-        print("Refusing to write resources.csv until every bibliographic link is resolved.", file=sys.stderr)
-        return 1
+        if row.get("arxiv_date") and not row["arxiv_url"] and name in ARXIV_OVERRIDES:
+            row["arxiv_url"] = ARXIV_OVERRIDES[name]
 
     with RESOURCE_PATH.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
-        writer.writerows(resolved_rows)
+        writer.writerows(rows)
+
     return 0
 
 
