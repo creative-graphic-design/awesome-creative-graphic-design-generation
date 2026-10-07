@@ -16,12 +16,14 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_PATH = ROOT / "data" / "resources.csv"
 ARXIV_ONLY_VENUES = {"", "arXiv", "Technical Report"}
 USER_AGENT = "awesome-creative-graphic-design-generation/1.0 bibliographic migration"
+MAX_WORKERS = 6
 
 # Only verified exceptions belong here. Automated matching remains fail-closed.
 PUBLICATION_OVERRIDES: dict[str, str] = {}
@@ -65,13 +67,13 @@ def arxiv_id(url: str) -> str:
 def request_json(url: str) -> dict:
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     last_error: Exception | None = None
-    for attempt in range(2):
+    for attempt in range(3):
         try:
             with urllib.request.urlopen(request, timeout=8) as response:
                 return json.loads(response.read().decode("utf-8"))
         except Exception as exc:
             last_error = exc
-            time.sleep(0.5 * (attempt + 1))
+            time.sleep(0.75 * (attempt + 1))
     assert last_error is not None
     raise last_error
 
@@ -112,12 +114,11 @@ def arxiv_from_info(info: dict) -> str | None:
 
 
 def publication_from_info(info: dict) -> list[str]:
-    result: list[str] = []
-    for url in info_ee(info):
-        if not url.startswith("https://") or is_arxiv_url(url):
-            continue
-        result.append(url)
-    return result
+    return [
+        url
+        for url in info_ee(info)
+        if url.startswith("https://") and not is_arxiv_url(url)
+    ]
 
 
 def score_title(target: str, candidate: str) -> int:
@@ -162,7 +163,11 @@ def publication_url(title: str, venue_year: str) -> str | None:
             continue
         for url in publication_from_info(info):
             host_rank = next(
-                (len(PREFERRED_PUBLICATION_HOSTS) - index for index, host in enumerate(PREFERRED_PUBLICATION_HOSTS) if host in url),
+                (
+                    len(PREFERRED_PUBLICATION_HOSTS) - index
+                    for index, host in enumerate(PREFERRED_PUBLICATION_HOSTS)
+                    if host in url
+                ),
                 0,
             )
             matches.append((title_score + year_score, host_rank, url))
@@ -176,21 +181,68 @@ def publication_url(title: str, venue_year: str) -> str | None:
     return top[2]
 
 
-def arxiv_url_for_title(title: str, venue_year: str) -> str | None:
+def arxiv_url_for_title(title: str) -> str | None:
     matches: list[tuple[int, str]] = []
     for info in dblp_hits(title):
         candidate = arxiv_from_info(info)
         if not candidate:
             continue
         score = score_title(title, info_title(info))
-        # CoRR record year is commonly the preprint year, so venue-year mismatch
-        # must not reject an otherwise exact title.
         if score >= 100:
             matches.append((score, candidate))
     if not matches:
         return None
-    urls = {url for score, url in matches if score == max(item[0] for item in matches)}
+    best = max(score for score, _ in matches)
+    urls = {url for score, url in matches if score == best}
     return next(iter(urls)) if len(urls) == 1 else None
+
+
+def resolve_row(row: dict[str, str]) -> tuple[dict[str, str], dict[str, str] | None]:
+    row = dict(row)
+    row["arxiv_url"] = (row.get("arxiv_url") or "").strip()
+    if row.get("section") != "Papers":
+        row["arxiv_url"] = ""
+        return row, None
+
+    primary = row["url"].strip()
+    published = row.get("venue", "") not in ARXIV_ONLY_VENUES
+
+    if is_arxiv_url(primary):
+        identifier = arxiv_id(primary)
+        canonical_arxiv = f"https://arxiv.org/abs/{identifier}"
+        if not published:
+            row["url"] = canonical_arxiv
+            row["arxiv_url"] = ""
+            return row, None
+
+        row["arxiv_url"] = canonical_arxiv
+        if row["name"] in PUBLICATION_OVERRIDES:
+            row["url"] = PUBLICATION_OVERRIDES[row["name"]]
+            return row, None
+        try:
+            title = canonical_title(row["name"], row.get("venue_year", ""), identifier)
+            resolved = publication_url(title, row.get("venue_year", ""))
+        except Exception as exc:
+            return row, {"name": row["name"], "kind": "publication", "error": repr(exc)}
+        if not resolved:
+            return row, {"name": row["name"], "kind": "publication", "title": title}
+        row["url"] = resolved
+        return row, None
+
+    if row.get("arxiv_date") and not row["arxiv_url"]:
+        if row["name"] in ARXIV_OVERRIDES:
+            row["arxiv_url"] = ARXIV_OVERRIDES[row["name"]]
+            return row, None
+        try:
+            title = canonical_title(row["name"], row.get("venue_year", ""))
+            resolved = arxiv_url_for_title(title)
+        except Exception as exc:
+            return row, {"name": row["name"], "kind": "arxiv", "error": repr(exc)}
+        if not resolved:
+            return row, {"name": row["name"], "kind": "arxiv", "title": title}
+        row["arxiv_url"] = resolved
+
+    return row, None
 
 
 def main() -> int:
@@ -206,57 +258,11 @@ def main() -> int:
         for row in rows:
             row["arxiv_url"] = ""
 
-    unresolved: list[dict[str, str]] = []
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        results = list(executor.map(resolve_row, rows))
 
-    for row in rows:
-        row["arxiv_url"] = (row.get("arxiv_url") or "").strip()
-        if row.get("section") != "Papers":
-            row["arxiv_url"] = ""
-            continue
-
-        primary = row["url"].strip()
-        published = row.get("venue", "") not in ARXIV_ONLY_VENUES
-
-        if is_arxiv_url(primary):
-            identifier = arxiv_id(primary)
-            canonical_arxiv = f"https://arxiv.org/abs/{identifier}"
-            if not published:
-                row["url"] = canonical_arxiv
-                row["arxiv_url"] = ""
-                continue
-
-            row["arxiv_url"] = canonical_arxiv
-            if row["name"] in PUBLICATION_OVERRIDES:
-                row["url"] = PUBLICATION_OVERRIDES[row["name"]]
-                continue
-
-            try:
-                title = canonical_title(row["name"], row.get("venue_year", ""), identifier)
-                resolved = publication_url(title, row.get("venue_year", ""))
-            except Exception as exc:
-                unresolved.append({"name": row["name"], "kind": "publication", "error": repr(exc)})
-                continue
-            if resolved:
-                row["url"] = resolved
-            else:
-                unresolved.append({"name": row["name"], "kind": "publication", "title": title})
-            continue
-
-        if row.get("arxiv_date") and not row["arxiv_url"]:
-            if row["name"] in ARXIV_OVERRIDES:
-                row["arxiv_url"] = ARXIV_OVERRIDES[row["name"]]
-                continue
-            try:
-                title = canonical_title(row["name"], row.get("venue_year", ""))
-                resolved = arxiv_url_for_title(title, row.get("venue_year", ""))
-            except Exception as exc:
-                unresolved.append({"name": row["name"], "kind": "arxiv", "error": repr(exc)})
-                continue
-            if resolved:
-                row["arxiv_url"] = resolved
-            else:
-                unresolved.append({"name": row["name"], "kind": "arxiv", "title": title})
-
+    resolved_rows = [row for row, _ in results]
+    unresolved = [error for _, error in results if error is not None]
     if unresolved:
         print(json.dumps(unresolved, indent=2, ensure_ascii=False), file=sys.stderr)
         print("Refusing to write resources.csv until every bibliographic link is resolved.", file=sys.stderr)
@@ -265,7 +271,7 @@ def main() -> int:
     with RESOURCE_PATH.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(resolved_rows)
     return 0
 
 
