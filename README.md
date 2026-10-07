@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-240-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-74-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-75-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -347,7 +347,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2026
 
 - [PosterVisor](https://arxiv.org/abs/2609.17326) - Uses persistent semantic-geometric contracts to control scientific-poster content, layout, validation, and repair. **Architecture:** Multi-stage System.
-- [PosterMELD](https://arxiv.org/abs/2608.02218) - Generates controllable, diverse scientific posters with multi-agent planning and editable print-ready PPTX outputs. **Architecture:** Agentic.
+- [PosterMELD](https://arxiv.org/abs/2608.02218) - Generates controllable, diverse scientific posters with multi-agent planning and editable print-ready PPTX outputs. **Architecture:** Agentic; LLM; VLM. [Project](https://jackey0903.github.io/PosterMELD/) · [Code](https://github.com/Shannon4Science/PosterMELD) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable text model; VLM review; image-generation API · **Train:** None · **Eval:** 621-paper benchmark · **Output:** Editable PPTX; PNG.
 - [Personalization as Inverse Planning](https://arxiv.org/abs/2607.00407) - Learns latent page-level design intents for agentic slide personalization through structural denoising and multi-agent reinforcement learning (ECCV 2026). **Architecture:** Agentic; Diffusion.
 - [Any2Poster](https://arxiv.org/abs/2606.02915) - Introduces an any-source poster benchmark and agent spanning multiple input modalities and content domains. **Architecture:** Agentic; LLM; VLM. [Project](https://any2poster.github.io/) · [Code](https://github.com/Any2Poster/Any2Poster) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable OpenRouter LLM/VLM models; Gemini 3 Pro visual synthesis; Playwright rendering · **Train:** None · **Eval:** Any2Poster Bench; BenchQuiz; VLM-as-Judge · **Output:** HTML artifact; PDF; PNG.
 - [ArcDeck](https://arxiv.org/abs/2604.11969) - Generates polished academic slide decks from papers by reconstructing narrative structure with discourse parsing, multi-agent outline critique, layout planning, and PPTX rendering (ECCV 2026). **Architecture:** Agentic; LLM. [Project](https://arcdeck.org/) · [Code](https://github.com/RehgLab/ArcDeck) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable GPT/Claude/Qwen/vLLM language models; python-pptx/PptxGenJS rendering · **Train:** None · **Eval:** ArcBench · **Output:** Editable PPTX; slide-planning JSON intermediates.
