@@ -1,0 +1,38 @@
+name: Update PaperBanana ICML metadata
+
+on:
+  push:
+    branches:
+      - metadata/paperbanana-icml-2026
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: metadata/paperbanana-icml-2026
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Update metadata and regenerate README
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('data/resources.csv')
+          text = path.read_text()
+          old = 'Papers,Scientific Figure and Graphical Abstract Generation,PaperBanana,https://arxiv.org/abs/2601.23265,"Uses specialized retrieval, planning, styling, visualization, and critique agents to generate publication-ready academic illustrations.",Agentic; VLM,arXiv,2026,2026-01-30,,arXiv v1'
+          new = 'Papers,Scientific Figure and Graphical Abstract Generation,PaperBanana,https://proceedings.mlr.press/v306/zhu26ag.html,"Uses specialized retrieval, planning, styling, visualization, and critique agents to generate publication-ready academic illustrations (ICML 2026).",Agentic; VLM,ICML,2026,2026-01-30,2026-07-06,arXiv v1 precedes ICML 2026 conference start'
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one PaperBanana row, found {text.count(old)}')
+          path.write_text(text.replace(old, new))
+          PY
+          uv run python scripts/generate_readme.py
+          git rm .github/workflows/update-paperbanana-icml.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/resources.csv README.md
+          git commit -m 'Record PaperBanana as an ICML 2026 paper'
+          git push
