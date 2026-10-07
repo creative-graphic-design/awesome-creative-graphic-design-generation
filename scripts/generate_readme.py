@@ -11,6 +11,7 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
@@ -97,6 +98,13 @@ WEIGHT_STATUS_LABELS = {
     "not-applicable": "n/a",
     "unknown": "unknown",
 }
+SIMPLE_ICON_PROVIDERS = {
+    "arxiv.org": {"slug": "arxiv", "label": "arXiv"},
+    "github.com": {"slug": "github", "label": "GitHub"},
+    "huggingface.co": {"slug": "huggingface", "label": "Hugging Face"},
+}
+SIMPLE_ICON_LIGHT_COLOR = "24292F"
+SIMPLE_ICON_DARK_COLOR = "FFFFFF"
 
 
 def parse_date(value: str) -> date | None:
@@ -206,7 +214,6 @@ def load_metadata(paper_names: set[str]) -> dict[str, dict[str, str]]:
     return metadata
 
 
-
 def load_venues() -> list[dict[str, str]]:
     rows = load_csv(VENUES_PATH)
     seen_names: set[str] = set()
@@ -260,6 +267,26 @@ def anchor(value: str) -> str:
     value = re.sub(r"[^a-z0-9\s-]", "", value)
     return re.sub(r"[\s-]+", "-", value).strip("-")
 
+
+def provider_for_url(url: str) -> dict[str, str] | None:
+    hostname = (urlparse(url).hostname or "").casefold()
+    for domain, provider in SIMPLE_ICON_PROVIDERS.items():
+        if hostname == domain or hostname.endswith(f".{domain}"):
+            return provider
+    return None
+
+
+def provider_icon(url: str) -> str:
+    provider = provider_for_url(url)
+    if provider is None:
+        return ""
+    slug = provider["slug"]
+    label = provider["label"]
+    return (
+        f'<img src="https://cdn.simpleicons.org/{slug}/'
+        f'{SIMPLE_ICON_LIGHT_COLOR}/{SIMPLE_ICON_DARK_COLOR}" '
+        f'width="14" height="14" alt="{label}"> '
+    )
 
 
 def entry(row: dict[str, Any]) -> str:
@@ -373,6 +400,7 @@ def generate() -> str:
     )
     environment.filters["anchor"] = anchor
     environment.filters["entry"] = entry
+    environment.filters["provider_icon"] = provider_icon
     template = environment.get_template("README.md.j2")
     return template.render(**context).rstrip() + "\n"
 
