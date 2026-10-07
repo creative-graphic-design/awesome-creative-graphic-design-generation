@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-151-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-157-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -387,28 +387,28 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Desigen](https://arxiv.org/abs/2403.09093) - Jointly generates advertising backgrounds and foreground element layouts (CVPR 2024).
   - Details: **Architecture:** Autoregressive; Transformer · [Project](https://whaohan.github.io/desigen) · [Code](https://github.com/whaohan/desigen) (`training + inference`) · Weights: `unknown` · **Base:** Diffusion background generator; autoregressive Transformer layout generator · **Train:** More than 40K advertisement-banner designs · **Eval:** Advertisement-template generation metrics · **Output:** Background image plus structured foreground layout and complete design template.
 - [Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners](https://arxiv.org/abs/2403.05578) - Chains an LLM with text-to-image generation to turn shopper interaction and product metadata into personalized e-commerce banner imagery at scale (KDD 2024).
-  - Details: **Architecture:** LLM.
+  - Details: **Architecture:** LLM · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Large language model for product-attribute extraction; Stable Diffusion-family text-to-image model · **Train:** None · **Output:** Raster personalized e-commerce banner.
 - [CG4CTR](https://arxiv.org/abs/2401.10934) - Builds a Stable-Diffusion-based advertising-creative generation pipeline that incorporates user preferences and downstream click-through-rate ranking (WWW 2024 Companion).
-  - Details: **Architecture:** Multi-stage System; Diffusion.
+  - Details: **Architecture:** Multi-stage System; Diffusion · Project: — · [Code](https://github.com/HaoYang0123/Creative_Generation_Pipeline) (`unknown`) · [Weights](https://drive.google.com/drive/folders/1_h7XCcbJvvYSv3H8JWqTzEBDulKjHDAs?usp=sharing) (`partial`) · **Base:** Stable Diffusion inpainting; LoRA; BERT and Swin reward-model encoders · **Train:** Public CTR dataset; sampled commercial advertising data · **Eval:** Public CTR dataset; sampled commercial advertising data · **Output:** Personalized advertising creative image; CTR reward score.
 
 #### 2023
 
 - [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** PlanNet discrete-diffusion layout planner; RenderNet layout-conditioned diffusion renderer · **Train:** PPG30k · **Eval:** PPG30k · **Output:** Structured poster layout plus raster product poster.
 - [COLE](https://arxiv.org/abs/2311.16974) - Uses a hierarchical generation framework to create multi-layered, editable graphic designs from high-level intent (2023).
   - Details: **Architecture:** Multi-stage System; Diffusion; LLM; VLM · [Project](https://graphic-design-generation.github.io/) · Code: `announced` · Weights: `unknown` · **Base:** Fine-tuned LLMs; large multimodal models; diffusion models · **Train:** Proprietary design data (not publicly released) · **Eval:** DESIGNINTENTION benchmark · **Output:** Multi-layer editable graphic design.
 - [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** CGL-GAN/ICVT-style content-aware layout generation; CapOnImage tagline generation; Transformer style-attribute predictor · **Train:** AutoPoster poster dataset (76,960 posters) · **Eval:** AutoPoster poster dataset; user studies; online A/B evaluation · **Output:** Raster advertising poster.
 
 #### 2022
 
 - [CreaGAN](https://doi.org/10.1145/3503161.3548763) - Automates display-ad creative adaptation with aesthetics-aware product placement and context-aware inpainting while reusing existing design elements (ACM MM 2022).
-  - Details: **Architecture:** Multi-stage System; GAN.
+  - Details: **Architecture:** Multi-stage System; GAN · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Aesthetics-aware placement model; GAN-based contextual inpainting · **Train:** Public advertising dataset; real-world commercial creative dataset · **Eval:** Public advertising dataset; real-world commercial creative dataset · **Output:** Raster display-ad creative.
 
 #### 2021
 
 - [Vinci](https://doi.org/10.1145/3411764.3445117) - Introduces an intelligent graphic-design system that composes advertising posters from user-provided product assets and design intent (CHI 2021).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** LSTM-RNN VAE generator; GMM decoder; VGG-16 quality estimator · **Train:** 173 human-designed PSD posters expanded to 2,004 design sequences; 3,227 generated posters for estimator · **Eval:** User studies; Turing test; controlled editing-feedback study · **Output:** Advertising poster; structured design sequence.
 
 
 ### Composable and Layered Asset Generation
