@@ -242,18 +242,18 @@ Papers are classified by their **primary output and task**, rather than by model
 - [OpenCOLE](https://arxiv.org/abs/2406.08232) - Provides an open and reproducible pipeline for automatic layered graphic-design generation (CVPR Workshop 2024). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM; VLM. Project: — · [Code](https://github.com/CyberAgentAILab/OpenCOLE) (`training + inference`) · [Weights](https://huggingface.co/cyberagent/opencole-stable-diffusion-xl-base-1.0-finetune) (`released`).<br>  **Base:** K-shot LLM; SDXL fine-tune; LLaVA-v1.5-7B typography LoRA; renderer · **Train:** OpenCOLE dataset v1 · **Eval:** GPT-4V-based generated-design evaluation · **Output:** Rendered graphic design.
 - [Desigen](https://arxiv.org/abs/2403.09093) - Jointly generates advertising backgrounds and foreground element layouts (CVPR 2024). **Architecture:** Autoregressive / Transformer.
 - [Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners](https://arxiv.org/abs/2403.05578) - Chains an LLM with text-to-image generation to turn shopper interaction and product metadata into personalized e-commerce banner imagery at scale (KDD 2024). **Architecture:** LLM.
-- [CG4CTR](https://arxiv.org/abs/2401.10934) - Builds a Stable-Diffusion-based advertising-creative generation pipeline that incorporates user preferences and downstream click-through-rate ranking (WWW 2024 Companion). **Architecture:** Agentic / Multi-stage System; Diffusion.
+- [CG4CTR](https://arxiv.org/abs/2401.10934) - Builds a Stable-Diffusion-based advertising-creative generation pipeline that incorporates user preferences and downstream click-through-rate ranking (WWW 2024 Companion). **Architecture:** Multi-stage System; Diffusion.
 #### 2023
 
-- [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023). **Architecture:** Agentic / Multi-stage System.
+- [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023). **Architecture:** Multi-stage System.
 - [COLE](https://arxiv.org/abs/2311.16974) - Uses a hierarchical generation framework to create multi-layered, editable graphic designs from high-level intent (2023). **Architecture:** Agentic / Multi-stage System; Diffusion; LLM; VLM. [Project](https://graphic-design-generation.github.io/) · Code: `announced` · Weights: `unknown`.<br>  **Base:** Fine-tuned LLMs; large multimodal models; diffusion models · **Train:** Proprietary design data (not publicly released) · **Eval:** DESIGNINTENTION benchmark · **Output:** Multi-layer editable graphic design.
-- [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023). **Architecture:** Agentic / Multi-stage System.
+- [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023). **Architecture:** Multi-stage System.
 #### 2022
 
 - [CreaGAN](https://doi.org/10.1145/3503161.3548763) - Automates display-ad creative adaptation with aesthetics-aware product placement and context-aware inpainting while reusing existing design elements (ACM MM 2022). **Architecture:** Agentic / Multi-stage System; GAN.
 #### 2021
 
-- [Vinci](https://doi.org/10.1145/3411764.3445117) - Introduces an intelligent graphic-design system that composes advertising posters from user-provided product assets and design intent (CHI 2021). **Architecture:** Agentic / Multi-stage System.
+- [Vinci](https://doi.org/10.1145/3411764.3445117) - Introduces an intelligent graphic-design system that composes advertising posters from user-provided product assets and design intent (CHI 2021). **Architecture:** Multi-stage System.
 
 ### Composable and Layered Asset Generation
 
@@ -271,7 +271,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [PrismLayers](https://arxiv.org/abs/2505.22523) - Introduces PrismLayers and PrismLayersPro plus ART+ for high-quality multi-layer transparent image generation from text and layouts. **Architecture:** Autoregressive / Transformer; Diffusion. [Project](https://prism-layers.github.io/) · [Code](https://github.com/redredsheep/PrismLayers) (`inference only`) · Weights: `released`.<br>  **Base:** ART · **Train:** PrismLayersPro (20K high-quality subset of 200K PrismLayers) · **Output:** Multiple RGBA layers plus composite image.
 - [PSDiffusion: Harmonized Multi-Layer Image Generation via Layout and Appearance Alignment](https://arxiv.org/abs/2505.11468) - Generates multiple transparent layers simultaneously with a unified diffusion framework and global-layer interaction for coherent layout, contacts, shadows, and reflections (WACV 2026). **Architecture:** Diffusion. [Project](https://dingbang777.github.io/PSDiffusion_Website/) · [Code](https://github.com/dingbang777/PSDiffusion) (`announced`) · Weights: `announced`.<br>  **Base:** Pretrained image diffusion model with global-layer interaction · **Train:** Inter-Layer Dataset (announced) · **Eval:** Layer-generation benchmark datasets · **Output:** RGB background + multiple RGBA foreground layers.
 - [ART](https://arxiv.org/abs/2502.18364) - Generates variable numbers of transparent image layers from a global prompt and anonymous region layout using an Anonymous Region Transformer (CVPR 2025). **Architecture:** Autoregressive / Transformer. Project: — · [Code](https://github.com/microsoft/art-msra) (`withdrawn`) · Weights: `withdrawn`.<br>  **Eval:** DESIGN-MULTI-LAYER-BENCH; PHOTO-MULTI-LAYER-BENCH · **Output:** Variable number of RGBA layers.
-- [LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge](https://arxiv.org/abs/2501.01197) - Synthesizes a composite image with an off-the-shelf generator and then disassembles it into foreground and background layers using pretrained generative priors and high-frequency alignment. **Architecture:** Diffusion; Agentic / Multi-stage System.
+- [LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge](https://arxiv.org/abs/2501.01197) - Synthesizes a composite image with an off-the-shelf generator and then disassembles it into foreground and background layers using pretrained generative priors and high-frequency alignment. **Architecture:** Diffusion; Multi-stage System.
 #### 2024
 
 - [LayerFusion](https://arxiv.org/abs/2412.04460) - Generates harmonized foreground RGBA, background RGB, and composite images jointly using pretrained generative priors (CVPR Findings 2026). **Architecture:** Diffusion. [Project](https://layerfusion.github.io/) · Code: `announced` · Weights: `n/a`.<br>  **Base:** Pretrained latent diffusion model · **Train:** None · **Output:** Foreground RGBA; background RGB; composite RGB.
@@ -320,7 +320,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Revision Matters](https://arxiv.org/abs/2406.18559) - Fine-tunes a Gemini multimodal backbone on human revision traces to iteratively refine generated layouts toward expert design edits. **Architecture:** VLM.
 #### 2021
 
-- [De-Rendering Stylized Texts](https://arxiv.org/abs/2110.01890) - Vectorizes rasterized display text into editable content, geometry, font, styling, effects, and hidden-background parameters through differentiable rendering (ICCV 2021). **Architecture:** Agentic / Multi-stage System.
+- [De-Rendering Stylized Texts](https://arxiv.org/abs/2110.01890) - Vectorizes rasterized display text into editable content, geometry, font, styling, effects, and hidden-background parameters through differentiable rendering (ICCV 2021). **Architecture:** Multi-stage System.
 
 ### Scientific Figure and Graphical Abstract Generation
 
@@ -358,7 +358,7 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2024
 
 - [SciPostLayout](https://arxiv.org/abs/2407.19787) - Introduces a scientific-poster dataset and targets structured layout analysis and generation for scientific posters (BMVC 2024). **Architecture:** LLM. Project: — · [Code](https://github.com/omron-sinicx/scipostlayout) (`training + inference`) · Weights: `n/a`.<br>  **Base:** LayoutLMv3; DiT; LayoutDM; LayoutFormer++; GPT-4 · **Train:** SciPostLayout · **Eval:** SciPostLayout · **Output:** Scientific-poster layouts.
-- [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation (AAAI 2025). **Architecture:** Agentic / Multi-stage System; Classical / Optimization; LLM.
+- [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation (AAAI 2025). **Architecture:** Multi-stage System; Classical / Optimization; LLM.
 
 ## Datasets and Benchmarks
 
