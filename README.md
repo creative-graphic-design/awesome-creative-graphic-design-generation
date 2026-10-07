@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-141-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-151-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -347,7 +347,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [DesignAsCode](https://arxiv.org/abs/2602.17690) - Represents graphic designs as HTML/CSS and iteratively plans, implements, and visually refines editable designs (ACM MM 2026).
   - Details: **Architecture:** Multi-stage System; LLM; VLM · [Project](https://liuziyuan1109.github.io/design-as-code/) · [Code](https://github.com/liuziyuan1109/design-as-code) (`training + inference`) · [Weights](https://huggingface.co/Tony1109/DesignAsCode-planner) (`released`) · **Base:** Qwen3-8B planner; GPT-5; GPT-4o; gpt-image-1 · **Train:** DesignAsCode training data (~19K distilled Crello samples) · **Eval:** 546-sample test set; Broad test set · **Output:** Editable HTML/CSS.
 - [PosterVerse](https://arxiv.org/abs/2601.03993) - Automates commercial poster creation with blueprint planning, background generation, and HTML-based scalable typography (AAAI 2026).
-  - Details: **Architecture:** Multi-stage System; Diffusion; LLM; VLM.
+  - Details: **Architecture:** Multi-stage System; Diffusion; LLM; VLM · Project: — · [Code](https://github.com/wuhaer/PosterVerse) (`inference only`) · [Weights](https://huggingface.co/wuhaer/PosterVerse) (`released`) · **Base:** Fine-tuned language-model blueprint creator; customized diffusion background generator; MLLM HTML renderer · **Train:** PosterDNA · **Eval:** PosterDNA test set · **Output:** Commercial poster image with HTML-based scalable typography.
 
 #### 2025
 
@@ -356,9 +356,9 @@ Papers are classified by their **primary output and task**, rather than by model
 - [RefAdGen](https://arxiv.org/abs/2508.11695) - Generates high-fidelity advertising images while preserving referenced product identity through spatial mask control and product-feature fusion (AAAI 2026).
   - Details: **Architecture:** Diffusion · Project: — · Code: `training + inference` · [Weights](https://huggingface.co/yiyun123/RefAdgen) (`released`) · **Base:** Stable Diffusion v1.5; IP-Adapter; GroundingDINO; SAM2 · **Train:** AdProd-100K · **Eval:** AdProd-100K · **Output:** Raster product advertising image.
 - [Rethinking Layered Graphic Design Generation with a Top-Down Approach](https://arxiv.org/abs/2507.05601) - Introduces Accordion, a top-down framework that creates editable layered graphic designs from user intent or sketches by using a VLM for reference creation, design planning, and layer generation (ICCV 2025).
-  - Details: **Architecture:** VLM; Multi-stage System.
+  - Details: **Architecture:** VLM; Multi-stage System · [Project](https://jingyechen.github.io/accordion/) · Code: `unknown` · Weights: `unknown` · **Base:** VLM design planner; Flux reference generation; SAM and inpainting vision experts · **Train:** Design39K · **Eval:** DesignIntention benchmark · **Output:** Editable layered graphic design with background object and vector-text layers.
 - [DreamPoster](https://arxiv.org/abs/2507.04218) - Generates image-conditioned posters while preserving source content and supporting flexible resolution, layout, and typographic hierarchy with progressive multi-task training.
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · [Project](https://dreamposter.github.io/) · Code: `unknown` · Weights: `unknown` · **Base:** Seedream3.0 · **Train:** Proprietary paired poster source-material and final-design data · **Eval:** Internal poster testing benchmarks · **Output:** Raster poster image with flexible resolution layout and typography.
 - [Mirror in the Model: Ad Banner Image Generation via Reflective Multi-LLM and Multi-modal Agents](https://aclanthology.org/2025.emnlp-industry.17/) - Uses hierarchical multimodal agents and iterative reflection to generate and refine advertising banners from a prompt and logo image.
   - Details: **Architecture:** Agentic; VLM · Project: — · [Code](https://github.com/sony/mimo) (`pipeline`) · Weights: `n/a` · **Base:** Configurable Gemini or GPT multimodal/image-generation API models · **Train:** None · **Output:** Raster advertising banner image.
 - [PosterCraft](https://arxiv.org/abs/2506.10741) - Generates high-aesthetic posters in a unified diffusion framework with staged text-rendering optimization, region-aware fine-tuning, preference optimization, and vision-language feedback (ICLR 2026).
@@ -366,26 +366,26 @@ Papers are classified by their **primary output and task**, rather than by model
 - [CreatiDesign](https://arxiv.org/abs/2505.19114) - Uses a multi-conditional diffusion transformer to compose primary visuals, decorative elements, text, and layout for graphic design (ICLR 2026).
   - Details: **Architecture:** Transformer; Diffusion · [Project](https://huizhang0812.github.io/CreatiDesign/) · [Code](https://github.com/HuiZhang0812/CreatiDesign) (`inference only`) · [Weights](https://huggingface.co/HuiZhang0812/CreatiDesign) (`released`) · **Base:** FLUX.1-dev · **Train:** CreatiDesign dataset (~400K designs) · **Eval:** CreatiDesign benchmark (1K samples) · **Output:** Raster graphic design.
 - [BizGen](https://arxiv.org/abs/2503.20672) - Generates infographic and slide imagery from article-length prompts and ultra-dense layouts using layout-guided cross-attention and region-wise latent refinement (CVPR 2025).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · [Project](https://bizgen-msra.github.io) · [Code](https://github.com/1230young/bizgen) (`inference only`) · [Weights](https://huggingface.co/PYY2001/BizGen) (`released`) · **Base:** SDXL; Glyph-ByT5-v3; layout-conditioned LoRA and region-wise refinement · **Output:** Raster infographic and slide images.
 - [POSTA](https://arxiv.org/abs/2503.14908) - Combines background diffusion, multimodal layout and typography planning, and stylized text generation for customizable artistic posters (CVPR 2025).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · [Project](https://haoyuchen.com/POSTA) · Code: `unknown` · Weights: `announced` · **Base:** Background Diffusion; Design MLLM; ArtText Diffusion; GPT-4V Magic Prompter · **Train:** PosterArt-Design; PosterArt-Text · **Output:** Layered artistic poster with rendered typography.
 - [BannerAgency](https://arxiv.org/abs/2503.11060) - Uses collaborating multimodal LLM agents to plan and generate advertising banner designs from brand assets and requests (EMNLP 2025).
-  - Details: **Architecture:** Agentic; VLM.
+  - Details: **Architecture:** Agentic; VLM · [Project](https://banneragency.github.io/) · [Code](https://github.com/sony/BannerAgency) (`pipeline`) · Weights: `n/a` · **Base:** Frontier multimodal LLM agents; image-generation APIs; Figma/SVG rendering · **Train:** None · **Eval:** BannerRequest400; 5.2K expanded concrete requests · **Output:** Editable Figma or SVG banner components.
 - [DesignDiffusion: High-Quality Text-to-Design Image Generation with Diffusion Models](https://arxiv.org/abs/2503.01645) - Generates complete design images directly from text with a one-stage diffusion model, character-aware embeddings and localization supervision, plus self-play preference optimization for visual-text quality (CVPR 2025).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Latent diffusion model with visual character embeddings and character-localization loss; self-play DPO · **Output:** Raster graphic-design image.
 - [T-Stars-Poster](https://doi.org/10.1145/3746252.3761554) - Generates product-centric advertising images through VLM-guided prompt and layout planning, SDXL background generation, and final graphics rendering (CIKM 2025; arXiv preprint titled PAID).
-  - Details: **Architecture:** Multi-stage System; Diffusion; VLM.
+  - Details: **Architecture:** Multi-stage System; Diffusion; VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** VLM prompt generator; VLM layout generator; SDXL layout-controlled inpainting model · **Train:** PITA; PIL · **Eval:** Online A/B tests and offline advertising-image evaluations · **Output:** Raster product advertising image.
 
 #### 2024
 
 - [LaDeCo](https://arxiv.org/abs/2412.19712) - Generates layered and editable graphic designs rather than flattened images (CVPR 2025).
-  - Details: **Architecture:** VLM.
+  - Details: **Architecture:** VLM · [Project](https://www.microsoft.com/en-us/research/publication/from-elements-to-design-a-layered-approach-for-automatic-graphic-design-composition/) · [Code](https://github.com/microsoft/elem2design) (`training + inference`) · [Weights](https://huggingface.co/microsoft/elem2design) (`released`) · **Base:** Llama-3.1-8B and supported LLM/VLM backbones; layered rendering context · **Train:** Crello · **Eval:** Crello · **Output:** Layered element attributes plus rendered graphic design.
 - [Towards Reliable Advertising Image Generation Using Human Feedback](https://arxiv.org/abs/2408.00418) - Uses a learned reliable-feedback network, recurrent generation, and feedback-guided diffusion fine-tuning to improve usable e-commerce advertising images (ECCV 2024).
   - Details: **Architecture:** Diffusion · Project: — · [Code](https://github.com/JD-GenX/Reliable_AD) (`inference only`) · [Weights](https://huggingface.co/ZhenbangDu/reliable_controlnet) (`released`) · **Base:** Stable Diffusion v1.5-compatible latent diffusion; ControlNet · **Train:** RF1M · **Eval:** RF1M; human availability feedback · **Output:** Raster product advertising image.
 - [OpenCOLE](https://arxiv.org/abs/2406.08232) - Provides an open and reproducible pipeline for automatic layered graphic-design generation (CVPR Workshop 2024).
   - Details: **Architecture:** Multi-stage System; Diffusion; LLM; VLM · Project: — · [Code](https://github.com/CyberAgentAILab/OpenCOLE) (`training + inference`) · [Weights](https://huggingface.co/cyberagent/opencole-stable-diffusion-xl-base-1.0-finetune) (`released`) · **Base:** K-shot LLM; SDXL fine-tune; LLaVA-v1.5-7B typography LoRA; renderer · **Train:** OpenCOLE dataset v1 · **Eval:** GPT-4V-based generated-design evaluation · **Output:** Rendered graphic design.
 - [Desigen](https://arxiv.org/abs/2403.09093) - Jointly generates advertising backgrounds and foreground element layouts (CVPR 2024).
-  - Details: **Architecture:** Autoregressive; Transformer.
+  - Details: **Architecture:** Autoregressive; Transformer · [Project](https://whaohan.github.io/desigen) · [Code](https://github.com/whaohan/desigen) (`training + inference`) · Weights: `unknown` · **Base:** Diffusion background generator; autoregressive Transformer layout generator · **Train:** More than 40K advertisement-banner designs · **Eval:** Advertisement-template generation metrics · **Output:** Background image plus structured foreground layout and complete design template.
 - [Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners](https://arxiv.org/abs/2403.05578) - Chains an LLM with text-to-image generation to turn shopper interaction and product metadata into personalized e-commerce banner imagery at scale (KDD 2024).
   - Details: **Architecture:** LLM.
 - [CG4CTR](https://arxiv.org/abs/2401.10934) - Builds a Stable-Diffusion-based advertising-creative generation pipeline that incorporates user preferences and downstream click-through-rate ranking (WWW 2024 Companion).
