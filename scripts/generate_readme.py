@@ -62,6 +62,23 @@ WEIGHT_STATUSES = {
     "not-applicable",
     "unknown",
 }
+ARCHITECTURE_LABELS = {
+    "Agentic",
+    "Autoregressive",
+    "Diffusion",
+    "Encoder-only Neural Model",
+    "Flow Matching",
+    "GAN",
+    "Graph Neural Network",
+    "Knowledge-Based",
+    "LLM",
+    "Multi-stage System",
+    "Optimization",
+    "Template-Based",
+    "Transformer",
+    "VAE",
+    "VLM",
+}
 CODE_STATUS_LABELS = {
     "train+inference": "training + inference",
     "inference-only": "inference only",
@@ -120,8 +137,23 @@ def load_rows() -> list[dict[str, str]]:
             raise ValueError(f"Unknown paper category for {name}: {category}")
         if section != "Papers" and category:
             raise ValueError(f"Only Papers entries may set category: {name}")
-        if section != "Papers" and row.get("architecture"):
+        architecture = row.get("architecture", "")
+        if section != "Papers" and architecture:
             raise ValueError(f"Only Papers entries may set architecture: {name}")
+        if section == "Papers" and architecture:
+            labels = architecture.split("; ")
+            if architecture.strip() != architecture or any(";" in label for label in labels):
+                raise ValueError(
+                    f"Architecture labels must use canonical '; ' separators for {name}: "
+                    f"{architecture}"
+                )
+            if len(labels) != len(set(labels)):
+                raise ValueError(f"Duplicate architecture label for {name}: {architecture}")
+            unknown_labels = [label for label in labels if label not in ARCHITECTURE_LABELS]
+            if unknown_labels:
+                raise ValueError(
+                    f"Unknown architecture label for {name}: {', '.join(unknown_labels)}"
+                )
         if not name or not url or not row["description"]:
             raise ValueError(f"Missing required field: {row}")
         if not url.startswith("https://"):
