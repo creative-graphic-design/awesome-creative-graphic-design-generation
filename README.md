@@ -3,10 +3,10 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-239-informational)
-![Papers](https://img.shields.io/badge/papers-184-informational)
+![Total Resources](https://img.shields.io/badge/resources-240-informational)
+![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-73-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-74-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -210,6 +210,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Designer-RSI](https://arxiv.org/abs/2609.22086) - Adapts a tool-using graphic-design agent through continually refined procedural memory learned from real user briefs. **Architecture:** Agentic.
 - [Human-aware Design Generation](https://arxiv.org/abs/2609.17689) - Completes graphic designs by jointly composing 3D human poses, 2D framing, and human-image placement (ACM MM 2026). **Architecture:** Autoregressive; Transformer; VAE.
 - [InterIL](https://arxiv.org/abs/2609.11519) - Jointly generates background images and foreground layouts to model bidirectional image-layout interaction in design templates. **Architecture:** Diffusion.
+- [Editable Visual Design](https://arxiv.org/abs/2609.04034) - Generates complete editable posters, infographics, and marketing designs with a coding agent that uses VLM-guided planning and aesthetic review, on-demand visual assets, native HTML/CSS, and iterative rendered feedback. **Architecture:** Agentic; VLM. Project: — · [Code](https://github.com/yejy53/Editable-Design) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Coding agent; VLM; image-generation API · **Train:** None · **Output:** Editable HTML/CSS; PNG; editable PPTX.
 - [Mise-en-Scène](https://arxiv.org/abs/2608.19000) - Generates editable layered designs by letting layout emerge within a diffusion transformer while preserving source assets. **Architecture:** Transformer; Diffusion.
 - [PosterAgent: Agentic Poster Generation via Stage-Aware Reinforcement Learning](https://proceedings.mlr.press/v306/yu26br.html) - Frames poster creation as an agentic draft-and-iterative-refinement workflow trained with stage-aware reinforcement learning (ICML 2026). **Architecture:** Agentic.
 - [Design Your Ad](https://arxiv.org/abs/2605.12138) - Jointly generates personalized advertising images and text from multimodal user histories with a unified autoregressive model and introduces PAd1M and PBS (CVPR 2026). **Architecture:** Autoregressive; Transformer. Project: — · [Code](https://github.com/JD-GenX/Uni-AdGen) (`inference only`) · [Weights](https://3.cn/11f4I-YYG) (`released`).<br>  **Base:** Janus-Pro-7B; DINOv2-small; SDXL-Base-1.0 · **Train:** PAd1M · **Eval:** PAd1M; PBS; BLEU; ROUGE · **Output:** Personalized advertising image and product text.
