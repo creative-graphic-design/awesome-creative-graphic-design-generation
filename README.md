@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-109-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-131-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -220,52 +220,53 @@ Papers are classified by their **primary output and task**, rather than by model
 #### 2026
 
 - [iPoster](https://arxiv.org/abs/2603.29469) - Supports interactive content-aware poster layout generation under flexible user-specified constraints (CHI EA 2026).
-  - Details: **Architecture:** Diffusion; Graph Neural Network.
+  - Details: **Architecture:** Diffusion; Graph Neural Network · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Graph neural network cross content-aware attention; ViT image encoder; diffusion noise predictor · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured poster layout boxes under user constraints.
 - [Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement](https://arxiv.org/abs/2603.22187) - Introduces VFLM, which iteratively renders and visually critiques SVG text layouts over background images, using visually grounded reinforcement learning to improve readability and aesthetics (CVPR 2026).
   - Details: **Architecture:** VLM; Multi-stage System · Project: — · [Code](https://github.com/FolSpark/VFLM) (`training + inference`) · Weights: `released` · **Base:** Qwen2.5-VL 3B/7B · **Eval:** Multiple text-layout benchmarks · **Output:** SVG layout.
 
 #### 2025
 
 - [Content-Aware Ad Banner Layout Generation with Two-Stage Chain-of-Thought in Vision Language Models](https://arxiv.org/abs/2512.12596) - Uses a VLM to analyze advertisement background content and plan text and logo placement before rendering an HTML layout.
-  - Details: **Architecture:** VLM; Multi-stage System.
+  - Details: **Architecture:** VLM; Multi-stage System · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** GPT-4o-2024-08-06 · **Train:** None · **Eval:** PKU PosterLayout · **Output:** Textual placement plan; HTML layout code; structured ad-banner boxes.
 - [UniLayDiff](https://arxiv.org/abs/2512.08897) - Unifies diverse content-aware layout constraints in a single multimodal diffusion transformer with relation-aware LoRA adaptation (CVPR Findings 2026).
-  - Details: **Architecture:** Transformer; Diffusion.
+  - Details: **Architecture:** Transformer; Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Dual-branch MM-DiT; ViT image encoder; LoRA relation adapter · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured content-aware layout boxes under diverse constraints.
 - [SEGA](https://arxiv.org/abs/2510.15749) - Uses stepwise evolution for content-aware poster layout generation and introduces GenPoster-100K (ICCV 2025).
   - Details: **Architecture:** Multi-stage System; VLM · [Project](https://brucew91.github.io/SEGA.github.io) · [Code](https://github.com/BruceW91/SEGA) (`inference only`) · [Weights](https://pan.baidu.com/s/1jW7jMjWEOWCgSTU-jUjsNw) (`released`) · **Base:** LLaVA-1.5 7B/13B; CLIP ViT-L/14-336 · **Train:** GenPoster-100K; Crello · **Eval:** Crello · **Output:** Structured poster layout.
 - [LLMs as Layout Designers (LaySPA)](https://arxiv.org/abs/2509.16891) - Augments language-model layout agents with reinforcement-learned spatial reasoning over geometric validity, structural fidelity, and visual quality.
-  - Details: **Architecture:** LLM.
+  - Details: **Architecture:** LLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Qwen-7B · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Reasoning traces and structured content-aware layout boxes.
 - [Uni-Layout](https://arxiv.org/abs/2508.02374) - Unifies multiple layout-generation conditions with human-feedback-based evaluation and preference alignment (ACM MM 2025).
   - Details: **Architecture:** Multi-stage System; VLM · [Project](https://github.com/JD-GenX/Uni-Layout) · Code: `evaluation only` · [Weights](https://drive.google.com/drive/folders/1evrHmorHW7CBLRhxrV3-3qvFki1ovoJ3?usp=drive_link) (`partial`) · **Base:** LLaVA-family multimodal evaluator · **Train:** Layout Generator dataset; Reward Model CoT dataset · **Eval:** Layout Evaluator dataset · **Output:** Structured layout boxes; binary layout-quality judgments.
 - [ReLayout: Relation Reasoning for Content-Aware Layout Generation](https://arxiv.org/abs/2507.05568) - Uses relation chain-of-thought and layout-prototype rebalancing to improve structure, diversity, and explainability in multimodal-LLM content-aware layouts.
-  - Details: **Architecture:** VLM.
+  - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** InternVL2.5-8B; relation-CoT supervision; prototype rebalance sampler · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Relation-enriched structured layout representation and layout boxes.
 - [CAL-RAG](https://sigirgennext.github.io/GENNEXT-SIGIR-25/submissions/gennext_sigir25_5.pdf) - Combines multimodal retrieval, an LLM layout recommender, a vision-language grader, and feedback agents for iterative content-aware layout generation (SIGIR GENNEXT 2025).
-  - Details: **Architecture:** Agentic; LLM; VLM.
+  - Details: **Architecture:** Agentic; LLM; VLM · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** LangGraph agents; CLIP image retrieval; LLM layout recommender; VLM grader · **Train:** None · **Eval:** PKU PosterLayout · **Output:** Structured layout bounding boxes; rendered composite image.
 - [CreatiPoster](https://arxiv.org/abs/2506.10890) - Generates poster layouts from multimodal content and design requirements.
   - Details: **Architecture:** Multi-stage System; VLM · [Project](https://github.com/graphic-design-ai/creatiposter) · Code: `announced` · Weights: `announced` · **Base:** RGBA large multimodal protocol model; conditional background generator · **Train:** Copyright-free 100K multi-layer graphic-design corpus · **Eval:** CreatiPoster benchmark · **Output:** Editable multi-layer design specification; raster background/composite.
 - [Scan-and-Print](https://arxiv.org/abs/2505.20649) - Uses patch-level image summarization and data augmentation for efficient content-aware poster layout generation (IJCAI 2025).
   - Details: **Architecture:** Autoregressive; Transformer · [Project](https://thekinsley.github.io/Scan-and-Print/) · [Code](https://github.com/theKinsley/Scan-and-Print-IJCAI2025) (`training + inference`) · Weights: `unknown` · **Base:** DeiT3 visual encoder · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured layout boxes.
 - [PosterO](https://arxiv.org/abs/2505.07843) - Structures layouts as trees so language models can solve generalized layout-generation tasks (CVPR 2025).
-  - Details: **Architecture:** LLM.
+  - Details: **Architecture:** LLM · Project: — · [Code](https://github.com/PKU-ICST-MIPL/PosterO-CVPR2025) (`pipeline`) · Weights: `n/a` · **Base:** LLaMA 3.1-8B or other LLM; auxiliary design-intent detector · **Train:** PKU PosterLayout; CGL (auxiliary detector) · **Eval:** PKU PosterLayout; CGL; PStylish7 · **Output:** Structured poster layout trees and boxes.
 - [AesthetiQ](https://arxiv.org/abs/2503.00591) - Aligns multimodal language models to aesthetic preferences for content-aware graphic layout prediction using preference optimization (CVPR 2025).
-  - Details: **Architecture:** VLM.
+  - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** InternVL layout predictor; VILA-7B aesthetic judge · **Train:** 80K online-design templates; Crello; WebUI · **Eval:** Crello; WebUI · **Output:** Structured graphic-design layout boxes.
 
 #### 2024
 
 - [VASCAR](https://arxiv.org/abs/2412.04237) - Uses a large vision-language model to iteratively inspect rendered layouts and self-correct content-aware element placement without additional training.
-  - Details: **Architecture:** VLM.
+  - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Gemini 1.5 Flash; GPT-4o; in-context retrieval and rendered visual feedback · **Train:** None · **Eval:** PKU PosterLayout; CGL · **Output:** Structured content-aware layout boxes with rendered visual feedback.
 - [Design Element Aware Poster Layout Generation](https://doi.org/10.1145/3627673.3679557) - Models poster design elements and their relationships for content-aware poster layout generation (CIKM 2024).
-  - Details: **Architecture:** Transformer.
+  - Details: **Architecture:** Transformer · Project: — · Code: `announced` · Weights: `unknown` · **Base:** Encoder-decoder Design Element aware Transformer with deformable attention · **Train:** Three public poster-layout datasets · **Eval:** Three public poster-layout datasets · **Output:** Poster element bounding boxes conditioned on background and design elements.
 - [Image-aware layout generation with user constraints for poster design](https://doi.org/10.1007/s00371-024-03657-z) - Generates poster layouts conditioned on a product image while satisfying user-specified element and partial-layout constraints (The Visual Computer 2025).
+  - Details: Project: — · Code: `unknown` · Weights: `unknown` · **Base:** IUC-Layout with multi-scale CNN; Transformer encoder-decoder; DETR-style queries · **Train:** CGL Dataset · **Eval:** CGL Dataset · **Output:** Structured poster layout boxes with attribute and partial-layout constraints.
 - [Iris: a multi-constraint graphic layout generation system](https://doi.org/10.1631/FITEE.2300312) - Combines an interactive graphic-layout design system with multi-constraint LayoutVQ-VAE for background-aware generation, editing, and rendering (FITEE 2024).
-  - Details: **Architecture:** Multi-stage System; VAE.
+  - Details: **Architecture:** Multi-stage System; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Multi-constraint LayoutVQ-VAE; Transformer; ResNet50/FPN image conditioning · **Train:** PubLayNet; RICO; CGL; authors' PDCard dataset · **Eval:** PubLayNet; RICO; CGL; authors' PDCard dataset · **Output:** Structured layout boxes; interactive editing; rendered graphic design.
 - [CGB-DM](https://arxiv.org/abs/2407.15233) - Uses a diffusion transformer for graphic-layout generation with content-aware conditioning.
-  - Details: **Architecture:** Transformer; Diffusion.
+  - Details: **Architecture:** Transformer; Diffusion · [Project](https://yuli0103.github.io/LayoutDiT.github.io/) · [Code](https://github.com/yuli0103/LayoutDiT) (`training + inference`) · Weights: `unknown` · **Base:** Transformer-based diffusion model; ISNet/BASNet saliency preprocessing · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured poster layout boxes.
 - [Visual Layout Composer](https://openaccess.thecvf.com/content/CVPR2024/html/Shabani_Visual_Layout_Composer_Image-Vector_Dual_Diffusion_Model_for_Design_Layout_CVPR_2024_paper.html) - Couples image-space and vector-space diffusion to generate design layouts conditioned on visual content (CVPR 2024).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · [Project](https://shabani.me/visual_layout_composer/) · Code: `announced` · Weights: `unknown` · **Base:** Pretrained image diffusion model guiding vector diffusion · **Train:** Poster; Crello · **Eval:** Poster; Crello · **Output:** Vector element layouts plus generated raster design appearance.
 - [PosterLLaVA](https://arxiv.org/abs/2406.02884) - Uses multimodal instruction tuning for poster layout generation (IEEE TMM 2026).
   - Details: **Architecture:** VLM · [Project](https://huggingface.co/spaces/posterllava/PosterLLaVA) · [Code](https://github.com/posterllava/PosterLLaVA) (`training + inference`) · [Weights](https://huggingface.co/posterllava/posterllava_v0) (`released`) · **Base:** LLaVA-v1.5-7B; CLIP ViT-L/14-336 · **Train:** Ad Banner; CGL; PosterLayout; QB-Poster · **Eval:** QB-Poster; User-Constrained; CGL; PosterLayout · **Output:** JSON poster layout.
 - [Automatic Layout Planning for Visually-Rich Documents with Instruction-Following Models](https://arxiv.org/abs/2404.15271) - Uses a multimodal instruction-following model to arrange user-provided visual elements for posters, brochures, book covers, advertisements, and related visually rich documents (ALVR 2024).
-  - Details: **Architecture:** VLM.
+  - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** mPLUG-Owl; Llama-7B v1; CLIP ViT-L/14 · **Train:** Adobe Express; Crello; PosterLayout · **Eval:** Crello; PosterLayout · **Output:** CSS layout properties and structured component coordinates.
 - [Graphist](https://doi.org/10.1609/aaai.v39i3.32249) - Models graphic-design layouts with multimodal and structural context (AAAI 2025).
   - Details: **Architecture:** VLM · [Project](https://github.com/graphic-design-ai/graphist) · Code: `no release` · Weights: `announced` · **Train:** Crello · **Eval:** Crello · **Output:** JSON draft protocol with element coordinates, dimensions, and layer order.
 - [PosterLLaMA](https://arxiv.org/abs/2404.00995) - Adapts a multimodal language model to poster layout generation (ECCV 2024).
@@ -276,27 +277,27 @@ Papers are classified by their **primary output and task**, rather than by model
 - [RALF](https://arxiv.org/abs/2311.13602) - Retrieves relevant design examples to guide content-aware layout generation (CVPR 2024).
   - Details: **Architecture:** Autoregressive; Transformer · [Project](https://udonda.github.io/RALF/) · [Code](https://github.com/CyberAgentAILab/RALF) (`training + inference`) · Weights: `released` · **Base:** ResNet50 image encoder; autoregressive transformer · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured content-aware layouts.
 - [DensityLayout](https://doi.org/10.1007/978-3-031-46308-2_16) - Generates visual-textual presentation layouts over given images with density-aware conditioning for automated poster design (ICIG 2023).
-  - Details: **Architecture:** GAN.
+  - Details: **Architecture:** GAN · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Density mapping network; multi-scale GAN generator; graph-convolutional refinement · **Train:** CGL Dataset · **Eval:** CGL Dataset · **Output:** Structured visual-textual presentation layout boxes.
 - [RADM](https://arxiv.org/abs/2306.09086) - Generates content-aware advertising layouts with richer text and visual conditioning (CIKM 2023).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · Project: — · [Code](https://github.com/JD-GenX/RADM) (`training + inference`) · Weights: `unknown` · **Base:** DiffusionDet/Detectron2-based relation-aware diffusion with text features · **Train:** CGL Dataset · **Eval:** CGL Dataset · **Output:** Structured poster layout boxes.
 - [PosterLayout](https://arxiv.org/abs/2303.15937) - Introduces a benchmark and content-aware approach for visual-textual poster layout generation (CVPR 2023).
   - Details: **Architecture:** GAN · Project: — · [Code](https://github.com/PKU-ICST-MIPL/PosterLayout-CVPR2023) (`training + inference`) · Weights: `released` · **Base:** Visual feature encoder; GAN layout generator · **Train:** PKU PosterLayout · **Eval:** PKU PosterLayout · **Output:** Structured poster layout boxes.
 - [PDA-GAN](https://arxiv.org/abs/2303.14377) - Uses GAN-based unsupervised domain adaptation with a pixel-level discriminator to generate image-aware advertising-poster layouts (CVPR 2023).
-  - Details: **Architecture:** GAN.
+  - Details: **Architecture:** GAN · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** GAN with shallow pixel-level discriminator · **Train:** CGL source-domain image-layout pairs; clean product-image target domain · **Eval:** CGL / image-aware advertising-poster evaluation · **Output:** Advertising-poster layout boxes conditioned on image content.
 
 #### 2022
 
 - [LayoutDETR](https://arxiv.org/abs/2212.09877) - Generates foreground layouts conditioned on content images for advertising design (ECCV 2024).
   - Details: **Architecture:** Transformer · Project: — · [Code](https://github.com/salesforce/LayoutDETR) (`training + inference`) · Weights: `released` · **Base:** DETR-style multimodal conditioning; generative layout backbone · **Train:** LayoutDETR Ad Banner Dataset · **Eval:** LayoutDETR Ad Banner Dataset · **Output:** Structured foreground layout; rendered ad banner.
 - [ICVT](https://arxiv.org/abs/2209.00852) - Generates layouts conditioned on image content with geometry-aligned variational transformers (ACM MM 2022).
-  - Details: **Architecture:** Autoregressive; Transformer; VAE.
+  - Details: **Architecture:** Autoregressive; Transformer; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Transformer CVAE with self/cross attention and geometry alignment · **Train:** Authors' advertisement-poster layout dataset · **Eval:** Authors' advertisement-poster layout dataset · **Output:** Autoregressive text-overlay layout boxes.
 - [CGL-GAN](https://arxiv.org/abs/2205.00303) - Generates advertising layouts conditioned on visual content and introduces the CGL dataset (IJCAI 2022).
   - Details: **Architecture:** GAN · Project: — · [Code](https://github.com/minzhouGithub/CGL-GAN) (`announced`) · Weights: `unknown` · **Base:** GAN with composition-aware visual conditioning · **Train:** CGL Dataset · **Eval:** CGL Dataset · **Output:** Structured advertising layout boxes.
 
 #### 2021
 
 - [SmartText](https://doi.org/10.1109/TMM.2021.3097900) - Places text over natural images using saliency and learned aesthetic compatibility for harmonious poster composition (TMM 2022).
-  - Details: **Architecture:** Multi-stage System.
+  - Details: **Architecture:** Multi-stage System · Project: — · [Code](https://github.com/intchous/SmartText) (`inference only`) · [Weights](https://drive.google.com/file/d/1zKVA9IGkPtmRkm-2_m7qriaEwVXBuaGX/view?usp=sharing) (`released`) · **Base:** gdi-basnet saliency model; SMT aesthetics model · **Output:** Text anchors and textual-layout boxes over natural images.
 
 #### 2019
 
@@ -306,9 +307,9 @@ Papers are classified by their **primary output and task**, rather than by model
 #### Other
 
 - [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) - Uses LLM- and vision-derived priorities, optimal-transport matching, and flow-based refinement for controllable poster layout generation (Pattern Recognition 2026).
-  - Details: **Architecture:** Flow Matching; LLM.
+  - Details: **Architecture:** Flow Matching; LLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** LLM textual-priority ranker; visual saliency ranker; optimal-transport matcher; flow-based layout generator · **Train:** CGL; PKU PosterLayout · **Eval:** CGL; PKU PosterLayout · **Output:** Structured controllable poster layout boxes.
 - [Two-stage Content-Aware Layout Generation for Poster Designs](https://doi.org/10.1145/3581783.3612275) - Combines aesthetics-conditioned diffusion layout proposals with a learned ranking stage for poster designs over image backgrounds (ACM MM 2023).
-  - Details: **Architecture:** Diffusion.
+  - Details: **Architecture:** Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Diffusion layout generator; Auto-Encoder layout ranking module · **Output:** Structured poster layout proposals and ranked final layout.
 
 
 ### Graphic Design Generation
