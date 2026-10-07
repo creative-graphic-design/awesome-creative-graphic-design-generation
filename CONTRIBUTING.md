@@ -158,24 +158,24 @@ Use primary sources whenever possible:
 
 Avoid duplicate entries. If one work exposes a paper, code, dataset, and project page, choose one canonical entry and include secondary links through `data/paper_metadata.csv` when they add material value. If a released dataset is itself the main benchmark artifact, prefer one dataset/benchmark entry rather than duplicating the associated paper under another resource section.
 
-## V1 Baseline and Ongoing Maintenance
+## Ongoing Maintenance
 
-The initial catalog is ready to be treated as **v1** when all of the following are true:
+Keep the catalog suitable for normal contributions by maintaining the following:
 
-- The scope and task/output taxonomy are documented and stable enough for normal contributions.
+- The scope and task/output taxonomy are documented and stable enough for consistent classification.
 - Publication dates are sufficient for deterministic first-public-appearance ordering, or an explicit `date_note` explains why a date is unavailable.
-- The major task families are represented by foundational work and a useful set of recent work; no known omission changes the shape of the taxonomy itself.
-- `README.md` is fully generated from canonical data and `Catalog Check` passes.
+- The major task families remain represented by foundational work and a useful set of recent work; known omissions should not materially distort the taxonomy.
+- `README.md` remains fully generated from canonical data and `Catalog Check` passes.
 - Awesome-list content checks pass; repository-setting failures such as description/topics are handled separately.
 
-The following are **not** v1 blockers:
+The following are not maintenance requirements:
 
 - Exhaustively importing every paper from a survey, citation graph, spreadsheet, technology map, workshop, or external bibliography.
 - Completing implementation/reproducibility metadata for every paper.
 - Proving that no relevant paper exists outside the catalog.
 - Listing every potentially relevant venue, workshop, commercial tool, or adjacent UI/document-generation system.
 
-After v1, maintain the catalog incrementally. Prefer focused pull requests that add a coherent research line, refresh implementation status, repair links, or refine taxonomy. Periodic coverage audits are useful, but they should produce concrete, scoped changes rather than keep the bootstrap phase open indefinitely.
+Maintain the catalog incrementally. Prefer focused pull requests that add a coherent research line, refresh implementation status, repair links, or refine taxonomy. Periodic coverage audits are useful when they produce concrete, scoped changes.
 
 ## Entry Format
 
