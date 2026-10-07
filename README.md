@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-235-informational)
 ![Papers](https://img.shields.io/badge/papers-180-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-62-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-65-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -80,10 +80,10 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [LayoutKAG: Enhancing Layout Generation in Large Language Models Through Knowledge-Augmented Generation](https://doi.org/10.1109/AIHCIR65563.2024.00056) - Uses knowledge-augmented generation to improve large-language-model layout generation and control (AIHCIR 2024). **Architecture:** LLM.
 - [TextLap](https://arxiv.org/abs/2410.12844) - Generates graphic layouts from textual design requirements with language-model-based reasoning (EMNLP Findings 2024). **Architecture:** LLM.
-- [Layout-Corrector](https://arxiv.org/abs/2409.16689) - Corrects intermediate diffusion layouts to improve structure and constraint satisfaction (ECCV 2024). **Architecture:** Diffusion.
+- [Layout-Corrector](https://arxiv.org/abs/2409.16689) - Corrects intermediate diffusion layouts to improve structure and constraint satisfaction (ECCV 2024). **Architecture:** Diffusion. [Project](https://iwa-shi.github.io/Layout-Corrector-Project-Page/) · [Code](https://github.com/line/Layout-Corrector) (`training + inference`) · [Weights](https://drive.google.com/file/d/1og3l0enR67rDwiAN44K4RchcFYAgsbNq/view) (`released`).<br>  **Base:** Layout-Corrector classifier with LayoutDM, VQDiffusion, or MaskGIT generators · **Train:** PubLayNet; RICO; Crello · **Eval:** PubLayNet; RICO; Crello · **Output:** Structured corrected layout boxes.
 - [CoLay](https://arxiv.org/abs/2405.13045) - Uses multi-conditional latent diffusion to generate layouts with style properties from flexible combinations of text, guidelines, element types, and partial designs. **Architecture:** Diffusion.
 - [LayoutFlow](https://arxiv.org/abs/2403.18187) - Uses flow matching for continuous structured layout generation (ECCV 2024). **Architecture:** Flow Matching. Project: — · [Code](https://github.com/JulianGuerreiro/LayoutFlow) (`training + inference`) · [Weights](https://huggingface.co/JulianGuerreiro/LayoutFlow) (`released`).<br>  **Base:** Transformer-style layout backbone · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes.
-- [LACE](https://arxiv.org/abs/2402.04754) - Introduces lightweight diffusion for controllable layout generation (ICLR 2024). **Architecture:** Diffusion.
+- [LACE](https://arxiv.org/abs/2402.04754) - Introduces lightweight diffusion for controllable layout generation (ICLR 2024). **Architecture:** Diffusion. Project: — · [Code](https://github.com/puar-playground/LACE) (`training + inference`) · [Weights](https://huggingface.co/datasets/puar-playground/LACE/tree/main) (`released`).<br>  **Base:** Transformer diffusion denoiser · **Train:** PubLayNet; RICO; Magazine · **Eval:** PubLayNet; RICO; Magazine · **Output:** Structured layout boxes.
 - [Spot the Error](https://arxiv.org/abs/2401.16375) - Improves non-autoregressive graphic-layout generation with a learned wireframe locator that identifies erroneous layout tokens for iterative refinement (AAAI 2024). **Architecture:** Encoder-only Neural Model.
 #### 2023
 
@@ -99,7 +99,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [LayoutDiffusion](https://arxiv.org/abs/2303.11589) - Uses discrete diffusion for controllable layout generation (ICCV 2023). **Architecture:** Diffusion.
 - [LayoutDM](https://arxiv.org/abs/2303.08137) - Models layouts with discrete denoising diffusion and supports multiple conditional generation tasks (CVPR 2023). **Architecture:** Autoregressive / Transformer; Diffusion. [Project](https://cyberagentailab.github.io/layout-dm) · [Code](https://github.com/CyberAgentAILab/layout-dm) (`training + inference`) · [Weights](https://github.com/CyberAgentAILab/layout-dm/releases/tag/v1.0.0) (`released`).<br>  **Base:** Transformer-style discrete denoiser · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes.
 - [LDGM](https://arxiv.org/abs/2303.05049) - Decouples discrete element attributes and continuous geometry in a diffusion model for unified layout generation (CVPR 2023). **Architecture:** Diffusion.
-- [DLT](https://arxiv.org/abs/2303.03755) - Applies diffusion modeling to structured layout generation (ICCV 2023). **Architecture:** Diffusion.
+- [DLT](https://arxiv.org/abs/2303.03755) - Applies diffusion modeling to structured layout generation (ICCV 2023). **Architecture:** Diffusion. [Project](https://wix-incubator.github.io/DLT/) · [Code](https://github.com/wix-incubator/DLT) (`training + inference`) · Weights: `unknown`.<br>  **Base:** Transformer diffusion model over categorical and geometric layout variables · **Train:** RICO; PubLayNet; Magazine · **Eval:** RICO; PubLayNet; Magazine · **Output:** Structured layout samples.
 - [LayoutAction](https://ojs.aaai.org/index.php/AAAI/article/view/26277) - Frames autoregressive layout generation as a sequence of placement actions (AAAI 2023). **Architecture:** Autoregressive / Transformer.
 - [PLay](https://arxiv.org/abs/2301.11529) - Uses parametrically conditioned latent diffusion for controllable layout generation (ICML 2023). **Architecture:** Diffusion.
 - [Machine Learning Model to Evaluate the Appropriateness of Layout for Automatic Generation of Graphic Design Works](https://doi.org/10.1109/IMCOM56909.2023.10035646) - Uses adversarial layout generation and a trained discriminator to generate and score graphic-design layouts conditioned on specified materials (IMCOM 2023). **Architecture:** GAN.
