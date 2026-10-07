@@ -47,6 +47,7 @@ PREFERRED_PUBLICATION_HOSTS = (
     "doi.org",
     "openaccess.thecvf.com",
     "proceedings.mlr.press",
+    "proceedings.neurips.cc",
     "aclanthology.org",
     "openreview.net",
     "ojs.aaai.org",
@@ -72,12 +73,26 @@ def is_arxiv_url(url: str) -> bool:
     )
 
 
+def is_arxiv_doi(url: str) -> bool:
+    parsed = urllib.parse.urlparse(url)
+    return (
+        parsed.scheme == "https"
+        and (parsed.hostname or "").casefold() == "doi.org"
+        and parsed.path.lstrip("/").casefold().startswith("10.48550/arxiv.")
+    )
+
+
 def arxiv_id(url: str) -> str:
-    return urllib.parse.urlparse(url).path.removeprefix("/abs/").split("v", 1)[0]
+    if is_arxiv_url(url):
+        return urllib.parse.urlparse(url).path.removeprefix("/abs/").split("v", 1)[0]
+    if is_arxiv_doi(url):
+        doi = urllib.parse.urlparse(url).path.lstrip("/")
+        return doi.split("arXiv.", 1)[1] if "arXiv." in doi else doi.split("arxiv.", 1)[1]
+    raise ValueError(f"Not an arXiv URL or arXiv DOI: {url}")
 
 
 def semantic_scholar_id(url: str) -> str | None:
-    if is_arxiv_url(url):
+    if is_arxiv_url(url) or is_arxiv_doi(url):
         return f"ARXIV:{arxiv_id(url)}"
     parsed = urllib.parse.urlparse(url)
     if (parsed.hostname or "").casefold() == "doi.org":
@@ -176,7 +191,7 @@ def publication_from_info(info: dict) -> list[str]:
     return [
         url
         for url in info_ee(info)
-        if url.startswith("https://") and not is_arxiv_url(url)
+        if url.startswith("https://") and not is_arxiv_url(url) and not is_arxiv_doi(url)
     ]
 
 
@@ -194,7 +209,7 @@ def score_title(target: str, candidate: str) -> int:
 
 def publication_from_external_ids(external_ids: dict) -> str | None:
     doi = external_ids.get("DOI")
-    if doi:
+    if doi and not str(doi).casefold().startswith("10.48550/arxiv."):
         return f"https://doi.org/{doi}"
     acl = external_ids.get("ACL")
     if acl:
@@ -255,10 +270,11 @@ def resolve_row(
 
     primary = row["url"].strip()
     published = row.get("venue", "") not in ARXIV_ONLY_VENUES
+    primary_is_preprint = is_arxiv_url(primary) or is_arxiv_doi(primary)
 
-    if is_arxiv_url(primary):
+    if primary_is_preprint:
         identifier = arxiv_id(primary)
-        canonical_arxiv = f"https://arxiv.org/abs/{identifier}"
+        canonical_arxiv = row["arxiv_url"] or f"https://arxiv.org/abs/{identifier}"
         if not published:
             row["url"] = canonical_arxiv
             row["arxiv_url"] = ""
@@ -324,7 +340,7 @@ def main() -> int:
             continue
         primary = row["url"].strip()
         published = row.get("venue", "") not in ARXIV_ONLY_VENUES
-        if is_arxiv_url(primary) and published:
+        if (is_arxiv_url(primary) or is_arxiv_doi(primary)) and published:
             lookup_ids.append(f"ARXIV:{arxiv_id(primary)}")
         elif row.get("arxiv_date"):
             lookup_id = semantic_scholar_id(primary)
