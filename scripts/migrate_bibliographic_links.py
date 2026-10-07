@@ -25,8 +25,21 @@ ARXIV_ONLY_VENUES = {"", "arXiv", "Technical Report"}
 USER_AGENT = "awesome-creative-graphic-design-generation/1.0 bibliographic migration"
 MAX_WORKERS = 6
 
-PUBLICATION_OVERRIDES: dict[str, str] = {}
+PUBLICATION_OVERRIDES: dict[str, str] = {
+    "Mise-en-Scène": "https://human-ai-co-creation.github.io/workshop/",
+    "PosterGen": "https://openaccess.thecvf.com/content/CVPR2026F/papers/Zhang_PosterGen_Aesthetic-Aware_Multi-Modal_Paper-to-Poster_Generation_Via_Multi-Agent_LLMs_CVPRF_2026_paper.pdf",
+}
 ARXIV_OVERRIDES: dict[str, str] = {
+    "LayoutGAN": "https://arxiv.org/abs/1901.06767",
+    "Graphist": "https://arxiv.org/abs/2404.14368",
+    "Mirror in the Model: Ad Banner Image Generation via Reflective Multi-LLM and Multi-modal Agents": "https://arxiv.org/abs/2507.03326",
+    "AutoFigure-Edit": "https://arxiv.org/abs/2603.06674",
+    "PaperBanana": "https://arxiv.org/abs/2601.23265",
+    "Design First Code Later": "https://arxiv.org/abs/2605.26451",
+    "CAL-RAG": "https://arxiv.org/abs/2506.21934",
+    "LaDe: Unified Multi-Layered Graphic Media Generation and Decomposition": "https://arxiv.org/abs/2603.17965",
+    "ReContraster": "https://arxiv.org/abs/2604.10442",
+    "FreeText": "https://arxiv.org/abs/2601.00535",
     "T-Stars-Poster": "https://arxiv.org/abs/2501.14316",
 }
 
