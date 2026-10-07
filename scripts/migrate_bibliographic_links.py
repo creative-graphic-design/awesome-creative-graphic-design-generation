@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""One-off migration for publication/arXiv link separation in resources.csv.
+"""One-off migration for publication/arXiv links in canonical resources.csv.
 
-This script updates only data/resources.csv. It adds an arxiv_url column, moves
-existing arXiv primary URLs into arxiv_url for published papers, and resolves an
-authoritative publication URL from bibliographic services. It refuses to write
-when a row cannot be resolved confidently.
+The final schema stays in data/resources.csv. This helper is temporary and must
+be removed after the migration lands. It never writes partial/ambiguous results.
 """
 
 from __future__ import annotations
 
 import csv
+import functools
 import html
 import json
 import re
@@ -17,36 +16,31 @@ import sys
 import time
 import urllib.parse
 import urllib.request
-import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 RESOURCE_PATH = ROOT / "data" / "resources.csv"
 ARXIV_ONLY_VENUES = {"", "arXiv", "Technical Report"}
-USER_AGENT = "awesome-creative-graphic-design-generation bibliographic migration"
+USER_AGENT = "awesome-creative-graphic-design-generation/1.0 bibliographic migration"
 
-# Explicit overrides are intentionally small. Add one only after verifying the
-# authoritative target manually when automated bibliographic matching is not
-# exact enough.
+# Only verified exceptions belong here. Automated matching remains fail-closed.
 PUBLICATION_OVERRIDES: dict[str, str] = {}
 ARXIV_OVERRIDES: dict[str, str] = {
-    # Preprint title differs from the eventual publication title.
-    "T-Stars-Poster": "https://arxiv.org/abs/2501.12756",
+    "T-Stars-Poster": "https://arxiv.org/abs/2501.14316",
 }
 
-
-def request_text(url: str) -> str:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    for attempt in range(4):
-        try:
-            with urllib.request.urlopen(request, timeout=30) as response:
-                return response.read().decode("utf-8")
-        except Exception:
-            if attempt == 3:
-                raise
-            time.sleep(1.5 * (attempt + 1))
-    raise AssertionError("unreachable")
+PREFERRED_PUBLICATION_HOSTS = (
+    "doi.org",
+    "openaccess.thecvf.com",
+    "proceedings.mlr.press",
+    "aclanthology.org",
+    "openreview.net",
+    "ojs.aaai.org",
+    "ijcai.org",
+    "dl.acm.org",
+    "ieeexplore.ieee.org",
+    "link.springer.com",
+)
 
 
 def normalize_title(value: str) -> str:
@@ -68,187 +62,135 @@ def arxiv_id(url: str) -> str:
     return urllib.parse.urlparse(url).path.removeprefix("/abs/").split("v", 1)[0]
 
 
-def arxiv_title_from_id(identifier: str) -> str | None:
-    url = "https://export.arxiv.org/api/query?" + urllib.parse.urlencode({"id_list": identifier})
-    root = ET.fromstring(request_text(url))
-    ns = {"atom": "http://www.w3.org/2005/Atom"}
-    entry = root.find("atom:entry", ns)
-    if entry is None:
-        return None
-    title = entry.findtext("atom:title", default="", namespaces=ns)
-    return " ".join(title.split()) or None
+def request_json(url: str) -> dict:
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    last_error: Exception | None = None
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(request, timeout=8) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except Exception as exc:
+            last_error = exc
+            time.sleep(0.5 * (attempt + 1))
+    assert last_error is not None
+    raise last_error
 
 
-def arxiv_url_for_title(title: str, expected_date: str) -> str | None:
-    query = f'ti:"{title.replace(chr(34), "")}"'
-    url = "https://export.arxiv.org/api/query?" + urllib.parse.urlencode(
-        {"search_query": query, "start": 0, "max_results": 8}
-    )
-    root = ET.fromstring(request_text(url))
-    ns = {"atom": "http://www.w3.org/2005/Atom"}
-    target = normalize_title(title)
-    candidates: list[tuple[int, str]] = []
-    for entry in root.findall("atom:entry", ns):
-        candidate_title = " ".join(
-            entry.findtext("atom:title", default="", namespaces=ns).split()
-        )
-        norm = normalize_title(candidate_title)
-        if not norm:
-            continue
-        score = 0
-        if norm == target:
-            score += 100
-        elif target in norm or norm in target:
-            score += 50
-        published = entry.findtext("atom:published", default="", namespaces=ns)[:10]
-        if expected_date and published == expected_date:
-            score += 30
-        entry_id = entry.findtext("atom:id", default="", namespaces=ns)
-        match = re.search(r"arxiv\.org/abs/([^/?#]+)", entry_id)
-        if match and score >= 80:
-            candidates.append((score, f"https://arxiv.org/abs/{match.group(1).split('v', 1)[0]}"))
-    if not candidates:
-        return None
-    candidates.sort(reverse=True)
-    if len(candidates) > 1 and candidates[0][0] == candidates[1][0]:
-        return None
-    return candidates[0][1]
-
-
-def dblp_publication_url(title: str, venue_year: str) -> str | None:
+@functools.lru_cache(maxsize=None)
+def dblp_hits(query: str) -> tuple[dict, ...]:
     url = "https://dblp.org/search/publ/api?" + urllib.parse.urlencode(
-        {"q": title, "format": "json", "h": 20}
+        {"q": query, "format": "json", "h": 30}
     )
-    payload = json.loads(request_text(url))
+    payload = request_json(url)
     hits = payload.get("result", {}).get("hits", {}).get("hit", [])
     if isinstance(hits, dict):
         hits = [hits]
-    target = normalize_title(title)
-    matches: list[tuple[int, str]] = []
-    for hit in hits:
-        info = hit.get("info", {})
-        candidate = normalize_title(str(info.get("title", "")))
-        if not candidate:
-            continue
-        score = 0
-        if candidate == target:
-            score += 100
-        elif target in candidate or candidate in target:
-            score += 45
-        if venue_year and str(info.get("year", "")) == venue_year:
-            score += 25
-        if score < 90:
-            continue
-        ee = info.get("ee", [])
-        if isinstance(ee, str):
-            ee = [ee]
-        for candidate_url in ee:
-            if not candidate_url.startswith("https://"):
-                continue
-            if is_arxiv_url(candidate_url):
-                continue
-            matches.append((score, candidate_url))
-    if not matches:
-        return None
-    preferred_hosts = (
-        "doi.org",
-        "openaccess.thecvf.com",
-        "proceedings.mlr.press",
-        "aclanthology.org",
-        "openreview.net",
-        "ojs.aaai.org",
-        "ijcai.org",
-        "dl.acm.org",
-        "ieeexplore.ieee.org",
-        "link.springer.com",
-    )
-    matches.sort(
-        key=lambda item: (
-            item[0],
-            max(
-                (len(preferred_hosts) - index for index, host in enumerate(preferred_hosts) if host in item[1]),
-                default=0,
-            ),
-        ),
-        reverse=True,
-    )
-    if len(matches) > 1 and matches[0][0] == matches[1][0] and matches[0][1] != matches[1][1]:
-        # Prefer the explicit host ranking above; ties after that are ambiguous.
-        top = matches[0]
-        second = matches[1]
-        rank = lambda u: next((i for i, h in enumerate(preferred_hosts) if h in u), 999)
-        if rank(top[1]) == rank(second[1]):
-            return None
-    return matches[0][1]
+    return tuple(hit.get("info", {}) for hit in hits)
 
 
-def crossref_publication_url(title: str, venue_year: str) -> str | None:
-    url = "https://api.crossref.org/works?" + urllib.parse.urlencode(
-        {"query.title": title, "rows": 5, "select": "DOI,title,published-online,published-print"}
-    )
-    payload = json.loads(request_text(url))
-    target = normalize_title(title)
-    matches: list[tuple[int, str]] = []
-    for item in payload.get("message", {}).get("items", []):
-        titles = item.get("title", [])
-        candidate = normalize_title(titles[0] if titles else "")
-        if not candidate:
+def info_title(info: dict) -> str:
+    return " ".join(str(info.get("title", "")).split())
+
+
+def info_ee(info: dict) -> list[str]:
+    ee = info.get("ee", [])
+    if isinstance(ee, str):
+        ee = [ee]
+    return [str(url) for url in ee]
+
+
+def arxiv_from_info(info: dict) -> str | None:
+    for url in info_ee(info):
+        match = re.search(r"https?://arxiv\.org/abs/([^/?#]+)", url)
+        if match:
+            return f"https://arxiv.org/abs/{match.group(1).split('v', 1)[0]}"
+    key = str(info.get("key", ""))
+    match = re.fullmatch(r"journals/corr/abs-(.+)", key)
+    if match:
+        return f"https://arxiv.org/abs/{match.group(1)}"
+    return None
+
+
+def publication_from_info(info: dict) -> list[str]:
+    result: list[str] = []
+    for url in info_ee(info):
+        if not url.startswith("https://") or is_arxiv_url(url):
             continue
-        score = 100 if candidate == target else 45 if target in candidate or candidate in target else 0
-        if venue_year:
-            years: set[str] = set()
-            for key in ("published-online", "published-print"):
-                parts = item.get(key, {}).get("date-parts", [])
-                if parts and parts[0]:
-                    years.add(str(parts[0][0]))
-            if venue_year in years:
+        result.append(url)
+    return result
+
+
+def score_title(target: str, candidate: str) -> int:
+    target_norm = normalize_title(target)
+    candidate_norm = normalize_title(candidate)
+    if not target_norm or not candidate_norm:
+        return 0
+    if target_norm == candidate_norm:
+        return 100
+    if target_norm in candidate_norm or candidate_norm in target_norm:
+        return 55
+    return 0
+
+
+def canonical_title(name: str, venue_year: str, identifier: str = "") -> str:
+    queries = [identifier, name] if identifier else [name]
+    candidates: list[tuple[int, str]] = []
+    for query in queries:
+        if not query:
+            continue
+        for info in dblp_hits(query):
+            title = info_title(info)
+            score = score_title(name, title)
+            if identifier and identifier in json.dumps(info, ensure_ascii=False):
+                score += 120
+            if venue_year and str(info.get("year", "")) == venue_year:
                 score += 25
-        doi = item.get("DOI")
-        if doi and score >= 90:
-            matches.append((score, f"https://doi.org/{doi}"))
-    if not matches:
-        return None
-    matches.sort(reverse=True)
-    if len(matches) > 1 and matches[0][0] == matches[1][0]:
-        return None
-    return matches[0][1]
+            if score >= 80:
+                candidates.append((score, title))
+    if not candidates:
+        return name
+    candidates.sort(reverse=True)
+    return candidates[0][1]
 
 
 def publication_url(title: str, venue_year: str) -> str | None:
-    return dblp_publication_url(title, venue_year) or crossref_publication_url(title, venue_year)
-
-
-def canonical_title_for_publication_row(row: dict[str, str]) -> str:
-    # DBLP often expands acronym-style catalog names into the paper's full title.
-    url = "https://dblp.org/search/publ/api?" + urllib.parse.urlencode(
-        {"q": row["name"], "format": "json", "h": 10}
-    )
-    payload = json.loads(request_text(url))
-    hits = payload.get("result", {}).get("hits", {}).get("hit", [])
-    if isinstance(hits, dict):
-        hits = [hits]
-    year = row.get("venue_year", "")
-    normalized_name = normalize_title(row["name"])
-    candidates: list[tuple[int, str]] = []
-    for hit in hits:
-        info = hit.get("info", {})
-        title = " ".join(str(info.get("title", "")).split())
-        norm = normalize_title(title)
-        if not norm:
+    matches: list[tuple[int, int, str]] = []
+    for info in dblp_hits(title):
+        title_score = score_title(title, info_title(info))
+        year_score = 25 if venue_year and str(info.get("year", "")) == venue_year else 0
+        if title_score + year_score < 90:
             continue
-        score = 0
-        if norm == normalized_name:
-            score += 100
-        elif normalized_name in norm:
-            score += 55
-        if year and str(info.get("year", "")) == year:
-            score += 25
-        if score >= 70:
-            candidates.append((score, title))
-    if not candidates:
-        return row["name"]
-    candidates.sort(reverse=True)
-    return candidates[0][1]
+        for url in publication_from_info(info):
+            host_rank = next(
+                (len(PREFERRED_PUBLICATION_HOSTS) - index for index, host in enumerate(PREFERRED_PUBLICATION_HOSTS) if host in url),
+                0,
+            )
+            matches.append((title_score + year_score, host_rank, url))
+    if not matches:
+        return None
+    matches.sort(reverse=True)
+    top = matches[0]
+    tied = [item for item in matches if item[:2] == top[:2]]
+    if len({item[2] for item in tied}) > 1:
+        return None
+    return top[2]
+
+
+def arxiv_url_for_title(title: str, venue_year: str) -> str | None:
+    matches: list[tuple[int, str]] = []
+    for info in dblp_hits(title):
+        candidate = arxiv_from_info(info)
+        if not candidate:
+            continue
+        score = score_title(title, info_title(info))
+        # CoRR record year is commonly the preprint year, so venue-year mismatch
+        # must not reject an otherwise exact title.
+        if score >= 100:
+            matches.append((score, candidate))
+    if not matches:
+        return None
+    urls = {url for score, url in matches if score == max(item[0] for item in matches)}
+    return next(iter(urls)) if len(urls) == 1 else None
 
 
 def main() -> int:
@@ -267,12 +209,12 @@ def main() -> int:
     unresolved: list[dict[str, str]] = []
 
     for row in rows:
+        row["arxiv_url"] = (row.get("arxiv_url") or "").strip()
         if row.get("section") != "Papers":
-            row["arxiv_url"] = row.get("arxiv_url", "") or ""
+            row["arxiv_url"] = ""
             continue
 
         primary = row["url"].strip()
-        row["arxiv_url"] = (row.get("arxiv_url") or "").strip()
         published = row.get("venue", "") not in ARXIV_ONLY_VENUES
 
         if is_arxiv_url(primary):
@@ -289,7 +231,7 @@ def main() -> int:
                 continue
 
             try:
-                title = arxiv_title_from_id(identifier) or row["name"]
+                title = canonical_title(row["name"], row.get("venue_year", ""), identifier)
                 resolved = publication_url(title, row.get("venue_year", ""))
             except Exception as exc:
                 unresolved.append({"name": row["name"], "kind": "publication", "error": repr(exc)})
@@ -300,15 +242,13 @@ def main() -> int:
                 unresolved.append({"name": row["name"], "kind": "publication", "title": title})
             continue
 
-        # The primary URL is already a publication/proceedings link. If an
-        # arXiv v1 date is recorded, preserve the verified preprint separately.
         if row.get("arxiv_date") and not row["arxiv_url"]:
             if row["name"] in ARXIV_OVERRIDES:
                 row["arxiv_url"] = ARXIV_OVERRIDES[row["name"]]
                 continue
             try:
-                title = canonical_title_for_publication_row(row)
-                resolved = arxiv_url_for_title(title, row["arxiv_date"])
+                title = canonical_title(row["name"], row.get("venue_year", ""))
+                resolved = arxiv_url_for_title(title, row.get("venue_year", ""))
             except Exception as exc:
                 unresolved.append({"name": row["name"], "kind": "arxiv", "error": repr(exc)})
                 continue
@@ -326,7 +266,6 @@ def main() -> int:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
-
     return 0
 
 
