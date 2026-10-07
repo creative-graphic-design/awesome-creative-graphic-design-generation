@@ -1,0 +1,98 @@
+name: Audit Uni-Layout Graphist CreatiPoster
+
+on:
+  push:
+    branches:
+      - metadata/unilayout-graphist-creatiposter
+    paths:
+      - .github/workflows/audit-unilayout-graphist-creatiposter.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: metadata/unilayout-graphist-creatiposter
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Update audited metadata
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          path = Path('data/paper_metadata.csv')
+          with path.open(newline='', encoding='utf-8') as f:
+              reader = csv.DictReader(f)
+              rows = list(reader)
+              fields = reader.fieldnames
+
+          additions = [
+              {
+                  'name': 'CreatiPoster',
+                  'project_url': 'https://github.com/graphic-design-ai/creatiposter',
+                  'code_url': 'https://github.com/graphic-design-ai/creatiposter',
+                  'weights_url': '',
+                  'code_status': 'announced',
+                  'weights_status': 'announced',
+                  'model_family': 'Editable multi-layer graphic-design generation with protocol and conditional background models',
+                  'backbone': 'RGBA large multimodal protocol model; conditional background generator',
+                  'train_datasets': 'Copyright-free 100K multi-layer graphic-design corpus',
+                  'eval_datasets': 'CreatiPoster benchmark',
+                  'output_format': 'Editable multi-layer design specification; raster background/composite',
+                  'notes': 'Official repository currently contains project documentation and showcases; training/inference code, the CreatiPoster-F checkpoint, and the training/evaluation datasets remain explicitly listed as TODO.',
+                  'checked_at': '2026-10-07',
+              },
+              {
+                  'name': 'Graphist',
+                  'project_url': 'https://github.com/graphic-design-ai/graphist',
+                  'code_url': 'https://github.com/graphic-design-ai/graphist',
+                  'weights_url': '',
+                  'code_status': 'none',
+                  'weights_status': 'announced',
+                  'model_family': 'Large multimodal model for hierarchical graphic-layout generation',
+                  'backbone': '',
+                  'train_datasets': 'Crello',
+                  'eval_datasets': 'Crello',
+                  'output_format': 'JSON draft protocol with element coordinates, dimensions, and layer order',
+                  'notes': 'Official repository contains the paper/project assets but no runnable implementation; the Graphist checkpoint trained on Crello is still listed as a future release.',
+                  'checked_at': '2026-10-07',
+              },
+              {
+                  'name': 'Uni-Layout',
+                  'project_url': 'https://github.com/JD-GenX/Uni-Layout',
+                  'code_url': 'https://github.com/JD-GenX/Uni-Layout',
+                  'weights_url': 'https://drive.google.com/drive/folders/1evrHmorHW7CBLRhxrV3-3qvFki1ovoJ3?usp=drive_link',
+                  'code_status': 'evaluation-only',
+                  'weights_status': 'partial',
+                  'model_family': 'Unified multimodal layout generation and learned layout evaluation',
+                  'backbone': 'LLaVA-family multimodal evaluator',
+                  'train_datasets': 'Layout Generator dataset; Reward Model CoT dataset',
+                  'eval_datasets': 'Layout Evaluator dataset',
+                  'output_format': 'Structured layout boxes; binary layout-quality judgments',
+                  'notes': 'Official repository releases datasets, evaluator inference code, and Layout Evaluator checkpoints. A public layout-generator training/inference path or generator checkpoint was not verified in the current repository.',
+                  'checked_at': '2026-10-07',
+              },
+          ]
+
+          by_name = {row['name']: row for row in rows}
+          for row in additions:
+              by_name[row['name']] = row
+          rows = sorted(by_name.values(), key=lambda r: r['name'].casefold())
+
+          with path.open('w', newline='', encoding='utf-8') as f:
+              writer = csv.DictWriter(f, fieldnames=fields, lineterminator='\n')
+              writer.writeheader()
+              writer.writerows(rows)
+          PY
+          uv run python scripts/generate_readme.py
+          git rm .github/workflows/audit-unilayout-graphist-creatiposter.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/paper_metadata.csv README.md
+          git commit -m 'Audit Uni-Layout Graphist and CreatiPoster reproducibility metadata'
+          git push origin HEAD:metadata/unilayout-graphist-creatiposter
