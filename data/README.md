@@ -10,13 +10,13 @@ Research-topic boundaries change as the taxonomy evolves, and many works span se
 
 At the current catalog size, the canonical files are:
 
-- `resources.csv` — rendered catalog resources, the primary task/output taxonomy, and optional paper architecture annotations.
+- `resources.csv` — rendered catalog resources, bibliographic links, the primary task/output taxonomy, and optional paper architecture annotations.
 - `paper_metadata.csv` — audited implementation and reproducibility metadata for papers in the `Papers` section.
 - `venues.csv` — recurring conferences, journals, and workshop series monitored for relevant work. It intentionally keeps one row per stable series; use an authoritative series/archive URL when one exists, and record concise edition/recurrence evidence in `note`. Add a separate edition table only if concrete query/rendering needs justify the one-to-many model rather than for audit bookkeeping.
 
-This is intentionally a small split by data responsibility, not by research topic. `resources.csv` answers **what the work is, what task/output it belongs to, and the concise architecture annotation shown with it**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**.
+This is intentionally a small split by data responsibility, not by research topic. `resources.csv` answers **what the work is, what task/output it belongs to, which bibliographic links identify it, and the concise architecture annotation shown with it**; `paper_metadata.csv` answers **what implementation artifacts are publicly available and reproducible**.
 
-If `resources.csv` later becomes operationally unwieldy, split it only as an explicit schema migration along stable semantic roles, and update the generator and validation in the same change. Do not create ad-hoc files for a temporary research sweep or individual topic.
+If `resources.csv` later becomes operationally unwieldy, split it only as an explicit schema migration along stable semantic roles, and update the generator and validation in the same change. Do not create ad-hoc bibliographic side tables or temporary topic files.
 
 ## `resources.csv`
 
@@ -27,7 +27,8 @@ Columns:
 - `section` — top-level resource role. Allowed values are defined by `scripts/generate_readme.py`, currently `Surveys and Overviews`, `Papers`, `Datasets and Benchmarks`, `Evaluation Methods and Metrics`, `Models and Implementations`, and `Related Resources`.
 - `category` — primary paper task/output taxonomy category. This is populated only for `Papers`; non-paper rows leave it empty.
 - `name` — canonical display name.
-- `url` — canonical primary link used by the list item.
+- `url` — canonical primary link used by the list item. For a published paper, this must be an authoritative publication/proceedings page rather than arXiv. For an arXiv-only paper, this is the arXiv abstract URL.
+- `arxiv_url` — optional canonical `https://arxiv.org/abs/...` link for a published paper that also has an arXiv preprint. Leave it blank when `url` itself is arXiv so the README does not duplicate the same link.
 - `description` — concise objective description of why the resource belongs in the catalog.
 - `architecture` — optional short method-family label for paper entries, such as `Diffusion`, `LLM`, `VLM`, or `GAN`; leave blank for non-paper resources. Multiple families may be separated with semicolons. The generator renders this field directly and does not join a separate architecture table.
 - `venue` — publication venue or release context when useful.
@@ -35,6 +36,18 @@ Columns:
 - `arxiv_date` — arXiv v1 date in `YYYY-MM-DD`, when applicable.
 - `venue_date` — normalized authoritative venue/release date in `YYYY-MM-DD`: conference start date for conference papers, the specific workshop edition date for workshop papers, first online/publication date for journals, or the authoritative release date for non-publication resources.
 - `date_note` — short provenance note for the chronology decision.
+
+### Bibliographic link contract
+
+Paper links follow one canonical rule:
+
+- **Published paper with arXiv:** `url` is the authoritative publication/proceedings page and `arxiv_url` is the verified arXiv abstract URL.
+- **Published paper without arXiv:** `url` is the authoritative publication/proceedings page and `arxiv_url` is blank.
+- **arXiv-only paper:** `url` is the arXiv abstract URL and `arxiv_url` is blank.
+
+Do not create a separate bibliographic-links CSV. Publication and arXiv links are intrinsic properties of the resource record and stay in `resources.csv`.
+
+`scripts/validate_resource_contract.py` enforces the column schema and these link invariants. The `Catalog Check` workflow runs that validator before checking the generated README, so a contract violation fails CI.
 
 The generator uses the earlier of `arxiv_date` and `venue_date` as the first-public-appearance sort key and orders research from newest to oldest within each category.
 
@@ -56,25 +69,9 @@ This table is keyed by the exact paper `name` in `resources.csv` and stores impl
 
 A row means that the public release state has actually been inspected. Do not create placeholder rows for unaudited papers.
 
-Tracked fields include:
+Tracked fields include project page, official code repository, checkpoint/weights URL, release status, model family/base model, training/evaluation datasets, output representation, verification notes, and `checked_at`.
 
-- project page;
-- official code repository;
-- checkpoint/weights URL;
-- code and weight release status;
-- method family and base/backbone model;
-- datasets actually used for training and evaluation;
-- output representation;
-- release limitations or other verification notes;
-- `checked_at`, the date the release state was last verified.
-
-The allowed status values and detailed verification policy are owned by `CONTRIBUTING.md` and enforced by `scripts/generate_readme.py`.
-
-### Current metadata-scope limitation
-
-`paper_metadata.csv` currently attaches only to entries whose display section is `Papers`. That keeps the bootstrap schema simple, but it means a research paper intentionally displayed under another role — for example a learned reward model under `Evaluation Methods and Metrics` — cannot yet expose the same project/code/weights details through this table.
-
-If this becomes common, prefer a deliberate migration from `paper_metadata.csv` to a more general method/resource metadata table over adding parallel per-section metadata CSVs. The migration should define which resource roles may carry model/reproducibility fields and update generator validation atomically.
+Bibliographic publication/arXiv links do **not** belong here; keep them in `resources.csv`.
 
 ## `venues.csv`
 
@@ -86,8 +83,9 @@ After changing catalog data, run:
 
 ```bash
 uv sync
+uv run python scripts/validate_resource_contract.py
 uv run python scripts/generate_readme.py
 uv run python scripts/generate_readme.py --check
 ```
 
-The `Catalog Check` GitHub Actions workflow performs the generated-file consistency check. `Awesome Lint` separately checks Awesome-list conventions and repository metadata.
+The `Catalog Check` GitHub Actions workflow enforces the canonical resource contract and generated-file consistency. `Awesome Lint` separately checks Awesome-list conventions and repository metadata.
