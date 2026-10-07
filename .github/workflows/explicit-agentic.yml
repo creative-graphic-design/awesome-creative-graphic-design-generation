@@ -1,0 +1,63 @@
+name: Classify explicit agentic systems
+on:
+  push:
+    branches: [taxonomy/explicit-agentic-systems]
+permissions:
+  contents: write
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: taxonomy/explicit-agentic-systems
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Update explicit agent labels
+        run: |
+          git show origin/main:data/resources.csv > /tmp/resources.csv
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('/tmp/resources.csv').read_text()
+          reps = {
+            'BannerAgency': ('Agentic / Multi-stage System; VLM', 'Agentic; VLM'),
+            'Designer-RSI': ('Agentic / Multi-stage System', 'Agentic'),
+            'Mirror in the Model: Ad Banner Image Generation via Reflective Multi-LLM and Multi-modal Agents': ('Agentic / Multi-stage System; VLM', 'Agentic; VLM'),
+            'PosterAgent: Agentic Poster Generation via Stage-Aware Reinforcement Learning': ('Agentic / Multi-stage System', 'Agentic'),
+            'CAL-RAG': ('Agentic / Multi-stage System; LLM; VLM', 'Agentic; LLM; VLM'),
+            'SciFig': ('Agentic / Multi-stage System; VLM', 'Agentic; VLM'),
+            'AutoFigure': ('Agentic / Multi-stage System; VLM', 'Agentic; VLM'),
+            'PaperBanana': ('Agentic / Multi-stage System; VLM', 'Agentic; VLM'),
+            'PaperBanana-Interact': ('Agentic / Multi-stage System', 'Agentic'),
+            'Any2Poster': ('Agentic / Multi-stage System; LLM; VLM', 'Agentic; LLM; VLM'),
+            'ArcDeck': ('Agentic / Multi-stage System; LLM', 'Agentic; LLM'),
+            'SlideTailor': ('Agentic / Multi-stage System; VLM', 'Agentic; VLM'),
+            'P2P': ('Agentic / Multi-stage System', 'Agentic'),
+            'Paper2Poster': ('Agentic / Multi-stage System', 'Agentic'),
+            'PosterForest': ('Agentic / Multi-stage System; LLM; VLM', 'Agentic; LLM; VLM'),
+            'PosterGen': ('Agentic / Multi-stage System; LLM', 'Agentic; LLM'),
+            'PosterMELD': ('Agentic / Multi-stage System', 'Agentic'),
+            'SlideGen': ('Agentic / Multi-stage System', 'Agentic'),
+          }
+          out=[]; seen=set()
+          for line in text.splitlines(True):
+              for name,(old,new) in reps.items():
+                  if f',{name},' in line:
+                      if old not in line:
+                          raise SystemExit(f'old label missing for {name}: {line}')
+                      line=line.replace(old,new,1); seen.add(name); break
+              out.append(line)
+          missing=set(reps)-seen
+          if missing: raise SystemExit(f'missing rows: {sorted(missing)}')
+          Path('data/resources.csv').write_text(''.join(out))
+          PY
+          uv run python scripts/generate_readme.py
+          rm .github/workflows/explicit-agentic.yml
+      - name: Commit final tree
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/resources.csv README.md .github/workflows/explicit-agentic.yml
+          git commit -m "Classify explicit agentic systems"
+          git push
