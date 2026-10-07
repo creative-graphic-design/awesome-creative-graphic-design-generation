@@ -3,10 +3,10 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-237-informational)
-![Papers](https://img.shields.io/badge/papers-182-informational)
+![Total Resources](https://img.shields.io/badge/resources-238-informational)
+![Papers](https://img.shields.io/badge/papers-183-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-72-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-73-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -313,6 +313,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [ReDesign](https://arxiv.org/abs/2607.25565) - Recovers editable layer hierarchies, typography, geometry, colors, and grouping from raster design images (ECCV 2026). **Architecture:** Multi-stage System.
 - [CreatiParser: Generative Image Parsing of Raster Graphic Designs into Editable Layers](https://arxiv.org/abs/2604.19632) - Parses flattened graphic designs into editable text, background, and sticker layers using a VLM text-rendering protocol and multi-branch RGBA diffusion, with preference alignment via ParserReward. **Architecture:** Diffusion; VLM; Multi-stage System.
 - [ReLayout: Structure-Preserving Design Layout Editing](https://arxiv.org/abs/2602.01046) - Edits design layouts from natural-language intents while preserving unedited structure through relation graphs and self-supervised relation-aware design reconstruction. **Architecture:** VLM.
+- [APEX](https://arxiv.org/abs/2601.04794) - Edits existing academic posters in PPTX format with a multi-agent planning, API-execution, and visual review-and-adjustment workflow under natural-language instructions. **Architecture:** Agentic; VLM. Project: — · [Code](https://github.com/Breesiu/APEX) (`pipeline`) · Weights: `n/a`.<br>  **Base:** Configurable Gemini or Qwen vision-language APIs · **Train:** None · **Eval:** APEX-Bench · **Output:** Editable PPTX.
 #### 2025
 
 - [PosterCopilot](https://arxiv.org/abs/2512.04082) - Combines layout reasoning with layer-controllable iterative editing for professional graphic-design workflows (ECCV 2026). **Architecture:** VLM. [Project](https://postercopilot.github.io/) · [Code](https://github.com/JiazheWei/PosterCopilot) (`inference only`) · [Weights](https://huggingface.co/void-2024/PosterCopilot) (`released`).<br>  **Base:** Qwen2.5-VL-7B-Instruct · **Train:** PosterCopilot Dataset (160K posters, 2.6M layers) · **Output:** JSON layout; PNG; editable PSD.
