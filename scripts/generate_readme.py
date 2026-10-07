@@ -154,6 +154,8 @@ def load_rows() -> list[dict[str, str]]:
                 raise ValueError(
                     f"Unknown architecture label for {name}: {', '.join(unknown_labels)}"
                 )
+        if row["venue_year"] and not row["venue"]:
+            raise ValueError(f"venue_year requires venue for {name}: {row['venue_year']}")
         if not name or not url or not row["description"]:
             raise ValueError(f"Missing required field: {row}")
         if not url.startswith("https://"):
