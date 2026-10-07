@@ -8,6 +8,10 @@ on:
       - scripts/migrate_bibliographic_links.py
       - .github/workflows/migrate-bibliographic-links.yml
 
+concurrency:
+  group: issue-125-bibliographic-migration
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -21,7 +25,7 @@ jobs:
           ref: issue-125-provider-icons
 
       - name: Limit fallback concurrency
-        run: sed -i 's/MAX_WORKERS = 6/MAX_WORKERS = 1/' scripts/migrate_bibliographic_links.py
+        run: sed -i 's/MAX_WORKERS = 6/MAX_WORKERS = 3/' scripts/migrate_bibliographic_links.py
 
       - name: Run bibliographic migration
         run: python scripts/migrate_bibliographic_links.py
