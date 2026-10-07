@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-75-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-78-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -71,9 +71,9 @@ Papers are classified by their **primary output and task**, rather than by model
 - [i-Design](https://link.springer.com/chapter/10.1007/978-3-032-14826-1_18) - Optimizes graphic layout design step by step with progressive aesthetic policy optimization (ECCV 2026). **Architecture:** Autoregressive; Transformer; VLM.
 #### 2025
 
-- [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) - Generates layouts from intuitive user sketches and content assets with a multimodal Transformer and releases large-scale synthetic sketch supervision (ICCV 2025 HiGen Workshop). **Architecture:** Transformer.
-- [LayoutRectifier](https://arxiv.org/abs/2508.11177) - Rectifies generated graphic layouts with two-stage optimization over grid alignment, overlap, and containment while limiting deviation from the input layout (Pacific Graphics 2025). **Architecture:** Optimization.
-- [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) - Generates explicitly structured layouts with a Transformer using structure serialization and disentanglement for conditional structure control (TVCG 2025). **Architecture:** Transformer.
+- [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) - Generates layouts from intuitive user sketches and content assets with a multimodal Transformer and releases large-scale synthetic sketch supervision (ICCV 2025 HiGen Workshop). **Architecture:** Transformer. [Project](https://github.com/google-deepmind/sketch_to_layout) · Code: `unknown` · Weights: `unknown`.<br>  **Base:** PaLI Gemma 3B · **Train:** PubLayNet; DocLayNet; SlideVQA · **Eval:** PubLayNet; DocLayNet; SlideVQA · **Output:** Structured graphic layouts conditioned on sketches and content assets.
+- [LayoutRectifier](https://arxiv.org/abs/2508.11177) - Rectifies generated graphic layouts with two-stage optimization over grid alignment, overlap, and containment while limiting deviation from the input layout (Pacific Graphics 2025). **Architecture:** Optimization. [Project](https://jdily.github.io/layoutrectifier.github.io/) · Code: `announced` · Weights: `n/a`.<br>  **Train:** None · **Eval:** PubLayNet; Magazine; CGL · **Output:** Rectified structured layout boxes.
+- [StructLayoutFormer](https://doi.org/10.1109/TVCG.2025.3574311) - Generates explicitly structured layouts with a Transformer using structure serialization and disentanglement for conditional structure control (TVCG 2025). **Architecture:** Transformer. Project: — · [Code](https://github.com/Teagrus/StructLayoutFormer) (`announced`) · Weights: `announced`.<br>  **Base:** Transformer · **Train:** RICO; WebForest · **Eval:** RICO; WebForest · **Output:** Hierarchical structured layouts and serialized layout sequences.
 - [CLASS](https://openaccess.thecvf.com/content/WACV2025/html/Manandhar_CLASS_Conditional_Latent_Architecture_for_Search_and_Synthesis_of_Design_WACV_2025_paper.html) - Unifies layout synthesis and retrieval with a variational latent representation, an autoregressive Transformer layout decoder, and a raster decoder (WACV 2025). **Architecture:** Autoregressive; Transformer; VAE.
 - [LGGPT](https://doi.org/10.1007/s11263-025-02353-2) - Unifies multiple layout-generation tasks and domains with compact instruction and response encodings for a 1.5B-parameter large language model (IJCV 2025). **Architecture:** LLM.
 #### 2024
