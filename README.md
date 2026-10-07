@@ -70,7 +70,6 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [i-Design](https://link.springer.com/chapter/10.1007/978-3-032-37232-1_35) - Optimizes graphic layout design step by step with progressive aesthetic policy optimization (ECCV 2026).
   - Details: **Architecture:** Autoregressive; Transformer; VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Multimodal VLM with progressive rendered-canvas conditioning · **Train:** Graphic-layout pretraining data; Crello · **Eval:** Crello; WebUI · **Output:** Structured layout boxes; progressively rendered canvases.
-
 #### 2025
 
 - [Sketch-to-Layout](https://arxiv.org/abs/2510.27632) - Generates layouts from intuitive user sketches and content assets with a multimodal Transformer and releases large-scale synthetic sketch supervision (ICCV 2025 HiGen Workshop).
@@ -83,7 +82,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Autoregressive; Transformer; VAE · [Project](https://research.adobe.com/publication/class-conditional-latent-architecture-for-search-and-synthesis-of-design-layouts/) · Code: `unknown` · Weights: `unknown` · **Base:** Autoregressive Transformer layout decoder; CNN raster decoder · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layouts; raster reconstruction; latent layout embeddings.
 - [LGGPT](https://doi.org/10.1007/s11263-025-02353-2) - Unifies multiple layout-generation tasks and domains with compact instruction and response encodings for a 1.5B-parameter large language model (IJCV 2025).
   - Details: **Architecture:** LLM · Project: — · [Code](https://github.com/NiceRingNode/LGGPT) (`training + inference`) · Weights: `unknown` · **Base:** GPT2-XL (1.5B) · **Train:** PubLayNet; RICO; Magazine; WiSe; SPaSe · **Eval:** PubLayNet; RICO; Magazine · **Output:** Serialized layout responses and structured layout boxes.
-
 #### 2024
 
 - [LayoutKAG: Enhancing Layout Generation in Large Language Models Through Knowledge-Augmented Generation](https://doi.org/10.1109/AIHCIR65563.2024.00056) - Uses knowledge-augmented generation to improve large-language-model layout generation and control (AIHCIR 2024).
@@ -100,7 +98,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Diffusion · Project: — · [Code](https://github.com/puar-playground/LACE) (`training + inference`) · [Weights](https://huggingface.co/datasets/puar-playground/LACE/tree/main) (`released`) · **Base:** Transformer diffusion denoiser · **Train:** PubLayNet; RICO; Magazine · **Eval:** PubLayNet; RICO; Magazine · **Output:** Structured layout boxes.
 - [Spot the Error](https://arxiv.org/abs/2401.16375) - Improves non-autoregressive graphic-layout generation with a learned wireframe locator that identifies erroneous layout tokens for iterative refinement (AAAI 2024).
   - Details: **Architecture:** Encoder-only Neural Model · Project: — · [Code](https://github.com/ffffatgoose/SpotError) (`announced`) · Weights: `unknown` · **Base:** Non-autoregressive decoder; wireframe locator · **Train:** PubLayNet; RICO · **Eval:** PubLayNet; RICO · **Output:** Structured layout tokens and boxes.
-
 #### 2023
 
 - [LayoutPrompter](https://arxiv.org/abs/2311.06495) - Prompts large language models for zero-shot and few-shot visual layout generation (NeurIPS 2023).
@@ -135,14 +132,12 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Transformer first-stage encoder/decoder; Transformer latent-diffusion denoiser · **Train:** CLAY; RICO-Semantic; PubLayNet · **Eval:** CLAY; RICO-Semantic; PubLayNet · **Output:** Structured vector-graphic layouts conditioned on guidelines.
 - [Machine Learning Model to Evaluate the Appropriateness of Layout for Automatic Generation of Graphic Design Works](https://doi.org/10.1109/IMCOM56909.2023.10035646) - Uses adversarial layout generation and a trained discriminator to generate and score graphic-design layouts conditioned on specified materials (IMCOM 2023).
   - Details: **Architecture:** GAN · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** GAN generator; discriminator over visual-importance layout images · **Train:** Graphic-design layouts converted to visual-importance images · **Eval:** Subjective human evaluation · **Output:** Generated graphic-design layouts; discriminator appropriateness scores.
-
 #### 2022
 
 - [LayoutFormer++](https://arxiv.org/abs/2208.08037) - Treats layout generation as a sequence-to-sequence task with unified conditioning (CVPR 2023).
   - Details: **Architecture:** Autoregressive; Transformer · Project: — · [Code](https://github.com/microsoft/LayoutGeneration/tree/main/LayoutFormer%2B%2B) (`training + inference`) · [Weights](https://huggingface.co/jzy124/LayoutFormer) (`released`) · **Base:** Transformer encoder-decoder · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Serialized/discretized layout boxes.
 - [Coarse-to-Fine](https://ojs.aaai.org/index.php/AAAI/article/view/19994) - Generates layouts hierarchically from coarse global structure to fine element placement (AAAI 2022).
   - Details: **Architecture:** VAE · Project: — · [Code](https://github.com/microsoft/LayoutGeneration/tree/main/Coarse-to-Fine) (`training + inference`) · [Weights](https://huggingface.co/jzy124/Coarse2Fine/tree/main) (`released`) · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes.
-
 #### 2021
 
 - [Layout-BLT](https://arxiv.org/abs/2112.05112) - Uses bidirectional layout transformers to generate and refine object arrangements (ECCV 2022).
@@ -155,14 +150,12 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Transformer; Optimization; GAN · Project: — · [Code](https://github.com/ktrk115/const_layout) (`training + inference`) · Weights: `released` · **Base:** Transformer generator and discriminator · **Train:** RICO; PubLayNet · **Eval:** RICO; PubLayNet · **Output:** Structured layout boxes.
 - [VTN](https://arxiv.org/abs/2104.02416) - Combines self-attention with a variational autoencoder to learn global design rules and synthesize diverse layouts (CVPR 2021).
   - Details: **Architecture:** Transformer; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Self-attention VAE encoder-decoder; autoregressive decoder variant · **Train:** PubLayNet; RICO; COCO-Stuff; SUN RGB-D · **Eval:** PubLayNet; RICO; COCO-Stuff; SUN RGB-D · **Output:** Variable-length labeled bounding-box layouts.
-
 #### 2020
 
 - [LayoutTransformer: Layout Generation and Completion With Self-Attention](https://arxiv.org/abs/2006.14615) - Uses self-attention to autoregressively generate and complete layouts by modeling contextual relationships among layout elements across multiple structured-layout domains (ICCV 2021).
   - Details: **Architecture:** Autoregressive; Transformer · [Project](https://kampta.github.io/layout) · [Code](https://github.com/kampta/DeepLayout) (`training + inference`) · Weights: `unknown` · **Base:** GPT-style Transformer decoder · **Train:** COCO; PubLayNet; RICO; PartNet · **Eval:** COCO; PubLayNet; RICO; PartNet · **Output:** Serialized layout primitives and structured boxes.
 - [AC-LayoutGAN](https://doi.org/10.1109/TVCG.2020.2999335) - Generates graphic layouts conditioned on element attributes such as area, aspect ratio, and reading order with an attribute-conditioned GAN (TVCG).
   - Details: **Architecture:** GAN · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Attribute-conditioned generator; global and element-dropout local discriminators · **Train:** Approximately 17K professionally designed advertisement layouts · **Eval:** Approximately 17K advertisement layouts; user study · **Output:** Advertisement bounding-box layouts conditioned on area aspect ratio and reading order.
-
 #### 2019
 
 - [Neural Design Network](https://arxiv.org/abs/1912.09421) - Generates graphic layouts under explicit design constraints with a neural structured model (ECCV 2020).
@@ -173,47 +166,38 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** CountVAE; autoregressive BBoxVAE · **Train:** MNIST-Layouts; COCO 2017 Panoptic · **Eval:** MNIST-Layouts; COCO 2017 Panoptic · **Output:** Label-conditioned object bounding-box layouts.
 - [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) - Introduces a GAN formulation for synthesizing layouts represented by labeled geometric elements (ICLR 2019).
   - Details: **Architecture:** GAN · Project: — · [Code](https://github.com/JiananLi2016/LayoutGAN-Tensorflow) (`training + inference`) · Weights: `unknown` · **Base:** Self-attention generator; CNN wireframe discriminator · **Train:** MNIST; document layouts; clipart; tangram · **Eval:** MNIST; document layouts; clipart; tangram · **Output:** Point and bounding-box graphic layouts.
-
 #### 2015
 
 - [DesignScape](https://doi.org/10.1145/2702123.2702149) - Provides interactive refinement and brainstorming layout suggestions that improve position, scale, and alignment during graphic-design authoring (CHI 2015).
   - Details: **Architecture:** Optimization · [Project](https://www.dgp.toronto.edu/~donovan/design/) · Code: `unknown` · Weights: `n/a` · **Base:** GPU layout optimization; NIO style space; PCA · **Train:** 18 example layouts for style-space estimation · **Eval:** Mechanical Turk interface and design-quality studies · **Output:** Interactive refinement and brainstorming layout suggestions.
-
 #### 2014
 
 - [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014).
   - Details: **Architecture:** Optimization · [Project](https://research.adobe.com/publication/learning-layouts-for-single-page-graphic-designs/) · Code: `unknown` · Weights: `n/a` · **Base:** Nonlinear Inverse Optimization (NIO) · **Train:** Small sets of example single-page graphic designs · **Eval:** Professional and crowdsourced layout comparisons · **Output:** Single-page graphic-design element layouts.
-
 #### 2012
 
 - [Automatic Stylistic Manga Layout](https://doi.org/10.1145/2366145.2366160) - Generates stylistic manga page layouts from input artworks and user-specified semantics with parametric style models, probabilistic initialization, and joint geometry refinement (SIGGRAPH Asia 2012).
   - Details: **Architecture:** Optimization · [Project](https://ying-cao.com/projects/stylistic_layout/manga_layout.htm) · Code: `unknown` · Weights: `n/a` · **Base:** Parametric style models; geometric optimization · **Train:** Manga layout examples · **Eval:** User-study manga layouts · **Output:** Structured manga page and panel layouts.
-
 #### 2007
 
 - [Specifying Label Layout Style by Example](https://doi.org/10.1145/1294211.1294252) - Learns a designer-specified label-layout style from an example via nonlinear inverse optimization, then synthesizes new labeled-diagram layouts in the learned style (UIST 2007).
   - Details: **Architecture:** Optimization · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Nonlinear inverse optimization; simulated annealing · **Train:** Single example label layout · **Eval:** Label-layout examples · **Output:** Placed labels and leader-line layouts.
-
 #### 2003
 
 - [Adaptive Grid-Based Document Layout](https://doi.org/10.1145/882262.882353) - Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003).
   - Details: **Architecture:** Template-Based; Optimization · [Project](https://research.adobe.com/publication/adaptive-grid-based-document-layout/) · Code: `unknown` · Weights: `n/a` · **Base:** Adaptive grid-based templates · **Train:** None · **Eval:** Magazine and newspaper-style document examples · **Output:** Adaptive document page layouts.
-
 #### 1994
 
 - [Interactive Graphic Design Using Automatic Presentation Knowledge](https://doi.org/10.1145/191666.191719) - Introduces SageBrush, SageBook, and SAGE to combine knowledge-based automatic presentation with interactive construction, retrieval, and customization of data graphics (CHI 1994).
   - Details: **Architecture:** Knowledge-Based · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** SAGE; SageBrush; SageBook · **Train:** None · **Eval:** Interactive data-graphic examples · **Output:** Interactive and automatically designed data graphics.
-
 #### 1988
 
 - [Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces](https://doi.org/10.1145/62402.62431) - Extends automatic graphical-presentation theory to theory-driven design of graphical user interfaces (UIST 1988).
   - Details: **Architecture:** Knowledge-Based · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** APT graphical-presentation theory · **Train:** None · **Eval:** Graphical user-interface examples · **Output:** Automatically designed graphical user-interface presentations.
-
 #### 1986
 
 - [Automating the Design of Graphical Presentations of Relational Information](https://doi.org/10.1145/22949.22950) - Codifies expressiveness and effectiveness criteria plus a composition algebra in APT to automatically synthesize graphical presentations of relational information (ACM TOG 1986).
   - Details: **Architecture:** Knowledge-Based · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** APT presentation system · **Train:** None · **Eval:** Relational-information presentation examples · **Output:** Automatically synthesized graphical presentations.
-
 
 ### Content-Aware Layout Generation
 
@@ -223,7 +207,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Diffusion; Graph Neural Network.
 - [Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement](https://arxiv.org/abs/2603.22187) - Introduces VFLM, which iteratively renders and visually critiques SVG text layouts over background images, using visually grounded reinforcement learning to improve readability and aesthetics (CVPR 2026).
   - Details: **Architecture:** VLM; Multi-stage System · Project: — · [Code](https://github.com/FolSpark/VFLM) (`training + inference`) · Weights: `released` · **Base:** Qwen2.5-VL 3B/7B · **Eval:** Multiple text-layout benchmarks · **Output:** SVG layout.
-
 #### 2025
 
 - [Content-Aware Ad Banner Layout Generation with Two-Stage Chain-of-Thought in Vision Language Models](https://arxiv.org/abs/2512.12596) - Uses a VLM to analyze advertisement background content and plan text and logo placement before rendering an HTML layout.
@@ -248,7 +231,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** LLM.
 - [AesthetiQ](https://arxiv.org/abs/2503.00591) - Aligns multimodal language models to aesthetic preferences for content-aware graphic layout prediction using preference optimization (CVPR 2025).
   - Details: **Architecture:** VLM.
-
 #### 2024
 
 - [VASCAR](https://arxiv.org/abs/2412.04237) - Uses a large vision-language model to iteratively inspect rendered layouts and self-correct content-aware element placement without additional training.
@@ -270,7 +252,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** VLM · [Project](https://github.com/graphic-design-ai/graphist) · Code: `no release` · Weights: `announced` · **Train:** Crello · **Eval:** Crello · **Output:** JSON draft protocol with element coordinates, dimensions, and layer order.
 - [PosterLLaMA](https://arxiv.org/abs/2404.00995) - Adapts a multimodal language model to poster layout generation (ECCV 2024).
   - Details: **Architecture:** VLM · [Project](https://lait-cvlab.github.io/PosterLlama/) · [Code](https://github.com/jaepoong/PosterLlama) (`training + inference`) · [Weights](https://huggingface.co/poong/PosterLlama) (`released`) · **Base:** LLaMA2-7B-chat; CodeLLaMA-7B; DINO visual features · **Train:** MiniGPT-4 synthetic caption data; CGL · **Eval:** CGL; poster-layout benchmarks · **Output:** HTML/code-form layout representation.
-
 #### 2023
 
 - [RALF](https://arxiv.org/abs/2311.13602) - Retrieves relevant design examples to guide content-aware layout generation (CVPR 2024).
@@ -283,7 +264,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** GAN · Project: — · [Code](https://github.com/PKU-ICST-MIPL/PosterLayout-CVPR2023) (`training + inference`) · Weights: `released` · **Base:** Visual feature encoder; GAN layout generator · **Train:** PKU PosterLayout · **Eval:** PKU PosterLayout · **Output:** Structured poster layout boxes.
 - [PDA-GAN](https://arxiv.org/abs/2303.14377) - Uses GAN-based unsupervised domain adaptation with a pixel-level discriminator to generate image-aware advertising-poster layouts (CVPR 2023).
   - Details: **Architecture:** GAN.
-
 #### 2022
 
 - [LayoutDETR](https://arxiv.org/abs/2212.09877) - Generates foreground layouts conditioned on content images for advertising design (ECCV 2024).
@@ -292,24 +272,20 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Autoregressive; Transformer; VAE.
 - [CGL-GAN](https://arxiv.org/abs/2205.00303) - Generates advertising layouts conditioned on visual content and introduces the CGL dataset (IJCAI 2022).
   - Details: **Architecture:** GAN · Project: — · [Code](https://github.com/minzhouGithub/CGL-GAN) (`announced`) · Weights: `unknown` · **Base:** GAN with composition-aware visual conditioning · **Train:** CGL Dataset · **Eval:** CGL Dataset · **Output:** Structured advertising layout boxes.
-
 #### 2021
 
 - [SmartText](https://doi.org/10.1109/TMM.2021.3097900) - Places text over natural images using saliency and learned aesthetic compatibility for harmonious poster composition (TMM 2022).
   - Details: **Architecture:** Multi-stage System.
-
 #### 2019
 
 - [ContentGAN](https://doi.org/10.1145/3306346.3322971) - Generates graphic-design layouts conditioned on underlying visual content (SIGGRAPH 2019).
   - Details: **Architecture:** GAN · [Project](https://xtqiao.com/projects/content_aware_layout/) · [Code](https://portland-my.sharepoint.com/:f:/g/personal/xqiao6-c_my_cityu_edu_hk/EoOt-X32-BlNmdpTPlhNVvEBxEBEHFfTwL1RHWAE_Em-0A?e=U1FYRa) (`unknown`) · Weights: `unknown` · **Train:** Magazine · **Eval:** Magazine · **Output:** Structured content-aware graphic-design layouts.
-
 #### Other
 
 - [Learning Priority-Aware Controllable Poster Layout Generation](https://doi.org/10.1016/j.patcog.2026.113497) - Uses LLM- and vision-derived priorities, optimal-transport matching, and flow-based refinement for controllable poster layout generation (Pattern Recognition 2026).
   - Details: **Architecture:** Flow Matching; LLM.
 - [Two-stage Content-Aware Layout Generation for Poster Designs](https://doi.org/10.1145/3581783.3612275) - Combines aesthetics-conditioned diffusion layout proposals with a learned ranking stage for poster designs over image backgrounds (ACM MM 2023).
   - Details: **Architecture:** Diffusion.
-
 
 ### Graphic Design Generation
 
@@ -347,7 +323,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Multi-stage System; LLM; VLM · [Project](https://liuziyuan1109.github.io/design-as-code/) · [Code](https://github.com/liuziyuan1109/design-as-code) (`training + inference`) · [Weights](https://huggingface.co/Tony1109/DesignAsCode-planner) (`released`) · **Base:** Qwen3-8B planner; GPT-5; GPT-4o; gpt-image-1 · **Train:** DesignAsCode training data (~19K distilled Crello samples) · **Eval:** 546-sample test set; Broad test set · **Output:** Editable HTML/CSS.
 - [PosterVerse](https://arxiv.org/abs/2601.03993) - Automates commercial poster creation with blueprint planning, background generation, and HTML-based scalable typography (AAAI 2026).
   - Details: **Architecture:** Multi-stage System; Diffusion; LLM; VLM.
-
 #### 2025
 
 - [AutoPP](https://arxiv.org/abs/2512.21921) - Automates product-poster generation and CTR-oriented optimization using unified design generation and online-feedback preference learning (AAAI 2026).
@@ -374,7 +349,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Diffusion.
 - [T-Stars-Poster](https://doi.org/10.1145/3746252.3761554) - Generates product-centric advertising images through VLM-guided prompt and layout planning, SDXL background generation, and final graphics rendering (CIKM 2025; arXiv preprint titled PAID).
   - Details: **Architecture:** Multi-stage System; Diffusion; VLM.
-
 #### 2024
 
 - [LaDeCo](https://arxiv.org/abs/2412.19712) - Generates layered and editable graphic designs rather than flattened images (CVPR 2025).
@@ -389,7 +363,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** LLM.
 - [CG4CTR](https://arxiv.org/abs/2401.10934) - Builds a Stable-Diffusion-based advertising-creative generation pipeline that incorporates user preferences and downstream click-through-rate ranking (WWW 2024 Companion).
   - Details: **Architecture:** Multi-stage System; Diffusion.
-
 #### 2023
 
 - [Planning and Rendering](https://arxiv.org/abs/2312.08822) - Separates semantic planning from visual rendering for end-to-end product-poster generation (2023).
@@ -398,17 +371,14 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Multi-stage System; Diffusion; LLM; VLM · [Project](https://graphic-design-generation.github.io/) · Code: `announced` · Weights: `unknown` · **Base:** Fine-tuned LLMs; large multimodal models; diffusion models · **Train:** Proprietary design data (not publicly released) · **Eval:** DESIGNINTENTION benchmark · **Output:** Multi-layer editable graphic design.
 - [AutoPoster](https://arxiv.org/abs/2308.01095) - Integrates content analysis and layout generation into an automatic advertising-poster design system (2023).
   - Details: **Architecture:** Multi-stage System.
-
 #### 2022
 
 - [CreaGAN](https://doi.org/10.1145/3503161.3548763) - Automates display-ad creative adaptation with aesthetics-aware product placement and context-aware inpainting while reusing existing design elements (ACM MM 2022).
   - Details: **Architecture:** Multi-stage System; GAN.
-
 #### 2021
 
 - [Vinci](https://doi.org/10.1145/3411764.3445117) - Introduces an intelligent graphic-design system that composes advertising posters from user-provided product assets and design intent (CHI 2021).
   - Details: **Architecture:** Multi-stage System.
-
 
 ### Composable and Layered Asset Generation
 
@@ -422,7 +392,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Diffusion; Transformer; LLM; VAE.
 - [Controllable Layered Image Generation for Real-World Editing](https://arxiv.org/abs/2601.15507) - Introduces LASAGNA, a unified controllable framework that jointly generates composites, clean backgrounds, and transparent foreground layers with physically grounded visual effects.
   - Details: **Architecture:** Flow Matching; Transformer.
-
 #### 2025
 
 - [Qwen-Image-Layered](https://arxiv.org/abs/2512.15603) - Decomposes raster images into variable-length semantically separated RGBA layers for independently editable visual assets (CVPR 2026).
@@ -441,7 +410,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Transformer; Diffusion · Project: — · [Code](https://github.com/microsoft/art-msra) (`withdrawn`) · Weights: `withdrawn` · **Eval:** DESIGN-MULTI-LAYER-BENCH; PHOTO-MULTI-LAYER-BENCH · **Output:** Variable number of RGBA layers.
 - [LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge](https://arxiv.org/abs/2501.01197) - Synthesizes a composite image with an off-the-shelf generator and then disassembles it into foreground and background layers using pretrained generative priors and high-frequency alignment.
   - Details: **Architecture:** Diffusion; Multi-stage System.
-
 #### 2024
 
 - [LayerFusion](https://arxiv.org/abs/2412.04460) - Generates harmonized foreground RGBA, background RGB, and composite images jointly using pretrained generative priors (CVPR Findings 2026).
@@ -454,12 +422,10 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Transformer; Diffusion.
 - [LayerDiffuse](https://doi.org/10.1145/3658150) - Adds latent transparency to pretrained diffusion models for single- and multi-layer transparent image generation (ACM TOG 2024).
   - Details: **Architecture:** Diffusion · [Project](https://github.com/lllyasviel/LayerDiffuse) · [Code](https://github.com/lllyasviel/LayerDiffuse_DiffusersCLI) (`inference only`) · [Weights](https://huggingface.co/LayerDiffusion/layerdiffusion-v1) (`released`) · **Base:** Stable Diffusion v1.5 / SDXL · **Train:** 1M transparent image layer pairs · **Output:** Single or multiple transparent RGBA layers.
-
 #### 2023
 
 - [Text2Layer: Layered Image Generation using Latent Diffusion Model](https://arxiv.org/abs/2307.09781) - Jointly generates background, foreground, layer mask, and composed image in a learned layered latent space, establishing an early diffusion-based layered compositing formulation.
   - Details: **Architecture:** Diffusion; VAE.
-
 
 ### Typography and Text Rendering
 
@@ -467,19 +433,16 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [FreeText](https://proceedings.mlr.press/v306/zhang26ge.html) - Improves precise multi-line and dense text rendering in Diffusion Transformer image generators through attention-based localization and spectral glyph injection without retraining (ICML 2026).
   - Details: **Architecture:** Transformer; Diffusion.
-
 #### 2025
 
 - [UTDesign](https://doi.org/10.1145/3757377.3763923) - Unifies stylized text editing and conditional text generation for graphic-design images and integrates the model into a text-to-design pipeline (SIGGRAPH Asia 2025).
   - Details: **Architecture:** Diffusion; VLM · [Project](https://utdesign-official.github.io/home/) · [Code](https://github.com/ZYM-PKU/UTDesign) (`training + inference`) · [Weights](https://huggingface.co/UTDesign/UTDesign_v1.0) (`released`) · **Base:** Diffusers; FLUX VAE; DINOv2 visual conditioning; CLIP style encoder; multimodal layout planner · **Train:** Gray-scale and colored font data; annotated design-image data including Kingsoft-provided data · **Output:** RGBA foreground glyphs; raster graphic-design images.
 - [PosterMaker](https://arxiv.org/abs/2504.06632) - Generates product posters with explicit mechanisms for accurate text rendering and visual composition (CVPR 2025).
   - Details: **Architecture:** Diffusion · [Project](https://poster-maker.github.io) · [Code](https://github.com/alimama-creative/PosterMaker) (`training + inference`) · [Weights](https://huggingface.co/alimama-creative/PosterMaker) (`released`) · **Base:** Stable Diffusion 3 Medium · **Train:** Released e-commerce poster training data · **Eval:** Released stage-1 and stage-2 poster benchmarks · **Output:** Raster product poster with specified text regions.
-
 #### 2024
 
 - [GlyphDraw2](https://arxiv.org/abs/2407.02252) - Generates complex bilingual glyph posters with controllable fonts and precise text placement using LLM-guided SDXL conditioning (AAAI 2025).
   - Details: **Architecture:** Diffusion; LLM · Project: — · [Code](https://github.com/OPPO-Mente-Lab/GlyphDraw2) (`training + inference`) · Weights: `unknown` · **Base:** SDXL; ControlNet; LLM planner · **Train:** GlyphDraw-3M · **Output:** Raster bilingual poster image.
-
 #### 2023
 
 - [TextDiffuser-2](https://arxiv.org/abs/2311.16465) - Uses language-model planning to improve flexible text layout and rendering in generated images (ECCV 2024).
@@ -488,12 +451,10 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Multi-stage System.
 - [TextDiffuser](https://arxiv.org/abs/2305.10855) - Introduces diffusion-based text rendering with explicit character-level layout guidance (NeurIPS 2023).
   - Details: **Architecture:** Diffusion · Project: — · [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser) (`training + inference`) · [Weights](https://huggingface.co/datasets/JingyeChen22/TextDiffuser) (`released`) · **Base:** Stable Diffusion v2.1 · **Train:** MARIO-LAION / MARIO-10M · **Eval:** MARIO-Eval · **Output:** Raster image with rendered text.
-
 #### 2022
 
 - [Text2Poster](https://arxiv.org/abs/2301.02363) - Retrieves suitable imagery and places stylized text to construct poster designs from text input (ICASSP 2022).
   - Details: **Architecture:** VAE.
-
 
 ### Graphic Design Editing and Reconstruction
 
@@ -509,7 +470,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** VLM.
 - [APEX](https://arxiv.org/abs/2601.04794) - Edits existing academic posters in PPTX format with a multi-agent planning, API-execution, and visual review-and-adjustment workflow under natural-language instructions.
   - Details: **Architecture:** Agentic; VLM · Project: — · [Code](https://github.com/Breesiu/APEX) (`pipeline`) · Weights: `n/a` · **Base:** Configurable Gemini or Qwen vision-language APIs · **Train:** None · **Eval:** APEX-Bench · **Output:** Editable PPTX.
-
 #### 2025
 
 - [PosterCopilot](https://arxiv.org/abs/2512.04082) - Combines layout reasoning with layer-controllable iterative editing for professional graphic-design workflows (ECCV 2026).
@@ -518,19 +478,16 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Multi-stage System · [Project](https://cyberagentailab.github.io/LayerD/) · [Code](https://github.com/CyberAgentAILab/LayerD) (`training + inference`) · [Weights](https://huggingface.co/cyberagent/layerd-birefnet) (`released`) · **Base:** BiRefNet · **Output:** RGBA layers; SVG; PSD.
 - [Draw with Thought](https://arxiv.org/abs/2504.09479) - Reconstructs raster scientific diagrams into editable mxGraph XML through coarse-to-fine reasoning and structure-aware code generation (ACM MM 2025).
   - Details: **Architecture:** Multi-stage System; VLM.
-
 #### 2024
 
 - [Neural Contrast](https://arxiv.org/abs/2410.07211) - Uses diffusion-based generative editing to create low-saliency, high-contrast regions beneath design assets for improved graphic-design readability (PRICAI 2024).
   - Details: **Architecture:** Diffusion.
 - [Revision Matters](https://arxiv.org/abs/2406.18559) - Fine-tunes a Gemini multimodal backbone on human revision traces to iteratively refine generated layouts toward expert design edits.
   - Details: **Architecture:** VLM.
-
 #### 2021
 
 - [De-Rendering Stylized Texts](https://arxiv.org/abs/2110.01890) - Vectorizes rasterized display text into editable content, geometry, font, styling, effects, and hidden-background parameters through differentiable rendering (ICCV 2021).
   - Details: **Architecture:** Multi-stage System.
-
 
 ### Scientific Figure and Graphical Abstract Generation
 
@@ -553,7 +510,6 @@ Papers are classified by their **primary output and task**, rather than by model
 - [SciFig](https://arxiv.org/abs/2601.04390) - Generates visually rich, fully editable scientific methodology figures from paper text using planning, layout, component, and feedback agents with VLM-in-the-loop refinement.
   - Details: **Architecture:** Agentic; VLM · [Project](https://shramanpramanick.github.io/SciFig/) · Code: `announced` · Weights: `unknown` · **Train:** None · **Eval:** SciFig-Bench (announced) · **Output:** Editable XML.
 
-
 ### Scientific Poster and Slide Generation
 
 #### 2026
@@ -570,7 +526,6 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Agentic; LLM · [Project](https://arcdeck.org/) · [Code](https://github.com/RehgLab/ArcDeck) (`pipeline`) · Weights: `n/a` · **Base:** Configurable GPT/Claude/Qwen/vLLM language models; python-pptx/PptxGenJS rendering · **Train:** None · **Eval:** ArcBench · **Output:** Editable PPTX; slide-planning JSON intermediates.
 - [Design First Code Later](https://aclanthology.org/2026.findings-acl.1524/) - Introduces DeepSlides, a template-free design-first slide-generation workflow with SlideDesign data and reinforcement-learned SlideQwen models (ACL Findings 2026).
   - Details: **Architecture:** LLM · Project: — · [Code](https://github.com/sxswz213/DeepSlides) (`pipeline`) · Weights: `unknown` · **Base:** Configurable LLMs plus SlideQwen design/implementation models · **Train:** SlideDesign · **Output:** Editable PPTX; slide images.
-
 #### 2025
 
 - [SlideTailor](https://arxiv.org/abs/2512.20292) - Generates personalized editable presentation slides from scientific papers by distilling user preferences from paper-slide examples and visual templates with an agentic multimodal pipeline (AAAI 2026).
@@ -589,14 +544,12 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Agentic · Project: — · [Code](https://github.com/multimodal-art-projection/P2P) (`pipeline`) · Weights: `n/a` · **Base:** Configurable API language models such as GPT-4o-mini or Claude · **Train:** P2PInstruct · **Eval:** P2PEval · **Output:** Poster JSON; HTML; PNG.
 - [Scientific Poster Generation A New Dataset and Approach](https://doi.org/10.1016/j.patcog.2025.111507) - Introduces the 1,226-poster Sci-PosterLayout dataset and a template-free sequence generator with a Design Pattern Schema for scientific-poster layouts (Pattern Recognition 2025).
   - Details: **Architecture:** Autoregressive.
-
 #### 2024
 
 - [SciPostLayout](https://arxiv.org/abs/2407.19787) - Introduces a scientific-poster dataset and targets structured layout analysis and generation for scientific posters (BMVC 2024).
   - Details: **Architecture:** LLM · Project: — · [Code](https://github.com/omron-sinicx/scipostlayout) (`training + inference`) · Weights: `n/a` · **Base:** LayoutLMv3; DiT; LayoutDM; LayoutFormer++; GPT-4 · **Train:** SciPostLayout · **Eval:** SciPostLayout · **Output:** Scientific-poster layouts.
 - [PostDoc](https://arxiv.org/abs/2405.20213) - Generates posters from long multimodal documents using learned submodular content selection, LLM paraphrasing, and content-conditioned template generation (AAAI 2025).
   - Details: **Architecture:** Multi-stage System; Optimization; LLM.
-
 
 ## Datasets and Benchmarks
 
