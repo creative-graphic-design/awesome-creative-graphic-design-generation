@@ -6,7 +6,7 @@
 ![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-96-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-104-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -126,28 +126,28 @@ Papers are classified by their **primary output and task**, rather than by model
 - [LayoutGAN](https://openreview.net/forum?id=HJxB5sRcFQ) - Introduces a GAN formulation for synthesizing layouts represented by labeled geometric elements (ICLR 2019). **Architecture:** GAN. Project: — · [Code](https://github.com/JiananLi2016/LayoutGAN-Tensorflow) (`training + inference`) · Weights: `unknown`.<br>  **Base:** Self-attention generator; CNN wireframe discriminator · **Train:** MNIST; document layouts; clipart; tangram · **Eval:** MNIST; document layouts; clipart; tangram · **Output:** Point and bounding-box graphic layouts.
 #### 2015
 
-- [DesignScape](https://doi.org/10.1145/2702123.2702149) - Provides interactive refinement and brainstorming layout suggestions that improve position, scale, and alignment during graphic-design authoring (CHI 2015). **Architecture:** Optimization.
+- [DesignScape](https://doi.org/10.1145/2702123.2702149) - Provides interactive refinement and brainstorming layout suggestions that improve position, scale, and alignment during graphic-design authoring (CHI 2015). **Architecture:** Optimization. [Project](https://www.dgp.toronto.edu/~donovan/design/) · Code: `unknown` · Weights: `n/a`.<br>  **Base:** GPU layout optimization; NIO style space; PCA · **Train:** 18 example layouts for style-space estimation · **Eval:** Mechanical Turk interface and design-quality studies · **Output:** Interactive refinement and brainstorming layout suggestions.
 #### 2014
 
-- [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014). **Architecture:** Optimization.
+- [Learning Layouts for Single-Page Graphic Designs](https://doi.org/10.1109/TVCG.2014.48) - Learns layout relationships from existing single-page graphic designs to support automatic composition (TVCG 2014). **Architecture:** Optimization. [Project](https://research.adobe.com/publication/learning-layouts-for-single-page-graphic-designs/) · Code: `unknown` · Weights: `n/a`.<br>  **Base:** Nonlinear Inverse Optimization (NIO) · **Train:** Small sets of example single-page graphic designs · **Eval:** Professional and crowdsourced layout comparisons · **Output:** Single-page graphic-design element layouts.
 #### 2012
 
-- [Automatic Stylistic Manga Layout](https://doi.org/10.1145/2366145.2366160) - Generates stylistic manga page layouts from input artworks and user-specified semantics with parametric style models, probabilistic initialization, and joint geometry refinement (SIGGRAPH Asia 2012). **Architecture:** Optimization.
+- [Automatic Stylistic Manga Layout](https://doi.org/10.1145/2366145.2366160) - Generates stylistic manga page layouts from input artworks and user-specified semantics with parametric style models, probabilistic initialization, and joint geometry refinement (SIGGRAPH Asia 2012). **Architecture:** Optimization. [Project](https://ying-cao.com/projects/stylistic_layout/manga_layout.htm) · Code: `unknown` · Weights: `n/a`.<br>  **Base:** Parametric style models; geometric optimization · **Train:** Manga layout examples · **Eval:** User-study manga layouts · **Output:** Structured manga page and panel layouts.
 #### 2007
 
-- [Specifying Label Layout Style by Example](https://doi.org/10.1145/1294211.1294252) - Learns a designer-specified label-layout style from an example via nonlinear inverse optimization, then synthesizes new labeled-diagram layouts in the learned style (UIST 2007). **Architecture:** Optimization.
+- [Specifying Label Layout Style by Example](https://doi.org/10.1145/1294211.1294252) - Learns a designer-specified label-layout style from an example via nonlinear inverse optimization, then synthesizes new labeled-diagram layouts in the learned style (UIST 2007). **Architecture:** Optimization. Project: — · Code: `unknown` · Weights: `n/a`.<br>  **Base:** Nonlinear inverse optimization; simulated annealing · **Train:** Single example label layout · **Eval:** Label-layout examples · **Output:** Placed labels and leader-line layouts.
 #### 2003
 
-- [Adaptive Grid-Based Document Layout](https://doi.org/10.1145/882262.882353) - Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003). **Architecture:** Template-Based; Optimization.
+- [Adaptive Grid-Based Document Layout](https://doi.org/10.1145/882262.882353) - Adapts grid-based magazine and newspaper page designs to different display sizes using reusable adaptive layout templates (SIGGRAPH 2003). **Architecture:** Template-Based; Optimization. [Project](https://research.adobe.com/publication/adaptive-grid-based-document-layout/) · Code: `unknown` · Weights: `n/a`.<br>  **Base:** Adaptive grid-based templates · **Train:** None · **Eval:** Magazine and newspaper-style document examples · **Output:** Adaptive document page layouts.
 #### 1994
 
-- [Interactive Graphic Design Using Automatic Presentation Knowledge](https://doi.org/10.1145/191666.191719) - Introduces SageBrush, SageBook, and SAGE to combine knowledge-based automatic presentation with interactive construction, retrieval, and customization of data graphics (CHI 1994). **Architecture:** Knowledge-Based.
+- [Interactive Graphic Design Using Automatic Presentation Knowledge](https://doi.org/10.1145/191666.191719) - Introduces SageBrush, SageBook, and SAGE to combine knowledge-based automatic presentation with interactive construction, retrieval, and customization of data graphics (CHI 1994). **Architecture:** Knowledge-Based. Project: — · Code: `unknown` · Weights: `n/a`.<br>  **Base:** SAGE; SageBrush; SageBook · **Train:** None · **Eval:** Interactive data-graphic examples · **Output:** Interactive and automatically designed data graphics.
 #### 1988
 
-- [Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces](https://doi.org/10.1145/62402.62431) - Extends automatic graphical-presentation theory to theory-driven design of graphical user interfaces (UIST 1988). **Architecture:** Knowledge-Based.
+- [Applying a Theory of Graphical Presentation to the Graphic Design of User Interfaces](https://doi.org/10.1145/62402.62431) - Extends automatic graphical-presentation theory to theory-driven design of graphical user interfaces (UIST 1988). **Architecture:** Knowledge-Based. Project: — · Code: `unknown` · Weights: `n/a`.<br>  **Base:** APT graphical-presentation theory · **Train:** None · **Eval:** Graphical user-interface examples · **Output:** Automatically designed graphical user-interface presentations.
 #### 1986
 
-- [Automating the Design of Graphical Presentations of Relational Information](https://doi.org/10.1145/22949.22950) - Codifies expressiveness and effectiveness criteria plus a composition algebra in APT to automatically synthesize graphical presentations of relational information (ACM TOG 1986). **Architecture:** Knowledge-Based.
+- [Automating the Design of Graphical Presentations of Relational Information](https://doi.org/10.1145/22949.22950) - Codifies expressiveness and effectiveness criteria plus a composition algebra in APT to automatically synthesize graphical presentations of relational information (ACM TOG 1986). **Architecture:** Knowledge-Based. Project: — · Code: `unknown` · Weights: `n/a`.<br>  **Base:** APT presentation system · **Train:** None · **Eval:** Relational-information presentation examples · **Output:** Automatically synthesized graphical presentations.
 
 ### Content-Aware Layout Generation
 
