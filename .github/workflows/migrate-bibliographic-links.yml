@@ -20,19 +20,30 @@ jobs:
         with:
           ref: issue-125-provider-icons
 
-      - name: Correct verified migration override
-        run: sed -i 's#https://arxiv.org/abs/2501.12756#https://arxiv.org/abs/2501.14316#' scripts/migrate_bibliographic_links.py
-
       - name: Run bibliographic migration
         run: python scripts/migrate_bibliographic_links.py
 
-      - name: Commit migrated resources
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Sync generator environment
+        run: uv sync
+
+      - name: Validate canonical resource contract
+        run: uv run python scripts/validate_resource_contract.py
+
+      - name: Regenerate README
+        run: uv run python scripts/generate_readme.py
+
+      - name: Commit migrated resources and README
         run: |
-          if git diff --quiet -- data/resources.csv; then
+          if git diff --quiet -- data/resources.csv README.md; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/resources.csv
+          git add data/resources.csv README.md
           git commit -m "Separate publication and arXiv links"
           git push origin HEAD:issue-125-provider-icons
