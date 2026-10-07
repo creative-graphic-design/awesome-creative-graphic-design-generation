@@ -3,9 +3,9 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-240-informational)
+![Total Resources](https://img.shields.io/badge/resources-241-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
-![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
+![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-75-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
@@ -374,6 +374,7 @@ Datasets provide reusable examples, assets, annotations, or corpora for training
 ### 2026
 
 - [MTPaperBananaBench](https://shirley-wu.github.io/PaperBanana-Interact/index.html) - Benchmarks multi-turn scientific diagram refinement with 292 images and 3,518 user requirements covering content, layout, and visual representation.
+- [CoDeLayout](https://hukcc.github.io/Beyond-Atomic-Layouts/) - Provides 20,009 training and 387 manually verified test multi-layer graphic designs with rendered images, structured layer metadata, and QA annotations for compositional element pairs and design intent (ECCV 2026).
 - [SciFigQual-Bench](https://arxiv.org/abs/2607.27084) - Benchmarks scientific-figure quality with 6,308 expert-scored images grounded in captions, citations, and full-manuscript context.
 - [SciFormaBench-2K](https://huggingface.co/datasets/microsoft/SciFormaBench) - Provides 2,000 human-verified scientific diagram cases evaluated along component, arrow, and text structural-fidelity axes.
 - [SciFormaData-700K](https://huggingface.co/datasets/microsoft/SciFormaData-700K) - Provides structure-aware scientific methodology-diagram training records with generation prompts, multi-resolution targets, and edit triplets.
