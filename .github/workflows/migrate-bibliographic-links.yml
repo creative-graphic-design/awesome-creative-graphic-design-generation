@@ -24,9 +24,6 @@ jobs:
         with:
           ref: issue-125-provider-icons
 
-      - name: Limit fallback concurrency
-        run: sed -i 's/MAX_WORKERS = 6/MAX_WORKERS = 3/' scripts/migrate_bibliographic_links.py
-
       - name: Run bibliographic migration
         run: python scripts/migrate_bibliographic_links.py
 
