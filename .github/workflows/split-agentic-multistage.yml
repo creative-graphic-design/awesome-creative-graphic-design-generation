@@ -1,0 +1,71 @@
+name: Split agentic and multi-stage labels
+
+on:
+  push:
+    branches:
+      - taxonomy/split-agentic-multistage
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Refine architecture labels
+        run: |
+          python - <<'PY'
+          import csv
+          import io
+          from pathlib import Path
+
+          path = Path('data/resources.csv')
+          lines = path.read_text().splitlines(keepends=True)
+          replacements = {
+              'AutoPoster': 'Multi-stage System',
+              'Planning and Rendering': 'Multi-stage System',
+              'De-Rendering Stylized Texts': 'Multi-stage System',
+              'Vinci': 'Multi-stage System',
+              'CG4CTR': 'Multi-stage System; Diffusion',
+              'PostDoc': 'Multi-stage System; Classical / Optimization; LLM',
+              'LayeringDiff: Layered Image Synthesis via Generation, then Disassembly with Generative Knowledge': 'Diffusion; Multi-stage System',
+          }
+          out = []
+          seen = set()
+          for line in lines:
+              row = next(csv.reader([line]))
+              if len(row) >= 6 and row[0] == 'Papers' and row[2] in replacements:
+                  row[5] = replacements[row[2]]
+                  buf = io.StringIO()
+                  csv.writer(buf, lineterminator='\n').writerow(row)
+                  out.append(buf.getvalue())
+                  seen.add(row[2])
+              else:
+                  out.append(line)
+          missing = set(replacements) - seen
+          if missing:
+              raise SystemExit(f'Missing expected rows: {sorted(missing)}')
+          path.write_text(''.join(out))
+
+          cpath = Path('CONTRIBUTING.md')
+          text = cpath.read_text()
+          old = "Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM`, `VLM`, `Agentic / Multi-stage System`, `GAN`, `VAE`, `Flow Matching`, or `Knowledge-Based / Rule-Based`. Use `LLM` for language-only model components and `VLM` only when the model materially consumes visual input."
+          new = "Prefer compact values such as `Diffusion`, `Autoregressive / Transformer`, `LLM`, `VLM`, `Agentic`, `Multi-stage System`, `GAN`, `VAE`, `Flow Matching`, or `Knowledge-Based / Rule-Based`. Use `Agentic` only when the work materially uses an agent abstraction, such as autonomous/tool-using agents, role-based multi-agent coordination, or an explicit agentic planning/critique loop. Use `Multi-stage System` for fixed staged pipelines without an agent abstraction. Do not infer `Agentic` merely from iterative refinement, multiple modules, or planning/rendering stages. Use `LLM` for language-only model components and `VLM` only when the model materially consumes visual input."
+          if old not in text:
+              raise SystemExit('Expected architecture guidance not found')
+          cpath.write_text(text.replace(old, new))
+          PY
+          uv run python scripts/generate_readme.py
+          uv run python scripts/generate_readme.py --check
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/resources.csv CONTRIBUTING.md README.md
+          git commit -m 'Split agentic and multi-stage architecture labels'
+          git push
