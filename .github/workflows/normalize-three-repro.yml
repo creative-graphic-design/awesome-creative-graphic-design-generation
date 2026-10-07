@@ -1,0 +1,37 @@
+name: Normalize three reproducibility rows
+
+on:
+  push:
+    branches:
+      - metadata/unilayout-graphist-creatiposter
+    paths:
+      - .github/workflows/normalize-three-repro.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: metadata/unilayout-graphist-creatiposter
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v6
+      - name: Normalize diff
+        run: |
+          git fetch origin main
+          git show origin/main:data/paper_metadata.csv > data/paper_metadata.csv
+          cat >> data/paper_metadata.csv <<'EOF'
+          CreatiPoster,https://github.com/graphic-design-ai/creatiposter,https://github.com/graphic-design-ai/creatiposter,,announced,announced,"Editable multi-layer graphic-design generation with protocol and conditional background models","RGBA large multimodal protocol model; conditional background generator","Copyright-free 100K multi-layer graphic-design corpus",CreatiPoster benchmark,"Editable multi-layer design specification; raster background/composite","Official repository currently contains project documentation and showcases; training/inference code, the CreatiPoster-F checkpoint, and the training/evaluation datasets remain explicitly listed as TODO.",2026-10-07
+          Graphist,https://github.com/graphic-design-ai/graphist,https://github.com/graphic-design-ai/graphist,,none,announced,Large multimodal model for hierarchical graphic-layout generation,,Crello,Crello,"JSON draft protocol with element coordinates, dimensions, and layer order","Official repository contains the paper/project assets but no runnable implementation; the Graphist checkpoint trained on Crello is still listed as a future release.",2026-10-07
+          Uni-Layout,https://github.com/JD-GenX/Uni-Layout,https://github.com/JD-GenX/Uni-Layout,https://drive.google.com/drive/folders/1evrHmorHW7CBLRhxrV3-3qvFki1ovoJ3?usp=drive_link,evaluation-only,partial,Unified multimodal layout generation and learned layout evaluation,LLaVA-family multimodal evaluator,"Layout Generator dataset; Reward Model CoT dataset",Layout Evaluator dataset,"Structured layout boxes; binary layout-quality judgments","Official repository releases datasets, evaluator inference code, and Layout Evaluator checkpoints. A public layout-generator training/inference path or generator checkpoint was not verified in the current repository.",2026-10-07
+          EOF
+          uv run python scripts/generate_readme.py
+          git rm .github/workflows/normalize-three-repro.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/paper_metadata.csv README.md
+          git commit -m 'Normalize reproducibility metadata diff'
+          git push origin HEAD:metadata/unilayout-graphist-creatiposter
