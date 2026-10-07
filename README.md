@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-235-informational)
-![Papers](https://img.shields.io/badge/papers-180-informational)
+![Total Resources](https://img.shields.io/badge/resources-236-informational)
+![Papers](https://img.shields.io/badge/papers-181-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-39-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-72-informational)
 
@@ -215,6 +215,7 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Design Your Ad](https://arxiv.org/abs/2605.12138) - Jointly generates personalized advertising images and text from multimodal user histories with a unified autoregressive model and introduces PAd1M and PBS (CVPR 2026). **Architecture:** Autoregressive; Transformer. Project: — · [Code](https://github.com/JD-GenX/Uni-AdGen) (`inference only`) · [Weights](https://3.cn/11f4I-YYG) (`released`).<br>  **Base:** Janus-Pro-7B; DINOv2-small; SDXL-Base-1.0 · **Train:** PAd1M · **Eval:** PAd1M; PBS; BLEU; ROUGE · **Output:** Personalized advertising image and product text.
 - [SIMPLEPOSTER](https://arxiv.org/abs/2605.08784) - Generates product posters with faithful subject preservation and position-controllable text rendering (CVPR 2026). **Architecture:** Transformer; Diffusion.
 - [Brief2Design](https://arxiv.org/abs/2604.11019) - Supports prompt-based professional graphic design through requirement extraction, element exploration, and compositional recombination. **Architecture:** Multi-stage System.
+- [ReContraster](https://aclanthology.org/2026.acl-long.98/) - Generates visually salient posters with a compositional multi-agent system that plans regional contrast and layout, synthesizes candidates with diffusion, and critiques rendered outputs (ACL 2026). **Architecture:** Agentic; Diffusion; VLM.
 - [PSDesigner](https://arxiv.org/abs/2603.25738) - Automates layered graphic-design workflows with editable PSD structure and tool-use trajectories (CVPR 2026). **Architecture:** Agentic; VLM. [Project](https://henghuiding.com/PSDesigner) · [Code](https://github.com/FudanCVL/PSDesigner) (`announced`) · Weights: `announced`.<br>  **Base:** GraphicPlanner · **Train:** CreativePSD · **Eval:** Crello-v5; copyright-free PSD files · **Output:** Editable PSD.
 - [Multi-Object Advertisement Creative Generation](https://arxiv.org/abs/2603.13745) - Introduces CreativeAds for scalable multi-product lifestyle advertising through product pairing, layout generation, background generation, and human oversight. **Architecture:** Multi-stage System.
 - [InnoAds-Composer](https://arxiv.org/abs/2603.05898) - Generates e-commerce product posters in a single stage with joint subject, glyph, and style conditioning (CVPR 2026). **Architecture:** Diffusion.
