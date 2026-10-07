@@ -1,0 +1,55 @@
+name: Split agentic taxonomy batch 2
+on:
+  push:
+    branches: [taxonomy/split-agentic-multistage-batch-2]
+permissions:
+  contents: write
+jobs:
+  update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: taxonomy/split-agentic-multistage-batch-2
+      - uses: astral-sh/setup-uv@v6
+      - name: Update architecture labels
+        run: |
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+          p = Path('data/resources.csv')
+          rows = list(csv.DictReader(p.open(newline='', encoding='utf-8')))
+          replacements = {
+              'SmartText': 'Multi-stage System',
+              'TextPainter': 'Multi-stage System',
+              'CreaGAN': 'Multi-stage System; GAN',
+              'Iris: a multi-constraint graphic layout generation system': 'Multi-stage System; VAE',
+              'LayerD': 'Multi-stage System',
+              'ReDesign': 'Multi-stage System',
+              'Content-Aware Ad Banner Layout Generation with Two-Stage Chain-of-Thought in Vision Language Models': 'VLM; Multi-stage System',
+              'COLE': 'Multi-stage System; Diffusion; LLM; VLM',
+              'OpenCOLE': 'Multi-stage System; Diffusion; LLM; VLM',
+              'T-Stars-Poster': 'Multi-stage System; Diffusion; VLM',
+          }
+          seen = set()
+          for row in rows:
+              if row['name'] in replacements:
+                  row['architecture'] = replacements[row['name']]
+                  seen.add(row['name'])
+          missing = set(replacements) - seen
+          if missing:
+              raise SystemExit(f'missing rows: {sorted(missing)}')
+          with p.open('w', newline='', encoding='utf-8') as f:
+              w = csv.DictWriter(f, fieldnames=rows[0].keys(), lineterminator='\n')
+              w.writeheader(); w.writerows(rows)
+          PY
+          uv run python scripts/generate_readme.py
+          rm .github/workflows/agentic-batch2.yml
+      - name: Commit final tree
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/resources.csv README.md .github/workflows/agentic-batch2.yml
+          git commit -m "Split confirmed non-agentic multi-stage systems"
+          git push
