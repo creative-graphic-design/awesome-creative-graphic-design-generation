@@ -26,5 +26,8 @@ jobs:
       - name: Sync generator environment
         run: uv sync
 
+      - name: Validate canonical resource contract
+        run: uv run python scripts/validate_resource_contract.py
+
       - name: Check generated README
         run: uv run python scripts/generate_readme.py --check
