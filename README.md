@@ -671,12 +671,12 @@ Reusable scoring methods and evaluation procedures that compare generated design
 - [Design-o-Meter](https://arxiv.org/abs/2411.14959) - Scores graphic-design quality and proposes refinements within a unified learned evaluation-and-improvement framework (WACV 2025).
 - [Graphic Design Evaluation](https://arxiv.org/abs/2410.08885) - Evaluates alignment, overlap, white space, and related graphic-design principles with absolute and pairwise judgments (SIGGRAPH Asia 2024).
 - [LTSim](https://arxiv.org/abs/2407.12356) - Measures layout similarity through transportation-based matching of structured elements for layout-generation evaluation (2024).
+### 2021
+
+- [Layout FID](https://github.com/creative-graphic-design/design-generators/tree/main/models/layout-fid) - Introduced by Kikuchi et al. as a learned feature-space Fréchet distance for comparing generated and real layout distributions (ACM MM 2021).
 ### 2020
 
 - [LayoutGCN](https://research.adobe.com/publication/learning-structural-similarity-of-user-interface-layouts-using-graph-networks/) - Learns structural layout-similarity embeddings with a graph-convolutional encoder and convolutional decoder for retrieval over interface layouts (ECCV 2020).
-### Other
-
-- [Layout FID](https://github.com/creative-graphic-design/design-generators/tree/main/models/layout-fid) - Provides a learned feature-space metric for comparing generated and real layout distributions.
 
 ## Models and Implementations
 
@@ -730,7 +730,7 @@ Recurring publication venues and workshop series worth monitoring for work in th
 
 ## Related Resources
 
-- [Creative Graphic Design](https://github.com/creative-graphic-design) - Organization hosting datasets, model ports, evaluation tools, and research infrastructure used by several entries in this list.
+- [Creative Graphic Design Lab](https://github.com/creative-graphic-design) - Organization hosting datasets, model ports, evaluation tools, and research infrastructure used by several entries in this list.
 
 ## Contributing
 
