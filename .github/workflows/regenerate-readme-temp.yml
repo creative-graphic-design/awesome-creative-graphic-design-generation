@@ -1,0 +1,68 @@
+name: Normalize catalog update (temporary)
+
+on:
+  push:
+    branches:
+      - add-oct-2026-design-papers
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: add-oct-2026-design-papers
+          fetch-depth: 0
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Restore canonical CSV bytes and append only new rows
+        shell: bash
+        run: |
+          git checkout origin/main -- data/resources.csv data/paper_metadata.csv
+          python - <<'PY'
+          import csv
+
+          resource_rows = [
+              ["Papers", "Composable and Layered Asset Generation", "LayerCanvas", "https://arxiv.org/abs/2610.18763", "", "Combines SVG-preserved structure and exact typography with layer-set diffusion to generate independently editable infographic layers for deterministic recomposition and localized editing.", "Transformer; Diffusion", "arXiv", "2026", "2026-10-13", "", "arXiv v1"],
+              ["Papers", "Content-Aware Layout Generation", "PlayGround", "https://arxiv.org/abs/2610.18865", "", "Generates editable layouts progressively by conditioning a VLM planner on the current rendered canvas, retrieving structural references, predicting group-level geometry, and verifying rendered candidates.", "Autoregressive; VLM; Multi-stage System", "arXiv", "2026", "2026-10-13", "", "arXiv v1"],
+              ["Papers", "Content-Aware Layout Generation", "Content-Edited Layout Generation for Graphic Design", "https://arxiv.org/abs/2610.17905", "", "Introduces content-edited layout generation by jointly adapting raw visual assets and generating compatible foreground layouts with synchronized image and layout flow matching and bidirectional cross-attention.", "Flow Matching; Transformer; VLM", "arXiv", "2026", "2026-10-13", "", "arXiv v1"],
+          ]
+          with open("data/resources.csv", "a", encoding="utf-8", newline="") as f:
+              writer = csv.writer(f, lineterminator="\r\n")
+              writer.writerows(resource_rows)
+
+          metadata_rows = [
+              ["LayerCanvas", "", "", "", "unknown", "unknown", "Hybrid SVG-structured layer-set diffusion for editable infographics", "Frozen MMDiT image backbone; layer-control and communication adapters", "InfoLayers", "InfoLayers", "Editable SVG plus z-ordered raster layers and composed infographic", "The arXiv paper was inspected. It documents the InfoLayers training corpus and frozen MMDiT-based layer-set diffusion, but no official public implementation repository or task-specific checkpoint release was located.", "2026-10-15"],
+              ["PlayGround", "https://cvlab-kaist.github.io/PlayGround/", "https://github.com/cvlab-kaist/PlayGround", "", "announced", "announced", "Progressive render-grounded multimodal layout generation", "Qwen3-VL-8B-Instruct; GPT-5.6 Luna", "Crello-v4", "Crello-v4; LICA", "Editable layout boxes; group-local stacking; text attributes", "The official repository currently contains only the project README and states that code and model weights will be updated soon; Retriever, Planner, and Layout Generator use Qwen3-VL-8B-Instruct with LoRA, while GPT-5.6 Luna serves as the untrained Visual Verifier.", "2026-10-15"],
+              ["Content-Edited Layout Generation for Graphic Design", "", "", "", "unknown", "unknown", "Synchronized dual-flow content-edited layout generation", "FireRed-Image-Edit-1.1 (Qwen-Image); layout flow DiT; Qwen3-VL", "CGL-derived InstructEdit; LAION-5B retrieval pool", "InstructEdit test split", "Edited background image plus structured foreground layout", "The arXiv paper was inspected. It documents FireRed-Image-Edit-1.1, a layout flow Transformer, Qwen3-VL instruction generation, and InstructEdit, but no official public implementation repository or task-specific checkpoint release was located.", "2026-10-15"],
+          ]
+          with open("data/paper_metadata.csv", "a", encoding="utf-8", newline="") as f:
+              writer = csv.writer(f, lineterminator="\r\n")
+              writer.writerows(metadata_rows)
+          PY
+
+      - name: Sync generator environment
+        run: uv sync
+
+      - name: Validate canonical resource contract
+        run: uv run python scripts/validate_resource_contract.py
+
+      - name: Generate README
+        run: uv run python scripts/generate_readme.py
+
+      - name: Commit normalized catalog update
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/resources.csv data/paper_metadata.csv README.md
+          git commit -m "Normalize catalog update"
+          git push origin HEAD:add-oct-2026-design-papers
