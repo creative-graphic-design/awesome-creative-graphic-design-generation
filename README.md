@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-245-informational)
-![Papers](https://img.shields.io/badge/papers-185-informational)
+![Total Resources](https://img.shields.io/badge/resources-253-informational)
+![Papers](https://img.shields.io/badge/papers-193-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-185-informational)
 
@@ -261,6 +261,8 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [VASCAR](https://arxiv.org/abs/2412.04237) - Uses a large vision-language model to iteratively inspect rendered layouts and self-correct content-aware element placement without additional training.
   - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Gemini 1.5 Flash; GPT-4o; in-context retrieval and rendered visual feedback · **Train:** None · **Eval:** PKU PosterLayout; CGL · **Output:** Structured content-aware layout boxes with rendered visual feedback.
+- [GLDesigner: Leveraging Multi-Modal LLMs as Designer for Enhanced Aesthetic Text Glyph Layouts](https://arxiv.org/abs/2411.11435) - Predicts user-constrained text-logo glyph layouts from visual and textual inputs with a vision-language model (ACM Multimedia 2025).
+  - Details: **Architecture:** VLM.
 - [Design Element Aware Poster Layout Generation](https://doi.org/10.1145/3627673.3679557) - Models poster design elements and their relationships for content-aware poster layout generation (CIKM 2024).
   - Details: **Architecture:** Transformer · Project: — · Code: `announced` · Weights: `unknown` · **Base:** Encoder-decoder Design Element aware Transformer with deformable attention · **Train:** Three public poster-layout datasets · **Eval:** Three public poster-layout datasets · **Output:** Poster element bounding boxes conditioned on background and design elements.
 - [Image-aware layout generation with user constraints for poster design](https://doi.org/10.1007/s00371-024-03657-z) - Generates poster layouts conditioned on a product image while satisfying user-specified element and partial-layout constraints (The Visual Computer 2025).
@@ -396,6 +398,8 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Autoregressive; Transformer · [Project](https://whaohan.github.io/desigen) · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/whaohan/desigen) (`training + inference`) · Weights: `unknown` · **Base:** Diffusion background generator; autoregressive Transformer layout generator · **Train:** More than 40K advertisement-banner designs · **Eval:** Advertisement-template generation metrics · **Output:** Background image plus structured foreground layout and complete design template.
 - [Chaining Text-to-Image and Large Language Model for Personalized E-commerce Banners](https://doi.org/10.1145/3637528.3671636) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2403.05578) - Chains an LLM with text-to-image generation to turn shopper interaction and product metadata into personalized e-commerce banner imagery at scale (KDD 2024).
   - Details: **Architecture:** LLM · Project: — · Code: `unknown` · Weights: `n/a` · **Base:** Large language model for product-attribute extraction; Stable Diffusion-family text-to-image model · **Train:** None · **Output:** Raster personalized e-commerce banner.
+- [GraphiMind: LLM-centric Interface for Information Graphics Design](https://arxiv.org/abs/2401.13245) - Combines a tool-augmented LLM conversation interface with direct manipulation for composing and refining information graphics (2024).
+  - Details: **Architecture:** LLM; Agentic.
 - [CG4CTR](https://doi.org/10.1145/3589335.3648315) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2401.10934) - Builds a Stable-Diffusion-based advertising-creative generation pipeline that incorporates user preferences and downstream click-through-rate ranking (WWW 2024 Companion).
   - Details: **Architecture:** Multi-stage System; Diffusion · Project: — · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/HaoYang0123/Creative_Generation_Pipeline) (`unknown`) · [Weights](https://drive.google.com/drive/folders/1_h7XCcbJvvYSv3H8JWqTzEBDulKjHDAs?usp=sharing) (`partial`) · **Base:** Stable Diffusion inpainting; LoRA; BERT and Swin reward-model encoders · **Train:** Public CTR dataset; sampled commercial advertising data · **Eval:** Public CTR dataset; sampled commercial advertising data · **Output:** Personalized advertising creative image; CTR reward score.
 
@@ -493,10 +497,18 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [TextDiffuser-2](https://doi.org/10.1007/978-3-031-72652-1_23) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2311.16465) - Uses language-model planning to improve flexible text layout and rendering in generated images (ECCV 2024).
   - Details: **Architecture:** Diffusion; LLM · [Project](https://jingyechen.github.io/textdiffuser2/) · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser-2) (`training + inference`) · <img src="https://cdn.simpleicons.org/huggingface/24292F/FFFFFF" width="14" height="14" alt="Hugging Face"> [Weights](https://huggingface.co/JingyeChen22/textdiffuser2-full-ft) (`released`) · **Base:** Stable Diffusion v1.5; LLM layout planner · **Train:** MARIO-style text-image data; layout-planner instruction data · **Eval:** Text rendering and inpainting benchmarks · **Output:** Raster image with rendered text.
+- [AnyText: Multilingual Visual Text Generation and Editing](https://arxiv.org/abs/2311.03054) - Generates and edits multilingual visual text using glyph, position, and OCR-aware diffusion conditioning (ICLR 2024).
+  - Details: **Architecture:** Diffusion.
 - [TextPainter](https://doi.org/10.1145/3581783.3611929) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2308.04733) - Generates poster-oriented text imagery while balancing text comprehension and visual harmony (ACM MM 2023).
   - Details: **Architecture:** Multi-stage System · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Global-local visual conditioning; language-model text-comprehension module; text-image generator · **Train:** PosterT80K · **Eval:** PosterT80K · **Output:** Stylized poster text image.
+- [GlyphControl](https://arxiv.org/abs/2305.18259) - Controls visual text content, size, and position using glyph-conditioned diffusion and introduces the LAION-Glyph benchmark (NeurIPS 2023).
+  - Details: **Architecture:** Diffusion.
 - [TextDiffuser](https://proceedings.neurips.cc/paper_files/paper/2023/hash/1df4afb0b4ebf492a41218ce16b6d8df-Abstract-Conference.html) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2305.10855) - Introduces diffusion-based text rendering with explicit character-level layout guidance (NeurIPS 2023).
   - Details: **Architecture:** Diffusion · Project: — · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser) (`training + inference`) · <img src="https://cdn.simpleicons.org/huggingface/24292F/FFFFFF" width="14" height="14" alt="Hugging Face"> [Weights](https://huggingface.co/datasets/JingyeChen22/TextDiffuser) (`released`) · **Base:** Stable Diffusion v2.1 · **Train:** MARIO-LAION / MARIO-10M · **Eval:** MARIO-Eval · **Output:** Raster image with rendered text.
+- [GlyphDraw](https://arxiv.org/abs/2303.17870) - Renders complex Chinese and English glyphs within generated images using glyph and position conditioning with parameter-efficient diffusion tuning (2023).
+  - Details: **Architecture:** Diffusion.
+- [Word-As-Image for Semantic Typography](https://arxiv.org/abs/2303.01818) - Optimizes letter outlines with diffusion guidance to convey word meanings while preserving font style and legibility (SIGGRAPH 2023).
+  - Details: **Architecture:** Diffusion; Optimization.
 
 #### 2022
 
@@ -530,10 +542,17 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2024
 
+- [MarkupDM](https://doi.org/10.1145/3746027.3755420) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2409.19051) - Completes missing text, visual assets, and attribute values in structured graphic-design markup using language and transparent-image tokens (ACM Multimedia 2025).
+  - Details: **Architecture:** Autoregressive; LLM.
 - [Neural Contrast](https://arxiv.org/abs/2410.07211) - Uses diffusion-based generative editing to create low-saliency, high-contrast regions beneath design assets for improved graphic-design readability (PRICAI 2024).
   - Details: **Architecture:** Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Generative diffusion editing model · **Output:** Edited design background/composite with low-saliency high-contrast support regions.
 - [Revision Matters](https://arxiv.org/abs/2406.18559) - Fine-tunes a Gemini multimodal backbone on human revision traces to iteratively refine generated layouts toward expert design edits.
   - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Gemini multimodal backbone with supervised fine-tuning · **Train:** Expert human revision traces · **Eval:** Design FID and iterative-refinement evaluation · **Output:** Revised structured layout/design code.
+
+#### 2022
+
+- [Aesthetics++: Refining Graphic Designs by Exploring Design Principles and Human Preference](https://doi.org/10.1109/TVCG.2022.3151617) - Refines presentation slide designs through design-principle-guided candidates ranked by learned human aesthetic preferences (TVCG 2023).
+  - Details: **Architecture:** Optimization.
 
 #### 2021
 
