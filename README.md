@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-253-informational)
-![Papers](https://img.shields.io/badge/papers-193-informational)
+![Total Resources](https://img.shields.io/badge/resources-256-informational)
+![Papers](https://img.shields.io/badge/papers-196-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-185-informational)
 
@@ -473,6 +473,10 @@ Papers are classified by their **primary output and task**, rather than by model
 - [Text2Layer: Layered Image Generation using Latent Diffusion Model](https://arxiv.org/abs/2307.09781) - Jointly generates background, foreground, layer mask, and composed image in a learned layered latent space, establishing an early diffusion-based layered compositing formulation.
   - Details: **Architecture:** Diffusion; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Layered-image autoencoder plus latent diffusion model · **Output:** Background image; foreground image; layer mask; composed image.
 
+#### 2022
+
+- [Style-Structure Disentangled Features and Normalizing Flows for Diverse Icon Colorization](https://openaccess.thecvf.com/content/CVPR2022/html/Li_Style-Structure_Disentangled_Features_and_Normalizing_Flows_for_Diverse_Icon_Colorization_CVPR_2022_paper.html) - Generates flat-color icons from sketches and semantic style labels by disentangling structure and style with normalizing flows (CVPR 2022).
+
 
 ### Typography and Text Rendering
 
@@ -551,6 +555,8 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2022
 
+- [Color Recommendation for Vector Graphic Documents based on Multi-Palette Representation](https://arxiv.org/abs/2209.10820) - Predicts color choices for text, SVG, and image elements in structured graphic documents using a masked multi-palette model (WACV 2023).
+  - Details: **Architecture:** Transformer.
 - [Aesthetics++: Refining Graphic Designs by Exploring Design Principles and Human Preference](https://doi.org/10.1109/TVCG.2022.3151617) - Refines presentation slide designs through design-principle-guided candidates ranked by learned human aesthetic preferences (TVCG 2023).
   - Details: **Architecture:** Optimization.
 
@@ -558,6 +564,8 @@ Papers are classified by their **primary output and task**, rather than by model
 
 - [De-Rendering Stylized Texts](https://doi.org/10.1109/ICCV48922.2021.00111) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2110.01890) - Vectorizes rasterized display text into editable content, geometry, font, styling, effects, and hidden-background parameters through differentiable rendering (ICCV 2021).
   - Details: **Architecture:** Multi-stage System · [Project](https://cyberagentailab.github.io/derendering-text/) · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/CyberAgentAILab/derendering-text) (`training + inference`) · [Weights](https://drive.google.com/file/d/1HBcfV0nfSluCWCHGgGerx7QNJZJpOv3h/view?usp=sharing) (`released`) · **Base:** Unified text parser; differentiable renderer; inpainting model · **Train:** Synthetically rendered stylized text using Google Fonts · **Eval:** ICCV text de-rendering evaluation · **Output:** Editable text rendering parameters; reconstructed raster image.
+- [InfoColorizer: Interactive Recommendation of Color Palettes for Infographics](https://doi.org/10.1109/TVCG.2021.3085327) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2102.02041) - Recommends editable color palettes for infographics using visual structure and user constraints in an interactive design workflow (TVCG 2022).
+  - Details: **Architecture:** VAE.
 
 
 ### Scientific Figure and Graphical Abstract Generation
