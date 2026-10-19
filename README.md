@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-259-informational)
-![Papers](https://img.shields.io/badge/papers-199-informational)
+![Total Resources](https://img.shields.io/badge/resources-264-informational)
+![Papers](https://img.shields.io/badge/papers-204-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-188-informational)
 
@@ -471,11 +471,15 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Diffusion · Project: — · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/ryugo417/TKG-DM) (`pipeline`) · Weights: `n/a` · **Base:** Stable Diffusion XL 1.0 · **Train:** None · **Output:** RGB image with controlled chroma-key background.
 - [Alfie](https://arxiv.org/abs/2408.14826) - Modifies the inference behavior of a pretrained Diffusion Transformer to generate easily isolated RGBA-style illustration assets without additional training (ECCV 2024 AI4VA Workshop).
   - Details: **Architecture:** Transformer; Diffusion · Project: — · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/aimagelab/Alfie) (`pipeline`) · Weights: `n/a` · **Base:** PixArt-Sigma Diffusion Transformer · **Train:** None · **Eval:** User study; composite-scene generation experiments · **Output:** RGBA illustration asset.
+- [Text-to-Vector Generation with Neural Path Representation](https://doi.org/10.1145/3658204) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2405.10317) - Synthesizes layered SVG graphics from text by optimizing learned neural path representations with diffusion guidance and vector refinement (SIGGRAPH 2024).
+  - Details: **Architecture:** VAE; Diffusion; Optimization.
 - [LayerDiffuse](https://doi.org/10.1145/3658150) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2402.17113) - Adds latent transparency to pretrained diffusion models for single- and multi-layer transparent image generation (ACM TOG 2024).
   - Details: **Architecture:** Diffusion · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Project](https://github.com/lllyasviel/LayerDiffuse) · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/lllyasviel/LayerDiffuse_DiffusersCLI) (`inference only`) · <img src="https://cdn.simpleicons.org/huggingface/24292F/FFFFFF" width="14" height="14" alt="Hugging Face"> [Weights](https://huggingface.co/LayerDiffusion/layerdiffusion-v1) (`released`) · **Base:** Stable Diffusion v1.5 / SDXL · **Train:** 1M transparent image layer pairs · **Output:** Single or multiple transparent RGBA layers.
 
 #### 2023
 
+- [SVGDreamer: Text Guided SVG Generation with Diffusion Model](https://arxiv.org/abs/2312.16476) - Generates editable text-guided SVG artwork using semantic image vectorization and particle-based score distillation for diversity and element-level control (CVPR 2024).
+  - Details: **Architecture:** Diffusion; Optimization.
 - [Text2Layer: Layered Image Generation using Latent Diffusion Model](https://arxiv.org/abs/2307.09781) - Jointly generates background, foreground, layer mask, and composed image in a learned layered latent space, establishing an early diffusion-based layered compositing formulation.
   - Details: **Architecture:** Diffusion; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Layered-image autoencoder plus latent diffusion model · **Output:** Background image; foreground image; layer mask; composed image.
 
@@ -556,13 +560,22 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Autoregressive; LLM.
 - [Neural Contrast](https://arxiv.org/abs/2410.07211) - Uses diffusion-based generative editing to create low-saliency, high-contrast regions beneath design assets for improved graphic-design readability (PRICAI 2024).
   - Details: **Architecture:** Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Generative diffusion editing model · **Output:** Edited design background/composite with low-saliency high-contrast support regions.
+- [SuperSVG: Superpixel-based Scalable Vector Graphics Synthesis](https://openaccess.thecvf.com/content/CVPR2024/html/Hu_SuperSVG_Superpixel-based_Scalable_Vector_Graphics_Synthesis_CVPR_2024_paper.html) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2406.09794) - Vectorizes raster imagery into SVG with superpixel-guided coarse reconstruction and refinement for faster, more faithful editable paths (CVPR 2024).
+  - Details: **Architecture:** Multi-stage System.
 - [Revision Matters](https://arxiv.org/abs/2406.18559) - Fine-tunes a Gemini multimodal backbone on human revision traces to iteratively refine generated layouts toward expert design edits.
   - Details: **Architecture:** VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Gemini multimodal backbone with supervised fine-tuning · **Train:** Expert human revision traces · **Eval:** Design FID and iterative-refinement evaluation · **Output:** Revised structured layout/design code.
+
+#### 2023
+
+- [Editable Image Geometric Abstraction via Neural Primitive Assembly](https://openaccess.thecvf.com/content/ICCV2023/html/Chen_Editable_Image_Geometric_Abstraction_via_Neural_Primitive_Assembly_ICCV_2023_paper.html) - Reconstructs editable geometric abstractions from images by predicting simple shape primitives, transforms, and colors with differentiable rasterization (ICCV 2023).
+  - Details: **Architecture:** Encoder-only Neural Model.
 
 #### 2022
 
 - [Color Recommendation for Vector Graphic Documents based on Multi-Palette Representation](https://arxiv.org/abs/2209.10820) - Predicts color choices for text, SVG, and image elements in structured graphic documents using a masked multi-palette model (WACV 2023).
   - Details: **Architecture:** Transformer.
+- [Towards Layer-Wise Image Vectorization](https://openaccess.thecvf.com/content/CVPR2022/html/Ma_Towards_Layer-Wise_Image_Vectorization_CVPR_2022_paper.html) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2206.04655) - Converts raster graphics into compact editable SVG paths with layer-aware topology using progressive path initialization and optimization (CVPR 2022).
+  - Details: **Architecture:** Optimization.
 - [Aesthetics++: Refining Graphic Designs by Exploring Design Principles and Human Preference](https://doi.org/10.1109/TVCG.2022.3151617) - Refines presentation slide designs through design-principle-guided candidates ranked by learned human aesthetic preferences (TVCG 2023).
   - Details: **Architecture:** Optimization.
 
