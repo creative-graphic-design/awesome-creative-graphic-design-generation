@@ -3,7 +3,7 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-241-informational)
+![Total Resources](https://img.shields.io/badge/resources-245-informational)
 ![Papers](https://img.shields.io/badge/papers-185-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-185-informational)
@@ -44,10 +44,18 @@ Short paper architecture labels are stored directly in [`data/resources.csv`](da
 ### 2025
 
 - [From Fragment to One Piece: A Review on AI-Driven Graphic Design](https://doi.org/10.3390/jimaging11090289) - Reviews AI-driven graphic-design generation across layout, visual content, text, and integrated systems (Journal of Imaging 2025).
+- [Leveraging Large Language Models For Scalable Vector Graphics Processing: A Review](https://www.mathnet.ru/rus/znsl7630) - Reviews LLM-based SVG generation, editing, and understanding, including vector-graphics benchmarks and model comparisons (Zapiski Nauchnykh Seminarov POMI 2025).
+### 2024
+
+- [The application and impact of artificial intelligence technology in graphic design: A critical interpretive synthesis](https://doi.org/10.1016/j.heliyon.2024.e40037) - Synthesizes 33 studies on AI-driven graphic-design automation, creative assistance, and the impact of AI on design processes (Heliyon 2024).
+- [Intelligent Graphic Layout Generation: Current Status and Future Perspectives](https://doi.org/10.1109/CSCWD61410.2024.10580676) - Reviews intelligent graphic-layout generation methods and their current research directions (CSCWD 2024).
 ### 2023
 
 - [Intelligent Layout Generation Based on Deep Generative Models: A Comprehensive Survey](https://doi.org/10.1016/j.inffus.2023.101940) - Reviews deep generative approaches to layout generation, their representations, conditions, datasets, and evaluation (Information Fusion 2023).
 - [A Survey for Graphic Design Intelligence](https://arxiv.org/abs/2309.01371) - Surveys computational methods for understanding and generating graphic design artifacts (2023).
+### 2022
+
+- [A Survey of Smooth Vector Graphics: Recent Advances in Representation, Creation, Rasterization, and Image Vectorization](https://doi.org/10.1109/TVCG.2022.3220575) - Surveys smooth-vector representations, creation, rendering, and raster-to-vector conversion relevant to editable graphic assets (IEEE TVCG 2024).
 
 ## Papers
 
