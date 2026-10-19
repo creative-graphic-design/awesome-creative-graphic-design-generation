@@ -3,10 +3,10 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-256-informational)
-![Papers](https://img.shields.io/badge/papers-196-informational)
+![Total Resources](https://img.shields.io/badge/resources-259-informational)
+![Papers](https://img.shields.io/badge/papers-199-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
-![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-185-informational)
+![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-188-informational)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
@@ -227,6 +227,10 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2026
 
+- [Content-Edited Layout Generation for Graphic Design](https://arxiv.org/abs/2610.17905) - Introduces content-edited layout generation by jointly adapting raw visual assets and generating compatible foreground layouts with synchronized image and layout flow matching and bidirectional cross-attention.
+  - Details: **Architecture:** Flow Matching; Transformer; VLM · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** FireRed-Image-Edit-1.1 (Qwen-Image); layout flow DiT; Qwen3-VL · **Train:** CGL-derived InstructEdit; LAION-5B retrieval pool · **Eval:** InstructEdit test split · **Output:** Edited background image plus structured foreground layout.
+- [PlayGround](https://arxiv.org/abs/2610.18865) - Generates editable layouts progressively by conditioning a VLM planner on the current rendered canvas, retrieving structural references, predicting group-level geometry, and verifying rendered candidates.
+  - Details: **Architecture:** Autoregressive; VLM; Multi-stage System · [Project](https://cvlab-kaist.github.io/PlayGround/) · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/cvlab-kaist/PlayGround) (`announced`) · Weights: `announced` · **Base:** Qwen3-VL-8B-Instruct; GPT-5.6 Luna · **Train:** Crello-v4 · **Eval:** Crello-v4; LICA · **Output:** Editable layout boxes; group-local stacking; text attributes.
 - [iPoster](https://doi.org/10.1145/3772363.3799094) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2603.29469) - Supports interactive content-aware poster layout generation under flexible user-specified constraints (CHI EA 2026).
   - Details: **Architecture:** Diffusion; Graph Neural Network · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Graph neural network cross content-aware attention; ViT image encoder; diffusion noise predictor · **Train:** PKU PosterLayout; CGL · **Eval:** PKU PosterLayout; CGL · **Output:** Structured poster layout boxes under user constraints.
 - [Seeing is Improving: Visual Feedback for Iterative Text Layout Refinement](https://arxiv.org/abs/2603.22187) - Introduces VFLM, which iteratively renders and visually critiques SVG text layouts over background images, using visually grounded reinforcement learning to improve readability and aesthetics (CVPR 2026).
@@ -427,6 +431,8 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2026
 
+- [LayerCanvas](https://arxiv.org/abs/2610.18763) - Combines SVG-preserved structure and exact typography with layer-set diffusion to generate independently editable infographic layers for deterministic recomposition and localized editing.
+  - Details: **Architecture:** Transformer; Diffusion · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Frozen MMDiT image backbone; layer-control and communication adapters · **Train:** InfoLayers · **Eval:** InfoLayers · **Output:** Editable SVG plus z-ordered raster layers and composed infographic.
 - [UniWorld-Design](https://arxiv.org/abs/2608.03971) - Treats semantic RGBA layers as the native design representation, with text-to-RGBA asset generation and instruction-controlled image-to-layer decomposition into ordered complete layers.
   - Details: **Architecture:** Flow Matching; Transformer · [Project](https://rabbitvis.rabbitpre.com/blog) · Code: `unknown` · Weights: `unknown` · **Base:** Rectified-flow RGBA generative models; T2RGBA and instruction-controlled I2L · **Train:** Designer-authored PSD-derived layered design data; transparent RGBA asset mixture · **Eval:** Crello (512 held-out designs) · **Output:** Standalone RGBA assets; ordered semantic RGBA layer stacks.
 - [MRT](https://openaccess.thecvf.com/content/CVPR2026/html/Tang_Masked_Region_Transformer_for_Layered_Image_Generation_and_Editing_at_CVPR_2026_paper.html) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2605.27235) - Unifies text-to-layers, image-to-layers, and layer-to-layer editing in a 20B masked-region diffusion model for scalable RGBA asset generation (CVPR 2026).
