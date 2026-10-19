@@ -3,8 +3,8 @@
 [![Catalog Check](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/catalog-check.yml)
 [![Awesome Lint](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml/badge.svg)](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/workflows/awesome-lint.yml)
 
-![Total Resources](https://img.shields.io/badge/resources-253-informational)
-![Papers](https://img.shields.io/badge/papers-193-informational)
+![Total Resources](https://img.shields.io/badge/resources-256-informational)
+![Papers](https://img.shields.io/badge/papers-196-informational)
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-185-informational)
 
@@ -303,6 +303,8 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Autoregressive; Transformer; VAE · Project: — · Code: `unknown` · Weights: `unknown` · **Base:** Transformer CVAE with self/cross attention and geometry alignment · **Train:** Authors' advertisement-poster layout dataset · **Eval:** Authors' advertisement-poster layout dataset · **Output:** Autoregressive text-overlay layout boxes.
 - [CGL-GAN](https://www.ijcai.org/proceedings/2022/692) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2205.00303) - Generates advertising layouts conditioned on visual content and introduces the CGL dataset (IJCAI 2022).
   - Details: **Architecture:** GAN · Project: — · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/minzhouGithub/CGL-GAN) (`announced`) · Weights: `unknown` · **Base:** GAN with composition-aware visual conditioning · **Train:** CGL Dataset · **Eval:** CGL Dataset · **Output:** Structured advertising layout boxes.
+- [Aesthetic Text Logo Synthesis via Content-aware Layout Inferring](https://arxiv.org/abs/2204.02701) - Generates text-logo layouts from glyph images and linguistic content with complementary trajectory and rendered-image discriminators (CVPR 2022).
+  - Details: **Architecture:** GAN.
 
 #### 2021
 
@@ -495,6 +497,8 @@ Papers are classified by their **primary output and task**, rather than by model
 
 #### 2023
 
+- [Anything to Glyph: Artistic Font Synthesis via Text-to-Image Diffusion Model](https://doi.org/10.1145/3610548.3618208) - Generates artistic display glyphs formed from semantic objects using a pretrained text-to-image diffusion model (SIGGRAPH Asia 2023).
+  - Details: **Architecture:** Diffusion.
 - [TextDiffuser-2](https://doi.org/10.1007/978-3-031-72652-1_23) · <img src="https://cdn.simpleicons.org/arxiv/24292F/FFFFFF" width="14" height="14" alt="arXiv"> [arXiv](https://arxiv.org/abs/2311.16465) - Uses language-model planning to improve flexible text layout and rendering in generated images (ECCV 2024).
   - Details: **Architecture:** Diffusion; LLM · [Project](https://jingyechen.github.io/textdiffuser2/) · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser-2) (`training + inference`) · <img src="https://cdn.simpleicons.org/huggingface/24292F/FFFFFF" width="14" height="14" alt="Hugging Face"> [Weights](https://huggingface.co/JingyeChen22/textdiffuser2-full-ft) (`released`) · **Base:** Stable Diffusion v1.5; LLM layout planner · **Train:** MARIO-style text-image data; layout-planner instruction data · **Eval:** Text rendering and inpainting benchmarks · **Output:** Raster image with rendered text.
 - [AnyText: Multilingual Visual Text Generation and Editing](https://arxiv.org/abs/2311.03054) - Generates and edits multilingual visual text using glyph, position, and OCR-aware diffusion conditioning (ICLR 2024).
@@ -507,6 +511,8 @@ Papers are classified by their **primary output and task**, rather than by model
   - Details: **Architecture:** Diffusion · Project: — · <img src="https://cdn.simpleicons.org/github/24292F/FFFFFF" width="14" height="14" alt="GitHub"> [Code](https://github.com/microsoft/unilm/tree/master/textdiffuser) (`training + inference`) · <img src="https://cdn.simpleicons.org/huggingface/24292F/FFFFFF" width="14" height="14" alt="Hugging Face"> [Weights](https://huggingface.co/datasets/JingyeChen22/TextDiffuser) (`released`) · **Base:** Stable Diffusion v2.1 · **Train:** MARIO-LAION / MARIO-10M · **Eval:** MARIO-Eval · **Output:** Raster image with rendered text.
 - [GlyphDraw](https://arxiv.org/abs/2303.17870) - Renders complex Chinese and English glyphs within generated images using glyph and position conditioning with parameter-efficient diffusion tuning (2023).
   - Details: **Architecture:** Diffusion.
+- [DS-Fusion: Artistic Typography via Discriminated and Stylized Diffusion](https://arxiv.org/abs/2303.09604) - Stylizes glyphs to express word meaning while balancing artistic effects and legibility with diffusion and a learned discriminator (ICCV 2023).
+  - Details: **Architecture:** Diffusion; LLM.
 - [Word-As-Image for Semantic Typography](https://arxiv.org/abs/2303.01818) - Optimizes letter outlines with diffusion guidance to convey word meanings while preserving font style and legibility (SIGGRAPH 2023).
   - Details: **Architecture:** Diffusion; Optimization.
 
