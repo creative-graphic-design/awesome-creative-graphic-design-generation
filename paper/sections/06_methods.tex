@@ -32,6 +32,14 @@ Uni-Layout combines generation and human-feedback-aligned assessment \citep{unil
 Scan-and-Print instead investigates efficient patch selection and training augmentation for content-aware poster layouts \citep{scanprint2025}.
 These approaches require matched input constraints and output granularity before their geometric metrics can support a comparison.
 
+\paragraph{Additional layout-control paradigms.}
+\ac{vtn} uses a variational transformer to model global layout design rules, while \ac{ldgm} decouples diffusion over element attributes to support multiple generation conditions.
+\ac{play} takes design guidelines as parametric controls for latent diffusion, whereas \ac{parsethenplace} first extracts structured constraints from textual design requirements.
+\ac{icvt} aligns image geometry with visual-textual elements, and \ac{textlap} adapts language models to instruction-based layout planning.
+\ac{lggpt} uses compact task instructions to unify layouts across domains, while \ac{unilaydiff} models background content and relational layout constraints jointly.
+\ac{vascar} iteratively evaluates rendered layouts with a vision-language model, and \ac{sega} combines coarse-to-fine layout reasoning with a design prior.
+\ac{aesthetiq} uses preference alignment to target aesthetic layout judgments, whereas \ac{postero} represents generalized poster layouts as hierarchical SVG trees and \ac{posterllava} uses multimodal instruction-tuned structured layout outputs.
+These approaches provide evidence for different generation-time control contracts, but they do not establish equivalent post-export edit operations.
 \subsection{Multi-Stage Graphic Design and Agents}
 Integrated poster generation must coordinate language, asset production, layout decisions, and visual verification.
 COLE and OpenCOLE use hierarchical design decomposition \citep{cole2023,opencole2024}.
@@ -53,6 +61,11 @@ Design Your Ad models personalized image-and-text advertising based on user hist
 These signals target different qualities: engagement, text correctness, product identity, and human aesthetic preference cannot be conflated.
 Brief2Design supports requirements clarification, element exploration, and recombination from professional briefs rather than treating the completed image as the only useful output \citep{brief2design2026}.
 
+\paragraph{Template and full-poster generation.}
+\ac{desigen} explicitly iterates between background generation and layout prediction, while \ac{designdiffusion} generates complete design imagery directly from text without relying on an exported object hierarchy.
+\ac{postermaker} couples product-preserving scene generation with targeted visual text rendering, and \ac{recontraster} plans and critiques posters using regional contrast.
+\ac{graphimind} instead provides a conversational and direct-manipulation environment for information-graphics authoring rather than solely a one-shot image generator.
+These methods should be compared by input requirements, the granularity of their final artifact, and the type of control or user action that their evaluations actually exercise.
 \subsection{Typography and Vector Synthesis}
 Text rendering poses constraints not captured by photographic image fidelity.
 TextDiffuser and TextDiffuser-2 make text layout a first-class part of image generation \citep{textdiffuser2023,textdiffuser22024}; GlyphDraw2 targets stylized, multilingual glyph-aware poster generation \citep{glyphdraw2025}; GlyphControl and AnyText provide complementary glyph-conditioned and multilingual visual text generation/editing approaches \citep{glyphcontrol2023,anytext2024}.
@@ -80,6 +93,10 @@ GlyphDraw targets intricate spatial glyph layouts \citep{glyphdraw2023}, while D
 These studies extend simple OCR-like text correctness to stylization and visual integration, but their rendered glyphs need not remain editable as semantic text.
 Text2Layer studies compositional transparent-layer synthesis with latent diffusion \citep{text2layer2023}, connecting text-conditioned object synthesis to the separate task of layered document creation.
 
+\paragraph{Additional text-generation and editing controls.}
+\ac{utdesign} couples transparent stylized-text rendering and conditioned text synthesis, supporting both text editing and design generation.
+\ac{freetext} improves text placement and glyph rendering by exploiting diffusion-transformer attention without retraining.
+Neither text accuracy in a rendered image nor the ability to manipulate a text-shaped region alone establishes that semantic characters survive export as native editable text.
 \subsection{Reconstruction and Explicit Editing}
 Another line starts from an existing artifact.
 LayerD decomposes rendered designs into layers \citep{layerd2025}; Accordion generates layered designs by planning and decomposing a complete visual reference \citep{accordion2025}; PosterCopilot reasons about composition and repeated layer-sensitive changes \citep{postercopilot2026}.
@@ -98,6 +115,12 @@ The systems differ substantially in whether layers are generated directly, infer
 ReLayout's structure-preserving editing task modifies geometry according to an explicit instruction while conserving the relationships of unchanged elements \citep{relayoutedit2026}.
 This task directly tests edit operations and should be evaluated separately from visually plausible layer decomposition.
 
+\paragraph{Native layers and markup documents.}
+\ac{art} generates variable numbers of transparent layers, while \ac{psdiffusion} models their joint appearance and spatial interactions in a shared synthesis process.
+\ac{qwenimagelayered} decomposes raster images into semantically separated RGBA layers, and \ac{layerdecomp} explicitly considers shadows and reflections during foreground/background recovery.
+\ac{mrt} unifies text-to-layer generation, image-to-layer decomposition, and layer-to-layer editing through selective masking.
+\ac{markupdm} instead completes typed content and attributes inside multimodal markup documents, demonstrating that layer synthesis and document-level semantic completion have different editing interfaces.
+For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.
 AutoPresent generates structured slide visuals from natural-language specifications and compares image-level generation with programmatic outputs \citep{autopresent2025}.
@@ -115,10 +138,18 @@ AutoFigure creates scientific illustrations from extended source material \citep
 The shared R--E--V axes remain useful across domains, but comparisons must respect whether the delivered artifact is a vector, a presentation document, or merely a rendered image.
 
 
+\paragraph{Document-level scientific communication and revision.}
+\ac{postdoc} selects multimodal information from long research documents for poster synthesis, while \ac{posterforest} introduces a hierarchical poster-tree representation for document content and composition.
+\ac{p2p} combines agent-based paper-to-poster rendering with a task-specific fine-grained benchmark; its HTML poster output and assessment should not be equated with native editable slide decks.
+\ac{slidetailor} conditions presentation generation on user preference examples, while \ac{deepslides} separates slide-page planning from the subsequent code implementation.
+\ac{slidegen} coordinates narrative, source figures, and geometry when producing editable presentation slides.
+In contrast to initial drafting, \ac{apex} takes existing academic posters and uses structured editing actions followed by visual assessment.
 \paragraph{Scientific communication workflows.}
 PaperBanana combines reference retrieval, content planning, illustration rendering, and iterative critique \citep{paperbanana2026}, whereas SciFig generates revisable methodology diagrams using an explicit structure \citep{scifig2026}.
 AutoFigure-Edit adds native SVG manipulation and style references to scientific illustration workflows \citep{autofigureedit2026}.
 \ac{sciforma} evaluates component, arrow, and text correctness in scientific diagrams as mutually necessary structural dimensions \citep{sciforma2026}.
 Paper2Poster couples long-document content extraction to poster composition and evaluates more than appearance \citep{paper2poster2025}.
 SciPostLayout supplies scientific poster layouts and document-poster pairs for analysis and content-conditioned generation \citep{scipostlayout2024}, while ArcDeck reconstructs a paper's argument as a presentation narrative \citep{arcdeck2026}.
-Such applications broaden graphic design to fact-sensitive and document-scale communication, but their metrics must distinguish narrative fidelity, component geometry, editability, and artifact portability.
+\ac{figuresasprograms} constructs scientific figures as recursive SVG programs for local source-level corrections, whereas \ac{genga} produces hierarchical vector graphical abstracts and proposes an editability-related structural-independence measure.
+\ac{paperbananainteract} evaluates multi-turn refinement of scientific diagrams, where retaining previously satisfied requirements matters alongside visual improvements.
+Such applications broaden graphic design to fact-sensitive and document-scale communication, but their metrics must distinguish narrative fidelity, component geometry, editing behavior, and artifact portability.
