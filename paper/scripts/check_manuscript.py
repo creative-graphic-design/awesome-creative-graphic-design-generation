@@ -38,7 +38,7 @@ for required in (
 require((REPO / ".pre-commit-config.yaml").is_file(), "Missing local pre-commit rules")
 
 main = tex("main.tex")
-intro = tex("sections/introduction.tex")
+intro = tex("sections/02_introduction.tex")
 require(r"\usepackage[review]{cvpr}" in main, "Use official anonymous [review] mode")
 require(r"\usepackage[pagenumbers]{cvpr}" not in main, "Do not use named-author draft mode")
 require("First Author" in main and "Second Author" in main, "Keep the official non-identifying author template block")
@@ -52,7 +52,7 @@ require("huang2023survey" in intro and "zou2025fragment" in intro, "Ground the f
 for citation in ("posterlayout2023", "cglgan2022", "autopresent2025", "bizgen2025", "autofigure2026"):
     require(citation in intro, f"Introduction needs task-specific original evidence: {citation}")
 require("figures/" not in main, "Remove legacy figure paths from main.tex")
-for stem in ("overview", "edit_protocol"):
+for stem in ("overview", "edit_protocol", "research_map"):
     root = tex(f"figs/tex/{stem}.tex")
     wrapper = tex(f"figs/tex/{stem}_figure.tex")
     require(r"\documentclass" in root and r"\begin{tikzpicture}" in root, f"{stem} must be standalone TikZ")
@@ -62,11 +62,11 @@ for stem in ("overview", "edit_protocol"):
     require(not (PAPER / "figures" / f"{stem}.tex").exists(), f"Remove legacy figures/{stem}.tex")
 
 table_files = (
-    ("related_surveys", "prior_surveys"),
-    ("methodology", "task_grounding"),
-    ("representations", "representation_crosswalk"),
-    ("evaluation", "evaluation_metrics"),
-    ("benchmarks", "benchmark_coverage"),
+    ("03_related_surveys", "prior_surveys"),
+    ("04_methodology", "task_grounding"),
+    ("05_representations", "representation_crosswalk"),
+    ("07_evaluation", "evaluation_metrics"),
+    ("08_benchmarks", "benchmark_coverage"),
 )
 for section, table in table_files:
     body = tex(f"sections/{section}.tex")
@@ -92,7 +92,7 @@ require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
 
 print("Reviewed guidance: paper/WRITING_CHECKLIST.md (read before drafting and each commit)")
-print(f"Checked anonymous mode, editable figures, 5 tables, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
+print(f"Checked anonymous mode, 3 editable figures, 5 tables, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
 if errors:
     for error in errors:
         print(f"ERROR: {error}", file=sys.stderr)
