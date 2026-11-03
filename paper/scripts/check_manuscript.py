@@ -53,7 +53,7 @@ require("huang2023survey" in intro and "zou2025fragment" in intro, "Ground the f
 for citation in ("posterlayout2023", "cglgan2022", "autopresent2025", "bizgen2025", "autofigure2026"):
     require(citation in intro, f"Introduction needs task-specific original evidence: {citation}")
 require("figures/" not in main, "Remove legacy figure paths from main.tex")
-for stem in ("overview", "edit_protocol", "research_map"):
+for stem in ("overview", "edit_protocol", "research_map", "research_map_narrative"):
     root = tex(f"figs/tex/{stem}.tex")
     wrapper = tex(f"figs/tex/{stem}_figure.tex")
     require(r"\documentclass" in root and r"\begin{tikzpicture}" in root, f"{stem} must be standalone TikZ")
@@ -237,7 +237,7 @@ require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
 
 print("Reviewed guidance: paper/WRITING_CHECKLIST.md (read before drafting and each commit)")
-print(f"Checked anonymous mode, 3 editable figures, 5 tables, acro, ordered sections and natbib citations, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
+print(f"Checked anonymous mode, 4 editable figures, 5 tables, acro, ordered sections and natbib citations, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
 if errors:
     for error in errors:
         print(f"ERROR: {error}", file=sys.stderr)
