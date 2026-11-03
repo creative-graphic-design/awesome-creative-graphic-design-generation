@@ -56,3 +56,11 @@
 5. After pushing, inspect the **Paper PDF** CI, its PDF/figure artifacts and any failure logs; update the PR with changes and remaining audits.
 
 Install local hooks once at repo root with `uvx pre-commit install`. These hooks run the machine-checkable pre-commit gates for `paper/**`. **CI independently runs the same gates for every manuscript PR**, even if contributors did not install local hooks. This cannot replace manual scholarly review.
+
+## Shared glossaries and technical vocabulary
+
+- [ ] Treat genuine abbreviations (GAN, VAE, LLM, VLM, SVG, PSD, FID, IoU, OCR, etc.) as `\\newacronym` entries in `paper/glossary.tex`, using `\\gls{key}` / `\\glspl{key}` in prose as appropriate.
+- [ ] Treat **named systems** (LayoutGAN, LayoutDM, COLE, OpenCOLE, DesignAsCode, etc.) as `\\newglossaryentry` names, with short, source-grounded descriptions. Do **not** invent expansions that the original authors did not use.
+- [ ] Use `\\makenoidxglossaries` and `\\printnoidxglossary` for reproducible PDF builds without an extra makeglossaries step; check the rendered glossary for duplicated, missing, or unsuitable descriptions.
+- [ ] Add new model/metric names to the registry before using them in technical prose; ensure every `\\gls` key resolves under `paper/scripts/check_manuscript.py`.
+- [ ] Keep research-map grouping and date information separately auditable, preserve legibility at manuscript size, and avoid unverifiable citation/influence arrows.

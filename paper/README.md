@@ -63,3 +63,9 @@ Manuscript sections follow `01_abstract.tex`, `02_introduction.tex`, through `10
 `figs/tex/research_map.tex` contains an original chronological, task-colored research map motivated by the SSII2024 overview shared for visual reference; `figs/tex/research_map_figure.tex` holds its caption and label. The map groups selected 2019–2026 studies and **does not assert direct causal or citation relationships**. The source is independently compilable; `make figures` generates `figs/pdf/research_map.pdf`.
 
 The paper CI runs the same source-line checker as the pre-commit hook, plus its negative-fixture unit tests. The checker is an intentionally conservative static lint, not a guarantee of grammatical correctness or source verification.
+
+## Acronym and named-system glossary
+
+`glossary.tex` is the shared source of both abbreviation definitions and a curated index of named graphic-design models. Use `\\newacronym` only for genuine acronyms (SVG, GAN, VLM, etc.), and `\\newglossaryentry` for branded model names (e.g., LayoutGAN and COLE). The `glossaries` package runs in **no-index** mode for deterministic CI builds without an extra `makeglossaries` command. `scripts/check_manuscript.py` rejects duplicate or undefined glossary keys; descriptions still require scholarly author review.
+
+The redrawn research map uses a **five-track by four-era matrix** with 59 representative milestones; it is a curated orientation aid, not a citation graph or complete published-paper count. Its editable source is `figs/tex/research_map.tex`, generated PDF at `figs/pdf/research_map.pdf`. See `WRITING_CHECKLIST.md` before modifying research chronology.

@@ -13,3 +13,5 @@ For manuscript changes:
 6. After pushing verify the **Paper PDF** Actions check and inspect its generated PDFs. Record unfinished audits rather than claiming research is complete.
 
 The root `AGENTS.md`, `CONTRIBUTING.md`, and `data/README.md` still govern the research catalogue; this file governs paper-specific work only.
+
+When introducing an acronym or important named model, check `paper/glossary.tex` and use the appropriate `\\newacronym` or `\\newglossaryentry` entry with `\\gls{key}` in prose. Never invent a backronym for a paper name. Review the two generated glossary lists after building the PDF.

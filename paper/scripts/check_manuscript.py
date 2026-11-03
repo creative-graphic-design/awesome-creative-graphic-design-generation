@@ -104,11 +104,31 @@ require(not any(re.search(r"\b[A-Z][A-Za-z-]* et al\.(?:~|\s+)(?:20\d{2}\s+)?\\c
                 for path in [*(PAPER / "sections").glob("*.tex"), *(PAPER / "tabs" / "tex").glob("*.tex")]),
         "Use \\citet{key} for textual author citations; do not write Author et al.~\\citep{key}")
 
+
+glossary = tex("glossary.tex")
+require(r"\usepackage[acronym,nonumberlist,toc]{glossaries}" in main,
+        "Use the shared no-index glossaries package")
+require(r"\makenoidxglossaries" in main and r"\input{glossary}" in main,
+        "Load the shared glossary without requiring an external indexing step")
+require(r"\printnoidxglossary" in main,
+        "Print the glossary of acronyms and system terms in the manuscript")
+defined_acronyms = re.findall(r"\\newacronym\{([^}]+)\}", glossary)
+defined_terms = re.findall(r"\\newglossaryentry\{([^}]+)\}", glossary)
+defined = set(defined_acronyms + defined_terms)
+require(len(defined) == len(defined_acronyms) + len(defined_terms),
+        "Each acronym or system name must have a unique glossary key")
+require(len(defined_acronyms) >= 12 and len(defined_terms) >= 25,
+        "Maintain comprehensive shared acronym and named-system vocabularies")
+for source_file in sorted((PAPER / "sections").glob("*.tex")):
+    source_data = source_file.read_text(encoding="utf-8")
+    for glossary_ref in re.findall(r"\\gls(?:pl|first|firstplural)?\{([^}]+)\}", source_data):
+        require(glossary_ref in defined, f"{source_file.name}: undefined glossary key {glossary_ref}")
+
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
 
 print("Reviewed guidance: paper/WRITING_CHECKLIST.md (read before drafting and each commit)")
-print(f"Checked anonymous mode, 3 editable figures, 5 tables, ordered sections and natbib citations, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
+print(f"Checked anonymous mode, 3 editable figures, 5 tables, glossary, ordered sections and natbib citations, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
 if errors:
     for error in errors:
         print(f"ERROR: {error}", file=sys.stderr)
