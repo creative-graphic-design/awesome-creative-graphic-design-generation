@@ -31,6 +31,13 @@
 - [ ] Record source section/table/figure locators before promoting any claim audit to `verified`. Distinguish original evidence from the bibliography's bibliographic metadata.
 - [ ] Run `python3 paper/scripts/check_literature_audit.py` in local hooks and CI, alongside structural bibliography checks. This check enforces key alignment and evidence-state hygiene, not scientific correctness.
 
+## acro citations, occurrence pages, and PDF deliverables
+
+- [ ] Give every named-system `\DeclareAcronym` a `cite = {bibtex_key}` tied to its original work; use `cite/cmd = \citep` with first-use citations and do not misread group citations as experimental evidence.
+- [ ] Enable `pages/display = all` to report every page where a named system or abbreviation appears, and inspect both printed acro lists in the generated PDF.
+- [ ] After manuscript changes, build and inspect the updated anonymous PDF; **include the actual generated PDF and key figure PDF links in the user-facing response every time**, not only the GitHub PR or TeX source.
+- [ ] Treat the public catalogue crosswalk (207 papers, 69 currently unresolved matches) as a conservative ID/title lookup, not an exclusion audit; run `python3 paper/scripts/check_catalog_crosswalk.py`.
+
 ## BibTeX and similar paper names
 
 - [ ] Verify exact title, authors, year, venue and DOI from the original paper or publisher, preferably the published proceedings record, then retain a stable URL.
