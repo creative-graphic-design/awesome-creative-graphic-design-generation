@@ -173,8 +173,8 @@ if map_registry.is_file():
     seen_names = set()
     bib = (PAPER / "references.bib").read_text(encoding="utf-8")
     bib_years = {}
-    for match in re.finditer(r"@\\w+\\{([^,]+),([\\s\\S]*?)(?=\\n@\\w+\\{|$)", bib):
-        year = re.search(r"^\\s*year\\s*=\\s*\\{(\\d{4})\\}", match.group(2), re.M)
+    for match in re.finditer(r"@\w+\{([^,]+),([\s\S]*?)(?=\n@\w+\{|$)", bib):
+        year = re.search(r"^\s*year\s*=\s*\{(\d{4})\}", match.group(2), re.M)
         if year:
             bib_years[match.group(1)] = int(year.group(1))
     for entry in entries:
