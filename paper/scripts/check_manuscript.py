@@ -197,6 +197,42 @@ if map_registry.is_file():
             f"Research-map figure/registry mismatch: figure-only={sorted(displayed_items-registered_items)}, "
             f"registry-only={sorted(registered_items-displayed_items)}")
 
+# The compact, illustrated research map has its own curated bibliography crosswalk.
+# This is a representative narrative selection, not a systematic study-flow count.
+narrative_path = PAPER / "figs" / "tex" / "research_map_narrative_sources.csv"
+require(narrative_path.is_file(), "Missing narrative research-map source crosswalk")
+if narrative_path.is_file():
+    with narrative_path.open(encoding="utf-8", newline="") as handle:
+        narrative_reader = csv.DictReader(handle)
+        require(narrative_reader.fieldnames == [
+            "track", "label", "bibtex_key", "reference_year", "method_family"],
+            "Narrative research-map registry has unexpected columns")
+        narrative_entries = list(narrative_reader)
+    narrative = tex("figs/tex/research_map_narrative.tex")
+    macro = re.compile(
+        r"\\MapPaper\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}"
+        r"\{([^{}]+)\}\{[^{}]+\}\{[^{}]+\}\{([^{}]+)\}\{([^{}]+)\}"
+    )
+    visible = {(track, title, key, 2000 + int(year), family)
+               for track, title, year, key, family, _ in macro.findall(narrative)}
+    source_items = set()
+    for rec in narrative_entries:
+        try:
+            year = int(rec["reference_year"])
+        except (TypeError, ValueError):
+            errors.append(f"Narrative research-map has an invalid year: {rec['label']}")
+            continue
+        key = rec["bibtex_key"]
+        source_items.add((rec["track"], rec["label"], key, year, rec["method_family"]))
+        require(key in bib_years, f"Narrative research-map unknown BibTeX key: {key}")
+        require(bib_years.get(key) == year,
+                f"Narrative research-map bibliography year mismatch: {rec['label']}")
+    require(len(narrative_entries) == 26, "Preserve the 26 audited narrative milestones")
+    require(len(visible) == len(narrative_entries), "Narrative research-map visible count mismatch")
+    require(visible == source_items,
+            f"Narrative research-map source/figure mismatch: figure-only={visible-source_items}, "
+            f"registry-only={source_items-visible}")
+
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
 
