@@ -72,6 +72,13 @@ Their visual or semantic generation scores should not be interpreted as evidence
 SuperSVG addresses a different task, accelerating raster-to-vector reconstruction through superpixel-based decomposition \citep{supersvg2024}.
 Both can produce vector paths, but the ability to open an SVG is not evidence of semantic text replacement, preservation of object identity, or reliably executing an instruction.
 
+
+\paragraph{Stylized typography and layered composition.}
+Text2Poster arranges extracted or generated text over retrieved background imagery with attention to style and location \citep{text2poster2022}.
+GlyphDraw targets intricate spatial glyph layouts \citep{glyphdraw2023}, while DS-Fusion stylizes letterforms using discriminated diffusion objectives \citep{dsfusion2023}.
+These studies extend simple OCR-like text correctness to stylization and visual integration, but their rendered glyphs need not remain editable as semantic text.
+Text2Layer studies compositional transparent-layer synthesis with latent diffusion \citep{text2layer2023}, connecting text-conditioned object synthesis to the separate task of layered document creation.
+
 \subsection{Reconstruction and Explicit Editing}
 Another line starts from an existing artifact.
 LayerD decomposes rendered designs into layers \citep{layerd2025}; Accordion generates layered designs by planning and decomposing a complete visual reference \citep{accordion2025}; PosterCopilot reasons about composition and repeated layer-sensitive changes \citep{postercopilot2026}.

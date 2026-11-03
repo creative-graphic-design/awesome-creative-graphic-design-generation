@@ -64,6 +64,12 @@ A protocol should publish the initial design and target edit, the required outpu
 It should also distinguish an edit that preserves visual appearance by flattening the design from one that preserves editability.
 For automated judges, human calibration, judge variance, and adversarial failure cases are necessary, especially when aesthetics are being rated.
 
+
+\paragraph{Structural layout distances and color-assistance criteria.}
+LTSim measures layout similarity through transportation of labeled and geometric elements \citep{ltsim2024}, and therefore asks a different question from a learned-feature distributional distance such as layout FID.
+InfoColorizer studies interactive palette recommendation and designer-facing controllability for information graphics \citep{infocolorizer2021}.
+Color agreement, geometric matching, and task completion should be reported as independent evaluation dimensions, particularly when a design system supports human adjustments.
+
 \subsection{Human Preferences and Design-Principle Judges}
 Graphic-design evaluation must distinguish aesthetic preference, layout-rule compliance, and whether a model can identify a design fault.
 \citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a VLM's score as ground truth.
