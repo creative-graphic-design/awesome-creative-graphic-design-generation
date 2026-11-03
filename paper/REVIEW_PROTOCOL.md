@@ -33,6 +33,10 @@ For retained full texts, extract representation, inputs, outputs, demonstrated v
 
 Distinguish `not_reported`, `not_verified`, and `not_applicable`. Verify numeric claims against original methods/results, tables, and supplements. Cross-check bibliographic author, title and DOI metadata against the publisher record.
 
+## Citation-level audit register (initialized, not fully adjudicated)
+
+The file `literature_citation_audit.csv` enumerates the 144 BibTeX references with keys, bibliography titles, citation-year metadata, and URLs. Its `not_verified` entries indicate that a per-key verification record has **not yet been transferred and documented**; they do not negate earlier method-level reading in the separate 225-entry working register. `working_register_id` must be populated only after identity/version reconciliation, with `duplicate_group` for preprint/published aliases and `source_section_locator` for original methods/results evidence. Do not calculate the fraction of the 225 register represented by citations until the crosswalk exists. The validator `scripts/check_literature_audit.py` checks CSV/BibTeX sync and requires a source locator before any evidence is marked verified.
+
 ## Counts and diagrams
 
 The public awesome catalog and the **225-entry provisional working evidence register** are different snapshots. The 88/28/109 evidence-tier checkpoint measures verification depth and is not a screening flow or a count of studies independently read in full. Reconcile version/duplicate IDs before computing year distributions, acceptance fractions or any PRISMA-style figure. A proper flow requires logged **identified → deduplicated → title-screened → full-text assessed → included** counts with exclusions.
