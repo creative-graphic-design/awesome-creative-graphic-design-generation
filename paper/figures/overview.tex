@@ -18,8 +18,8 @@
   \node[font=\sffamily\small,align=center] at (1.91,3.16) {What objects can be addressed?};
   \node[font=\sffamily\small,align=center] at (6.66,3.16) {What changes are requested?};
   \node[font=\sffamily\small,align=center] at (11.41,3.16) {What has been observed?};
-  \foreach \label/\yy in {Layout boxes/2.55,Flattened pixels/1.98,SVG paths/1.41,RGBA or document layers/.84,DOM/CSS or PPTX objects/.27} {
-    \node[item,draw=blue!45,fill=white] at (1.91,\yy) {\label};
+  \foreach \itemtext/\yy in {Layout boxes/2.55,Flattened pixels/1.98,SVG paths/1.41,RGBA or document layers/.84,DOM and CSS document objects/.27} {
+    \node[item,draw=blue!45,fill=white] at (1.91,\yy) {\itemtext};
   }
   \foreach \label/\yy in {Move or resize geometry/2.55,Retouch or inpaint/1.98,Alter a path or glyph/1.41,Replace or rearrange layers/.84,Edit text or code nodes/.27} {
     \node[item,draw=orange!50,fill=white] at (6.66,\yy) {\label};
