@@ -29,3 +29,7 @@ Citation keys in `references.bib` are traceable to source URLs. Bibliographic au
 - Do not equate raster creation-time conditioning with post-export editing, or SVG/PSD/DOM export with quantitative editing success.
 - FID, CLIP similarity, Chamfer reconstruction, and layout IoU are not editing performance metrics by themselves.
 - Keep catalog changes in canonical data CSVs; do not manually modify the root README, which is generated.
+
+## Related-survey and figure design notes
+
+Six prior surveys were compared in `sections/related_surveys.tex`: Huang (2023), Shi (2023), Tian and G\u00fcnther (2024), Li et al. (2024), Zou et al. (2025), and Malashenko et al. (2025). Common figure roles are (1) overview/taxonomy, (2) survey discovery/counts, (3) specific research-line methods, and (4) synthesis/research challenges. This working draft adds two original **editable TikZ** figures: `figures/overview.tex` (R–E–V crosswalk) and `figures/edit_protocol.tex` (measured editing dimensions). We deliberately do not fabricate PRISMA exclusion counts or a publication-time histogram; those require a frozen and reconciled corpus. See the survey comparison table in the paper.

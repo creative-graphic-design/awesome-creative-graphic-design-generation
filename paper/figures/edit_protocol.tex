@@ -1,0 +1,30 @@
+% Original, editable evaluation protocol diagram (working proposal).
+\begin{figure*}[t]
+\centering
+\resizebox{0.96\textwidth}{!}{%
+\begin{tikzpicture}[font=\sffamily\scriptsize,>=Latex,
+  nodebox/.style={draw=black!45,fill=white,rounded corners=4pt,align=center,minimum height=.84cm,inner sep=5pt},
+  measure/.style={draw=blue!48,fill=blue!6,rounded corners=3pt,align=center,minimum width=2.45cm,minimum height=.72cm,inner sep=3pt}]
+  \node[nodebox,minimum width=2.55cm] (input) at (0,1.75) {\textbf{Original document}\\$D$ plus edit request $u$};
+  \node[nodebox,minimum width=2.55cm,fill=orange!8] (editor) at (3.55,1.75) {\textbf{Editing system}\\$f(D,u)$};
+  \node[nodebox,minimum width=2.55cm] (output) at (7.10,1.75) {\textbf{Result artifact}\\$D'$ in required format};
+  \node[nodebox,minimum width=2.85cm,fill=green!8] (judge) at (10.84,1.75) {\textbf{Independent checks}\\Target, non-target, format};
+  \draw[->,thick] (input) -- (editor);
+  \draw[->,thick] (editor) -- (output);
+  \draw[->,thick] (output) -- (judge);
+  \node[measure] (a) at (.36,-.18) {Target compliance\\$m_{\rm target}$};
+  \node[measure] (b) at (3.06,-.18) {Preservation\\$m_{\rm preserve}$};
+  \node[measure] (c) at (5.76,-.18) {Native artifact validity\\$m_{\rm valid}$};
+  \node[measure] (d) at (8.46,-.18) {Visual quality\\$m_{\rm visual}$};
+  \node[measure] (e) at (11.16,-.18) {User / model effort\\$m_{\rm effort}$};
+  \draw[->,dashed,black!55] (judge.south) -- ++(0,-.65) -| (e.north);
+  \draw[black!30] (0.36,.42) -- (11.16,.42);
+  \foreach \n in {a,b,c,d} {
+    \draw[->,dashed,black!55] (judge.south) -- ++(0,-.65) -| (\n.north);
+  }
+  \node[font=\sffamily\small\itshape,align=center] at (5.77,-1.24)
+  {Report which dimensions were actually evaluated; do not substitute FID, CLIP, or reconstruction error for editing success.};
+\end{tikzpicture}}
+\caption{A proposed multi-dimensional editing evaluation protocol. For fair comparisons, publish the initial artifact, requested transformation, output contract, target and protected elements, and judge/calibration method. The five metrics are desiderata, not a claim that prior benchmarks implement all dimensions.}
+\label{fig:protocol}
+\end{figure*}
