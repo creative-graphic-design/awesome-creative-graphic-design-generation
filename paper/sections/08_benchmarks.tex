@@ -1,0 +1,40 @@
+\section{Benchmark Coverage and Validity}
+\label{sec:benchmarks}
+A graphic-design benchmark is only informative relative to its \emph{input contract}, \emph{output contract}, \emph{task}, and \emph{scoring target}.
+Table~\ref{tab:benchmarks} separates generation, visual judgment, and editing.
+Their numerical results must not be aggregated into a cross-task leaderboard without calibration.
+
+\input{tabs/tex/benchmark_coverage}
+
+\subsection{What a Benchmark Measures}
+SVGEditBench evaluates changes to SVG code, whereas VectorGym covers generation from text and sketches, vector editing, and SVG captioning \citep{svgeditbench2024,vectorgym2026}.
+MiLDEdit introduces editing of multi-layer documents with dedicated assessment axes \citep{mildedit2026}.
+These studies refute an overly broad claim that there is no quantitative editing evaluation.
+The remaining challenge is \emph{cross-representation comparability}: the permitted editing operations and document structures differ.
+
+GraphicDesignBench probes multiple professional design capabilities in both understanding and generation settings \citep{deganutti2026gdb}.
+BizGenEval evaluates commercial visual generation in five document domains with four capability axes and human-verified constraint checks \citep{li2026bizgeneval}.
+AesEval-Bench focuses on whether visual-language models can assess aesthetic quality, including localized judgments \citep{an2026aeseval}.
+These evaluations provide valuable but different evidence.
+In particular, aesthetics-judge agreement, typography fidelity, valid code, and instruction-following should be reported separately.
+The arXiv abstract and software repository for GraphicDesignBench currently disagree about task count (50 versus 49), so a definitive count requires version reconciliation.
+
+\subsection{Protected Content Versus Necessary Reflow}
+The advice to edit only the specified object is incomplete when the artifact encodes relationships.
+InfoEdit studies infographics where an expanded text block or inserted element may force global layout \emph{reflow} \citep{yang2026infoedit}.
+An evaluation can specify the intended target set $T$, permitted dependent changes $R(D,u,T)$, and explicitly protected content $P$:
+\begin{equation}
+\mathcal{U}=T\cup R(D,u,T),\qquad P\cap\mathcal{U}=\emptyset.
+\label{eq:reflow}
+\end{equation}
+Here $\mathcal{U}$ denotes the allowed change scope.
+A successful edit may require adjusting elements in $R$ while preserving the semantic content or geometry of $P$.
+In a raster image, protected items may be regions or propositions rather than identifiable object IDs; in code-native documents they may be DOM nodes or layer dependencies.
+This partition is a recommended evaluation abstraction, not a metric claimed by the source papers.
+
+MPTc-Bench studies poster localization across markets, where typography and aesthetic conventions can change while a film's identity must remain stable \citep{lin2026mptc}.
+It likewise demonstrates why minimal pixel deviation is an inadequate generic objective.
+
+\subsection{Minimum Reporting Contract}
+For comparable evaluations, studies should disclose input artifacts, allowed editing actions/tools, output and file validity requirements, the scope of target/dependent/protected content, the treatment of invalid outputs, and calibration of any human or VLM judge.
+Successful rendering of a preview does not by itself show that the saved layered, vector, or code-native artifact remains valid.
