@@ -23,6 +23,13 @@ repos:
         pass_filenames: false
         files: ^(paper/|\\.github/workflows/paper-pdf\\.yml$|\\.pre-commit-config\\.yaml$)
 
+      - id: manuscript-catalog-crosswalk
+        name: Check bibliography coverage against the public paper catalog
+        entry: python3 paper/scripts/check_catalog_crosswalk.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|data/resources\.csv$|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
+
       - id: manuscript-sentence-lines
         name: Keep one sentence per TeX source line
         entry: python3 paper/scripts/check_sentence_lines.py
