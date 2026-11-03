@@ -64,8 +64,13 @@ Manuscript sections follow `01_abstract.tex`, `02_introduction.tex`, through `10
 
 The paper CI runs the same source-line checker as the pre-commit hook, plus its negative-fixture unit tests. The checker is an intentionally conservative static lint, not a guarantee of grammatical correctness or source verification.
 
-## Acronym and named-system glossary
+## Acronyms and named systems (CTAN acro)
 
-`glossary.tex` is the shared source of both abbreviation definitions and a curated index of named graphic-design models. Use `\\newacronym` only for genuine acronyms (SVG, GAN, VLM, etc.), and `\\newglossaryentry` for branded model names (e.g., LayoutGAN and COLE). The `glossaries` package runs in **no-index** mode for deterministic CI builds without an extra `makeglossaries` command. `scripts/check_manuscript.py` rejects duplicate or undefined glossary keys; descriptions still require scholarly author review.
+The central registry is `paper/acronyms.tex`, using CTAN `acro` v3 instead of `glossaries`.
+Genuine abbreviations expand on first use through `\ac{key}`; subsequent mentions display the short form.
+Named model and system entries use `first-style=short` to preserve published names without fabricating expansions.
+Two `\printacronyms` lists separate abbreviations and named systems.
+The manuscript checker rejects missing or duplicate definitions and obsolete package commands; the PDF CI verifies LaTeX compilation.
 
-The redrawn research map uses a **five-track by four-era matrix** with 59 representative milestones; it is a curated orientation aid, not a citation graph or complete published-paper count. Its editable source is `figs/tex/research_map.tex`, generated PDF at `figs/pdf/research_map.pdf`. See `WRITING_CHECKLIST.md` before modifying research chronology.
+The research map is a curated five-track by four-era matrix with 59 representative milestones, not a citation graph or complete publication census.
+Its editable source is `figs/tex/research_map.tex` and its compiled vector output is `figs/pdf/research_map.pdf`.
