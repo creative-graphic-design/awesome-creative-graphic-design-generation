@@ -66,6 +66,14 @@ jobs:
           pdftotext paper/main.pdf paper/main.txt
           test -s paper/main.txt
           grep -qi 'Anonymous CVPR submission' paper/main.txt
+          grep -Fq 'Abbreviations' paper/main.txt
+          grep -Fq 'Selected Systems and Terminology' paper/main.txt
+          grep -Eq '^SVG[[:space:]]+scalable vector graphics' paper/main.txt
+          grep -Eq '^COLE[[:space:]]+Hierarchical' paper/main.txt
+          if grep -Fq 'Package acro Warning: Empty acronym list' paper/main.log; then
+            echo 'At least one acro list was empty in the PDF build.' >&2
+            exit 1
+          fi
           if grep -Eiq 'First Author|Second Author|Authors to be confirmed' paper/main.txt; then
             echo 'Anonymous review PDF exposes template author details.' >&2
             exit 1
