@@ -66,6 +66,7 @@ jobs:
           test -s paper/figs/pdf/overview.pdf
           test -s paper/figs/pdf/edit_protocol.pdf
           test -s paper/figs/pdf/research_map.pdf
+          test -s paper/figs/pdf/research_map_narrative.pdf
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils
           pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
