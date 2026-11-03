@@ -75,5 +75,6 @@ The manuscript checker rejects missing or duplicate definitions and obsolete pac
 The research map is a curated **six-track by four-era** matrix with **67 representative milestones**, not a citation graph or complete publication census.
 Its year labels use the cited bibliography year (venue year when available, otherwise preprint year); they do not always equal the first public version date.
 Its editable source is `figs/tex/research_map.tex` and its compiled vector output is `figs/pdf/research_map.pdf`.
+The 67 figure labels are cross-referenced to actual BibTeX entries in `figs/tex/research_map_sources.csv`, checked in CI; see `RESEARCH_MAP_AUDIT.md` for date and selection caveats.
 
 Both `\printacronyms` lists use `display=all`, so every declared abbreviation and named system is included even if it has not yet appeared in the paper. PDF CI verifies representative entries and rejects an empty acronym-list warning.
