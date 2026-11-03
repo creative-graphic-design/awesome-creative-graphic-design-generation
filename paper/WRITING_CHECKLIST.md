@@ -57,10 +57,10 @@
 
 Install local hooks once at repo root with `uvx pre-commit install`. These hooks run the machine-checkable pre-commit gates for `paper/**`. **CI independently runs the same gates for every manuscript PR**, even if contributors did not install local hooks. This cannot replace manual scholarly review.
 
-## Shared glossaries and technical vocabulary
+## CTAN acro package and technical vocabulary
 
-- [ ] Treat genuine abbreviations (GAN, VAE, LLM, VLM, SVG, PSD, FID, IoU, OCR, etc.) as `\\newacronym` entries in `paper/glossary.tex`, using `\\gls{key}` / `\\glspl{key}` in prose as appropriate.
-- [ ] Treat **named systems** (LayoutGAN, LayoutDM, COLE, OpenCOLE, DesignAsCode, etc.) as `\\newglossaryentry` names, with short, source-grounded descriptions. Do **not** invent expansions that the original authors did not use.
-- [ ] Use `\\makenoidxglossaries` and `\\printnoidxglossary` for reproducible PDF builds without an extra makeglossaries step; check the rendered glossary for duplicated, missing, or unsuitable descriptions.
-- [ ] Add new model/metric names to the registry before using them in technical prose; ensure every `\\gls` key resolves under `paper/scripts/check_manuscript.py`.
-- [ ] Keep research-map grouping and date information separately auditable, preserve legibility at manuscript size, and avoid unverifiable citation/influence arrows.
+- [ ] Use CTAN acro (https://ctan.org/pkg/acro), not the glossaries package. Define entries centrally in `paper/acronyms.tex` with `\DeclareAcronym`.
+- [ ] Use `\ac{key}` for first-use abbreviation expansion and subsequent short forms, `\acp{key}` for plurals, and `\printacronyms` for separate class lists.
+- [ ] Classify real abbreviations (GAN, VAE, LLM, VLM, SVG, PSD, FID, etc.) as `class={abbreviations}` and named systems (LayoutGAN, COLE, DesignAsCode, etc.) as `class={systems}`.
+- [ ] Use `first-style=short` for named systems: their descriptive long field must NOT be misrepresented as a formally expanded name.
+- [ ] Run the manuscript checker and PDF build, inspect both lists and first-use rendering, and confirm no obsolete `\gls` or `\newglossaryentry` remains.
