@@ -1,0 +1,52 @@
+\section{Evaluation: What Is Actually Measured?}
+\label{sec:evaluation}
+Evaluation connects representation and editability claims to observations. The field currently reports geometric similarity, semantic image-text compatibility, aesthetic judgments, reconstruction accuracy, user-task efficiency, and editing fidelity. These outcomes should not be combined without establishing that they measure the same construct.
+
+\begin{table*}[t]
+\centering
+\caption{Representative measurement targets and the claims they do \emph{not} directly establish. These metrics characterize different tasks, not comparable scores on one leaderboard.}
+\label{tab:metrics}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}XX@{}}
+\toprule
+\textbf{Measured target} & \textbf{Example protocol or metric} & \textbf{Unsupported inference without further testing}\\
+\midrule
+Layout fidelity/diversity & Layout FID, maximum IoU, constraint-satisfaction checks \citep{layoutdm2023}. & Correct typography, image quality, or downstream editability.\\
+Text-to-vector alignment & CLIP similarity, CLIP R-Precision on rendered SVG captions \citep{vectorfusion2023}. & Path-level editing success or preserved non-target geometry.\\
+Vector representation quality & Chamfer-derived reconstruction error, interpolation smoothness \citep{deepsvg2020}. & Instruction-controlled vector edits or high-quality semantic text.\\
+Typography fidelity & Re-rendered reconstruction L1/PSNR \citep{derendering2021}; human legibility judgments \citep{wordasimage2023}. & Accurate arbitrary text replacement or the preservation of document structure.\\
+Human workflow utility & User editing time, number of manipulations, controlled preference studies \citep{vinci2021}. & Automated edit-request success for unseen tasks.\\
+Layered/raster editing & Request adherence, design/layout consistency, rendering quality \citep{mildedit2026,posteromni2026}. & Native-format layer integrity unless the artifact and validity are separately tested.\\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsection{Generation Fidelity and Geometry}
+LayoutDM evaluates discrete layout synthesis through distributional and geometry-aware measures, including FID adapted to layout representations and maximum IoU under compatible element categories \citep{layoutdm2023}. The conditioned generation scenarios and the quality/diversity trade-off are central to interpretation. Such metrics concern the arrangement of design elements; even a strong score does not measure the usability of an exported creative file.
+
+VectorFusion evaluates prompt consistency using CLIP similarity and CLIP R-Precision over 128 caption prompts and analyzes the effect of vector primitive count and initialization \citep{vectorfusion2023}. These experiments measure semantic correspondence of the rendered graphic. By contrast, DeepSVG studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; SVGformer reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}. Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
+
+\subsection{Appearance, Text, and Reconstruction}
+Typography introduces additional evaluation dimensions: correct character identity, readability, style consistency, and editable text parameters. De-Rendering Stylized Texts reports reconstruction L1/PSNR and illustrates text or styling changes using recovered renderer parameters \citep{derendering2021}. Those numerical measurements indicate reconstruction fidelity, not a rate of successful edit instructions. Word-As-Image includes a perceptual study measuring whether semantic concepts remain recognizable, letters remain legible, and typography resembles the input font \citep{wordasimage2023}. The same dimensions should not be conflated with free-form replacement of textual content.
+
+\subsection{Editability Affordance Versus Editing Performance}
+Three complementary examples clarify the evidence distinction. Vinci uses a controlled within-subject study for poster resizing and reports the time and number of editing operations with and without feedback support \citep{vinci2021}. That is direct evidence about \emph{human workflow efficiency}, not about autonomous editing. Editable Visual Design shows that output HTML/CSS can expose separate DOM objects and editable text in a set of case studies \citep{editablevisual2026}. This demonstrates a useful workflow and format affordance but does not by itself constitute a randomized user study or an instruction-edit accuracy estimate. IconShop demonstrates SVG icon-path manipulation while reporting FID, CLIP-based scores, and icon quality judgments for its synthesis task \citep{iconshop2023}. The quantitative evaluation primarily concerns synthesis, not editing.
+
+Dedicated editing benchmarks merit distinct treatment. MiLDEdit describes evaluation axes for instruction following, design layout, aesthetics, and text on multi-layer documents \citep{mildedit2026}. PosterOmni combines local editing and global poster construction, so evidence must be separated by task and output representation \citep{posteromni2026}. A paper can evaluate image-editing ability even when it delivers flattened raster output. The appropriate criticism is not a lack of object-level export per se, but whether the representation and evaluation support the proposed downstream claim.
+
+\subsection{An Operational Evaluation Protocol}
+We recommend reporting editing performance as a vector of outcomes, rather than a single unqualified quality score. For an input artifact $D$, edit instruction $u$, and target set $T$, a system returns $D'$. At minimum, evaluation should address:
+\begin{equation}
+\mathbf{m}(D,u,D') =
+\left[
+m_{\mathrm{target}},\
+m_{\mathrm{preserve}},\
+m_{\mathrm{valid}},\
+m_{\mathrm{visual}},\
+m_{\mathrm{effort}}
+\right].
+\label{eq:metrics}
+\end{equation}
+Here target adherence tests the requested change; preservation checks non-target elements, structure, and content; validity tests whether the native artifact still opens and renders; visual quality assesses the edited output; and effort quantifies human or computational cost. These are \emph{recommended evaluation dimensions}, not a claim that a common benchmark already provides all five.
+
+A protocol should publish the initial design and target edit, the required output format, permitted tools, allowed untouched regions, failure handling, and the evaluation judge. It should also distinguish an edit that preserves visual appearance by flattening the design from one that preserves editability. For automated judges, human calibration, judge variance, and adversarial failure cases are necessary, especially when aesthetics are being rated.
