@@ -66,6 +66,12 @@ Neural-path generation explicitly models shape structure \citep{neuralpath2024},
 Code-generation approaches such as StarVector and Chat2SVG explore additional SVG primitives and text-conditioned editing workflows \citep{starvector2025,chat2svg2025}.
 Their visual or semantic generation scores should not be interpreted as evidence for the broader class of targeted design edits.
 
+
+\paragraph{Vectorization and object-level control.}
+SVGDreamer combines diffusion-guided SVG synthesis with foreground/background separation and attention-based primitive control \citep{svgdreamer2024}.
+SuperSVG addresses a different task, accelerating raster-to-vector reconstruction through superpixel-based decomposition \citep{supersvg2024}.
+Both can produce vector paths, but the ability to open an SVG is not evidence of semantic text replacement, preservation of object identity, or reliably executing an instruction.
+
 \subsection{Reconstruction and Explicit Editing}
 Another line starts from an existing artifact.
 LayerD decomposes rendered designs into layers \citep{layerd2025}; Accordion generates layered designs by planning and decomposing a complete visual reference \citep{accordion2025}; PosterCopilot reasons about composition and repeated layer-sensitive changes \citep{postercopilot2026}.
@@ -73,6 +79,16 @@ MiLDEdit explicitly addresses instruction-driven modifications of multi-layer de
 PosterOmni spans local raster-image editing and global poster creation \citep{posteromni2026}.
 These tasks are meaningfully editing-oriented, but a pixel-space editing benchmark does not establish that the result is an editable PSD or DOM structure.
 Each study must be coded against its actual inputs, outputs, and scoring procedure.
+
+
+\paragraph{Layer synthesis, transparency, and recovery.}
+LaDeCo composes supplied visual and textual elements by planning semantic layers \citep{ladeco2025}, while LayerDiffuse introduces transparent RGBA images through latent transparency \citep{layerdiffuse2024}.
+PrismLayers contributes multilayer transparent training data and a corresponding synthesis framework \citep{prismlayers2025}, and OmniPSD studies both text-to-PSD construction and raster-to-layer decomposition \citep{omnipsd2025}.
+LaDe generates a variable number of semantically meaningful design layers \citep{lade2026}, whereas an alternative layered framework explicitly models shadows and reflections to reduce drift after an edit \citep{layeredfx2026}.
+CreatiParser recovers text, background, and decoration-like layers from raster designs \citep{creatiparser2026}; ReDesign assembles an editable hierarchy through an agentic decomposition-and-verification process \citep{redesign2026}.
+The systems differ substantially in whether layers are generated directly, inferred from a raster input, or reconstructed with semantic text preserved.
+ReLayout's structure-preserving editing task modifies geometry according to an explicit instruction while conserving the relationships of unchanged elements \citep{relayoutedit2026}.
+This task directly tests edit operations and should be evaluated separately from visually plausible layer decomposition.
 
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.
@@ -89,3 +105,12 @@ Their metrics and output contracts should not be pooled.
 Scientific figures and academic posters convey factual research content, introducing constraints on semantic correctness and reading order.
 AutoFigure creates scientific illustrations from extended source material \citep{autofigure2026}, while PosterGen creates research posters through content selection, layout, typography and rendering agents \citep{postergen2026}.
 The shared R--E--V axes remain useful across domains, but comparisons must respect whether the delivered artifact is a vector, a presentation document, or merely a rendered image.
+
+
+\paragraph{Scientific communication workflows.}
+PaperBanana combines reference retrieval, content planning, illustration rendering, and iterative critique \citep{paperbanana2026}, whereas SciFig generates revisable methodology diagrams using an explicit structure \citep{scifig2026}.
+AutoFigure-Edit adds native SVG manipulation and style references to scientific illustration workflows \citep{autofigureedit2026}.
+SciForma evaluates component, arrow, and text correctness in scientific diagrams as mutually necessary structural dimensions \citep{sciforma2026}.
+Paper2Poster couples long-document content extraction to poster composition and evaluates more than appearance \citep{paper2poster2025}.
+SciPostLayout supplies scientific poster layouts and document-poster pairs for analysis and content-conditioned generation \citep{scipostlayout2024}, while ArcDeck reconstructs a paper's argument as a presentation narrative \citep{arcdeck2026}.
+Such applications broaden graphic design to fact-sensitive and document-scale communication, but their metrics must distinguish narrative fidelity, component geometry, editability, and artifact portability.
