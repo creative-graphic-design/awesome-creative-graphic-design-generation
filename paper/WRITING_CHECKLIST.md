@@ -59,8 +59,8 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 
 ## CTAN acro package and technical vocabulary
 
-- [ ] Use CTAN acro (https://ctan.org/pkg/acro), not the glossaries package. Define entries centrally in `paper/acronyms.tex` with `\DeclareAcronym`.
-- [ ] Use `\ac{key}` for first-use abbreviation expansion and subsequent short forms, `\acp{key}` for plurals, and `\printacronyms` for separate class lists.
-- [ ] Classify real abbreviations (GAN, VAE, LLM, VLM, SVG, PSD, FID, etc.) as `class={abbreviations}` and named systems (LayoutGAN, COLE, DesignAsCode, etc.) as `class={systems}`.
+- [ ] Use CTAN acro v3.8 (https://ctan.org/pkg/acro); use its tag property, not the deprecated class property. Do not use the glossaries package. Define entries centrally in `paper/acronyms.tex` with `\DeclareAcronym`.
+- [ ] Use `\ac{key}` for first-use abbreviation expansion and subsequent short forms, `\acp{key}` for plurals, and `\printacronyms` for separate tag lists.
+- [ ] Classify real abbreviations (GAN, VAE, LLM, VLM, SVG, PSD, FID, etc.) as `tag={abbreviations}` and named systems (LayoutGAN, COLE, DesignAsCode, etc.) as `tag={systems}`.
 - [ ] Use `first-style=short` for named systems: their descriptive long field must NOT be misrepresented as a formally expanded name.
 - [ ] Run the manuscript checker and PDF build, inspect both lists and first-use rendering, and confirm no obsolete `\gls` or `\newglossaryentry` remains.
