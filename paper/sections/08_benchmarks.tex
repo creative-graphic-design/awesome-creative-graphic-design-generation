@@ -8,6 +8,8 @@ Their numerical results must not be aggregated into a cross-task leaderboard wit
 
 \subsection{What a Benchmark Measures}
 SVGEditBench evaluates changes to SVG code, whereas VectorGym covers generation from text and sketches, vector editing, and SVG captioning \citep{svgeditbench2024,vectorgym2026}.
+The SVGEditBench dataset repository specifies six editing tasks built from 100 Twemoji source graphics, with SVG-code prompts and reference answer images; this design evaluates the resulting edit but should not be generalized to arbitrary professional document revision \citep{svgeditbench2024}.
+VectorGym instead defines VG-Sketch, VG-Edit, VG-Text, and VG-Cap as four separate tasks with expert-authored annotations, and its VLM-based judgment should be interpreted alongside the task-specific rendering and similarity measures \citep{vectorgym2026}.
 MiLDEdit introduces editing of multi-layer documents with dedicated assessment axes \citep{mildedit2026}.
 These studies refute an overly broad claim that there is no quantitative editing evaluation.
 The remaining challenge is \emph{cross-representation comparability}: the permitted editing operations and document structures differ.
