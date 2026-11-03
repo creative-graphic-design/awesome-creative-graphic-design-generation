@@ -14,4 +14,7 @@ For manuscript changes:
 
 The root `AGENTS.md`, `CONTRIBUTING.md`, and `data/README.md` still govern the research catalogue; this file governs paper-specific work only.
 
-When introducing an acronym or important named model, check `paper/glossary.tex` and use the appropriate `\\newacronym` or `\\newglossaryentry` entry with `\\gls{key}` in prose. Never invent a backronym for a paper name. Review the two generated glossary lists after building the PDF.
+When introducing an acronym or a named model, add an entry to `paper/acronyms.tex` using CTAN `acro` and `\DeclareAcronym`.
+Use `\ac{key}` (or `\acp{key}` for plurals) in prose.
+Keep separate abbreviation and named-system classes; use `first-style=short` for named systems, avoiding invented backronyms.
+The manuscript and CI checks must validate all keys, and the rendered lists and first mentions must be visually reviewed.
