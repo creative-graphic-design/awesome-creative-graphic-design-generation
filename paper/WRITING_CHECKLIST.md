@@ -9,6 +9,14 @@
 - [ ] Do not replace the argument with a bullet list of tasks, `Application tasks` / `Artifact and workflow` paragraph labels, or enumerated research questions in the Introduction.
 - [ ] Name actual research tasks (posters, advertisements, presentation slides, infographics, scientific graphics, typography) with **task-specific original papers directly next to each claim**, not a single unrelated citation cluster.
 
+## Sentence-oriented TeX and citations
+
+- [ ] Put **one prose sentence per physical source line** in `sections/*.tex`, table prose and figure captions. Preserve blank lines between paragraphs. A normal source newline is whitespace in TeX: do not insert `\\` or `\\newline` merely to break a source line.
+- [ ] Keep sections in a stable numbered sequence: `01_abstract.tex`, `02_introduction.tex`, ..., `10_conclusion.tex`; keep `main.tex` inputs in the same order.
+- [ ] Use `\\citet{key}` for grammatical author references (e.g. `\\citet{huang2023survey}`) and `\\citep{key}` for parenthetical evidence. Never redundantly write `Huang et al.~\\citep{huang2023survey}`.
+- [ ] Run `python3 paper/scripts/check_sentence_lines.py`. The conservative checker catches two or more sentences on one line and exempts common abbreviations, initials, TeX comments and non-prose TikZ statements. Its positive/negative unit tests run in CI.
+- [ ] Review diffs at sentence granularity to make copy edits, attribution changes and merges easy to inspect. See [the reference repository's PR #89](https://github.com/shunk031/agentic-cognitive-writing/pull/89) for the analogous convention.
+
 ## Literature and evidence
 
 - [ ] Judge coverage by research lines and technical/empirical relevance rather than a raw citation target. The 225 provisional working records are not 225 thoroughly read or cited papers.
@@ -37,12 +45,13 @@
 - [ ] Maintain captions, labels and citations after moving assets; compile the original figure PDFs from their TeX source and confirm visual quality.
 - [ ] Refer to the manuscript simply as a graphic-design generation survey. Name the formatting template only when explaining its provenance.
 - [ ] Do not copy prior survey figures without permission; do not invent a PRISMA selection flow or histogram before a reconciled, logged screening dataset exists.
+- [ ] For technology maps, show dated, cited research milestones on task-specific lanes; explain that neighboring boxes are not evidence of direct intellectual influence. Generate an **original** editable standalone TikZ PDF, and visually inspect label legibility.
 
 ## Required process before each commit
 
 1. Re-read **this checklist** and the original papers needed for any changed scholarly claim.
 2. Review the introduction's logic, adjacent task citations, figure/table references, metadata and empirical evidence tier.
-3. Run `python3 paper/scripts/check_manuscript.py` and `python3 paper/scripts/check_bibliography.py`.
+3. Run `python3 paper/scripts/check_sentence_lines.py`, `python3 paper/scripts/check_manuscript.py`, and `python3 paper/scripts/check_bibliography.py`; run `python3 -m unittest discover -s paper/scripts/tests -p 'test_*.py'` to cover negative cases.
 4. Run `cd paper && make pdf`; inspect the PDF and standalone figure PDFs, not only the LaTeX source.
 5. After pushing, inspect the **Paper PDF** CI, its PDF/figure artifacts and any failure logs; update the PR with changes and remaining audits.
 

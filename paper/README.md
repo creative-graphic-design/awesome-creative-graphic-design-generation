@@ -55,3 +55,11 @@ The bibliography contains newly verified benchmark primary-source records; older
 - `figs/pdf/`: generated vector PDFs, created by `make figures` and included in CI artifacts.
 - `tabs/tex/`: five independent TeX tables, included by their original narrative sections.
 - Before every paper commit, read `WRITING_CHECKLIST.md`, run `python3 paper/scripts/check_manuscript.py` and `python3 paper/scripts/check_bibliography.py`, then run `cd paper && make pdf` and check the rendered PDF. Agent instructions are in `paper/AGENTS.md`. Local hooks can be installed by `uvx pre-commit install` at repository root; CI checks paper changes even when hooks are absent.
+
+## Numbered sections, sentence diffs and historical research map
+
+Manuscript sections follow `01_abstract.tex`, `02_introduction.tex`, through `10_conclusion.tex`. TeX prose uses **one sentence per physical source line** (blank lines separate paragraphs), making version-control diffs and PR reviews sentence-granular without changing rendered paragraph breaks. Use `\\citet{key}` when an author is part of a sentence; use `\\citep{key}` for a parenthetical citation, without manually repeating author names.
+
+`figs/tex/research_map.tex` contains an original chronological, task-colored research map motivated by the SSII2024 overview shared for visual reference; `figs/tex/research_map_figure.tex` holds its caption and label. The map groups selected 2019–2026 studies and **does not assert direct causal or citation relationships**. The source is independently compilable; `make figures` generates `figs/pdf/research_map.pdf`.
+
+The paper CI runs the same source-line checker as the pre-commit hook, plus its negative-fixture unit tests. The checker is an intentionally conservative static lint, not a guarantee of grammatical correctness or source verification.
