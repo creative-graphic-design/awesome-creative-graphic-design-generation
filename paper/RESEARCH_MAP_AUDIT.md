@@ -38,3 +38,7 @@ The mapping check establishes **traceability and internal consistency**, not cor
 ## New 26-study narrative map (2026-11-04)
 
 The source `figs/tex/research_map_narrative.tex` presents an original 4-lane, 4-period, 26-study **narrative overview** with five method-family accent colors, four explicitly schematic output formats and a compact set of original-paper institution names. `figs/tex/research_map_narrative_sources.csv` cross-references all nodes to bibliography keys and publication-reference years; CI checks the mapping and builds `figs/pdf/research_map_narrative.pdf` independently. The old 67-item map remains the complete research atlas until the manuscript figure wrapper is updated after PDF visual inspection. The affiliation text is not a substitute for official institutional logos, whose assets and redistribution conditions remain unchecked.
+
+### Source and logo checkpoints
+
+For the 26-paper narrative map, first-use method-family evidence was cross-checked against the original proceedings/abstracts for PosterLayout (CNN–LSTM GAN), LayoutFormer++ (encoder–decoder Transformer), iPoster (graph-enhanced diffusion), and OpenCOLE (hierarchical design pipeline), after the first compiled PDF showed classification and spacing issues. Logo discovery and trademark/identity restrictions are logged in `figs/tex/logo_asset_candidates.csv`; **no official logo assets have been imported**. See `FIGURE_DESIGN_SURVEY.md` for the complete visual QA account.
