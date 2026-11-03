@@ -32,8 +32,11 @@ Citation keys in `references.bib` are traceable to source URLs. Bibliographic au
 
 ## Related-survey and figure design notes
 
-Six prior surveys were compared in `sections/related_surveys.tex`: Huang (2023), Shi (2023), Tian and G\u00fcnther (2024), Li et al. (2024), Zou et al. (2025), and Malashenko et al. (2025). Common figure roles are (1) overview/taxonomy, (2) survey discovery/counts, (3) specific research-line methods, and (4) synthesis/research challenges. This working draft adds two original **editable TikZ** figures: `figures/overview.tex` (R–E–V crosswalk) and `figures/edit_protocol.tex` (measured editing dimensions). We deliberately do not fabricate PRISMA exclusion counts or a publication-time histogram; those require a frozen and reconciled corpus. See the survey comparison table in the paper.
+Seven prior surveys were compared in `sections/related_surveys.tex`: Huang (2023), Shi (2023), Liu (2024), Tian and G\u00fcnther (2024), Li et al. (2024), Zou et al. (2025), and Malashenko et al. (2025). Common figure roles are (1) overview/taxonomy, (2) survey discovery/counts, (3) specific research-line methods, and (4) synthesis/research challenges. This working draft adds two original **editable TikZ** figures: `figures/overview.tex` (R–E–V crosswalk) and `figures/edit_protocol.tex` (measured editing dimensions). We deliberately do not fabricate PRISMA exclusion counts or a publication-time histogram; those require a frozen and reconciled corpus. See the survey comparison table in the paper.
 
 ## Citation health checks
 
 Run `python3 paper/scripts/check_bibliography.py` from the repository root (or `python3 scripts/check_bibliography.py` inside `paper/`) to validate citation resolution, required BibTeX fields, duplicate identifiers, placeholder authors and unused bibliography entries. CI executes the same script before TeX compilation. These checks test **structural consistency**, not the truth of author names, venues, empirical results or source selection. Source-level bibliographic verification remains an editorial responsibility.
+
+### Review provenance and sample count
+The Zou et al. (2025) paper describes a 500-item dataset in its methodology narrative and lists 267 reviewed papers in its earlier-survey comparison table. We document both numbers rather than silently choosing one. Tang et al. (2024) is a seven-designer interview study, included as practitioner context and explicitly distinguished from technical surveys.
