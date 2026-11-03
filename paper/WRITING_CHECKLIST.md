@@ -24,6 +24,13 @@
 - [ ] Compare existing surveys in scope, structure, taxonomies, diagrams and what they cover. Do not claim prior work is silent on a topic without reading it.
 - [ ] Source every task/method/evaluation claim to its actual paper; avoid overstating benchmarking, open-source state, artifact formats, model capabilities or study sample sizes.
 
+## Citation-level evidence audit
+
+- [ ] Maintain a row in `paper/literature_citation_audit.csv` for **each cited BibTeX key**; never infer that the 225-entry provisional register has the same identity set as the manuscript bibliography.
+- [ ] Keep `source_depth=not_verified` until the exact primary evidence and work identity are linked; a historical aggregate of methods/results reads is not evidence for a specific reference key.
+- [ ] Record source section/table/figure locators before promoting any claim audit to `verified`. Distinguish original evidence from the bibliography's bibliographic metadata.
+- [ ] Run `python3 paper/scripts/check_literature_audit.py` in local hooks and CI, alongside structural bibliography checks. This check enforces key alignment and evidence-state hygiene, not scientific correctness.
+
 ## BibTeX and similar paper names
 
 - [ ] Verify exact title, authors, year, venue and DOI from the original paper or publisher, preferably the published proceedings record, then retain a stable URL.
