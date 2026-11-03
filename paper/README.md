@@ -64,6 +64,10 @@ Manuscript sections follow `01_abstract.tex`, `02_introduction.tex`, through `10
 
 The paper CI runs the same source-line checker as the pre-commit hook, plus its negative-fixture unit tests. The checker is an intentionally conservative static lint, not a guarantee of grammatical correctness or source verification.
 
+## Illustrated narrative figure added to the manuscript (2026-11-04)
+
+The main manuscript now contains an **original editable 26-milestone research map** (`figs/tex/research_map_narrative.tex`), featuring research-task lanes, separate method-family border colors, annotated time periods, and four schematic output-format examples. Its exact nodes, cited BibTeX keys and reference years are tracked in `figs/tex/research_map_narrative_sources.csv` and checked by the manuscript CI. The broader **67-paper atlas remains a second figure** and its own standalone PDF. Textual affiliation indicators are source-documented but are not official graphic logos.
+
 ## Survey figure design review (2026-11-04)
 
 `FIGURE_DESIGN_SURVEY.md` compares figures visually inspected in the Huang (2023), Zou (2025), Luo (2025) and Zhang (2026) surveys, with separately labelled publisher/author-summary observations for Shi (2023) and Tian & Günther (2024). It defines a richer diagram architecture inspired by the SSII2024 map without copying it. `figs/tex/affiliation_logo_provenance.csv` records paper-date institutional evidence; official visual logos have not yet been retrieved or cleared for publication. A standalone original TikZ **concept** was compiled locally for review, but the vetted 67-milestone map remains the current manuscript figure.
