@@ -1,0 +1,84 @@
+name: Paper PDF
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'paper/**'
+      - '.github/workflows/paper-pdf.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'paper/**'
+      - '.github/workflows/paper-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: paper-pdf-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build CVPR survey PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout manuscript
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build LaTeX and BibTeX
+        uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
+        with:
+          root_file: main.tex
+          working_directory: paper
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Validate PDF and generate first-page preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s paper/main.pdf
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
+          pdftotext paper/main.pdf paper/main.txt
+          test -s paper/main.txt
+          pdftoppm -f 1 -l 1 -singlefile -r 120 -png paper/main.pdf paper/first-page
+          test -s paper/first-page.png
+          if grep -E 'Citation .+ undefined|Reference .+ undefined|There were undefined citations|There were undefined references' paper/main.log; then
+            echo 'Unresolved references detected in TeX log.' >&2
+            exit 1
+          fi
+
+      - name: Explain how to view the PDF
+        if: success()
+        shell: bash
+        run: |
+          {
+            echo '### CVPR-style survey PDF'
+            echo ''
+            echo 'The PDF and first-page preview are available under **Artifacts** at the bottom of this workflow run.'
+            echo ''
+            echo '- Artifact: survey-paper-${{ github.sha }}'
+            echo '- PDF: paper/main.pdf'
+            echo '- Preview: paper/first-page.png'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload PDF, preview, and diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: survey-paper-${{ github.sha }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            paper/main.pdf
+            paper/first-page.png
+            paper/main.txt
+            paper/main.log
+            paper/pdfinfo.txt
