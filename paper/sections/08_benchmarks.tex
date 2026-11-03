@@ -38,3 +38,14 @@ It likewise demonstrates why minimal pixel deviation is an inadequate generic ob
 \subsection{Minimum Reporting Contract}
 For comparable evaluations, studies should disclose input artifacts, allowed editing actions/tools, output and file validity requirements, the scope of target/dependent/protected content, the treatment of invalid outputs, and calibration of any human or VLM judge.
 Successful rendering of a preview does not by itself show that the saved layered, vector, or code-native artifact remains valid.
+
+\subsection{Domain-Specific Understanding and Scientific Validity}
+DesignProbe examines visual-language-model understanding of graphic-design elements, style, and metaphor \citep{designprobe2024}.
+Scientific illustration benchmarks introduce additional correctness constraints: SridBench assesses whether a generated graphic communicates scientific concepts faithfully \citep{sridbench2025}, and GENFIG1 tests graphical summary generation from research-paper content \citep{genfig12026}.
+SciFlow-Bench reverse-parses generated scientific diagrams into graphs to measure structural recoverability rather than merely visual resemblance \citep{sciflowbench2026}.
+These benchmarks evaluate different stages of a scientific communication pipeline, so high performance on recognition or aesthetics does not imply correct arrows, graphs, or native editable objects.
+
+\subsection{Document-Scale Editing}
+PPTArena measures in-place modifications of real presentation decks under natural-language requests, including structural and visual assessment \citep{pptarena2025}.
+Unlike a screenshot comparison, an editing evaluation should inspect the original document tree, the requested change, and whether the revised file remains valid and manipulable.
+This setting complements the multi-layer design-editing tasks of MiLDEdit and the infographic reflow scenarios of InfoEdit \citep{mildedit2026,yang2026infoedit}.

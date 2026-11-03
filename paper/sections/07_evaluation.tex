@@ -63,3 +63,10 @@ These are \emph{recommended evaluation dimensions}, not a claim that a common be
 A protocol should publish the initial design and target edit, the required output format, permitted tools, allowed untouched regions, failure handling, and the evaluation judge.
 It should also distinguish an edit that preserves visual appearance by flattening the design from one that preserves editability.
 For automated judges, human calibration, judge variance, and adversarial failure cases are necessary, especially when aesthetics are being rated.
+
+\subsection{Human Preferences and Design-Principle Judges}
+Graphic-design evaluation must distinguish aesthetic preference, layout-rule compliance, and whether a model can identify a design fault.
+\citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a VLM's score as ground truth.
+Design-o-meter instead learns to evaluate and suggest refinements to graphic-design compositions \citep{designometer2024}, whereas DesignSense collects human preferences for layout transformations and trains an evaluation signal in that domain \citep{designsense2026}.
+PosterReward focuses specifically on the typography, layout, and visual quality of generated posters \citep{posterreward2026}.
+These studies provide complementary evidence for evaluation-model behavior and do not demonstrate the accuracy of a fully autonomous editing agent.
