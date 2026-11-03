@@ -2,23 +2,7 @@
 \label{sec:representation}
 We treat the \emph{delivered artifact}, rather than the architecture of its generator, as the first classification axis. In design production the image rendered to viewers and the editable artifact opened by designers are distinct observables. Table~\ref{tab:representation} summarizes common affordances and the evidence that is still needed.
 
-\begin{table*}[t]
-\centering
-\caption{Representation--editability crosswalk. The listed operations are possible affordances, not guarantees of empirically validated editing.}
-\label{tab:representation}
-\small
-\begin{tabularx}{\textwidth}{@{}p{0.18\textwidth}XX@{}}
-\toprule
-\textbf{Delivered artifact} & \textbf{Potential post-generation operation} & \textbf{Critical evidence boundary} \\
-\midrule
-Layout boxes and classes & Move, resize, or constrain element geometry. & Geometry does not establish editable text, asset identities, or a portable design file. \\
-Flattened raster image & Pixel-level modification, inpainting, or mask-based regeneration. & Raster image editing is valid, but it does not imply native vector or text-object editing. \\
-SVG vector paths & Modify paths, fill, stroke, and layer order; interpolate shapes. & Outlined letters are not semantic font objects; path access is not an editing-success score. \\
-Layered image/document & Reposition, replace, or re-render separable layers and components. & RGBA layers may still contain fused objects; alpha channels alone do not ensure semantic separation. \\
-Code-native HTML/CSS or presentation objects & Edit DOM/object nodes, text, and layout rules; re-render and inspect. & Syntactically valid code need not preserve intended layout or succeed at natural-language edit requests. \\
-\bottomrule
-\end{tabularx}
-\end{table*}
+\input{tabs/tex/representation_crosswalk}
 
 \subsection{Layout Geometry and Raster Composites}
 LayoutDM models category and quantized spatial attributes through discrete diffusion with conditional generation from partial layouts \citep{layoutdm2023}. LayoutFlow models continuous geometric generation \citep{layoutflow2024}. Such systems provide useful structural arrangements, but layout coordinates need not include the image and text assets needed for a fully editable poster. Content-aware layout systems additionally place foreground elements in visual context \citep{cglgan2022,layoutdetr2024}.
