@@ -31,6 +31,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Validate BibTeX records and citations
+        run: python3 paper/scripts/check_bibliography.py
+
       - name: Build LaTeX and BibTeX
         uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
         with:
