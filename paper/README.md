@@ -21,7 +21,7 @@ The local output is `paper/main.pdf`. The CI workflow `.github/workflows/paper-p
 
 The public repository catalog and the broader research evidence register are *different snapshots*. The working register holds 225 provisional entries, with 88 studies reviewed at the methods/results level, 28 checked through abstracts or publication records, and 109 catalog-only. The existing public README currently counts fewer papers. Do not describe all 225 as full-text assessed or as PRISMA-complete. The present paper emphasizes a representation–editability–evaluation crosswalk rather than a benchmark leaderboard.
 
-Citation keys in `references.bib` are traceable to source URLs. I initialized `literature_citation_audit.csv` with 144 citation-level records, all explicitly `not_verified` at the per-key audit level until their supporting source sections and working-register IDs are reconciled. The aggregate historical 88/28/109 source-depth figures cannot be assigned to those citations without identity matching. The audit is checked by `scripts/check_literature_audit.py` in pre-commit and CI. Bibliographic authors missing from provisional entries must be verified from publisher/proceedings sources instead of being guessed. Survey completion also requires a reproducible retrieval log, screening flow, deduplication, adjudicated scope boundaries, and full-text checks for eight remaining narrative papers.
+Citation keys in `references.bib` are traceable to source URLs. I expanded `literature_citation_audit.csv` to 180 citation-level records: 144 still `not_verified` by individual source key and 36 newly added references whose original author/title/abstract records were checked (`abstract_index`), without claiming methods/results verification. The aggregate historical 88/28/109 source-depth figures cannot be assigned to those citations without identity matching. The audit is checked by `scripts/check_literature_audit.py` in pre-commit and CI. Bibliographic authors missing from provisional entries must be verified from publisher/proceedings sources instead of being guessed. Survey completion also requires a reproducible retrieval log, screening flow, deduplication, adjudicated scope boundaries, and full-text checks for eight remaining narrative papers.
 
 ## Writing and audit invariants
 
@@ -64,12 +64,16 @@ Manuscript sections follow `01_abstract.tex`, `02_introduction.tex`, through `10
 
 The paper CI runs the same source-line checker as the pre-commit hook, plus its negative-fixture unit tests. The checker is an intentionally conservative static lint, not a guarantee of grammatical correctness or source verification.
 
+## Citation coverage checkpoint (2026-11-03)
+
+The manuscript bibliography now has **180 distinct references**, 36 added from author-supplied original abstract pages across six graphic-design research lines. `catalog_citation_crosswalk.csv` reconciles these against 207 public catalogue papers, conservatively matching 138 and flagging 69 unmatched for further work. Those 69 are not screened exclusions; the separate provisional 225-study register is not yet joined to citation keys. See `LITERATURE_COVERAGE_AUDIT.md` and the `check_catalog_crosswalk.py` validator.
+
 ## Acronyms and named systems (CTAN acro)
 
 The central registry is `paper/acronyms.tex`, using CTAN `acro` v3 instead of `glossaries`.
 Genuine abbreviations expand on first use through `\ac{key}`; subsequent mentions display the short form.
 Named model and system entries use `first-style=short` to preserve published names without fabricating expansions.
-Two `\printacronyms` lists separate abbreviations and named systems.
+Two `\printacronyms` lists separate abbreviations and named systems. `acro` also attaches a source key to 70 named systems (`cite`) and prints all usage pages (`pages/display=all`) in both lists.
 The manuscript checker rejects missing or duplicate definitions and obsolete package commands; the PDF CI verifies LaTeX compilation.
 
 The research map is a curated **six-track by four-era** matrix with **67 representative milestones**, not a citation graph or complete publication census.
