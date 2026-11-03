@@ -1,7 +1,7 @@
-% Original, editable survey synthesis. No third-party figure is reproduced.
-\begin{figure*}[t]
-\centering
-\resizebox{0.96\textwidth}{!}{%
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\begin{document}
 \begin{tikzpicture}[font=\sffamily\scriptsize, x=1cm, y=1cm,
   panel/.style={draw=black!35,rounded corners=5pt,line width=.5pt},
   item/.style={rounded corners=2pt,minimum width=3.56cm,minimum height=.42cm,align=center,inner sep=2pt},
@@ -30,7 +30,5 @@
   \draw[flowarrow] (4.12,1.78) -- (4.46,1.78);
   \draw[flowarrow] (8.87,1.78) -- (9.21,1.78);
   \node[font=\sffamily\small\bfseries,align=center,fill=white,draw=red!65,rounded corners=3pt,text=red!70!black,inner sep=3pt] at (6.65,-1.10) {An editable file format alone does not establish successful or localized editing.};
-\end{tikzpicture}}
-\caption{The proposed representation--editability--evaluation (R--E--V) crosswalk. The three columns contain orthogonal coding dimensions; vertically aligned items are examples, \emph{not} a claim that each representation implies that particular evaluation protocol.}
-\label{fig:rev}
-\end{figure*}
+\end{tikzpicture}
+\end{document}
