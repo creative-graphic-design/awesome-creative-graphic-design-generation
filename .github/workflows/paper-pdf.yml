@@ -31,6 +31,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Enforce manuscript writing checklist
+        run: python3 paper/scripts/check_manuscript.py
+
       - name: Validate BibTeX records and citations
         run: python3 paper/scripts/check_bibliography.py
 
@@ -39,6 +42,8 @@ jobs:
         with:
           root_file: main.tex
           working_directory: paper
+          pre_compile: |
+            sh scripts/build_figures.sh
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Validate PDF and generate first-page preview
@@ -46,11 +51,18 @@ jobs:
         run: |
           set -euo pipefail
           test -s paper/main.pdf
+          test -s paper/figs/pdf/overview.pdf
+          test -s paper/figs/pdf/edit_protocol.pdf
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils
           pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
           pdftotext paper/main.pdf paper/main.txt
           test -s paper/main.txt
+          grep -qi 'Anonymous CVPR submission' paper/main.txt
+          if grep -Eiq 'First Author|Second Author|Authors to be confirmed' paper/main.txt; then
+            echo 'Anonymous review PDF exposes template author details.' >&2
+            exit 1
+          fi
           pdftoppm -f 1 -l 1 -singlefile -r 120 -png paper/main.pdf paper/first-page
           test -s paper/first-page.png
           if grep -E 'Citation .+ undefined|Reference .+ undefined|There were undefined citations|There were undefined references' paper/main.log; then
@@ -81,6 +93,7 @@ jobs:
           retention-days: 14
           path: |
             paper/main.pdf
+            paper/figs/pdf/*.pdf
             paper/first-page.png
             paper/main.txt
             paper/main.log

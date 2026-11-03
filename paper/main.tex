@@ -1,25 +1,36 @@
 % Working survey manuscript. Official CVPR2027-v1 author kit, see README.
 \documentclass[10pt,twocolumn,letterpaper]{article}
-\usepackage[pagenumbers]{cvpr}
+\usepackage[review]{cvpr}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{microtype}
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{multirow}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{graphicx}
 \definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
 \usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
 \def\confName{CVPR}
 \def\confYear{2027}
 \title{Beyond Visual Fidelity: A Survey of Representation, Editability, and Evaluation in Generative Graphic Design}
-\author{Authors to be confirmed}
+%%%%%%%%% AUTHORS: official template's dummy data for blind review.
+% cvpr.sty replaces this block with "Anonymous CVPR submission" in review mode.
+% Only insert actual identities when preparing the final camera-ready version.
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\tt\small secondauthor@i2.org}
+}
 \begin{document}
 \maketitle
 \input{sections/abstract}
-\input{figures/overview}
-\input{figures/edit_protocol}
+\input{figs/tex/overview_figure}
+\input{figs/tex/edit_protocol_figure}
 \input{sections/introduction}
 \input{sections/related_surveys}
 \input{sections/methodology}

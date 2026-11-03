@@ -8,14 +8,14 @@ From this directory, with TeX Live, latexmk, and BibTeX installed:
 
     make pdf
 
-The local output is `paper/main.pdf`. The CI workflow `.github/workflows/paper-pdf.yml` builds the manuscript when a PR or push changes `paper/**` (or when manually dispatched). In the GitHub **Actions → Paper PDF** run, download the **survey-paper-<commit>** artifact from the Artifacts section. It includes the PDF, first-page PNG, extracted text, and diagnostic log. Generated PDFs are not committed.
+The local output is `paper/main.pdf`. The CI workflow `.github/workflows/paper-pdf.yml` builds the manuscript when a PR or push changes `paper/**` (or when manually dispatched). In the GitHub **Actions → Paper PDF** run, download the **survey-paper-<commit>** artifact from the Artifacts section. It includes the PDF, first-page PNG, extracted text, and diagnostic log. The manuscript and figure PDFs are generated and uploaded in CI artifacts, not committed to Git.
 
 ## Official template
 
 - CVPR/ICCV/3DV author kit: https://github.com/cvpr-org/author-kit
 - CVPR2027-v1 pinned upstream commit: `a2369342011145be8c85e5ad21a9b61f9fa53473`
 - Vendored, unmodified: `cvpr.sty` and `ieeenat_fullname.bst`. The original headers and license notices remain attached to those files.
-- `main.tex` uses page-numbered draft mode; change to venue-required review mode before a real submission.
+- `main.tex` uses the official review mode, which hides the sample author block and renders **Anonymous CVPR submission**. Update dummy fields only for the final version.
 
 ## Research evidence status (2026-11-03)
 
@@ -32,7 +32,7 @@ Citation keys in `references.bib` are traceable to source URLs. Bibliographic au
 
 ## Related-survey and figure design notes
 
-Seven prior surveys were compared in `sections/related_surveys.tex`: Huang (2023), Shi (2023), Liu (2024), Tian and G\u00fcnther (2024), Li et al. (2024), Zou et al. (2025), and Malashenko et al. (2025). Common figure roles are (1) overview/taxonomy, (2) survey discovery/counts, (3) specific research-line methods, and (4) synthesis/research challenges. This working draft adds two original **editable TikZ** figures: `figures/overview.tex` (R–E–V crosswalk) and `figures/edit_protocol.tex` (measured editing dimensions). We deliberately do not fabricate PRISMA exclusion counts or a publication-time histogram; those require a frozen and reconciled corpus. See the survey comparison table in the paper.
+Seven prior surveys were compared in `sections/related_surveys.tex`: Huang (2023), Shi (2023), Liu (2024), Tian and G\u00fcnther (2024), Li et al. (2024), Zou et al. (2025), and Malashenko et al. (2025). Common figure roles are (1) overview/taxonomy, (2) survey discovery/counts, (3) specific research-line methods, and (4) synthesis/research challenges. This working draft adds two original **editable TikZ** figures: `figs/tex/overview.tex` (R–E–V crosswalk) and `figs/tex/edit_protocol.tex` (measured editing dimensions). We deliberately do not fabricate PRISMA exclusion counts or a publication-time histogram; those require a frozen and reconciled corpus. See the survey comparison table in the paper.
 
 ## Citation health checks
 
@@ -48,3 +48,10 @@ I added a comparison section covering SVGEditBench, VectorGym, MiLDEdit, InfoEdi
 `REVIEW_PROTOCOL.md` is a **prospective protocol, not an executed search log**. It specifies database/query templates, screening and exclusion codes, source-depth labels, and requirements for eventual inclusion-flow figures. Do not present its planned searches as completed.
 
 The bibliography contains newly verified benchmark primary-source records; older entries still require final title/author/DOI checks before publication.
+
+## Source layout and writing-review gates
+
+- `figs/tex/`: standalone TikZ figure sources and float wrappers with captions and labels.
+- `figs/pdf/`: generated vector PDFs, created by `make figures` and included in CI artifacts.
+- `tabs/tex/`: five independent TeX tables, included by their original narrative sections.
+- Before every paper commit, read `WRITING_CHECKLIST.md`, run `python3 paper/scripts/check_manuscript.py` and `python3 paper/scripts/check_bibliography.py`, then run `cd paper && make pdf` and check the rendered PDF. Agent instructions are in `paper/AGENTS.md`. Local hooks can be installed by `uvx pre-commit install` at repository root; CI checks paper changes even when hooks are absent.

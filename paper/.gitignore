@@ -9,3 +9,6 @@
 *.toc
 *.pdf
 build/
+
+# Generated standalone figure PDFs
+figs/pdf/*.pdf
