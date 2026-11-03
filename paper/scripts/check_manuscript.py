@@ -100,8 +100,8 @@ for required_section in (
 for section_file in (PAPER / "sections").glob("*.tex"):
     require(bool(re.fullmatch(r"\d{2}_[a-z_]+\.tex", section_file.name)),
             f"Non-numbered section file: {section_file.name}")
-require(not any(re.search(r"\b[A-Z][A-Za-z-]* et al\.~\\citep\{", path.read_text(encoding="utf-8"))
-                for path in (PAPER / "sections").glob("*.tex")),
+require(not any(re.search(r"\b[A-Z][A-Za-z-]* et al\.(?:~|\s+)(?:20\d{2}\s+)?\\citep\{", path.read_text(encoding="utf-8"))
+                for path in [*(PAPER / "sections").glob("*.tex"), *(PAPER / "tabs" / "tex").glob("*.tex")]),
         "Use \\citet{key} for textual author citations; do not write Author et al.~\\citep{key}")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
