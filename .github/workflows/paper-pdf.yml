@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build CVPR survey PDF
+    name: Build survey PDF
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -63,7 +63,7 @@ jobs:
         shell: bash
         run: |
           {
-            echo '### CVPR-style survey PDF'
+            echo '### Survey manuscript PDF'
             echo ''
             echo 'The PDF and first-page preview are available under **Artifacts** at the bottom of this workflow run.'
             echo ''

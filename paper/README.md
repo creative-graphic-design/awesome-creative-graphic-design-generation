@@ -1,4 +1,4 @@
-# Graphic-design generation survey (CVPR-style working draft)
+# Graphic-design generation survey (working draft)
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
@@ -40,3 +40,11 @@ Run `python3 paper/scripts/check_bibliography.py` from the repository root (or `
 
 ### Review provenance and sample count
 The Zou et al. (2025) paper describes a 500-item dataset in its methodology narrative and lists 267 reviewed papers in its earlier-survey comparison table. We document both numbers rather than silently choosing one. Tang et al. (2024) is a seven-designer interview study, included as practitioner context and explicitly distinguished from technical surveys.
+
+## New evidence and benchmark comparison
+
+I added a comparison section covering SVGEditBench, VectorGym, MiLDEdit, InfoEdit, MPTc-Bench, GraphicDesignBench, BizGenEval and AesEval-Bench. The paper now distinguishes protected objects from necessary dependent layout reflow rather than requiring every non-target pixel to remain fixed.
+
+`REVIEW_PROTOCOL.md` is a **prospective protocol, not an executed search log**. It specifies database/query templates, screening and exclusion codes, source-depth labels, and requirements for eventual inclusion-flow figures. Do not present its planned searches as completed.
+
+The bibliography contains newly verified benchmark primary-source records; older entries still require final title/author/DOI checks before publication.
