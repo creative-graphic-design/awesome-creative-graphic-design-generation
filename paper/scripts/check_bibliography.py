@@ -27,8 +27,7 @@ for idx, match in enumerate(starts):
     if key in entries:
         errors.append(f"{key}: duplicate citation key")
     entries[key] = chunk
-    fields = dict(re.findall(r"(?m)^\s*([a-z_]+)\s*=\s*\{", chunk))
-    # The regex above matches only field starts; inspect braces separately.
+    # Inspect field starts; individual fields use a one-line field key.
     fields = set(re.findall(r"(?m)^\s*([a-z_]+)\s*=\s*\{", chunk))
     for needed in ("author", "title", "year", "url"):
         if needed not in fields:
@@ -39,7 +38,7 @@ for idx, match in enumerate(starts):
         errors.append(f"{key}: @inproceedings missing booktitle")
     if re.search(r"(?im)^\s*author\s*=\s*\{[^}]*\band others\b", chunk):
         errors.append(f"{key}: unresolved author placeholder")
-    if chunk.count("{") != chunk.count("}"):
+    if chunk.count("{") + 1 != chunk.count("}"):
         errors.append(f"{key}: unbalanced braces")
 
 cite_re = re.compile(r"\\cite(?:p|t|alp|alt)?(?:\[[^\]]*\])?\{([^}]+)\}")
