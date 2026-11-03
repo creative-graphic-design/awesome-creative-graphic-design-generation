@@ -17,6 +17,7 @@ In comparing these systems, the allowed conditions and datasets must be matched:
 
 \paragraph{Conditional layout families.}
 \gls{layoutvae} samples arrangements from object-label sets rather than solving fully specified graphic-design tasks \citep{layoutvae2019}, whereas \gls{blt} iteratively completes masked attributes with a bidirectional transformer \citep{blt2022}.
+Coarse-to-Fine layout generation predicts a global arrangement before refining detailed element positions \citep{coarsetofine2022}.
 \gls{layoutformerpp} serializes heterogeneous geometric constraints and restricts decoding \citep{layoutformerpp2023}, while \gls{dlt} models discrete categories and continuous coordinates jointly \citep{dlt2023}.
 \gls{dolfin} studies diffusion layout transformers without a separate autoencoder \citep{dolfin2023}, whereas \gls{flexdm} predicts masked fields including text, styling, and images in multimodal design documents \citep{flexdm2023}.
 \gls{colay} supports combinations of text, guidelines, element categories, and partial layout conditions \citep{colay2024}, while Layout-Corrector repairs defective diffusion samples in the generation process \citep{layoutcorrector2024}.
