@@ -16,6 +16,13 @@ repos:
         pass_filenames: false
         files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
 
+      - id: manuscript-literature-audit
+        name: Check manuscript literature-audit register
+        entry: python3 paper/scripts/check_literature_audit.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\\.github/workflows/paper-pdf\\.yml$|\\.pre-commit-config\\.yaml$)
+
       - id: manuscript-sentence-lines
         name: Keep one sentence per TeX source line
         entry: python3 paper/scripts/check_sentence_lines.py
