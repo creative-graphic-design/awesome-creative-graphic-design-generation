@@ -64,6 +64,10 @@ Manuscript sections follow `01_abstract.tex`, `02_introduction.tex`, through `10
 
 The paper CI runs the same source-line checker as the pre-commit hook, plus its negative-fixture unit tests. The checker is an intentionally conservative static lint, not a guarantee of grammatical correctness or source verification.
 
+## Survey figure design review (2026-11-04)
+
+`FIGURE_DESIGN_SURVEY.md` compares figures visually inspected in the Huang (2023), Zou (2025), Luo (2025) and Zhang (2026) surveys, with separately labelled publisher/author-summary observations for Shi (2023) and Tian & Günther (2024). It defines a richer diagram architecture inspired by the SSII2024 map without copying it. `figs/tex/affiliation_logo_provenance.csv` records paper-date institutional evidence; official visual logos have not yet been retrieved or cleared for publication. A standalone original TikZ **concept** was compiled locally for review, but the vetted 67-milestone map remains the current manuscript figure.
+
 ## Citation coverage checkpoint (2026-11-03)
 
 The manuscript bibliography now has **180 distinct references**, 36 added from author-supplied original abstract pages across six graphic-design research lines. `catalog_citation_crosswalk.csv` reconciles these against 207 public catalogue papers, conservatively matching 138 and flagging 69 unmatched for further work. Those 69 are not screened exclusions; the separate provisional 225-study register is not yet joined to citation keys. See `LITERATURE_COVERAGE_AUDIT.md` and the `check_catalog_crosswalk.py` validator.
