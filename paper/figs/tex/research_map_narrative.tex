@@ -21,7 +21,7 @@
 \definecolor{edit}{HTML}{AF4877}
 \newcommand{\MapPaper}[8]{%
   \node[anchor=north west,draw=#7,fill=white,rounded corners=2pt,line width=.80pt,
-   text width=3.12cm,inner xsep=4.1pt,inner ysep=3pt,align=left]
+   text width=3.12cm,inner xsep=4.1pt,inner ysep=1.6pt,align=left]
    at (#5,#6) {{\bfseries\fontsize{7.3}{8.1}\selectfont #2}\hfill
    {\fontsize{6.2}{7}\selectfont '#3}\\[-1pt]
    {\color{muted}\fontsize{6.35}{7.1}\selectfont #8}};%
@@ -48,8 +48,8 @@
 \fill[layout!7,rounded corners=2pt] (.25,9.07) rectangle (18.82,10.68);
 \fill[layout] (.25,9.07) rectangle (.38,10.68);
 \node[anchor=north west,text=layout,font=\bfseries\fontsize{12}{13}\selectfont] at (.56,10.52) {01};
-\node[anchor=west,text=ink,font=\bfseries\fontsize{8}{9}\selectfont] at (.55,9.72) {LAYOUT};
-\node[anchor=west,text=muted,font=\fontsize{6.8}{7.5}\selectfont] at (.55,9.43) {geometry and conditions};
+\node[anchor=west,text=ink,font=\bfseries\fontsize{7.5}{8.4}\selectfont] at (.55,9.72) {LAYOUT};
+\node[anchor=west,text=muted,font=\fontsize{6.3}{7}\selectfont] at (.55,9.43) {geometry and conditions};
 \draw[rule] (2.93,9.19)--(2.93,10.56);
 \fill[poster!7,rounded corners=2pt] (.25,7.2) rectangle (18.82,8.81);
 \fill[poster] (.25,7.2) rectangle (.38,8.81);
@@ -69,37 +69,36 @@
 \node[anchor=west,text=ink,font=\bfseries\fontsize{8}{9}\selectfont] at (.55,4.11) {DOCUMENTS};
 \node[anchor=west,text=muted,font=\fontsize{6.8}{7.5}\selectfont] at (.55,3.82) {slides and figures};
 \draw[rule] (2.93,3.58)--(2.93,4.95);
-\MapPaper{A}{LayoutGAN}{19}{layoutgan2019}{3.18}{10.46}{gan}{wireframe GAN}
+\MapPaper{A}{LayoutGAN}{19}{layoutgan2019}{3.18}{10.58}{gan}{wireframe GAN}
 \MapPaper{A}{VTN}{21}{vtn2021}{3.18}{9.76}{latent}{variational transformer}
-\MapPaper{A}{LayoutDM}{23}{layoutdm2023}{7.12}{10.46}{diff}{discrete diffusion}
+\MapPaper{A}{LayoutDM}{23}{layoutdm2023}{7.12}{10.58}{diff}{discrete diffusion}
 \MapPaper{A}{LayoutFormer++}{23}{layoutformerpp2023}{7.12}{9.76}{agent}{serialized constraints}
-\MapPaper{A}{LayoutFlow}{24}{layoutflow2024}{11.06}{10.46}{diff}{flow matching}
+\MapPaper{A}{LayoutFlow}{24}{layoutflow2024}{11.06}{10.58}{diff}{flow matching}
 \MapPaper{A}{CoLay}{24}{colay2024}{11.06}{9.76}{diff}{multi-condition design}
-\MapPaper{A}{iPoster}{26}{iposter2026}{15.00}{10.46}{agent}{iterative optimization}
+\MapPaper{A}{iPoster}{26}{iposter2026}{15.00}{10.58}{agent}{iterative optimization}
 \MapPaper{A}{ReLayout}{26}{relayoutedit2026}{15.00}{9.76}{edit}{geometric editing}
-\MapPaper{B}{Vinci}{21}{vinci2021}{3.18}{8.59}{edit}{human feedback}
-\MapPaper{B}{CGL-GAN}{22}{cglgan2022}{7.12}{8.59}{gan}{background conditioning}
+\MapPaper{B}{Vinci}{21}{vinci2021}{3.18}{8.71}{edit}{human feedback}
+\MapPaper{B}{CGL-GAN}{22}{cglgan2022}{7.12}{8.71}{gan}{background conditioning}
 \MapPaper{B}{PosterLayout}{23}{posterlayout2023}{7.12}{7.89}{latent}{content-aware layouts}
-\MapPaper{B}{LayoutDETR}{24}{layoutdetr2024}{11.06}{8.59}{latent}{multimodal transformer}
+\MapPaper{B}{LayoutDETR}{24}{layoutdetr2024}{11.06}{8.71}{latent}{multimodal transformer}
 \MapPaper{B}{POSTA}{25}{posta2025}{11.06}{7.89}{agent}{poster planning}
-\MapPaper{B}{PosterOmni}{26}{posteromni2026}{15.00}{8.59}{edit}{local + global editing}
+\MapPaper{B}{PosterOmni}{26}{posteromni2026}{15.00}{8.71}{edit}{local + global editing}
 \MapPaper{B}{InnoAds}{26}{innoads2026}{15.00}{7.89}{agent}{text and style control}
-\MapPaper{C}{DeepSVG}{20}{deepsvg2020}{3.18}{6.72}{struct}{vector sequences}
-\MapPaper{C}{VectorFusion}{23}{vectorfusion2023}{7.12}{6.72}{diff}{diffusion-to-SVG}
+\MapPaper{C}{DeepSVG}{20}{deepsvg2020}{3.18}{6.84}{struct}{vector sequences}
+\MapPaper{C}{VectorFusion}{23}{vectorfusion2023}{7.12}{6.84}{diff}{diffusion-to-SVG}
 \MapPaper{C}{COLE}{23}{cole2023}{7.12}{6.02}{agent}{editable layers}
-\MapPaper{C}{OpenCOLE}{24}{opencole2024}{11.06}{6.72}{struct}{reusable assets}
+\MapPaper{C}{OpenCOLE}{24}{opencole2024}{11.06}{6.84}{struct}{reusable assets}
 \MapPaper{C}{LayerD}{25}{layerd2025}{11.06}{6.02}{edit}{raster-to-layers}
-\MapPaper{C}{DesignAsCode}{26}{designascode2026}{15.00}{6.72}{agent}{code-native objects}
+\MapPaper{C}{DesignAsCode}{26}{designascode2026}{15.00}{6.84}{agent}{code-native objects}
 \MapPaper{C}{MiLDEdit}{26}{mildedit2026}{15.00}{6.02}{edit}{multilayer instructions}
-\MapPaper{D}{AutoPresent}{25}{autopresent2025}{11.06}{4.85}{agent}{slide generation}
+\MapPaper{D}{AutoPresent}{25}{autopresent2025}{11.06}{4.97}{agent}{slide generation}
 \MapPaper{D}{PPTAgent}{25}{pptagent2025}{11.06}{4.15}{agent}{document-to-deck agent}
-\MapPaper{D}{InfoEdit}{26}{yang2026infoedit}{15.00}{4.85}{edit}{dependent reflow}
+\MapPaper{D}{InfoEdit}{26}{yang2026infoedit}{15.00}{4.97}{edit}{dependent reflow}
 \MapPaper{D}{AutoFigure}{26}{autofigure2026}{15.00}{4.15}{agent}{scientific illustration}
 
-\node[anchor=center,text=muted,font=\itshape\fontsize{7.0}{8}\selectfont] at (8.91,4.25) {Document-scale pipelines are emphasized among later representative works};
+\node[anchor=center,text=muted,font=\itshape\fontsize{7.0}{8}\selectfont] at (7.00,4.25) {Earlier document-workflow studies are omitted for clarity};
 % Four original schematic artifact examples, not screenshots of research outputs.
 \node[anchor=west,text=ink,font=\bfseries\fontsize{8.4}{9.3}\selectfont] at (.54,3.20) {FOUR OUTPUT CONTRACTS};
-\node[anchor=east,text=muted,font=\fontsize{6.2}{7}\selectfont] at (18.64,3.20) {Illustrations are conceptual; not source-paper evidence};
 \foreach \xa/\xb in {.48/4.78,4.97/9.27,9.46/13.76,13.95/18.73}{
  \fill[white,draw=rule,rounded corners=2pt] (\xa,.94) rectangle (\xb,2.97);
 }
@@ -131,12 +130,12 @@
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.66) {Validate edits};
 % Institutional labels are text only (NOT copied logo images).
 \fill[navy!5,rounded corners=2pt] (.48,.27) rectangle (18.72,.78);
-\node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,.51) {Documented institutional links:};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (4.55,.51) {LayoutGAN / BIT + Adobe Research};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (10.19,.51) {COLE / MSRA + Peking University};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.43,.51) {OpenCOLE / CyberAgent};
+\node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,.51) {Affiliation provenance:};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,.51) {LayoutGAN / BIT + Adobe};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (9.47,.51) {COLE / MSRA + Peking Univ.};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,.51) {OpenCOLE / CyberAgent};
 % Independent model-family coding, intentionally distinct from lane color.
-\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (9.70,11.75) {
+\node[anchor=west,text=muted,font=\fontsize{6.5}{7.1}\selectfont] at (5.68,3.20) {
 \textcolor{gan}{\rule{5pt}{5pt}} GAN \quad
 \textcolor{diff}{\rule{5pt}{5pt}} diffusion \quad
 \textcolor{agent}{\rule{5pt}{5pt}} agent/LM \quad
