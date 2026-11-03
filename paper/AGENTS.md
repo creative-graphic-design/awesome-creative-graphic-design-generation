@@ -11,6 +11,7 @@ For manuscript changes:
 4. Keep `\\usepackage[review]{cvpr}` and non-identifying template author placeholders so the rendered manuscript remains anonymous.
 5. Before committing run `python3 paper/scripts/check_sentence_lines.py`, `python3 paper/scripts/check_manuscript.py`, `python3 paper/scripts/check_bibliography.py` and `cd paper && make pdf`. Examine the resulting PDF for layout quality.
 6. After pushing verify the **Paper PDF** Actions check and inspect its generated PDFs. Record unfinished audits rather than claiming research is complete.
+7. For every user-facing manuscript update, provide a link to the **verified current PDF**, and the updated research-map figure PDF where applicable; never end after only a source change or an unverified CI run.
 
 The root `AGENTS.md`, `CONTRIBUTING.md`, and `data/README.md` still govern the research catalogue; this file governs paper-specific work only.
 
