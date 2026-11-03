@@ -88,11 +88,27 @@ for source in source_files:
         if label in labels:
             errors.append(f"Duplicate TeX label {label}: {labels[label]} and {source.relative_to(PAPER)}")
         labels[label] = str(source.relative_to(PAPER))
+for required_section in (
+    "01_abstract", "02_introduction", "03_related_surveys", "04_methodology",
+    "05_representations", "06_methods", "07_evaluation", "08_benchmarks",
+    "09_discussion", "10_conclusion",
+):
+    require((PAPER / "sections" / f"{required_section}.tex").is_file(),
+            f"Missing ordered manuscript section: {required_section}.tex")
+    require(r"\input{sections/" + required_section + "}" in main,
+            f"Main TeX must include ordered section {required_section}")
+for section_file in (PAPER / "sections").glob("*.tex"):
+    require(bool(re.fullmatch(r"\d{2}_[a-z_]+\.tex", section_file.name)),
+            f"Non-numbered section file: {section_file.name}")
+require(not any(re.search(r"\b[A-Z][A-Za-z-]* et al\.~\\citep\{", path.read_text(encoding="utf-8"))
+                for path in (PAPER / "sections").glob("*.tex")),
+        "Use \\citet{key} for textual author citations; do not write Author et al.~\\citep{key}")
+
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
 
 print("Reviewed guidance: paper/WRITING_CHECKLIST.md (read before drafting and each commit)")
-print(f"Checked anonymous mode, 3 editable figures, 5 tables, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
+print(f"Checked anonymous mode, 3 editable figures, 5 tables, ordered sections and natbib citations, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
 if errors:
     for error in errors:
         print(f"ERROR: {error}", file=sys.stderr)

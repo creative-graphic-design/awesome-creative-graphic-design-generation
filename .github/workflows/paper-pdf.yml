@@ -34,6 +34,12 @@ jobs:
       - name: Enforce manuscript writing checklist
         run: python3 paper/scripts/check_manuscript.py
 
+      - name: Test one-sentence-per-line checker (including a failing fixture)
+        run: python3 -m unittest discover -s paper/scripts/tests -p 'test_*.py'
+
+      - name: Enforce one sentence per manuscript source line
+        run: python3 paper/scripts/check_sentence_lines.py
+
       - name: Validate BibTeX records and citations
         run: python3 paper/scripts/check_bibliography.py
 
