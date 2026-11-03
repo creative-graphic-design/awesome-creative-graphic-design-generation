@@ -14,6 +14,23 @@ PosterLayout supplies a benchmark and method for content-aware visual-textual ar
 Importantly, the name ``LayoutDiffusion'' is also used for a distinct layout-to-image synthesis method \citep{layoutdiffusion_l2i2023}; its image-generation results should not be mixed with the discrete graphic-layout model \citep{layoutdiffusion2023}.
 In comparing these systems, the allowed conditions and datasets must be matched: unconditional realism, completion, and relational constraint satisfaction are not equivalent tasks.
 
+
+\paragraph{Conditional layout families.}
+LayoutVAE samples arrangements from object-label sets rather than solving fully specified graphic-design tasks \citep{layoutvae2019}, whereas BLT iteratively completes masked attributes with a bidirectional transformer \citep{blt2022}.
+LayoutFormer++ serializes heterogeneous geometric constraints and restricts decoding \citep{layoutformerpp2023}, while DLT models discrete categories and continuous coordinates jointly \citep{dlt2023}.
+Dolfin studies diffusion layout transformers without a separate autoencoder \citep{dolfin2023}, whereas FlexDM predicts masked fields including text, styling, and images in multimodal design documents \citep{flexdm2023}.
+CoLay supports combinations of text, guidelines, element categories, and partial layout conditions \citep{colay2024}, while Layout-Corrector repairs defective diffusion samples in the generation process \citep{layoutcorrector2024}.
+LayoutRectifier uses a separate geometric optimization pass to reduce alignment, overlap, and containment errors \citep{layoutrectifier2025}, whereas StructLayoutFormer generates explicit hierarchical layout structures \citep{structlayoutformer2025}.
+These are distinct condition contracts, not interchangeable measurements of controllable design.
+
+\paragraph{Code, retrieval, and spatial reasoning.}
+LayoutNUWA formulates layout completion as HTML code generation \citep{layoutnuwa2024}, while PosterLlama applies code-formatted layouts and augmentation to content-aware poster design \citep{posterllama2024}.
+RALF retrieves similar designs to guide image-conditioned generation \citep{ralf2024}, and RADM jointly models visual-textual and geometric relations \citep{radm2023}.
+ReLayout reasons about content regions, margins, and element relations for conditional placement \citep{relayoutreason2025}, while LaySPA adds reward-guided spatial reasoning to language-model layout planning \citep{layspa2025}.
+Uni-Layout combines generation and human-feedback-aligned assessment \citep{unilayout2025}, whereas iPoster emphasizes interactive specification of partial constraints \citep{iposter2026}.
+Scan-and-Print instead investigates efficient patch selection and training augmentation for content-aware poster layouts \citep{scanprint2025}.
+These approaches require matched input constraints and output granularity before their geometric metrics can support a comparison.
+
 \subsection{Multi-Stage Graphic Design and Agents}
 Integrated poster generation must coordinate language, asset production, layout decisions, and visual verification.
 COLE and OpenCOLE use hierarchical design decomposition \citep{cole2023,opencole2024}.
@@ -25,6 +42,15 @@ Code-oriented systems increasingly produce the design document itself, as in Des
 PosterAgent studies staged draft generation and refinement through agentic reinforcement learning \citep{posteragent2026}.
 Visual-feedback refinement and OCR-aware reinforcement learning are investigated in VFLM \citep{guo2026visualfeedback}.
 We separate \emph{reflection during generation} from an edit request received after a completed artifact is delivered.
+
+
+\paragraph{Commercial, personalized, and artistic workflows.}
+T-Stars-Poster combines prompt preparation, layout, background generation, and rendering for product advertising \citep{tstarsposter2025}, while reliable ad generation uses feedback-driven inspection to identify unsuitable outputs \citep{reliablead2024}.
+POSTA separates background, layout, and rendering for customized artistic posters \citep{posta2025}, whereas PosterVerse develops a commercial poster workflow with HTML-oriented text rendering \citep{posterverse2026}.
+SimplePoster studies product preservation and constrained text rendering through image inpainting \citep{simpleposter2026}, while InnoAds-Composer jointly conditions product content, text, and style \citep{innoads2026}.
+Design Your Ad models personalized image-and-text advertising based on user histories \citep{designyourad2026}, and AutoPP introduces poster optimization informed by online feedback \citep{autopp2025}.
+These signals target different qualities: engagement, text correctness, product identity, and human aesthetic preference cannot be conflated.
+Brief2Design supports requirements clarification, element exploration, and recombination from professional briefs rather than treating the completed image as the only useful output \citep{brief2design2026}.
 
 \subsection{Typography and Vector Synthesis}
 Text rendering poses constraints not captured by photographic image fidelity.
