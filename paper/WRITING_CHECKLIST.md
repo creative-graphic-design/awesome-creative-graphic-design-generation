@@ -64,3 +64,4 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Classify real abbreviations (GAN, VAE, LLM, VLM, SVG, PSD, FID, etc.) as `tag={abbreviations}` and named systems (LayoutGAN, COLE, DesignAsCode, etc.) as `tag={systems}`.
 - [ ] Use `first-style=short` for named systems: their descriptive long field must NOT be misrepresented as a formally expanded name.
 - [ ] Run the manuscript checker and PDF build, inspect both lists and first-use rendering, and confirm no obsolete `\gls` or `\newglossaryentry` remains.
+- [ ] Print both groups with `display=all` and inspect the resulting PDF; acro defaults to displaying only used entries, which can otherwise produce an empty Abbreviations list.
