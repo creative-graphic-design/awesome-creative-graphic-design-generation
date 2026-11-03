@@ -1,0 +1,17 @@
+# Install once: uvx pre-commit install (run from repository root).
+# The same paper checks also run in the GitHub Actions PDF workflow.
+repos:
+  - repo: local
+    hooks:
+      - id: manuscript-guidelines
+        name: Check manuscript review rules and TeX paths
+        entry: python3 paper/scripts/check_manuscript.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
+      - id: manuscript-bibtex
+        name: Check manuscript citation and BibTeX integrity
+        entry: python3 paper/scripts/check_bibliography.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)

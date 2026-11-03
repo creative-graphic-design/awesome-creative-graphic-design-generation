@@ -5,6 +5,7 @@ This repository is a curated, generated research index for creative graphic desi
 ## Read Before Editing
 
 - Read `CONTRIBUTING.md` for scope, taxonomy, publication-date rules, method classification, implementation metadata semantics, and contribution requirements.
+- Before writing or committing anything under `paper/**`, read `paper/AGENTS.md` and `paper/WRITING_CHECKLIST.md`; use the paper's manuscript and bibliography checks.
 - Read `data/README.md` for the canonical CSV/data model and its current metadata-scope constraints.
 - Read `.github/workflows/catalog-check.yml` and `.github/workflows/awesome-lint.yml` before changing or naming repository validation gates.
 - Treat this file as repository-level workflow guidance, not as a second copy of `CONTRIBUTING.md` or the data schema.
