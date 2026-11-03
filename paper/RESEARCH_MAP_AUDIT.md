@@ -25,8 +25,12 @@ The printed suffix (for example, `'24`) is **the year in the cited bibliography 
 
 An arXiv identifier year is a useful version clue but is **not proof of the earliest dissemination date on all channels**. The review protocol separately calls for `first_public_date` and `venue_year` when the research register is fully adjudicated. The original diagram mixed these policies; this revision standardizes on the cited-reference year rather than silently implying first-public chronology.
 
+## Narrative redesign and institutional evidence
+
+An independent review of six survey illustration styles is documented in `FIGURE_DESIGN_SURVEY.md`. A separate institution-to-paper evidence register, `figs/tex/affiliation_logo_provenance.csv`, is initialized without copying official logos or inventing institution relationships. The audited 67-label map stays in the manuscript until a new figure passes source, print legibility and output-evidence reviews.
+
 ## Interpretation and outstanding audits
 
 Each paper is assigned one **primary visual row** for legibility, even when its contributions cross multiple tasks and representations. The evaluation row groups both technical benchmarks and research surveys; these are different kinds of evidence. Neighboring methods are not necessarily connected by citations or intellectual derivation.
 
-The mapping check establishes **traceability and internal consistency**, not correctness of every original publication's metadata, not methods/results verification, and not 67 comprehensively screened studies. The bibliography's 144 cited works, the diagram's 67 selected labels, the public awesome catalogue, and the 225 provisional evidence-register entries are different sets. Do not compute a screening percentage or PRISMA diagram by dividing these counts. Before publication, verify uncertain metadata against proceedings, reconcile preprint/venue identities, audit critical experiments, and execute the planned search and deduplication protocol in `REVIEW_PROTOCOL.md`.
+The mapping check establishes **traceability and internal consistency**, not correctness of every original publication's metadata, not methods/results verification, and not 67 comprehensively screened studies. The bibliography's 180 cited works, the diagram's 67 selected labels, the public awesome catalogue, and the 225 provisional evidence-register entries are different sets. Do not compute a screening percentage or PRISMA diagram by dividing these counts. Before publication, verify uncertain metadata against proceedings, reconcile preprint/venue identities, audit critical experiments, and execute the planned search and deduplication protocol in `REVIEW_PROTOCOL.md`.
