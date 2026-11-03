@@ -16,5 +16,5 @@ The root `AGENTS.md`, `CONTRIBUTING.md`, and `data/README.md` still govern the r
 
 When introducing an acronym or a named model, add an entry to `paper/acronyms.tex` using CTAN `acro` and `\DeclareAcronym`.
 Use `\ac{key}` (or `\acp{key}` for plurals) in prose.
-Keep separate abbreviation and named-system classes; use `first-style=short` for named systems, avoiding invented backronyms.
+Keep separate abbreviation and named-system tags; use `first-style=short` for named systems, avoiding invented backronyms.
 The manuscript and CI checks must validate all keys, and the rendered lists and first mentions must be visually reviewed.
