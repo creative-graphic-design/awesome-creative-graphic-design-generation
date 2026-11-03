@@ -6,6 +6,7 @@ be proven by this linter; the local commit checklist still must be reviewed.
 """
 from __future__ import annotations
 
+import csv
 import re
 import sys
 from pathlib import Path
@@ -147,6 +148,54 @@ for source_file in acro_sources:
         require(ref in keys, f"{source_file.relative_to(PAPER)}: undefined acro key {ref}")
     require(not re.search(r"\\gls(?:pl|first|firstplural)?\{", data),
             f"{source_file.relative_to(PAPER)}: migrate glossaries commands to acro")
+
+
+# Research-map provenance: each visible milestone must resolve to exactly one
+# bibliography key and use its cited reference year. This is not a primary-paper
+# full-text audit and does not assert a complete literature census.
+map_registry = PAPER / "figs" / "tex" / "research_map_sources.csv"
+require(map_registry.is_file(), "Missing research-map bibliography crosswalk")
+if map_registry.is_file():
+    with map_registry.open(encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        require(reader.fieldnames == ["track", "label", "bibtex_key", "reference_year"],
+                "Research-map registry has unexpected CSV columns")
+        entries = list(reader)
+    require(len(entries) >= 67, "Preserve at least 67 documented research milestones")
+    map_tex = tex("figs/tex/research_map.tex")
+    displayed = re.findall(
+        r"\\fill\\[track([A-F])\\] \\([^)]+\\) circle \\(\\.034cm\\);\\s*"
+        r"\\\\node\\[anchor=west,[^\\n]+\\] at \\([^)]+\\) \\{([^{}]+) '(\\d{2})\\};",
+        map_tex,
+    )
+    displayed_items = {(track, label, 2000 + int(yy)) for track, label, yy in displayed}
+    registered_items = set()
+    seen_names = set()
+    bib = (PAPER / "references.bib").read_text(encoding="utf-8")
+    bib_years = {}
+    for match in re.finditer(r"@\\w+\\{([^,]+),([\\s\\S]*?)(?=\\n@\\w+\\{|$)", bib):
+        year = re.search(r"^\\s*year\\s*=\\s*\\{(\\d{4})\\}", match.group(2), re.M)
+        if year:
+            bib_years[match.group(1)] = int(year.group(1))
+    for entry in entries:
+        track, label, key = entry["track"], entry["label"], entry["bibtex_key"]
+        require(track in "ABCDEF", f"Unknown research-map track {track}: {label}")
+        require(label not in seen_names, f"Duplicate research-map label: {label}")
+        seen_names.add(label)
+        try:
+            year = int(entry["reference_year"])
+        except (TypeError, ValueError):
+            errors.append(f"Invalid research-map reference year: {label}")
+            continue
+        registered_items.add((track, label, year))
+        require(key in bib_years, f"Research-map reference not found in BibTeX: {label} -> {key}")
+        require(bib_years.get(key) == year,
+                f"Research-map year mismatch: {label} ({year}) vs {key} ({bib_years.get(key)})")
+    require(len(displayed) == len(displayed_items), "Research map has duplicate visible milestones")
+    require(len(displayed_items) == len(entries), "Research-map figure/registry entry counts differ")
+    require(displayed_items == registered_items,
+            f"Research-map figure/registry mismatch: figure-only={sorted(displayed_items-registered_items)}, "
+            f"registry-only={sorted(registered_items-displayed_items)}")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
