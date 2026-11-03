@@ -16,6 +16,7 @@ The remaining challenge is \emph{cross-representation comparability}: the permit
 
 GraphicDesignBench probes multiple professional design capabilities in both understanding and generation settings \citep{deganutti2026gdb}.
 BizGenEval evaluates commercial visual generation in five document domains with four capability axes and human-verified constraint checks \citep{li2026bizgeneval}.
+Its five domains are slides, charts, webpages, posters, and scientific figures, crossed with text rendering, layout control, attribute binding, and knowledge reasoning; these are generation-side constraint checks rather than measurements of subsequent source-file editing \citep{li2026bizgeneval}.
 AesEval-Bench focuses on whether visual-language models can assess aesthetic quality, including localized judgments \citep{an2026aeseval}.
 These evaluations provide valuable but different evidence.
 In particular, aesthetics-judge agreement, typography fidelity, valid code, and instruction-following should be reported separately.
@@ -24,6 +25,7 @@ The arXiv abstract and software repository for GraphicDesignBench currently disa
 \subsection{Protected Content Versus Necessary Reflow}
 The advice to edit only the specified object is incomplete when the artifact encodes relationships.
 InfoEdit studies infographics where an expanded text block or inserted element may force global layout \emph{reflow} \citep{yang2026infoedit}.
+Its released benchmark describes 1,000 infographics from eight logical-relation families and 4,000 instructions across four edit tasks; the scale and logical relations make it a distinct test of dependent changes, not evidence that all output formats support native-object editing \citep{yang2026infoedit}.
 An evaluation can specify the intended target set $T$, permitted dependent changes $R(D,u,T)$, and explicitly protected content $P$:
 \begin{equation}
 \mathcal{U}=T\cup R(D,u,T),\qquad P\cap\mathcal{U}=\emptyset.
