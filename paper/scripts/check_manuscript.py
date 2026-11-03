@@ -113,6 +113,10 @@ require(r"\printacronyms[include=abbreviations" in main,
         "Print the abbreviation list using acro")
 require(r"\printacronyms[include=systems" in main,
         "Print named systems separately using acro")
+require(r"\printacronyms[include=abbreviations,heading=none,display=all]" in main,
+        "Print all registered abbreviations, not only already-used ones")
+require(r"\printacronyms[include=systems,heading=none,display=all]" in main,
+        "Print all registered named systems, not only already-used ones")
 require("glossaries" not in main and "printnoidxglossary" not in main,
         "Remove obsolete glossaries declarations")
 definitions = re.findall(r"\\DeclareAcronym\{([^}]+)\}\{(.*?)\n\}", acro_source, re.S)
