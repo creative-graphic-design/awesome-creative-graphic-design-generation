@@ -66,7 +66,7 @@ The paper CI runs the same source-line checker as the pre-commit hook, plus its 
 
 ## Illustrated narrative figure added to the manuscript (2026-11-04)
 
-The main manuscript now contains an **original editable 26-milestone research map** (`figs/tex/research_map_narrative.tex`), featuring research-task lanes, separate method-family border colors, annotated time periods, and four schematic output-format examples. Its exact nodes, cited BibTeX keys and reference years are tracked in `figs/tex/research_map_narrative_sources.csv` and checked by the manuscript CI. The broader **67-paper atlas remains a second figure** and its own standalone PDF. Textual affiliation indicators are source-documented but are not official graphic logos.
+The main manuscript now contains an **original editable 26-milestone research map** (`figs/tex/research_map_narrative.tex`), featuring research-task lanes, separate method-family border colors, annotated time periods, and four schematic output-format examples. Its exact nodes, cited BibTeX keys and reference years are tracked in `figs/tex/research_map_narrative_sources.csv` and checked by the manuscript CI. The broader **67-paper atlas remains a second figure** and its own standalone PDF. Textual affiliation indicators are source-documented but are not official graphic logos. Logo asset source pages, versions, and trademark/identity considerations are tracked separately in `figs/tex/logo_asset_candidates.csv`; no official mark has yet been embedded.
 
 ## Survey figure design review (2026-11-04)
 
