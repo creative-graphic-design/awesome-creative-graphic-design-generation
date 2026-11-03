@@ -28,7 +28,7 @@
 }
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily]
-\fill[white] (0,0) rectangle (19.08,13.0);
+\fill[white] (0,-.58) rectangle (19.08,13.0);
 \fill[navy,rounded corners=3pt] (.23,12.05) rectangle (18.83,12.82);
 \node[anchor=west,text=white,font=\bfseries\fontsize{13}{14}\selectfont] at (.56,12.46) {From layout prediction to editable graphic-design systems};
 \node[anchor=west,text=muted,font=\fontsize{8}{9}\selectfont] at (.52,11.71) {Selected studies grouped by cited reference year and primary task};
@@ -128,13 +128,15 @@
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.97) {Object tree};
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.66) {Validate edits};
 % Institutional labels are text only (NOT copied logo images).
-\fill[navy!5,rounded corners=2pt] (.48,.27) rectangle (18.72,.78);
-\node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,.51) {Affiliation provenance:};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,.51) {LayoutGAN / BIT + Adobe};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (9.47,.51) {COLE / MSRA + Peking Univ.};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,.51) {OpenCOLE / CyberAgent};
+\fill[navy!5,rounded corners=2pt] (.48,-.36) rectangle (18.72,.16);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,-.10) {Affiliation provenance:};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,-.10) {LayoutGAN / BIT + Adobe};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (9.47,-.10) {COLE / MSRA + Peking Univ.};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,-.10) {OpenCOLE / CyberAgent};
+% A reserved, non-overlapping legend row beneath the output examples.
+\node[anchor=west,text=ink,font=\bfseries\fontsize{6.5}{7.2}\selectfont] at (.64,.53) {Technique emphasis:};
 % Independent model-family coding, intentionally distinct from lane color.
-\node[anchor=west,text=muted,font=\fontsize{6.5}{7.1}\selectfont] at (8.37,11.71) {
+\node[anchor=west,text=muted,font=\fontsize{6.5}{7.1}\selectfont] at (4.38,.53) {
 \textcolor{gan}{\rule{5pt}{5pt}} GAN \quad
 \textcolor{latent}{\rule{5pt}{5pt}} VAE/Transformer \quad
 \textcolor{diff}{\rule{5pt}{5pt}} diffusion/flow \quad
