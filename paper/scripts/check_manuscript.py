@@ -122,18 +122,18 @@ require(len(keys) >= 49, "Preserve the shared acronym/model registry")
 n_abbr = 0
 n_systems = 0
 for key, options in definitions:
-    if re.search(r"\bclass\s*=\s*\{abbreviations\}", options):
+    if re.search(r"\btag\s*=\s*\{abbreviations\}", options):
         n_abbr += 1
-    elif re.search(r"\bclass\s*=\s*\{systems\}", options):
+    elif re.search(r"\btag\s*=\s*\{systems\}", options):
         n_systems += 1
         require(bool(re.search(r"first-style\s*=\s*short", options)),
                 f"Named system {key} must display its name without invented expansion")
     else:
-        errors.append(f"acro entry missing recognized class: {key}")
+        errors.append(f"acro entry missing recognized tag: {key}")
     require("short" in options and "long" in options,
             f"acro entry missing short/long metadata: {key}")
 require(n_abbr >= 12 and n_systems >= 25,
-        "Maintain separate general-abbreviation and named-system classes")
+        "Maintain separate general-abbreviation and named-system groups")
 acro_sources = sorted((PAPER / "sections").glob("*.tex"))
 acro_sources += sorted((PAPER / "tabs" / "tex").glob("*.tex"))
 acro_sources += sorted((PAPER / "figs" / "tex").glob("*_figure.tex"))
