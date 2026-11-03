@@ -164,8 +164,8 @@ if map_registry.is_file():
     require(len(entries) >= 67, "Preserve at least 67 documented research milestones")
     map_tex = tex("figs/tex/research_map.tex")
     displayed = re.findall(
-        r"\\fill\\[track([A-F])\\] \\([^)]+\\) circle \\(\\.034cm\\);\\s*"
-        r"\\\\node\\[anchor=west,[^\\n]+\\] at \\([^)]+\\) \\{([^{}]+) '(\\d{2})\\};",
+        r"\\fill\[track([A-F])\] \([^)]+\) circle \(\.034cm\);\s*"
+        r"\\node\[anchor=west,[^\n]+\] at \([^)]+\) \{([^{}]+) '(\d{2})\};",
         map_tex,
     )
     displayed_items = {(track, label, 2000 + int(yy)) for track, label, yy in displayed}
