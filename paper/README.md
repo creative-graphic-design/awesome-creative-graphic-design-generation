@@ -72,7 +72,8 @@ Named model and system entries use `first-style=short` to preserve published nam
 Two `\printacronyms` lists separate abbreviations and named systems.
 The manuscript checker rejects missing or duplicate definitions and obsolete package commands; the PDF CI verifies LaTeX compilation.
 
-The research map is a curated five-track by four-era matrix with 59 representative milestones, not a citation graph or complete publication census.
+The research map is a curated **six-track by four-era** matrix with **67 representative milestones**, not a citation graph or complete publication census.
+Its year labels use the cited bibliography year (venue year when available, otherwise preprint year); they do not always equal the first public version date.
 Its editable source is `figs/tex/research_map.tex` and its compiled vector output is `figs/pdf/research_map.pdf`.
 
 Both `\printacronyms` lists use `display=all`, so every declared abbreviation and named system is included even if it has not yet appeared in the paper. PDF CI verifies representative entries and rejects an empty acronym-list warning.
