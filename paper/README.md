@@ -74,3 +74,5 @@ The manuscript checker rejects missing or duplicate definitions and obsolete pac
 
 The research map is a curated five-track by four-era matrix with 59 representative milestones, not a citation graph or complete publication census.
 Its editable source is `figs/tex/research_map.tex` and its compiled vector output is `figs/pdf/research_map.pdf`.
+
+Both `\printacronyms` lists use `display=all`, so every declared abbreviation and named system is included even if it has not yet appeared in the paper. PDF CI verifies representative entries and rejects an empty acronym-list warning.
