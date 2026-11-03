@@ -53,6 +53,26 @@ for tex in sorted(ROOT.rglob("*.tex")):
             references.add(name.strip())
             usage_count += 1
 
+# Citation keys declared with acro are effective references only when their
+# corresponding named systems actually appear in manuscript prose.
+acro_path = ROOT / "acronyms.tex"
+if acro_path.is_file():
+    acro_data = acro_path.read_text(encoding="utf-8")
+    acro_citations = {}
+    for m in re.finditer(r"\\DeclareAcronym\{([^}]+)\}\{([\s\S]*?)\n\}", acro_data):
+        key = re.search(r"(?m)^\s*cite\s*=\s*\{([^}]+)\}", m.group(2))
+        if key:
+            acro_citations[m.group(1)] = key.group(1)
+    used_acros = set()
+    for source_file in sorted((ROOT / "sections").glob("*.tex")):
+        used_acros.update(re.findall(r"\\ac(?:p|f|s|l)?\{([^}]+)\}", source_file.read_text(encoding="utf-8")))
+    for source_file in sorted((ROOT / "tabs" / "tex").glob("*.tex")):
+        used_acros.update(re.findall(r"\\ac(?:p|f|s|l)?\{([^}]+)\}", source_file.read_text(encoding="utf-8")))
+    for name in used_acros:
+        if name in acro_citations:
+            references.add(acro_citations[name])
+            usage_count += 1
+
 unknown = references - set(entries)
 unused = set(entries) - references
 if unknown:
