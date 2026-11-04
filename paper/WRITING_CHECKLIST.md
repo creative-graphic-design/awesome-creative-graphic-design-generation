@@ -26,6 +26,10 @@
 - [ ] Read the original prior-survey selection method and denominators before comparing survey size. Zou et al. (2025) describes a final selected set of 500 papers; its survey comparison table reports 267, which must be handled as a discrepancy, not a second selection count.
 - [ ] After every manuscript change, review the actual compiled PDF and show a link; a passing bibliography test is not visual acceptance.
 
+- [ ] For publication/preprint aliases, verify the original primary source and add its arXiv `eprint` to the existing BibTeX entry rather than creating a duplicate citation.
+- [ ] When adding papers, update BibTeX, `acro`, relevant manuscript discussion, the 225-ID crosswalk, the public catalogue crosswalk, and citation-level audit in the same work cycle; preserve the original source-depth limitations.
+- [ ] Keep the 30-day spreadsheet-review manifest current after **actually reading** the live Sheet, and run both the positive and negative crosswalk tests; never renew its date without checking the live workbook.
+
 ## Literature and evidence
 
 - [ ] Judge coverage by research lines and technical/empirical relevance rather than a raw citation target. The 225 provisional working records are not 225 thoroughly read or cited papers.
@@ -43,9 +47,9 @@
 ## acro citations, occurrence pages, and PDF deliverables
 
 - [ ] Give every named-system `\DeclareAcronym` a `cite = {bibtex_key}` tied to its original work; use `cite/cmd = \citep` with first-use citations and do not misread group citations as experimental evidence.
-- [ ] Enable `pages/display = all` to report every page where a named system or abbreviation appears, and inspect both printed acro lists in the generated PDF.
+- [ ] Enable `pages/display = all` to report every page where a named system or abbreviation appears, and inspect all three printed acro lists in the generated PDF.
 - [ ] After manuscript changes, build and inspect the updated anonymous PDF; **include the actual generated PDF and key figure PDF links in the user-facing response every time**, not only the GitHub PR or TeX source.
-- [ ] Treat the public catalogue crosswalk (207 papers, 69 currently unresolved matches) as a conservative ID/title lookup, not an exclusion audit; run `python3 paper/scripts/check_catalog_crosswalk.py`.
+- [ ] Treat the public catalogue crosswalk (207 papers, 64 currently unresolved matches) as a conservative ID/title lookup, not an exclusion audit; run `python3 paper/scripts/check_catalog_crosswalk.py`.
 
 ## Comprehensive acro registry (2026-11-04)
 
@@ -59,7 +63,7 @@
 
 ## Exhaustive list-first acro review
 
-- [ ] For now, display **all 168 entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
+- [ ] For now, display **all 174 entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
 - [ ] Include the description, source citation, BibTeX reference year, available venue, paper URL, DOI and usage pages via `survey-rich`; keep bibliography metadata synchronized in CI.
 - [ ] Keep the new `source` list citation distinct from `cite` on first prose use.
 - [ ] Do **not** invent task, representation, venue, DOI, or experimental findings when the primary evidence or bibliography lacks them; optional source-grounded fields may be populated later.
@@ -105,4 +109,4 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Classify real abbreviations (GAN, VAE, LLM, VLM, SVG, PSD, FID, etc.) as `tag={abbreviations}` and named systems (LayoutGAN, COLE, DesignAsCode, etc.) as `tag={systems}`.
 - [ ] Use `first-style=short` for named systems: their descriptive long field must NOT be misrepresented as a formally expanded name.
 - [ ] Run the manuscript checker and PDF build, inspect both lists and first-use rendering, and confirm no obsolete `\gls` or `\newglossaryentry` remains.
-- [ ] Print both groups with `display=all` and inspect the resulting PDF; acro defaults to displaying only used entries, which can otherwise produce an empty Abbreviations list.
+- [ ] Print all three groups with `display=all` and inspect the resulting PDF; acro defaults to displaying only used entries, which can otherwise produce an empty Abbreviations list.
