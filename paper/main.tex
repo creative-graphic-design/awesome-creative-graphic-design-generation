@@ -11,6 +11,7 @@
 \definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
 \usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
 \usepackage{acro}
+\input{acro_list_template}
 \input{acronyms}
 \acsetup{cite/cmd = \citep, cite/display = first, pages/display = all, pages/name = true, pages/fill = {\enspace\acrodotfill\enspace}}
 \def\confName{CVPR}
@@ -46,11 +47,11 @@ First line of institution2 address\\
 \input{sections/09_discussion}
 \input{sections/10_conclusion}
 \section*{Abbreviations}
-\printacronyms[include=abbreviations,heading=none,display=all]
+\printacronyms[include=abbreviations,heading=none,display=all,template=survey-rich]
 \section*{Selected Systems and Terminology}
-\printacronyms[include=systems,heading=none,display=all]
+\printacronyms[include=systems,heading=none,display=all,template=survey-rich]
 \section*{Benchmarks, Datasets, and Evaluation Resources}
-\printacronyms[include=evaluation,heading=none,display=all]
+\printacronyms[include=evaluation,heading=none,display=all,template=survey-rich]
 {\small
 \bibliographystyle{ieeenat_fullname}
 \bibliography{references}

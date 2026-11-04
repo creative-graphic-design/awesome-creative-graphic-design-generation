@@ -1,0 +1,34 @@
+% Review-oriented full research index: show all source-verified bibliography metadata.
+% Optional task/representation metadata is shown only when independently documented.
+\DeclareAcroProperty{source}
+\DeclareAcroProperty{refyear}
+\DeclareAcroProperty{venue}
+\DeclareAcroProperty{paperurl}
+\DeclareAcroProperty{doi}
+\DeclareAcroProperty{task}
+\DeclareAcroProperty{representation}
+
+\NewAcroTemplate[list]{survey-rich}{%
+  \acroheading
+  \acropreamble
+  \begin{description}
+    \acronymsmapF{%
+      \item[\acrowrite{short}]%
+      \acrowrite{list}%
+      \acroifT{extra}{ (\acrowrite{extra})}%
+      \par\nobreak
+      {\footnotesize
+        \acroifT{refyear}{\textbf{\acrowrite{refyear}}\enspace}%
+        \acroifT{venue}{\textit{\acrowrite{venue}}\enspace}%
+        \acroifT{task}{Task: \acrowrite{task}\enspace}%
+        \acroifT{representation}{Representation: \acrowrite{representation}\enspace}%
+        \acroifT{source}{Source: \acrowrite{source}\enspace}%
+        \acroifT{paperurl}{\href{\acrowrite{paperurl}}{paper}\enspace}%
+        \acroifT{doi}{\href{https://doi.org/\acrowrite{doi}}{DOI}\enspace}%
+        \acropages
+          {\acrotranslate{page}\nobreakspace}
+          {\acrotranslate{pages}\nobreakspace}%
+      }%
+    }{\item\AcroRerun}%
+  \end{description}%
+}
