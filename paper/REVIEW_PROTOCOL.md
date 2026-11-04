@@ -63,3 +63,9 @@ The new ten citation-audit entries are conservatively tagged `abstract_index`; o
 ## T02 original empirical evidence (2026-11-05)
 
 I inspected TKG-DM's original §§3–7, Table 1 and Figure 10 after checking the native spreadsheet. The added CVPR 2025 source (2024 first preprint) raises the manuscript to **198 bibliography entries**, with **169/225 uniquely linked** working study IDs and **56 pending**. This work generates chroma-key foreground imagery, not native editable text or vector objects. FID/mask metrics and user preferences test rendered generation, and Table 1's SDXL conditions favor LayerDiffuse on all four listed endpoints; no general editability or performance dominance is inferred. See `T02_TKGDM_SOURCE_AUDIT.md` for exact scope and methods/results locators.
+
+## T03 dated source-audit checkpoint (2026-11-05; not systematic screening)
+
+An original-methods/results review of **CGD-159 / Alfie** reconciles the 2024 ECCV workshop/preprint with the 2025 published LNCS record as **one study** and distinguishes compositable single-foreground RGBA generation from native multi-object editing claims. The methodology and original Table 1, Figure 6 and Figure 7 evidence are recorded in [T03_ALFIE_SOURCE_AUDIT.md](T03_ALFIE_SOURCE_AUDIT.md). The latest selected-source coverage is **199** BibTeX works, **170/225** matched study identities, **55** pending, with no automatic exclusions. The public 207-paper catalogue separately has **153** matches and **54** still needing identity review. Paper PDF #41871516836 passed and its 29-page anonymous PDF and maps received targeted visual QA.
+
+These per-paper adjudications **do not** constitute an executed multi-database systematic search, fulltext screening or PRISMA inclusion flow; the protocol remains prospective.

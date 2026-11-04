@@ -49,3 +49,11 @@ I re-opened row 92 in the live Google Sheet's Evidence Matrix 225, citation cove
 ## T02: CGD-092 / TKG-DM (2026-11-05)
 
 I checked the live Evidence Matrix row 93, citation/source-tier tabs and prior-survey comparison, then read the original [TKG-DM](https://arxiv.org/html/2411.15580) §§3–7, Table 1 and Figure 10. The CVPR 2025 paper and first arXiv publication (2024-11-23) are the same research contribution. The **225-row spreadsheet snapshot is unchanged**; this source-level update gives **198 references / 189 acro / 169 linked / 56 pending (6 P1, 13 P2, 37 P3)**. Chroma-key raster images are not native semantic layers; SDXL Table 1 does not show TKG-DM superiority over LayerDiffuse. Detailed evidence is in [T02_TKGDM_SOURCE_AUDIT.md](T02_TKGDM_SOURCE_AUDIT.md). The CI gate now requires <=56 unresolved and rejects broken TKG-DM source-identity aliases.
+
+## T03: CGD-159 / Alfie (2026-11-05)
+
+I re-read the live Evidence Matrix 225 row 160, Citation and R-E-V Coverage, Source Tier Reconciliation and Prior Survey and Screening. The Drive modification time **2026-11-03T06:03:55Z** predates the committed 2026-11-04 snapshot-review date; the 225-source snapshot remains unchanged. `alfie2025` links the ECCV 2024 arXiv/workshop study to Springer LNCS publication in 2025 using the original arXiv eprint and publisher DOI, without duplicating the contribution. The single RGBA foreground is a compositing affordance, not demonstrated native semantic design editing. Source evidence and numeric limitations: [T03 audit](T03_ALFIE_SOURCE_AUDIT.md).
+
+Current manuscript identity accounting: **225 study IDs / 199 cited BibTeX works / 190 acro entries / 170 linked / 55 unresolved (5 P1 / 13 P2 / 37 P3)**. The public 207-paper catalogue independently matches **153** and leaves **54** unmatched; neither unmatched set is an exclusion count.
+
+The strengthened source-identity regression tests and source-level validators passed [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836), alongside Catalog Check and Awesome Lint. I also downloaded its genuine 29-page PDF and inspected the Alfie discussion, index, bibliography and both maps. Scientific author sign-off is still pending.

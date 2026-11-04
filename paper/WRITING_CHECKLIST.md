@@ -145,3 +145,8 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Do not invent RGBA FID/KID: the authors explicitly omit them because a compatible reference distribution is unavailable.
 - [ ] Treat ECCV 2024 workshop/arXiv and 2025 Springer LNCS as one source; keep arXiv `eprint` and publisher DOI/volume/pages aligned.
 - [ ] Ensure the 225-ID gate rejects regression above 55 pending and catches corrupt Alfie publication/preprint links; inspect actual PDF and figures before T04.
+
+## T03 compiled output verification (2026-11-05)
+
+- [x] At scientific source commit `0e308af`, [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836), Catalog Check and Awesome Lint passed. I retrieved the **29-page** anonymous PDF and inspected Alfie representation, methods, evaluation, acro list, bibliography and both map figures; no visible overlaps/clips in inspected regions or unresolved citation/reference warnings in its TeX log.
+- [ ] Preserve the author's **scientific approval gate** before starting T04 / CGD-174 / LayeringDiff. Compiled-PDF acceptance is not consent to scientific conclusions.

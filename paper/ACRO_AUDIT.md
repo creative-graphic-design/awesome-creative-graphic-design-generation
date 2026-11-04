@@ -1,4 +1,6 @@
-# acro coverage audit — 2026-11-04
+# acro coverage audit — initiated 2026-11-04
+
+**Latest verified checkpoint (2026-11-05):** **190** registry entries (25 abbreviations, 148 systems, 17 evaluation resources). The older tables and dated sections below document *historical* checkpoints rather than today's totals. The T03 original source commit passed [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836); I checked the real 29-page output's Alfie entry on p. 17, including its first-use pages, source citation, year, venue, paper link and DOI.
 
 This revision expands the central CTAN **acro v3.8** registry and links plain-text mentions in the survey manuscript to their real usage pages.
 
@@ -65,3 +67,10 @@ The manuscript check identified missing acro keys for SSIM and LPIPS when citing
 ## T02 TKG-DM source-linked metadata (2026-11-05)
 
 Added `tkgdm` with CVPR 2025 citation, DOI, paper link, source-grounded task and **keyed RGB** (not native layer hierarchy) representation. The full index now comprises **189 entries: 25 abbreviations, 147 systems, 17 evaluation resources**. Its original experimental distinctions are audited in `T02_TKGDM_SOURCE_AUDIT.md`.
+
+## T03 Alfie source-linked index entry (2026-11-05)
+
+I added `alfie` to the **systems** tag with original `alfie2025` bibliography source, an arXiv 2024 eprint, Springer LNCS 2025 venue, DOI, explicit task and single-RGBA-foreground representation.
+The full index comprises **190 entries: 25 abbreviations, 148 named systems, 17 evaluation resources**.
+I inspected its actual printed entry on manuscript **p. 17**, including rendered citation `[128]`, `2025` venue, paper/DOI links and the occurrence-page references.
+The same source commit passed Paper PDF / Catalog Check / Awesome Lint; no acro warning was reported in the final TeX log.
