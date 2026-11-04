@@ -8,6 +8,8 @@ They cannot establish inclusion/exclusion or full-text review status.
 from __future__ import annotations
 
 import csv
+import json
+from datetime import date
 import re
 import sys
 from pathlib import Path
@@ -29,7 +31,7 @@ AUDIT_FIELDS = [
     "editability_audit", "evaluation_audit", "adjudication_status", "notes",
 ]
 EXPECTED_ROWS = 225
-UNRESOLVED_CEILING = 77
+UNRESOLVED_CEILING = 68
 
 
 def csv_rows(path: Path, columns: list[str], errors: list[str]) -> list[dict[str, str]]:
@@ -99,6 +101,26 @@ def identify(row: dict[str, str], bib: dict[str, dict[str, str]]) -> dict[str, s
 
 def validate(paper: Path = PAPER) -> tuple[list[str], dict[str, int]]:
     errors: list[str] = []
+    manifest_path = paper / "evidence_register_snapshot_manifest.json"
+    if not manifest_path.is_file():
+        errors.append("Missing dated live-spreadsheet snapshot manifest")
+    else:
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            reviewed = date.fromisoformat(manifest["snapshot_reviewed_utc"])
+            age = (date.today() - reviewed).days
+            if manifest.get("spreadsheet_id") != "1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc":
+                errors.append("Unexpected source workbook identity")
+            if manifest.get("source_tab") != "Evidence Matrix 225":
+                errors.append("Unexpected source worksheet")
+            if manifest.get("expected_study_rows") != EXPECTED_ROWS:
+                errors.append("Snapshot manifest row count does not match validator baseline")
+            if not isinstance(manifest.get("expires_after_days"), int) or not 1 <= manifest["expires_after_days"] <= 30:
+                errors.append("Snapshot review expiration interval must be 1-30 days")
+            elif age < 0 or age > manifest["expires_after_days"]:
+                errors.append(f"Live spreadsheet snapshot review expired or future-dated (age {age} days)")
+        except (ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+            errors.append(f"Invalid spreadsheet snapshot provenance manifest: {exc}")
     sources = csv_rows(paper / "evidence_register_225_snapshot.csv", SNAPSHOT_FIELDS, errors)
     links = csv_rows(paper / "evidence_register_225_crosswalk.csv", CROSSWALK_FIELDS, errors)
     audits = csv_rows(paper / "literature_citation_audit.csv", AUDIT_FIELDS, errors)
