@@ -30,3 +30,7 @@ This is a language and provenance overhaul, **not** an increase in unique cited 
 ## Distinct original models with similar names
 
 The source audit found that `LayoutGAN` (2019) is **not** the same work as `Attribute-conditioned Layout GAN` (2020), which conditions element geometry on attributes ([IEEE TVCG source](https://ieeexplore.ieee.org/abstract/document/9106863)). We therefore use distinct `layoutgan` and `aclayoutgan` entries and BibTeX keys. Likewise, `PDA-GAN` is a named pixel-discriminator layout-domain-adaptation model ([CVPR 2023](https://openaccess.thecvf.com/content/CVPR2023/html/Xu_Unsupervised_Domain_Adaption_With_Pixel-Level_Discriminator_for_Image-Aware_Layout_Generation_CVPR_2023_paper.html)), not an arbitrary combination of a `PDA-` prefix and the general `GAN` abbreviation. Both are source-linked, and neither has been counted as a new paper.
+
+## Appearance-page completion
+
+The current manuscript source references **all 168 registered keys** at least once with an `acro` command, including the general `GAN` abbreviation. This is a **syntactic occurrence audit**, not evidence that all 168 named resources received a full experiment review. The generated PDF's page-number list remains the visual authority for the appearance index.
