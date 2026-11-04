@@ -2,6 +2,10 @@
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
+## Current task-by-task work queue
+
+See **[TODO.md](TODO.md)** for the next single research-study review, required evidence, acceptance gates and actual PDF checks. Latest verified baseline (2026-11-04): **225** study IDs, **196** references, **185** acro entries, **167** matched and **58** unresolved (**8 P1, 13 P2, 37 P3**). Historical counts in sections below are earlier checkpoints, not current totals. Do not process all unresolved studies as one bulk citation operation.
+
 ## Citation coverage and source gates — 2026-11-04
 
 I reconciled three previously cited paper identities across publication/arXiv versions (DesignAsCode, GlyphDraw2, BizGen) and added six independently source-checked references (NeuralSVG, IGD, OmniSVG, LayerFusion, Revision Matters, Draw with Thought). The paper now contains **186 bibliography entries**, **175 registered acro terms**, and the 225-study workbook crosswalk matches **157 studies**, with **68 still pending** identity/coverage review. Those 68 are not excluded studies; the six new references have original abstract/proceedings checks but no newly completed quantitative methods/results audit. The dated source manifest in `evidence_register_snapshot_manifest.json` and `check_evidence_register.py` reject a snapshot older than 30 days; they do not supply live access to the private Google Sheet.

@@ -2,6 +2,12 @@
 
 **Read this file before drafting and again before each paper commit.** This is the durable record of prior author-review comments. Its qualitative criteria require author judgment; automated lint checks below cannot independently prove that the science or prose is correct.
 
+## Incremental review workflow
+
+- [ ] Work from [TODO.md](TODO.md) **one study at a time**, with an explicit per-study evidence record, decision, validator checks, PDF inspection and author sign-off before proceeding.
+- [ ] Keep the current 225-ID triage backlog in `evidence_review_queue.csv`; don't duplicate all its rows in prose or treat an automatic match as a verified experiment.
+- [ ] Keep the dated baseline in `TODO.md` synchronized with source records after each completed ticket. A passing CI validates the checked-in snapshot, not the private live Sheet.
+
 ## Introduction and research motivation
 
 - [ ] Frame graphic design as visual communication and composed content, with authoritative survey citations near the definition. Avoid an unsupported slogan at the opening.
@@ -66,7 +72,7 @@
 
 ## Exhaustive list-first acro review
 
-- [ ] For now, display **all 175 entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
+- [ ] For now, display **all registered entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
 - [ ] Include the description, source citation, BibTeX reference year, available venue, paper URL, DOI and usage pages via `survey-rich`; keep bibliography metadata synchronized in CI.
 - [ ] Keep the new `source` list citation distinct from `cite` on first prose use.
 - [ ] Do **not** invent task, representation, venue, DOI, or experimental findings when the primary evidence or bibliography lacks them; optional source-grounded fields may be populated later.
