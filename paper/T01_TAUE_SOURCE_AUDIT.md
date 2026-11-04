@@ -35,3 +35,7 @@ The paper's source experiments were read but not independently reproduced; the s
 This study adds one BibTeX entry (taue2026), one acro system (taue) and specific methods/evaluation discussion. The registered study ID is linked through arXiv identity; source locators are in the citation-level audit. The full 225-ID sheet snapshot remains unchanged; the unresolved queue drops from 58 to 57, and P1 from 8 to 7. All queue/crosswalk validators must be run before accepting the new baseline.
 
 Author sign-off is required before T02 / CGD-092 / TKG-DM.
+
+## Generated PDF verification (completed 2026-11-04)
+
+Source commit `9545d800babd0235e6b512efe836bb19480a470a` passed Paper PDF, Catalog Check and Awesome Lint. I retrieved artifact `13335137547`: the anonymous manuscript has **29 pages**, and standalone 26/67-milestone maps are intact. I rendered and visually inspected p. 3 (map), p. 11 (first TAUE citation), p. 12 (evaluation metrics), p. 21 (full acro listing with cite/year/venue/representation and appearance pages), and p. 26 (original bibliography entry). The TeX log did not show an undefined control sequence, an undefined citation/reference or an overfull/underfull hbox warning. The paper and maps were exported for the author to review. T01 **author approval remains pending** before T02 begins.

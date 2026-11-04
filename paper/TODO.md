@@ -41,7 +41,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 ## T01 source-audit checkpoint — 2026-11-04
 
 - [x] Source review and synchronized records: 225 working IDs / **197 references / 188 acro / 168 linked / 57 unresolved (7 P1, 13 P2, 37 P3)**.
-- [ ] Confirm CI and visually inspect current manuscript PDF including all acro lists and maps; check only after inspecting the actual generated artifact.
+- [x] Confirmed all three CI checks passed at source commit `9545d800babd0235e6b512efe836bb19480a470a` ([Paper PDF run #41850864927](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41850864927)); retrieved the **29-page** PDF, inspected research map p. 3, TAUE evidence pp. 11–12, acro p. 21 and reference p. 26, and verified no unresolved citations or TeX box warnings in the log.
 - [ ] Author sign-off on T01 before processing T02.
 
 ## 2. Remaining paper queue (do not bulk-add citations)
