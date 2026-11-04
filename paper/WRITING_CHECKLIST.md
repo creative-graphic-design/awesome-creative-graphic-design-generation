@@ -66,7 +66,7 @@
 
 ## Exhaustive list-first acro review
 
-- [ ] For now, display **all 174 entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
+- [ ] For now, display **all 175 entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
 - [ ] Include the description, source citation, BibTeX reference year, available venue, paper URL, DOI and usage pages via `survey-rich`; keep bibliography metadata synchronized in CI.
 - [ ] Keep the new `source` list citation distinct from `cite` on first prose use.
 - [ ] Do **not** invent task, representation, venue, DOI, or experimental findings when the primary evidence or bibliography lacks them; optional source-grounded fields may be populated later.
