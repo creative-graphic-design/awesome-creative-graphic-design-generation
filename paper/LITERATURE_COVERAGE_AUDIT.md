@@ -1,5 +1,9 @@
 # Citation coverage and unfinished literature audit
 
+## Updated citation-coverage checkpoint — 2026-11-04
+
+I read the live private 225-study Evidence Matrix and the preceding survey/comparison tabs, joined its stable IDs to the BibTeX bibliography and recorded all unresolved sources. After confirming three arXiv-to-publication aliases and adding six studies supported by original publisher/author abstracts, the bibliography now contains **186** entries, with **157 / 225** working-study IDs linked and **68 / 225** pending manual identity/coverage review. The independent public 207-paper catalogue matches **143** and leaves **64** unresolved. These are two distinct source populations, and unmatched records are **not** excluded. The new `evidence_register_snapshot_manifest.json` creates a 30-day live-source review expiration in CI, while the GitHub CI checks only the frozen authorized snapshot (it cannot query a private Google Sheet). The subsequent 2026-11-03 numbers are historical, not the current status.
+
 Checkpoint: **2026-11-03**. This is an executable bibliography/catalog crosswalk, **not** a PRISMA flow, independently screened sample, or full-text evidence synthesis.
 
 ## Distinct denominators
