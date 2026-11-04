@@ -62,6 +62,12 @@ Design Your Ad models personalized image-and-text advertising based on user hist
 These signals target different qualities: engagement, text correctness, product identity, and human aesthetic preference cannot be conflated.
 \ac{brief2design} supports requirements clarification, element exploration, and recombination from professional briefs rather than treating the completed image as the only useful output.
 
+\paragraph{Commercial creative generation and personalization.}
+\ac{planningrendering} separates product-poster layout planning from background rendering, whereas \ac{refadgen} conditions advertising synthesis on product masks and features.
+\ac{dreamposter} generates posters using image and text conditions, and a personalized e-commerce banner pipeline uses user interactions to derive image prompts \citep{ecommercebanners2024}.
+\ac{cg4ctr} optimizes advertising image synthesis toward click-through rewards, a different construct from native editing accuracy.
+Their output contracts must be compared separately before interpreting downstream design-editability claims.
+
 \paragraph{Template and full-poster generation.}
 \ac{desigen} explicitly iterates between background generation and layout prediction, while \ac{designdiffusion} generates complete design imagery directly from text without relying on an exported object hierarchy.
 \ac{postermaker} couples product-preserving scene generation with targeted visual text rendering, and \ac{recontraster} plans and critiques posters using regional contrast.
@@ -98,6 +104,10 @@ These studies extend simple \ac{ocr}-like text correctness to stylization and vi
 \ac{utdesign} couples transparent stylized-text rendering and conditioned text synthesis, supporting both text editing and design generation.
 \ac{freetext} improves text placement and glyph rendering by exploiting diffusion-transformer attention without retraining.
 Neither text accuracy in a rendered image nor the ability to manipulate a text-shaped region alone establishes that semantic characters survive export as native editable text.
+\paragraph{Additional vector and text-layout directions.}
+\ac{gldesigner} generates glyph arrangements in structured JSON from multimodal design constraints, while \ac{llm4svg} learns semantic tokens for SVG comprehension and generation.
+\ac{introsvg} uses a generator--critic loop to refine vector code from rendered feedback, but this is not automatically a scored test of independent user edit instructions.
+
 \subsection{Reconstruction and Explicit Editing}
 Another line starts from an existing artifact.
 \ac{layerd} decomposes rendered designs into layers \citep{layerd2025}; \ac{accordion} generates layered designs by planning and decomposing a complete visual reference; \ac{postercopilot} reasons about composition and repeated layer-sensitive changes.
@@ -107,6 +117,9 @@ Another line starts from an existing artifact.
 These tasks are meaningfully editing-oriented, but a pixel-space editing benchmark does not establish that the result is an editable \ac{psd} or \ac{dom} structure.
 Each study must be coded against its actual inputs, outputs, and scoring procedure.
 
+
+\paragraph{Contrast-aware background revision.}
+\ac{neuralcontrast} applies diffusion-based background revisions to improve foreground text contrast, without demonstrating native editable font objects.
 
 \paragraph{Layer synthesis, transparency, and recovery.}
 \ac{ladeco} composes supplied visual and textual elements by planning semantic layers, while \ac{layerdiffuse} introduces transparent \ac{rgba} images through latent transparency.
@@ -147,6 +160,10 @@ The shared \ac{rev} axes remain useful across domains, but comparisons must resp
 \ac{slidetailor} conditions presentation generation on user preference examples, while \ac{deepslides} separates slide-page planning from the subsequent code implementation.
 \ac{slidegen} coordinates narrative, source figures, and geometry when producing editable presentation slides.
 In contrast to initial drafting, \ac{apex} takes existing academic posters and uses structured editing actions followed by visual assessment.
+\paragraph{Structured diagram generation and editing.}
+\ac{diagramagent} combines a planner, code generator, checking agent, and diagram-to-code agent, while its companion \ac{diagramgenbenchmark} covers eight diagram categories.
+Diagram relations, code validity and independent edit-preservation tests remain distinct evaluation targets.
+
 \paragraph{Scientific communication workflows.}
 \ac{paperbanana} combines reference retrieval, content planning, illustration rendering, and iterative critique, whereas \ac{scifig} generates revisable methodology diagrams using an explicit structure.
 \ac{autofigureedit} adds native \ac{svg} manipulation and style references to scientific illustration workflows.
