@@ -9,7 +9,7 @@ Automating this process is therefore a problem of both visual generation and str
 Early knowledge-based work in graphical presentation emphasized constraints on expressiveness and effectiveness rather than photographic resemblance \citep{mackinlay1986}.
 Interactive design-assistance systems subsequently explored adaptive placement suggestions and retained human control \citep{designscape2015}.
 Research on generative graphic design has developed across a range of communication artifacts.
-For posters and advertisements, content-aware layout methods arrange text, logos, and other foreground elements against existing imagery \citep{posterlayout2023,cglgan2022,layoutdetr2024}, while systems such as Vinci and \ac{autoposter} address larger parts of the poster-creation workflow \citep{vinci2021,autoposter2023}.
+For posters and advertisements, content-aware layout methods arrange text, logos, and other foreground elements against existing imagery \citep{posterlayout2023,cglgan2022,layoutdetr2024}, while systems such as Vinci and \ac{autoposter} address larger parts of the poster-creation workflow \citep{vinci2021}.
 Related work generates presentation slides from natural-language instructions or source documents \citep{autopresent2025,pptagent2025}, composes text-rich infographics \citep{bizgen2025}, and produces scientific illustrations and academic posters \citep{autofigure2026,postergen2026}.
 Although these applications differ in content and visual conventions, they share the challenge of coordinating semantic content with geometry, typography, and appearance.
 
@@ -22,7 +22,7 @@ These developments make it increasingly difficult to characterize a method solel
 An important distinction is whether the resulting design can be \emph{revised}.
 In practical workflows, text may need to be replaced, a logo moved, an aspect ratio changed, or a composition adapted to a new medium.
 A high-fidelity raster image, a set of layout boxes, and a document containing editable text or vector paths may render similarly but support different subsequent operations.
-\ac{cole} demonstrates a multi-layer design workflow \citep{cole2023}, while \ac{designascode} represents designs as \ac{html}/\ac{css} to support structural manipulation and visual refinement \citep{designascode2026}.
+\ac{cole} demonstrates a multi-layer design workflow, while \ac{designascode} represents designs as \ac{html}/\ac{css} to support structural manipulation and visual refinement.
 However, producing a structured artifact does not by itself establish that a system can perform a requested edit correctly.
 Conversely, image-space editing may satisfy a user's visual request without yielding independently manipulable design objects.
 Methods for infographic editing further show that a local change may legitimately require neighboring elements to reflow \citep{yang2026infoedit}, complicating simple notions of preserving everything outside an edited region.
@@ -35,7 +35,7 @@ Without an explicit account of the delivered representation, permitted edits, an
 Existing surveys provide valuable but complementary perspectives.
 \citet{huang2023survey} organize graphic design intelligence around representation, understanding, and generation; \citet{zou2025fragment} examine perception and generation across design elements and workflows.
 Surveys focused on layout generation \citep{shi2023layoutsurvey} and vector graphics \citep{tian2024vectorsurvey} provide greater depth within their respective representations.
-Building on these accounts, we examine the relationship among \emph{representation}, \emph{editability}, and \emph{evaluation} (\ac{rev}) across generative graphic design systems.
+Building on these accounts, we examine \ac{rev} across generative graphic design systems.
 We first organize the artifacts that methods deliver and the operations those artifacts afford, then distinguish demonstrated editing workflows from capabilities supported by quantitative evidence.
 Finally, we compare evaluation protocols across representations and identify open problems in instruction adherence, required layout reflow, non-target preservation, native-artifact validity, and human design workflows.
 Figures~\ref{fig:rev} and \ref{fig:protocol} summarize these complementary views.

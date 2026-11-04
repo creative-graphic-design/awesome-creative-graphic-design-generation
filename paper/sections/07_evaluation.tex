@@ -66,13 +66,13 @@ For automated judges, human calibration, judge variance, and adversarial failure
 
 
 \paragraph{Structural layout distances and color-assistance criteria.}
-\ac{ltsim} measures layout similarity through transportation of labeled and geometric elements \citep{ltsim2024}, and therefore asks a different question from a learned-feature distributional distance such as layout \ac{fid}.
+\ac{ltsim} measures layout similarity through transportation of labeled and geometric elements, and therefore asks a different question from a learned-feature distributional distance such as layout \ac{fid}.
 InfoColorizer studies interactive palette recommendation and designer-facing controllability for information graphics \citep{infocolorizer2021}.
 Color agreement, geometric matching, and task completion should be reported as independent evaluation dimensions, particularly when a design system supports human adjustments.
 
 \subsection{Human Preferences and Design-Principle Judges}
 Graphic-design evaluation must distinguish aesthetic preference, layout-rule compliance, and whether a model can identify a design fault.
 \citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a \ac{vlm}'s score as ground truth.
-\ac{designometer} instead learns to evaluate and suggest refinements to graphic-design compositions \citep{designometer2024}, whereas \ac{designsense} collects human preferences for layout transformations and trains an evaluation signal in that domain \citep{designsense2026}.
-\ac{posterreward} focuses specifically on the typography, layout, and visual quality of generated posters \citep{posterreward2026}.
+\ac{designometer} instead learns to evaluate and suggest refinements to graphic-design compositions, whereas \ac{designsense} collects human preferences for layout transformations and trains an evaluation signal in that domain.
+\ac{posterreward} focuses specifically on the typography, layout, and visual quality of generated posters.
 These studies provide complementary evidence for evaluation-model behavior and do not demonstrate the accuracy of a fully autonomous editing agent.
