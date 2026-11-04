@@ -81,7 +81,7 @@ The manuscript bibliography now has **180 distinct references**, 36 added from a
 The central registry is `paper/acronyms.tex`, using CTAN `acro` v3 instead of `glossaries`.
 Genuine abbreviations expand on first use through `\ac{key}`; subsequent mentions display the short form.
 Named model and system entries use `first-style=short` to preserve published names without fabricating expansions.
-Two `\printacronyms` lists separate abbreviations and named systems. `acro` also attaches a source key to 70 named systems (`cite`) and prints all usage pages (`pages/display=all`) in both lists.
+Three `\printacronyms` lists now separate general abbreviations, named generation/editing systems, and benchmark/dataset/evaluation resources. The registry includes **22 real abbreviations, 128 named systems, and 16 evaluation resources**, with original BibTeX `cite` keys on all named resources. Plain-text model/benchmark names and technical abbreviations in manuscript prose were migrated to `\ac{...}` so their usage pages are actually recorded by `pages/display=all`; resource titles remain descriptions rather than invented long-form expansions.
 The manuscript checker rejects missing or duplicate definitions and obsolete package commands; the PDF CI verifies LaTeX compilation.
 
 The research map is a curated **six-track by four-era** matrix with **67 representative milestones**, not a citation graph or complete publication census.

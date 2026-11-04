@@ -126,19 +126,36 @@ require(len(keys) == len(set(keys)), "Duplicate acro key")
 require(len(keys) >= 49, "Preserve the shared acronym/model registry")
 n_abbr = 0
 n_systems = 0
+n_evaluation = 0
+acro_bib_source = (PAPER / "references.bib").read_text(encoding="utf-8")
+acro_bib_keys = set(re.findall(r"(?m)^@\w+\{([^,]+),", acro_bib_source))
 for key, options in definitions:
-    if re.search(r"\btag\s*=\s*\{abbreviations\}", options):
+    tags = re.search(r"\btag\s*=\s*\{([^}]+)\}", options)
+    tag = tags.group(1) if tags else ""
+    if tag == "abbreviations":
         n_abbr += 1
-    elif re.search(r"\btag\s*=\s*\{systems\}", options):
-        n_systems += 1
+    elif tag in ("systems", "evaluation"):
+        if tag == "systems":
+            n_systems += 1
+        else:
+            n_evaluation += 1
         require(bool(re.search(r"first-style\s*=\s*short", options)),
-                f"Named system {key} must display its name without invented expansion")
+                f"Named resource {key} must display its name without invented expansion")
+        citation = re.search(r"(?m)^\s*cite\s*=\s*\{([^}]+)\}", options)
+        require(citation is not None, f"Named resource {key} is missing an original-source cite key")
+        if citation:
+            for bib_key in citation.group(1).split(","):
+                require(bib_key.strip() in acro_bib_keys,
+                        f"Named resource {key} cites missing BibTeX entry {bib_key}")
     else:
         errors.append(f"acro entry missing recognized tag: {key}")
     require("short" in options and "long" in options,
             f"acro entry missing short/long metadata: {key}")
-require(n_abbr >= 12 and n_systems >= 25,
-        "Maintain separate general-abbreviation and named-system groups")
+require(n_abbr >= 22 and n_systems >= 120 and n_evaluation >= 15,
+        "Preserve expanded abbreviation, named-system, and benchmark/dataset groups")
+require(r"\printacronyms[include=evaluation,heading=none,display=all]" in main,
+        "Print benchmark/dataset resources in their own acro list")
+
 acro_sources = sorted((PAPER / "sections").glob("*.tex"))
 acro_sources += sorted((PAPER / "tabs" / "tex").glob("*.tex"))
 acro_sources += sorted((PAPER / "figs" / "tex").glob("*_figure.tex"))
@@ -237,7 +254,7 @@ require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
 
 print("Reviewed guidance: paper/WRITING_CHECKLIST.md (read before drafting and each commit)")
-print(f"Checked anonymous mode, 4 editable figures, 5 tables, acro, ordered sections and natbib citations, manuscript inputs, labels and introductory evidence ({len(labels)} labels)")
+print(f"Checked anonymous mode, 4 editable figures, 5 tables, {len(keys)} acro entries (abbr={n_abbr}, systems={n_systems}, evaluation={n_evaluation}), ordered sections and citation provenance ({len(labels)} labels)")
 if errors:
     for error in errors:
         print(f"ERROR: {error}", file=sys.stderr)

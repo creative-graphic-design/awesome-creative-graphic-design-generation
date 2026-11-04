@@ -8,36 +8,36 @@ Section~\ref{sec:benchmarks} compares newer benchmark contracts and their scope.
 \input{tabs/tex/evaluation_metrics}
 
 \subsection{Generation Fidelity and Geometry}
-LayoutDM evaluates discrete layout synthesis through distributional and geometry-aware measures, including FID adapted to layout representations and maximum IoU under compatible element categories \citep{layoutdm2023}.
+\ac{layoutdm} evaluates discrete layout synthesis through distributional and geometry-aware measures, including \ac{fid} adapted to layout representations and maximum \ac{iou} under compatible element categories \citep{layoutdm2023}.
 The conditioned generation scenarios and the quality/diversity trade-off are central to interpretation.
 Such metrics concern the arrangement of design elements; even a strong score does not measure the usability of an exported creative file.
 
-VectorFusion evaluates prompt consistency using CLIP similarity and CLIP R-Precision over 128 caption prompts and analyzes the effect of vector primitive count and initialization \citep{vectorfusion2023}.
+\ac{vectorfusion} evaluates prompt consistency using \ac{clip} similarity and \ac{clip} R-Precision over 128 caption prompts and analyzes the effect of vector primitive count and initialization \citep{vectorfusion2023}.
 These experiments measure semantic correspondence of the rendered graphic.
-By contrast, DeepSVG studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; SVGformer reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}.
+By contrast, \ac{deepsvg} studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; \ac{svgformer} reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}.
 Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
 
 \subsection{Appearance, Text, and Reconstruction}
 Typography introduces additional evaluation dimensions: correct character identity, readability, style consistency, and editable text parameters.
-De-Rendering Stylized Texts reports reconstruction L1/PSNR and illustrates text or styling changes using recovered renderer parameters \citep{derendering2021}.
+\ac{derendering} reports reconstruction L1/\ac{psnr} and illustrates text or styling changes using recovered renderer parameters \citep{derendering2021}.
 Those numerical measurements indicate reconstruction fidelity, not a rate of successful edit instructions.
-Word-As-Image includes a perceptual study measuring whether semantic concepts remain recognizable, letters remain legible, and typography resembles the input font \citep{wordasimage2023}.
+\ac{wordasimage} includes a perceptual study measuring whether semantic concepts remain recognizable, letters remain legible, and typography resembles the input font \citep{wordasimage2023}.
 The same dimensions should not be conflated with free-form replacement of textual content.
 
 \subsection{Editability Affordance Versus Editing Performance}
 Three complementary examples clarify the evidence distinction.
 Vinci uses a controlled within-subject study for poster resizing and reports the time and number of editing operations with and without feedback support \citep{vinci2021}.
 That is direct evidence about \emph{human workflow efficiency}, not about autonomous editing.
-Editable Visual Design shows that output HTML/CSS can expose separate DOM objects and editable text in a set of case studies \citep{editablevisual2026}.
+\ac{editablevisual} shows that output \ac{html}/\ac{css} can expose separate \ac{dom} objects and editable text in a set of case studies \citep{editablevisual2026}.
 This demonstrates a useful workflow and format affordance but does not by itself constitute a randomized user study or an instruction-edit accuracy estimate.
-IconShop demonstrates SVG icon-path manipulation while reporting FID, CLIP-based scores, and icon quality judgments for its synthesis task \citep{iconshop2023}.
+\ac{iconshop} demonstrates \ac{svg} icon-path manipulation while reporting \ac{fid}, \ac{clip}-based scores, and icon quality judgments for its synthesis task \citep{iconshop2023}.
 The quantitative evaluation primarily concerns synthesis, not editing.
 
 Dedicated editing benchmarks merit distinct treatment.
-SVGEditBench directly evaluates LLM-driven SVG code edits on curated instructions \citep{svgeditbench2024}, while VectorGym extends evaluation to four tasks, including expert-authored complex SVG edits, sketch conversion, text-based vector generation, and captioning \citep{vectorgym2026}.
+\ac{svgeditbench} directly evaluates \ac{llm}-driven \ac{svg} code edits on curated instructions \citep{svgeditbench2024}, while \ac{vectorgym} extends evaluation to four tasks, including expert-authored complex \ac{svg} edits, sketch conversion, text-based vector generation, and captioning \citep{vectorgym2026}.
 These are more appropriate counterexamples to any blanket claim that quantitative vector-editing evaluation is missing.
-MiLDEdit describes evaluation axes for instruction following, design layout, aesthetics, and text on multi-layer documents \citep{mildedit2026}.
-PosterOmni combines local editing and global poster construction, so evidence must be separated by task and output representation \citep{posteromni2026}.
+\ac{mildedit} describes evaluation axes for instruction following, design layout, aesthetics, and text on multi-layer documents \citep{mildedit2026}.
+\ac{posteromni} combines local editing and global poster construction, so evidence must be separated by task and output representation \citep{posteromni2026}.
 A paper can evaluate image-editing ability even when it delivers flattened raster output.
 The appropriate criticism is not a lack of object-level export per se, but whether the representation and evaluation support the proposed downstream claim.
 
@@ -66,13 +66,13 @@ For automated judges, human calibration, judge variance, and adversarial failure
 
 
 \paragraph{Structural layout distances and color-assistance criteria.}
-LTSim measures layout similarity through transportation of labeled and geometric elements \citep{ltsim2024}, and therefore asks a different question from a learned-feature distributional distance such as layout FID.
+\ac{ltsim} measures layout similarity through transportation of labeled and geometric elements \citep{ltsim2024}, and therefore asks a different question from a learned-feature distributional distance such as layout \ac{fid}.
 InfoColorizer studies interactive palette recommendation and designer-facing controllability for information graphics \citep{infocolorizer2021}.
 Color agreement, geometric matching, and task completion should be reported as independent evaluation dimensions, particularly when a design system supports human adjustments.
 
 \subsection{Human Preferences and Design-Principle Judges}
 Graphic-design evaluation must distinguish aesthetic preference, layout-rule compliance, and whether a model can identify a design fault.
-\citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a VLM's score as ground truth.
-Design-o-meter instead learns to evaluate and suggest refinements to graphic-design compositions \citep{designometer2024}, whereas DesignSense collects human preferences for layout transformations and trains an evaluation signal in that domain \citep{designsense2026}.
-PosterReward focuses specifically on the typography, layout, and visual quality of generated posters \citep{posterreward2026}.
+\citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a \ac{vlm}'s score as ground truth.
+\ac{designometer} instead learns to evaluate and suggest refinements to graphic-design compositions \citep{designometer2024}, whereas \ac{designsense} collects human preferences for layout transformations and trains an evaluation signal in that domain \citep{designsense2026}.
+\ac{posterreward} focuses specifically on the typography, layout, and visual quality of generated posters \citep{posterreward2026}.
 These studies provide complementary evidence for evaluation-model behavior and do not demonstrate the accuracy of a fully autonomous editing agent.

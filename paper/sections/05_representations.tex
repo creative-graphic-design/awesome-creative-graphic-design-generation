@@ -19,20 +19,20 @@ Those regions are useful but do not establish post-export semantic object manipu
 
 \paragraph{Document structures and conditioned layouts.}
 READ uses a recursive latent tree to capture relationships among document elements \citep{read2020}, whereas Neural Design Network incorporates user constraints directly in structured layout generation \citep{ndn2020}.
-Attribute-conditioned LayoutGAN models the association between content attributes and layout decisions \citep{aclayoutgan2020}, and multi-choice layout learning encourages diversity among plausible arrangements \citep{layoutmcl2023}.
-In image-aware composition, PDA-GAN adapts between different background domains with a pixel-level discriminator \citep{pdagan2023}, whereas LayoutDiT uses a diffusion transformer to balance background content and graphic elements \citep{layoutdit2024}.
+Attribute-conditioned \ac{layoutgan} models the association between content attributes and layout decisions \citep{aclayoutgan2020}, and multi-choice layout learning encourages diversity among plausible arrangements \citep{layoutmcl2023}.
+In image-aware composition, PDA-\ac{gan} adapts between different background domains with a pixel-level discriminator \citep{pdagan2023}, whereas LayoutDiT uses a diffusion transformer to balance background content and graphic elements \citep{layoutdit2024}.
 Visual Layout Composer explicitly models a coupled image/vector diffusion process \citep{vlc2024}, illustrating how a predicted layout, composed image, and vector representation can be learned together while remaining distinct deliverables.
 
 \subsection{Vector Path and Layer Structures}
-\ac{deepsvg} models drawing commands and studies reconstruction and latent interpolation ; SVGformer learns representations of continuous vector graphics \citep{svgformer2023}.
-\ac{vectorfusion} optimizes differentiable SVG paths with text-to-image diffusion priors .
-\ac{iconshop} models SVG icon paths and demonstrates editing by path-level infilling .
+\ac{deepsvg} models drawing commands and studies reconstruction and latent interpolation ; \ac{svgformer} learns representations of continuous vector graphics \citep{svgformer2023}.
+\ac{vectorfusion} optimizes differentiable \ac{svg} paths with text-to-image diffusion priors .
+\ac{iconshop} models \ac{svg} icon paths and demonstrates editing by path-level infilling .
 Layer-wise image vectorization instead aims to infer multiple stylized regions and corresponding vector shapes from an input raster \citep{live2022}.
 The existence of vector paths does not establish instruction-driven edit accuracy or unchanged-object preservation.
 
 Hierarchical systems including \ac{cole} and \ac{opencole} generate designs through intermediate composition steps .
 \ac{layerd} reconstructs layered structure from flattened designs .
-Code-native systems represent text and assets with manipulable HTML/CSS elements \citep{designascode2026,editablevisual2026}.
+Code-native systems represent text and assets with manipulable \ac{html}/\ac{css} elements \citep{designascode2026,editablevisual2026}.
 Their artifact format provides substantial leverage for editing, yet success under a controlled editing protocol remains an independent empirical question.
 
 \subsection{Four Types of Evidence}

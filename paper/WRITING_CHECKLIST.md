@@ -38,6 +38,14 @@
 - [ ] After manuscript changes, build and inspect the updated anonymous PDF; **include the actual generated PDF and key figure PDF links in the user-facing response every time**, not only the GitHub PR or TeX source.
 - [ ] Treat the public catalogue crosswalk (207 papers, 69 currently unresolved matches) as a conservative ID/title lookup, not an exclusion audit; run `python3 paper/scripts/check_catalog_crosswalk.py`.
 
+## Comprehensive acro registry (2026-11-04)
+
+- [ ] Keep three distinct `acro` tags: `abbreviations` for genuine short forms, `systems` for research models and systems, and `evaluation` for benchmarks, datasets and evaluation metrics.
+- [ ] Require an original-paper `cite` key and `first-style=short` for every named system and evaluation resource; do not invent expanded model names.
+- [ ] Convert ordinary prose mentions to `\\ac{key}` instead of populating the registry with never-used names; check appearance pages in the compiled list.
+- [ ] Do not conflate identical model names from unrelated papers (notably two `LayoutDiffusion` studies and generation/editing uses of `ReLayout`); retain explicit bibliographic disambiguation.
+- [ ] Preserve direct `\\citet` citations when referring to authors, and avoid duplicate `\\citep` next to a model's first automatic citation.
+
 ## BibTeX and similar paper names
 
 - [ ] Verify exact title, authors, year, venue and DOI from the original paper or publisher, preferably the published proceedings record, then retain a stable URL.
