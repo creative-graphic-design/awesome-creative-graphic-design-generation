@@ -103,6 +103,7 @@ Another line starts from an existing artifact.
 \ac{layerd} decomposes rendered designs into layers \citep{layerd2025}; \ac{accordion} generates layered designs by planning and decomposing a complete visual reference; \ac{postercopilot} reasons about composition and repeated layer-sensitive changes.
 \ac{mildedit} explicitly addresses instruction-driven modifications of multi-layer design documents, presenting a dedicated benchmark and evaluation framework.
 \ac{posteromni} spans local raster-image editing and global poster creation.
+\ac{revisionmatters} uses human revision trajectories for iterative layout generation rather than treating the first output as a final design.
 These tasks are meaningfully editing-oriented, but a pixel-space editing benchmark does not establish that the result is an editable \ac{psd} or \ac{dom} structure.
 Each study must be coded against its actual inputs, outputs, and scoring procedure.
 
@@ -136,6 +137,7 @@ Their metrics and output contracts should not be pooled.
 
 Scientific figures and academic posters convey factual research content, introducing constraints on semantic correctness and reading order.
 \ac{autofigure} creates scientific illustrations from extended source material, while \ac{postergen} creates research posters through content selection, layout, typography and rendering agents.
+\ac{drawwiththought} reconstructs scientific diagrams into editable mxGraph \ac{xml} with reasoning-guided structure generation, a different output contract from one-shot raster synthesis.
 The shared \ac{rev} axes remain useful across domains, but comparisons must respect whether the delivered artifact is a vector, a presentation document, or merely a rendered image.
 
 
