@@ -19,6 +19,7 @@ ASSETS = [
     "evidence_register_225_crosswalk.csv",
     "literature_citation_audit.csv",
     "references.bib",
+    "evidence_register_snapshot_manifest.json",
 ]
 
 
@@ -47,8 +48,27 @@ class EvidenceRegisterTest(unittest.TestCase):
         errors, counts = validator.validate(self.paper)
         self.assertEqual(errors, [])
         self.assertEqual(counts["sheet_studies"], 225)
-        self.assertEqual(counts["linked"], 148)
-        self.assertEqual(counts["needs_review"], 77)
+        self.assertEqual(counts["linked"], 157)
+        self.assertEqual(counts["needs_review"], 68)
+
+    def test_old_spreadsheet_review_is_rejected(self) -> None:
+        manifest = self.paper / "evidence_register_snapshot_manifest.json"
+        content = manifest.read_text(encoding="utf-8")
+        manifest.write_text(
+            content.replace('"snapshot_reviewed_utc": "2026-11-04"',
+                            '"snapshot_reviewed_utc": "2020-01-01"'),
+            encoding="utf-8",
+        )
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("snapshot review expired" in e for e in errors))
+
+    def test_publication_preprint_alias_regression_is_rejected(self) -> None:
+        bib = self.paper / "references.bib"
+        content = bib.read_text(encoding="utf-8")
+        self.assertIn("eprint = {2602.17690}", content)
+        bib.write_text(content.replace("eprint = {2602.17690}", ""), encoding="utf-8")
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("Stale/missing BibTeX link" in e for e in errors))
 
     def test_missing_sheet_study_is_rejected(self) -> None:
         self.rewrite(ASSETS[0], lambda rows: rows.pop())
