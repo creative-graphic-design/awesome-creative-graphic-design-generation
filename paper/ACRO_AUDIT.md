@@ -56,4 +56,8 @@ A personalized e-commerce banner study without a stable named-system short form 
 
 ## Source-grounded T01 entry (2026-11-04)
 
-Added TAUE as a source-linked system: its original 2026 CVPR Findings citation, year, original paper link, task (layer-wise image generation), and output representation (foreground, background and composite image layers) appear in the exhaustive acro index. This makes **186 registered terms**; no generic metric was recast as a model name.
+Added TAUE as a source-linked system: its original 2026 CVPR Findings citation, year, original paper link, task (layer-wise image generation), and output representation (foreground, background and composite image layers) appear in the exhaustive acro index. This makes **188 registered terms**; no generic metric was recast as a model name.
+
+## Two standard metrics after CI detection
+
+The manuscript check identified missing acro keys for SSIM and LPIPS when citing the TAUE evaluation. Both have now been added as general technical abbreviations, not new research methods or new bibliography entries. Full index: **188** records = 25 general abbreviations, 146 systems, 17 evaluation resources. The PDF display remains subject to the new source-commit build.
