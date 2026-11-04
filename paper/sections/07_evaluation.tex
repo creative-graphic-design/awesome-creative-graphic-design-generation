@@ -19,6 +19,9 @@ Their benchmarks are valuable within their tasks but do not evaluate instruction
 
 For layered synthesis, \ac{taue} studies 1,770 filtered MS-COCO samples using \ac{fid}, image/text alignment, and foreground/background reconstruction through \ac{psnr}, \ac{ssim}, and \ac{lpips} (Section 4.2 and Table 2).
 Its Figure 6 shows layout and background-replacement demonstrations, but Section 6 acknowledges pixel-level foreground-preservation limitations, and its reconstruction scores do not measure held-out edit-instruction success.
+\ac{tkgdm} evaluates chroma-key images generated for 3,000 MAGICK-derived prompts with \ac{fid}, mask-based FID, and image/text \ac{clip} alignment scores (Section 5.2 and Table 1), rather than measuring operations on native editing objects.
+Crucially, the reported SDXL FID is 41.81 for \ac{tkgdm} versus 29.34 for LayerDiffuse in the same table, so the paper does not establish universal superiority over fine-tuned layer-generation approaches.
+Its 100-participant two-alternative preference study (Section 5.5) measures perceived foreground quality and text alignment, not controlled graphic-design edit success.
 
 \subsection{Appearance, Text, and Reconstruction}
 Typography introduces additional evaluation dimensions: correct character identity, readability, style consistency, and editable text parameters.

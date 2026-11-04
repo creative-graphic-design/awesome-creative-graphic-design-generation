@@ -137,6 +137,8 @@ This task directly tests edit operations and should be evaluated separately from
 \ac{markupdm} instead completes typed content and attributes inside multimodal markup documents, demonstrating that layer synthesis and document-level semantic completion have different editing interfaces.
 \ac{taue} produces foreground, background, and composite images without model fine-tuning, using intermediate latent transplantation and cross-layer attention for visual coherence.
 Its examples illustrate layout control, multiple-object composition, and background replacement, but do not establish native editable text or vector-object manipulation after export.
+\ac{tkgdm} instead controls a chroma-key background using channel-wise initial-noise shifts and a Gaussian spatial mask, generating foreground content without fine-tuning.
+The resulting color-keyed raster image can facilitate background extraction and compositing, but the reported output is not an exported native text, vector, or editable object hierarchy.
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.
