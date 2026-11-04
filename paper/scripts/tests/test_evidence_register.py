@@ -20,6 +20,7 @@ ASSETS = [
     "literature_citation_audit.csv",
     "references.bib",
     "evidence_register_snapshot_manifest.json",
+    "evidence_review_queue.csv",
 ]
 
 
@@ -69,6 +70,18 @@ class EvidenceRegisterTest(unittest.TestCase):
         bib.write_text(content.replace("eprint = {2602.17690}", ""), encoding="utf-8")
         errors, _ = validator.validate(self.paper)
         self.assertTrue(any("Stale/missing BibTeX link" in e for e in errors))
+
+    def test_missing_unresolved_queue_row_is_rejected(self) -> None:
+        self.rewrite("evidence_review_queue.csv", lambda rows: rows.pop())
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("Review queue must contain exactly" in e for e in errors))
+
+    def test_changed_priority_is_rejected(self) -> None:
+        def corrupt(rows):
+            rows[0]["review_priority"] = "P3-catalogue"
+        self.rewrite("evidence_review_queue.csv", corrupt)
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("Stale source-tier review priority" in e for e in errors))
 
     def test_missing_sheet_study_is_rejected(self) -> None:
         self.rewrite(ASSETS[0], lambda rows: rows.pop())
