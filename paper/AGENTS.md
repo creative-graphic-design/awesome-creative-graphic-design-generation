@@ -4,6 +4,8 @@ Applies to every manuscript file under `paper/**` in addition to the repository-
 
 **Before editing and before every commit:** read `paper/WRITING_CHECKLIST.md` in full. It is the source of truth for author comments accumulated across manuscript revisions. Do not duplicate or bypass it.
 
+**Source-of-truth gate for literature work:** First read the live Google Sheet and its Evidence Matrix 225, citation coverage, prior-survey, and source-tier tabs. Refresh the frozen 225-study snapshot and crosswalk when the workbook changes, run scripts/check_evidence_register.py and the negative tests, then review citations. CI has no direct access to the private live Sheet. See EVIDENCE_REGISTER_RECONCILIATION.md.
+
 For manuscript changes:
 1. Follow the original paper/publisher record when writing scientific and bibliographic claims. Keep evidence tiers explicit; the awesome catalogue alone is not a paper-level experiment audit.
 2. Write the Introduction as coherent argumentation with specific original citations for task claims, not an artificial taxonomy list. Use **one sentence per physical TeX line**, a blank line between paragraphs, and `\\citet{key}` for textual author mentions. Keep numbered section files (`01_abstract.tex`, `02_introduction.tex`, etc.).

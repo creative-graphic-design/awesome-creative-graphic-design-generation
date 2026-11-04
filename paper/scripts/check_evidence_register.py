@@ -140,8 +140,10 @@ def validate(paper: Path = PAPER) -> tuple[list[str], dict[str, int]]:
             errors.append(f"Stale/incorrect identity match method: {sid}")
         if record["citation_status"] != ("linked" if matched else "needs_review"):
             errors.append(f"Stale citation status: {sid}")
-        if record["editorial_decision"] != "pending":
-            errors.append(f"Snapshot identity matching cannot adjudicate inclusion: {sid}")
+        if record["editorial_decision"] not in {"pending", "needs_review", "included", "excluded"}:
+            errors.append(f"Invalid editorial decision: {sid}")
+        if record["editorial_decision"] == "excluded" and "source:" not in record["editorial_note"].lower():
+            errors.append(f"Exclusion requires a documented primary-source locator: {sid}")
         if not record["editorial_note"]:
             errors.append(f"Every study needs a traceable pending decision: {sid}")
         if matched:

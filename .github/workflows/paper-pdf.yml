@@ -46,6 +46,9 @@ jobs:
       - name: Validate literature citation audit and provenance coverage
         run: python3 paper/scripts/check_literature_audit.py
 
+      - name: Validate every 225-sheet study ID and citation audit linkage
+        run: python3 paper/scripts/check_evidence_register.py
+
       - name: Validate catalog-to-bibliography crosswalk
         run: python3 paper/scripts/check_catalog_crosswalk.py
 

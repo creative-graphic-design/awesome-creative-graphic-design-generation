@@ -17,6 +17,15 @@
 - [ ] Run `python3 paper/scripts/check_sentence_lines.py`. The conservative checker catches two or more sentences on one line and exempts common abbreviations, initials, TeX comments and non-prose TikZ statements. Its positive/negative unit tests run in CI.
 - [ ] Review diffs at sentence granularity to make copy edits, attribution changes and merges easy to inspect. See [the reference repository's PR #89](https://github.com/shunk031/agentic-cognitive-writing/pull/89) for the analogous convention.
 
+## Mandatory spreadsheet and prior-survey audit before citation edits
+
+- [ ] Read the live Google Sheet before every bibliography or literature-expansion commit: Evidence Matrix 225, 225 Citation and R-E-V Coverage, Prior Survey and Screening, and 225 Source Tier Reconciliation. Verify the exact tabs and source update time documented in EVIDENCE_REGISTER_RECONCILIATION.md.
+- [ ] Refresh evidence_register_225_snapshot.csv from the real workbook when the Sheet changes. Refresh evidence_register_225_crosswalk.csv and per-paper working_register_id in literature_citation_audit.csv against BibTeX.
+- [ ] Run python3 paper/scripts/check_evidence_register.py and its negative tests. CI must fail for missing CGD IDs, stale BibTeX matches, lost audit links, and an increase in unresolved records.
+- [ ] Every needs_review row is an unresolved identity or citation-selection question, not an excluded study. Require primary-source evidence and a reason before changing inclusion status or source tier.
+- [ ] Read the original prior-survey selection method and denominators before comparing survey size. Zou et al. (2025) describes a final selected set of 500 papers; its survey comparison table reports 267, which must be handled as a discrepancy, not a second selection count.
+- [ ] After every manuscript change, review the actual compiled PDF and show a link; a passing bibliography test is not visual acceptance.
+
 ## Literature and evidence
 
 - [ ] Judge coverage by research lines and technical/empirical relevance rather than a raw citation target. The 225 provisional working records are not 225 thoroughly read or cited papers.
@@ -83,7 +92,7 @@
 
 1. Re-read **this checklist** and the original papers needed for any changed scholarly claim.
 2. Review the introduction's logic, adjacent task citations, figure/table references, metadata and empirical evidence tier.
-3. Run `python3 paper/scripts/check_sentence_lines.py`, `python3 paper/scripts/check_manuscript.py`, and `python3 paper/scripts/check_bibliography.py`; run `python3 -m unittest discover -s paper/scripts/tests -p 'test_*.py'` to cover negative cases.
+3. Run `python3 paper/scripts/check_evidence_register.py`, `python3 paper/scripts/check_sentence_lines.py`, `python3 paper/scripts/check_manuscript.py`, and `python3 paper/scripts/check_bibliography.py`; run `python3 -m unittest discover -s paper/scripts/tests -p 'test_*.py'` to cover negative cases.
 4. Run `cd paper && make pdf`; inspect the PDF and standalone figure PDFs, not only the LaTeX source.
 5. After pushing, inspect the **Paper PDF** CI, its PDF/figure artifacts and any failure logs; update the PR with changes and remaining audits.
 

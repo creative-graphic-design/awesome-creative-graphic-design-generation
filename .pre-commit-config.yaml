@@ -30,6 +30,13 @@ repos:
         pass_filenames: false
         files: ^(paper/|data/resources\.csv$|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
 
+      - id: manuscript-225-source-crosswalk
+        name: Reconcile all 225 evidence spreadsheet IDs with BibTeX
+        entry: python3 paper/scripts/check_evidence_register.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
+
       - id: manuscript-sentence-lines
         name: Keep one sentence per TeX source line
         entry: python3 paper/scripts/check_sentence_lines.py

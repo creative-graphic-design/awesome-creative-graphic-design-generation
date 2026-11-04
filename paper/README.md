@@ -17,6 +17,10 @@ The local output is `paper/main.pdf`. The CI workflow `.github/workflows/paper-p
 - Vendored, unmodified: `cvpr.sty` and `ieeenat_fullname.bst`. The original headers and license notices remain attached to those files.
 - `main.tex` uses the official review mode, which hides the sample author block and renders **Anonymous CVPR submission**. Update dummy fields only for the final version.
 
+## Mandatory evidence spreadsheet reconciliation (2026-11-04)
+
+Before updating the literature, consult the actual [Google Sheet evidence register](https://docs.google.com/spreadsheets/d/1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc/edit), particularly Evidence Matrix 225, 225 Citation and R-E-V Coverage, Prior Survey and Screening, and 225 Source Tier Reconciliation. We directly compared the 225 stable study IDs to the 180 BibTeX works: 148 uniquely matched, 77 unresolved. Frozen source metadata and decisions are in evidence_register_225_snapshot.csv and evidence_register_225_crosswalk.csv. The 148 linked citation-audit rows now contain their exact CGD IDs. Run scripts/check_evidence_register.py before any manuscript citation change; the pre-commit hook and Paper PDF CI enforce it. See EVIDENCE_REGISTER_RECONCILIATION.md for source refresh and limitations. CI is NOT connected to the private live spreadsheet: this gate detects drift from the committed snapshot, not unseen changes in Google Drive.
+
 ## Research evidence status (2026-11-03)
 
 The public repository catalog and the broader research evidence register are *different snapshots*. The working register holds 225 provisional entries, with 88 studies reviewed at the methods/results level, 28 checked through abstracts or publication records, and 109 catalog-only. The existing public README currently counts fewer papers. Do not describe all 225 as full-text assessed or as PRISMA-complete. The present paper emphasizes a representation–editability–evaluation crosswalk rather than a benchmark leaderboard.
