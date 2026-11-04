@@ -27,12 +27,14 @@ Visual Layout Composer explicitly models a coupled image/vector diffusion proces
 \subsection{Vector Path and Layer Structures}
 \ac{deepsvg} models drawing commands and studies reconstruction and latent interpolation; \ac{svgformer} learns representations of continuous vector graphics.
 \ac{vectorfusion} optimizes differentiable \ac{svg} paths with text-to-image diffusion priors.
+\ac{neuralsvg} learns an implicit representation for layered vector synthesis, whereas \ac{omnisvg} tokenizes vector commands and coordinates for multimodal generation.
 \ac{iconshop} models \ac{svg} icon paths and demonstrates editing by path-level infilling.
 Layer-wise image vectorization instead aims to infer multiple stylized regions and corresponding vector shapes from an input raster \citep{live2022}.
 The existence of vector paths does not establish instruction-driven edit accuracy or unchanged-object preservation.
 
 Hierarchical systems including \ac{cole} and \ac{opencole} generate designs through intermediate composition steps.
 \ac{layerd} reconstructs layered structure from flattened designs.
+\ac{layerfusion} instead jointly synthesizes transparent foreground and background layers, while \ac{igd} combines predicted layer attributes with generated image assets.
 Code-native systems represent text and assets with manipulable \ac{html}/\ac{css} elements \citep{designascode2026,editablevisual2026}.
 Their artifact format provides substantial leverage for editing, yet success under a controlled editing protocol remains an independent empirical question.
 
