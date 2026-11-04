@@ -39,3 +39,12 @@ Added `tkgdm2025` and source-linked `tkgdm`, updated original scientific compari
 The **225** frozen study records are unchanged; the new state is **198 BibTeX references / 189 acro terms / 169 linked studies / 56 pending (6 P1, 13 P2, 37 P3)**.
 An additional negative unit test now corrupts TKG-DM's arXiv/publication identity and verifies that the check fails.
 Next individual review: **T03 / CGD-159 / Alfie** after PDF inspection and author feedback.
+
+## Compiled-PDF verification (2026-11-05)
+
+The original scientific-source commit `aa9579f80a71700eeff58817a361775909f033c3` passed **Paper PDF**, **Catalog Check**, and **Awesome Lint**: [Paper PDF run #41857746475](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41857746475), artifact ID **13339058432** (the artifact name uses the CI test-merge SHA `ca1cabe08bf759c8e93715968f83620722dec331`).
+I downloaded and inspected the actual **29-page anonymous-review PDF**, checking the TKG-DM synthesis/evaluation discussion on **pp. 11–12**, its source-linked `acro` entry on **p. 21**, bibliography entry on **p. 26**, and the narrative-map embedding on **p. 3**.
+I also rendered the standalone **26-study narrative map** and **67-study detailed atlas** and inspected their labels and boundaries.
+On the pages inspected, I found no visible collisions or clipped text; the final LaTeX log did not report undefined citations/references or overfull/underfull boxes.
+This is a **targeted visual QA**, not a page-by-page inspection of all 29 pages or a new experiment replication.
+Author scientific approval of this interpretation is **still pending**; do not start T03 as though this is an author sign-off.

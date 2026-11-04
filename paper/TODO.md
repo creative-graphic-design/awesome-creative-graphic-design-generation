@@ -69,5 +69,5 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Directly re-opened live Evidence Matrix 225 row 93, citation/source-tier tabs and prior-survey methodology.
 - [x] Checked CVPR 2025 proceedings metadata, 2024 arXiv version, original Sections 3–7 and Table 1; no unsupported SDXL superiority claim.
 - [x] Synchronized **225 records / 198 references / 189 acro / 169 linked / 56 unresolved (6 P1, 13 P2, 37 P3)**, including the pending queue and regression test.
-- [ ] Latest Paper PDF build and visual verification; record the CI source commit and artifact here after it succeeds.
+- [x] At source commit `aa9579f80a71700eeff58817a361775909f033c3`, [Paper PDF #41857746475](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41857746475), Catalog Check and Awesome Lint **all succeeded**. Retrieved artifact **13339058432** (`survey-paper-ca1cabe08bf759c8e93715968f83620722dec331`): **29-page** anonymous manuscript; rendered and inspected manuscript pp. **3, 11–12, 21 and 26** and both standalone **26- and 67-study** research-map PDFs, with no apparent overlap or clipping in these inspected pages. The TeX log has no unresolved-citation/reference or overfull/underfull box messages.
 - [ ] Author scientific review of T02 before T03 / CGD-159 / Alfie.
