@@ -49,8 +49,8 @@ class EvidenceRegisterTest(unittest.TestCase):
         errors, counts = validator.validate(self.paper)
         self.assertEqual(errors, [])
         self.assertEqual(counts["sheet_studies"], 225)
-        self.assertEqual(counts["linked"], 167)
-        self.assertEqual(counts["needs_review"], 58)
+        self.assertEqual(counts["linked"], 168)
+        self.assertEqual(counts["needs_review"], 57)
 
     def test_old_spreadsheet_review_is_rejected(self) -> None:
         manifest = self.paper / "evidence_register_snapshot_manifest.json"

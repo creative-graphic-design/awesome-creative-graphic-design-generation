@@ -89,7 +89,7 @@ section,category,catalog_title,catalog_url,catalog_arxiv_url,bibtex_key,match_me
 "Papers","Composable and Layered Asset Generation","PrismLayers","https://arxiv.org/abs/2505.22523","","prismlayers2025","arxiv_id","matched"
 "Papers","Composable and Layered Asset Generation","Qwen-Image-Layered","https://openaccess.thecvf.com/content/CVPR2026/html/Yin_Qwen-Image-Layered_Towards_Inherent_Editability_via_Layer_Decomposition_CVPR_2026_paper.html","https://arxiv.org/abs/2512.15603","qwenimagelayered2026","arxiv_id","matched"
 "Papers","Composable and Layered Asset Generation","SAWNA","https://www.siggraph.org/wp-content/uploads/2025/08/Posters.html","","sawna2025","url","matched"
-"Papers","Composable and Layered Asset Generation","TAUE","https://openaccess.thecvf.com/content/CVPR2026F/html/Nagai_TAUE_Training-free_Noise_Transplant_and_Cultivation_Diffusion_Model_CVPRF_2026_paper.html","https://arxiv.org/abs/2511.02580","","","unmatched"
+"Papers","Composable and Layered Asset Generation","TAUE","https://openaccess.thecvf.com/content/CVPR2026F/html/Nagai_TAUE_Training-free_Noise_Transplant_and_Cultivation_Diffusion_Model_CVPRF_2026_paper.html","https://arxiv.org/abs/2511.02580","taue2026","arxiv_id","matched"
 "Papers","Composable and Layered Asset Generation","TKG-DM","https://doi.org/10.1109/CVPR52734.2025.01216","https://arxiv.org/abs/2411.15580","","","unmatched"
 "Papers","Typography and Text Rendering","GlyphDraw2","https://ojs.aaai.org/index.php/AAAI/article/view/32636","https://arxiv.org/abs/2407.02252","glyphdraw2025","arxiv_id","matched"
 "Papers","Typography and Text Rendering","PosterMaker","https://doi.org/10.1109/CVPR52734.2025.00757","https://arxiv.org/abs/2504.06632","postermaker2025","arxiv_id","matched"

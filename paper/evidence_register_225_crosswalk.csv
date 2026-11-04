@@ -89,7 +89,7 @@ working_register_id,bibtex_key,match_method,citation_status,editorial_decision,e
 "CGD-088","prismlayers2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-089","qwenimagelayered2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-090","sawna2025","url","linked","pending","Identity linked via url; evidence tier not promoted"
-"CGD-091","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
+"CGD-091","taue2026","arxiv_id","linked","included","source: https://arxiv.org/html/2511.02580 original §§3–6, Table 2, Fig. 6; 2026 CVPR Findings. In scope as layered design generation. Quantitative quality/layer reconstruction, not measured independent edit transactions."
 "CGD-092","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
 "CGD-093","glyphdraw2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-094","postermaker2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
