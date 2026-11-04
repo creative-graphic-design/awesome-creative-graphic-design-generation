@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "source": "Google Drive / native Google Sheet",
+  "spreadsheet_id": "1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc",
+  "source_tab": "Evidence Matrix 225",
+  "source_range": "A1:AG226",
+  "stable_id_column": "Paper ID",
+  "snapshot_reviewed_utc": "2026-11-04",
+  "expires_after_days": 30,
+  "expected_study_rows": 225,
+  "note": "Private workbook is read directly by an authorized editor. GitHub CI validates only this committed snapshot; a new live-sheet review is required to renew the date."
+}
