@@ -48,6 +48,14 @@
 
 - [ ] Distinguish `LayoutGAN` from `Attribute-conditioned Layout GAN`, and treat `PDA-GAN` as a named model rather than expanding the embedded `GAN` token independently.
 
+## Exhaustive list-first acro review
+
+- [ ] For now, display **all 168 entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
+- [ ] Include the description, source citation, BibTeX reference year, available venue, paper URL, DOI and usage pages via `survey-rich`; keep bibliography metadata synchronized in CI.
+- [ ] Keep the new `source` list citation distinct from `cite` on first prose use.
+- [ ] Do **not** invent task, representation, venue, DOI, or experimental findings when the primary evidence or bibliography lacks them; optional source-grounded fields may be populated later.
+- [ ] Inspect the complete PDF for long venues, citation-wrapping, link behavior, page number legibility and overall page count before curating the final index.
+
 ## BibTeX and similar paper names
 
 - [ ] Verify exact title, authors, year, venue and DOI from the original paper or publisher, preferably the published proceedings record, then retain a stable URL.

@@ -114,9 +114,9 @@ require(r"\printacronyms[include=abbreviations" in main,
         "Print the abbreviation list using acro")
 require(r"\printacronyms[include=systems" in main,
         "Print named systems separately using acro")
-require(r"\printacronyms[include=abbreviations,heading=none,display=all]" in main,
+require(r"\printacronyms[include=abbreviations,heading=none,display=all,template=survey-rich]" in main,
         "Print all registered abbreviations, not only already-used ones")
-require(r"\printacronyms[include=systems,heading=none,display=all]" in main,
+require(r"\printacronyms[include=systems,heading=none,display=all,template=survey-rich]" in main,
         "Print all registered named systems, not only already-used ones")
 require("glossaries" not in main and "printnoidxglossary" not in main,
         "Remove obsolete glossaries declarations")
@@ -153,8 +153,71 @@ for key, options in definitions:
             f"acro entry missing short/long metadata: {key}")
 require(n_abbr >= 22 and n_systems >= 120 and n_evaluation >= 15,
         "Preserve expanded abbreviation, named-system, and benchmark/dataset groups")
-require(r"\printacronyms[include=evaluation,heading=none,display=all]" in main,
+require(r"\printacronyms[include=evaluation,heading=none,display=all,template=survey-rich]" in main,
         "Print benchmark/dataset resources in their own acro list")
+
+# Full research index: every named source has an index-specific citation and
+# available bibliographic metadata, independently of its first-use acro citation.
+index_template = tex("acro_list_template.tex")
+require(r"\NewAcroTemplate[list]{survey-rich}" in index_template,
+        "Define the exhaustive survey-rich acro list template")
+require(r"\input{acro_list_template}" in main,
+        "Load the acro list template before the definitions")
+for property_name in ("source", "refyear", "venue", "paperurl", "doi",
+                      "task", "representation"):
+    require(r"\DeclareAcroProperty{" + property_name + "}" in index_template,
+            f"Missing index property declaration: {property_name}")
+for property_name in ("list", "extra", "refyear", "venue", "source",
+                      "paperurl", "doi", "task", "representation"):
+    require(r"\acrowrite{" + property_name + "}" in index_template,
+            f"Index template does not display metadata field: {property_name}")
+require(r"\acropages" in index_template, "Index template must show usage pages")
+require(r"\href{\acrowrite{paperurl}}{paper}" in index_template,
+        "Index template must link to the recorded paper URL")
+
+acro_bib_records: dict[str, dict[str, str]] = {}
+acro_bib_starts = list(re.finditer(r"(?m)^@\w+\{([^,]+),\s*$", acro_bib_source))
+for i, item in enumerate(acro_bib_starts):
+    end = acro_bib_starts[i + 1].start() if i + 1 < len(acro_bib_starts) else len(acro_bib_source)
+    chunk = acro_bib_source[item.end():end]
+    fields: dict[str, str] = {}
+    for field in ("year", "booktitle", "journal", "url", "doi"):
+        found = re.search(rf"(?m)^\s*{field}\s*=\s*\{{(.*)\}},?\s*$", chunk)
+        fields[field] = found.group(1) if found else ""
+    acro_bib_records[item.group(1)] = fields
+
+acro_list_sources = 0
+for name, properties in definitions:
+    item_tag = re.search(r"(?m)^\s*tag\s*=\s*\{([^}]+)\}", properties)
+    if not item_tag or item_tag.group(1) == "abbreviations":
+        continue
+    original = re.search(r"(?m)^\s*cite\s*=\s*\{([^}]+)\}", properties)
+    index_citation = re.search(r"(?m)^\s*source\s*=\s*\{\\citep\{([^}]+)\}\}", properties)
+    year = re.search(r"(?m)^\s*refyear\s*=\s*\{(\d{4})\}", properties)
+    url = re.search(r"(?m)^\s*paperurl\s*=\s*\{([^}]+)\}", properties)
+    venue = re.search(r"(?m)^\s*venue\s*=\s*\{([^}]+)\}", properties)
+    doi = re.search(r"(?m)^\s*doi\s*=\s*\{([^}]+)\}", properties)
+    require(index_citation is not None, f"Missing list-source citation: {name}")
+    require(year is not None, f"Missing list-reference year: {name}")
+    require(url is not None, f"Missing paper hyperlink: {name}")
+    if original is None:
+        continue
+    bib_key = original.group(1)
+    bib_metadata = acro_bib_records.get(bib_key, {})
+    require(index_citation is not None and index_citation.group(1) == bib_key,
+            f"List citation and first-use source differ: {name}")
+    require(year is not None and year.group(1) == bib_metadata.get("year"),
+            f"Reference year differs from BibTeX: {name}")
+    require(url is not None and url.group(1) == bib_metadata.get("url"),
+            f"Paper link differs from BibTeX: {name}")
+    venue_text = venue.group(1) if venue else ""
+    require(venue_text == (bib_metadata.get("booktitle") or bib_metadata.get("journal")),
+            f"Venue differs from BibTeX: {name}")
+    doi_text = doi.group(1) if doi else ""
+    require(doi_text == bib_metadata.get("doi"), f"DOI differs from BibTeX: {name}")
+    acro_list_sources += 1
+require(acro_list_sources == n_systems + n_evaluation,
+        "Full list must cite every named model, system and evaluation resource")
 
 acro_sources = sorted((PAPER / "sections").glob("*.tex"))
 acro_sources += sorted((PAPER / "tabs" / "tex").glob("*.tex"))
