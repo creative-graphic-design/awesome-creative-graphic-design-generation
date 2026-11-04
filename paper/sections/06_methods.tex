@@ -135,6 +135,8 @@ This task directly tests edit operations and should be evaluated separately from
 \ac{qwenimagelayered} decomposes raster images into semantically separated \ac{rgba} layers, and \ac{layerdecomp} explicitly considers shadows and reflections during foreground/background recovery.
 \ac{mrt} unifies text-to-layer generation, image-to-layer decomposition, and layer-to-layer editing through selective masking.
 \ac{markupdm} instead completes typed content and attributes inside multimodal markup documents, demonstrating that layer synthesis and document-level semantic completion have different editing interfaces.
+\ac{taue} produces foreground, background, and composite images without model fine-tuning, using intermediate latent transplantation and cross-layer attention for visual coherence.
+Its examples illustrate layout control, multiple-object composition, and background replacement, but do not establish native editable text or vector-object manipulation after export.
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.

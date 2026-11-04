@@ -41,3 +41,7 @@ The current snapshot remains 225 working studies; the manuscript bibliography is
 The remaining priority tiers are **8 P1, 13 P2 and 37 P3**; these are review priorities, not exclusions or full-text reading totals.
 I reduced the `check_evidence_register.py` unresolved ceiling to **58** and updated its negative-case tests to assert the new baseline.
 The original-source metadata and boundary interpretations are recorded in `P1_SOURCE_TRIAGE_20261104.md`.
+
+## T01: CGD-091 / TAUE (2026-11-04)
+
+I re-opened row 92 in the live Google Sheet's Evidence Matrix 225, citation coverage and source-tier tabs, and read its prior-survey comparison tab. I independently inspected [the TAUE original HTML](https://arxiv.org/html/2511.02580), Sections 3–6, Table 2 and Figure 6, and matched the 2026 CVPR Findings publication to arXiv:2511.02580 (first public 2025-11-04). The 225-study frozen snapshot is unchanged; the manuscript now has **197 references / 186 acro entries / 168 linked / 57 unresolved (7 P1, 13 P2, 37 P3)**. The primary-source evidence, scope and editing-claim limitation are in T01_TAUE_SOURCE_AUDIT.md; T02 remains pending author approval. The unmatched 57 are not screened exclusions.

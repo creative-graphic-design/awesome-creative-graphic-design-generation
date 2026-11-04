@@ -21,6 +21,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 ## 1. NEXT — review one P1 study at a time
 
 - [ ] **T01 · CGD-091 · TAUE** — confirm same-work/preprint identity, original task and output, editing claim, evaluation evidence/section locator, and inclusion decision.
+  - Source audit prepared for author review (2026-11-04): original Sections 3–6, Table 2 and Figure 6, plus CVPR 2026 Findings metadata; details in [T01 source audit](T01_TAUE_SOURCE_AUDIT.md). Keep unchecked until sign-off.
 - [ ] **T02 · CGD-092 · TKG-DM** — same review, independently; do not borrow TAUE's evidence tier.
 - [ ] **T03 · CGD-159 · Alfie** — same review, including what is actually editable after export.
 - [ ] **T04 · CGD-174 · LayeringDiff** — distinguish generated layers from demonstrated edit success.
@@ -36,6 +37,12 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 3. Distinguish **format affordance / demonstrated editing / quantitatively scored editing / evaluation target**. Mark unverified claims `not_verified`.
 4. If justified by evidence, update `references.bib`, manuscript discussion, `acronyms.tex`, `literature_citation_audit.csv`, both identity crosswalks and `evidence_review_queue.csv` together. If no citation is warranted, explicitly document why.
 5. Run the evidence-register validator, literature-audit/bibliography checks and negative tests; **build and visually inspect the resulting PDF and maps**; provide links and ask for confirmation before the next ticket.
+
+## T01 source-audit checkpoint — 2026-11-04
+
+- [x] Source review and synchronized records: 225 working IDs / **197 references / 186 acro / 168 linked / 57 unresolved (7 P1, 13 P2, 37 P3)**.
+- [ ] Confirm CI and visually inspect current manuscript PDF including all acro lists and maps; check only after inspecting the actual generated artifact.
+- [ ] Author sign-off on T01 before processing T02.
 
 ## 2. Remaining paper queue (do not bulk-add citations)
 

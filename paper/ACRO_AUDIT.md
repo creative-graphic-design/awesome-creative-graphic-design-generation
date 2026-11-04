@@ -53,3 +53,7 @@ The prior registry contained 175 TeX definitions, including 23 abbreviations.
 I added nine named systems and one diagram benchmark for a total of **185 entries**: 23 abbreviations, 145 systems and 17 evaluation resources.
 Every new named entry includes its source citation, BibTeX year and paper URL, plus venue/DOI only where identified by the publisher.
 A personalized e-commerce banner study without a stable named-system short form is cited directly rather than adding a fabricated acronym.
+
+## Source-grounded T01 entry (2026-11-04)
+
+Added TAUE as a source-linked system: its original 2026 CVPR Findings citation, year, original paper link, task (layer-wise image generation), and output representation (foreground, background and composite image layers) appear in the exhaustive acro index. This makes **186 registered terms**; no generic metric was recast as a model name.

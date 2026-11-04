@@ -17,6 +17,9 @@ These experiments measure semantic correspondence of the rendered graphic.
 By contrast, \ac{deepsvg} studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; \ac{svgformer} reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}.
 Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
 
+For layered synthesis, \ac{taue} studies 1,770 filtered MS-COCO samples using \ac{fid}, image/text alignment, and foreground/background reconstruction through \ac{psnr}, \ac{ssim}, and \ac{lpips} (Section 4.2 and Table 2).
+Its Figure 6 shows layout and background-replacement demonstrations, but Section 6 acknowledges pixel-level foreground-preservation limitations, and its reconstruction scores do not measure held-out edit-instruction success.
+
 \subsection{Appearance, Text, and Reconstruction}
 Typography introduces additional evaluation dimensions: correct character identity, readability, style consistency, and editable text parameters.
 \ac{derendering} reports reconstruction L1/\ac{psnr} and illustrates text or styling changes using recovered renderer parameters \citep{derendering2021}.

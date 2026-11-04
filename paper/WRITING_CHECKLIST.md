@@ -4,6 +4,8 @@
 
 ## Incremental review workflow
 
+- [ ] Review [T01 TAUE original source audit](T01_TAUE_SOURCE_AUDIT.md) for source Sections 3–6, Table 2 and Figure 6. Keep generation/layer reconstruction scores separate from edit-instruction success and require author sign-off before T02.
+
 - [ ] Work from [TODO.md](TODO.md) **one study at a time**, with an explicit per-study evidence record, decision, validator checks, PDF inspection and author sign-off before proceeding.
 - [ ] Keep the current 225-ID triage backlog in `evidence_review_queue.csv`; don't duplicate all its rows in prose or treat an automatic match as a verified experiment.
 - [ ] Keep the dated baseline in `TODO.md` synchronized with source records after each completed ticket. A passing CI validates the checked-in snapshot, not the private live Sheet.

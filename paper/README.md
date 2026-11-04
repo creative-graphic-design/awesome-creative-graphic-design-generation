@@ -4,6 +4,8 @@ This directory contains an initial **research-survey manuscript**, not a submitt
 
 ## Current task-by-task work queue
 
+The latest single-study source audit covers **CGD-091 / TAUE** ([original evidence review](T01_TAUE_SOURCE_AUDIT.md)): 197 references, 186 acro terms, 168 linked, and 57 unresolved working-study IDs. Original Sections 3–6, Table 2 and Figure 6 support a distinction between image-layer fidelity and editing success; author sign-off is pending before T02.
+
 See **[TODO.md](TODO.md)** for the next single research-study review, required evidence, acceptance gates and actual PDF checks. Latest verified baseline (2026-11-04): **225** study IDs, **196** references, **185** acro entries, **167** matched and **58** unresolved (**8 P1, 13 P2, 37 P3**). Historical counts in sections below are earlier checkpoints, not current totals. Do not process all unresolved studies as one bulk citation operation.
 
 ## Citation coverage and source gates — 2026-11-04
