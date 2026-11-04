@@ -7,9 +7,9 @@ This revision expands the central CTAN **acro v3.8** registry and links plain-te
 | Tag | Entries | First-use behavior | Source attribution |
 |---|---:|---|---|
 | abbreviations | 22 | Full term on first use, short form later | General standard terms |
-| systems | 130 | Published short name only | Each entry has an original BibTeX `cite` key |
+| systems | 136 | Published short name only | Each entry has an original BibTeX `cite` key |
 | evaluation | 16 | Published resource short name only | Each entry has an original BibTeX `cite` key |
-| **Total** | **168** | | |
+| **Total** | **174** | | |
 
 The 61 newly registered generation/editing systems span layout, posters, typography, SVG, layers, slides and scientific figures. The 15 added evaluation entries encompass SVGEditBench, VectorGym, GraphicDesignBench, BizGenEval, AesEval-Bench, MPTc-Bench, DesignProbe, SridBench, SciFlow-Bench, LTSim, Design-o-meter, DesignSense, Rico, PubLayNet and DocLayNet. Existing PPTArena is moved into the evaluation group; it is **not a new bibliography item**.
 
@@ -33,12 +33,16 @@ The source audit found that `LayoutGAN` (2019) is **not** the same work as `Attr
 
 ## Appearance-page completion
 
-The current manuscript source references **all 168 registered keys** at least once with an `acro` command, including the general `GAN` abbreviation. This is a **syntactic occurrence audit**, not evidence that all 168 named resources received a full experiment review. The generated PDF's page-number list remains the visual authority for the appearance index.
+The current manuscript source references **all 174 registered keys** at least once with an `acro` command, including the general `GAN` abbreviation. This is a **syntactic occurrence audit**, not evidence that all 168 named resources received a full experiment review. The generated PDF's page-number list remains the visual authority for the appearance index.
 
 ## All-metadata preview before pruning (2026-11-04)
 
-Following author feedback, the PDF displays **all 168 `acro` records** rather than selecting a subset. The original `cite` field retains first-use provenance; an additional `source = {\\citep{...}}` field renders the same source directly in the list. We added a `survey-rich` list template to display every currently available name, explanation, reference year, venue, original citation, clickable paper URL, DOI link and occurrence page. Generic abbreviations do not inherit fabricated source citations.
+Following author feedback, the PDF displays **all 174 `acro` records** rather than selecting a subset. The original `cite` field retains first-use provenance; an additional `source = {\\citep{...}}` field renders the same source directly in the list. We added a `survey-rich` list template to display every currently available name, explanation, reference year, venue, original citation, clickable paper URL, DOI link and occurrence page. Generic abbreviations do not inherit fabricated source citations.
 
 Of the 146 named-system/evaluation entries, the bibliography provides **146** paper URLs, **146** reference years, **81** venues, and **19** DOI strings. Missing venue/DOI means the current BibTeX does not contain that value, **not** that no venue/DOI exists. The template defines optional `task` and `representation` properties but leaves them unset until individual evidence is audited; they will be displayed when available. A new `check_manuscript.py` gate verifies each displayed metadata field against its exact BibTeX record.
 
 The extensive PDF list is a **working review artifact**, and it should be shortened or moved to supplementary materials only after inspecting the complete rendered output.
+
+## Current checkpoint after source reconciliation (2026-11-04)
+
+The complete PDF index now covers **174** entries: **22 abbreviations, 136 named systems, 16 evaluation resources**. The 6 new systems are NeuralSVG, IGD, OmniSVG, LayerFusion, Revision Matters, and Draw with Thought. Each received original paper metadata and a manuscript use. The total manuscript bibliography is **186**, not the previous 180. All six are recorded as abstract/proceedings-verified rather than methods/results-verified. The preceding 168-entry counts are the earlier glossary checkpoint, not the current source-of-truth.
