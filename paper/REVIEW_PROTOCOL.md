@@ -59,3 +59,7 @@ I re-opened the native Evidence Matrix 225, prior-survey and source-tier tabs an
 The bibliography now contains **196** cited works, and the frozen 225-study identity crosswalk links **167**, leaving **58** under review.
 The separate 207-paper public-catalogue crosswalk links **150**, leaving 57 requiring reconciliation.
 The new ten citation-audit entries are conservatively tagged `abstract_index`; original quantitative experiment tables and editability claims have **not** been re-audited merely because the source's title or abstract was checked.
+
+## T02 original empirical evidence (2026-11-05)
+
+I inspected TKG-DM's original §§3–7, Table 1 and Figure 10 after checking the native spreadsheet. The added CVPR 2025 source (2024 first preprint) raises the manuscript to **198 bibliography entries**, with **169/225 uniquely linked** working study IDs and **56 pending**. This work generates chroma-key foreground imagery, not native editable text or vector objects. FID/mask metrics and user preferences test rendered generation, and Table 1's SDXL conditions favor LayerDiffuse on all four listed endpoints; no general editability or performance dominance is inferred. See `T02_TKGDM_SOURCE_AUDIT.md` for exact scope and methods/results locators.

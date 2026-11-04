@@ -22,7 +22,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 
 - [ ] **T01 · CGD-091 · TAUE** — confirm same-work/preprint identity, original task and output, editing claim, evaluation evidence/section locator, and inclusion decision.
   - Source audit prepared for author review (2026-11-04): original Sections 3–6, Table 2 and Figure 6, plus CVPR 2026 Findings metadata; details in [T01 source audit](T01_TAUE_SOURCE_AUDIT.md). Keep unchecked until sign-off.
-- [ ] **T02 · CGD-092 · TKG-DM** — same review, independently; do not borrow TAUE's evidence tier.
+- [x] **T02 · CGD-092 · TKG-DM** — original Sections 3–7, Table 1 and Figures 2/10 independently audited in [T02_TKGDM_SOURCE_AUDIT.md](T02_TKGDM_SOURCE_AUDIT.md); author scientific approval remains pending.
 - [ ] **T03 · CGD-159 · Alfie** — same review, including what is actually editable after export.
 - [ ] **T04 · CGD-174 · LayeringDiff** — distinguish generated layers from demonstrated edit success.
 - [ ] **T05 · CGD-184 · UniWorld-Design** — check the concrete output contract and any claimed native format.
@@ -63,3 +63,11 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [ ] **T20 · Final PDF review:** build anonymous manuscript, inspect all figures and acro lists, validate citation resolution and provide latest manuscript + both map PDFs.
 
 **Operating rule:** Report only (a) the ticket just checked, (b) evidence and decision, (c) changed files/CI/PDF, and (d) the *single next ticket*. Do not expand all 58 unresolved studies in one turn.
+
+## T02 primary-source checkpoint — 2026-11-05
+
+- [x] Directly re-opened live Evidence Matrix 225 row 93, citation/source-tier tabs and prior-survey methodology.
+- [x] Checked CVPR 2025 proceedings metadata, 2024 arXiv version, original Sections 3–7 and Table 1; no unsupported SDXL superiority claim.
+- [x] Synchronized **225 records / 198 references / 189 acro / 169 linked / 56 unresolved (6 P1, 13 P2, 37 P3)**, including the pending queue and regression test.
+- [ ] Latest Paper PDF build and visual verification; record the CI source commit and artifact here after it succeeds.
+- [ ] Author scientific review of T02 before T03 / CGD-159 / Alfie.

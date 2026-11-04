@@ -122,6 +122,14 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Run the manuscript checker and PDF build, inspect both lists and first-use rendering, and confirm no obsolete `\gls` or `\newglossaryentry` remains.
 - [ ] Print all three groups with `display=all` and inspect the resulting PDF; acro defaults to displaying only used entries, which can otherwise produce an empty Abbreviations list.
 
+## T02 original-methods/results checkpoint (2026-11-05)
+
+- [ ] Preserve the original TKG-DM §3–7, Table 1 and Figure 10 evidence (CVPR 2025 / 2024 preprint); in SDXL its four listed scores do not surpass LayerDiffuse.
+- [ ] Distinguish chroma-key RGB synthesis from independent alpha-layer export, native SVG/HTML/PSD objects and controlled editing success.
+- [ ] Read CGD-092 in the **live** 225-study Sheet alongside prior-survey and source-tier tabs before changing source keys or evidence depth.
+- [ ] Require the 56-unresolved CI ceiling and TKG-DM preprint identity negative regression test; do not exclude unmatched studies by default.
+- [ ] Build and visually inspect the current PDF and both figure PDFs before advancing T03; keep author scientific review pending until feedback.
+
 ## P1 original-source expansion checkpoint (2026-11-04)
 
 - [ ] Keep all 225 stable study IDs; re-run the citation join after adding source records and do not mark the remaining 58 unmatched IDs as excluded.

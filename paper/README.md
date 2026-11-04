@@ -4,7 +4,7 @@ This directory contains an initial **research-survey manuscript**, not a submitt
 
 ## Current task-by-task work queue
 
-The latest single-study source audit covers **CGD-091 / TAUE** ([original evidence review](T01_TAUE_SOURCE_AUDIT.md)): 197 references, 188 acro terms, 168 linked, and 57 unresolved working-study IDs. Original Sections 3–6, Table 2 and Figure 6 support a distinction between image-layer fidelity and editing success; author sign-off is pending before T02.
+The latest single-study primary-source audit covers **CGD-092 / TKG-DM** ([original experiment review](T02_TKGDM_SOURCE_AUDIT.md)): **198 references, 189 acro terms, 169 linked and 56 unresolved studies**. The original §3–7 and Table 1 show chroma-key RGB generation is not native document editing, while SDXL comparisons do not support unconditional superiority over LayerDiffuse. Author review remains pending before T03.
 
 See **[TODO.md](TODO.md)** for the next single research-study review, required evidence, acceptance gates and actual PDF checks. Latest verified baseline (2026-11-04): **225** study IDs, **196** references, **185** acro entries, **167** matched and **58** unresolved (**8 P1, 13 P2, 37 P3**). Historical counts in sections below are earlier checkpoints, not current totals. Do not process all unresolved studies as one bulk citation operation.
 

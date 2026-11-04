@@ -61,3 +61,7 @@ Added TAUE as a source-linked system: its original 2026 CVPR Findings citation, 
 ## Two standard metrics after CI detection
 
 The manuscript check identified missing acro keys for SSIM and LPIPS when citing the TAUE evaluation. Both have now been added as general technical abbreviations, not new research methods or new bibliography entries. Full index: **188** records = 25 general abbreviations, 146 systems, 17 evaluation resources. The PDF display remains subject to the new source-commit build.
+
+## T02 TKG-DM source-linked metadata (2026-11-05)
+
+Added `tkgdm` with CVPR 2025 citation, DOI, paper link, source-grounded task and **keyed RGB** (not native layer hierarchy) representation. The full index now comprises **189 entries: 25 abbreviations, 147 systems, 17 evaluation resources**. Its original experimental distinctions are audited in `T02_TKGDM_SOURCE_AUDIT.md`.

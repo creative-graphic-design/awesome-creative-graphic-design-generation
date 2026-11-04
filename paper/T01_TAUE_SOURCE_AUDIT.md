@@ -39,3 +39,7 @@ Author sign-off is required before T02 / CGD-092 / TKG-DM.
 ## Generated PDF verification (completed 2026-11-04)
 
 Source commit `9545d800babd0235e6b512efe836bb19480a470a` passed Paper PDF, Catalog Check and Awesome Lint. I retrieved artifact `13335137547`: the anonymous manuscript has **29 pages**, and standalone 26/67-milestone maps are intact. I rendered and visually inspected p. 3 (map), p. 11 (first TAUE citation), p. 12 (evaluation metrics), p. 21 (full acro listing with cite/year/venue/representation and appearance pages), and p. 26 (original bibliography entry). The TeX log did not show an undefined control sequence, an undefined citation/reference or an overfull/underfull hbox warning. The paper and maps were exported for the author to review. T01 **author approval remains pending** before T02 begins.
+
+## Continuation (2026-11-05)
+
+The user subsequently instructed the manuscript work to continue, so T02 was started. This authorization to proceed is **not** an assertion that all scientific interpretations in T01 received individual author sign-off; its review checkbox remains open.
