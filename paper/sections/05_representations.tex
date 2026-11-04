@@ -13,14 +13,15 @@ Such systems provide useful structural arrangements, but layout coordinates need
 Content-aware layout systems additionally place foreground elements in visual context \citep{cglgan2022,layoutdetr2024}.
 
 Raster generation delivers an integrated rendering.
+A \ac{png} image can retain an alpha channel, but the file format alone does not preserve independently editable text or design objects.
 A clean appearance is valuable, but targeted changes and preservation of neighboring content constitute a separate image-editing problem.
 SAWNA exemplifies a boundary: it enforces user-reserved blank regions during image synthesis to support later composition \citep{sawna2025}.
 Those regions are useful but do not establish post-export semantic object manipulation.
 
 \paragraph{Document structures and conditioned layouts.}
 READ uses a recursive latent tree to capture relationships among document elements \citep{read2020}, whereas Neural Design Network incorporates user constraints directly in structured layout generation \citep{ndn2020}.
-Attribute-conditioned \ac{layoutgan} models the association between content attributes and layout decisions \citep{aclayoutgan2020}, and multi-choice layout learning encourages diversity among plausible arrangements \citep{layoutmcl2023}.
-In image-aware composition, PDA-\ac{gan} adapts between different background domains with a pixel-level discriminator \citep{pdagan2023}, whereas LayoutDiT uses a diffusion transformer to balance background content and graphic elements \citep{layoutdit2024}.
+\ac{aclayoutgan} models the association between content attributes and layout decisions, and multi-choice layout learning encourages diversity among plausible arrangements \citep{layoutmcl2023}.
+In image-aware composition, \ac{pdagan} adapts between different background domains with a pixel-level discriminator, whereas LayoutDiT uses a diffusion transformer to balance background content and graphic elements \citep{layoutdit2024}.
 Visual Layout Composer explicitly models a coupled image/vector diffusion process \citep{vlc2024}, illustrating how a predicted layout, composed image, and vector representation can be learned together while remaining distinct deliverables.
 
 \subsection{Vector Path and Layer Structures}

@@ -46,6 +46,8 @@
 - [ ] Do not conflate identical model names from unrelated papers (notably two `LayoutDiffusion` studies and generation/editing uses of `ReLayout`); retain explicit bibliographic disambiguation.
 - [ ] Preserve direct `\\citet` citations when referring to authors, and avoid duplicate `\\citep` next to a model's first automatic citation.
 
+- [ ] Distinguish `LayoutGAN` from `Attribute-conditioned Layout GAN`, and treat `PDA-GAN` as a named model rather than expanding the embedded `GAN` token independently.
+
 ## BibTeX and similar paper names
 
 - [ ] Verify exact title, authors, year, venue and DOI from the original paper or publisher, preferably the published proceedings record, then retain a stable URL.
