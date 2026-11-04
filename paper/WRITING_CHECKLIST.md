@@ -137,3 +137,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Never transfer previously recorded source tiers from the separate 225-study working register into a new citation-level audit without checking its original method/result locations.
 - [ ] Update the actual bibliography, prose, original-source evidence, acro index, private/public citation crosswalk, unresolved queue and the CI regression ceiling in one work cycle.
 - [ ] Build and inspect the actual PDF including all 185 acro entries, bibliography and both research maps; provide verified PDF links with each update.
+
+## T03 Alfie methods/results checkpoint (2026-11-05)
+
+- [ ] Preserve the distinction between a *single RGBA foreground raster* and an editable document with independently addressable design objects; downstream compositing is not edit-instruction accuracy.
+- [ ] Keep Table 1's four-pixel empty-border criterion separate from CLIP-S, the 10-person/100-image (~63%) matting preference and the qualitative Collage Diffusion example.
+- [ ] Do not invent RGBA FID/KID: the authors explicitly omit them because a compatible reference distribution is unavailable.
+- [ ] Treat ECCV 2024 workshop/arXiv and 2025 Springer LNCS as one source; keep arXiv `eprint` and publisher DOI/volume/pages aligned.
+- [ ] Ensure the 225-ID gate rejects regression above 55 pending and catches corrupt Alfie publication/preprint links; inspect actual PDF and figures before T04.

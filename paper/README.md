@@ -2,6 +2,15 @@
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
+## Latest single-study checkpoint — T03 / Alfie (2026-11-05)
+
+I compared the live 225-study workbook with Alfie's original Sections 4–5.1, Table 1 and Figures 3/5–7 and the Springer publication record.
+Alfie delivers a compositable single RGBA foreground image; cropping proxies and matting preference do not measure post-export design edits.
+The 2024 workshop/arXiv and the published 2025 LNCS chapter refer to one study.
+The current audited coverage is **225 working IDs, 199 references, 190 acro entries, 170 linked and 55 unresolved (5 P1 / 13 P2 / 37 P3)**.
+See [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md) for evidence and limitations; current-source PDF and author review are still acceptance gates.
+Earlier totals below are historical checkpoints.
+
 ## Current task-by-task work queue
 
 The latest single-study primary-source audit covers **CGD-092 / TKG-DM** ([original experiment review](T02_TKGDM_SOURCE_AUDIT.md)): **198 references, 189 acro terms, 169 linked and 56 unresolved studies**. The original §3–7 and Table 1 show chroma-key RGB generation is not native document editing, while SDXL comparisons do not support unconditional superiority over LayerDiffuse. Author review remains pending before T03.

@@ -139,6 +139,9 @@ This task directly tests edit operations and should be evaluated separately from
 Its examples illustrate layout control, multiple-object composition, and background replacement, but do not establish native editable text or vector-object manipulation after export.
 \ac{tkgdm} instead controls a chroma-key background using channel-wise initial-noise shifts and a Gaussian spatial mask, generating foreground content without fine-tuning.
 The resulting color-keyed raster image can facilitate background extraction and compositing, but the reported output is not an exported native text, vector, or editable object hierarchy.
+\ac{alfie} uses inference-time subject centering in a pretrained diffusion transformer, combines cross- and self-attention for alpha estimation, and cleans the foreground mask using GrabCut (Section 4 and Figure 3).
+Unlike chroma-key synthesis, this pipeline outputs a foreground \ac{rgba} illustration, not a layered native document or a collection of separately editable semantic objects.
+Its application as an input to a collage generator (Figure 7) demonstrates compositing utility rather than verified post-export instruction-edit success.
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.

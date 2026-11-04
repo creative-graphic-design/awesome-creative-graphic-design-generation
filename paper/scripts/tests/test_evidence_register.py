@@ -49,8 +49,8 @@ class EvidenceRegisterTest(unittest.TestCase):
         errors, counts = validator.validate(self.paper)
         self.assertEqual(errors, [])
         self.assertEqual(counts["sheet_studies"], 225)
-        self.assertEqual(counts["linked"], 169)
-        self.assertEqual(counts["needs_review"], 56)
+        self.assertEqual(counts["linked"], 170)
+        self.assertEqual(counts["needs_review"], 55)
 
     def test_old_spreadsheet_review_is_rejected(self) -> None:
         manifest = self.paper / "evidence_register_snapshot_manifest.json"
@@ -93,6 +93,17 @@ class EvidenceRegisterTest(unittest.TestCase):
         bib.write_text(broken, encoding="utf-8")
         errors, _ = validator.validate(self.paper)
         self.assertTrue(any("Stale/missing BibTeX link: CGD-092" in e for e in errors))
+
+    def test_alfie_publication_preprint_alias_regression_is_rejected(self) -> None:
+        bib = self.paper / "references.bib"
+        content = bib.read_text(encoding="utf-8")
+        self.assertIn("eprint = {2408.14826}", content)
+        broken = content.replace("eprint = {2408.14826}", "eprint = {2408.14827}")
+        broken = broken.replace("url = {https://arxiv.org/abs/2408.14826}",
+                                "url = {https://arxiv.org/abs/2408.14827}")
+        bib.write_text(broken, encoding="utf-8")
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("Stale/missing BibTeX link: CGD-159" in e for e in errors))
 
     def test_missing_sheet_study_is_rejected(self) -> None:
         self.rewrite(ASSETS[0], lambda rows: rows.pop())

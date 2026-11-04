@@ -23,7 +23,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [ ] **T01 · CGD-091 · TAUE** — confirm same-work/preprint identity, original task and output, editing claim, evaluation evidence/section locator, and inclusion decision.
   - Source audit prepared for author review (2026-11-04): original Sections 3–6, Table 2 and Figure 6, plus CVPR 2026 Findings metadata; details in [T01 source audit](T01_TAUE_SOURCE_AUDIT.md). Keep unchecked until sign-off.
 - [x] **T02 · CGD-092 · TKG-DM** — original Sections 3–7, Table 1 and Figures 2/10 independently audited in [T02_TKGDM_SOURCE_AUDIT.md](T02_TKGDM_SOURCE_AUDIT.md); author scientific approval remains pending.
-- [ ] **T03 · CGD-159 · Alfie** — same review, including what is actually editable after export.
+- [x] **T03 · CGD-159 · Alfie** — original §§4–5.1, Table 1 and Figs. 3/5–7 checked in [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md). A compositable RGBA bitmap is not native design-object editing; PDF and author-approval gates remain open.
 - [ ] **T04 · CGD-174 · LayeringDiff** — distinguish generated layers from demonstrated edit success.
 - [ ] **T05 · CGD-184 · UniWorld-Design** — check the concrete output contract and any claimed native format.
 - [ ] **T06 · CGD-103 · PosterText** — inspect typography/editing evidence separately from raster text quality.
@@ -71,3 +71,11 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Synchronized **225 records / 198 references / 189 acro / 169 linked / 56 unresolved (6 P1, 13 P2, 37 P3)**, including the pending queue and regression test.
 - [x] At source commit `aa9579f80a71700eeff58817a361775909f033c3`, [Paper PDF #41857746475](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41857746475), Catalog Check and Awesome Lint **all succeeded**. Retrieved artifact **13339058432** (`survey-paper-ca1cabe08bf759c8e93715968f83620722dec331`): **29-page** anonymous manuscript; rendered and inspected manuscript pp. **3, 11–12, 21 and 26** and both standalone **26- and 67-study** research-map PDFs, with no apparent overlap or clipping in these inspected pages. The TeX log has no unresolved-citation/reference or overfull/underfull box messages.
 - [ ] Author scientific review of T02 before T03 / CGD-159 / Alfie.
+
+## T03 primary-source checkpoint — 2026-11-05
+
+- [x] Re-read live Evidence Matrix 225 row 160, 225 Citation and R-E-V Coverage, 225 Source Tier Reconciliation, and Prior Survey and Screening; no newer sheet modification than the dated committed snapshot review.
+- [x] Compared [original arXiv §§4–5.1](https://arxiv.org/html/2408.14826) with [Springer LNCS 15627](https://doi.org/10.1007/978-3-031-92808-6_3); 2024 preprint/workshop and 2025 publication describe the same contribution.
+- [x] Synchronized **225 working IDs / 199 references / 190 acro / 170 linked / 55 unresolved (5 P1 / 13 P2 / 37 P3)**, including a negative arXiv-alias regression test.
+- [ ] Build and inspect the actual T03 paper PDF, acro index and both vector research maps; attach validated artifact results to the audit.
+- [ ] Author scientific review of T03 before **T04 / CGD-174 / LayeringDiff**. The user's instruction to continue permitted starting T03, but was not treated as unconditional scientific sign-off.

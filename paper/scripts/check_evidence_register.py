@@ -36,7 +36,7 @@ AUDIT_FIELDS = [
     "editability_audit", "evaluation_audit", "adjudication_status", "notes",
 ]
 EXPECTED_ROWS = 225
-UNRESOLVED_CEILING = 56
+UNRESOLVED_CEILING = 55
 
 
 def csv_rows(path: Path, columns: list[str], errors: list[str]) -> list[dict[str, str]]:

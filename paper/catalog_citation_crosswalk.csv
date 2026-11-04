@@ -157,7 +157,7 @@ section,category,catalog_title,catalog_url,catalog_arxiv_url,bibtex_key,match_me
 "Papers","Graphic Design Editing and Reconstruction","Revision Matters","https://arxiv.org/abs/2406.18559","","revisionmatters2024","arxiv_id","matched"
 "Papers","Scientific Poster and Slide Generation","PostDoc","https://arxiv.org/abs/2405.20213","","postdoc2025","arxiv_id","matched"
 "Papers","Graphic Design Editing and Reconstruction","Neural Contrast","https://arxiv.org/abs/2410.07211","","neuralcontrast2024","arxiv_id","matched"
-"Papers","Composable and Layered Asset Generation","Alfie","https://arxiv.org/abs/2408.14826","","","","unmatched"
+"Papers","Composable and Layered Asset Generation","Alfie","https://arxiv.org/abs/2408.14826","","alfie2025","arxiv_id","matched"
 "Papers","Content-Agnostic Layout Generation","LGGPT","https://doi.org/10.1007/s11263-025-02353-2","https://arxiv.org/abs/2502.14005","lggpt2025","arxiv_id","matched"
 "Papers","Graphic Design Generation","BizGen","https://doi.org/10.1109/CVPR52734.2025.02199","https://arxiv.org/abs/2503.20672","bizgen2025","arxiv_id","matched"
 "Papers","Content-Agnostic Layout Generation","READ: Recursive Autoencoders for Document Layout Generation","https://doi.org/10.1109/CVPRW50498.2020.00280","https://arxiv.org/abs/1909.00302","read2020","arxiv_id","matched"

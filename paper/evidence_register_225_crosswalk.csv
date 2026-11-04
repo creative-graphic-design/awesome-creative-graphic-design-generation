@@ -157,7 +157,7 @@ working_register_id,bibtex_key,match_method,citation_status,editorial_decision,e
 "CGD-156","revisionmatters2024","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-157","postdoc2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-158","neuralcontrast2024","arxiv_id","linked","pending","Original author/publisher abstract checked 2026-11-04; empirical verification and inclusion remain pending: Background edit is not native font or object editing"
-"CGD-159","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
+"CGD-159","alfie2025","arxiv_id","linked","included","Original arXiv §§4–5.1, Table 1, Figs. 3/5–7 and 2025 Springer record verified; single compositable RGBA foreground, not native editable design hierarchy; no systematic post-export editing score."
 "CGD-160","lggpt2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-161","bizgen2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-162","read2020","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
