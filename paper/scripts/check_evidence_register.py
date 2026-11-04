@@ -24,6 +24,11 @@ CROSSWALK_FIELDS = [
     "working_register_id", "bibtex_key", "match_method", "citation_status",
     "editorial_decision", "editorial_note",
 ]
+QUEUE_FIELDS = [
+    "working_register_id", "paper_title", "primary_task", "primary_url",
+    "evidence_tier", "source_recheck_level", "review_priority", "next_action",
+    "editorial_status",
+]
 AUDIT_FIELDS = [
     "bibtex_key", "canonical_title_bib", "reference_year", "bib_url",
     "doi_bib", "working_register_id", "duplicate_group", "source_depth",
@@ -124,6 +129,7 @@ def validate(paper: Path = PAPER) -> tuple[list[str], dict[str, int]]:
     sources = csv_rows(paper / "evidence_register_225_snapshot.csv", SNAPSHOT_FIELDS, errors)
     links = csv_rows(paper / "evidence_register_225_crosswalk.csv", CROSSWALK_FIELDS, errors)
     audits = csv_rows(paper / "literature_citation_audit.csv", AUDIT_FIELDS, errors)
+    review_queue = csv_rows(paper / "evidence_review_queue.csv", QUEUE_FIELDS, errors)
     bib = bib_entries(paper / "references.bib")
     source_ids = [row["working_register_id"] for row in sources]
     linked = unresolved = 0
@@ -187,6 +193,47 @@ def validate(paper: Path = PAPER) -> tuple[list[str], dict[str, int]]:
         expected_id = bib_to_sheet.get(key, "")
         if row["working_register_id"] != expected_id:
             errors.append(f"Missing or outdated 225-study ID in citation audit: {key}")
+    # Every unresolved paper must have one actionable row, not merely a
+    # coarse aggregate count. Priorities reflect source-tier *claims* in the
+    # frozen Sheet, not independently re-verified full-text findings.
+    pending_ids = {r["working_register_id"] for r in links
+                   if r["citation_status"] == "needs_review"}
+    queue_ids = [r["working_register_id"] for r in review_queue]
+    if set(queue_ids) != pending_ids or len(queue_ids) != len(pending_ids):
+        errors.append("Review queue must contain exactly every unresolved study ID")
+    if len(queue_ids) != len(set(queue_ids)):
+        errors.append("Duplicate study ID in unresolved review queue")
+    sources_by_id = {r["working_register_id"]: r for r in sources}
+    for queued in review_queue:
+        key = queued["working_register_id"]
+        original = sources_by_id.get(key)
+        if original is None:
+            errors.append(f"Review queue ID absent from evidence snapshot: {key}")
+            continue
+        for queue_field, source_field in (
+            ("paper_title", "paper_title"),
+            ("primary_task", "primary_task"),
+            ("primary_url", "primary_url"),
+            ("evidence_tier", "evidence_tier_sheet"),
+            ("source_recheck_level", "source_recheck_level_sheet"),
+        ):
+            if queued[queue_field] != original[source_field]:
+                errors.append(f"Stale review queue source field {key}:{queue_field}")
+        tier = (original["evidence_tier_sheet"] + " " +
+                original["source_recheck_level_sheet"]).lower()
+        if re.search(r"primary.methods|methods.results|full.sections|selected.method|original.section|checked.main|paper.text.verified", tier):
+            expected_priority = "P1-primary-source"
+        elif re.search(r"abstract|publisher|author|mirror", tier):
+            expected_priority = "P2-abstract-source"
+        else:
+            expected_priority = "P3-catalogue"
+        if queued["review_priority"] != expected_priority:
+            errors.append(f"Stale source-tier review priority: {key}")
+        if queued["editorial_status"] not in {"pending", "needs_review"}:
+            errors.append(f"Invalid or prematurely finalized review status: {key}")
+        if not queued["next_action"]:
+            errors.append(f"Unresolved study lacks manual review action: {key}")
+
     return errors, {
         "sheet_studies": len(sources), "bibtex_entries": len(bib),
         "linked": linked, "needs_review": unresolved,
