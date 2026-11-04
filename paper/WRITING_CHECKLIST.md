@@ -30,6 +30,9 @@
 - [ ] When adding papers, update BibTeX, `acro`, relevant manuscript discussion, the 225-ID crosswalk, the public catalogue crosswalk, and citation-level audit in the same work cycle; preserve the original source-depth limitations.
 - [ ] Keep the 30-day spreadsheet-review manifest current after **actually reading** the live Sheet, and run both the positive and negative crosswalk tests; never renew its date without checking the live workbook.
 
+- [ ] Maintain `evidence_review_queue.csv` as an explicit **one-row-per-unresolved-study** backlog with the original source URL, task, evidence-tier note, manual review action and pending status. The evidence-register CI validator and negative tests must fail if a record disappears or its priority drifts.
+- [ ] Review the 18 primary-source-labeled, 13 abstract-source-labeled and 37 catalogue-only unresolved records independently; these labels describe workbook history and are **not** automatically promoted proof of full-text review.
+
 ## Literature and evidence
 
 - [ ] Judge coverage by research lines and technical/empirical relevance rather than a raw citation target. The 225 provisional working records are not 225 thoroughly read or cited papers.
