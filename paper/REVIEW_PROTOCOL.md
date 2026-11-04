@@ -52,3 +52,10 @@ Separate: (a) output-format affordance, (b) qualitative editing demonstration, (
 ## Private workbook freshness gate
 
 Before bibliography or survey coverage changes, read the original private Google Sheet again. The committed snapshot manifest requires a new authenticated review within 30 days; CI fails if the source review date expires or the worksheet identity changes. The CI has no real-time private Google Sheets access. Never renew the manifest without actually checking the live source. Negative-case tests guard against losing a study ID or a published/preprint alias.
+
+## Ten-source P1 expansion and review boundaries (2026-11-04)
+
+I re-opened the native Evidence Matrix 225, prior-survey and source-tier tabs and read original author/publisher abstracts for ten previously unresolved P1 papers.
+The bibliography now contains **196** cited works, and the frozen 225-study identity crosswalk links **167**, leaving **58** under review.
+The separate 207-paper public-catalogue crosswalk links **150**, leaving 57 requiring reconciliation.
+The new ten citation-audit entries are conservatively tagged `abstract_index`; original quantitative experiment tables and editability claims have **not** been re-audited merely because the source's title or abstract was checked.

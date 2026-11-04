@@ -33,3 +33,11 @@ The new `evidence_register_snapshot_manifest.json` declares the private source w
 ## Per-study triage queue (2026-11-04)
 
 The file `evidence_review_queue.csv` enumerates all **68** unresolved stable IDs with their source URL, original catalogue task, spreadsheet evidence tier, pending manual decision and required next action. The working queue sorts **18 `P1-primary-source`**, **13 `P2-abstract-source`**, and **37 `P3-catalogue`** records. Those labels are based on the recorded verification metadata and are only *review priorities*; they do not assert an independent full-text read or eligibility. The same `check_evidence_register.py` CI gate now verifies the queue is a bijection with unresolved IDs, retains source metadata and includes no silently finalized decisions. Negative tests remove a row and corrupt a priority to ensure the gate fails.
+
+## P1 source-identification batch (2026-11-04)
+
+I consulted the live 225-study spreadsheet and its prior-survey, citation and source-tier tabs before adding ten previously unmatched papers from author/publisher original records.
+The current snapshot remains 225 working studies; the manuscript bibliography is **196** papers, with **167 linked identities and 58 unmatched**.
+The remaining priority tiers are **8 P1, 13 P2 and 37 P3**; these are review priorities, not exclusions or full-text reading totals.
+I reduced the `check_evidence_register.py` unresolved ceiling to **58** and updated its negative-case tests to assert the new baseline.
+The original-source metadata and boundary interpretations are recorded in `P1_SOURCE_TRIAGE_20261104.md`.

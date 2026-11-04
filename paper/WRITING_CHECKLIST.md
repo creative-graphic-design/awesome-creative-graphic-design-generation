@@ -113,3 +113,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Use `first-style=short` for named systems: their descriptive long field must NOT be misrepresented as a formally expanded name.
 - [ ] Run the manuscript checker and PDF build, inspect both lists and first-use rendering, and confirm no obsolete `\gls` or `\newglossaryentry` remains.
 - [ ] Print all three groups with `display=all` and inspect the resulting PDF; acro defaults to displaying only used entries, which can otherwise produce an empty Abbreviations list.
+
+## P1 original-source expansion checkpoint (2026-11-04)
+
+- [ ] Keep all 225 stable study IDs; re-run the citation join after adding source records and do not mark the remaining 58 unmatched IDs as excluded.
+- [ ] Record each newly added study's original author/title/venue and abstract or introduction evidence before expanding BibTeX or source-linked acro fields.
+- [ ] Never transfer previously recorded source tiers from the separate 225-study working register into a new citation-level audit without checking its original method/result locations.
+- [ ] Update the actual bibliography, prose, original-source evidence, acro index, private/public citation crosswalk, unresolved queue and the CI regression ceiling in one work cycle.
+- [ ] Build and inspect the actual PDF including all 185 acro entries, bibliography and both research maps; provide verified PDF links with each update.

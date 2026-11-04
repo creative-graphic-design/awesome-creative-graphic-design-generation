@@ -102,3 +102,11 @@ Its editable source is `figs/tex/research_map.tex` and its compiled vector outpu
 The 67 figure labels are cross-referenced to actual BibTeX entries in `figs/tex/research_map_sources.csv`, checked in CI; see `RESEARCH_MAP_AUDIT.md` for date and selection caveats.
 
 Both `\printacronyms` lists use `display=all`, so every declared abbreviation and named system is included even if it has not yet appeared in the paper. PDF CI verifies representative entries and rejects an empty acronym-list warning.
+
+## P1 source triage and bibliography update (2026-11-04)
+
+Ten previously unresolved P1 studies were source-identified from original author/publisher records and added with task-specific R--E--V analysis to the manuscript.
+Reference total: **196**; acro total: **185** (the earlier documentation count of 174 was incorrect; the actual original file held 175).
+The private 225-study register maps **167** identities to BibTeX and keeps **58** pending; the public 207-paper catalogue currently matches **150** and leaves **57** unmatched.
+The new bibliography audits remain at abstract/index tier, not comprehensive methods/results.
+See `P1_SOURCE_TRIAGE_20261104.md` and `evidence_review_queue.csv`.

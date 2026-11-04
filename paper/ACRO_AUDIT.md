@@ -7,9 +7,9 @@ This revision expands the central CTAN **acro v3.8** registry and links plain-te
 | Tag | Entries | First-use behavior | Source attribution |
 |---|---:|---|---|
 | abbreviations | 23 | Full term on first use, short form later | General standard terms |
-| systems | 136 | Published short name only | Each entry has an original BibTeX `cite` key |
-| evaluation | 16 | Published resource short name only | Each entry has an original BibTeX `cite` key |
-| **Total** | **175** | | |
+| systems | 145 | Published short name only | Each entry has an original BibTeX `cite` key |
+| evaluation | 17 | Published resource short name only | Each entry has an original BibTeX `cite` key |
+| **Total** | **185** | | |
 
 The 61 newly registered generation/editing systems span layout, posters, typography, SVG, layers, slides and scientific figures. The 15 added evaluation entries encompass SVGEditBench, VectorGym, GraphicDesignBench, BizGenEval, AesEval-Bench, MPTc-Bench, DesignProbe, SridBench, SciFlow-Bench, LTSim, Design-o-meter, DesignSense, Rico, PubLayNet and DocLayNet. Existing PPTArena is moved into the evaluation group; it is **not a new bibliography item**.
 
@@ -46,3 +46,10 @@ The extensive PDF list is a **working review artifact**, and it should be shorte
 ## Current checkpoint after source reconciliation (2026-11-04)
 
 The complete PDF index now covers **175** entries: **23 abbreviations, 136 named systems, 16 evaluation resources**. The 6 new systems are NeuralSVG, IGD, OmniSVG, LayerFusion, Revision Matters, and Draw with Thought. Each received original paper metadata and a manuscript use. The total manuscript bibliography is **186**, not the previous 180. All six are recorded as abstract/proceedings-verified rather than methods/results-verified. The preceding 168-entry counts are the earlier glossary checkpoint, not the current source-of-truth.
+
+## New source-grounded model/index entries (2026-11-04)
+
+The prior registry contained 175 TeX definitions, including 23 abbreviations.
+I added nine named systems and one diagram benchmark for a total of **185 entries**: 23 abbreviations, 145 systems and 17 evaluation resources.
+Every new named entry includes its source citation, BibTeX year and paper URL, plus venue/DOI only where identified by the publisher.
+A personalized e-commerce banner study without a stable named-system short form is cited directly rather than adding a fabricated acronym.
