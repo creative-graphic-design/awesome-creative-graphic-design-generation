@@ -142,6 +142,9 @@ The resulting color-keyed raster image can facilitate background extraction and 
 \ac{alfie} uses inference-time subject centering in a pretrained diffusion transformer, combines cross- and self-attention for alpha estimation, and cleans the foreground mask using GrabCut (Section 4 and Figure 3).
 Unlike chroma-key synthesis, this pipeline outputs a foreground \ac{rgba} illustration, not a layered native document or a collection of separately editable semantic objects.
 Its application as an input to a collage generator (Figure 7) demonstrates compositing utility rather than verified post-export instruction-edit success.
+\ac{layeringdiff} first synthesizes a composite image, then determines a prompted foreground through detection, segmentation, and matting, and uses foreground/background diffusion decomposition and high-frequency alignment to reconstruct separate raster layers (Sections 3.1--3.3).
+Although its pretrained initial composite generator remains fixed, the decomposition and alignment modules are trained on 20,000 synthetic composites (Section 3.4), so the full method is not training-free.
+Its sequential multi-foreground examples (Figure 7) demonstrate compositing affordances rather than native object semantics or measured post-export edit-command accuracy.
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.

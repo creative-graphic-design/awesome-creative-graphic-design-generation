@@ -24,7 +24,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
   - Source audit prepared for author review (2026-11-04): original Sections 3–6, Table 2 and Figure 6, plus CVPR 2026 Findings metadata; details in [T01 source audit](T01_TAUE_SOURCE_AUDIT.md). Keep unchecked until sign-off.
 - [x] **T02 · CGD-092 · TKG-DM** — original Sections 3–7, Table 1 and Figures 2/10 independently audited in [T02_TKGDM_SOURCE_AUDIT.md](T02_TKGDM_SOURCE_AUDIT.md); author scientific approval remains pending.
 - [x] **T03 · CGD-159 · Alfie** — original §§4–5.1, Table 1 and Figs. 3/5–7 checked in [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md). A compositable RGBA bitmap is not native design-object editing; PDF and author-approval gates remain open.
-- [ ] **T04 · CGD-174 · LayeringDiff** — distinguish generated layers from demonstrated edit success.
+- [x] **T04 · CGD-174 · LayeringDiff** — original §§3–5, Tables 1–4 and Figs 1/7/8 audited in [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md); pending PDF validation and author scientific review are tracked below.
 - [ ] **T05 · CGD-184 · UniWorld-Design** — check the concrete output contract and any claimed native format.
 - [ ] **T06 · CGD-103 · PosterText** — inspect typography/editing evidence separately from raster text quality.
 - [ ] **T07 · CGD-072 · Mise-en-Scène** — resolve paper identity and actual generation/editing task.
@@ -79,3 +79,11 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Synchronized **225 working IDs / 199 references / 190 acro / 170 linked / 55 unresolved (5 P1 / 13 P2 / 37 P3)**, including a negative arXiv-alias regression test.
 - [x] **T03 source PDF accepted:** for source `0e308af`, [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836), Catalog Check and Awesome Lint all passed. Downloaded artifact **13345402864**: **29-page anonymous PDF**; rendered and inspected pp. **3, 7, 11–12, 17, 27**, plus the standalone **26-study narrative** and **67-study atlas** PDFs; no visible clipping/overlap in these inspected locations and no unresolved citation/reference, acro, overfull or underfull box warnings in the final log. Details in [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md).
 - [ ] Author scientific review of T03 before **T04 / CGD-174 / LayeringDiff**. The user's instruction to continue permitted starting T03, but was not treated as unconditional scientific sign-off.
+
+## T04 primary-source checkpoint — 2026-11-05
+
+- [x] Re-read live Evidence Matrix 225 row 175, Citation and R-E-V Coverage, Source Tier Reconciliation, and Prior Survey and Screening; original sheet timestamp 2026-11-03T06:03:55Z predates the frozen 2026-11-04 snapshot review.
+- [x] Rechecked [LayeringDiff original arXiv](https://arxiv.org/html/2501.01197) §§3–5, Tables 1–4 and Figures 1/4/6–8. Only the initial composite generator is fixed; FBDD/HFA require 20,000 training composites.
+- [x] Synchronized **225 IDs / 200 references / 193 acro / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**, with an arXiv identity negative regression test.
+- [ ] Verify latest-source Paper PDF, acro list, references and both research-map PDFs from the completed CI artifact.
+- [ ] Author scientific review of T04 before **T05 / CGD-184 / UniWorld-Design**. This request to continue authorizes work on T04, not automatic approval of T03 or T04 scientific claims.

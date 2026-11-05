@@ -24,7 +24,12 @@ Crucially, the reported SDXL FID is 41.81 for \ac{tkgdm} versus 29.34 for LayerD
 Its 100-participant two-alternative preference study (Section 5.5) measures perceived foreground quality and text alignment, not controlled graphic-design edit success.
 In \ac{alfie}, the fraction of 3,000 generated illustrations with an empty four-pixel border on all sides rises from 53.10\% under a prompt-suffix baseline to 96.50\% with subject centering (Table 1); this is a border-based proxy for uncropped assets, not a measurement of semantic editability.
 A separate ten-person study on 100 images prefers Alfie's alpha mattes over ViTMatte approximately 63\% of the time (Section 5.1 and Figure 6), while Figure 7 illustrates downstream collage compatibility without quantitative instruction-edit evaluation.
-The authors explicitly omit \ac{fid} and KID for \ac{rgba} outputs because an appropriately matched transparent-image reference set is unavailable (Section 5), so the missing scores must not be inferred from CLIP-S or border statistics.
+The authors explicitly omit \ac{fid} and \ac{kid} for \ac{rgba} outputs because an appropriately matched transparent-image reference set is unavailable (Section 5), so the missing scores must not be inferred from CLIP-S or border statistics.
+In contrast, \ac{layeringdiff} measures 572 generated foreground/background/composite prompt triplets with \ac{fid}, \ac{kid}, \ac{clip} score and a detector-derived \ac{fgmiou} metric (Section 4.1 and Table 1).
+Its composite \ac{fid} of 121.05 improves on LayerDiffuse T2L's 134.51 under the reported setup, while its foreground \ac{fid} of 133.76 is worse than the baseline's 127.14, so the work does not dominate every layer-wise metric.
+Table 3 measures image quality and prompt alignment from 24 participant ratings, and Table 4 reports reconstruction error on 1,000 synthetic composites, not instruction-based post-export edit performance.
+For background recovery, Table 4 reports an improved \ac{lpips} of 21.80 versus 28.73 for the Germer baseline, but worse MSE of 17.52 versus 12.76, demonstrating that perceptual and pixel-reconstruction metrics answer distinct questions.
+Its Section 5 also reports alpha-estimation errors and shadows remaining in background layers as failure modes that can constrain later compositing.
 
 \subsection{Appearance, Text, and Reconstruction}
 Typography introduces additional evaluation dimensions: correct character identity, readability, style consistency, and editable text parameters.

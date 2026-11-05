@@ -2,7 +2,15 @@
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
-## Latest single-study checkpoint — T03 / Alfie (2026-11-05)
+## Latest single-study checkpoint — T04 / LayeringDiff (2026-11-05)
+
+I inspected [LayeringDiff's original methods/results](https://arxiv.org/html/2501.01197), §§3–5 and Tables 1–4 after re-reading the native 225-study evidence workbook.
+The first composite uses a fixed pretrained generator, but FBDD/HFA are trained on **20,000 synthetic composites**; the entire method is not training-free.
+Its foreground and background raster layers support compositing and sequential decomposition; FID/KID/CLIP, detector-derived FG-mIoU, a 24-person preference study and reconstruction metrics do not evaluate held-out semantic edit instructions.
+**Current checkpoint: 225 working IDs / 200 BibTeX / 193 acro entries / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**.
+See [T04 original-source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md); T04 PDF visual acceptance and author scientific review are tracked separately.
+
+## Historical single-study checkpoint — T03 / Alfie (2026-11-05)
 
 I compared the live 225-study workbook with Alfie's original Sections 4–5.1, Table 1 and Figures 3/5–7 and the Springer publication record.
 Alfie delivers a compositable single RGBA foreground image; cropping proxies and matting preference do not measure post-export design edits.

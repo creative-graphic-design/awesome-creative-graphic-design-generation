@@ -37,6 +37,8 @@ Hierarchical systems including \ac{cole} and \ac{opencole} generate designs thro
 \ac{layerfusion} instead jointly synthesizes transparent foreground and background layers, while \ac{igd} combines predicted layer attributes with generated image assets.
 \ac{alfie} instead obtains a transparent raster foreground by estimating an alpha matte from diffusion-transformer attention maps, enabling placement in an external composition but not independent editing of internal text or vector objects.
 A portable \ac{rgba} illustration is therefore a compositing affordance, not evidence of a native multi-object design hierarchy.
+\ac{layeringdiff} instead disassembles an initially generated composite into foreground RGB plus alpha, reconstructed background RGB, and final recomposited image (Section 3 and Figure 1).
+Figure 7 illustrates iterative decomposition into several foreground raster layers, but neither this application nor the base two-layer output preserves independently editable font or vector objects.
 Code-native systems represent text and assets with manipulable \ac{html}/\ac{css} elements \citep{designascode2026,editablevisual2026}.
 Their artifact format provides substantial leverage for editing, yet success under a controlled editing protocol remains an independent empirical question.
 

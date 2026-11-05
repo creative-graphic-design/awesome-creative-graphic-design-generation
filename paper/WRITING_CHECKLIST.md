@@ -150,3 +150,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 
 - [x] At scientific source commit `0e308af`, [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836), Catalog Check and Awesome Lint passed. I retrieved the **29-page** anonymous PDF and inspected Alfie representation, methods, evaluation, acro list, bibliography and both map figures; no visible overlaps/clips in inspected regions or unresolved citation/reference warnings in its TeX log.
 - [ ] Preserve the author's **scientific approval gate** before starting T04 / CGD-174 / LayeringDiff. Compiled-PDF acceptance is not consent to scientific conclusions.
+
+## T04 LayeringDiff source and figure acceptance (2026-11-05)
+
+- [ ] Distinguish initial composite generation using fixed pretrained weights from training FBDD/HFA on 20,000 composites; never call the entire LayeringDiff pipeline training-free.
+- [ ] Model output as foreground RGB plus alpha, reconstructed background RGB and recomposited RGB; sequential decomposition does not imply native text/vector document editing.
+- [ ] Separate 572-triplet FID/KID/CLIP/FG-mIoU generation results (Table 1), scale/position diversity (Table 2), 24-person ratings (Table 3) and reconstruction on 1,000 synthetic composites (Table 4) from editing.
+- [ ] Preserve counterexamples: worse foreground FID and worse background MSE despite improvements in composite FID and perceptual background LPIPS.
+- [ ] Retain Section 5 failure modes (alpha estimation, shadows) and require actual PDF and map artifact inspection before T05.

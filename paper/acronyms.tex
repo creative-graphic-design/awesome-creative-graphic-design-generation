@@ -2101,3 +2101,35 @@
   task = {Whole-subject RGBA illustration generation for compositing},
   representation = {Single transparent raster foreground; no native design-object tree}
 }
+
+\DeclareAcronym{kid}{
+  short = {KID},
+  long = {kernel inception distance},
+  tag = {abbreviations}
+}
+
+\DeclareAcronym{layeringdiff}{
+  short = {LayeringDiff},
+  long = {Generate-first diffusion decomposition of foreground and background with high-frequency alignment},
+  tag = {systems},
+  cite = {layeringdiff2025},
+  first-style = short,
+  source = {\citep{layeringdiff2025}},
+  refyear = {2025},
+  paperurl = {https://arxiv.org/abs/2501.01197},
+  task = {Raster layer synthesis by generation then decomposition},
+  representation = {Foreground RGB and alpha, background RGB, and composite RGB image}
+}
+
+\DeclareAcronym{fgmiou}{
+  short = {FG-mIoU},
+  long = {Foreground-oriented mean intersection over union},
+  tag = {evaluation},
+  cite = {layeringdiff2025},
+  first-style = short,
+  source = {\citep{layeringdiff2025}},
+  refyear = {2025},
+  paperurl = {https://arxiv.org/abs/2501.01197},
+  task = {Assess foreground shape and residual foreground content in the background},
+  representation = {Detection- and segmentation-derived foreground masks}
+}

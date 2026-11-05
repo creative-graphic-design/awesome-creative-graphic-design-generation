@@ -172,7 +172,7 @@ working_register_id,bibtex_key,match_method,citation_status,editorial_decision,e
 "CGD-171","creatiparser2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-172","designdiffusion2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-173","omnipsd2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
-"CGD-174","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
+"CGD-174","layeringdiff2025","arxiv_id","linked","included","source: https://arxiv.org/html/2501.01197 §§3–5 Tables1–4 Figs1/7/8; learned decomposition, FG RGBA plus BG RGB, no semantic editing benchmark."
 "CGD-175","layerdecomp2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-176","layeredfx2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-177","psdiffusion2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
