@@ -165,6 +165,18 @@ require(r"\section*{Benchmarks, Datasets, and Evaluation Resources}" not in main
 index_template = tex("acro_list_template.tex")
 require(r"\NewAcroTemplate[list]{survey-rich}" in index_template,
         "Define the exhaustive survey-rich acro list template")
+require(r"\begin{list}" in index_template and r"\end{list}" in index_template,
+        "Use a zero-indentation plain list for variable-length acro names")
+require(r"\begin{description}" not in index_template,
+        "Do not reintroduce description-label hanging indents in the two-column index")
+require(r"\item\mbox{\textbf{\acrowrite{short}}}\enspace" in index_template,
+        "Print the entire model label inline, with a consistent gap before the description")
+for spacing_guard in (r"\setlength{\leftmargin}{0pt}",
+                      r"\setlength{\labelwidth}{0pt}",
+                      r"\setlength{\itemindent}{0pt}",
+                      r"\hspace*{1em}"):
+    require(spacing_guard in index_template,
+            f"Acro index lost its stable list or metadata alignment: {spacing_guard}")
 require(r"\input{acro_list_template}" in main,
         "Load the acro list template before the definitions")
 for property_name in ("source", "refyear", "venue", "paperurl", "doi",

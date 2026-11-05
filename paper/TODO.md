@@ -133,3 +133,10 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Fix the `survey-rich` template with expansion-safe `\\acrofield` targets; compile a local proof and verify its native PDF `LINK_URI` annotations, including repeated paper links and DOI.
 - [x] Add structural and compiled-PDF CI regression checks for **all 171 paper URLs and 25 DOI URLs**, including repeated paper targets, with five positive/negative unit tests.
 - [ ] Confirm updated **source-commit Paper PDF** CI succeeds, download full PDF and inspect real link actions/acro page headings and index; do not claim publication or author scientific approval based on PDF build alone.
+
+## acro index: variable-width label spacing root cause — 2026-11-06
+
+- [x] Screenshot the actual previous **p. 19** at high resolution; identify that `description` with `\\item[short]` uses mismatched start positions for first and continuation lines. The earlier ragged-right/metadata/heading/link fixes did **not** fix this structural alignment issue.
+- [x] Compare locally compiled, real two-column eight-entry `acro` specimens of old `description` and new zero-indentation `list`, including long names, a paper link and a DOI link.
+- [x] Apply the structural `list` index template without changing `acronyms.tex`, `references.bib`, scholarly prose, research maps or paper DOI/URL fields; guard against the original markup in CI.
+- [ ] Confirm the complete newly built anonymous PDF, screenshot **pp. 18–24** (particularly p. 19), check output link URIs and original index entries, and update PR only after visual acceptance. Author scientific approval remains separate.
