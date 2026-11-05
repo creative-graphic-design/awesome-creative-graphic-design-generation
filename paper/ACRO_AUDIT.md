@@ -10,7 +10,9 @@
 
 This revision expands the central CTAN **acro v3.8** registry and links plain-text mentions in the survey manuscript to their real usage pages.
 
-## Registry counts
+## Historical 2026-11-04 registry baseline (not the current 198-entry total)
+
+The table below captures the original expansion to **185 entries**. The **current** total is **198** (27 abbreviations / 151 systems / 20 evaluation resources), as validated and PDF-inspected in the latest checkpoint above. Keep the dated early snapshot for traceability.
 
 | Tag | Entries | First-use behavior | Source attribution |
 |---|---:|---|---|
@@ -41,7 +43,7 @@ The source audit found that `LayoutGAN` (2019) is **not** the same work as `Attr
 
 ## Appearance-page completion
 
-The current manuscript source references **all 175 registered keys** at least once with an `acro` command, including the general `GAN` abbreviation. This is a **syntactic occurrence audit**, not evidence that all 168 named resources received a full experiment review. The generated PDF's page-number list remains the visual authority for the appearance index.
+At the historical 175-key checkpoint, the manuscript source referenced **all 175 registered keys** at least once with an `acro` command, including the general `GAN` abbreviation. This is a **syntactic occurrence audit**, not evidence that all 168 named resources received a full experiment review. The generated PDF's page-number list remains the visual authority for the appearance index.
 
 ## All-metadata preview before pruning (2026-11-04)
 
@@ -53,7 +55,7 @@ The extensive PDF list is a **working review artifact**, and it should be shorte
 
 ## Current checkpoint after source reconciliation (2026-11-04)
 
-The complete PDF index now covers **175** entries: **23 abbreviations, 136 named systems, 16 evaluation resources**. The 6 new systems are NeuralSVG, IGD, OmniSVG, LayerFusion, Revision Matters, and Draw with Thought. Each received original paper metadata and a manuscript use. The total manuscript bibliography is **186**, not the previous 180. All six are recorded as abstract/proceedings-verified rather than methods/results-verified. The preceding 168-entry counts are the earlier glossary checkpoint, not the current source-of-truth.
+At the earlier 2026-11-04 checkpoint, the PDF index covered **175** entries: **23 abbreviations, 136 named systems, 16 evaluation resources**. The 6 new systems are NeuralSVG, IGD, OmniSVG, LayerFusion, Revision Matters, and Draw with Thought. Each received original paper metadata and a manuscript use. The total manuscript bibliography is **186**, not the previous 180. All six are recorded as abstract/proceedings-verified rather than methods/results-verified. The preceding 168-entry counts are the earlier glossary checkpoint, not the current source-of-truth.
 
 ## New source-grounded model/index entries (2026-11-04)
 

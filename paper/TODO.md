@@ -57,8 +57,8 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 
 - [ ] **T15 · Research figures:** verify every research-map node, publication year and method-family encoding against original sources; compare at actual PDF size.
 - [ ] **T16 · Images and university/company marks:** select attributed original examples and verify affiliation and logo redistribution/trademark conditions before adding assets.
-- [ ] **T17 · acro index:** evaluate the **185-entry complete display** (source citation, year, venue, task/representation where known, appearance pages); postpone pruning until after author review.
-- [ ] **T18 · Fix stale overview prose:** reconcile historical 180/186 or 148/157/68 counts in documentation with the latest labelled checkpoint, without rewriting history.
+- [x] **T17 · acro print index:** the **198-entry registry** (27/151/20) and its compact source-linked output are preserved, PDF CI succeeded at source `0dbe879` ([Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385)), and I compared actual index pp. 18/22/24, including year/source/URL/usage pages. Long Task/Representation descriptions remain stored as metadata, not printed in the two-column index. Final publication-page-budget curation and author scientific approval remain open.
+- [x] **T18 · Label historical overview counts:** I revised README / acro audit headings and time qualifiers so old 180/186 BibTeX, 175/185 acro, and 148/157 matched counts remain identifiable as **2026-11-04 historical snapshots**, not current coverage. Current validated source stage is **225 / 202 BibTeX / 198 acro / 173 linked / 52 pending**. The historical numbers were not overwritten or misrepresented as fresh audits.
 - [ ] **T19 · Search reproducibility:** execute and log actual multi-database searches, deduplication, inclusion/exclusion decisions and a screening flow before claiming systematic completeness.
 - [ ] **T20 · Final PDF review:** build anonymous manuscript, inspect all figures and acro lists, validate citation resolution and provide latest manuscript + both map PDFs.
 

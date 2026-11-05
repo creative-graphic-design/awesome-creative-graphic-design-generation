@@ -32,7 +32,7 @@ I downloaded and inspected the actual **30-page** anonymous manuscript and both 
 I inspected [LayeringDiff's original methods/results](https://arxiv.org/html/2501.01197), §§3–5 and Tables 1–4 after re-reading the native 225-study evidence workbook.
 The first composite uses a fixed pretrained generator, but FBDD/HFA are trained on **20,000 synthetic composites**; the entire method is not training-free.
 Its foreground and background raster layers support compositing and sequential decomposition; FID/KID/CLIP, detector-derived FG-mIoU, a 24-person preference study and reconstruction metrics do not evaluate held-out semantic edit instructions.
-**Current checkpoint: 225 working IDs / 200 BibTeX / 193 acro entries / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**.
+**Historical T04 checkpoint: 225 working IDs / 200 BibTeX / 193 acro entries / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**.
 See [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md). I verified the actual **30-page** anonymous PDF, source-linked `acro` entries, bibliography and both maps from [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), with all three CI checks successful. Author scientific review of T04 remains pending; the next T05 audit is not automatic scientific approval.
 
 ## Historical single-study checkpoint — T03 / Alfie (2026-11-05)
@@ -40,19 +40,19 @@ See [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md). I verified the actual 
 I compared the live 225-study workbook with Alfie's original Sections 4–5.1, Table 1 and Figures 3/5–7 and the Springer publication record.
 Alfie delivers a compositable single RGBA foreground image; cropping proxies and matting preference do not measure post-export design edits.
 The 2024 workshop/arXiv and the published 2025 LNCS chapter refer to one study.
-The current audited coverage is **225 working IDs, 199 references, 190 acro entries, 170 linked and 55 unresolved (5 P1 / 13 P2 / 37 P3)**.
+The historical T03 audited coverage was **225 working IDs, 199 references, 190 acro entries, 170 linked and 55 unresolved (5 P1 / 13 P2 / 37 P3)**.
 See [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md) for evidence and limitations. **Paper PDF #41871516836, Catalog Check and Awesome Lint succeeded for the T03 source commit;** I downloaded the actual **29-page anonymous PDF** and inspected the Alfie body, citation/acro index, bibliography and two standalone map PDFs. **Author scientific review remains open** before T04.
 Earlier totals below are historical checkpoints.
 
-## Current task-by-task work queue
+## Historical T02 checkpoint and task-by-task work queue
 
-The preceding single-study primary-source audit covered **CGD-092 / TKG-DM** ([original experiment review](T02_TKGDM_SOURCE_AUDIT.md)): **198 references, 189 acro terms, 169 linked and 56 unresolved studies**. The original §3–7 and Table 1 show chroma-key RGB generation is not native document editing, while SDXL comparisons do not support unconditional superiority over LayerDiffuse. Author review remains pending before T03.
+The earlier T02 single-study primary-source audit covered **CGD-092 / TKG-DM** ([original experiment review](T02_TKGDM_SOURCE_AUDIT.md)): **198 references, 189 acro terms, 169 linked and 56 unresolved studies**. The original §3–7 and Table 1 show chroma-key RGB generation is not native document editing, while SDXL comparisons do not support unconditional superiority over LayerDiffuse. Author review remains pending before T03.
 
-See **[TODO.md](TODO.md)** for the next single research-study review, required evidence, acceptance gates and actual PDF checks. Latest verified baseline (2026-11-04): **225** study IDs, **196** references, **185** acro entries, **167** matched and **58** unresolved (**8 P1, 13 P2, 37 P3**). Historical counts in sections below are earlier checkpoints, not current totals. Do not process all unresolved studies as one bulk citation operation.
+See **[TODO.md](TODO.md)** for the next single research-study review, required evidence, acceptance gates and actual PDF checks. Initial verified baseline (2026-11-04, before T01–T06): **225** study IDs, **196** references, **185** acro entries, **167** matched and **58** unresolved (**8 P1, 13 P2, 37 P3**). Historical counts in sections below are earlier checkpoints, not current totals. Do not process all unresolved studies as one bulk citation operation.
 
-## Citation coverage and source gates — 2026-11-04
+## Historical citation coverage and source gates — 2026-11-04
 
-I reconciled three previously cited paper identities across publication/arXiv versions (DesignAsCode, GlyphDraw2, BizGen) and added six independently source-checked references (NeuralSVG, IGD, OmniSVG, LayerFusion, Revision Matters, Draw with Thought). The paper now contains **186 bibliography entries**, **175 registered acro terms**, and the 225-study workbook crosswalk matches **157 studies**, with **68 still pending** identity/coverage review. Those 68 are not excluded studies; the six new references have original abstract/proceedings checks but no newly completed quantitative methods/results audit. The dated source manifest in `evidence_register_snapshot_manifest.json` and `check_evidence_register.py` reject a snapshot older than 30 days; they do not supply live access to the private Google Sheet.
+I reconciled three previously cited paper identities across publication/arXiv versions (DesignAsCode, GlyphDraw2, BizGen) and added six independently source-checked references (NeuralSVG, IGD, OmniSVG, LayerFusion, Revision Matters, Draw with Thought). At this historical 2026-11-04 checkpoint, the paper contained **186 bibliography entries**, **175 registered acro terms**, and the 225-study workbook crosswalk matched **157 studies**, with **68 pending** identity/coverage review. Those 68 are not excluded studies; the six new references have original abstract/proceedings checks but no newly completed quantitative methods/results audit. The dated source manifest in `evidence_register_snapshot_manifest.json` and `check_evidence_register.py` reject a snapshot older than 30 days; they do not supply live access to the private Google Sheet.
 
 ## Compile and read
 
@@ -69,9 +69,9 @@ The local output is `paper/main.pdf`. The CI workflow `.github/workflows/paper-p
 - Vendored, unmodified: `cvpr.sty` and `ieeenat_fullname.bst`. The original headers and license notices remain attached to those files.
 - `main.tex` uses the official review mode, which hides the sample author block and renders **Anonymous CVPR submission**. Update dummy fields only for the final version.
 
-## Mandatory evidence spreadsheet reconciliation (2026-11-04)
+## Historical initial evidence spreadsheet reconciliation (2026-11-04)
 
-Before updating the literature, consult the actual [Google Sheet evidence register](https://docs.google.com/spreadsheets/d/1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc/edit), particularly Evidence Matrix 225, 225 Citation and R-E-V Coverage, Prior Survey and Screening, and 225 Source Tier Reconciliation. We directly compared the 225 stable study IDs to the 180 BibTeX works: 148 uniquely matched, 77 unresolved. Frozen source metadata and decisions are in evidence_register_225_snapshot.csv and evidence_register_225_crosswalk.csv. The 148 linked citation-audit rows now contain their exact CGD IDs. Run scripts/check_evidence_register.py before any manuscript citation change; the pre-commit hook and Paper PDF CI enforce it. See EVIDENCE_REGISTER_RECONCILIATION.md for source refresh and limitations. CI is NOT connected to the private live spreadsheet: this gate detects drift from the committed snapshot, not unseen changes in Google Drive.
+Before updating the literature, consult the actual [Google Sheet evidence register](https://docs.google.com/spreadsheets/d/1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc/edit), particularly Evidence Matrix 225, 225 Citation and R-E-V Coverage, Prior Survey and Screening, and 225 Source Tier Reconciliation. At this initial 2026-11-04 reconciliation checkpoint, we compared the 225 stable study IDs to **180 then-cited BibTeX works**: 148 uniquely matched and 77 unresolved. Frozen source metadata and decisions are in evidence_register_225_snapshot.csv and evidence_register_225_crosswalk.csv. The 148 linked citation-audit rows now contain their exact CGD IDs. Run scripts/check_evidence_register.py before any manuscript citation change; the pre-commit hook and Paper PDF CI enforce it. See EVIDENCE_REGISTER_RECONCILIATION.md for source refresh and limitations. CI is NOT connected to the private live spreadsheet: this gate detects drift from the committed snapshot, not unseen changes in Google Drive.
 
 ## Research evidence status (2026-11-03)
 
@@ -120,9 +120,9 @@ Manuscript sections follow `01_abstract.tex`, `02_introduction.tex`, through `10
 
 The paper CI runs the same source-line checker as the pre-commit hook, plus its negative-fixture unit tests. The checker is an intentionally conservative static lint, not a guarantee of grammatical correctness or source verification.
 
-## Exhaustive, source-linked acro index (2026-11-04)
+## Historical exhaustive, source-linked acro index checkpoint (2026-11-04)
 
-The review PDF now displays **all 175 registered entries** in three lists, with an extended list template in `acro_list_template.tex`. Along with each name and description, the new template shows every currently available original-work citation, BibTeX publication/reference year, conference or journal, paper hyperlink, DOI hyperlink, and the `acro` appearance pages. All **152** named systems/benchmarks have source citations, reference years, and paper links; the bibliography has venue information for **81** such entries and DOI fields for **19**. The other **22** entries are generic abbreviations, so paper-level citations are not invented. Optional task/representation fields are supported, but they are not populated until primary-source evidence justifies them. The index is deliberately exhaustive for review and **not yet optimized for the paper's page budget**. The original `cite` property still adds the first prose-use citation; a separate `source` property prints the citation in the list. The manuscript CI now checks these fields against `references.bib`.
+The earlier review PDF displayed **all 175 registered entries** in three lists, with an extended list template in `acro_list_template.tex`. Along with each name and description, the historical template showed every then-available original-work citation, BibTeX publication/reference year, conference or journal, paper hyperlink, DOI hyperlink, and the `acro` appearance pages. All **152** named systems/benchmarks have source citations, reference years, and paper links; the bibliography has venue information for **81** such entries and DOI fields for **19**. The other **22** entries are generic abbreviations, so paper-level citations are not invented. Optional task/representation fields are supported, but they are not populated until primary-source evidence justifies them. The historical index was deliberately exhaustive for review; the latest compact layout is documented at the top of this README, preserving all **198** declared terms and their citation/URL metadata while suppressing long Task/Representation annotations in the two-column print display. The original `cite` property still adds the first prose-use citation; a separate `source` property prints the citation in the list. The manuscript CI now checks these fields against `references.bib`.
 
 ## Illustrated narrative figure added to the manuscript (2026-11-04)
 
@@ -151,7 +151,7 @@ The 67 figure labels are cross-referenced to actual BibTeX entries in `figs/tex/
 
 Both `\printacronyms` lists use `display=all`, so every declared abbreviation and named system is included even if it has not yet appeared in the paper. PDF CI verifies representative entries and rejects an empty acronym-list warning.
 
-## P1 source triage and bibliography update (2026-11-04)
+## Historical P1 source triage and bibliography update (2026-11-04)
 
 Ten previously unresolved P1 studies were source-identified from original author/publisher records and added with task-specific R--E--V analysis to the manuscript.
 Reference total: **196**; acro total: **185** (the earlier documentation count of 174 was incorrect; the actual original file held 175).
