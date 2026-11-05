@@ -95,3 +95,10 @@ The resulting 194-entry list was compiled and I inspected UniWorld-Design on p. 
 
 I added **PosterText** to `systems`, **PosterText-Bench** and **PosterText-320K** to `evaluation`, and **SGSD** to `abbreviations`, with original `postertext2026` attribution and evidence-bounded artifact descriptions.
 The complete source-linked 198-entry index (27/151/20) has now been **visually inspected in the actual 31-page PDF**: PosterText pp. 7, 10, 14 listed on p. 22; PosterText-320K pp. 10, 15 and PosterText-Bench pp. 14 f. listed on p. 24; SGSD occurrence p. 10 listed on p. 18. I found no citation/acro or TeX box warnings and no obvious index overflow in the inspected pages.
+
+## Acro index line-wrapping fix (2026-11-05)
+
+I inspected the prior actual T06 rendered index (including pp. **18, 22, 24**) and identified the source of odd breaks: `survey-rich` used full-justified `description` items with paragraph hyphenation, followed by densely concatenated optional metadata on two-column lines.
+I updated **only the index template and its mechanical validator**, keeping all 198 entries, `paperurl`/DOI/source metadata, displayed task/representation and page references.
+The template now uses `\\raggedright`, `\\hyphenpenalty=10000`, `\\exhyphenpenalty=10000` and `\\itemsep=.45\\baselineskip`; a standalone `acro` LaTeX specimen compiled and rendered successfully.
+**The full-paper PDF after this change still requires actual source-commit CI and visual inspection**; standalone proof is not publication-quality acceptance.

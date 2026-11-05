@@ -1,5 +1,5 @@
-% Review-oriented full research index: show all source-verified bibliography metadata.
-% Optional task/representation metadata is shown only when independently documented.
+% Review-oriented full research index: retain all source-backed metadata.
+% Two-column entries use ragged-right lines and no word hyphenation to prevent awkward wrapping.
 \DeclareAcroProperty{source}
 \DeclareAcroProperty{refyear}
 \DeclareAcroProperty{venue}
@@ -12,6 +12,10 @@
   \acroheading
   \acropreamble
   \begin{description}
+    \raggedright
+    \hyphenpenalty=10000
+    \exhyphenpenalty=10000
+    \setlength{\itemsep}{.45\baselineskip}
     \acronymsmapF{%
       \item[\acrowrite{short}]%
       \acrowrite{list}%

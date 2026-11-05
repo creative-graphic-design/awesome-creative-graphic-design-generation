@@ -194,3 +194,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [x] I downloaded exact artifact **13401199657**, extracted the **31-page anonymous manuscript**, final TeX log, and both standalone **26-/67-study** vector research maps. Rendered all pages for an overview and inspected the relevant scientific claims and tabular evaluation pages **7, 10, 14–16**, map **3**, acro system/abbreviation/dataset/benchmark index **18, 22, 24**, bibliography reference **[99] on 27**, and both research maps at 200 DPI.
 - [x] I found no apparent layout clipping/overlap in the inspected pages/maps; no undefined citations, references, acro warnings, overfull or underfull box warnings in the final log; and **0** out-of-page text word bounding boxes across 31 pages. The first page and PDF metadata preserve anonymity.
 - [ ] **Scientific author review is distinct from build acceptance.** Recheck the latest arXiv v3 results and supplements; retain T04/T05/T06 scientific review before starting T07.
+
+## acro two-column line wrapping — 2026-11-05
+
+- [x] The two-column `survey-rich` index was visibly **fully justified**, with awkwardly stretched word spaces, unwanted word hyphenation and dense metadata wrapping on T06 PDF pp. 22/24; it is a typography issue rather than evidence that the `paperurl` property is a built-in acro field.
+- [x] I tested a standalone `acro` LaTeX specimen containing PosterText, PosterLayout, PPTAgent and UniWorld-Design. Applying `\\raggedright`, non-hyphenating penalties and modest item spacing improved natural word-boundary wraps.
+- [x] Keep **all 198 acro entries** and the printed source, year, venue, task, representation, paper and DOI links, and occurrence pages; this change is only typesetting, not source or citation curation.
+- [x] Add a manuscript CI guard for the three wrapping controls so that a future template edit cannot silently restore justified, hyphenated acronym entries.
+- [ ] Download and inspect the **full newly compiled anonymous manuscript** at representative beginning/middle/end acro pages; review the worst long venue and annotated PosterText entries, count/links/occurrence pages, PDF line-box warnings and page count before declaring production acceptance.

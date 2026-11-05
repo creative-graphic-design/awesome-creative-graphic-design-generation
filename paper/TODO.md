@@ -104,3 +104,11 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Synchronize **225 studies / 202 BibTeX / 198 acro (27/151/20) / 173 linked / 52 unresolved (2 P1 / 13 P2 / 37 P3)** and public catalogue **156/207 linked / 51 pending**, with new negative arXiv identity test and a CI ceiling of **52**.
 - [x] **T06 PDF/map artifact gate:** scientific source `729c2343` passed [Paper PDF #41997058915](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41997058915), Catalog Check, and Awesome Lint. I downloaded exact artifact **13401199657**: the **31-page** anonymous PDF and both standalone **26-/67-study** maps; rendered the full manuscript at overview resolution, inspected original map (p. 3), representation (p. 7), method (p. 10), editing results (p. 14), benchmark (pp. 15–16), SGSD (p. 18), PosterText (p. 22), PosterText-320K/Bench (p. 24) and reference [99] (p. 27), plus both maps at 200 DPI. No evident clipping in inspected regions, log citation/acro/box warnings, or text-word boxes outside page boundaries. See [T06 audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
 - [ ] **T04/T05/T06 author scientific approval** and v3 methods/results crosscheck remain pending; the user's continuation authorizes T06 preparation, not unconditional approval. **T07 / CGD-072 / Mise-en-Scène has not started.**
+
+## T06 acro wrapping / typesetting correction — 2026-11-05
+
+- [x] Diagnose the full-justified `description`-based `survey-rich` index and awkward intra-word line breaks on the actual T06 PDF.
+- [x] Preserve every source-backed display field and all **198** entries, but use ragged-right copy and disable automatic word-hyphenation in the index, with a mechanical CI regression guard.
+- [x] Compile/render an independent four-system `acro` specimen before changing the paper template.
+- [ ] Verify the real full-paper CI result, download revised PDF and visually inspect representative acro pages and warnings; update the audit only after that inspection.
+- [ ] Author scientific approval and PosterText v3/source-claim review remain open; no T07 study work is authorized by this presentation-only change.

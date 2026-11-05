@@ -171,6 +171,10 @@ for property_name in ("list", "extra", "refyear", "venue", "source",
                       "paperurl", "doi", "task", "representation"):
     require(r"\acrowrite{" + property_name + "}" in index_template,
             f"Index template does not display metadata field: {property_name}")
+for wrapping_guard in (r"\\raggedright", r"\\hyphenpenalty=10000",
+                       r"\\exhyphenpenalty=10000"):
+    require(wrapping_guard in index_template,
+            f"Index template lost its two-column line-wrap guard: {wrapping_guard}")
 require(r"\acropages" in index_template, "Index template must show usage pages")
 require(r"\href{\acrowrite{paperurl}}{paper}" in index_template,
         "Index template must link to the recorded paper URL")
