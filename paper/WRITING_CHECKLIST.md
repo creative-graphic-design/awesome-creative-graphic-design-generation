@@ -75,7 +75,7 @@
 ## Exhaustive list-first acro review
 
 - [ ] For now, display **all registered entries** in the paper's three `acro` groups rather than selecting a small final-paper shortlist.
-- [ ] Include the description, source citation, BibTeX reference year, available venue, paper URL, DOI and usage pages via `survey-rich`; keep bibliography metadata synchronized in CI.
+- [x] **Superseded by direct author instruction (2026-11-06):** print all three groups using **acro's stock default list template**, with no `survey-rich` or hand-built list layout. Keep citations, year, venue, URL, DOI, task, representation and usage evidence stored in the registry, but **do not force the custom metadata into print**; continue structural provenance checks. The bibliography provides original source references.
 - [ ] Keep the new `source` list citation distinct from `cite` on first prose use.
 - [ ] Do **not** invent task, representation, venue, DOI, or experimental findings when the primary evidence or bibliography lacks them; optional source-grounded fields may be populated later.
 - [ ] Inspect the complete PDF for long venues, citation-wrapping, link behavior, page number legibility and overall page count before curating the final index.
@@ -238,3 +238,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [x] Independently compile and inspect a two-column `acro` LaTeX specimen with eight representative names (including `Attribute-conditioned Layout GAN`, `PosterText`, and `UniWorld-Design`) using the original `description` and a plain `list` with **zero left/label/item indentation**. Treat the prototype as layout-only validation.
 - [x] Refactor `survey-rich` to a flat `list`: inline unbreakable bold short name + `\\enspace` + descriptive text; continuation lines now use the same text-column start; provenance metadata is independently indented **1 em**. Preserve all 198 registered terms, three groups, citations, year/venue, raw URL expansion, DOI and occurrence pages. Introduce a CI guard specifically forbidding `description` labels in this index.
 - [ ] Build the **real updated manuscript** under source-commit Paper PDF CI, download the artifact, screenshot full pages **18–24**, and compare p. 19 with the prior full-sized screenshot. Verify line overflow, URI targets, page count and bibliography transition before declaring the spacing issue fixed.
+
+## Author-requested simplification: use the acro default (2026-11-06)
+
+- [x] Before doing any more hand-tuning, I compiled and rendered an actual two-column LaTeX example using **only** `\\usepackage{acro}` and `\\printacronyms[include=systems,heading=none,display=all]`. The built-in template successfully typeset the model names and descriptions without any `\\NewAcroTemplate` definition.
+- [x] In `main.tex`, remove `\\input{acro_list_template}`, all three `template=survey-rich` arguments, and custom occurrence-page styling. Keep the 3 groups and `display=all`. Transfer pre-existing nonprint metadata-property registrations to the **top of `acronyms.tex`**, preserving all 198 definitions and citation-level consistency checks.
+- [x] Remove the print-only URL-link multiplicity CI requirement: the built-in template does not promise 171 paper/25 DOI anchors. Continue ordinary PDF/metadata/citation validation; source BibTeX URLs and `acro` registry entries remain unchanged.
+- [x] Modify `check_manuscript.py` to **require the default list setup**, reject custom template loads, and still verify that registered source metadata matches the bibliography.
+- [ ] Download the **actual built full PDF**, screenshot the Systems list at the previous problematic page, check all three lists and citations, and report any remaining stock-template limitations candidly. No scientific claim has been edited.

@@ -114,9 +114,9 @@ require(r"\printacronyms[include=abbreviations" in main,
         "Print the abbreviation list using acro")
 require(r"\printacronyms[include=systems" in main,
         "Print named systems separately using acro")
-require(r"\printacronyms[include=abbreviations,heading=none,display=all,template=survey-rich]" in main,
+require(r"\printacronyms[include=abbreviations,heading=none,display=all]" in main,
         "Print all registered abbreviations, not only already-used ones")
-require(r"\printacronyms[include=systems,heading=none,display=all,template=survey-rich]" in main,
+require(r"\printacronyms[include=systems,heading=none,display=all]" in main,
         "Print all registered named systems, not only already-used ones")
 require("glossaries" not in main and "printnoidxglossary" not in main,
         "Remove obsolete glossaries declarations")
@@ -153,53 +153,23 @@ for key, options in definitions:
             f"acro entry missing short/long metadata: {key}")
 require(n_abbr >= 22 and n_systems >= 120 and n_evaluation >= 15,
         "Preserve expanded abbreviation, named-system, and benchmark/dataset groups")
-require(r"\printacronyms[include=evaluation,heading=none,display=all,template=survey-rich]" in main,
+require(r"\printacronyms[include=evaluation,heading=none,display=all]" in main,
         "Print benchmark/dataset resources in their own acro list")
 require(r"\section*{Evaluation Resources}" in main,
         "Use a single-line heading for the compact two-column evaluation index")
 require(r"\section*{Benchmarks, Datasets, and Evaluation Resources}" not in main,
         "Avoid the hyphenated multi-line evaluation index heading")
 
-# Full research index: every named source has an index-specific citation and
-# available bibliographic metadata, independently of its first-use acro citation.
-index_template = tex("acro_list_template.tex")
-require(r"\NewAcroTemplate[list]{survey-rich}" in index_template,
-        "Define the exhaustive survey-rich acro list template")
-require(r"\begin{list}" in index_template and r"\end{list}" in index_template,
-        "Use a zero-indentation plain list for variable-length acro names")
-require(r"\begin{description}" not in index_template,
-        "Do not reintroduce description-label hanging indents in the two-column index")
-require(r"\item\mbox{\textbf{\acrowrite{short}}}\enspace" in index_template,
-        "Print the entire model label inline, with a consistent gap before the description")
-for spacing_guard in (r"\setlength{\leftmargin}{0pt}",
-                      r"\setlength{\labelwidth}{0pt}",
-                      r"\setlength{\itemindent}{0pt}",
-                      r"\hspace*{1em}"):
-    require(spacing_guard in index_template,
-            f"Acro index lost its stable list or metadata alignment: {spacing_guard}")
-require(r"\input{acro_list_template}" in main,
-        "Load the acro list template before the definitions")
+# Use the stock acro list formatter; the custom registry metadata remains stored
+# but is not a reason to replace acro's built-in typesetting with our own.
+require(r"\NewAcroTemplate" not in main and "template=survey-rich" not in main,
+        "Use acro's built-in default print template, not survey-rich")
+require(r"\input{acro_list_template}" not in main,
+        "Do not load the obsolete custom list template")
 for property_name in ("source", "refyear", "venue", "paperurl", "doi",
                       "task", "representation"):
-    require(r"\DeclareAcroProperty{" + property_name + "}" in index_template,
-            f"Missing index property declaration: {property_name}")
-for property_name in ("list", "extra", "refyear", "venue", "source"):
-    require(r"\acrowrite{" + property_name + "}" in index_template,
-            f"Index template does not display bibliographic field: {property_name}")
-for verbose_property in ("task", "representation"):
-    require(r"\acrowrite{" + verbose_property + "}" not in index_template,
-            f"Verbose two-column acro field must remain registry-only: {verbose_property}")
-for wrapping_guard in (r"\raggedright", r"\hyphenpenalty=10000",
-                       r"\exhyphenpenalty=10000"):
-    require(wrapping_guard in index_template,
-            f"Index template lost its two-column line-wrap guard: {wrapping_guard}")
-require(r"\acropages" in index_template, "Index template must show usage pages")
-require(r"\href{\ExpandArgs{e}\acrofield{\AcronymID}{paperurl}}{paper}" in index_template,
-        "Use expandable acrofield in the paper hyperlink destination")
-require(r"\href{https://doi.org/\ExpandArgs{e}\acrofield{\AcronymID}{doi}}{DOI}" in index_template,
-        "Use expandable acrofield in the DOI hyperlink destination")
-require(r"\href{\acrowrite{" not in index_template,
-        "Nonexpandable acrowrite must never appear inside href targets")
+    require(r"\DeclareAcroProperty{" + property_name + "}" in acro_source,
+            f"Preserve registered source metadata field: {property_name}")
 
 acro_bib_records: dict[str, dict[str, str]] = {}
 acro_bib_starts = list(re.finditer(r"(?m)^@\w+\{([^,]+),\s*$", acro_bib_source))

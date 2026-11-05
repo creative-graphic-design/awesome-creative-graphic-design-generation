@@ -140,3 +140,10 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Compare locally compiled, real two-column eight-entry `acro` specimens of old `description` and new zero-indentation `list`, including long names, a paper link and a DOI link.
 - [x] Apply the structural `list` index template without changing `acronyms.tex`, `references.bib`, scholarly prose, research maps or paper DOI/URL fields; guard against the original markup in CI.
 - [ ] Confirm the complete newly built anonymous PDF, screenshot **pp. 18–24** (particularly p. 19), check output link URIs and original index entries, and update PR only after visual acceptance. Author scientific approval remains separate.
+
+## Reset printed acro to the built-in template — 2026-11-06
+
+- [x] Confirm in a locally compiled two-column `acro` specimen that the stock list works with full `short`/`long` descriptions and `display=all`; use that before any custom format design.
+- [x] Remove the project-specific `survey-rich` printing template, keep all three stock `\\printacronyms` groups and 198 registered entries. Keep original metadata values stored but not printed as custom bibliography paragraphs.
+- [x] Adapt CI from testing custom print layout and custom 196 PDF index hyperlinks to testing the **standard acro interface** plus original-source metadata consistency.
+- [ ] Verify source-commit Paper PDF CI, inspect rendered actual PDF and maps and update PR; do not call this accepted based solely on the standalone specimen.

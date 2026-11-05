@@ -158,3 +158,8 @@ Reference total: **196**; acro total: **185** (the earlier documentation count o
 The private 225-study register maps **167** identities to BibTeX and keeps **58** pending; the public 207-paper catalogue currently matches **150** and leaves **57** unmatched.
 The new bibliography audits remain at abstract/index tier, not comprehensive methods/results.
 See `P1_SOURCE_TRIAGE_20261104.md` and `evidence_review_queue.csv`.
+
+## Latest decision — stock acro list rather than hand-built typography (2026-11-06)
+
+Per the author's direct request, `main.tex` now prints the 3 `acro` groups using the **built-in default list template**. We removed the experimental `survey-rich` list and custom page-index typography. All **198 acronym definitions** and the original-source metadata fields remain intact in `acronyms.tex` and checked against `references.bib`; those custom metadata fields are **not rendered** in the stock printed list. Standard source citation behavior on first mention stays enabled. This change does **not** alter research content or the 225-study register.
+A standalone stock-`acro` two-column LaTeX example was compiled and inspected. Updated full-paper PDF/CI acceptance must be checked separately.
