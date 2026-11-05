@@ -75,7 +75,7 @@ Before updating the literature, consult the actual [Google Sheet evidence regist
 
 ## Research evidence status (2026-11-03)
 
-The public repository catalog and the broader research evidence register are *different snapshots*. The working register holds 225 provisional entries, with 88 studies reviewed at the methods/results level, 28 checked through abstracts or publication records, and 109 catalog-only. The existing public README currently counts fewer papers. Do not describe all 225 as full-text assessed or as PRISMA-complete. The present paper emphasizes a representation–editability–evaluation crosswalk rather than a benchmark leaderboard.
+The public repository catalog and the broader research evidence register are *different snapshots*. At the **historical 2026-11-03 workbook checkpoint**, the working register held 225 provisional entries, with 88 labelled as methods/results-reviewed, 28 abstract/publication-record reviewed, and 109 catalogue-only. Those source-depth tags belong to the workbook snapshot and must not be automatically propagated to citation-level audit rows. The existing public README currently counts fewer papers. Do not describe all 225 as full-text assessed or as PRISMA-complete. The present paper emphasizes a representation–editability–evaluation crosswalk rather than a benchmark leaderboard.
 
 Citation keys in `references.bib` are traceable to source URLs. I expanded `literature_citation_audit.csv` to 180 citation-level records: 144 still `not_verified` by individual source key and 36 newly added references whose original author/title/abstract records were checked (`abstract_index`), without claiming methods/results verification. The aggregate historical 88/28/109 source-depth figures cannot be assigned to those citations without identity matching. The audit is checked by `scripts/check_literature_audit.py` in pre-commit and CI. Bibliographic authors missing from provisional entries must be verified from publisher/proceedings sources instead of being guessed. Survey completion also requires a reproducible retrieval log, screening flow, deduplication, adjudicated scope boundaries, and full-text checks for eight remaining narrative papers.
 
@@ -132,16 +132,16 @@ The main manuscript now contains an **original editable 26-milestone research ma
 
 `FIGURE_DESIGN_SURVEY.md` compares figures visually inspected in the Huang (2023), Zou (2025), Luo (2025) and Zhang (2026) surveys, with separately labelled publisher/author-summary observations for Shi (2023) and Tian & Günther (2024). It defines a richer diagram architecture inspired by the SSII2024 map without copying it. `figs/tex/affiliation_logo_provenance.csv` records paper-date institutional evidence; official visual logos have not yet been retrieved or cleared for publication. A standalone original TikZ **concept** was compiled locally for review, but the vetted 67-milestone map remains the current manuscript figure.
 
-## Citation coverage checkpoint (2026-11-03)
+## Historical citation coverage checkpoint (2026-11-03)
 
-The manuscript bibliography now has **180 distinct references**, 36 added from author-supplied original abstract pages across six graphic-design research lines. `catalog_citation_crosswalk.csv` reconciles these against 207 public catalogue papers, conservatively matching 138 and flagging 69 unmatched for further work. Those 69 are not screened exclusions; the separate provisional 225-study register is not yet joined to citation keys. See `LITERATURE_COVERAGE_AUDIT.md` and the `check_catalog_crosswalk.py` validator.
+At this earlier checkpoint, the manuscript bibliography contained **180 distinct references**, including 36 added from original abstract records across six graphic-design research lines. `catalog_citation_crosswalk.csv` reconciles these against 207 public catalogue papers, conservatively matching 138 and flagging 69 unmatched for further work. Those 69 are not screened exclusions; the separate provisional 225-study register is not yet joined to citation keys. See `LITERATURE_COVERAGE_AUDIT.md` and the `check_catalog_crosswalk.py` validator.
 
 ## Acronyms and named systems (CTAN acro)
 
 The central registry is `paper/acronyms.tex`, using CTAN `acro` v3 instead of `glossaries`.
 Genuine abbreviations expand on first use through `\ac{key}`; subsequent mentions display the short form.
 Named model and system entries use `first-style=short` to preserve published names without fabricating expansions.
-Three `\printacronyms` lists now separate general abbreviations, named generation/editing systems, and benchmark/dataset/evaluation resources. The registry includes **22 real abbreviations, 130 named systems, and 16 evaluation resources**, with original BibTeX `cite` keys on all named resources. Plain-text model/benchmark names and technical abbreviations in manuscript prose were migrated to `\ac{...}` so their usage pages are actually recorded by `pages/display=all`; resource titles remain descriptions rather than invented long-form expansions.
+Three `\printacronyms` lists separate general abbreviations, named generation/editing systems, and benchmark/dataset/evaluation resources. **Current T06 count: 198 entries (27 abbreviations, 151 systems, 20 evaluation resources).** The initial 2026-11-03 registry had **22 abbreviations, 130 systems, and 16 evaluation resources**; these older figures are retained as a dated historical baseline, not presented as the current index. All named resources keep their original BibTeX `cite` keys. Plain-text model/benchmark names and technical abbreviations in manuscript prose were migrated to `\ac{...}` so their usage pages are actually recorded by `pages/display=all`; resource titles remain descriptions rather than invented long-form expansions.
 The manuscript checker rejects missing or duplicate definitions and obsolete package commands; the PDF CI verifies LaTeX compilation.
 
 The research map is a curated **six-track by four-era** matrix with **67 representative milestones**, not a citation graph or complete publication census.
@@ -149,7 +149,7 @@ Its year labels use the cited bibliography year (venue year when available, othe
 Its editable source is `figs/tex/research_map.tex` and its compiled vector output is `figs/pdf/research_map.pdf`.
 The 67 figure labels are cross-referenced to actual BibTeX entries in `figs/tex/research_map_sources.csv`, checked in CI; see `RESEARCH_MAP_AUDIT.md` for date and selection caveats.
 
-Both `\printacronyms` lists use `display=all`, so every declared abbreviation and named system is included even if it has not yet appeared in the paper. PDF CI verifies representative entries and rejects an empty acronym-list warning.
+**All three** `\printacronyms` lists use `display=all`, so every declared abbreviation, named system, benchmark and dataset is included even if it has not yet appeared in the paper. PDF CI verifies representative entries and rejects an empty acronym-list warning.
 
 ## Historical P1 source triage and bibliography update (2026-11-04)
 
