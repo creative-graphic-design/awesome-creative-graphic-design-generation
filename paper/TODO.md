@@ -95,3 +95,12 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Source-stage synchrony: **225 IDs / 201 BibTeX / 194 acro / 172 linked / 53 unresolved (3 P1/13 P2/37 P3)**; public catalogue **155/207 linked**, new arXiv negative regression test, unresolved ceiling **53**.
 - [x] Verified scholarly-source commit `fb1f41e`: [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), Catalog Check and Awesome Lint all passed. Downloaded artifact **13398466465**, 30-page anonymous PDF; visually inspected pp. **3, 7, 11, 13, 22, 26** and both 26-/67-study vector maps; no visible clipping/overlap in inspected regions or unresolved citation/acro/box warnings. Details: [T05 source audit](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md).
 - [ ] Keep scientific sign-off open for T04 and T05; do not begin T06 / CGD-103 / PosterText before this gate.
+
+## T06 primary-source checkpoint — 2026-11-05
+
+- [x] With the user's latest instruction to continue, re-read the live Evidence Matrix 225 row **104**, Citation and R-E-V Coverage, Source Tier Reconciliation, and Prior Survey and Screening; its Drive modified time **2026-11-03T06:03:55Z** predates the committed source snapshot.
+- [x] Audit [PosterText original arXiv v2](https://arxiv.org/html/2608.16289v2) Sections 3–4, Figure 3 and Tables 1–2; verify that arXiv v3 is later and retain the final numerical-version check.
+- [x] Distinguish **quantitatively evaluated raster text-patch editing** from the HTML **dataset annotation**, as well as task-specific OCR fidelity, non-target Masked-LPIPS, VLM judging and worse modification text accuracy compared with Nano Banana 2; see [T06 original-source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+- [x] Synchronize **225 studies / 202 BibTeX / 198 acro (27/151/20) / 173 linked / 52 unresolved (2 P1 / 13 P2 / 37 P3)** and public catalogue **156/207 linked / 51 pending**, with new negative arXiv identity test and a CI ceiling of **52**.
+- [ ] **T06 source-commit gate:** confirm all three CI jobs pass and download/visually inspect actual anonymous PDF, new source-linked acro entries and both standalone research maps before marking PDF acceptance.
+- [ ] **T04/T05/T06 author scientific approval** and v3 methods/results crosscheck remain pending; the user's continuation authorizes T06 preparation, not unconditional approval. **T07 / CGD-072 / Mise-en-Scène has not started.**

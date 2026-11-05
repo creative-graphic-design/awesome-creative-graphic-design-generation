@@ -2,7 +2,16 @@
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
-## Latest single-study source checkpoint — T05 / UniWorld-Design (2026-11-05)
+## Latest source-stage checkpoint — T06 / PosterText (2026-11-05)
+
+I reviewed [PosterText original arXiv v2 §§3–4/Tables 1–2](https://arxiv.org/html/2608.16289v2), inspected current arXiv v3 version metadata and re-read the private live 225-study workbook.
+PosterText quantitatively measures text-patch addition, deletion and modification **on raster poster images** with OCR fidelity, protected-region masked LPIPS and VLM scores; the HTML patch structure is in the **dataset construction pipeline** rather than the exported model result.
+The [T06 evidence audit](T06_POSTERTEXT_SOURCE_AUDIT.md) preserves lower text accuracy on modification and lower visual quality on some tasks compared with closed-source baselines.
+**Source-stage tally: 225 IDs / 202 references / 198 acro / 173 linked / 52 unresolved (2 P1, 13 P2, 37 P3), public 156/207 linked / 51 pending.**
+The new source commit's PDF/map visual QA and author scientific sign-off are **still pending** at this checkpoint.
+
+
+## Historical single-study source checkpoint — T05 / UniWorld-Design (2026-11-05)
 
 I re-read the [original source](https://arxiv.org/html/2608.03971) and live evidence workbook before adding CGD-184; see [T05 source audit](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md).
 UniWorld-Design trains on PSD-authored semantic layers but **outputs complete compositable RGBA raster assets and stacks, not an exported native PSD document**.

@@ -177,3 +177,13 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [x] Source commit `fb1f41e` passed [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), Catalog Check and Awesome Lint after correcting stale count assertions in the negative-case test.
 - [x] Downloaded exact artifact **13398466465**, inspected the 30-page anonymous PDF's original research map (p. 3), UniWorld-Design representation (p. 7), methods (p. 11), evaluation (p. 13), source-linked acro entry (p. 22), bibliography (p. 26) and both standalone 26-/67-study maps. No obvious layout collisions or unresolved citation/acro/box warnings in the checked regions and log.
 - [ ] **Author scientific review remains separate from artifact QA.** Do not proceed to T06 / PosterText until T04/T05 scientific scope and evidence interpretation have been reviewed.
+
+## T06 PosterText scientific and PDF gate (2026-11-05)
+
+- [ ] Read original [arXiv v2 §§3–4, Tables 1–2](https://arxiv.org/html/2608.16289v2) and record v3 revision metadata separately; recheck whether v3 experiment numbers differ before final publication.
+- [ ] Distinguish HTML-generated **training patch annotations** from the **raster poster output**; do not call the method native text-frame, SVG, PSD or HTML object editing.
+- [ ] Preserve **quantitatively scored raster edit operations** for addition, deletion and modification: OCR Sentence Accuracy/NED, non-target Masked-LPIPS, VLM instruction/quality, with poster generation as a separate task.
+- [ ] Keep Table 1 counterexamples: modification SenAcc **0.771 vs 0.819** (Nano Banana 2, worse), deletion VLM quality **4.78 vs 4.91** (Nano Banana Pro, worse), poster-generation quality **4.46 vs 4.76** (Nano Banana 2, worse).
+- [ ] Table 2's **0.767** SenAcc and **0.036** Masked-LPIPS are **different task aggregates**, not per-operation measures; image-based masking is not object-tree integrity or human editing time.
+- [ ] Verify **52 unresolved/173 linked**, a PosterText arXiv mutation negative test, bibliography/audit/acro source citation, real compiled PDF and standalone maps before marking the source stage accepted.
+- [ ] Treat this fresh continuation as authorization to work on T06, but preserve T04/T05/T06 **scientific author review** before T07.

@@ -1,5 +1,7 @@
 # acro coverage audit — initiated 2026-11-04
 
+**Latest source-stage T06 checkpoint:** **198 entries** (**27** abbreviations, **151** named systems, **20** evaluation resources); new model/benchmark/dataset/method names require source-commit PDF/index inspection.
+
 **Latest PDF-verified checkpoint T05 (2026-11-05):** **194** entries (26 abbreviations, 150 systems, 18 evaluation). I inspected UniWorld-Design's actual source-linked index record on **p. 22** of the 30-page manuscript from [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), including usage pp. 7, 11 and 13.
 
 **Latest PDF-verified checkpoint (T04, 2026-11-05):** **193** registry entries (26 abbreviations, 149 systems, 18 evaluation resources). The older tables and dated sections below document *historical* checkpoints rather than today's totals. The T03 original source commit passed [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836); I checked the real 29-page output's Alfie entry on p. 17, including its first-use pages, source citation, year, venue, paper link and DOI.
@@ -88,3 +90,8 @@ No acro warning was present in its compiled log; the older historical 190-entry 
 
 I added **UniWorld-Design** with the original arXiv 2026 BibTeX key, source citation, year, task and the correct ordered RGBA-raster-stack output instead of an unsupported PSD-export claim.
 The resulting 194-entry list was compiled and I inspected UniWorld-Design on p. 22, including the original source and appearance-page references, in artifact **13398466465**. No acro warnings were found in the final log.
+
+## T06 PosterText source-linked index additions (2026-11-05)
+
+I added **PosterText** to `systems`, **PosterText-Bench** and **PosterText-320K** to `evaluation`, and **SGSD** to `abbreviations`, with original `postertext2026` attribution and evidence-bounded artifact descriptions.
+The complete list now has **198** entries (27/151/20); the current source-stage additions are **not yet visually accepted** until a new PDF is downloaded and checked.

@@ -82,3 +82,12 @@ After correcting the stale baseline assertion, scholarly source `fb1f41e` passed
 I downloaded artifact **13398466465** and inspected the **30-page** anonymous PDF at pp. **3, 7, 11, 13, 22, 26**, plus the standalone **26-/67-study maps**, with no apparent overlapping or clipped content in these inspected regions.
 The actual PDF shows source-linked UniWorld-Design in the system index on p. 22 with usage pp. 7, 11, 13 and reference [86] on p. 26.
 This is visual/artifact acceptance for the frozen 225-row spreadsheet snapshot and manuscript source, **not** live Sheet synchronization, a systematic retrieval execution or scientific author sign-off.
+
+## T06: CGD-103 / PosterText (2026-11-05)
+
+I re-read the **live** Evidence Matrix 225 row **104**, 225 Citation and R-E-V Coverage, 225 Source Tier Reconciliation and Prior Survey and Screening.
+Drive's last-modified **2026-11-03T06:03:55.045Z** precedes the 2026-11-04 committed source review; I did not re-date the frozen 225-row snapshot/manifest or silently promote stale spreadsheet evidence tiers.
+Original [arXiv:2608.16289v2](https://arxiv.org/html/2608.16289v2) §§3–4/Tables 1–2 establish measured **localized raster editing** (OCR text accuracy, non-target image-region preservation and VLM scoring), but no exported native HTML/font/PSD/SVG hierarchy.
+The arXiv index separately reports a later **v3 (2026-08-20)**; full-text numerical reconciliation is pending before final publication.
+I linked `postertext2026`, giving **225 IDs / 202 BibTeX / 198 acro / 173 linked / 52 unresolved (2 P1/13 P2/37 P3)** and separate public 207 catalogue **156 linked / 51 pending**.
+The identity gate ceiling is now **52** with a corrupt-arXiv-link regression test. No unmatched studies were excluded; see [T06 original-source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
