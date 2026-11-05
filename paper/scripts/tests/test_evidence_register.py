@@ -49,8 +49,8 @@ class EvidenceRegisterTest(unittest.TestCase):
         errors, counts = validator.validate(self.paper)
         self.assertEqual(errors, [])
         self.assertEqual(counts["sheet_studies"], 225)
-        self.assertEqual(counts["linked"], 172)
-        self.assertEqual(counts["needs_review"], 53)
+        self.assertEqual(counts["linked"], 173)
+        self.assertEqual(counts["needs_review"], 52)
 
     def test_old_spreadsheet_review_is_rejected(self) -> None:
         manifest = self.paper / "evidence_register_snapshot_manifest.json"
@@ -126,6 +126,17 @@ class EvidenceRegisterTest(unittest.TestCase):
         bib.write_text(broken, encoding="utf-8")
         errors, _ = validator.validate(self.paper)
         self.assertTrue(any("Stale/incorrect identity match method: CGD-184" in e for e in errors))
+
+    def test_postertext_arxiv_identity_regression_is_rejected(self) -> None:
+        bib = self.paper / "references.bib"
+        content = bib.read_text(encoding="utf-8")
+        self.assertIn("eprint = {2608.16289}", content)
+        broken = content.replace("eprint = {2608.16289}", "eprint = {2608.16290}")
+        broken = broken.replace("url = {https://arxiv.org/abs/2608.16289}",
+                                "url = {https://arxiv.org/abs/2608.16290}")
+        bib.write_text(broken, encoding="utf-8")
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("Stale/incorrect identity match method: CGD-103" in e for e in errors))
 
     def test_missing_sheet_study_is_rejected(self) -> None:
         self.rewrite(ASSETS[0], lambda rows: rows.pop())

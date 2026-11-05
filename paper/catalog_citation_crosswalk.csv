@@ -101,7 +101,7 @@ section,category,catalog_title,catalog_url,catalog_arxiv_url,bibtex_key,match_me
 "Papers","Graphic Design Editing and Reconstruction","Draw with Thought","https://doi.org/10.1145/3746027.3755731","https://arxiv.org/abs/2504.09479","drawwiththought2025","arxiv_id","matched"
 "Papers","Graphic Design Editing and Reconstruction","LayerD","https://doi.org/10.1109/ICCV51701.2025.01652","https://arxiv.org/abs/2509.25134","layerd2025","arxiv_id","matched"
 "Papers","Graphic Design Editing and Reconstruction","PosterCopilot","https://arxiv.org/abs/2512.04082","","postercopilot2026","arxiv_id","matched"
-"Papers","Graphic Design Editing and Reconstruction","PosterText","https://arxiv.org/abs/2608.16289","","","","unmatched"
+"Papers","Graphic Design Editing and Reconstruction","PosterText","https://arxiv.org/abs/2608.16289","","postertext2026","arxiv_id","matched"
 "Papers","Graphic Design Editing and Reconstruction","ReDesign","https://arxiv.org/abs/2607.25565","","redesign2026","arxiv_id","matched"
 "Papers","Scientific Figure and Graphical Abstract Generation","SciFig","https://arxiv.org/abs/2601.04390","","scifig2026","arxiv_id","matched"
 "Papers","Scientific Figure and Graphical Abstract Generation","AutoFigure","https://arxiv.org/abs/2602.03828","","autofigure2026","arxiv_id","matched"

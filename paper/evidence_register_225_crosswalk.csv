@@ -101,7 +101,7 @@ working_register_id,bibtex_key,match_method,citation_status,editorial_decision,e
 "CGD-100","drawwiththought2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-101","layerd2025","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-102","postercopilot2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
-"CGD-103","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
+"CGD-103","postertext2026","arxiv_id","linked","included","Original v2 Sections 3–4 and Tables 1–2 reviewed; quantitatively assessed raster patch editing, not native HTML or editable font objects; v3 verification pending"
 "CGD-104","redesign2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-105","scifig2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-106","autofigure2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
