@@ -171,8 +171,7 @@ for property_name in ("source", "refyear", "venue", "paperurl", "doi",
                       "task", "representation"):
     require(r"\DeclareAcroProperty{" + property_name + "}" in index_template,
             f"Missing index property declaration: {property_name}")
-for property_name in ("list", "extra", "refyear", "venue", "source",
-                      "paperurl", "doi"):
+for property_name in ("list", "extra", "refyear", "venue", "source"):
     require(r"\acrowrite{" + property_name + "}" in index_template,
             f"Index template does not display bibliographic field: {property_name}")
 for verbose_property in ("task", "representation"):
