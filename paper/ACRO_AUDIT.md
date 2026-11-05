@@ -120,3 +120,13 @@ I separately rendered and inspected the entire **pp. 17–24** of the actual com
 In addition to verifying the compact references on pp. 22/24, I found the **evaluation-group heading** on p. **23** hyphenated as `Re-` / `sources`.
 I shortened the LaTeX heading from `Benchmarks, Datasets, and Evaluation Resources` to **`Evaluation Resources`** and added an exact heading invariant to `paper/scripts/check_manuscript.py`.
 This is a **pure heading/layout correction**; no acronym identity, tag, source or citation metadata changed. **Pending** source-commit PDF CI and visual check of the new p. 23 heading.
+
+## Critical PDF hyperlink target audit (2026-11-05)
+
+After checking all printed index pages, I inspected **actual PDF link action dictionaries**, not only colored `paper` and `DOI` labels.
+In the previous successful **31-page** PDF, named-resource `paper` links were malformed `GoToR` file actions targeting an escaped `\\acroprintfield` expression; DOI URI actions literally contained `https://doi.org/\\acrowrite {doi}`.
+These links were **broken** despite the earlier visual pass and successful CI; I retract the prior statement that their targets were verified.
+The cause is passing nonexpandable `\\acrowrite` to `\\href`.
+I replaced it with `\\ExpandArgs{e}\\acrofield{\\AcronymID}{paperurl}` and equivalent DOI target expansion; a **compiled local `acro` specimen** generated working arXiv/DOI PDF link URIs.
+I added `paper/scripts/check_acro_pdf_links.py`, five local negative/positive unit tests, and a source-build CI step that checks **all 171 indexed paper links + 25 DOI links** (count and repeated-target multiplicity) using `pdfinfo -url`, storing `pdf-links.txt` in the workflow artifact.
+**Full manuscript PDF link and layout acceptance remains pending** until the updated Actions artifact is retrieved and its actual PDF URI annotations inspected.

@@ -73,6 +73,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils
           pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
+          pdfinfo -url paper/main.pdf | tee paper/pdf-links.txt
+          python3 paper/scripts/check_acro_pdf_links.py paper/pdf-links.txt paper/acronyms.tex
           pdftotext paper/main.pdf paper/main.txt
           test -s paper/main.txt
           grep -qi 'Anonymous CVPR submission' paper/main.txt
@@ -123,3 +125,4 @@ jobs:
             paper/main.txt
             paper/main.log
             paper/pdfinfo.txt
+            paper/pdf-links.txt

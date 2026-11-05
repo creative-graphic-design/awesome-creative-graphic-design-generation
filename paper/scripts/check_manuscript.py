@@ -183,8 +183,12 @@ for wrapping_guard in (r"\raggedright", r"\hyphenpenalty=10000",
     require(wrapping_guard in index_template,
             f"Index template lost its two-column line-wrap guard: {wrapping_guard}")
 require(r"\acropages" in index_template, "Index template must show usage pages")
-require(r"\href{\acrowrite{paperurl}}{paper}" in index_template,
-        "Index template must link to the recorded paper URL")
+require(r"\href{\ExpandArgs{e}\acrofield{\AcronymID}{paperurl}}{paper}" in index_template,
+        "Use expandable acrofield in the paper hyperlink destination")
+require(r"\href{https://doi.org/\ExpandArgs{e}\acrofield{\AcronymID}{doi}}{DOI}" in index_template,
+        "Use expandable acrofield in the DOI hyperlink destination")
+require(r"\href{\acrowrite{" not in index_template,
+        "Nonexpandable acrowrite must never appear inside href targets")
 
 acro_bib_records: dict[str, dict[str, str]] = {}
 acro_bib_starts = list(re.finditer(r"(?m)^@\w+\{([^,]+),\s*$", acro_bib_source))

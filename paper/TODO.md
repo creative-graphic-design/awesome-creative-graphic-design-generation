@@ -126,3 +126,10 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Visually inspect the complete printed `acro` index pages **17–24**, including system/bibliography transitions, not just individual PosterText entries.
 - [x] Identify the residual `Re-`/`sources` split in the long evaluation-group heading on p. **23**, shorten it to `Evaluation Resources`, and protect that title with the manuscript source CI.
 - [ ] Verify a fresh full-paper PDF after this heading-only change, download its artifact and inspect actual p. 23 and overall page count before marking this final layout issue closed.
+
+## acro PDF link-target fix (2026-11-05)
+
+- [x] Diagnose actual old PDF link dictionaries: `paper` hyperlinks target escaped LaTeX text as external files and DOI hyperlinks contain literal `\\acrowrite`, despite visible blue labels. Prior 'working link' confidence was unjustified.
+- [x] Fix the `survey-rich` template with expansion-safe `\\acrofield` targets; compile a local proof and verify its native PDF `LINK_URI` annotations, including repeated paper links and DOI.
+- [x] Add structural and compiled-PDF CI regression checks for **all 171 paper URLs and 25 DOI URLs**, including repeated paper targets, with five positive/negative unit tests.
+- [ ] Confirm updated **source-commit Paper PDF** CI succeeds, download full PDF and inspect real link actions/acro page headings and index; do not claim publication or author scientific approval based on PDF build alone.
