@@ -1,6 +1,6 @@
 # acro coverage audit — initiated 2026-11-04
 
-**Latest verified checkpoint (2026-11-05):** **190** registry entries (25 abbreviations, 148 systems, 17 evaluation resources). The older tables and dated sections below document *historical* checkpoints rather than today's totals. The T03 original source commit passed [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836); I checked the real 29-page output's Alfie entry on p. 17, including its first-use pages, source citation, year, venue, paper link and DOI.
+**Latest verified checkpoint (2026-11-05):** **193** registry entries (26 abbreviations, 149 systems, 18 evaluation resources). The older tables and dated sections below document *historical* checkpoints rather than today's totals. The T03 original source commit passed [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836); I checked the real 29-page output's Alfie entry on p. 17, including its first-use pages, source citation, year, venue, paper link and DOI.
 
 This revision expands the central CTAN **acro v3.8** registry and links plain-text mentions in the survey manuscript to their real usage pages.
 
@@ -74,3 +74,10 @@ I added `alfie` to the **systems** tag with original `alfie2025` bibliography so
 The full index comprises **190 entries: 25 abbreviations, 148 named systems, 17 evaluation resources**.
 I inspected its actual printed entry on manuscript **p. 17**, including rendered citation `[128]`, `2025` venue, paper/DOI links and the occurrence-page references.
 The same source commit passed Paper PDF / Catalog Check / Awesome Lint; no acro warning was reported in the final TeX log.
+
+## T04 KID / LayeringDiff / FG-mIoU index verification (2026-11-05)
+
+I added KID as a general abbreviation, LayeringDiff as a source-cited named system, and its original FG-mIoU as a source-cited evaluation resource.
+The current index contains **193** entries (26 abbreviations, 149 systems, 18 evaluation resources).
+I inspected the actual 30-page PDF from [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288): KID on **p. 17**, LayeringDiff on **p. 19**, FG-mIoU on **p. 22**, bibliography on **p. 25**, with source links and appearance pages.
+No acro warning was present in its compiled log; the older historical 190-entry checkpoint above refers to T03.

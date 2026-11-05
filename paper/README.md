@@ -8,7 +8,7 @@ I inspected [LayeringDiff's original methods/results](https://arxiv.org/html/250
 The first composite uses a fixed pretrained generator, but FBDD/HFA are trained on **20,000 synthetic composites**; the entire method is not training-free.
 Its foreground and background raster layers support compositing and sequential decomposition; FID/KID/CLIP, detector-derived FG-mIoU, a 24-person preference study and reconstruction metrics do not evaluate held-out semantic edit instructions.
 **Current checkpoint: 225 working IDs / 200 BibTeX / 193 acro entries / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**.
-See [T04 original-source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md); T04 PDF visual acceptance and author scientific review are tracked separately.
+See [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md). I verified the actual **30-page** anonymous PDF, source-linked `acro` entries, bibliography and both maps from [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), with all three CI checks successful. Author scientific review remains pending before T05.
 
 ## Historical single-study checkpoint — T03 / Alfie (2026-11-05)
 

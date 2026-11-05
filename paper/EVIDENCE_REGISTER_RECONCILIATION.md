@@ -4,7 +4,7 @@ I directly read the 2026-11-04 snapshot of [Graphic Design Generation -- 185 Pap
 
 **Source-of-truth tab:** Evidence Matrix 225 (Google Sheet gid 8402), A1:AG226. I also inspected the actual contents of 225 Citation and R-E-V Coverage, Prior Survey and Screening, 225 Source Tier Reconciliation, Search Screen Decisions, and 225 Manuscript Citations. This is a frozen source copy, not a live link.
 
-**Current baseline (2026-11-04, after source adjudication):** 225 stable study IDs; **186** bibliography entries; **157** matched identities; **68** needing review. The separate public catalogue has 207 papers, with **143 matched** and **64 needing review**. The old 180/148/77 and 207/138/69 results were initial checkpoints. Neither unmatched group should be labelled excluded. No source-tier was promoted merely because its citation key matched.
+**Historical baseline (2026-11-04, at the earlier source-adjudication step):** 225 stable study IDs; **186** bibliography entries; **157** matched identities; **68** needing review. The separate public catalogue has 207 papers, with **143 matched** and **64 needing review**. The old 180/148/77 and 207/138/69 results were initial checkpoints. Neither unmatched group should be labelled excluded. No source-tier was promoted merely because its citation key matched.
 
 ## Mandatory review flow
 
@@ -57,3 +57,13 @@ I re-read the live Evidence Matrix 225 row 160, Citation and R-E-V Coverage, Sou
 Current manuscript identity accounting: **225 study IDs / 199 cited BibTeX works / 190 acro entries / 170 linked / 55 unresolved (5 P1 / 13 P2 / 37 P3)**. The public 207-paper catalogue independently matches **153** and leaves **54** unmatched; neither unmatched set is an exclusion count.
 
 The strengthened source-identity regression tests and source-level validators passed [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836), alongside Catalog Check and Awesome Lint. I also downloaded its genuine 29-page PDF and inspected the Alfie discussion, index, bibliography and both maps. Scientific author sign-off is still pending.
+
+## T04: CGD-174 / LayeringDiff (2026-11-05)
+
+I re-read live Evidence Matrix 225 row 175, 225 Citation and R-E-V Coverage, 225 Source Tier Reconciliation and Prior Survey and Screening before adding the citation.
+The Sheet's last-modified timestamp (**2026-11-03T06:03:55Z**) predates the committed 2026-11-04 snapshot-review date; I did not silently re-date or change its 225-row snapshot.
+The arXiv `layeringdiff2025` identity is now linked to CGD-174 with original §§3–5/Tables 1–4 source evidence, without treating compositable image layers as demonstrated semantic editing.
+**Current tally:** 225 stable IDs / **200** BibTeX / **193** acro / **171** linked / **54** pending (4 P1, 13 P2, 37 P3); the distinct 207-paper public catalog has **154** linked / **53** pending, none automatically excluded.
+The identity gate's expected maximum is 54; its negative arXiv test expects detection of a *stale match method* if a damaged ID falls back to a title match.
+After the regression-test correction, [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), Catalog Check and Awesome Lint passed on `1750e184`; I downloaded its 30-page PDF and inspected both maps.
+Live private spreadsheet edits are not automatically synchronized to GitHub CI; author scientific approval is still pending before T05.
