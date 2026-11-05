@@ -182,7 +182,7 @@ section,category,catalog_title,catalog_url,catalog_arxiv_url,bibtex_key,match_me
 "Papers","Graphic Design Generation","ReContraster","https://aclanthology.org/2026.acl-long.98/","https://arxiv.org/abs/2604.10442","recontraster2026","arxiv_id","matched"
 "Papers","Typography and Text Rendering","FreeText","https://proceedings.mlr.press/v306/zhang26ge.html","https://arxiv.org/abs/2601.00535","freetext2026","arxiv_id","matched"
 "Papers","Graphic Design Editing and Reconstruction","APEX","https://arxiv.org/abs/2601.04794","","apex2026","arxiv_id","matched"
-"Papers","Composable and Layered Asset Generation","UniWorld-Design","https://arxiv.org/abs/2608.03971","","","","unmatched"
+"Papers","Composable and Layered Asset Generation","UniWorld-Design","https://arxiv.org/abs/2608.03971","","uniworlddesign2026","arxiv_id","matched"
 "Papers","Graphic Design Generation","Editable Visual Design","https://arxiv.org/abs/2609.04034","","editablevisual2026","arxiv_id","matched"
 "Papers","Graphic Design Generation","GraphiMind: LLM-centric Interface for Information Graphics Design","https://arxiv.org/abs/2401.13245","","graphimind2024","arxiv_id","matched"
 "Papers","Content-Aware Layout Generation","GLDesigner: Leveraging Multi-Modal LLMs as Designer for Enhanced Aesthetic Text Glyph Layouts","https://arxiv.org/abs/2411.11435","","gldesigner2025","arxiv_id","matched"

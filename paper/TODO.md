@@ -87,3 +87,11 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Synchronized **225 IDs / 200 references / 193 acro / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**, with an arXiv identity negative regression test.
 - [x] **T04 original-source PDF QA passed:** for source `1750e184`, [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), Catalog Check and Awesome Lint passed. I retrieved artifact **13379065431** (**30-page** anonymous PDF), inspected pp. 3, 7, 11, 12, 17, 19, 22, 25, 30 and both 26-/67-study standalone maps; no visible overlap/clipping on inspected output or unresolved citation/acro/box warnings. Details: [T04 audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md).
 - [ ] Author scientific review of T04 before **T05 / CGD-184 / UniWorld-Design**. This request to continue authorizes work on T04, not automatic approval of T03 or T04 scientific claims.
+
+## T05 primary-source checkpoint — 2026-11-05
+
+- [x] Re-read live Evidence Matrix 225 row 185, Citation and R-E-V Coverage, Source Tier Reconciliation and Prior Survey and Screening; Drive modified 2026-11-03T06:03:55Z before the source snapshot review.
+- [x] Check [UniWorld-Design §§3–5, Tables 1–4 and Appendix B](https://arxiv.org/html/2608.03971); PSD training material is not native PSD output, and VLM structural proxies are not observed edit-instruction success.
+- [x] Source-stage synchrony: **225 IDs / 201 BibTeX / 194 acro / 172 linked / 53 unresolved (3 P1/13 P2/37 P3)**; public catalogue **155/207 linked**, new arXiv negative regression test, unresolved ceiling **53**.
+- [ ] Verify source-commit Paper PDF, Catalog Check and Awesome Lint; inspect actual PDF, new source-linked acro listing and both map PDFs.
+- [ ] Keep scientific sign-off open for T04 and T05; do not begin T06 / CGD-103 / PosterText before this gate.

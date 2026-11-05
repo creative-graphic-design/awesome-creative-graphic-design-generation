@@ -2,13 +2,22 @@
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
-## Latest single-study checkpoint — T04 / LayeringDiff (2026-11-05)
+## Latest single-study source checkpoint — T05 / UniWorld-Design (2026-11-05)
+
+I re-read the [original source](https://arxiv.org/html/2608.03971) and live evidence workbook before adding CGD-184; see [T05 source audit](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md).
+UniWorld-Design trains on PSD-authored semantic layers but **outputs complete compositable RGBA raster assets and stacks, not an exported native PSD document**.
+I distinguish I2L layer recovery on 512 Crello designs from T2RGBA generation on 512 prompts and record worse alpha cleanliness and FID counterexamples.
+**Source stage:** 225 register IDs / 201 cited references / 194 acro / 172 linked / 53 unresolved (3 P1/13 P2/37 P3); public 155/207 linked / 52 pending.
+The source-commit PDF/maps and scientific author review are still pending at this checkpoint.
+
+
+## Historical single-study checkpoint — T04 / LayeringDiff (2026-11-05)
 
 I inspected [LayeringDiff's original methods/results](https://arxiv.org/html/2501.01197), §§3–5 and Tables 1–4 after re-reading the native 225-study evidence workbook.
 The first composite uses a fixed pretrained generator, but FBDD/HFA are trained on **20,000 synthetic composites**; the entire method is not training-free.
 Its foreground and background raster layers support compositing and sequential decomposition; FID/KID/CLIP, detector-derived FG-mIoU, a 24-person preference study and reconstruction metrics do not evaluate held-out semantic edit instructions.
 **Current checkpoint: 225 working IDs / 200 BibTeX / 193 acro entries / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**.
-See [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md). I verified the actual **30-page** anonymous PDF, source-linked `acro` entries, bibliography and both maps from [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), with all three CI checks successful. Author scientific review remains pending before T05.
+See [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md). I verified the actual **30-page** anonymous PDF, source-linked `acro` entries, bibliography and both maps from [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), with all three CI checks successful. Author scientific review of T04 remains pending; the next T05 audit is not automatic scientific approval.
 
 ## Historical single-study checkpoint — T03 / Alfie (2026-11-05)
 

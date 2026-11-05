@@ -39,6 +39,9 @@ Hierarchical systems including \ac{cole} and \ac{opencole} generate designs thro
 A portable \ac{rgba} illustration is therefore a compositing affordance, not evidence of a native multi-object design hierarchy.
 \ac{layeringdiff} instead disassembles an initially generated composite into foreground RGB plus alpha, reconstructed background RGB, and final recomposited image (Section 3 and Figure 1).
 Figure 7 illustrates iterative decomposition into several foreground raster layers, but neither this application nor the base two-layer output preserves independently editable font or vector objects.
+\ac{uniworlddesign} generates standalone transparent assets and recovers ordered, complete semantic \ac{rgba} layers from a flattened image using global and per-layer instructions (Sections 3.3--3.5).
+Although designer-authored \ac{psd} files supply its layer-tree supervision, the reported model output is an RGBA stack, not an exported editable PSD document with native font, vector, or typography objects.
+A complete occluded raster object may be moved and recomposed, but that format affordance is not itself a measured success rate for post-export semantic design edits.
 Code-native systems represent text and assets with manipulable \ac{html}/\ac{css} elements \citep{designascode2026,editablevisual2026}.
 Their artifact format provides substantial leverage for editing, yet success under a controlled editing protocol remains an independent empirical question.
 

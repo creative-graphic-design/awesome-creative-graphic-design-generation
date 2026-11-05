@@ -163,3 +163,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 
 - [x] Scientific source `1750e184`: [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), Catalog Check and Awesome Lint passed; I inspected the genuine **30-page** anonymous PDF, KID/LayeringDiff/FG-mIoU index items, reference record, research map in the manuscript and both standalone map PDFs. No visible clipping/collision on inspected regions or unresolved citation/reference, acro and overfull/underfull box warnings.
 - [ ] Do not treat PDF quality acceptance as author scientific approval. Preserve the review gate before **T05 / CGD-184 / UniWorld-Design**.
+
+## T05 UniWorld-Design source and empirical-contract checks (2026-11-05)
+
+- [ ] Distinguish PSD-derived **training documents** from **exported RGBA semantic raster layers**; do not assert native PSD, font, SVG, DOM or original-vector editability without evidence.
+- [ ] Separate I2L Crello reconstruction (**512** designs, four layers) from T2RGBA image synthesis (**512** prompts, **479** reference-paired alpha/LPIPS cases).
+- [ ] Treat Bad Layers / VLM scores as **proxies**; retain the worse alpha cleanliness **2.90 vs 3.33** and worse FID **117.14 vs 87.86** relative to the reported comparators.
+- [ ] Enforce **53-unresolved** 225-study ceiling, a negative original-arXiv-ID test and human scientific-review gates.
+- [ ] Inspect actual source-commit anonymous PDF and maps before reporting publication-quality acceptance; hold T06 pending approval.

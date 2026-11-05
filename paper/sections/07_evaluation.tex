@@ -30,6 +30,12 @@ Its composite \ac{fid} of 121.05 improves on LayerDiffuse T2L's 134.51 under the
 Table 3 measures image quality and prompt alignment from 24 participant ratings, and Table 4 reports reconstruction error on 1,000 synthetic composites, not instruction-based post-export edit performance.
 For background recovery, Table 4 reports an improved \ac{lpips} of 21.80 versus 28.73 for the Germer baseline, but worse MSE of 17.52 versus 12.76, demonstrating that perceptual and pixel-reconstruction metrics answer distinct questions.
 Its Section 5 also reports alpha-estimation errors and shadows remaining in background layers as failure modes that can constrain later compositing.
+\ac{uniworlddesign} evaluates I2L on 512 held-out Crello designs with four predicted layers, aligned to source stacks by LayerD before scoring (Section 4.1 and Table 1).
+Against Qwen-Image-Layered, per-layer RGB L1 decreases from 0.2014 to 0.1264 and Alpha Soft IoU increases from 0.5454 to 0.7325, but these are reconstruction and alpha-overlap measures rather than executed edit requests.
+The Stable-Layers-derived structural proxy \emph{Bad Layers} declines from 1.69 to 1.32 per design (Table 2), while five-axis VLM judging raises the total from 17.60 to 20.43 out of 25 but lowers alpha cleanliness from 3.33 to 2.90 (Table 3 and Appendix B).
+The VLM sees the input, recomposition and predicted-layer contact sheet, not a human-operated editor performing a controlled downstream text or object change.
+For T2RGBA, 512 design-element prompts yield a mean CLIP Score of 33.03 versus OmniAlpha's 31.00, whereas OmniAlpha has better FID (87.86 versus 117.14) and white-composite LPIPS (0.462 versus 0.537) under their respective setup (Table 4).
+The paper reports alpha-edge and dense-typography failures (Section 5), limiting any inference from layer separability to unrestricted native document editing.
 
 \subsection{Appearance, Text, and Reconstruction}
 Typography introduces additional evaluation dimensions: correct character identity, readability, style consistency, and editable text parameters.

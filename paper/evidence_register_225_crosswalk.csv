@@ -182,7 +182,7 @@ working_register_id,bibtex_key,match_method,citation_status,editorial_decision,e
 "CGD-181","recontraster2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-182","freetext2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-183","apex2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
-"CGD-184","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
+"CGD-184","uniworlddesign2026","arxiv_id","linked","included","Original arXiv §§3–5/Tables 1–4/Appendix B checked; RGBA semantic layer stack is neither native PSD editing nor edit-command success evidence"
 "CGD-185","editablevisual2026","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-186","graphimind2024","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-187","gldesigner2025","arxiv_id","linked","pending","Original author/publisher abstract checked 2026-11-04; empirical verification and inclusion remain pending: JSON geometry is not native editable typography"

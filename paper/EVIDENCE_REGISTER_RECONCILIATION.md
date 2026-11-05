@@ -67,3 +67,11 @@ The arXiv `layeringdiff2025` identity is now linked to CGD-174 with original §�
 The identity gate's expected maximum is 54; its negative arXiv test expects detection of a *stale match method* if a damaged ID falls back to a title match.
 After the regression-test correction, [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), Catalog Check and Awesome Lint passed on `1750e184`; I downloaded its 30-page PDF and inspected both maps.
 Live private spreadsheet edits are not automatically synchronized to GitHub CI; author scientific approval is still pending before T05.
+
+## T05: CGD-184 / UniWorld-Design (2026-11-05)
+
+I re-read the live Evidence Matrix 225 row 185, Citation and R-E-V Coverage, Source Tier Reconciliation and Prior Survey and Screening.
+The Drive workbook last changed **2026-11-03T06:03:55.045Z**, before the existing 2026-11-04 checked-in snapshot review; I therefore kept the frozen 225-row snapshot and date intact.
+Original [arXiv:2608.03971v1](https://arxiv.org/html/2608.03971), §§3–5, Tables 1–4 and Appendix B support instruction-controlled **raster** layer recovery and generation but not exported native PSD or quantitative post-export editing success.
+I linked CGD-184 to uniworlddesign2026 in both crosswalks, recording **225 IDs / 201 references / 194 acro / 172 linked / 53 unresolved** (3 P1/13 P2/37 P3), public **155/207 linked / 52 pending**.
+The source-tier history was not transferred automatically, and no unmatched study was excluded. See [T05 original-source audit](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md).

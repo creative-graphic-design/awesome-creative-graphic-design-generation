@@ -116,6 +116,17 @@ class EvidenceRegisterTest(unittest.TestCase):
         errors, _ = validator.validate(self.paper)
         self.assertTrue(any("Stale/incorrect identity match method: CGD-174" in e for e in errors))
 
+    def test_uniworld_design_arxiv_identity_regression_is_rejected(self) -> None:
+        bib = self.paper / "references.bib"
+        content = bib.read_text(encoding="utf-8")
+        self.assertIn("eprint = {2608.03971}", content)
+        broken = content.replace("eprint = {2608.03971}", "eprint = {2608.03972}")
+        broken = broken.replace("url = {https://arxiv.org/abs/2608.03971}",
+                                "url = {https://arxiv.org/abs/2608.03972}")
+        bib.write_text(broken, encoding="utf-8")
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("Stale/incorrect identity match method: CGD-184" in e for e in errors))
+
     def test_missing_sheet_study_is_rejected(self) -> None:
         self.rewrite(ASSETS[0], lambda rows: rows.pop())
         errors, _ = validator.validate(self.paper)
