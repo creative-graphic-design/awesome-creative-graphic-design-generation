@@ -102,3 +102,10 @@ I inspected the prior actual T06 rendered index (including pp. **18, 22, 24**) a
 I updated **only the index template and its mechanical validator**, keeping all 198 entries, `paperurl`/DOI/source metadata, displayed task/representation and page references.
 The template now uses `\\raggedright`, `\\hyphenpenalty=10000`, `\\exhyphenpenalty=10000` and `\\itemsep=.45\\baselineskip`; a standalone `acro` LaTeX specimen compiled and rendered successfully.
 **The full-paper PDF after this change still requires actual source-commit CI and visual inspection**; standalone proof is not publication-quality acceptance.
+
+## Acro wrapping follow-up: rich metadata versus readable print index (2026-11-05)
+
+My direct comparison of the compiled full T06 PDF and ragged-right-only [Paper PDF #42025690265](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42025690265) **pp. 22 and 24** showed that the initial fix improved justification but left long *Task* and *Representation* annotations unnaturally wrapped.
+I therefore redesigned the **printed** `survey-rich` index as a compact bibliographic listing: `short`, `list`, optional `extra`, `refyear`, `venue`, `source`, `paperurl`, `doi`, and `acropages`.
+I preserved the custom `task`/`representation` property declarations and all 198 source-linked records in `acronyms.tex`; these fields are not discarded and can be described more readably in technical prose/tables.
+A standalone full-width/two-column `acro` proof with four representative long entries compiled and rendered successfully. **Revised full manuscript CI and artifact inspection remain mandatory before final visual acceptance.**

@@ -112,3 +112,11 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Compile/render an independent four-system `acro` specimen before changing the paper template.
 - [ ] Verify the real full-paper CI result, download revised PDF and visually inspect representative acro pages and warnings; update the audit only after that inspection.
 - [ ] Author scientific approval and PosterText v3/source-claim review remain open; no T07 study work is authorized by this presentation-only change.
+
+## acro second-pass: remaining awkward line wraps (2026-11-05)
+
+- [x] Recheck the **actual** success-status [Paper PDF #42025690265](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42025690265), artifact and 31-page output at pp. **22 and 24**. The ragged-right-only change did **not** eliminate excessive wraps in long Task/Representation paragraphs.
+- [x] Keep the full 198-entry registry and custom Task/Representation **data**, but make the **printed** index compact: short label, description, year/venue, original source, paper/DOI link and use pages. Do not silently remove provenance or source-linked entries.
+- [x] Strengthen `check_manuscript.py` to forbid verbose Task/Representation data in the narrow two-column printed template while preserving underlying `\\DeclareAcroProperty` declarations.
+- [x] Prototype the compact layout with a two-column `acro` LaTeX fixture and visually inspect it.
+- [ ] Run new source-commit Paper PDF CI and inspect pages at the beginning/middle/end of all three lists and reference transition; update the PR after **actual** verification.

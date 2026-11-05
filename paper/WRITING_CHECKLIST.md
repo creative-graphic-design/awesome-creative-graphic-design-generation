@@ -202,3 +202,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [x] Keep **all 198 acro entries** and the printed source, year, venue, task, representation, paper and DOI links, and occurrence pages; this change is only typesetting, not source or citation curation.
 - [x] Add a manuscript CI guard for the three wrapping controls so that a future template edit cannot silently restore justified, hyphenated acronym entries.
 - [ ] Download and inspect the **full newly compiled anonymous manuscript** at representative beginning/middle/end acro pages; review the worst long venue and annotated PosterText entries, count/links/occurrence pages, PDF line-box warnings and page count before declaring production acceptance.
+
+## acro compact index correction after actual full-PDF comparison (2026-11-05)
+
+- [x] I downloaded and inspected the **31-page** real [Paper PDF #42025690265](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42025690265) from layout-only source `bfb577f`, compared pages **22** and **24** side by side with the T06 PDF. Although `\\raggedright` removed stretched spaces, **Task** and **Representation** still wrapped awkwardly across multiple short lines. The earlier fix alone was insufficient.
+- [x] In `survey-rich`, retain the name/description, **publication year, venue, original source citation, paper URL link, DOI and occurrence pages** but suppress the *printed* Task and Representation paragraphs. The original `task` and `representation` `\\DeclareAcroProperty` definitions and all underlying registered values are retained; they can be used in structured comparative tables or later supplements.
+- [x] I compiled and rendered a four-entry, two-column `acro` LaTeX comparison using PosterText, PosterText-Bench, PosterMaker and UniWorld-Design with the compact layout. It no longer inserts multi-line explanatory paragraphs between the description and source references.
+- [x] Update `check_manuscript.py` so it requires source/year/venue/URL/DOI/pages while rejecting accidental printing of verbose task/representation fields in the two-column index.
+- [ ] Verify the full **new source-commit** PDF in GitHub Actions and inspect the full acro list and index-to-bibliography transition before reporting visual acceptance. This local proof is not full-paper QA.

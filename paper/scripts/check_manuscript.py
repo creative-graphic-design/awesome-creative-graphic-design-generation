@@ -168,9 +168,12 @@ for property_name in ("source", "refyear", "venue", "paperurl", "doi",
     require(r"\DeclareAcroProperty{" + property_name + "}" in index_template,
             f"Missing index property declaration: {property_name}")
 for property_name in ("list", "extra", "refyear", "venue", "source",
-                      "paperurl", "doi", "task", "representation"):
+                      "paperurl", "doi"):
     require(r"\acrowrite{" + property_name + "}" in index_template,
-            f"Index template does not display metadata field: {property_name}")
+            f"Index template does not display bibliographic field: {property_name}")
+for verbose_property in ("task", "representation"):
+    require(r"\acrowrite{" + verbose_property + "}" not in index_template,
+            f"Verbose two-column acro field must remain registry-only: {verbose_property}")
 for wrapping_guard in (r"\raggedright", r"\hyphenpenalty=10000",
                        r"\exhyphenpenalty=10000"):
     require(wrapping_guard in index_template,

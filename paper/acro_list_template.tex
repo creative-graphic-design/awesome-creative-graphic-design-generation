@@ -1,5 +1,6 @@
-% Review-oriented full research index: retain all source-backed metadata.
-% Two-column entries use ragged-right lines and no word hyphenation to prevent awkward wrapping.
+% Review-oriented research index: show every entry with compact bibliography data.
+% Store task/representation annotations in the registry but explain them in tables/prose.
+% Never print the verbose task and representation paragraphs in narrow two-column lists.
 \DeclareAcroProperty{source}
 \DeclareAcroProperty{refyear}
 \DeclareAcroProperty{venue}
@@ -15,7 +16,7 @@
     \raggedright
     \hyphenpenalty=10000
     \exhyphenpenalty=10000
-    \setlength{\itemsep}{.45\baselineskip}
+    \setlength{\itemsep}{.35\baselineskip}
     \acronymsmapF{%
       \item[\acrowrite{short}]%
       \acrowrite{list}%
@@ -24,8 +25,6 @@
       {\footnotesize
         \acroifT{refyear}{\textbf{\acrowrite{refyear}}\enspace}%
         \acroifT{venue}{\textit{\acrowrite{venue}}\enspace}%
-        \acroifT{task}{Task: \acrowrite{task}\enspace}%
-        \acroifT{representation}{Representation: \acrowrite{representation}\enspace}%
         \acroifT{source}{Source: \acrowrite{source}\enspace}%
         \acroifT{paperurl}{\href{\acrowrite{paperurl}}{paper}\enspace}%
         \acroifT{doi}{\href{https://doi.org/\acrowrite{doi}}{DOI}\enspace}%
