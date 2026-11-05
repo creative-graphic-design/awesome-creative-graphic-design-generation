@@ -8,7 +8,7 @@ I re-read the [original source](https://arxiv.org/html/2608.03971) and live evid
 UniWorld-Design trains on PSD-authored semantic layers but **outputs complete compositable RGBA raster assets and stacks, not an exported native PSD document**.
 I distinguish I2L layer recovery on 512 Crello designs from T2RGBA generation on 512 prompts and record worse alpha cleanliness and FID counterexamples.
 **Source stage:** 225 register IDs / 201 cited references / 194 acro / 172 linked / 53 unresolved (3 P1/13 P2/37 P3); public 155/207 linked / 52 pending.
-The source-commit PDF/maps and scientific author review are still pending at this checkpoint.
+I downloaded and inspected the actual **30-page** anonymous manuscript and both standalone maps from [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), artifact **13398466465**. All three CI checks passed for source `fb1f41e`; see the [T05 audit](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md) for inspected pages and limits. **Scientific author review of T04/T05 remains pending.**
 
 
 ## Historical single-study checkpoint — T04 / LayeringDiff (2026-11-05)

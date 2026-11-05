@@ -171,3 +171,9 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Treat Bad Layers / VLM scores as **proxies**; retain the worse alpha cleanliness **2.90 vs 3.33** and worse FID **117.14 vs 87.86** relative to the reported comparators.
 - [ ] Enforce **53-unresolved** 225-study ceiling, a negative original-arXiv-ID test and human scientific-review gates.
 - [ ] Inspect actual source-commit anonymous PDF and maps before reporting publication-quality acceptance; hold T06 pending approval.
+
+## T05 actual PDF/map QA checkpoint — 2026-11-05
+
+- [x] Source commit `fb1f41e` passed [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), Catalog Check and Awesome Lint after correcting stale count assertions in the negative-case test.
+- [x] Downloaded exact artifact **13398466465**, inspected the 30-page anonymous PDF's original research map (p. 3), UniWorld-Design representation (p. 7), methods (p. 11), evaluation (p. 13), source-linked acro entry (p. 22), bibliography (p. 26) and both standalone 26-/67-study maps. No obvious layout collisions or unresolved citation/acro/box warnings in the checked regions and log.
+- [ ] **Author scientific review remains separate from artifact QA.** Do not proceed to T06 / PosterText until T04/T05 scientific scope and evidence interpretation have been reviewed.

@@ -75,3 +75,10 @@ The Drive workbook last changed **2026-11-03T06:03:55.045Z**, before the existin
 Original [arXiv:2608.03971v1](https://arxiv.org/html/2608.03971), §§3–5, Tables 1–4 and Appendix B support instruction-controlled **raster** layer recovery and generation but not exported native PSD or quantitative post-export editing success.
 I linked CGD-184 to uniworlddesign2026 in both crosswalks, recording **225 IDs / 201 references / 194 acro / 172 linked / 53 unresolved** (3 P1/13 P2/37 P3), public **155/207 linked / 52 pending**.
 The source-tier history was not transferred automatically, and no unmatched study was excluded. See [T05 original-source audit](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md).
+
+## T05 published artifact QA (2026-11-05)
+
+After correcting the stale baseline assertion, scholarly source `fb1f41e` passed [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), Catalog Check and Awesome Lint.
+I downloaded artifact **13398466465** and inspected the **30-page** anonymous PDF at pp. **3, 7, 11, 13, 22, 26**, plus the standalone **26-/67-study maps**, with no apparent overlapping or clipped content in these inspected regions.
+The actual PDF shows source-linked UniWorld-Design in the system index on p. 22 with usage pp. 7, 11, 13 and reference [86] on p. 26.
+This is visual/artifact acceptance for the frozen 225-row spreadsheet snapshot and manuscript source, **not** live Sheet synchronization, a systematic retrieval execution or scientific author sign-off.
