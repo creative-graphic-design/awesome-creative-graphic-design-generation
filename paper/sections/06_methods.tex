@@ -80,6 +80,10 @@ Text rendering poses constraints not captured by photographic image fidelity.
 \ac{wordasimage} optimizes letter shapes to communicate meaning while retaining legibility and font resemblance.
 \ac{derendering} instead infers editable rendering parameters from a flattened text image.
 A replacement of semantic text, a modification of glyph outlines, and a reconstruction of font/effect parameters are three different editing operations.
+\ac{postertext} unifies full poster generation, text-patch addition, deletion and modification through image-conditioned instructions and optional reference-patch styling (Sections 3--4).
+Its four training stages combine text-rendering pretraining, supervised instruction following, preference-aligned reinforcement learning and \ac{sgsd} that distills mask-guided spatial localization into mask-free inference.
+\ac{postertext320k} includes 120K editing-task posters and 200K generation-task posters, with OCR/VLM and HTML extraction used to construct structured text-patch annotation and operation pairs (Section 3 and Figure 3).
+The HTML encodes training supervision, while the delivered model output remains a raster poster rather than editable HTML/CSS or native typographic objects.
 
 Vector-centric work generates or embeds shape/path sequences.
 \ac{deepsvg} and \ac{svgformer} learn vector representations \citep{deepsvg2020,svgformer2023}, whereas \ac{vectorfusion} and \ac{iconshop} synthesize vectors conditioned on textual prompts \citep{vectorfusion2023,iconshop2023}.

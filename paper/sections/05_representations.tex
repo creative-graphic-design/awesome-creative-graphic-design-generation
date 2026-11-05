@@ -17,6 +17,8 @@ A \ac{png} image can retain an alpha channel, but the file format alone does not
 A clean appearance is valuable, but targeted changes and preservation of neighboring content constitute a separate image-editing problem.
 SAWNA exemplifies a boundary: it enforces user-reserved blank regions during image synthesis to support later composition \citep{sawna2025}.
 Those regions are useful but do not establish post-export semantic object manipulation.
+\ac{postertext} targets localized rendered text patches; its HTML structure is used to construct annotated training pairs, not exported as a native editable document by the generation model (Section 3 and Figure 3).
+Quantitative raster editing need not preserve independently manipulable original font, text or vector objects.
 
 \paragraph{Document structures and conditioned layouts.}
 READ uses a recursive latent tree to capture relationships among document elements \citep{read2020}, whereas Neural Design Network incorporates user constraints directly in structured layout generation \citep{ndn2020}.

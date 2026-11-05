@@ -12,6 +12,9 @@ The \ac{svgeditbench} dataset repository specifies six editing tasks built from 
 \ac{vectorgym} instead defines VG-Sketch, VG-Edit, VG-Text, and VG-Cap as four separate tasks with expert-authored annotations, and its \ac{vlm}-based judgment should be interpreted alongside the task-specific rendering and similarity measures \citep{vectorgym2026}.
 \ac{mildedit} introduces editing of multi-layer documents with dedicated assessment axes \citep{mildedit2026}.
 These studies refute an overly broad claim that there is no quantitative editing evaluation.
+\ac{postertextbench} measures poster generation and three distinct rendered-text patch operations, with string fidelity, masked non-target change and VLM quality interpreted separately (Section 4, Table 1).
+\ac{postertext320k} provides the automatically constructed HTML patch annotations and training pairs, but these are not native document outputs evaluated by the benchmark.
+Deletion has no target-string accuracy, and poster generation uses VLM-scored subject preservation rather than masked perceptual distance.
 The remaining challenge is \emph{cross-representation comparability}: the permitted editing operations and document structures differ.
 
 \ac{graphicdesignbench} probes multiple professional design capabilities in both understanding and generation settings.

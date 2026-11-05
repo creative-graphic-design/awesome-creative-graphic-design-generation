@@ -43,6 +43,12 @@ Typography introduces additional evaluation dimensions: correct character identi
 Those numerical measurements indicate reconstruction fidelity, not a rate of successful edit instructions.
 \ac{wordasimage} includes a perceptual study measuring whether semantic concepts remain recognizable, letters remain legible, and typography resembles the input font \citep{wordasimage2023}.
 The same dimensions should not be conflated with free-form replacement of textual content.
+\ac{postertextbench} evaluates targeted raster-image edits, not only text rendering, with OCR-based sentence accuracy and normalized edit distance for insertion and modification, masked \ac{lpips} for non-target preservation, and VLM instruction/visual-quality scoring (Section 4 and Table 1).
+In patch addition, \ac{postertext} obtains sentence accuracy 0.763, normalized edit distance 0.899 and masked \ac{lpips} 0.039, versus Nano Banana 2's 0.500, 0.635 and 0.064.
+For patch modification, its sentence accuracy 0.771 and normalized edit distance 0.902 are lower than Nano Banana 2's 0.819 and 0.907, even as masked \ac{lpips} improves to 0.028 versus 0.034.
+For deletion, PosterText reports masked \ac{lpips} 0.040 and VLM instruction-following 4.70, while Nano Banana Pro has higher VLM visual quality 4.91 versus 4.78.
+Table 2's full-training sentence accuracy 0.767 and masked \ac{lpips} 0.036 aggregate different subsets of editing tasks rather than describing a single operation.
+These image-level results demonstrate measured instruction-guided raster editing, not human editing time, export validity or preservation of native font and vector objects.
 
 \subsection{Editability Affordance Versus Editing Performance}
 Three complementary examples clarify the evidence distinction.

@@ -2146,3 +2146,35 @@
   task = {Standalone transparent asset generation and instruction-controlled layered raster recovery},
   representation = {Independent RGBA assets and ordered complete RGBA semantic layers; PSD is a training source, not an evidenced exported document}
 }
+
+\DeclareAcronym{sgsd}{
+  short = {SGSD}, long = {spatial guidance self-distillation}, tag = {abbreviations},
+  cite = {postertext2026}
+}
+\DeclareAcronym{postertext}{
+  short = {PosterText},
+  long = {Raster e-commerce poster generation and instruction-guided text-patch editing},
+  tag = {systems}, cite = {postertext2026}, first-style = short,
+  source = {\citep{postertext2026}},
+  refyear = {2026}, paperurl = {https://arxiv.org/abs/2608.16289},
+  task = {Poster synthesis and text-patch addition, deletion and modification},
+  representation = {Raster poster output; HTML patch annotations are training data, not native editable output}
+}
+\DeclareAcronym{postertext320k}{
+  short = {PosterText-320K},
+  long = {Annotated e-commerce poster generation and editing corpus},
+  tag = {evaluation}, cite = {postertext2026}, first-style = short,
+  source = {\citep{postertext2026}},
+  refyear = {2026}, paperurl = {https://arxiv.org/abs/2608.16289},
+  task = {Training data for image generation and text-patch editing},
+  representation = {120K editing-task and 200K generation-task posters; patch-level HTML training annotations}
+}
+\DeclareAcronym{postertextbench}{
+  short = {PosterText-Bench},
+  long = {Poster generation and visual text-patch editing benchmark},
+  tag = {evaluation}, cite = {postertext2026}, first-style = short,
+  source = {\citep{postertext2026}},
+  refyear = {2026}, paperurl = {https://arxiv.org/abs/2608.16289},
+  task = {Raster patch addition, deletion, modification and full-poster generation},
+  representation = {OCR-based text measures, masked perceptual fidelity and VLM judgment on raster posters}
+}
