@@ -155,6 +155,10 @@ require(n_abbr >= 22 and n_systems >= 120 and n_evaluation >= 15,
         "Preserve expanded abbreviation, named-system, and benchmark/dataset groups")
 require(r"\printacronyms[include=evaluation,heading=none,display=all,template=survey-rich]" in main,
         "Print benchmark/dataset resources in their own acro list")
+require(r"\section*{Evaluation Resources}" in main,
+        "Use a single-line heading for the compact two-column evaluation index")
+require(r"\section*{Benchmarks, Datasets, and Evaluation Resources}" not in main,
+        "Avoid the hyphenated multi-line evaluation index heading")
 
 # Full research index: every named source has an index-specific citation and
 # available bibliographic metadata, independently of its first-use acro citation.

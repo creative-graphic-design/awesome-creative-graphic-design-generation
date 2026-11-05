@@ -113,3 +113,10 @@ My direct comparison of the compiled full T06 PDF and ragged-right-only [Paper P
 I therefore redesigned the **printed** `survey-rich` index as a compact bibliographic listing: `short`, `list`, optional `extra`, `refyear`, `venue`, `source`, `paperurl`, `doi`, and `acropages`.
 I preserved the custom `task`/`representation` property declarations and all 198 source-linked records in `acronyms.tex`; these fields are not discarded and can be described more readably in technical prose/tables.
 A standalone full-width/two-column `acro` proof with four representative long entries compiled and rendered successfully. **I subsequently verified the actual full manuscript PDF** in [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385), artifact **13417988514**: 31 pages; visual side-by-side index comparison pp. 18/22/24; PosterText/PosterText-320K/PosterText-Bench source citations, links and usage pages retained; list-to-References transition readable; no out-of-page text words or undefined citation/acro/TeX box warnings. Scientific author approval remains separate.
+
+## Eight-page index visual review and section-heading correction (2026-11-05)
+
+I separately rendered and inspected the entire **pp. 17–24** of the actual compact T06 PDF (artifact **13417988514**), not only PosterText examples.
+In addition to verifying the compact references on pp. 22/24, I found the **evaluation-group heading** on p. **23** hyphenated as `Re-` / `sources`.
+I shortened the LaTeX heading from `Benchmarks, Datasets, and Evaluation Resources` to **`Evaluation Resources`** and added an exact heading invariant to `paper/scripts/check_manuscript.py`.
+This is a **pure heading/layout correction**; no acronym identity, tag, source or citation metadata changed. **Pending** source-commit PDF CI and visual check of the new p. 23 heading.

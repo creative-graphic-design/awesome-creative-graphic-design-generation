@@ -120,3 +120,9 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Strengthen `check_manuscript.py` to forbid verbose Task/Representation data in the narrow two-column printed template while preserving underlying `\\DeclareAcroProperty` declarations.
 - [x] Prototype the compact layout with a two-column `acro` LaTeX fixture and visually inspect it.
 - [x] Scientific-layout source `0dbe879` passed [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385), Awesome Lint and Catalog Check. I downloaded exact artifact **13417988514**, visually compared the **31-page** revised anonymous PDF at acro **pp. 18, 22, 24** against the earlier full PDF, verified PosterText/BENCH citations and usage pages and the transition to References (p. 24), scanned page-text bounding boxes (0 outside), and checked the final log (no unresolved citation, acro or TeX box warnings).
+
+## Compact acro index: final heading wrap (2026-11-05)
+
+- [x] Visually inspect the complete printed `acro` index pages **17–24**, including system/bibliography transitions, not just individual PosterText entries.
+- [x] Identify the residual `Re-`/`sources` split in the long evaluation-group heading on p. **23**, shorten it to `Evaluation Resources`, and protect that title with the manuscript source CI.
+- [ ] Verify a fresh full-paper PDF after this heading-only change, download its artifact and inspect actual p. 23 and overall page count before marking this final layout issue closed.

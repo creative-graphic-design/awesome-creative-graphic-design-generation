@@ -217,3 +217,10 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [x] I labeled outdated **180/186 reference, 175/185 acro and 148/157 crosswalk** counts in `README.md` and `ACRO_AUDIT.md` as the appropriate earlier 2026-11-04 historical checkpoints, retaining their actual values for provenance. The T17 index list now reflects the **198-entry compact print output**, which keeps citation/year/link/page metadata but stores Task/Representation outside print.
 - [ ] Continue to distinguish the **198 registered terms** from verified individual source-level experiments and from all papers in the 225-study provisional register; no author-scientific approval or current v3 PosterText result claim is implied by this documentation cleanup.
 - [x] I completed a second pass on the old README index section: marked its **180-reference** and **22/130/16 acro** figures as dated checkpoints and corrected **both** to **all three** printed `acro` lists while leaving the historical numbers recoverable.
+
+## Full acro index visual spot check — residual heading wrap (2026-11-05)
+
+- [x] I rendered **all eight printed index pages (17–24)** from the actual **31-page**, source-verified anonymous PDF `0dbe879`. The 198-term compact index content is readable, and pages 18–24 show source citations/URLs and printed appearance pages.
+- [x] The evaluation index heading on p. **23** was still **broken inside the word “Resources”** as `Re-` / `sources`, even though the PosterText entries on pp. 22/24 no longer had excessive metadata wraps. This was an independent leftover typography defect.
+- [x] Shorten only the printed section heading to **“Evaluation Resources”** in `main.tex`, preserving all 20 evaluation entries, the `evaluation` tag, and all source/year/DOI/URL/page data. Add a structural CI guard to prevent reintroducing the long hyphenated heading.
+- [ ] Compile the complete manuscript for this **heading-only source revision** and check the real p. 23 heading in GitHub Actions before claiming final visual acceptance. The prior 31-page PDF remains the most recently directly inspected full artifact until then.
