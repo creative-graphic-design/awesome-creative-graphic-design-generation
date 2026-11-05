@@ -2,6 +2,13 @@
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
+## Latest acro typography correction — compiled and inspected (2026-11-05)
+
+I corrected the printed two-column `acro` index after comparing the actual previous full-paper PDFs and finding that ragged-right text alone still left verbose Task/Representation annotations wrapped across narrow columns.
+The print template now displays name/description, reference year, venue, original citation, paper/DOI links and manuscript occurrence pages; **Task** and **Representation** remain stored in all 198 source-linked registry entries, not printed in the compact index.
+The source change `0dbe879` passed [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385), Catalog Check and Awesome Lint; I retrieved artifact **13417988514**, inspected the real **31-page** PDF at index pp. **18, 22, 24** and the bibliography transition, and verified zero out-of-page text boxes or unresolved citation/acro/TeX box warnings.
+This is typesetting QA, **not** author scientific approval of T04–T06 or a primary-source verification of PosterText v3.
+
 ## Latest source-stage checkpoint — T06 / PosterText (2026-11-05)
 
 I reviewed [PosterText original arXiv v2 §§3–4/Tables 1–2](https://arxiv.org/html/2608.16289v2), inspected current arXiv v3 version metadata and re-read the private live 225-study workbook.

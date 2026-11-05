@@ -110,7 +110,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Diagnose the full-justified `description`-based `survey-rich` index and awkward intra-word line breaks on the actual T06 PDF.
 - [x] Preserve every source-backed display field and all **198** entries, but use ragged-right copy and disable automatic word-hyphenation in the index, with a mechanical CI regression guard.
 - [x] Compile/render an independent four-system `acro` specimen before changing the paper template.
-- [ ] Verify the real full-paper CI result, download revised PDF and visually inspect representative acro pages and warnings; update the audit only after that inspection.
+- [x] The first ragged-right-only PDF built successfully at [#42025690265](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42025690265) and was inspected, but the odd metadata breaks remained; its typography was superseded by the **compact index** in `0dbe879`, verified in [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385) and recorded in the later acro second-pass checkpoint below.
 - [ ] Author scientific approval and PosterText v3/source-claim review remain open; no T07 study work is authorized by this presentation-only change.
 
 ## acro second-pass: remaining awkward line wraps (2026-11-05)
@@ -119,4 +119,4 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Keep the full 198-entry registry and custom Task/Representation **data**, but make the **printed** index compact: short label, description, year/venue, original source, paper/DOI link and use pages. Do not silently remove provenance or source-linked entries.
 - [x] Strengthen `check_manuscript.py` to forbid verbose Task/Representation data in the narrow two-column printed template while preserving underlying `\\DeclareAcroProperty` declarations.
 - [x] Prototype the compact layout with a two-column `acro` LaTeX fixture and visually inspect it.
-- [ ] Run new source-commit Paper PDF CI and inspect pages at the beginning/middle/end of all three lists and reference transition; update the PR after **actual** verification.
+- [x] Scientific-layout source `0dbe879` passed [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385), Awesome Lint and Catalog Check. I downloaded exact artifact **13417988514**, visually compared the **31-page** revised anonymous PDF at acro **pp. 18, 22, 24** against the earlier full PDF, verified PosterText/BENCH citations and usage pages and the transition to References (p. 24), scanned page-text bounding boxes (0 outside), and checked the final log (no unresolved citation, acro or TeX box warnings).
