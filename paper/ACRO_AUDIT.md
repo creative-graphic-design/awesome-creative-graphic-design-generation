@@ -1,6 +1,6 @@
 # acro coverage audit — initiated 2026-11-04
 
-**Latest source-stage T06 checkpoint:** **198 entries** (**27** abbreviations, **151** named systems, **20** evaluation resources); new model/benchmark/dataset/method names require source-commit PDF/index inspection.
+**Latest PDF-verified T06 checkpoint (2026-11-05): 198 entries** (27 abbreviations, 151 systems, 20 evaluation resources). I visually inspected SGSD on **p. 18**, the PosterText system entry on **p. 22**, and PosterText-320K / PosterText-Bench on **p. 24** of the actual **31-page** anonymous manuscript from successful [Paper PDF #41997058915](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41997058915), artifact **13401199657**.
 
 **Latest PDF-verified checkpoint T05 (2026-11-05):** **194** entries (26 abbreviations, 150 systems, 18 evaluation). I inspected UniWorld-Design's actual source-linked index record on **p. 22** of the 30-page manuscript from [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), including usage pp. 7, 11 and 13.
 
@@ -94,4 +94,4 @@ The resulting 194-entry list was compiled and I inspected UniWorld-Design on p. 
 ## T06 PosterText source-linked index additions (2026-11-05)
 
 I added **PosterText** to `systems`, **PosterText-Bench** and **PosterText-320K** to `evaluation`, and **SGSD** to `abbreviations`, with original `postertext2026` attribution and evidence-bounded artifact descriptions.
-The complete list now has **198** entries (27/151/20); the current source-stage additions are **not yet visually accepted** until a new PDF is downloaded and checked.
+The complete source-linked 198-entry index (27/151/20) has now been **visually inspected in the actual 31-page PDF**: PosterText pp. 7, 10, 14 listed on p. 22; PosterText-320K pp. 10, 15 and PosterText-Bench pp. 14 f. listed on p. 24; SGSD occurrence p. 10 listed on p. 18. I found no citation/acro or TeX box warnings and no obvious index overflow in the inspected pages.

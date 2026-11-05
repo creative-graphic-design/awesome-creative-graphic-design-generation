@@ -8,7 +8,7 @@ I reviewed [PosterText original arXiv v2 §§3–4/Tables 1–2](https://arxiv.o
 PosterText quantitatively measures text-patch addition, deletion and modification **on raster poster images** with OCR fidelity, protected-region masked LPIPS and VLM scores; the HTML patch structure is in the **dataset construction pipeline** rather than the exported model result.
 The [T06 evidence audit](T06_POSTERTEXT_SOURCE_AUDIT.md) preserves lower text accuracy on modification and lower visual quality on some tasks compared with closed-source baselines.
 **Source-stage tally: 225 IDs / 202 references / 198 acro / 173 linked / 52 unresolved (2 P1, 13 P2, 37 P3), public 156/207 linked / 51 pending.**
-The new source commit's PDF/map visual QA and author scientific sign-off are **still pending** at this checkpoint.
+I downloaded and visually reviewed the **31-page anonymous T06 manuscript** and both standalone maps from successful [Paper PDF #41997058915](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41997058915), artifact **13401199657**; see [T06 audit](T06_POSTERTEXT_SOURCE_AUDIT.md) for checked pages, the source-linked index and QA limitations. Catalog Check and Awesome Lint also passed. **T04/T05/T06 scientific sign-off and v3 primary-source numerical reconciliation remain pending.**
 
 
 ## Historical single-study source checkpoint — T05 / UniWorld-Design (2026-11-05)

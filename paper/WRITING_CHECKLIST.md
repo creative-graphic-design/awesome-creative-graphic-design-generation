@@ -187,3 +187,10 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [ ] Table 2's **0.767** SenAcc and **0.036** Masked-LPIPS are **different task aggregates**, not per-operation measures; image-based masking is not object-tree integrity or human editing time.
 - [ ] Verify **52 unresolved/173 linked**, a PosterText arXiv mutation negative test, bibliography/audit/acro source citation, real compiled PDF and standalone maps before marking the source stage accepted.
 - [ ] Treat this fresh continuation as authorization to work on T06, but preserve T04/T05/T06 **scientific author review** before T07.
+
+## T06 actual PDF and map acceptance — 2026-11-05
+
+- [x] Source commit `729c2343` passed [Paper PDF #41997058915](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41997058915), Catalog Check and Awesome Lint.
+- [x] I downloaded exact artifact **13401199657**, extracted the **31-page anonymous manuscript**, final TeX log, and both standalone **26-/67-study** vector research maps. Rendered all pages for an overview and inspected the relevant scientific claims and tabular evaluation pages **7, 10, 14–16**, map **3**, acro system/abbreviation/dataset/benchmark index **18, 22, 24**, bibliography reference **[99] on 27**, and both research maps at 200 DPI.
+- [x] I found no apparent layout clipping/overlap in the inspected pages/maps; no undefined citations, references, acro warnings, overfull or underfull box warnings in the final log; and **0** out-of-page text word bounding boxes across 31 pages. The first page and PDF metadata preserve anonymity.
+- [ ] **Scientific author review is distinct from build acceptance.** Recheck the latest arXiv v3 results and supplements; retain T04/T05/T06 scientific review before starting T07.

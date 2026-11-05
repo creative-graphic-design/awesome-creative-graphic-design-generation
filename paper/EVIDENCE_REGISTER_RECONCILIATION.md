@@ -91,3 +91,11 @@ Original [arXiv:2608.16289v2](https://arxiv.org/html/2608.16289v2) §§3–4/Tab
 The arXiv index separately reports a later **v3 (2026-08-20)**; full-text numerical reconciliation is pending before final publication.
 I linked `postertext2026`, giving **225 IDs / 202 BibTeX / 198 acro / 173 linked / 52 unresolved (2 P1/13 P2/37 P3)** and separate public 207 catalogue **156 linked / 51 pending**.
 The identity gate ceiling is now **52** with a corrupt-arXiv-link regression test. No unmatched studies were excluded; see [T06 original-source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+
+## T06 published source-build QA (2026-11-05)
+
+Scientific source `729c2343` passed [Paper PDF #41997058915](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41997058915), Catalog Check and Awesome Lint.
+I downloaded exact artifact **13401199657** and reviewed the actual **31-page anonymous PDF** (all pages at overview resolution, targeted scientific passages pp. 3, 7, 10, 14–16, 18, 22, 24, 27) plus both standalone 26-/67-study vector maps at 200 DPI.
+PosterText's source-linked system index is p. **22**, PosterText-320K and PosterText-Bench p. **24**, SGSD p. **18**, and reference **[99]** p. **27**.
+No TeX citation/reference, acro or overfull/underfull box warnings, visible clipping in inspected regions, or text words outside page boundaries were found.
+This validates the **committed frozen 225-row snapshot and generated artifacts**, not a live Sheet write, v3 methods/results equivalence, a new systematic retrieval or author scientific approval.
