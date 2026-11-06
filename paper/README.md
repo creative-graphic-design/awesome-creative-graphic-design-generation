@@ -171,3 +171,7 @@ The manuscript now uses the **standard `acro` v3.8 page-index options**, not a c
 ## Native acro page-index build convergence (2026-11-06)
 
 The built-in `pages/display=all` appearance index increases the initial LaTeX/BibTeX passes needed for the anonymous two-column manuscript. The first full source run [Paper PDF #42150444462](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42150444462) hit latexmk's default **five-pass limit** (the emitted fifth-pass PDF already contained correct-looking occurrence labels). I added `paper/.latexmkrc` with an **eight-pass finite cap** to permit proper convergence. This is a build-system setting, **not a custom `acro` list renderer**. Full source-run success and PDF QA must still be confirmed.
+
+## Verified default acro appearance index (2026-11-06)
+
+I completed the full-source build at `117f247`: [Paper PDF #42153100997](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42153100997) succeeded together with Awesome Lint and Catalog Check. I retrieved artifact **13473718306** and inspected the real **29-page anonymous PDF**, including index **pp. 17–22** and both unchanged vector maps. The **stock** `acro` list now displays usage pages, e.g. PosterText **pp. 7, 10, 14**, UniWorld-Design **pp. 7, 11, 13**, PosterText-Bench **pp. 14, 15**, without a custom list renderer. No clipping or unresolved-citation/`acro` warnings were detected in the inspected output. **No original-paper evidence or 198-term metadata changed.**
