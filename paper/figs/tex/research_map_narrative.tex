@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{tikz}
+\usepackage{graphicx}
 \usetikzlibrary{calc,arrows.meta}
 \definecolor{navy}{HTML}{162F4C}
 \definecolor{ink}{HTML}{253A53}
@@ -19,6 +20,16 @@
 \definecolor{agent}{HTML}{775BAE}
 \definecolor{struct}{HTML}{268B7B}
 \definecolor{edit}{HTML}{AF4877}
+% T16: Optional original institution marks, enabled individually only after the
+% corresponding source asset and redistribution/trademark review have cleared.
+% Keep the zero-valued defaults for anonymous-review PDFs until then.
+% Source: figs/tex/logo_asset_candidates.csv; expected vector PDF assets:
+% figs/assets/logos/{bit,adobe,msra,pku,cyberagent}.pdf.
+\newcommand{\AffilBrand}[4]{%
+  \ifnum#1=1\relax
+    \IfFileExists{figs/assets/logos/#2.pdf}{\raisebox{-0.04cm}{\includegraphics[height=#3,keepaspectratio]{figs/assets/logos/#2.pdf}}}{#4}%
+  \else #4\fi%
+}
 \newcommand{\MapPaper}[8]{%
   \node[anchor=north west,draw=#7,fill=white,rounded corners=2pt,line width=.80pt,
    text width=3.12cm,inner xsep=4.1pt,inner ysep=1.6pt,align=left]
@@ -127,12 +138,14 @@
 \node[anchor=west,text=ink,font=\bfseries\fontsize{7.5}{8.2}\selectfont] at (15.67,2.45) {Native file};
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.97) {Object tree};
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.66) {Validate edits};
-% Institutional labels are text only (NOT copied logo images).
+% Institution-mark rail; 0 = evidence-backed text fallback, not an official logo.
+% For each organization, replace 0 with 1 only after approval and adding its
+% unmodified original vector PDF to figs/assets/logos/ (see provenance CSV).
 \fill[navy!5,rounded corners=2pt] (.48,-.36) rectangle (18.72,.16);
 \node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,-.10) {Affiliation provenance:};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,-.10) {LayoutGAN / BIT + Adobe};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (9.47,-.10) {COLE / MSRA + Peking Univ.};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,-.10) {OpenCOLE / CyberAgent};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,-.10) {LayoutGAN / \AffilBrand{0}{bit}{.21cm}{BIT} + \AffilBrand{0}{adobe}{.21cm}{Adobe}};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (9.47,-.10) {COLE / \AffilBrand{0}{msra}{.21cm}{MSRA} + \AffilBrand{0}{pku}{.21cm}{Peking Univ.}};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,-.10) {OpenCOLE / \AffilBrand{0}{cyberagent}{.21cm}{CyberAgent}};
 % A reserved, non-overlapping legend row beneath the output examples.
 \node[anchor=west,text=ink,font=\bfseries\fontsize{6.5}{7.2}\selectfont] at (.64,.53) {Technique emphasis:};
 % Independent model-family coding, intentionally distinct from lane color.
