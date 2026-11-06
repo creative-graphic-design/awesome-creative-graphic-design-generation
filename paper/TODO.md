@@ -26,7 +26,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] **T03 · CGD-159 · Alfie** — original §§4–5.1, Table 1 and Figs. 3/5–7 checked in [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md). A compositable RGBA bitmap is not native design-object editing; PDF and author-approval gates remain open.
 - [x] **T04 · CGD-174 · LayeringDiff** — original §§3–5, Tables 1–4 and Figs 1/7/8 audited in [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md); pending PDF validation and author scientific review are tracked below.
 - [ ] **T05 · CGD-184 · UniWorld-Design** — check the concrete output contract and any claimed native format.
-- [ ] **T06 · CGD-103 · PosterText** — inspect typography/editing evidence separately from raster text quality.
+- [x] **T06 · CGD-103 · PosterText** — inspected raster text-patch editing evidence separately from native document editability; main-paper v2/v3 tables and method are now source-verified. **Scientific author approval and a separate supplement audit remain pending**.
 - [ ] **T07 · CGD-072 · Mise-en-Scène** — resolve paper identity and actual generation/editing task.
 - [ ] **T08 · CGD-073 · Multi-Object Advertisement Creative Generation** — check compositional constraints and evaluation.
 
@@ -103,7 +103,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Distinguish **quantitatively evaluated raster text-patch editing** from the HTML **dataset annotation**, as well as task-specific OCR fidelity, non-target Masked-LPIPS, VLM judging and worse modification text accuracy compared with Nano Banana 2; see [T06 original-source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
 - [x] Synchronize **225 studies / 202 BibTeX / 198 acro (27/151/20) / 173 linked / 52 unresolved (2 P1 / 13 P2 / 37 P3)** and public catalogue **156/207 linked / 51 pending**, with new negative arXiv identity test and a CI ceiling of **52**.
 - [x] **T06 PDF/map artifact gate:** scientific source `729c2343` passed [Paper PDF #41997058915](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41997058915), Catalog Check, and Awesome Lint. I downloaded exact artifact **13401199657**: the **31-page** anonymous PDF and both standalone **26-/67-study** maps; rendered the full manuscript at overview resolution, inspected original map (p. 3), representation (p. 7), method (p. 10), editing results (p. 14), benchmark (pp. 15–16), SGSD (p. 18), PosterText (p. 22), PosterText-320K/Bench (p. 24) and reference [99] (p. 27), plus both maps at 200 DPI. No evident clipping in inspected regions, log citation/acro/box warnings, or text-word boxes outside page boundaries. See [T06 audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
-- [ ] **T04/T05/T06 author scientific approval** and v3 methods/results crosscheck remain pending; the user's continuation authorizes T06 preparation, not unconditional approval. **T07 / CGD-072 / Mise-en-Scène has not started.**
+- [ ] **T04/T05/T06 author scientific approval** remains pending. The **v3 main-paper** Tables 1–2, Figure 3, methods and metric definitions were directly compared with v2 on 2026-11-06; **supplementary implementation details are not independently verified**. **T07 / CGD-072 / Mise-en-Scène has not started.**
 
 ## T06 acro wrapping / typesetting correction — 2026-11-05
 
@@ -111,7 +111,7 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Preserve every source-backed display field and all **198** entries, but use ragged-right copy and disable automatic word-hyphenation in the index, with a mechanical CI regression guard.
 - [x] Compile/render an independent four-system `acro` specimen before changing the paper template.
 - [x] The first ragged-right-only PDF built successfully at [#42025690265](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42025690265) and was inspected, but the odd metadata breaks remained; its typography was superseded by the **compact index** in `0dbe879`, verified in [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385) and recorded in the later acro second-pass checkpoint below.
-- [ ] Author scientific approval and PosterText v3/source-claim review remain open; no T07 study work is authorized by this presentation-only change.
+- [ ] Author scientific approval remains open; the former v3 main-paper numerical/source-claim check was resolved in the 2026-11-06 primary-PDF comparison, but a separate supplement remains unverified. No T07 work has started.
 
 ## acro second-pass: remaining awkward line wraps (2026-11-05)
 
@@ -165,3 +165,10 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Reproduce `extra` + `\\citealp` + native clickable `\\href` in a two-column LaTeX/PDF sample while preserving page-occurrence lists.
 - [x] Add only four representative pilot entries: LayoutGAN, PosterText, UniWorld-Design and PosterText-Bench. Validate each added cite/URL against the existing BibTeX-aligned acro metadata using the existing manuscript checker.
 - [x] Verified all three source-commit checks for `dd1ee78`, [Paper PDF #42159374944](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42159374944), downloaded artifact **13476423122** (29-page manuscript and two standalone maps), and inspected actual index pp. **19–22** side-by-side with the previous stock version. Exactly **four** valid PDF URI annotations link to the source-registered arXiv URLs; `p.`/`pp.` occurrence pages are retained; no out-of-page text or citation/acro/box warnings. Keep this a **four-entry pilot** pending author design feedback before any bulk additional source fields.
+
+## PosterText v3 main-paper reconciliation (2026-11-06)
+
+- [x] Visually compare the version-identified **v2** and **v3** nine-page original arXiv PDFs, especially Table 1/Table 2 (PDF p. 7), Figure 3 and evaluation definitions (PDF p. 5), and four-stage method descriptions; record numeric and representation outcomes in [T06 source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+- [x] Confirm that all audited v2 Table 1–2 values still match v3 and that the model's deliverable is a **raster image**, not a native editable HTML/PSD/SVG/text-layer document. No numerical changes to the TeX manuscript or 225/202/198/173 source-stage snapshot were justified.
+- [ ] Retrieve and review the independently available **supplementary implementation** details referenced by the nine-page main paper; the main PDF ends in references, without an appendix.
+- [ ] Preserve separate T04–T06 **author scientific approval** and systematic literature-search gates; do not begin T07 on the strength of this main-paper comparison.
