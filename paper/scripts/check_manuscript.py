@@ -325,6 +325,45 @@ if narrative_path.is_file():
             f"Narrative research-map source/figure mismatch: figure-only={visible-source_items}, "
             f"registry-only={source_items-visible}")
 
+# T16: institution marks are trademark-bearing assets, not generated diagram
+# decoration. Keep text-only attributions unless BOTH the source-specific rights
+# register and the actual local vector PDF allow an explicit opt-in.
+logo_registry_path = PAPER / "figs" / "tex" / "logo_asset_candidates.csv"
+require(logo_registry_path.is_file(), "Missing institution-logo rights register")
+if logo_registry_path.is_file():
+    with logo_registry_path.open(encoding="utf-8", newline="") as handle:
+        logo_rows = {row["institution"]: row for row in csv.DictReader(handle)}
+    logo_stems = {
+        "bit": "Beijing Institute of Technology",
+        "adobe": "Adobe Inc.",
+        "msra": "Microsoft Research Asia",
+        "pku": "Peking University",
+        "cyberagent": "CyberAgent",
+    }
+    figure_source = tex("figs/tex/research_map_narrative.tex")
+    logo_uses = re.findall(
+        r"\\AffilBrand\{([01])\}\{([a-z]+)\}\{[^{}]+\}\{[^{}]+\}",
+        figure_source,
+    )
+    require(len(logo_uses) == len(logo_stems), "Affiliation rail must have five rights-gated slots")
+    require({stem for _enabled, stem in logo_uses} == set(logo_stems),
+            "Affiliation rail changed without updating provenance mapping")
+    for enabled, stem in logo_uses:
+        institution = logo_stems.get(stem)
+        if not institution:
+            continue
+        record = logo_rows.get(institution)
+        require(record is not None, f"Missing logo candidate provenance: {institution}")
+        if not record:
+            continue
+        require(bool(record.get("logo_source_page")) and bool(record.get("rights_classification")),
+                f"Logo candidate missing source/rights metadata: {institution}")
+        if enabled == "1":
+            require(record.get("status") == "cleared_for_scholarly_use",
+                    f"Logo mark enabled before clearance: {institution}")
+            require((PAPER / "figs" / "assets" / "logos" / f"{stem}.pdf").is_file(),
+                    f"Enabled original mark has no vector PDF: {institution}")
+
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
 
