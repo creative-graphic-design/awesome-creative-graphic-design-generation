@@ -153,3 +153,9 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Confirm the stock `acro` v3.8 option `pages/display=all` records and prints occurrences in the ordinary `\\printacronyms` default template; test it after multiple LaTeX runs with usage pages 1 and 2.
 - [x] Set `pages/display=all,pages/name=true,pages/seq/use=false` in the main paper's existing `\\acsetup` and add a CI source invariant. Preserve the stock three-list layout and complete 198-item acronym registry; no `survey-rich` custom template.
 - [ ] Build/inspect the real PDF page-number index, including PosterText/other known uses, and confirm there are no erroneous page labels or poor spacing. Record actual source-build artifact/CI and report to author.
+
+## Real-paper default acro pages: latexmk convergence (2026-11-06)
+
+- [x] Retrieved failed [Paper PDF #42150444462](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42150444462) output and actual **29-page** last-pass PDF. Confirmed valid-looking stock page index: PosterText **pp. 7, 10, 14**, UniWorld-Design **pp. 7, 11, 13**, PosterText-Bench **pp. 14, 15**. The failure was **latexmk default 5-pass maximum**, not a TeX parse error.
+- [x] Added `paper/.latexmkrc` with `$max_repeat=8;` to allow a finite number of BibTeX/acro crossreference convergence passes while preserving the stock list.
+- [ ] Confirm the re-run's compiled PDF CI success and inspect index screenshots before concluding this formatting task.

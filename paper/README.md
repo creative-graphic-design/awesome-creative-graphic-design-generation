@@ -167,3 +167,7 @@ I then verified the exact full-paper source build in successful [Paper PDF #4206
 ## Default acro occurrence-page index (2026-11-06)
 
 The manuscript now uses the **standard `acro` v3.8 page-index options**, not a custom list template: `pages/display=all` prints **all observed usage pages**, `pages/name=true` prefixes `p.` or `pp.`, and `pages/seq/use=false` prints explicit page numbers instead of `f.`/`ff.`. All three ordinary `\\printacronyms` groups and all **198** registered terms are unchanged. An `acro`-only three-page example was compiled and visually inspected; the full anonymous-paper source build must still be checked. Original custom paper/DOI URLs, year, venue and source-citation metadata remain in the registry and bibliography, not the stock print list.
+
+## Native acro page-index build convergence (2026-11-06)
+
+The built-in `pages/display=all` appearance index increases the initial LaTeX/BibTeX passes needed for the anonymous two-column manuscript. The first full source run [Paper PDF #42150444462](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42150444462) hit latexmk's default **five-pass limit** (the emitted fifth-pass PDF already contained correct-looking occurrence labels). I added `paper/.latexmkrc` with an **eight-pass finite cap** to permit proper convergence. This is a build-system setting, **not a custom `acro` list renderer**. Full source-run success and PDF QA must still be confirmed.
