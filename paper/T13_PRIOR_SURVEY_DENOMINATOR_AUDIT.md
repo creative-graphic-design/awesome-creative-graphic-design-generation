@@ -51,3 +51,40 @@ This is a **claim-to-source verification queue** extracted from the current [rel
 For each source, record the canonical URL/version, original section/figure/table locator, what is visually encoded, search period and denominator when counts are shown, and whether current TeX wording requires a correction. Distinguish *orientation graphics* from *empirical evidence graphics*. Do not reuse quantitative trends without validating their underlying inclusion sets. Original diagrams should inform a new, independently authored illustration, not be reproduced.
 
 This addition changes **documentation only**. No new figures were verified by this matrix, and it does not constitute T13 sign-off or permission to begin T07.
+
+
+## Figure-locator primary-source audit (2026-11-07)
+
+### Zou, Zhang & Zhao (2025): **original published PDF images inspected**
+
+I opened the [37-page published journal PDF](https://ira.lib.polyu.edu.hk/bitstream/10397/117597/1/jimaging-11-00289.pdf) and visually inspected the **actual PDF pages 2, 4 and 7** (PDF page indices 1, 3 and 6). I also cross-checked each figure caption and the nearby discussion.
+
+| Figure / physical PDF page | What the figure actually encodes | Consequence for our manuscript |
+| --- | --- | --- |
+| **Fig. 1 / p. 2** | A schematic pipeline from *Human Instruction* to *Aesthetic Design Artwork*, with an AIGD block comprising *Intention Understanding*, *Aesthetic-aware Planning* and *Visual Generation*, and design-element inputs (typography, images, vector shapes, layouts, colors) | Describe as an **instruction-to-artwork workflow illustration**, not measured end-to-end editing performance |
+| **Fig. 2 / p. 4** | **(a)** perception/generation tasks across typography, vector shape, layout, color and holistic categories; **(b)** task shares over image versus SVG recognition/generation; **(c)** perception/generation publications plotted by year | Describe the specific three-part task/representation/time coverage. Values in the plots are **survey-specific**, not validated counts of our 225 working records. The earlier **500 versus 267** denominator ambiguity is not resolved by this figure |
+| **Fig. 3 / p. 7** | Four **document-layout analysis** families: top-down, bottom-up, hybrid, multi-scale, each with qualitative characteristics | Distinguish **analysis** from graphic-layout **generation** and from post-generation document **editing**. This is a conceptual taxonomy, not a comparative empirical benchmark |
+
+**Original-figure inspection status:** all three images and captions checked. **Manuscript action:** I revised [related-surveys text](sections/03_related_surveys.tex) to specify Fig. 2's dimensions and Fig. 3's document-analysis scope. No figure was copied or inserted into our paper.
+
+### Li et al. (2024): **publisher/PMC primary-text labels and discussion checked; image-level inspection pending**
+
+I checked the [original open-access article](https://pmc.ncbi.nlm.nih.gov/articles/PMC11570473/) under §3.2, §3.3 and §4.4, including the **original figure captions and adjoining interpretation**:
+
+| Figure | Original caption / authorial description | Scientific distinction |
+| --- | --- | --- |
+| **Fig. 4 / §3.2** | *Roadmap of application technology of artificial intelligence in graphic design*: maps foundational technologies, AI models/methods, applications and design processes | A **technology/application roadmap**, not a validated causal chain |
+| **Fig. 5 / §3.3** | *Relationship between the four paradigms and each classification*: links **four paradigms and 17 categories** stated in the article | A **qualitative coding/classification structure**, not four model families with measured dominance |
+| **Fig. 6 / §4.4** | *The path of the four paradigms in the graphic design process*: authors propose assignments across requirements, ideation, development, testing/feedback and iteration | A **proposed design-workflow interpretation**, not a measured editing-efficiency experiment |
+
+**Verification boundary:** the caption/section claims above are primary-source checked, but I **did not obtain and visually inspect the Li figure image panels or the full article PDF** in this pass. The [manuscript](sections/03_related_surveys.tex) now uses only these source-supported descriptions, one figure per function. Full figure-graphic inspection remains open before T13 approval.
+
+### Visual-method lessons without reproducing third-party artwork
+
+- Use a compact **orientation schematic** to depict the input/design-element/output contract, like the communicative role of Zou Fig. 1, but independently authored around our representation/editability distinctions.
+- Keep **coverage evidence** (e.g. provenance-backed trend counts or screening flow) separate from task taxonomies. Do not transplant Zou Fig. 2 percentages or curves into our figures while its underlying counts remain unreconciled.
+- Use **distinct lanes/encodings** for analysis, generation and edit operations. A diagram like Zou Fig. 3 describes one stage of a workflow and cannot substantiate another stage's capability.
+- A **design-process roadmap** (Li Figs. 4 and 6) can communicate conceptual hand-offs, but do not use workflow arrows to imply experimentally demonstrated post-generation edits or editing success.
+- Retain explicit operational evidence (format affordance / qualitative example / measured editing result) rather than equating a category or pipeline arrow with a benchmark result.
+
+This is a **bounded primary-source figure audit**, not a completed all-surveys audit or a systematic-search update. The author's T04–T06 scientific review is not changed, and T07 remains unstarted.
