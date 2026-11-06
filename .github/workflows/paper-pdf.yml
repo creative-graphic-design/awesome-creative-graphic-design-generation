@@ -31,6 +31,50 @@ jobs:
         with:
           persist-credentials: false
 
+      # PR path filters compare the whole branch with main, so they cannot
+      # distinguish a documentation-only update inside a long-running PR.
+      # The synchronize/push event provides the exact before/after push range.
+      - name: Determine whether PDF sources changed
+        id: pdf_scope
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.event.after }}
+        run: |
+          set -euo pipefail
+          build_pdf=true
+          reason="Initial PR, manual run, or change scope not verified"
+          if [[ "$EVENT_NAME" == push || ( "$EVENT_NAME" == pull_request && "$EVENT_ACTION" == synchronize ) ]]; then
+            if [[ "$BEFORE_SHA" =~ ^[0-9a-f]{40}$ && "$AFTER_SHA" =~ ^[0-9a-f]{40}$ && ! "$BEFORE_SHA" =~ ^0{40}$ ]]; then
+              # Fail open: a missing ref (e.g. a fork) must trigger the full build.
+              if git fetch --no-tags --depth=1 origin "$BEFORE_SHA" "$AFTER_SHA"; then
+                mapfile -d '' -t changed < <(git diff --name-only -z "$BEFORE_SHA" "$AFTER_SHA")
+                if (( ${#changed[@]} > 0 )); then
+                  build_pdf=false
+                  for file in "${changed[@]}"; do
+                    case "$file" in
+                      paper/*.md) ;; # prose-only notes, audits, checklists, READMEs
+                      *) build_pdf=true; break ;;
+                    esac
+                  done
+                  reason="Files pushed: ${changed[*]}"
+                fi
+              fi
+            fi
+          fi
+          echo "build_pdf=$build_pdf" >> "$GITHUB_OUTPUT"
+          {
+            echo "### PDF build selection"
+            echo "PDF build required: **$build_pdf**"
+            echo "$reason"
+            if [[ "$build_pdf" == false ]]; then
+              echo "Only Markdown documentation changed. All validation checks still run; no new PDF artifact is generated."
+              echo "Use the latest successful Paper PDF artifact for the unchanged manuscript."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Enforce manuscript writing checklist
         run: python3 paper/scripts/check_manuscript.py
 
@@ -53,6 +97,7 @@ jobs:
         run: python3 paper/scripts/check_catalog_crosswalk.py
 
       - name: Build LaTeX and BibTeX
+        if: steps.pdf_scope.outputs.build_pdf == 'true'
         uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
         with:
           root_file: main.tex
@@ -62,6 +107,7 @@ jobs:
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Validate PDF and generate first-page preview
+        if: steps.pdf_scope.outputs.build_pdf == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -96,7 +142,7 @@ jobs:
           fi
 
       - name: Explain how to view the PDF
-        if: success()
+        if: success() && steps.pdf_scope.outputs.build_pdf == 'true'
         shell: bash
         run: |
           {
@@ -110,7 +156,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload PDF, preview, and diagnostics
-        if: always()
+        if: always() && steps.pdf_scope.outputs.build_pdf == 'true'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: survey-paper-${{ github.sha }}
