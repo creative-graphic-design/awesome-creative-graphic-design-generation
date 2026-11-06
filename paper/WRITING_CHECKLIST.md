@@ -292,3 +292,11 @@ Install local hooks once at repo root with `uvx pre-commit install`. These hooks
 - [x] Confirm that all audited v2 Table 1–2 values still match v3 and that the model's deliverable is a **raster image**, not a native editable HTML/PSD/SVG/text-layer document. No numerical changes to the TeX manuscript or 225/202/198/173 source-stage snapshot were justified.
 - [ ] Retrieve and review the independently available **supplementary implementation** details referenced by the nine-page main paper; the main PDF ends in references, without an appendix.
 - [ ] Preserve separate T04–T06 **author scientific approval** and systematic literature-search gates; do not begin T07 on the strength of this main-paper comparison.
+
+
+## Complete acro native citations and links — 171 items (2026-11-06)
+
+- [x] Based on author feedback, use native `acro` `extra` to attach a textual `\citet{original_key}` and `\href{registered_paperurl}{paper}` to **all 171** source-registered systems/evaluation resources, not just four exemplars. This adds 167 and converts the four pilots from `\citealp`; all 27 generic abbreviations retain their normal treatment.
+- [x] Maintain stock `\printacronyms`, 198 source-linked terms, source provenance and built-in explicit occurrence pages. Use no custom index template. Extend the existing checker to require the exact citation key/URL for **every** named resource.
+- [x] Independently compile and inspect the two-column stock `acro`/natbib/hyperref specimen; `\citet` works, but the **stock list adds parentheses around extra**, so source labels look like `(Author (Year); paper)`. Reassess this typography in the real PDF rather than disguising it with bespoke rendering.
+- [ ] Download the **current source-commit** CI artifact and verify all 171 link annotations, actual printed citations, page-use index, layout and standalone maps; a green CI alone is not visual acceptance.
