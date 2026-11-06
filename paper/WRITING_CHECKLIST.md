@@ -104,6 +104,14 @@
 - [ ] Where editing requires dependent reflow, separate permitted neighboring changes from genuinely protected content.
 - [ ] Describe what an original benchmark measures, the artifact it accepts/returns, and source-evidence limitations.
 
+## Original affiliation marks: mandatory T16 permission and PDF gate (2026-11-07)
+
+- [ ] For each logo, distinguish **primary-paper author affiliation** from **authority to reproduce the institution's trademark**. Never call a verified affiliation a cleared mark.
+- [ ] Record original-paper year, affiliation role, official asset/version, asset URL, copyright/trademark and usage rules, required attribution, and written clearance (where applicable) in `figs/tex/logo_asset_candidates.csv`. Preserve the actual source in `figs/tex/affiliation_logo_provenance.csv`.
+- [ ] Until `status=cleared_for_scholarly_use` and the corresponding unaltered vector PDF exists, keep each `\\AffilBrand{0}` text fallback; enabling `\\AffilBrand{1}` must fail the manuscript checker when these prerequisites are unmet.
+- [ ] Inspect the actual anonymous PDF at publication print width after enabling any mark. Confirm that marks are legible, not confused for coauthor endorsements, not redrawn or recolored, and attributed where required. A Commons `PD-textlogo` label alone is not permission to use a trademark.
+- [ ] Treat the original 26-node research map as author-drawn and do not paste third-party paper figures or organization logo assets without the explicit source/permission review. See `figs/assets/logos/README.md`.
+
 ## Paper layout, anonymity and review
 
 - [ ] Keep the author's actual identity out of review manuscripts. Use the official sample author block in source with `\\usepackage[review]{cvpr}`, which outputs an anonymous title block; **verify the rendered PDF**.
