@@ -1,7 +1,7 @@
 # T06 / CGD-103 — PosterText original-source audit
 
 **Source checked on 2026-11-05:** original [arXiv:2608.16289v2 HTML](https://arxiv.org/html/2608.16289v2) Sections 3–4, Figure 3 and Tables 1–2, plus [arXiv version history](https://arxiv.org/abs/2608.16289).
-**Important source-version qualification:** v1 was submitted **2026-08-17**, v2 **2026-08-18**, and arXiv records an updated **v3 (2026-08-20)**. The detailed results below were read from v2; v3 full-text table consistency and supplementary material have **not** been independently audited, so this remains a publication check.
+**Source-version checkpoint (2026-11-06):** v1 was submitted **2026-08-17**, v2 **2026-08-18**, and v3 **2026-08-20**. The source audit first used v2. I have now directly compared the primary **v2 and v3 nine-page arXiv PDFs**, visually including **Table 1, Table 2, Figure 3, and the relevant methods/evaluation passages**. The tabulated scores and the audited task, representation, method, and metric definitions agree across these two versions. The PDF itself references further supplementary implementation details, but **no separate supplementary document has been independently retrieved or reviewed**. That narrower limitation, not the main-paper v3 comparison, remains open.
 No model replication, fresh annotator study or executed systematic database retrieval is claimed.
 
 ## Canonical identity and live register
@@ -39,7 +39,7 @@ Neither the model nor benchmark reports native HTML/PSD/SVG export and post-expo
 ## Editorial decision and source-stage accounting
 
 **Include** as **quantitative instruction-guided raster text-patch editing**, rather than either a native design-source editor or an unmeasured compositing affordance.
-For the stated raster edit contract, set citation-level **methods_results**, **empirical_claim_audit=verified**, **representation_audit=verified**, **editability_audit=verified**, **evaluation_audit=verified**; retain scope limits and v3 recheck.
+For the stated raster edit contract, set citation-level **methods_results**, **empirical_claim_audit=verified**, **representation_audit=verified**, **editability_audit=verified**, **evaluation_audit=verified**; retain the documented raster/native-output limits and the separately pending supplement review.
 Update `postertext2026`, `postertext`, `postertextbench`, `postertext320k`, `sgsd`, both crosswalks, unresolved queue, validator and negative test.
 **Expected:** 225 stable IDs / **202** cited references / **198** acro (27 abbreviations, 151 systems, 20 evaluation resources) / **173** linked / **52** unresolved (**2 P1 / 13 P2 / 37 P3**); public 207-paper catalogue **156 linked / 51 pending**.
 These unmatched records remain pending, not excluded.
@@ -47,9 +47,40 @@ These unmatched records remain pending, not excluded.
 I rendered **all 31 pages** at overview resolution and inspected the research map in the manuscript (p. 3), the raster output boundary (p. 7), the four-stage method/PosterText-320K (p. 10), raster-edit results (p. 14), benchmark discussion (pp. 15–16), SGSD abbreviation (p. 18), PosterText source-linked `acro` index entry (p. 22), PosterText-320K and PosterText-Bench index entries (p. 24), and bibliographic reference **[99]** (p. 27).
 I also rendered both standalone vector maps at **200 DPI** and inspected their labels and alignment. The TeX log contained no undefined citation/reference, acro warnings, or overfull/underfull box warnings; a programmatic word bounding-box inspection found **zero text words outside the 31 page rectangles**.
 No evident overlap/clipping was found in the inspected figures, system entries or pages, and the first page visibly retains the anonymous CVPR-review header; PDF metadata has no author name. This is *artifact QA*, not an exhaustive high-resolution proof of every page, an independent experiment reproduction, or scientific author sign-off.
-**Still required:** T04–T06 scientific author approval, detailed v3 Table 1–2/supplement reconciliation, and documented systematic multi-database retrieval before claiming review completeness; **T07 remains unstarted**.
+**Still required:** T04–T06 scientific author approval, retrieval/review of any separately available supplementary implementation material, and documented systematic multi-database retrieval before claiming review completeness; **T07 remains unstarted**.
 
-## Attempt to reconcile the later arXiv v3 original (2026-11-05)
+## Direct v2–v3 primary-PDF reconciliation (2026-11-06)
 
-I independently reconfirmed the canonical arXiv version history: **v3 was submitted on 2026-08-20**, after v2 on 2026-08-18. Publicly indexed abstracts and mirrored Table 1/Table 2 extracts repeat the v2 task-specific values **addition SenAcc 0.763 / Masked-LPIPS 0.039, modification SenAcc 0.771 versus Nano Banana 2's 0.819, deletion VLM visual quality 4.78 versus Nano Banana Pro's 4.91**. This is corroboration through **secondary indexed extracts**, **not a verified direct v3 primary-PDF comparison**: the version-pinned `https://arxiv.org/pdf/2608.16289v3` and `https://arxiv.org/html/2608.16289v3` could not be retrieved in the current environment.
-I therefore **did not change numerical evidence tiers, manuscript claims or the author-review gate**, and I leave detailed v3 Tables 1–2, methods and supplementary-material consistency **pending**. A same-title abstract and equal rounded PDF sizes in the version history alone do not establish identity of all experiments across versions.
+**Sources inspected:** [original v2 PDF](https://arxiv.org/pdf/2608.16289v2) and [original v3 PDF](https://arxiv.org/pdf/2608.16289v3), linked from the arXiv version history. Both have **nine pages**; their first pages identify `arXiv:2608.16289v2 [cs.CV] 18 Aug 2026` and `arXiv:2608.16289v3 [cs.CV] 20 Aug 2026`, respectively. I inspected both original **PDF page 7 (zero-based page 6)** as rendered images, not just external indexed extracts, to compare Table 1 and Table 2. I also inspected both **PDF page 5 (zero-based page 4)** for Figure 3, dataset construction, and the metric definitions, and read the v3 methods (PDF pp. 3–4). Thus the prior inability to access v3 in the 2026-11-05 audit is **resolved for the main paper**.
+
+### Table 1: PosterText-Bench, same scores in v2 and v3
+
+| Operation | PosterText (v3) | Comparison / important interpretation |
+| --- | --- | --- |
+| Patch addition | S.A. **0.763**, NED **0.899**, masked LPIPS **0.039**, instruction following **4.51**, visual quality **4.61** | Nano Banana 2: S.A. **0.500**, NED **0.635**, masked LPIPS **0.064**; this concerns raster output, not text-object editing |
+| Patch deletion | masked LPIPS **0.040**, instruction following **4.70**, visual quality **4.78** | Nano Banana Pro: **0.061**, **4.66**, **4.91**; PosterText does **not** lead on visual quality |
+| Patch modification | S.A. **0.771**, NED **0.902**, masked LPIPS **0.028**, instruction following **4.53**, visual quality **4.64** | Nano Banana 2: S.A. **0.819**, NED **0.907**, masked LPIPS **0.034**; PosterText preserves surrounding regions better but trails on target text |
+| Poster generation | instruction following **4.21**, visual quality **4.46**, subject preservation **4.88** | Nano Banana 2: **4.63**, **4.76**, **4.86**; poster-generation scores must not be described as edit performance |
+
+**Metric scope (v3 Evaluation Protocol and Table 1 caption):** S.A./NED apply to addition and modification text fidelity; masked LPIPS is computed over non-edited regions for the three editing operations; the VLM metrics assess instruction following and visual quality; poster generation adds a distinct subject-preservation metric. The original paper's table renders **best and second-best** per column, not an aggregate dominance claim.
+
+### Table 2: training-stage ablation, same scores in v2 and v3
+
+| Model / stage | S.A. | NED | Masked LPIPS | VLM instruction following | VLM visual quality |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Base Model | 0.490 | 0.666 | 0.417 | 3.27 | 3.37 |
+| Stage II-only | 0.679 | 0.786 | 0.088 | 3.63 | 3.81 |
+| Stage I (no curriculum) + II | 0.702 | 0.831 | 0.061 | 4.00 | 4.12 |
+| Stage I + II | 0.712 | 0.866 | 0.053 | 4.03 | 4.24 |
+| +SFT+RL | 0.735 | 0.883 | 0.037 | 4.22 | 4.51 |
+| +SFT+RL+SGSD | **0.767** | **0.901** | **0.036** | **4.49** | **4.62** |
+
+The Table 2 note specifies S.A./NED are averaged over **addition and modification**, masked LPIPS over **addition, deletion and modification**, and the VLM measures across **all four** tasks. Therefore **0.767** in Table 2 must not be substituted for the **0.763** in Table 1's addition-only result.
+
+### Method, representation and availability boundary
+
+- **Task and artifact:** v3 defines an image-valued `Iout = fθ(Iin, c, R)` and four instruction-controlled poster operations. Text-patch attributes are conceptual task variables; this does **not** imply model output as a native editable HTML, PSD, SVG, or live text-layer document.
+- **Dataset and Figure 3:** **120K** editing and **200K** generation posters; OCR, image models and a VLM extract/construct patch records and HTML structure for training-pair synthesis. In both versions, Figure 3 places HTML in the **data pipeline**, not the model's output contract.
+- **Four-stage method:** text rendering / patch reconstruction, instruction-following with mask-guided and mask-free samples, DiffusionNFT preference alignment (OCR/aesthetic/background rewards), and SGSD teacher–student distillation from mask-guided training to mask-free student inference. The v3 main text still gives LoRA and training-stage details. No material contradiction with the existing T06 method summary was found.
+- **Supplement limitation:** the v3 **nine-page main PDF** ends with references and contains **no appendix or embedded supplement**. The methods section states that more implementation details are provided in supplementary material, but an independently accessible supplementary file was not verified here. Do **not** mark implementation-detail or supplement parity verified from main-paper tables alone, and do not infer exact sameness of every sentence/figure between the versions.
+- **Editorial outcome:** keep T06's **quantitative instruction-guided raster text-patch editing** classification, methods-results evidence level, and original 225/202/198/173 source-stage counts. No TeX numerical claim, bibliography record, or source tier needed correction based on this comparison. **Author scientific approval is still pending** for T04–T06; **T07 remains unstarted**.
