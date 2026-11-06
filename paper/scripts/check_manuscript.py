@@ -223,7 +223,7 @@ for name, properties in definitions:
     extra = re.search(r"(?m)^\s*extra\s*=\s*\{(.*)\},?\s*$", properties)
     require(extra is not None, f"Missing native acro citation/paper link: {name}")
     if extra and url:
-        expected = rf"\citet{{{bib_key}}}; \href{{{url.group(1)}}}{{paper}}"
+        expected = rf"\citet{{{bib_key}}}; \href{{{url.group(1)}}}{{\mbox{{paper}}}}"
         require(extra.group(1) == expected,
                 f"Extra list citation or paper link differs from the original source: {name}")
 
