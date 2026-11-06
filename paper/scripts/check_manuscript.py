@@ -217,16 +217,15 @@ for name, properties in definitions:
             f"Venue differs from BibTeX: {name}")
     doi_text = doi.group(1) if doi else ""
     require(doi_text == bib_metadata.get("doi"), f"DOI differs from BibTeX: {name}")
-    # Native acro 'extra' is printed by its default list; it must not drift
-    # from the registered source key and original URL.
+    # Stock acro prints its 'extra' property in the built-in list.
+    # Every named source must carry a textual author citation and a native
+    # clickable paper link. Validate both against the canonical registry/BibTeX.
     extra = re.search(r"(?m)^\s*extra\s*=\s*\{(.*)\},?\s*$", properties)
-    if extra:
-        for extra_cite in re.findall(r"\\citealp\{([^}]+)\}", extra.group(1)):
-            require(extra_cite == bib_key,
-                    f"Extra list citation differs from the original source: {name}")
-        for extra_link in re.findall(r"\\href\{([^}]+)\}\{paper\}", extra.group(1)):
-            require(url is not None and extra_link == url.group(1),
-                    f"Extra paper link differs from the registered paper URL: {name}")
+    require(extra is not None, f"Missing native acro citation/paper link: {name}")
+    if extra and url:
+        expected = rf"\citet{{{bib_key}}}; \href{{{url.group(1)}}}{{paper}}"
+        require(extra.group(1) == expected,
+                f"Extra list citation or paper link differs from the original source: {name}")
 
     acro_list_sources += 1
 require(acro_list_sources == n_systems + n_evaluation,
