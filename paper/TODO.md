@@ -213,3 +213,12 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [ ] **T06** — Accept verified v3 main-paper raster-edit claims while marking any supplementary implementation-level claims **not verified**, or specify a source-grounded correction.
 - [ ] Record the author decision for each study before declaring T04–T06 scientifically approved; keep the PR Draft and T07 unstarted in the interim.
 
+
+
+## Complete stock-acro author citations and paper links (2026-11-06)
+
+- [x] Inspect the **198-term** `acro` registry: **171** named systems/evaluation resources have registered original `cite` keys and `paperurl` values, **4** already used a native `extra` citation/link pilot, and **167** lacked it. The other **27** are general abbreviations; no unverified URLs were invented for them (SGSD may cite PosterText as a prose abbreviation, not a separate linked resource).
+- [x] Replace the 4 pilot `\citealp` index citations with **`\citet`** and add the same native `extra = {\citet{bibkey}; \href{paperurl}{paper}}` to the remaining 167, preserving **all 198 terms**, bibliography identity, existing custom registry properties, three **stock** lists and built-in `p.`/`pp.` occurrence pages. No `\NewAcroTemplate` or custom index formatter.
+- [x] Strengthen the **existing** `paper/scripts/check_manuscript.py` so **every** named system and evaluation resource requires exactly the corresponding source-key `\citet` plus registered original-paper `\href`, and no source-link subset can silently fall out of the print list.
+- [x] Compile an independent `acro` + natbib + hyperref two-column specimen with `\citet`, stock list and occurrence pages. It compiled and produced two exact URI annotations. **Known stock-format trade-off:** acro wraps `extra` in parentheses and natbib renders `\citet` as `Author (Year)`, creating nested parentheses, e.g. `(Author (Year); paper)`. This follows the explicit author request for `\citet`; check the full manuscript for legibility before claiming design acceptance.
+- [ ] Inspect the **new source-commit Paper PDF**: all 171 expected URI destinations/occurrences, `p.`/`pp.` values, all three index groups, bibliography transition, page-count expansion, final log and line wrapping, with particular attention to long titles and nested parentheses. Verify the standalone research maps separately. Keep scientific author sign-off independent.
