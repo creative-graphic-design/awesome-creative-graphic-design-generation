@@ -159,3 +159,9 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Retrieved failed [Paper PDF #42150444462](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42150444462) output and actual **29-page** last-pass PDF. Confirmed valid-looking stock page index: PosterText **pp. 7, 10, 14**, UniWorld-Design **pp. 7, 11, 13**, PosterText-Bench **pp. 14, 15**. The failure was **latexmk default 5-pass maximum**, not a TeX parse error.
 - [x] Added `paper/.latexmkrc` with `$max_repeat=8;` to allow a finite number of BibTeX/acro crossreference convergence passes while preserving the stock list.
 - [x] Verified `117f247` source-run [Paper PDF #42153100997](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42153100997) **success**; downloaded artifact **13473718306**, 29-page anonymous PDF, inspected pp. **17–22** and both research-map PDFs. Appearance-page text matches original manuscript uses, including PosterText `pp. 7, 10, 14`, UniWorld-Design `pp. 7, 11, 13`, PosterText-Bench `pp. 14, 15`; zero off-page text words and no undefined-citation, `acro` or box warnings. No custom list template was reintroduced.
+
+## Native acro bibliography-link pilot (2026-11-06)
+
+- [x] Reproduce `extra` + `\\citealp` + native clickable `\\href` in a two-column LaTeX/PDF sample while preserving page-occurrence lists.
+- [x] Add only four representative pilot entries: LayoutGAN, PosterText, UniWorld-Design and PosterText-Bench. Validate each added cite/URL against the existing BibTeX-aligned acro metadata using the existing manuscript checker.
+- [ ] Check source-commit CI and inspect full PDF index links, appearance pages and line wrapping; decide whether to extend the approach after actual full manuscript visual acceptance.
