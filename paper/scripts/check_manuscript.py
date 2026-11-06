@@ -219,12 +219,12 @@ for name, properties in definitions:
     require(doi_text == bib_metadata.get("doi"), f"DOI differs from BibTeX: {name}")
     # Native acro 'extra' is printed by its default list; it must not drift
     # from the registered source key and original URL.
-    extra = re.search(r"(?m)^\\s*extra\\s*=\\s*\\{(.*)\\},?\\s*$", properties)
+    extra = re.search(r"(?m)^\s*extra\s*=\s*\{(.*)\},?\s*$", properties)
     if extra:
-        for extra_cite in re.findall(r"\\\\citealp\\{([^}]+)\\}", extra.group(1)):
+        for extra_cite in re.findall(r"\\citealp\{([^}]+)\}", extra.group(1)):
             require(extra_cite == bib_key,
                     f"Extra list citation differs from the original source: {name}")
-        for extra_link in re.findall(r"\\\\href\\{([^}]+)\\}\\{paper\\}", extra.group(1)):
+        for extra_link in re.findall(r"\\href\{([^}]+)\}\{paper\}", extra.group(1)):
             require(url is not None and extra_link == url.group(1),
                     f"Extra paper link differs from the registered paper URL: {name}")
 
