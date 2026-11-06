@@ -155,6 +155,12 @@ require(n_abbr >= 22 and n_systems >= 120 and n_evaluation >= 15,
         "Preserve expanded abbreviation, named-system, and benchmark/dataset groups")
 require(r"\printacronyms[include=evaluation,heading=none,display=all]" in main,
         "Print benchmark/dataset resources in their own acro list")
+require(r"pages/display = all" in main,
+        "Use the stock acro option to list every page an acronym appears on")
+require(r"pages/name = true" in main,
+        "Label first and subsequent occurrence pages as p. / pp.")
+require(r"pages/seq/use = false" in main,
+        "Show explicit occurrence page numbers instead of f./ff. shorthand")
 require(r"\section*{Evaluation Resources}" in main,
         "Use a single-line heading for the compact two-column evaluation index")
 require(r"\section*{Benchmarks, Datasets, and Evaluation Resources}" not in main,
