@@ -2,6 +2,16 @@
 
 **Read this file before drafting and again before each paper commit.** This is the durable record of prior author-review comments. Its qualitative criteria require author judgment; automated lint checks below cannot independently prove that the science or prose is correct.
 
+## Mandatory built-in-first check before implementation (author decision, 2026-11-06)
+
+- [ ] **Upstream documentation first:** before writing a LaTeX list template, formatter, index, wrapper, or custom CI guard, read the actually used package version's manual and look for built-in options matching the user's requirements.
+- [ ] **Minimal proof and screenshot:** compile the smallest stock example, then inspect the **actual full manuscript PDF** at readable resolution. Test desired behavior, not merely whether compilation succeeds.
+- [ ] **Preserve features while simplifying:** compare old and new visible behavior (particularly occurrence-page indexes, descriptions, first-use citations, and hyperlinks). Never silently drop a requirement because an implementation was simplified.
+- [ ] **Author-approved `acro` behavior:** default `\\printacronyms` list for all three groups with `display=all`, plus the built-in `\\acsetup` options `pages/display=all`, `pages/name=true`, `pages/seq/use=false`. Keep the source-linked 198-term registry. No `survey-rich` or `\\NewAcroTemplate` unless the author requests a new capability that stock `acro` demonstrably cannot provide.
+- [ ] **Customization exception:** state the specific unmet requirement and the smallest necessary deviation **before** adding bespoke formatting or a bespoke validator; do not equate custom CI success with a correct PDF.
+- [x] **Why this exists:** earlier iterations repeatedly modified `survey-rich` rather than first checking `acro`'s documented built-in page-index support. The author ultimately accepted the **stock list plus occurrence pages**, and the original source-commit [Paper PDF #42153100997](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42153100997) was visually checked. The earlier design is a **superseded historical experiment**, not a recommended starting point.
+
+
 ## Incremental review workflow
 
 - [ ] Review [T01 TAUE original source audit](T01_TAUE_SOURCE_AUDIT.md) for source Sections 3–6, Table 2 and Figure 6. Keep generation/layer reconstruction scores separate from edit-instruction success and require author sign-off before T02.

@@ -17,6 +17,15 @@ For manuscript changes:
 
 The root `AGENTS.md`, `CONTRIBUTING.md`, and `data/README.md` still govern the research catalogue; this file governs paper-specific work only.
 
+## Built-in-first typography and index contract (author decision, 2026-11-06)
+
+**Do not repeat the PR #135 acro over-engineering failure.** Before changing LaTeX/package rendering, consult the documentation for the version actually used, test the shortest **stock** setup in a compiled minimal example, and inspect full-size screenshots of the real manuscript. Do not build custom templates or add bespoke CI solely for presentation effects the package already supports.
+
+For `acro` specifically, the author approved the **stock list** with **all occurrence pages**: keep the existing `\\acsetup` options `pages/display = all`, `pages/name = true`, and `pages/seq/use = false` alongside first-use citations. Keep all three normal `\\printacronyms[include=...,heading=none,display=all]` groups. **Do not reintroduce `\\NewAcroTemplate`, `survey-rich`, or custom PDF-link/index rendering** without demonstrating that a specific newly requested feature cannot be met using standard `acro` options and documenting the tradeoff. Preserve all registered terms and their source metadata even when the stock list does not print every custom property.
+
+**Acceptance:** check the generated source-commit PDF itself (not just CI status): inspect index entries, readable line wrapping, and correct `p.`/`pp.` page locations for representative models, then confirm no unintended loss of citations or other user-visible features. Treat scientific validation separately from PDF typography.
+
+
 When introducing an acronym or a named model, add an entry to `paper/acronyms.tex` using CTAN `acro` and `\DeclareAcronym`.
 Use `\ac{key}` (or `\acp{key}` for plurals) in prose.
 Keep separate abbreviation and named-system tags; use `first-style=short` for named systems, avoiding invented backronyms.
