@@ -166,6 +166,13 @@ Before a new citation batch, re-open the actual Google Sheet and confirm whether
 - [x] Add only four representative pilot entries: LayoutGAN, PosterText, UniWorld-Design and PosterText-Bench. Validate each added cite/URL against the existing BibTeX-aligned acro metadata using the existing manuscript checker.
 - [x] Verified all three source-commit checks for `dd1ee78`, [Paper PDF #42159374944](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42159374944), downloaded artifact **13476423122** (29-page manuscript and two standalone maps), and inspected actual index pp. **19–22** side-by-side with the previous stock version. Exactly **four** valid PDF URI annotations link to the source-registered arXiv URLs; `p.`/`pp.` occurrence pages are retained; no out-of-page text or citation/acro/box warnings. Keep this a **four-entry pilot** pending author design feedback before any bulk additional source fields.
 
+## PosterText v3 supplementary availability audit (2026-11-06)
+
+- [x] Recheck the [arXiv v3 record](https://arxiv.org/abs/2608.16289), [official v3 HTML](https://arxiv.org/html/2608.16289v3) and nine-page PDF for appendix/supplement links; search exact-title/author/arXiv-ID and PosterText-320K/Bench code/dataset release leads. Document inspected surfaces and limitations in [the T06 audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+- [x] Record **not obtained / not independently verified**, **not** `no supplement exists`: the main paper references supplementary implementation details, but no independent supplement or official code/data release was identified from these searches. The arXiv source archive could not be inspected in this environment.
+- [ ] If a verified original supplementary artifact or author-designated release becomes accessible, audit implementation details (LoRA and schedules, RL reward weights, SGSD teacher/student settings), data provenance/validation and benchmark VLM judging before promoting supplemental reproducibility claims.
+- [ ] Keep T04–T06 author scientific review and documented systematic screening separate; do not start T07 on the strength of the main-paper v3 check.
+
 ## PosterText v3 main-paper reconciliation (2026-11-06)
 
 - [x] Visually compare the version-identified **v2** and **v3** nine-page original arXiv PDFs, especially Table 1/Table 2 (PDF p. 7), Figure 3 and evaluation definitions (PDF p. 5), and four-stage method descriptions; record numeric and representation outcomes in [T06 source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
