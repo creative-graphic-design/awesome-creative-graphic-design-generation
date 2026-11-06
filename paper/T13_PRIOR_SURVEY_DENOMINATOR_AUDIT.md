@@ -32,3 +32,22 @@
 ## Source-verification boundary
 
 The original journal HTML and extracted numbered PDF references were available for checking the stated figures and locators; a direct web-PDF page screenshot request did not return an image, so no new PDF-image inspection is claimed. The source-register [Google Sheet](https://docs.google.com/spreadsheets/d/1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc/edit) was re-opened read-only and its **Evidence Matrix 225**, **225 Citation and R-E-V Coverage**, **225 Source Tier Reconciliation**, and **Prior Survey and Screening** headers/first rows were checked; the latter already records 500 as a claimed final selection count and notes that 500→300 is unsupported.
+
+
+## Survey-by-survey figure/source follow-up matrix (2026-11-07)
+
+This is a **claim-to-source verification queue** extracted from the current [related-surveys text](sections/03_related_surveys.tex), **not** confirmation that each original figure has been inspected.
+
+| BibTeX key | Manuscript attribution to check | Pending primary-source action |
+| --- | --- | --- |
+| `huang2023survey` | Representation / understanding / generation; creative-process Fig. 1 and dataset table | Re-open original Fig. 1 and table; record exact terminology |
+| `shi2023layoutsurvey` | Fig. 9: model family, content dependence, application setting | Compare all three axes with original labels |
+| `liu2024graphiclayoutsurvey` | Graphic-layout generation and interactive design, no figure number asserted | Inspect proceedings full text and figure inventory before attaching any figure claim |
+| `tian2024vectorsurvey` | Smooth vectors and creation–rasterization–vectorization | Check original diagrams and representation/editability scope |
+| `li2024criticalsurvey` | Fig. 1 screening; Figs. 4–6 paradigms/workflow; 33 included | Fig. 1/33 denominator already checked above; **Figs. 4–6 still need exact visual comparison** |
+| `zou2025fragment` | Figs. 1–3 pipeline, trends and layout-analysis; 500/267 discrepancy | Denominators checked above; **Figs. 1–3 still need exact visual comparison** |
+| `malashenko2025svgreview` | LLM/SVG tasks, benchmarks, evaluation | Check original task taxonomy, benchmark scope and evidence figure(s) |
+
+For each source, record the canonical URL/version, original section/figure/table locator, what is visually encoded, search period and denominator when counts are shown, and whether current TeX wording requires a correction. Distinguish *orientation graphics* from *empirical evidence graphics*. Do not reuse quantitative trends without validating their underlying inclusion sets. Original diagrams should inform a new, independently authored illustration, not be reproduced.
+
+This addition changes **documentation only**. No new figures were verified by this matrix, and it does not constitute T13 sign-off or permission to begin T07.
