@@ -191,3 +191,25 @@ This is a **review agenda**, not author approval and not a new source-depth clai
 | **T06 · CGD-103 · PosterText** | Four operations are evaluated as **raster text-patch generation/editing**; HTML is used in dataset construction. v3 Table 1 and Table 2 reproduce the audited main-paper figures. | Confirm that editability is qualified as **instruction-driven pixel output**, not a live editable typography/object tree; distinguish per-task addition accuracy **0.763** from ablation aggregate **0.767**; preserve worse modification SenAcc (**0.771** vs **0.819**) and deletion VLM quality (**4.78** vs **4.91**). Separately decide whether to defer any implementation-reproducibility discussion until an original supplement is obtained. |
 
 **Shared release gate:** [ ] Author scientific decisions for **all three** records are recorded individually, with requested manuscript amendments (if any) and their actual source locators. [ ] Any changed TeX/BibTeX/evidence-register claim receives the normal checks plus source-commit PDF and vector-map QA. [ ] Systematic retrieval/screening protocol status stays distinct from these three case audits. **T07 is not started.**
+
+### Manuscript claim-to-source crosscheck (2026-11-06)
+
+I checked the **current PR branch's actual TeX sentences**, not only the source-audit summaries. These are convenient points for an author to inspect; the line numbers refer to source-commit `0eecd3c` and can shift with later edits.
+
+| Study | Source-backed TeX claim locations | Original-paper evidence | Provisional editorial verdict |
+| --- | --- | --- | --- |
+| T04 LayeringDiff | [representations L42–43](sections/05_representations.tex), [methods L149–151](sections/06_methods.tex), [evaluation L28–32](sections/07_evaluation.tex) | Original [§§3–5, Tables 1–4, Figs. 1/7/8](https://arxiv.org/html/2501.01197) | **No corrective TeX change identified**: trained FBDD/HFA, raster decomposition, heterogeneous FID, reconstruction metrics and failure modes are scoped explicitly. |
+| T05 UniWorld-Design | [representations L44–46](sections/05_representations.tex), [methods L152–154](sections/06_methods.tex), [evaluation L33–38](sections/07_evaluation.tex) | Original [§§3–5, Appendix B, Tables 1–4](https://arxiv.org/html/2608.03971) | **No corrective TeX change identified**: PSD is training provenance; RGBA is output; layer reconstruction and VLM proxies are not native object-edit success. |
+| T06 PosterText | [representations L20–21](sections/05_representations.tex), [methods L83–86](sections/06_methods.tex), [evaluation L46–51](sections/07_evaluation.tex), [benchmarks L15–16](sections/08_benchmarks.tex) | [arXiv v3](https://arxiv.org/html/2608.16289v3) §§3–4, Table 1, Table 2, Fig. 3 | **No corrective TeX change identified**: v3 main-paper task metrics, aggregate-ablation distinction, HTML training annotations and raster-output limit are correctly differentiated. Separate supplement remains unobtained. |
+
+**Live-sheet reconciliation (read-only):** I re-read the actual [Evidence Matrix 225 workbook](https://docs.google.com/spreadsheets/d/1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc/edit), **rows 104 (CGD-103), 175 (CGD-174) and 185 (CGD-184)**, and their same-row entries in **225 Citation and R-E-V Coverage** and **225 Source Tier Reconciliation**, plus the **Prior Survey and Screening** tab. The workbook's legacy evidence label `C: catalog-derived` is distinct from its later `paper_text_verified` or `selected_method_and_results_sections` recheck. Those historical labels are **not promoted** to current verified claim-level evidence automatically. In particular, PosterText's older `Editable Unit / Affordance = Text parameter (format affordance)` must **not** be read as proof of native editable font/text objects: the same row codes `raster_composite` as output and `quantitative_targeted_raster_edit` as edit evidence, consistent with its original paper.
+
+I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerical records or evidence tiers**: this is a source-to-claim comparison and a scientific author-review handoff only. The arXiv **TeX Source** endpoint advertises an archive but a retrieval attempt returned an unsupported gzip response in the web reader; the separate local download attempt failed, so **the PosterText supplementary archive remains uninspected**, rather than being marked absent.
+
+### Individual author decisions to record
+
+- [ ] **T04** — Accept the generation-then-disassembly / raster-layer scope and the non-dominant comparison, or specify wording and primary-source locator for a revision.
+- [ ] **T05** — Accept the PSD-supervision versus RGBA-output boundary and unequal evaluation denominators, or specify a source-grounded correction.
+- [ ] **T06** — Accept verified v3 main-paper raster-edit claims while marking any supplementary implementation-level claims **not verified**, or specify a source-grounded correction.
+- [ ] Record the author decision for each study before declaring T04–T06 scientifically approved; keep the PR Draft and T07 unstarted in the interim.
+
