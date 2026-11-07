@@ -93,7 +93,7 @@
   \fi
   % Fixed-height columns avoid tabular's implicit strut and unwanted vertical growth.
   \noindent\hbox to \linewidth{%
-    \parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}%
+    \makebox[\MapCardLogoWidth][c]{\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering\mbox{}#4}}%
     \parbox[c][\MapCardLogoHeight][c]{\MapCardTextWidth}{%
       \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hfil{\sffamily\fontsize{6.2}{7}\selectfont '#2}}\vfil}%
       \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\color{muted}\fontsize{6.35}{7.1}\selectfont #3}\hfil}\vfil}%
