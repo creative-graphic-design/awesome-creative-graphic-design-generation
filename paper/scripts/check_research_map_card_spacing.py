@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Verify that research-map study names and subtitles have compact leading.
+"""Verify that the proportional 50/50 title/subtitle rows retain consistent separation.
 
 Requires Poppler's pdftotext, already installed for figure preview CI.
-Use the actual vector PDF rather than checking only a TeX macro setting.
+Use the actual vector PDF rather than checking only a TeX macro setting.\nThe 1/2-height rows intentionally have more spacing than the old compact text.
 """
 
 from pathlib import Path
@@ -25,8 +25,8 @@ def source_pairs() -> list[tuple[str, str]]:
     if len(studies) != 26 or len({label for label, _ in studies}) != 26:
         raise SystemExit("Expected 26 uniquely named source study cards")
     return [(label, subtitle.split()[0]) for label, subtitle in studies]
-MAX_GAP_PT = 3.0
-MIN_GAP_PT = -0.5
+MAX_GAP_PT = 10.0
+MIN_GAP_PT = 4.0
 
 
 def verify(pdf_path: Path) -> None:
