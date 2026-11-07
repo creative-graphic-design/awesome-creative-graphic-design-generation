@@ -44,11 +44,15 @@ jobs:
           set -euo pipefail
           test -s paper/figs/assets/logos/cyberagent-symbol.pdf
           test -s paper/figs/assets/logos/pku.pdf
+          test -s paper/figs/assets/logos/google.pdf
+          test -s paper/figs/assets/logos/microsoft.pdf
           test -s paper/figs/pdf/research_map_narrative.pdf
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils
           pdfinfo paper/figs/assets/logos/cyberagent-symbol.pdf | tee paper/ca-symbol-info.txt
           pdfinfo paper/figs/assets/logos/pku.pdf | tee paper/pku-info.txt
+          pdfinfo paper/figs/assets/logos/google.pdf | tee paper/google-info.txt
+          pdfinfo paper/figs/assets/logos/microsoft.pdf | tee paper/microsoft-info.txt
           pdfinfo paper/figs/pdf/research_map_narrative.pdf | tee paper/map-info.txt
           grep -Eq 'Page size:[[:space:]]+57 x 57 pts' paper/ca-symbol-info.txt
           pdftotext paper/figs/pdf/research_map_narrative.pdf paper/map-text.txt
@@ -92,8 +96,12 @@ jobs:
             paper/figs/pdf/research_map_narrative.pdf
             paper/figs/assets/logos/cyberagent-symbol.pdf
             paper/figs/assets/logos/pku.pdf
+            paper/figs/assets/logos/google.pdf
+            paper/figs/assets/logos/microsoft.pdf
             paper/research-map-preview.png
             paper/ca-square-preview.png
             paper/map-info.txt
             paper/ca-symbol-info.txt
             paper/pku-info.txt
+            paper/google-info.txt
+            paper/microsoft-info.txt
