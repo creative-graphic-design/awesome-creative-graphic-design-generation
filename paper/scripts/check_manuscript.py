@@ -374,6 +374,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "verified_square_google": "google",
         "verified_square_bit": "bit-symbol",
         "verified_square_salesforce": "salesforce",
+        "verified_square_meituan": "meituan-symbol",
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     brand_uses = re.findall(
@@ -413,6 +414,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "microsoft": ("Microsoft Research Asia", "microsoft", "5b170117926ae5a5e451aa24676b5a124c2fa122"),
         "bit-symbol": ("Beijing Institute of Technology", "bit-original", "6fcb6505b213d2f858e82ff51aab605a1771dc7c"),
         "salesforce": ("Salesforce Research", "salesforce", "a05d80d66796327adad13e0574c4fa78b526545c"),
+        "meituan-symbol": ("Meituan", "meituan-original", "0df68fc2b3b25ddbeaa7f4046c0f74b3aae2fb05"),
     }
     for stem in set(expected.values()):
         institution, source_stem, digest = to_registry[stem]
@@ -436,6 +438,16 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             require("trim=360bp 145bp 175bp 145bp,clip" in bit_icon and
                     "minipage}[c][307bp][c]{307bp}" in bit_icon,
                     "BIT square mark viewport must preserve original vector paths")
+        elif stem == "meituan-symbol":
+            require("meituan_zip_sha=6817f88d95f95bb6e6b8238aa0c0e7d36dd93008" in prep and
+                    f"meituan_ai_sha={digest}" in prep and
+                    "meituan-symbol.tex" in prep and
+                    "meituan-original.pdf" in prep and
+                    "unzip -p" in prep,
+                    "Meituan icon must be extracted from original official media AI with pinned ZIP and master hashes")
+            meituan_icon = tex("figs/assets/logos/meituan-symbol.tex")
+            require("clip" in meituan_icon and "meituan-original.pdf" in meituan_icon,
+                    "Meituan square mark must crop the original vector, not redraw it")
         elif stem == "salesforce":
             require("sf_sha=b8cca7fa6290153156dc0d260095079d0cb0708c" in prep and
                     f"expected = '{digest}'" in prep and
@@ -450,7 +462,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
                  if status_to_stem.get(r["logo_review_state"]) == stem}
         require(names == set(record["placed_on_node"].split("|")),
                 f"Rights register paper-to-logo mapping differs for {institution}")
-    require(len(seen) == 12, "Exactly twelve source-verified draft compact logos currently expected")
+    require(len(seen) == 13, "Exactly thirteen source-verified draft compact logos currently expected")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
