@@ -343,7 +343,7 @@ if logo_registry_path.is_file():
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     brand_uses = re.findall(
-        r"\\MapPaperBrand\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}\{([a-z0-9]+)\}\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{[^{}]+\}\{([a-z-]+)\}"
+        r"\\MapPaperBrand\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}\{([a-z0-9]+)\}\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{[^{}]+\}\{([a-z-]+)\}",
         figure_source,
     )
     expected = {
