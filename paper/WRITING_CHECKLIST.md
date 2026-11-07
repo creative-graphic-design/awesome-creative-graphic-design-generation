@@ -104,15 +104,15 @@
 - [ ] Where editing requires dependent reflow, separate permitted neighboring changes from genuinely protected content.
 - [ ] Describe what an original benchmark measures, the artifact it accepts/returns, and source-evidence limitations.
 
-## Original affiliation marks: mandatory T16 node-placement and publication gate (2026-11-07)
+## Original compact affiliation marks: T16 study-node and publication gate (2026-11-07)
 
-- [ ] Verify each mark's **original-paper author affiliation** separately from the right to reproduce the university insignia or corporate trademark. Never treat affiliation verification as permission.
-- [ ] Record paper year, affiliated organization, mark variant, authoritative original SVG and SHA-1, copyright/trademark status, draft/publication context and required credits in `figs/tex/logo_asset_candidates.csv` and `figs/tex/affiliation_logo_provenance.csv`.
-- [x] Do **not** place logos in a detached affiliation/footer rail. Use original **square or square-canvas symbol/insignia** variants only, attached to their individual research milestone cards; never squeeze horizontal wordmarks or stretch/redraw. The manuscript checker must enforce the exact COLE/PKU and OpenCOLE/CyberAgent pairing.
-- [x] In the current **draft-only** figure, CyberAgent uses a square **CA symbol vector viewport from its pinned original wordmark** and PKU uses its original square seal; these are tagged `draft_nominative_review`, **not publication clearance**. BIT, Adobe and MSRA remain text-only pending appropriate official marks/permissions.
-- [ ] Inspect the **actual anonymous PDF at final print scale** and each standalone vector figure after a CI build. Confirm the symbols fit their 0.46 cm square slots, do not obscure paper names/year/subtitles, and have not become low-resolution images. Record visual evidence in the PR.
-- [ ] Before publication, confirm legal/institutional reuse review and non-endorsement; Commons public-domain copyright classifications or a downloadable university logo do not independently authorize trademark/insignia use.
-- [ ] Preserve all author-drawn schematic content; do not insert or trace illustrations from cited research figures. See `figs/assets/logos/README.md`.
+- [x] Record **all 26 research-map studies** in `figs/tex/research_map_affiliations.csv` with selected primary institution, co-affiliations, author/project evidence link, selection role and separate original square-logo status.
+- [x] Record **all 18 distinct selected institutions** in `figs/tex/logo_asset_candidates.csv`, including blocked and pending source assets and their independent copyright/trademark/minimum print-size conditions.
+- [x] Correct **COLE → Microsoft Research Asia (MSRA)** as representative parent-company logo; preserve PKU in COLE's co-author affiliations, and use PKU's actual seal at **PosterLayout** instead.
+- [x] Place the ten source-pinned originals (**Microsoft ×4, CyberAgent ×3, Google ×2, PKU ×1**) in individual study cards using equal **0.46 cm square slots**; keep vector paths and aspect ratio intact; never add detached institution strips or squeeze horizontal wordmarks.
+- [ ] For each of the remaining **16 text-only nodes**, check original-paper lead affiliation, source-era *compact* primary mark, official identity usage conditions, minimum printed size, and legal/publisher approval before enabling it. A similar-looking product logo is not necessarily the parent company's mark.
+- [ ] **Inspect the real output of the latest Figure Preview and full Paper PDF build at print size** and fix cards whose titles/subtitles wrap into adjacent tracks. Fail CI for missing source hashes, wrong study-logo pairings, rasterized icons and overflowing card labels.
+- [ ] For publication, obtain necessary permission/authorization or a well-grounded legal-use decision, and ensure non-endorsement. Commons public-domain copyright status does not override university-insignia or trademark rules. See `figs/assets/logos/README.md`.
 
 ## Paper layout, anonymity and review
 
