@@ -44,7 +44,7 @@ if grep -Fq '}{google}' "$figure"; then
     'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg'
 fi
 if grep -Fq '}{microsoft}' "$figure"; then
-  prepare_svg microsoft 0000000000000000000000000000000000000000 \
+  prepare_svg microsoft 5b170117926ae5a5e451aa24676b5a124c2fa122 \
     'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg'
 fi
 
