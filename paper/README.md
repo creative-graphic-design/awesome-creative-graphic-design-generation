@@ -2,6 +2,14 @@
 
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
+## Draft PDF without printed acro lists (2026-11-08)
+
+For an optional local draft, run `cd paper && make pdf-fast` (output: `paper/main-fast.pdf`).
+This preserves the complete `acro` registry, `\ac{...}` references, and first-use citation behavior, but omits the three printed acronym/system/evaluation lists.
+Run `make pdf` for the canonical `paper/main.pdf`, including all three `acro` lists and occurrence-page indexes; CI continues to build and validate this full variant.
+The fast target is a diagnostic and writing aid, not a published manuscript or a verified speedup: benchmark it before attributing build latency to `acro`.
+Both targets still build/check figures, and changing the draft's page count can affect reference convergence.
+
 ## Latest acro typography correction — compiled and inspected (2026-11-05)
 
 I corrected the printed two-column `acro` index after comparing the actual previous full-paper PDFs and finding that ragged-right text alone still left verbose Task/Representation annotations wrapped across narrow columns.
