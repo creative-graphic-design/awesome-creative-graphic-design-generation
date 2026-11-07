@@ -75,6 +75,22 @@ jobs:
           pdftoppm -f 1 -l 1 -singlefile -r 350 -png paper/figs/assets/logos/cyberagent-symbol.pdf paper/ca-square-preview
           pdftoppm -f 1 -l 1 -singlefile -r 150 -png paper/figs/assets/logos/bit-symbol.pdf paper/bit-square-preview
           pdftoppm -f 1 -l 1 -singlefile -r 350 -png paper/figs/assets/logos/salesforce.pdf paper/salesforce-square-preview
+          # Avoid a silent color regression: the STRUCTURE lane used to
+          # render with a black accent even though its defined color is green.
+          pdftoppm -f 1 -l 1 -singlefile -r 180 paper/figs/pdf/research_map_narrative.pdf paper/map-color-audit
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path("paper/map-color-audit.ppm").read_bytes()
+          magic, dimensions, depth, pixels = data.split(b"\n", 3)
+          assert magic == b"P6" and depth == b"255", "Expected 24-bit RGB PPM"
+          width, height = map(int, dimensions.split())
+          x, y = round(width * .025), round(height * .49)
+          offset = (y * width + x) * 3
+          rgb = tuple(pixels[offset:offset + 3])
+          assert rgb[1] > rgb[0] + 35 and rgb[1] > rgb[2] + 10, (
+              f"STRUCTURE lane accent should be green, got RGB={rgb}")
+          print(f"PASS: STRUCTURE lane accent remains green (RGB={rgb})")
+          PY
           test -s paper/research-map-preview.png
           test -s paper/ca-square-preview.png
           # The original company wordmark begins to the right of its CA glyph.
