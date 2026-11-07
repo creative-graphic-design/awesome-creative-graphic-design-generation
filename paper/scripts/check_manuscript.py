@@ -325,10 +325,9 @@ if narrative_path.is_file():
             f"Narrative research-map source/figure mismatch: figure-only={visible-source_items}, "
             f"registry-only={source_items-visible}")
 
-# T16: official marks are trademarks, not decoration. The only enabled
-# preliminary mark is the independently sourced original CyberAgent text-logo
-# shown for factual OpenCOLE author attribution in this *draft* survey. It is
-# not organizational endorsement, a trademark license, or publication sign-off.
+# T16: official marks are trademarks, not decoration. Two SHA-pinned
+# original marks are included for factual author affiliation in this *draft*
+# survey only; neither implies endorsement or publication rights sign-off.
 logo_registry_path = PAPER / "figs" / "tex" / "logo_asset_candidates.csv"
 require(logo_registry_path.is_file(), "Missing institution-logo rights register")
 if logo_registry_path.is_file():
@@ -343,7 +342,7 @@ if logo_registry_path.is_file():
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     logo_uses = re.findall(
-        r"\\AffilBrand\{([01])\}\{([a-z]+)\}\{[^{}]+\}\{[^{}]+\}",
+        r"\\AffilBrand(?:Named)?\{([01])\}\{([a-z]+)\}\{[^{}]+\}\{[^{}]+\}",
         figure_source,
     )
     require(len(logo_uses) == len(logo_stems), "Affiliation rail must have five rights-gated slots")
@@ -370,6 +369,15 @@ if logo_registry_path.is_file():
                         "Missing pinned SVG preparation script")
                 require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
                         "Figure build must run logo pin verification")
+            elif stem == "pku" and status == "draft_nominative_review":
+                require(record.get("asset_sha1") == "965d9a8bdc1c391b75a0f88d729d54ea775ce180",
+                        "Draft PKU seal SHA-1 differs from Commons original")
+                require(record.get("asset_url") == "https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg",
+                        "Draft PKU seal must use original source")
+                require("\\AffilBrandNamed{1}{pku}" in figure_source,
+                        "Draft PKU seal must retain a visible institution label")
+                require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
+                        "Figure build must run source-pin verification")
             elif status == "cleared_for_scholarly_use":
                 require((PAPER / "figs" / "assets" / "logos" / f"{stem}.pdf").is_file(),
                         f"Approved original vector mark is missing: {institution}")
