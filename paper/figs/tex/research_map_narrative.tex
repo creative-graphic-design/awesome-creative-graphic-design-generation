@@ -31,7 +31,7 @@
 \newlength{\MapCardPaddingX}
 \newlength{\MapCardPaddingY}
 \setlength{\MapCardPaddingX}{.025\MapCardWidth}
-\setlength{\MapCardPaddingY}{.0125\MapCardWidth}
+\setlength{\MapCardPaddingY}{.008\MapCardWidth}
 \newlength{\MapCardContentWidth}
 \setlength{\MapCardContentWidth}{\MapCardWidth}
 % Grid MARGINS are relative to card width (separate from inner PADDING).
@@ -81,7 +81,7 @@
 \newcommand{\MapPaperContent}[4]{%
   \setlength{\MapCardLogoWidth}{.25\linewidth}%
   \setlength{\MapCardTextWidth}{.75\linewidth}%
-  \setlength{\MapCardRowHeight}{.055\linewidth}%
+  \setlength{\MapCardRowHeight}{.095\MapCardWidth}%
   \setlength{\MapCardLogoHeight}{2\MapCardRowHeight}%
   \settowidth{\MapCardHeadingWidth}{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hspace{.15em}{\sffamily\fontsize{6.2}{7}\selectfont '#2}}%
   \settowidth{\MapCardSubtitleWidth}{{\sffamily\fontsize{6.35}{7.1}\selectfont #3}}%
@@ -91,14 +91,14 @@
   \ifdim\MapCardSubtitleWidth>\MapCardTextWidth
     \PackageError{researchmap}{#1: relative card subtitle exceeds 75 percent text column}{Shorten study subtitle or expand all cards}%
   \fi
-  \begin{tabular}[c]{@{}m{\MapCardLogoWidth}@{}m{\MapCardTextWidth}@{}}%
-    \makebox[\MapCardLogoWidth][c]{\raisebox{0pt}[\MapCardLogoHeight][0pt]{%
-      \parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}}}%
-    &\vbox{%
+  % Fixed-height columns avoid tabular's implicit strut and unwanted vertical growth.
+  \noindent\hbox to \linewidth{%
+    \parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}%
+    \parbox[c][\MapCardLogoHeight][c]{\MapCardTextWidth}{%
       \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hfil{\sffamily\fontsize{6.2}{7}\selectfont '#2}}\vfil}%
       \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\color{muted}\fontsize{6.35}{7.1}\selectfont #3}\hfil}\vfil}%
     }%
-  \end{tabular}%
+  }%
 }
 \newcommand{\MapPaper}[8]{%
   \MapPaperFrame{#5}{#6}{#7}{\MapPaperContent{#2}{#3}{#8}{}}%
