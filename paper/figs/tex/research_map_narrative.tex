@@ -6,6 +6,7 @@
 \usepackage{lmodern}
 \usepackage{tikz}
 \usepackage{graphicx}
+\usepackage{array} % true vertically centered m-column layout in paper cards
 \usetikzlibrary{calc,arrows.meta}
 \definecolor{navy}{HTML}{162F4C}
 \definecolor{ink}{HTML}{253A53}
@@ -21,23 +22,31 @@
 \definecolor{agent}{HTML}{775BAE}
 \definecolor{struct}{HTML}{268B7B}
 \definecolor{edit}{HTML}{AF4877}
-% Each study card receives a named TikZ node so attached graphics can use
-% the actual vertical center of its final (content-dependent) bounding box.
+% The ordinary card and the branded card share one frame and typography.
+% For branded cards, a genuine two-column TeX table holds the *actual* icon
+% and text in vertically centered columns; neither is overlaid on the other.
+% No manually inserted title/subtitle \hspace or absolute logo coordinates.
 \newcounter{MapPaperNodeCounter}
-\newcommand{\MapPaper}[8]{%
+\newcommand{\MapPaperFrame}[4]{%
   \stepcounter{MapPaperNodeCounter}%
-  \node[anchor=north west,draw=#7,fill=white,rounded corners=2pt,line width=.80pt,
+  \node[anchor=north west,draw=#3,fill=white,rounded corners=2pt,line width=.80pt,
    text width=3.12cm,inner xsep=4.1pt,inner ysep=1.6pt,align=left]
-   (mapPaperCard-\arabic{MapPaperNodeCounter}) at (#5,#6) {{\bfseries\fontsize{7.3}{8.1}\selectfont #2}\hfill
-   {\fontsize{6.2}{7}\selectfont '#3}\\[-4pt]
-   {\color{muted}\fontsize{6.35}{7.1}\selectfont #8}};%
+   (mapPaperCard-\arabic{MapPaperNodeCounter}) at (#1,#2) {#4};%
 }
-% T16: real compact identity symbols live INSIDE their own study card.
-% Each logo uses the same 0.46cm square layout slot; no affiliation footer.
-% Actual original vectors are prepared and SHA-pinned by the build script.
-% Branded text has 3.12cm minus .53cm = 2.59cm of horizontal space.
-% Fail build instead of allowing an overlong label to intrude into a lane.
-% This is a draft scholarly attribution, not an endorsement or legal clearance.
+\newcommand{\MapPaperText}[3]{%
+  {\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hfill
+  {\fontsize{6.2}{7}\selectfont '#2}\\[-4pt]
+  {\color{muted}\fontsize{6.35}{7.1}\selectfont #3}%
+}
+\newcommand{\MapPaper}[8]{%
+  \MapPaperFrame{#5}{#6}{#7}{\MapPaperText{#2}{#3}{#8}}%
+}
+% T16: source-pinned original company/university symbols occupy an authentic
+% 0.46cm square ICON COLUMN, followed by a 0.07cm gap and 2.59cm TEXT COLUMN.
+% The two m-columns in the same tabular row are vertically aligned by TeX;
+% adding/removing text cannot change the icon's optical slot alignment.
+% The complete node remains 3.12cm wide with the same outer padding as
+% non-branded study cards. Legal permission is a separate publication gate.
 \newlength{\MapBrandSubtitleWidth}
 \newlength{\MapBrandTitleWidth}
 \newcommand{\MapPaperBrand}[9]{%
@@ -49,12 +58,12 @@
   \ifdim\MapBrandSubtitleWidth>2.59cm
     \PackageError{researchmap}{#2: institution logo node subtitle is too wide}{Shorten the subtitle or redesign the branded card}%
   \fi
-  \MapPaper{#1}{\hspace*{.53cm}#2}{#3}{#4}{#5}{#6}{#7}{\hspace*{.53cm}#8}%
-  % The .west anchor lies at the *actual card's* vertical midpoint.
-  % Offset horizontally into the reserved square icon column; no fixed y.
-  \node[anchor=center,inner sep=0pt]
-    at ($(mapPaperCard-\arabic{MapPaperNodeCounter}.west)+(.36cm,0)$)
-    {\includegraphics[width=.46cm,height=.46cm,keepaspectratio]{figs/assets/logos/#9.pdf}};%
+  \MapPaperFrame{#5}{#6}{#7}{%
+    \begin{tabular}[c]{@{}m{.46cm}@{\hspace{.07cm}}m{2.59cm}@{}}%
+      \makebox[.46cm][c]{\includegraphics[width=.46cm,height=.46cm,keepaspectratio]{figs/assets/logos/#9.pdf}}%
+      & \parbox[c]{2.59cm}{\raggedright\MapPaperText{#2}{#3}{#8}}%
+    \end{tabular}%
+  }%
 }
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily]
