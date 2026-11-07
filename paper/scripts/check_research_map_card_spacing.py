@@ -14,8 +14,8 @@ import xml.etree.ElementTree as ET
 
 SOURCE = Path(__file__).resolve().parents[1] / "figs" / "tex" / "research_map_narrative.tex"
 STUDY = re.compile(
-    r"^\\\\MapPaper(?:Brand)?\\{[A-D]\\}\\{([^{}]+)\\}\\{\\d{2}\\}\\{[a-z0-9]+\\}"
-    r"\\{[^{}]+\\}\\{[^{}]+\\}\\{[a-z]+\\}\\{([^{}]+)\\}(?:\\{[a-z-]+\\})?$",
+    r"^\\MapPaper(?:Brand)?\{[A-D]\}\{([^{}]+)\}\{\d{2}\}\{[a-z0-9]+\}"
+    r"\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{([^{}]+)\}(?:\{[a-z-]+\})?$",
     re.MULTILINE,
 )
 
