@@ -325,9 +325,10 @@ if narrative_path.is_file():
             f"Narrative research-map source/figure mismatch: figure-only={visible-source_items}, "
             f"registry-only={source_items-visible}")
 
-# T16: official marks are trademarks, not decoration. Two SHA-pinned
-# original marks are included for factual author affiliation in this *draft*
-# survey only; neither implies endorsement or publication rights sign-off.
+# T16: logos belong in individual research milestones, never in an
+# affiliation/attribution strip. Logos must fit a square slot without
+# distorting the original paths. Exact institutional affiliation provenance,
+# unchanged source files, and draft-only legal status remain separate gates.
 logo_registry_path = PAPER / "figs" / "tex" / "logo_asset_candidates.csv"
 require(logo_registry_path.is_file(), "Missing institution-logo rights register")
 if logo_registry_path.is_file():
@@ -341,48 +342,58 @@ if logo_registry_path.is_file():
         "cyberagent": "CyberAgent",
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
-    logo_uses = re.findall(
-        r"\\AffilBrand(?:Named)?\{([01])\}\{([a-z]+)\}\{[^{}]+\}\{[^{}]+\}",
+    brand_uses = re.findall(
+        r"\\MapPaperBrand\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}\{([a-z0-9]+)\}\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{[^{}]+\}\{([a-z]+)\}",
         figure_source,
     )
-    require(len(logo_uses) == len(logo_stems), "Affiliation rail must have five rights-gated slots")
-    require({stem for _enabled, stem in logo_uses} == set(logo_stems),
-            "Affiliation rail changed without updating provenance mapping")
-    for enabled, stem in logo_uses:
+    expected = {
+        ("C", "COLE", "23", "cole2023", "pku"),
+        ("C", "OpenCOLE", "24", "opencole2024", "cyberagent"),
+    }
+    require(set(brand_uses) == expected and len(brand_uses) == len(expected),
+            "Brand marks must be placed in exact matching COLE/OpenCOLE nodes")
+    require("Affiliation provenance:" not in figure_source and "\\AffilBrand" not in figure_source,
+            "Institution logos must not be placed in a separate affiliation footer")
+    require(r"\includegraphics[width=.46cm,height=.46cm,keepaspectratio]" in figure_source,
+            "Research-node logos must use identical square slots and preserve aspect ratio")
+    prep = tex("scripts/prepare_affiliation_logos.sh")
+    require("cyberagent-symbol.tex" in prep and "pdflatex" in prep,
+            "CA icon must use the original mark in a square vector tile")
+    require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
+            "Figure build must verify affiliation logo source pins")
+    source_icon = tex("figs/assets/logos/cyberagent-symbol.tex")
+    require("trim=0bp 0bp 190bp 0bp,clip" in source_icon and
+            "minipage}[c][68bp][c]{68bp}" in source_icon,
+            "CA square tile must preserve original vector paths and square dimensions")
+    for lane, paper, year, citation, stem in brand_uses:
         institution = logo_stems.get(stem)
-        if not institution:
+        require(institution is not None, f"Unregistered institution logo slot: {stem}")
+        if institution is None:
             continue
         record = logo_rows.get(institution)
         require(record is not None, f"Missing logo candidate provenance: {institution}")
-        if not record:
+        if record is None:
             continue
         require(bool(record.get("logo_source_page")) and bool(record.get("rights_classification")),
-                f"Logo candidate missing source/rights metadata: {institution}")
-        if enabled == "1":
-            status = record.get("status")
-            if stem == "cyberagent" and status == "draft_nominative_review":
-                require(record.get("asset_sha1") == "6e364a261c7cfc57a6f434fee0aeff3fb1184a88",
-                        "Draft CyberAgent logo SHA-1 differs from the Commons original")
-                require(record.get("asset_url") == "https://upload.wikimedia.org/wikipedia/commons/a/ae/CyberAgent_logo.svg",
-                        "Draft CyberAgent logo must use the pinned original source")
-                require((PAPER / "scripts" / "prepare_affiliation_logos.sh").is_file(),
-                        "Missing pinned SVG preparation script")
-                require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
-                        "Figure build must run logo pin verification")
-            elif stem == "pku" and status == "draft_nominative_review":
-                require(record.get("asset_sha1") == "14ffd592f63fb7231f71639e37b586467be667ea",
-                        "Draft PKU seal SHA-1 differs from Commons original")
-                require(record.get("asset_url") == "https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg",
-                        "Draft PKU seal must use original source")
-                require("\\AffilBrandNamed{1}{pku}" in figure_source,
-                        "Draft PKU seal must retain a visible institution label")
-                require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
-                        "Figure build must run source-pin verification")
-            elif status == "cleared_for_scholarly_use":
-                require((PAPER / "figs" / "assets" / "logos" / f"{stem}.pdf").is_file(),
-                        f"Approved original vector mark is missing: {institution}")
-            else:
-                require(False, f"Logo enabled without approved or explicit academic draft status: {institution}")
+                f"Logo candidate missing rights metadata: {institution}")
+        require(record.get("status") == "draft_nominative_review",
+                f"Draft original mark enabled without explicit use review: {institution}")
+        if stem == "cyberagent":
+            require(record.get("asset_sha1") == "6e364a261c7cfc57a6f434fee0aeff3fb1184a88",
+                    "CyberAgent icon source must be the exact original Commons SVG")
+            require("prepare_svg cyberagent 6e364a261c7cfc57a6f434fee0aeff3fb1184a88" in prep,
+                    "Missing CyberAgent source SHA pin")
+            require(record.get("render_asset") == "cyberagent-symbol.pdf",
+                    "CyberAgent must use the square CA symbol, not its horizontal wordmark")
+        if stem == "pku":
+            require(record.get("asset_sha1") == "14ffd592f63fb7231f71639e37b586467be667ea",
+                    "PKU icon source must use the independently verified SVG digest")
+            require("prepare_svg pku 14ffd592f63fb7231f71639e37b586467be667ea" in prep,
+                    "Missing PKU original source SHA pin")
+            require(record.get("render_asset") == "pku.pdf",
+                    "PKU must use the original square seal, not a text wordmark")
+    require({x[4] for x in brand_uses} == {"pku", "cyberagent"},
+            "No additional logo marks may be enabled without explicit audit")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
