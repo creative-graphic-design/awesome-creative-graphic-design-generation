@@ -414,7 +414,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\setlength{\MapCardPaddingY}{.008\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardLogoHeight}{2\MapCardRowHeight}" in figure_source and
-            r"\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}" in figure_source,
+            r"\makebox[\MapCardLogoWidth][c]{\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering\mbox{}#4}}" in figure_source,
             "All study cards must use true relative 1:3 icon/text columns and equal-height title/description rows")
     require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 2 and
             figure_source.count(r"\MapPaperContent{#2}{#3}{#8}{") == 2,
