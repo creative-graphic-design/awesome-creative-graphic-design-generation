@@ -48,6 +48,7 @@ jobs:
           test -s paper/figs/assets/logos/microsoft.pdf
           test -s paper/figs/assets/logos/bit-symbol.pdf
           test -s paper/figs/assets/logos/salesforce.pdf
+          test -s paper/figs/assets/logos/meituan-symbol.pdf
           test -s paper/figs/pdf/research_map_narrative.pdf
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils
@@ -57,6 +58,7 @@ jobs:
           pdfinfo paper/figs/assets/logos/microsoft.pdf | tee paper/microsoft-info.txt
           pdfinfo paper/figs/assets/logos/bit-symbol.pdf | tee paper/bit-symbol-info.txt
           pdfinfo paper/figs/assets/logos/salesforce.pdf | tee paper/salesforce-info.txt
+          pdfinfo paper/figs/assets/logos/meituan-symbol.pdf | tee paper/meituan-symbol-info.txt
           pdfinfo paper/figs/pdf/research_map_narrative.pdf | tee paper/map-info.txt
           grep -Eq 'Page size:[[:space:]]+57 x 57 pts' paper/ca-symbol-info.txt
           grep -Eq 'Page size:[[:space:]]+307 x 307 pts' paper/bit-symbol-info.txt
@@ -123,6 +125,7 @@ jobs:
             paper/figs/assets/logos/microsoft.pdf
             paper/figs/assets/logos/bit-symbol.pdf
             paper/figs/assets/logos/salesforce.pdf
+            paper/figs/assets/logos/meituan-symbol.pdf
             paper/research-map-preview.png
             paper/ca-square-preview.png
             paper/map-info.txt
@@ -132,5 +135,6 @@ jobs:
             paper/microsoft-info.txt
             paper/bit-symbol-info.txt
             paper/salesforce-info.txt
+            paper/meituan-symbol-info.txt
             paper/salesforce-square-preview.png
             paper/bit-square-preview.png
