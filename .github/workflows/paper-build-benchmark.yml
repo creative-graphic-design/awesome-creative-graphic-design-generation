@@ -12,7 +12,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: paper-build-benchmark-${{ github.event.pull_request.number || github.ref }}
+  group: paper-build-benchmark-${{ github.sha }}
   cancel-in-progress: false
 
 jobs:
