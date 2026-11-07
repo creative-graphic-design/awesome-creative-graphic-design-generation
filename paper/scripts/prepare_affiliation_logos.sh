@@ -172,7 +172,7 @@ if grep -Fq '}{utokyo}' "$figure"; then
     'https://upload.wikimedia.org/wikipedia/commons/d/d8/University_of_Tokyo_symbol.svg'
 fi
 if grep -Fq '}{berkeley}' "$figure"; then
-  prepare_svg berkeley c94fe3e801755937fab398b67bc3e86baa41a4e8 \
+  prepare_svg berkeley dfb5fb42fc8533a6a6b0d07cf350770a3cb88d6a \
     'https://upload.wikimedia.org/wikipedia/commons/6/6f/The_University_of_California_Berkeley_1868.svg'
 fi
 if grep -Fq '}{ucsd}' "$figure"; then
