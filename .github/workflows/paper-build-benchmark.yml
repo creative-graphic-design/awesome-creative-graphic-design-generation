@@ -2,11 +2,6 @@ name: Paper PDF Build Benchmark
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches: [main]
-    paths:
-      - 'paper/scripts/benchmark_pdf_builds.sh'
-      - '.github/workflows/paper-build-benchmark.yml'
 
 permissions:
   contents: read
