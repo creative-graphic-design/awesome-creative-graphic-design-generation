@@ -22,6 +22,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         self.assertIn(r"\setlength{\MapCardLogoWidth}{.25\linewidth}", self.source)
         self.assertIn(r"\setlength{\MapCardTextWidth}{.75\linewidth}", self.source)
         self.assertIn(r"\setlength{\MapCardLogoHeight}{2\MapCardRowHeight}", self.source)
+        self.assertIn(r"\setlength{\MapCardRowHeight}{.055\linewidth}", self.source)
         self.assertEqual(self.source.count(r"\vbox to \MapCardRowHeight"), 2)
         self.assertIn(r"\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}", self.source)
 
@@ -43,7 +44,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
 
     def test_logo_is_bounded_by_relative_width_and_height(self):
         self.assertIn(
-            r"\includegraphics[width=.8\MapCardLogoWidth,height=.8\MapCardLogoHeight,keepaspectratio]",
+            r"\includegraphics[width=.64\MapCardLogoWidth,height=.72\MapCardLogoHeight,keepaspectratio,clip]",
             self.source,
         )
 
