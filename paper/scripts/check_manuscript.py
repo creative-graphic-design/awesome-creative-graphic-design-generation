@@ -302,7 +302,7 @@ if narrative_path.is_file():
         narrative_entries = list(narrative_reader)
     narrative = tex("figs/tex/research_map_narrative.tex")
     macro = re.compile(
-        r"\\MapPaper\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}"
+        r"\\MapPaper(?:Brand)?\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}"
         r"\{([^{}]+)\}\{[^{}]+\}\{[^{}]+\}\{([^{}]+)\}\{([^{}]+)\}"
     )
     visible = {(track, title, key, 2000 + int(year), family)
