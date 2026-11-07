@@ -13,7 +13,7 @@ prepare_svg() {
   svg="figs/assets/logos/$stem.svg"
   pdf="figs/assets/logos/$stem.pdf"
   mkdir -p figs/assets/logos
-  if ! printf '%s  %s\n' "$expected" "$svg" | sha1sum -c -s; then
+  if [ ! -f "$svg" ] || ! printf '%s  %s\n' "$expected" "$svg" | sha1sum -c -s; then
     command -v curl >/dev/null 2>&1 || { echo 'curl required for source-pinned draft mark' >&2; exit 1; }
     curl --fail --location --silent --show-error --retry 3 --connect-timeout 10 --max-time 60 "$url" -o "$svg"
   fi
@@ -41,6 +41,6 @@ if grep -Fq '\AffilBrand{1}{cyberagent}' "$figure"; then
     https://upload.wikimedia.org/wikipedia/commons/a/ae/CyberAgent_logo.svg
 fi
 if grep -Fq '\AffilBrandNamed{1}{pku}' "$figure"; then
-  prepare_svg pku 965d9a8bdc1c391b75a0f88d729d54ea775ce180 \
+  prepare_svg pku 14ffd592f63fb7231f71639e37b586467be667ea \
     https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg
 fi
