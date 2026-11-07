@@ -4,6 +4,8 @@
 
 The map's company/university logos belong **inside the individual study card**, immediately beside that paper's name and year. Do not restore the detached affiliation footer or squeeze a horizontal wordmark into the tiny square slot. The brand-slot footprint is **0.46 cm × 0.46 cm** before manuscript scaling, with original vector paths, undistorted proportions, and no generated/improvised logos.
 
+**Two-column card invariant (2026-11-08):** Every branded milestone is constructed as **one TeX tabular row with two vertically centered `array` `m{}` columns**, not a logo independently overlaid on text. The content width is exactly `0.46cm icon + 0.07cm gap + 2.59cm text = 3.12cm`; the entire text column contains the title/year on the first line and subtitle on the next. The same `\\MapPaperFrame` and `\\MapPaperText` render branded and unbranded cards, preserving the same border and padding. Never reintroduce `\\hspace*{.53cm}` in the title/subtitle or a TikZ coordinate offset for the logo. CI enforces this structural rule and checks actual PDF text spacing for **all 26 study cards**.
+
 All 26 studies have an independently auditable *institution choice*, author/project evidence URL, affiliation role, and logo readiness state in [research_map_affiliations.csv](../../tex/research_map_affiliations.csv). All **18 distinct primary organizations** have a separate asset/rights record in [logo_asset_candidates.csv](../../tex/logo_asset_candidates.csv). Source attribution does **not** establish trademark reproduction rights; all current displayed brands are **draft-only nominative examples**, not approved publication artifacts.
 
 ## Implemented original compact vector marks (14 research cards)
