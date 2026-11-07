@@ -375,6 +375,12 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "verified_square_bit": "bit-symbol",
         "verified_square_salesforce": "salesforce",
         "verified_square_meituan": "meituan-symbol",
+        "verified_square_utokyo": "utokyo",
+        "verified_square_berkeley": "berkeley",
+        "verified_square_ucsd": "ucsd",
+        "verified_square_adobe": "adobe",
+        "verified_identity_epfl": "epfl",
+        "verified_identity_alibaba": "alibaba",
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     brand_uses = re.findall(
@@ -429,6 +435,12 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "bit-symbol": ("Beijing Institute of Technology", "bit-original", "6fcb6505b213d2f858e82ff51aab605a1771dc7c"),
         "salesforce": ("Salesforce Research", "salesforce", "a05d80d66796327adad13e0574c4fa78b526545c"),
         "meituan-symbol": ("Meituan", "meituan-original", "0df68fc2b3b25ddbeaa7f4046c0f74b3aae2fb05"),
+        "utokyo": ("University of Tokyo", "utokyo", "3d2c55ba43c606c9c7563677aca709b49a797d9e"),
+        "berkeley": ("University of California, Berkeley", "berkeley", "c94fe3e801755937fab398b67bc3e86baa41a4e8"),
+        "ucsd": ("University of California San Diego", "ucsd", "c4d91d3aa318092f553439fa8e3820f62efb996e"),
+        "adobe": ("Adobe Inc.", "adobe", "471dcc4a658857f96ea2b85f40dadfa15a455319"),
+        "epfl": ("EPFL", "epfl", "5aae170a1e6c06178309e87d19cca7e2770dd9ec"),
+        "alibaba": ("Alibaba Group", "alibaba", "42e5896c316a2394d5744812174641cb5710cbcd"),
     }
     for stem in set(expected.values()):
         institution, source_stem, digest = to_registry[stem]
@@ -476,7 +488,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
                  if status_to_stem.get(r["logo_review_state"]) == stem}
         require(names == set(record["placed_on_node"].split("|")),
                 f"Rights register paper-to-logo mapping differs for {institution}")
-    require(len(seen) == 14, "Exactly fourteen source-verified draft compact logos currently expected")
+    require(len(seen) == 21, "Exactly twenty-one sourced draft institutional marks currently expected")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
