@@ -1,7 +1,6 @@
 """Guard the research-map card's proportional spacing and alignment contract."""
 
 from pathlib import Path
-import re
 import unittest
 
 SOURCE = Path(__file__).resolve().parents[2] / "figs/tex/research_map_narrative.tex"
