@@ -462,7 +462,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
                  if status_to_stem.get(r["logo_review_state"]) == stem}
         require(names == set(record["placed_on_node"].split("|")),
                 f"Rights register paper-to-logo mapping differs for {institution}")
-    require(len(seen) == 13, "Exactly thirteen source-verified draft compact logos currently expected")
+    require(len(seen) == 14, "Exactly fourteen source-verified draft compact logos currently expected")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
