@@ -63,6 +63,50 @@ if grep -Fq '}{bit-symbol}' "$figure"; then
   echo "bit-symbol: square artboard crop from source-pinned official BIT vector (draft only)."
 fi
 
+# Salesforce Brand Central directs small printed uses to the BLUE CLOUD ONLY,
+# never to the text-in-cloud or horizontal wordmark. Extract the original
+# filled cloud shape from the official corporate RGB SVG without redrawing.
+if grep -Fq '}{salesforce}' "$figure"; then
+  mkdir -p figs/assets/logos
+  sf_zip=figs/assets/logos/salesforce-official.zip
+  sf_sha=b8cca7fa6290153156dc0d260095079d0cb0708c
+  if [ ! -f "$sf_zip" ] || ! printf '%s  %s\n' "$sf_sha" "$sf_zip" | sha1sum -c -s; then
+    curl --fail --location --silent --show-error --retry 3 --connect-timeout 20 --max-time 120 \
+      'https://salesforce.widen.net/s/mzhhvlhsdg/salesforce-corporate-logo-all' -o "$sf_zip"
+  fi
+  printf '%s  %s\n' "$sf_sha" "$sf_zip" | sha1sum -c
+  python3 - "$sf_zip" <<'PY'
+import hashlib
+from pathlib import Path
+from sys import argv
+from xml.etree import ElementTree as ET
+from xml.sax.saxutils import quoteattr
+from zipfile import ZipFile
+
+path = 'Salesforce-Corporate-Logo-All/Cloud Logo RGB/Salesforce-Corporate-Logo-Cloud-RBG.svg'
+with ZipFile(argv[1]) as archive:
+    original = archive.read(path)
+actual = hashlib.sha1(original).hexdigest()
+expected = 'a05d80d66796327adad13e0574c4fa78b526545c'
+if actual != expected:
+    raise SystemExit(f'FAIL Salesforce original SVG digest: {actual}, expected {expected}')
+root = ET.fromstring(original)
+assert root.attrib.get('viewBox') == '0 0 205.73 144', 'Cloud symbol source changed'
+paths = [p for p in root.iter()
+         if p.tag.endswith('path') and p.attrib.get('class') == 'cls-3']
+if len(paths) != 1 or len(paths[0].attrib.get('d','')) < 100:
+    raise SystemExit('FAIL Salesforce original blue cloud must be a single source path')
+# Preserve the original blue path data and fill; omit only the white wordmark.
+d = quoteattr(paths[0].attrib['d'])
+out = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 205.73 205.73"><path fill="#00b3ff" transform="translate(0 30.865)" d=' + d + '/></svg>\n'
+Path('figs/assets/logos/salesforce-symbol.svg').write_text(out)
+print('Salesforce: SHA-1-pinned original RGB cloud path, symbol-only square.')
+PY
+  rsvg-convert --format pdf --output figs/assets/logos/salesforce.pdf \
+    figs/assets/logos/salesforce-symbol.svg
+  test -s figs/assets/logos/salesforce.pdf
+fi
+
 if grep -Fq '}{google}' "$figure"; then
   prepare_svg google 2cc789a02534557380d92124e2f8b9483d198fb3 \
     'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg'
