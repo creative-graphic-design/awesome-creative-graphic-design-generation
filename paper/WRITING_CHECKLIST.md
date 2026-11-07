@@ -104,13 +104,15 @@
 - [ ] Where editing requires dependent reflow, separate permitted neighboring changes from genuinely protected content.
 - [ ] Describe what an original benchmark measures, the artifact it accepts/returns, and source-evidence limitations.
 
-## Original affiliation marks: mandatory T16 permission and PDF gate (2026-11-07)
+## Original affiliation marks: mandatory T16 node-placement and publication gate (2026-11-07)
 
-- [ ] For each logo, distinguish **primary-paper author affiliation** from **authority to reproduce the institution's trademark**. Never call a verified affiliation a cleared mark.
-- [ ] Record original-paper year, affiliation role, official asset/version, asset URL, copyright/trademark and usage rules, required attribution, and written clearance (where applicable) in `figs/tex/logo_asset_candidates.csv`. Preserve the actual source in `figs/tex/affiliation_logo_provenance.csv`.
-- [ ] For publication, require appropriate mark-use rights and an original, unaltered vector asset for each enabled `\\AffilBrand{1}` or `\\AffilBrandNamed{1}`. Two **draft-preview exceptions**, CyberAgent's wordmark and the Peking University seal, are explicitly labeled `draft_nominative_review`, fetched from pinned original Commons SVGs and SHA-1-validated. This does **not** establish publication permission. BIT, Adobe and MSRA remain text-only until separately cleared.
-- [ ] Inspect the actual anonymous PDF at publication print width after enabling any mark. Confirm that marks are legible, not confused for coauthor endorsements, not redrawn or recolored, and attributed where required. A Commons `PD-textlogo` label alone is not permission to use a trademark.
-- [ ] Treat the original 26-node research map as author-drawn and do not paste third-party paper figures or organization logo assets without the explicit source/permission review. See `figs/assets/logos/README.md`.
+- [ ] Verify each mark's **original-paper author affiliation** separately from the right to reproduce the university insignia or corporate trademark. Never treat affiliation verification as permission.
+- [ ] Record paper year, affiliated organization, mark variant, authoritative original SVG and SHA-1, copyright/trademark status, draft/publication context and required credits in `figs/tex/logo_asset_candidates.csv` and `figs/tex/affiliation_logo_provenance.csv`.
+- [x] Do **not** place logos in a detached affiliation/footer rail. Use original **square or square-canvas symbol/insignia** variants only, attached to their individual research milestone cards; never squeeze horizontal wordmarks or stretch/redraw. The manuscript checker must enforce the exact COLE/PKU and OpenCOLE/CyberAgent pairing.
+- [x] In the current **draft-only** figure, CyberAgent uses a square **CA symbol vector viewport from its pinned original wordmark** and PKU uses its original square seal; these are tagged `draft_nominative_review`, **not publication clearance**. BIT, Adobe and MSRA remain text-only pending appropriate official marks/permissions.
+- [ ] Inspect the **actual anonymous PDF at final print scale** and each standalone vector figure after a CI build. Confirm the symbols fit their 0.46 cm square slots, do not obscure paper names/year/subtitles, and have not become low-resolution images. Record visual evidence in the PR.
+- [ ] Before publication, confirm legal/institutional reuse review and non-endorsement; Commons public-domain copyright classifications or a downloadable university logo do not independently authorize trademark/insignia use.
+- [ ] Preserve all author-drawn schematic content; do not insert or trace illustrations from cited research figures. See `figs/assets/logos/README.md`.
 
 ## Paper layout, anonymity and review
 
