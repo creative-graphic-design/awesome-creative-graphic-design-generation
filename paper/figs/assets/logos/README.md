@@ -1,6 +1,6 @@
 # Original university/company marks for the narrative research map
 
-**Status (2026-11-07): No official marks are checked into the repository or enabled in the published manuscript.** The current figure retains source-checked institution names. This directory is the reserved asset location for the author's T16 request; see [candidate rights table](../../tex/logo_asset_candidates.csv) and [affiliation evidence](../../tex/affiliation_logo_provenance.csv).
+**Status (2026-11-07): One original CyberAgent textlogo is enabled for an anonymous draft preview; it is not publication-approved.** No official mark binary is checked into the repository. When the logo is enabled, `scripts/prepare_affiliation_logos.sh` downloads the 2016 Commons SVG, verifies SHA-1 `6e364a261c7cfc57a6f434fee0aeff3fb1184a88`, and converts it to a vector PDF for the figure. All four other institution slots remain text-only. The map retains source-checked institution names. This directory is the reserved asset location for the author's T16 request; see [candidate rights table](../../tex/logo_asset_candidates.csv) and [affiliation evidence](../../tex/affiliation_logo_provenance.csv).
 
 The vector-only, source-editable TikZ figure at [research_map_narrative.tex](../../tex/research_map_narrative.tex) has **five explicit rights-gated institution slots** tied to three research cases:
 
