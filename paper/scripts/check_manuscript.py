@@ -396,21 +396,22 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
     require(seen == expected, f"Research nodes' compact logo mapping mismatch: {seen} != {expected}")
     require("Affiliation provenance:" not in figure_source and "\\AffilBrand" not in figure_source,
             "Institution logos must not be placed in a separate affiliation footer")
-    require(r"\includegraphics[width=.46cm,height=.46cm,keepaspectratio]" in figure_source,
-            "All research-node marks require equal, aspect-preserving square layout slots")
-    require(r"\usepackage{array}" in figure_source and
-            r"\newcommand{\MapPaperFrame}[4]" in figure_source and
-            r"\newcommand{\MapPaperText}[3]" in figure_source and
-            r"\begin{tabular}[c]{@{}m{.46cm}@{\hspace{.07cm}}m{2.59cm}@{}}" in figure_source and
-            r"\makebox[.46cm][c]{\includegraphics" in figure_source and
-            r"\parbox[c]{2.59cm}{\raggedright\MapPaperText{#2}{#3}{#8}}" in figure_source,
-            "Branded research card must use two actual centered m-columns, not overlay/indent")
-    require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 2,
-            "Plain and logo-bearing research cards must share the same outer frame")
+    require(r"\newcommand{\MapPaperFrame}[4]" in figure_source and
+            r"\newcommand{\MapPaperContent}[4]" in figure_source and
+            r"\setlength{\MapCardLogoWidth}{.25\linewidth}" in figure_source and
+            r"\setlength{\MapCardTextWidth}{.75\linewidth}" in figure_source and
+            r"\begin{tabular}[c]{@{}m{\MapCardLogoWidth}@{}m{\MapCardTextWidth}@{}}" in figure_source and
+            figure_source.count(r"\vbox to \MapCardRowHeight") == 2 and
+            r"\includegraphics[width=.76\MapCardLogoWidth,height=.76\MapCardLogoWidth,keepaspectratio]" in figure_source,
+            "All study cards must use true relative 1:3 icon/text columns and equal-height title/description rows")
+    require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 2 and
+            figure_source.count(r"\MapPaperContent{#2}{#3}{#8}{") == 2,
+            "Branded and unbranded study cards must share the proportional layout component")
     require(r"at ($(mapPaperCard-" not in figure_source and
             r"at ($(#5,#6)+(0.36,-0.33)$)" not in figure_source and
-            r"\hspace*{.53cm}" not in figure_source,
-            "Logo overlays and manually inserted title/subtitle indentation are forbidden")
+            r"\hspace*{.53cm}" not in figure_source and
+            r"m{.46cm}" not in figure_source,
+            "Logo overlays and fixed-width typography columns are forbidden")
     prep = tex("scripts/prepare_affiliation_logos.sh")
     require("cyberagent-symbol.tex" in prep and "pdflatex" in prep,
             "CA icon must use unchanged original logo in a square vector tile")
