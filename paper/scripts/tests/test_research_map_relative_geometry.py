@@ -13,7 +13,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
 
     def test_padding_is_derived_from_shared_width(self):
         self.assertIn(r"\setlength{\MapCardPaddingX}{.025\MapCardWidth}", self.source)
-        self.assertIn(r"\setlength{\MapCardPaddingY}{.0125\MapCardWidth}", self.source)
+        self.assertIn(r"\setlength{\MapCardPaddingY}{.008\MapCardWidth}", self.source)
         self.assertIn(r"\setlength{\MapCardContentWidth}{\MapCardWidth}", self.source)
         self.assertIn(r"inner xsep=\MapCardPaddingX", self.source)
         self.assertIn(r"inner ysep=\MapCardPaddingY", self.source)
@@ -22,8 +22,9 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         self.assertIn(r"\setlength{\MapCardLogoWidth}{.25\linewidth}", self.source)
         self.assertIn(r"\setlength{\MapCardTextWidth}{.75\linewidth}", self.source)
         self.assertIn(r"\setlength{\MapCardLogoHeight}{2\MapCardRowHeight}", self.source)
-        self.assertIn(r"\setlength{\MapCardRowHeight}{.055\linewidth}", self.source)
+        self.assertIn(r"\setlength{\MapCardRowHeight}{.095\MapCardWidth}", self.source)
         self.assertEqual(self.source.count(r"\vbox to \MapCardRowHeight"), 2)
+        self.assertIn(r"\parbox[c][\MapCardLogoHeight][c]{\MapCardTextWidth}", self.source)
         self.assertIn(r"\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}", self.source)
 
     def test_all_card_positions_use_relative_grid(self):
