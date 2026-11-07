@@ -119,6 +119,10 @@ jobs:
           test -s paper/figs/pdf/edit_protocol.pdf
           test -s paper/figs/pdf/research_map.pdf
           test -s paper/figs/pdf/research_map_narrative.pdf
+          # T16: all 12 logo-node proofs require original source-pinned vectors.
+          for symbol in cyberagent-symbol pku google microsoft bit-symbol salesforce; do
+            test -s "paper/figs/assets/logos/${symbol}.pdf"
+          done
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils
           pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
@@ -138,7 +142,13 @@ jobs:
             exit 1
           fi
           pdftoppm -f 1 -l 1 -singlefile -r 120 -png paper/main.pdf paper/first-page
+          pdftoppm -f 1 -l 1 -singlefile -r 200 -png paper/figs/pdf/research_map_narrative.pdf paper/research-map-print-preview
           test -s paper/first-page.png
+          test -s paper/research-map-print-preview.png
+          if pdfimages -list paper/figs/pdf/research_map_narrative.pdf | tail -n +3 | grep -q .; then
+            echo 'Institution symbols in the paper research map must remain vector-only' >&2
+            exit 1
+          fi
           if grep -E 'Citation .+ undefined|Reference .+ undefined|There were undefined citations|There were undefined references' paper/main.log; then
             echo 'Unresolved references detected in TeX log.' >&2
             exit 1
@@ -169,6 +179,7 @@ jobs:
             paper/main.pdf
             paper/figs/pdf/*.pdf
             paper/first-page.png
+            paper/research-map-print-preview.png
             paper/main.txt
             paper/main.log
             paper/pdfinfo.txt
