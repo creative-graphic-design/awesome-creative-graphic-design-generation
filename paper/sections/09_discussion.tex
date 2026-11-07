@@ -29,6 +29,14 @@ To make comparisons auditable, each claimed editing capability should be paired 
 For example, alpha-mask quality can support a claim about compositing readiness, but not one about replacing semantic text; correct SVG rendering can support visual validity, but not one about retaining object identity after a later edit.
 This pairing also reveals where new benchmarks are most valuable: the unmeasured step between an artifact's structural affordances and reliable execution of users' actual revision requests.
 
+\paragraph{A minimal cross-representation editing test.}
+A useful paired evaluation would start from the same rendered design and specify the same user intent---for example, replace a headline while preserving a logo and an unrelated caption---but allow each system to operate on its declared input and output representation.
+The test must record whether a method receives only an image, a layer stack, or the original source document, since these inputs expose different information.
+Each submission should return both a rendered result and, where its output contract promises one, a reopenable native artifact.
+Scoring should distinguish exact text correctness, permissible downstream reflow, changes to explicitly protected objects, and format-validity failures.
+Results should be reported by representation and intervention type before any aggregate is attempted; an unavailable native-file dimension should be marked inapplicable rather than silently scored as an editing failure.
+This proposal defines a future comparison protocol, not an experiment conducted in this survey.
+
 \paragraph{Human-centred outcomes.}
 Designer workflows involve more than one-shot aesthetic ratings.
 Vinci provides an example of measuring editing efficiency \citep{vinci2021}.
