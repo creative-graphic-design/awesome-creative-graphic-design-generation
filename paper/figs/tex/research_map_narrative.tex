@@ -148,8 +148,9 @@
 % CyberAgent and PKU 1-slots are draft-only factual identification previews;
 % scripts/prepare_affiliation_logos.sh verifies the original Commons SVG SHA-1.
 % This is not trademark authorization or author publication sign-off.
-% For each organization, replace 0 with 1 only after approval and adding its
-% unmodified original vector PDF to figs/assets/logos/ (see provenance CSV).
+% The two draft exceptions fetch originals and check SHA-1 during figure builds;
+% all other organizations remain 0 until publication rights are reviewed.
+% Do not enable any other asset without its source and rights audit.
 \fill[navy!5,rounded corners=2pt] (.48,-.36) rectangle (18.72,.16);
 \node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,-.10) {Affiliation provenance:};
 \node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,-.10) {LayoutGAN / \AffilBrand{0}{bit}{.21cm}{BIT} + \AffilBrand{0}{adobe}{.21cm}{Adobe}};
