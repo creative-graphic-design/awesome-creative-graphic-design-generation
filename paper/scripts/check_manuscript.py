@@ -373,6 +373,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "verified_square_ms": "microsoft",
         "verified_square_google": "google",
         "verified_square_bit": "bit-symbol",
+        "verified_square_salesforce": "salesforce",
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     brand_uses = re.findall(
@@ -411,6 +412,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "google": ("Google", "google", "2cc789a02534557380d92124e2f8b9483d198fb3"),
         "microsoft": ("Microsoft Research Asia", "microsoft", "5b170117926ae5a5e451aa24676b5a124c2fa122"),
         "bit-symbol": ("Beijing Institute of Technology", "bit-original", "6fcb6505b213d2f858e82ff51aab605a1771dc7c"),
+        "salesforce": ("Salesforce Research", "salesforce", "a05d80d66796327adad13e0574c4fa78b526545c"),
     }
     for stem in set(expected.values()):
         institution, source_stem, digest = to_registry[stem]
@@ -434,6 +436,13 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             require("trim=360bp 145bp 175bp 145bp,clip" in bit_icon and
                     "minipage}[c][307bp][c]{307bp}" in bit_icon,
                     "BIT square mark viewport must preserve original vector paths")
+        elif stem == "salesforce":
+            require("sf_sha=b8cca7fa6290153156dc0d260095079d0cb0708c" in prep and
+                    f"expected = '{digest}'" in prep and
+                    "Salesforce-Corporate-Logo-Cloud-RBG.svg" in prep and
+                    "cls-3" in prep and "quoteattr" in prep and
+                    "salesforce-symbol.svg" in prep,
+                    "Salesforce compact mark must isolate original blue cloud path from pinned official brand ZIP")
         else:
             require(f"prepare_svg {source_stem} {digest}" in prep,
                     f"Enabled logo must have a pinned SVG source: {institution}")
@@ -441,7 +450,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
                  if status_to_stem.get(r["logo_review_state"]) == stem}
         require(names == set(record["placed_on_node"].split("|")),
                 f"Rights register paper-to-logo mapping differs for {institution}")
-    require(len(seen) == 11, "Exactly eleven source-verified draft square logos currently expected")
+    require(len(seen) == 12, "Exactly twelve source-verified draft compact logos currently expected")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
