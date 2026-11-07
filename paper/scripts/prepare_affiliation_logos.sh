@@ -13,9 +13,15 @@ prepare_svg() {
   svg="figs/assets/logos/$stem.svg"
   pdf="figs/assets/logos/$stem.pdf"
   mkdir -p figs/assets/logos
-  if ! printf '%s  %s\n' "$expected" "$svg" | sha1sum -c --status; then
+  if ! printf '%s  %s\n' "$expected" "$svg" | sha1sum -c -s; then
     command -v curl >/dev/null 2>&1 || { echo 'curl required for source-pinned draft mark' >&2; exit 1; }
     curl --fail --location --silent --show-error --retry 3 --connect-timeout 10 --max-time 60 "$url" -o "$svg"
+  fi
+  if ! printf '%s  %s\n' "$expected" "$svg" | sha1sum -c -s; then
+    echo "Unexpected logo bytes for $stem: SHA-1 and byte count follow (do not render)." >&2
+    sha1sum "$svg" >&2
+    wc -c "$svg" >&2
+    exit 1
   fi
   printf '%s  %s\n' "$expected" "$svg" | sha1sum -c
   if command -v rsvg-convert >/dev/null 2>&1; then
