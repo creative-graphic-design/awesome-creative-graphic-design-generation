@@ -158,6 +158,44 @@ jobs:
           )
           print(audit.read_text()[:9000])
           PY
+      - name: Inspect official Meituan media ZIP contents without redistribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logo-source-probe
+          # This exact ZIP link was extracted from the original official
+          # /media HTML in the prior source probe. Its identity must be
+          # confirmed from its contents; do not assume it is Meituan Group.
+          src='https://s3plus.meituan.net/smart/22c45b30-80ba-4aa5-bfad-2bfaed7beb4e.zip'
+          audit=logo-source-probe/meituan-zip-audit.txt
+          if curl -fL --retry 2 --connect-timeout 12 --max-time 60 \
+              --max-filesize 50000000 --silent --show-error \
+              "$src" -o logo-source-probe/meituan-candidate.zip; then
+            python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, BadZipFile
+          import hashlib
+          path = Path("logo-source-probe/meituan-candidate.zip")
+          with Path("logo-source-probe/meituan-zip-audit.txt").open("w") as out:
+              b = path.read_bytes()
+              print(f"Candidate source ZIP: size={len(b)} sha1={hashlib.sha1(b).hexdigest()}",file=out)
+              try:
+                  with ZipFile(path) as zf:
+                      infos = zf.infolist()
+                      print(f"Total entries: {len(infos)}",file=out)
+                      for x in infos[:100]:
+                          print(f"{x.filename} ({x.file_size} bytes)",file=out)
+                      eligible = [x for x in infos if not x.is_dir() and
+                                  x.filename.lower().endswith((".svg",".ai",".eps",".pdf"))]
+                      print(f"Vector candidates: {len(eligible)}",file=out)
+                      # Do not auto-enable or export source binaries.
+              except BadZipFile:
+                  print("Not a ZIP archive; source cannot be enabled",file=out)
+          print(Path("logo-source-probe/meituan-zip-audit.txt").read_text()[:7000])
+          PY
+          else
+            echo "Media archive unavailable; no source asset enabled" > "$audit"
+          fi
       - name: Upload inspected renders and digest evidence (not as survey assets)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
@@ -169,6 +207,7 @@ jobs:
             logo-source-probe/source-audit.txt
             logo-source-probe/salesforce-source-audit.txt
             logo-source-probe/meituan-source-audit.txt
+            logo-source-probe/meituan-zip-audit.txt
             logo-source-probe/salesforce-cloud-original.svg
             logo-source-probe/*-proof.png
             logo-source-probe/*-convert.log
