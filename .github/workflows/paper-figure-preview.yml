@@ -72,8 +72,8 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           data = Path("paper/ca-square-audit.ppm").read_bytes()
-          assert data.startswith(b"P6\\n"), "Expected binary RGB PPM"
-          parts = data.split(b"\\n", 3)
+          assert data.startswith(b"P6\n"), "Expected binary RGB PPM"
+          parts = data.split(b"\n", 3)
           assert len(parts) == 4 and parts[2] == b"255", "Unexpected PPM header"
           rgb = parts[3]
           assert len(rgb) % 3 == 0, "Unexpected RGB payload"
