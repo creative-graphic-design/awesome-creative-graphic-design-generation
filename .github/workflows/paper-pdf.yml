@@ -120,7 +120,7 @@ jobs:
           test -s paper/figs/pdf/research_map.pdf
           test -s paper/figs/pdf/research_map_narrative.pdf
           # T16: all 12 logo-node proofs require original source-pinned vectors.
-          for symbol in cyberagent-symbol pku google microsoft bit-symbol salesforce; do
+          for symbol in cyberagent-symbol pku google microsoft bit-symbol salesforce meituan-symbol; do
             test -s "paper/figs/assets/logos/${symbol}.pdf"
           done
           sudo apt-get update -qq
