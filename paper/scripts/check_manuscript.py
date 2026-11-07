@@ -372,6 +372,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "verified_square_pku": "pku",
         "verified_square_ms": "microsoft",
         "verified_square_google": "google",
+        "verified_square_bit": "bit-symbol",
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     brand_uses = re.findall(
@@ -409,6 +410,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "pku": ("Peking University", "pku", "14ffd592f63fb7231f71639e37b586467be667ea"),
         "google": ("Google", "google", "2cc789a02534557380d92124e2f8b9483d198fb3"),
         "microsoft": ("Microsoft Research Asia", "microsoft", "5b170117926ae5a5e451aa24676b5a124c2fa122"),
+        "bit-symbol": ("Beijing Institute of Technology", "bit-original", "6fcb6505b213d2f858e82ff51aab605a1771dc7c"),
     }
     for stem in set(expected.values()):
         institution, source_stem, digest = to_registry[stem]
@@ -424,13 +426,22 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
                 f"Wrong square logo asset linked for {institution}")
         require(record["asset_sha1"] == digest,
                 f"Source digest does not match original logo register: {institution}")
-        require(f"prepare_svg {source_stem} {digest}" in prep,
-                f"Enabled logo must have a pinned SVG source: {institution}")
+        if stem == "bit-symbol":
+            require(f"bit_sha={digest}" in prep and "bit-original.ai" in prep and
+                    "bit-symbol.tex" in prep and "bit-original.pdf" in prep,
+                    "BIT source must be the exact original PDF-compatible Illustrator master")
+            bit_icon = tex("figs/assets/logos/bit-symbol.tex")
+            require("trim=360bp 145bp 175bp 145bp,clip" in bit_icon and
+                    "minipage}[c][307bp][c]{307bp}" in bit_icon,
+                    "BIT square mark viewport must preserve original vector paths")
+        else:
+            require(f"prepare_svg {source_stem} {digest}" in prep,
+                    f"Enabled logo must have a pinned SVG source: {institution}")
         names = {r["label"] for r in affiliation_records
                  if status_to_stem.get(r["logo_review_state"]) == stem}
         require(names == set(record["placed_on_node"].split("|")),
                 f"Rights register paper-to-logo mapping differs for {institution}")
-    require(len(seen) == 10, "Exactly ten verified/draft square logos currently expected")
+    require(len(seen) == 11, "Exactly eleven source-verified draft square logos currently expected")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
