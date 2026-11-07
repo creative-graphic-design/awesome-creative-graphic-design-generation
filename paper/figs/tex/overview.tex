@@ -1,0 +1,34 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily\scriptsize, x=1cm, y=1cm,
+  panel/.style={draw=black!35,rounded corners=5pt,line width=.5pt},
+  item/.style={rounded corners=2pt,minimum width=3.56cm,minimum height=.42cm,align=center,inner sep=2pt},
+  flowarrow/.style={-{Latex[length=2.5mm]},line width=.85pt,draw=black!60}]
+  \fill[blue!6,rounded corners=6pt] (-.2,-.6) rectangle (4.02,4.15);
+  \fill[orange!7,rounded corners=6pt] (4.55,-.6) rectangle (8.77,4.15);
+  \fill[green!7,rounded corners=6pt] (9.30,-.6) rectangle (13.52,4.15);
+  \draw[panel] (-.2,-.6) rectangle (4.02,4.15);
+  \draw[panel] (4.55,-.6) rectangle (8.77,4.15);
+  \draw[panel] (9.30,-.6) rectangle (13.52,4.15);
+  \node[font=\sffamily\bfseries\normalsize] at (1.91,3.73) {R: Representation};
+  \node[font=\sffamily\bfseries\normalsize] at (6.66,3.73) {E: Edit operations};
+  \node[font=\sffamily\bfseries\normalsize] at (11.41,3.73) {V: Evaluation};
+  \node[font=\sffamily\small,align=center] at (1.91,3.16) {Which objects?};
+  \node[font=\sffamily\small,align=center] at (6.66,3.16) {Which edits?};
+  \node[font=\sffamily\small,align=center] at (11.41,3.16) {Which outcomes?};
+  \foreach \itemtext/\yy in {Layout boxes/2.55,Flattened pixels/1.98,SVG paths/1.41,RGBA or document layers/.84,DOM and CSS document objects/.27} {
+    \node[item,draw=blue!45,fill=white] at (1.91,\yy) {\itemtext};
+  }
+  \foreach \itemtext/\yy in {Move or resize geometry/2.55,Retouch or inpaint/1.98,Alter a path or glyph/1.41,Replace or rearrange layers/.84,Edit text or code nodes/.27} {
+    \node[item,draw=orange!50,fill=white] at (6.66,\yy) {\itemtext};
+  }
+  \foreach \itemtext/\yy in {Format affords modification/2.55,Edited example is shown/1.98,User effort or preference measured/1.41,Edit instruction scored/.84,Artifact reopened and validated/.27} {
+    \node[item,draw=green!50,fill=white] at (11.41,\yy) {\itemtext};
+  }
+  \draw[flowarrow] (4.12,1.78) -- (4.46,1.78);
+  \draw[flowarrow] (8.87,1.78) -- (9.21,1.78);
+  \node[font=\sffamily\small\bfseries,align=center,fill=white,draw=red!65,rounded corners=3pt,text=red!70!black,inner sep=3pt] at (6.65,-1.10) {An editable file format alone does not establish successful or localized editing.};
+\end{tikzpicture}
+\end{document}

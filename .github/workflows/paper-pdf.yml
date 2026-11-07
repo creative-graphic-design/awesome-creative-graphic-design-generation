@@ -1,0 +1,198 @@
+name: Paper PDF
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'paper/**'
+      - '.github/workflows/paper-pdf.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'paper/**'
+      - '.github/workflows/paper-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: paper-pdf-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build survey PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout manuscript
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Preserve only verified upstream masters between workflows. Their
+      # complete SHA-1 values are rechecked inside the figure build itself.
+      - name: Restore source-pinned institution logo masters
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+        with:
+          path: |
+            paper/figs/assets/logos/bit-original.ai
+            paper/figs/assets/logos/salesforce-official.zip
+            paper/figs/assets/logos/meituan-official.zip
+          key: institution-master-assets-v1-bit6fcb6505-salesforceb8cca7fa-meituan6817f88d
+
+      # PR path filters compare the whole branch with main, so they cannot
+      # distinguish a documentation-only update inside a long-running PR.
+      # The synchronize/push event provides the exact before/after push range.
+      - name: Determine whether PDF sources changed
+        id: pdf_scope
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_ACTION: ${{ github.event.action }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.event.after }}
+        run: |
+          set -euo pipefail
+          build_pdf=true
+          reason="Initial PR, manual run, or change scope not verified"
+          if [[ "$EVENT_NAME" == push || ( "$EVENT_NAME" == pull_request && "$EVENT_ACTION" == synchronize ) ]]; then
+            if [[ "$BEFORE_SHA" =~ ^[0-9a-f]{40}$ && "$AFTER_SHA" =~ ^[0-9a-f]{40}$ && ! "$BEFORE_SHA" =~ ^0{40}$ ]]; then
+              # Fail open: a missing ref (e.g. a fork) must trigger the full build.
+              if git fetch --no-tags --depth=1 origin "$BEFORE_SHA" "$AFTER_SHA"; then
+                mapfile -d '' -t changed < <(git diff --name-only -z "$BEFORE_SHA" "$AFTER_SHA")
+                if (( ${#changed[@]} > 0 )); then
+                  build_pdf=false
+                  for file in "${changed[@]}"; do
+                    case "$file" in
+                      paper/*.md) ;; # prose-only notes, audits, checklists, READMEs
+                      *) build_pdf=true; break ;;
+                    esac
+                  done
+                  reason="Files pushed: ${changed[*]}"
+                fi
+              fi
+            fi
+          fi
+          echo "build_pdf=$build_pdf" >> "$GITHUB_OUTPUT"
+          {
+            echo "### PDF build selection"
+            echo "PDF build required: **$build_pdf**"
+            echo "$reason"
+            if [[ "$build_pdf" == false ]]; then
+              echo "Only Markdown documentation changed. All validation checks still run; no new PDF artifact is generated."
+              echo "Use the latest successful Paper PDF artifact for the unchanged manuscript."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Enforce manuscript writing checklist
+        run: |
+          sh -n paper/scripts/prepare_affiliation_logos.sh
+          python3 paper/scripts/check_manuscript.py
+
+      - name: Test one-sentence-per-line checker (including a failing fixture)
+        run: python3 -m unittest discover -s paper/scripts/tests -p 'test_*.py'
+
+      - name: Enforce one sentence per manuscript source line
+        run: python3 paper/scripts/check_sentence_lines.py
+
+      - name: Validate BibTeX records and citations
+        run: python3 paper/scripts/check_bibliography.py
+
+      - name: Validate literature citation audit and provenance coverage
+        run: python3 paper/scripts/check_literature_audit.py
+
+      - name: Validate every 225-sheet study ID and citation audit linkage
+        run: python3 paper/scripts/check_evidence_register.py
+
+      - name: Validate catalog-to-bibliography crosswalk
+        run: python3 paper/scripts/check_catalog_crosswalk.py
+
+      - name: Build LaTeX and BibTeX
+        if: steps.pdf_scope.outputs.build_pdf == 'true'
+        uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
+        with:
+          root_file: main.tex
+          working_directory: paper
+          # The LaTeX Action uses Alpine; use its built-in package mechanism.
+          # rsvg-convert preserves vector paths when rendering a pinned SVG PDF.
+          extra_system_packages: 'rsvg-convert curl python3 unzip'
+          pre_compile: |
+            sh scripts/build_figures.sh
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+
+      - name: Validate PDF and generate first-page preview
+        if: steps.pdf_scope.outputs.build_pdf == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s paper/main.pdf
+          test -s paper/figs/pdf/overview.pdf
+          test -s paper/figs/pdf/edit_protocol.pdf
+          test -s paper/figs/pdf/research_map.pdf
+          test -s paper/figs/pdf/research_map_narrative.pdf
+          # T16: all 12 logo-node proofs require original source-pinned vectors.
+          for symbol in cyberagent-symbol pku google microsoft bit-symbol salesforce meituan-symbol; do
+            test -s "paper/figs/assets/logos/${symbol}.pdf"
+          done
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
+          pdftotext paper/main.pdf paper/main.txt
+          test -s paper/main.txt
+          grep -qi 'Anonymous CVPR submission' paper/main.txt
+          grep -Fq 'Abbreviations' paper/main.txt
+          grep -Fq 'Selected Systems and Terminology' paper/main.txt
+          grep -Eq '^SVG[[:space:]]+scalable vector graphics' paper/main.txt
+          grep -Eq '^COLE[[:space:]]+Hierarchical' paper/main.txt
+          if grep -Fq 'Package acro Warning: Empty acronym list' paper/main.log; then
+            echo 'At least one acro list was empty in the PDF build.' >&2
+            exit 1
+          fi
+          if grep -Eiq 'First Author|Second Author|Authors to be confirmed' paper/main.txt; then
+            echo 'Anonymous review PDF exposes template author details.' >&2
+            exit 1
+          fi
+          pdftoppm -f 1 -l 1 -singlefile -r 120 -png paper/main.pdf paper/first-page
+          pdftoppm -f 1 -l 1 -singlefile -r 200 -png paper/figs/pdf/research_map_narrative.pdf paper/research-map-print-preview
+          test -s paper/first-page.png
+          test -s paper/research-map-print-preview.png
+          if pdfimages -list paper/figs/pdf/research_map_narrative.pdf | tail -n +3 | grep -q .; then
+            echo 'Institution symbols in the paper research map must remain vector-only' >&2
+            exit 1
+          fi
+          if grep -E 'Citation .+ undefined|Reference .+ undefined|There were undefined citations|There were undefined references' paper/main.log; then
+            echo 'Unresolved references detected in TeX log.' >&2
+            exit 1
+          fi
+
+      - name: Explain how to view the PDF
+        if: success() && steps.pdf_scope.outputs.build_pdf == 'true'
+        shell: bash
+        run: |
+          {
+            echo '### Survey manuscript PDF'
+            echo ''
+            echo 'The PDF and first-page preview are available under **Artifacts** at the bottom of this workflow run.'
+            echo ''
+            echo '- Artifact: survey-paper-${{ github.sha }}'
+            echo '- PDF: paper/main.pdf'
+            echo '- Preview: paper/first-page.png'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload PDF, preview, and diagnostics
+        if: always() && steps.pdf_scope.outputs.build_pdf == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: survey-paper-${{ github.sha }}
+          if-no-files-found: warn
+          retention-days: 14
+          path: |
+            paper/main.pdf
+            paper/figs/pdf/*.pdf
+            paper/first-page.png
+            paper/research-map-print-preview.png
+            paper/main.txt
+            paper/main.log
+            paper/pdfinfo.txt

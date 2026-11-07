@@ -1,0 +1,11 @@
+study_id,bibtex_key,primary_paper_url,verification_scope,experiment_status
+"CGD-075","planningrendering2023","https://arxiv.org/abs/2312.08822","original abstract/author metadata, available introduction","not_verified"
+"CGD-079","refadgen2026","https://arxiv.org/abs/2508.11695","original abstract/author metadata, available introduction","not_verified"
+"CGD-129","dreamposter2025","https://arxiv.org/abs/2507.04218","original abstract/author metadata, available introduction","not_verified"
+"CGD-131","ecommercebanners2024","https://arxiv.org/abs/2403.05578","original abstract/author metadata, available introduction","not_verified"
+"CGD-153","cg4ctr2024","https://arxiv.org/abs/2401.10934","original abstract/author metadata, available introduction","not_verified"
+"CGD-158","neuralcontrast2024","https://arxiv.org/abs/2410.07211","original abstract/author metadata, available introduction","not_verified"
+"CGD-187","gldesigner2025","https://arxiv.org/abs/2411.11435","original abstract/author metadata, available introduction","not_verified"
+"CGD-208","diagramagent2025","https://arxiv.org/abs/2411.11916","original abstract/author metadata, available introduction","not_verified"
+"CGD-212","introsvg2026","https://arxiv.org/abs/2603.09312","original abstract/author metadata, available introduction","not_verified"
+"CGD-217","llm4svg2025","https://openaccess.thecvf.com/content/CVPR2025/html/Xing_Empowering_LLMs_to_Understand_and_Generate_Complex_Vector_Graphics_CVPR_2025_paper.html","original abstract/author metadata, available introduction","not_verified"

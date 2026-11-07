@@ -1,0 +1,61 @@
+\section{Benchmark Coverage and Validity}
+\label{sec:benchmarks}
+A graphic-design benchmark is only informative relative to its \emph{input contract}, \emph{output contract}, \emph{task}, and \emph{scoring target}.
+Table~\ref{tab:benchmarks} separates generation, visual judgment, and editing.
+Their numerical results must not be aggregated into a cross-task leaderboard without calibration.
+
+\input{tabs/tex/benchmark_coverage}
+
+\subsection{What a Benchmark Measures}
+\ac{svgeditbench} evaluates changes to \ac{svg} code, whereas \ac{vectorgym} covers generation from text and sketches, vector editing, and \ac{svg} captioning \citep{svgeditbench2024,vectorgym2026}.
+The \ac{svgeditbench} dataset repository specifies six editing tasks built from 100 Twemoji source graphics, with \ac{svg}-code prompts and reference answer images; this design evaluates the resulting edit but should not be generalized to arbitrary professional document revision \citep{svgeditbench2024}.
+\ac{vectorgym} instead defines VG-Sketch, VG-Edit, VG-Text, and VG-Cap as four separate tasks with expert-authored annotations, and its \ac{vlm}-based judgment should be interpreted alongside the task-specific rendering and similarity measures \citep{vectorgym2026}.
+\ac{mildedit} introduces editing of multi-layer documents with dedicated assessment axes \citep{mildedit2026}.
+These studies refute an overly broad claim that there is no quantitative editing evaluation.
+\ac{postertextbench} measures poster generation and three distinct rendered-text patch operations, with string fidelity, masked non-target change and VLM quality interpreted separately (Section 4, Table 1).
+\ac{postertext320k} provides the automatically constructed HTML patch annotations and training pairs, but these are not native document outputs evaluated by the benchmark.
+Deletion has no target-string accuracy, and poster generation uses VLM-scored subject preservation rather than masked perceptual distance.
+The remaining challenge is \emph{cross-representation comparability}: the permitted editing operations and document structures differ.
+
+\ac{graphicdesignbench} probes multiple professional design capabilities in both understanding and generation settings.
+\ac{bizgeneval} evaluates commercial visual generation in five document domains with four capability axes and human-verified constraint checks.
+Its five domains are slides, charts, webpages, posters, and scientific figures, crossed with text rendering, layout control, attribute binding, and knowledge reasoning; these are generation-side constraint checks rather than measurements of subsequent source-file editing \citep{li2026bizgeneval}.
+\ac{aesevalbench} focuses on whether visual-language models can assess aesthetic quality, including localized judgments.
+These evaluations provide valuable but different evidence.
+In particular, aesthetics-judge agreement, typography fidelity, valid code, and instruction-following should be reported separately.
+The arXiv abstract and software repository for \ac{graphicdesignbench} currently disagree about task count (50 versus 49), so a definitive count requires version reconciliation.
+
+\paragraph{Structured-diagram evaluation.}
+\ac{diagramgenbenchmark} comprises eight diagram categories, requiring tests of semantic relations and code structure rather than treating output as a natural image alone.
+
+\subsection{Protected Content Versus Necessary Reflow}
+The advice to edit only the specified object is incomplete when the artifact encodes relationships.
+\ac{infoedit} studies infographics where an expanded text block or inserted element may force global layout \emph{reflow} \citep{yang2026infoedit}.
+Its released benchmark describes 1,000 infographics from eight logical-relation families and 4,000 instructions across four edit tasks; the scale and logical relations make it a distinct test of dependent changes, not evidence that all output formats support native-object editing \citep{yang2026infoedit}.
+An evaluation can specify the intended target set $T$, permitted dependent changes $R(D,u,T)$, and explicitly protected content $P$:
+\begin{equation}
+\mathcal{U}=T\cup R(D,u,T),\qquad P\cap\mathcal{U}=\emptyset.
+\label{eq:reflow}
+\end{equation}
+Here $\mathcal{U}$ denotes the allowed change scope.
+A successful edit may require adjusting elements in $R$ while preserving the semantic content or geometry of $P$.
+In a raster image, protected items may be regions or propositions rather than identifiable object IDs; in code-native documents they may be \ac{dom} nodes or layer dependencies.
+This partition is a recommended evaluation abstraction, not a metric claimed by the source papers.
+
+\ac{mptcbench} studies poster localization across markets, where typography and aesthetic conventions can change while a film's identity must remain stable.
+It likewise demonstrates why minimal pixel deviation is an inadequate generic objective.
+
+\subsection{Minimum Reporting Contract}
+For comparable evaluations, studies should disclose input artifacts, allowed editing actions/tools, output and file validity requirements, the scope of target/dependent/protected content, the treatment of invalid outputs, and calibration of any human or \ac{vlm} judge.
+Successful rendering of a preview does not by itself show that the saved layered, vector, or code-native artifact remains valid.
+
+\subsection{Domain-Specific Understanding and Scientific Validity}
+\ac{designprobe} examines visual-language-model understanding of graphic-design elements, style, and metaphor.
+Scientific illustration benchmarks introduce additional correctness constraints: \ac{sridbench} assesses whether a generated graphic communicates scientific concepts faithfully, and GENFIG1 tests graphical summary generation from research-paper content \citep{genfig12026}.
+\ac{sciflowbench} reverse-parses generated scientific diagrams into graphs to measure structural recoverability rather than merely visual resemblance.
+These benchmarks evaluate different stages of a scientific communication pipeline, so high performance on recognition or aesthetics does not imply correct arrows, graphs, or native editable objects.
+
+\subsection{Document-Scale Editing}
+\ac{pptarena} measures in-place modifications of real presentation decks under natural-language requests, including structural and visual assessment.
+Unlike a screenshot comparison, an editing evaluation should inspect the original document tree, the requested change, and whether the revised file remains valid and manipulable.
+This setting complements the multi-layer design-editing tasks of \ac{mildedit} and the infographic reflow scenarios of \ac{infoedit} \citep{mildedit2026,yang2026infoedit}.

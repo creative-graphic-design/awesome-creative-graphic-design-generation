@@ -1,0 +1,20 @@
+% Independent source table.
+\begin{table*}[t]
+\centering
+\caption{Representative measurement targets and the claims they do \emph{not} directly establish.
+These metrics characterize different tasks, not comparable scores on one leaderboard.}
+\label{tab:metrics}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}XX@{}}
+\toprule
+\textbf{Measured target} & \textbf{Example protocol or metric} & \textbf{Unsupported inference without further testing}\\
+\midrule
+Layout fidelity/diversity & Layout FID, maximum IoU, constraint-satisfaction checks \citep{layoutdm2023}. & Correct typography, image quality, or downstream editability.\\
+Text-to-vector alignment & CLIP similarity, CLIP R-Precision on rendered SVG captions \citep{vectorfusion2023}. & Path-level editing success or preserved non-target geometry.\\
+Vector representation quality & Chamfer-derived reconstruction error, interpolation smoothness \citep{deepsvg2020}. & Instruction-controlled vector edits or high-quality semantic text.\\
+Typography fidelity & Re-rendered reconstruction L1/PSNR \citep{derendering2021}; human legibility judgments \citep{wordasimage2023}. & Accurate arbitrary text replacement or the preservation of document structure.\\
+Human workflow utility & User editing time, number of manipulations, controlled preference studies \citep{vinci2021}. & Automated edit-request success for unseen tasks.\\
+Layered/raster editing & Request adherence, design/layout consistency, rendering quality \citep{mildedit2026,posteromni2026}. & Native-format layer integrity unless the artifact and validity are separately tested.\\
+\bottomrule
+\end{tabularx}
+\end{table*}
