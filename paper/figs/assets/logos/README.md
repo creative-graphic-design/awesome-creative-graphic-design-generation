@@ -16,7 +16,7 @@ Files are not distributed merely because an external site shows a downloadable l
 - **Peking University:** [official visual identity downloads](https://vim.pku.edu.cn/xzzq/) also list noncommercial-use application and undertaking forms. **Do not assume permission from download availability.**
 - **Beijing Institute of Technology:** [official identity/mark specification](https://www.bit.edu.cn/gbxxgk/dqgz_sjb/vixx/bzxhgf/index.htm) provides usage rules; rights for third-party scholarly reuse are not yet cleared.
 - **UC Berkeley (future node):** [official asset toolkit](https://brand.berkeley.edu/downloads/brand-essentials-toolkit/) states that the primary logo is available only in limited instances with permission.
-- **CyberAgent:** [historically relevant 2015 brand SVG](https://commons.wikimedia.org/wiki/File:CyberAgent_logo.svg) is indexed as `PD-textlogo` by Commons but also marked as a trademark. This is a **candidate, not clearance**. Keep the textual fallback until use is approved.
+- **CyberAgent:** [historically relevant 2015 brand SVG](https://commons.wikimedia.org/wiki/File:CyberAgent_logo.svg) is indexed as `PD-textlogo` by Commons but remains trademarked. The current **draft-only figure preview** uses the unaltered SHA-1-pinned SVG solely as a factual OpenCOLE affiliation identifier. This is **not corporate authorization or a final publication-rights decision**; the author must review its publication context.
 
 ## Integration and reproducibility
 
