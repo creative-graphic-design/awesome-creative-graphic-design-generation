@@ -44,7 +44,16 @@ jobs:
             sha1sum "${name}.ai" | tee -a source-audit.txt
             wc -c "${name}.ai" | tee -a source-audit.txt
             head -c 120 "${name}.ai" | strings | head -n 8 | tee -a source-audit.txt || true
-            if gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="${name}.pdf" "${name}.ai" >"${name}-convert.log" 2>&1; then
+            # BIT's downloaded ".ai" originals have a PDF 1.5 header.
+            # Preserve them as PDFs rather than incorrectly feeding them to gs as PostScript.
+            if head -c 5 "${name}.ai" | grep -q '^%PDF-'; then
+              cp "${name}.ai" "${name}.pdf"
+              echo "${name}: PDF-compatible Illustrator master; original bytes preserved" | tee -a source-audit.txt
+              : >"${name}-convert.log"
+            elif gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="${name}.pdf" "${name}.ai" >"${name}-convert.log" 2>&1; then
+              echo "${name}: genuine PostScript converted to PDF" | tee -a source-audit.txt
+            fi
+            if test -s "${name}.pdf"; then
               pdfinfo "${name}.pdf" | grep -E '^Pages:|^Page size:|^File size:' | tee -a source-audit.txt
               pdftoppm -f 1 -l 1 -singlefile -scale-to 1400 -png "${name}.pdf" "${name}-proof" || true
             else
