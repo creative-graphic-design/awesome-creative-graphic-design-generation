@@ -21,10 +21,14 @@
 \definecolor{agent}{HTML}{775BAE}
 \definecolor{struct}{HTML}{268B7B}
 \definecolor{edit}{HTML}{AF4877}
+% Each study card receives a named TikZ node so attached graphics can use
+% the actual vertical center of its final (content-dependent) bounding box.
+\newcounter{MapPaperNodeCounter}
 \newcommand{\MapPaper}[8]{%
+  \stepcounter{MapPaperNodeCounter}%
   \node[anchor=north west,draw=#7,fill=white,rounded corners=2pt,line width=.80pt,
    text width=3.12cm,inner xsep=4.1pt,inner ysep=1.6pt,align=left]
-   at (#5,#6) {{\bfseries\fontsize{7.3}{8.1}\selectfont #2}\hfill
+   (mapPaperCard-\arabic{MapPaperNodeCounter}) at (#5,#6) {{\bfseries\fontsize{7.3}{8.1}\selectfont #2}\hfill
    {\fontsize{6.2}{7}\selectfont '#3}\\[-4pt]
    {\color{muted}\fontsize{6.35}{7.1}\selectfont #8}};%
 }
@@ -46,7 +50,10 @@
     \PackageError{researchmap}{#2: institution logo node subtitle is too wide}{Shorten the subtitle or redesign the branded card}%
   \fi
   \MapPaper{#1}{\hspace*{.53cm}#2}{#3}{#4}{#5}{#6}{#7}{\hspace*{.53cm}#8}%
-  \node[anchor=center,inner sep=0pt] at ($(#5,#6)+(0.36,-0.33)$)
+  % The .west anchor lies at the *actual card's* vertical midpoint.
+  % Offset horizontally into the reserved square icon column; no fixed y.
+  \node[anchor=center,inner sep=0pt]
+    at ($(mapPaperCard-\arabic{MapPaperNodeCounter}.west)+(.36cm,0)$)
     {\includegraphics[width=.46cm,height=.46cm,keepaspectratio]{figs/assets/logos/#9.pdf}};%
 }
 \begin{document}
