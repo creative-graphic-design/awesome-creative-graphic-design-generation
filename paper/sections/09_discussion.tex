@@ -7,6 +7,13 @@ Preservation must be evaluated on the correct level: pixels for raster methods, 
 However, some non-target movement is necessary: \ac{infoedit} demonstrates that infographic editing may require coordinated global reflow \citep{yang2026infoedit}.
 An evaluation protocol should distinguish permitted dependent changes from changes to explicitly protected content (Eq.~\ref{eq:reflow}).
 
+\paragraph{Representation-dependent evidence gaps.}
+A generated layout may satisfy geometric constraints without carrying the text and image assets needed for document revision.
+A separated raster layer stack may support recomposition while losing semantic text or stable design-object identities.
+Conversely, vector paths or code-native objects may remain manipulable even when the reported evaluation considers only rendering quality.
+The relevant question is therefore not whether a system is simply ``editable'', but which operations its delivered representation permits, which operations the authors demonstrate, and which of those operations receive quantitative evaluation.
+An image-space editor may satisfy a controlled edit instruction without offering native document export; that format limitation must not be confused with failure at the evaluated raster editing task.
+
 \paragraph{Native artifact validity.}
 An image preview cannot certify that a \ac{pdf}, \ac{svg}, \ac{pptx}, \ac{psd}, or \ac{html}/\ac{css} design remains editable.
 Reliable evaluation should include a round-trip: reopen the saved result in a target editor or renderer, inspect whether objects retain the expected type, perform a controlled edit, then render again.
