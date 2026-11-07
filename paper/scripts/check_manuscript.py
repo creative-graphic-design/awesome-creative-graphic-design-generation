@@ -325,9 +325,10 @@ if narrative_path.is_file():
             f"Narrative research-map source/figure mismatch: figure-only={visible-source_items}, "
             f"registry-only={source_items-visible}")
 
-# T16: institution marks are trademark-bearing assets, not generated diagram
-# decoration. Keep text-only attributions unless BOTH the source-specific rights
-# register and the actual local vector PDF allow an explicit opt-in.
+# T16: official marks are trademarks, not decoration. The only enabled
+# preliminary mark is the independently sourced original CyberAgent text-logo
+# shown for factual OpenCOLE author attribution in this *draft* survey. It is
+# not organizational endorsement, a trademark license, or publication sign-off.
 logo_registry_path = PAPER / "figs" / "tex" / "logo_asset_candidates.csv"
 require(logo_registry_path.is_file(), "Missing institution-logo rights register")
 if logo_registry_path.is_file():
@@ -359,10 +360,21 @@ if logo_registry_path.is_file():
         require(bool(record.get("logo_source_page")) and bool(record.get("rights_classification")),
                 f"Logo candidate missing source/rights metadata: {institution}")
         if enabled == "1":
-            require(record.get("status") == "cleared_for_scholarly_use",
-                    f"Logo mark enabled before clearance: {institution}")
-            require((PAPER / "figs" / "assets" / "logos" / f"{stem}.pdf").is_file(),
-                    f"Enabled original mark has no vector PDF: {institution}")
+            status = record.get("status")
+            if stem == "cyberagent" and status == "draft_nominative_review":
+                require(record.get("asset_sha1") == "6e364a261c7cfc57a6f434fee0aeff3fb1184a88",
+                        "Draft CyberAgent logo SHA-1 differs from the Commons original")
+                require(record.get("asset_url") == "https://upload.wikimedia.org/wikipedia/commons/a/ae/CyberAgent_logo.svg",
+                        "Draft CyberAgent logo must use the pinned original source")
+                require((PAPER / "scripts" / "prepare_affiliation_logos.sh").is_file(),
+                        "Missing pinned SVG preparation script")
+                require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
+                        "Figure build must run logo pin verification")
+            elif status == "cleared_for_scholarly_use":
+                require((PAPER / "figs" / "assets" / "logos" / f"{stem}.pdf").is_file(),
+                        f"Approved original vector mark is missing: {institution}")
+            else:
+                require(False, f"Logo enabled without approved or explicit academic draft status: {institution}")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
         "Use plain survey naming rather than a template-style label")
