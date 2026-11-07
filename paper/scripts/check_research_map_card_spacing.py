@@ -6,17 +6,25 @@ Use the actual vector PDF rather than checking only a TeX macro setting.
 """
 
 from pathlib import Path
+import re
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
 
 
-PAIRS = (
-    ("LayerD", "raster-to-layers"),
-    ("LayoutDM", "discrete"),
-    ("LayoutGAN", "wireframe"),
-    ("PosterLayout", "content-aware"),
+SOURCE = Path(__file__).resolve().parents[1] / "figs" / "tex" / "research_map_narrative.tex"
+STUDY = re.compile(
+    r"^\\\\MapPaper(?:Brand)?\\{[A-D]\\}\\{([^{}]+)\\}\\{\\d{2}\\}\\{[a-z0-9]+\\}"
+    r"\\{[^{}]+\\}\\{[^{}]+\\}\\{[a-z]+\\}\\{([^{}]+)\\}(?:\\{[a-z-]+\\})?$",
+    re.MULTILINE,
 )
+
+
+def source_pairs() -> list[tuple[str, str]]:
+    studies = STUDY.findall(SOURCE.read_text(encoding="utf-8"))
+    if len(studies) != 26 or len({label for label, _ in studies}) != 26:
+        raise SystemExit("Expected 26 uniquely named source study cards")
+    return [(label, subtitle.split()[0]) for label, subtitle in studies]
 MAX_GAP_PT = 3.0
 MIN_GAP_PT = -0.5
 
@@ -36,7 +44,7 @@ def verify(pdf_path: Path) -> None:
         if node.tag.endswith("word")
     ]
 
-    for title, subtitle_first_word in PAIRS:
+    for title, subtitle_first_word in source_pairs():
         titles = [word for word in words if word[0] == title]
         if len(titles) != 1:
             raise SystemExit(f"Expected one study title {title!r}, got {len(titles)}")
