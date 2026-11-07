@@ -103,6 +103,14 @@ jobs:
           root_file: main.tex
           working_directory: paper
           pre_compile: |
+            # Only an explicitly enabled, SHA-pinned original mark needs an SVG
+            # converter. Do not install image tools on text-only figure builds.
+            if grep -Fq '\AffilBrand{1}{cyberagent}' figs/tex/research_map_narrative.tex; then
+              if ! command -v rsvg-convert >/dev/null 2>&1 && ! command -v inkscape >/dev/null 2>&1; then
+                apt-get update -qq
+                DEBIAN_FRONTEND=noninteractive apt-get install -y -qq librsvg2-bin
+              fi
+            fi
             sh scripts/build_figures.sh
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
 
