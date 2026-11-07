@@ -112,6 +112,52 @@ jobs:
           else
             echo "Official logo download did not complete; do not substitute a third-party mark" | tee salesforce-source-audit.txt
           fi
+      - name: Identify official Meituan parent-brand vector download
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logo-source-probe
+          # Only enumerate URLs; do not run arbitrary code embedded by the site
+          # or substitute a food-delivery/product-app icon for Meituan Group.
+          if ! curl -fL --retry 2 --connect-timeout 12 --max-time 45 \
+              --silent --show-error 'https://www.meituan.com/media' \
+              -o logo-source-probe/meituan-media.html; then
+            echo "Official Meituan media page could not be fetched" > logo-source-probe/meituan-source-audit.txt
+            exit 0
+          fi
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urljoin
+          import re
+          data = Path("logo-source-probe/meituan-media.html").read_text(errors="replace")
+          class Links(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.out = []
+              def handle_starttag(self, tag, attrs):
+                  if tag not in ("a", "link", "script", "img"):
+                      return
+                  for key, value in attrs:
+                      if value and key in ("href", "src", "download", "data-url"):
+                          self.out.append(urljoin("https://www.meituan.com/media", value))
+          l = Links()
+          l.feed(data)
+          candidates = sorted(set(x for x in l.out if
+                                  any(t in x.lower() for t in
+                                      ("logo", "brand", "media", "download", "zip", "ai", "svg"))))
+          inline = sorted(set(re.findall(
+              r'https?://[^"\'\s<>]+(?:\.zip|\.ai|\.svg|\.pdf)(?:\?[^"\'\s<>]*)?',
+              data, re.I)))
+          audit = Path("logo-source-probe/meituan-source-audit.txt")
+          audit.write_text(
+              f"Official Meituan media page: {len(data)} chars\n"
+              + f"Extracted {len(l.out)} links, {len(candidates)} candidate URLs, {len(inline)} direct vector/archive URLs\n"
+              + "\n".join(candidates[:50] + inline[:50]) + "\n"
+              + "No binary was enabled as a brand logo by this probe.\n"
+          )
+          print(audit.read_text()[:9000])
+          PY
       - name: Upload inspected renders and digest evidence (not as survey assets)
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         if: always()
@@ -122,6 +168,7 @@ jobs:
           path: |
             logo-source-probe/source-audit.txt
             logo-source-probe/salesforce-source-audit.txt
+            logo-source-probe/meituan-source-audit.txt
             logo-source-probe/salesforce-cloud-original.svg
             logo-source-probe/*-proof.png
             logo-source-probe/*-convert.log
