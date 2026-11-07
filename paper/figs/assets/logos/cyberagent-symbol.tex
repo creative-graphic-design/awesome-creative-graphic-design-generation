@@ -4,12 +4,12 @@
 % The crop keeps the original CA vector paths and colors; no scaling distortion,
 % redrawing, or PNG rasterization. Publication trademark review remains open.
 % The source wordmark PDF has a 258bp x 44bp box, verified in the 2026-11-07 PDF.
-% Its leftmost 68bp contains only the separate CA mark. Use a square tile so
+% Its leftmost 57bp contains only the CA glyph; the next black wordmark starts to the right of 60bp. Use a square tile so
 % it fits the square affiliation slot in each individual research card.
 \documentclass[border=0pt]{standalone}
 \usepackage{graphicx}
 \begin{document}
-\begin{minipage}[c][68bp][c]{68bp}
-\centering\includegraphics[trim=0bp 0bp 190bp 0bp,clip]{cyberagent.pdf}
+\begin{minipage}[c][57bp][c]{57bp}
+\centering\includegraphics[trim=0bp 0bp 201bp 0bp,clip]{cyberagent.pdf}
 \end{minipage}
 \end{document}
