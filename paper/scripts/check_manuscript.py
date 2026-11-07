@@ -398,6 +398,12 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             "Institution logos must not be placed in a separate affiliation footer")
     require(r"\includegraphics[width=.46cm,height=.46cm,keepaspectratio]" in figure_source,
             "All research-node marks require equal, aspect-preserving square layout slots")
+    require(r"\stepcounter{MapPaperNodeCounter}" in figure_source and
+            r"(mapPaperCard-\arabic{MapPaperNodeCounter})" in figure_source and
+            r"at ($(mapPaperCard-\arabic{MapPaperNodeCounter}.west)+(.36cm,0)$)" in figure_source,
+            "Every study logo must be centered vertically on its actual TikZ card bounds")
+    require(r"at ($(#5,#6)+(0.36,-0.33)$)" not in figure_source,
+            "Hard-coded logo y-offset is forbidden; use card center anchoring")
     prep = tex("scripts/prepare_affiliation_logos.sh")
     require("cyberagent-symbol.tex" in prep and "pdflatex" in prep,
             "CA icon must use unchanged original logo in a square vector tile")
