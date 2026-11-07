@@ -76,6 +76,7 @@ jobs:
           grep -Eq 'Page size:[[:space:]]+57 x 57 pts' paper/ca-symbol-info.txt
           grep -Eq 'Page size:[[:space:]]+307 x 307 pts' paper/bit-symbol-info.txt
           pdftotext paper/figs/pdf/research_map_narrative.pdf paper/map-text.txt
+          python3 paper/scripts/check_research_map_card_spacing.py paper/figs/pdf/research_map_narrative.pdf
           grep -Fq 'OpenCOLE' paper/map-text.txt
           grep -Fq 'COLE' paper/map-text.txt
           if grep -Fq 'Affiliation provenance' paper/map-text.txt; then
