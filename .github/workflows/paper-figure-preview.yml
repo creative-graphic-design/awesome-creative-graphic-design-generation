@@ -42,6 +42,7 @@ jobs:
         run: |
           sh -n paper/scripts/prepare_affiliation_logos.sh
           python3 paper/scripts/check_manuscript.py
+          python3 -m unittest discover -s paper/scripts/tests -p 'test_research_map_relative_geometry.py'
       - name: Build standalone figures only
         uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
         with:
