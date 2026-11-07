@@ -45,12 +45,17 @@ First line of institution2 address\\
 \input{sections/08_benchmarks}
 \input{sections/09_discussion}
 \input{sections/10_conclusion}
+% Keep all acro definitions and first-use citations in both modes.
+% The fast draft omits only the three printed acro indexes.
+\ifdefined\SKIP_ACRO_LISTS
+\else
 \section*{Abbreviations}
 \printacronyms[include=abbreviations,heading=none,display=all]
 \section*{Selected Systems and Terminology}
 \printacronyms[include=systems,heading=none,display=all]
 \section*{Evaluation Resources}
 \printacronyms[include=evaluation,heading=none,display=all]
+\fi
 {\small
 \bibliographystyle{ieeenat_fullname}
 \bibliography{references}
