@@ -411,7 +411,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             figure_source.count(r"\vbox to \MapCardRowHeight") == 2 and
             r"\includegraphics[width=.64\MapCardLogoWidth,height=.72\MapCardLogoHeight,keepaspectratio,clip]" in figure_source and
             r"\setlength{\MapCardPaddingX}{.025\MapCardWidth}" in figure_source and
-            r"\setlength{\MapCardPaddingY}{.0125\MapCardWidth}" in figure_source and
+            r"\setlength{\MapCardPaddingY}{.008\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardLogoHeight}{2\MapCardRowHeight}" in figure_source and
             r"\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}" in figure_source,
