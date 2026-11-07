@@ -339,16 +339,16 @@ if logo_registry_path.is_file():
         "adobe": "Adobe Inc.",
         "msra": "Microsoft Research Asia",
         "pku": "Peking University",
-        "cyberagent": "CyberAgent",
+        "cyberagent-symbol": "CyberAgent",
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     brand_uses = re.findall(
-        r"\\MapPaperBrand\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}\{([a-z0-9]+)\}\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{[^{}]+\}\{([a-z]+)\}",
+        r"\\MapPaperBrand\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}\{([a-z0-9]+)\}\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{[^{}]+\}\{([a-z-]+)\}"
         figure_source,
     )
     expected = {
         ("C", "COLE", "23", "cole2023", "pku"),
-        ("C", "OpenCOLE", "24", "opencole2024", "cyberagent"),
+        ("C", "OpenCOLE", "24", "opencole2024", "cyberagent-symbol"),
     }
     require(set(brand_uses) == expected and len(brand_uses) == len(expected),
             "Brand marks must be placed in exact matching COLE/OpenCOLE nodes")
@@ -378,7 +378,7 @@ if logo_registry_path.is_file():
                 f"Logo candidate missing rights metadata: {institution}")
         require(record.get("status") == "draft_nominative_review",
                 f"Draft original mark enabled without explicit use review: {institution}")
-        if stem == "cyberagent":
+        if stem == "cyberagent-symbol":
             require(record.get("asset_sha1") == "6e364a261c7cfc57a6f434fee0aeff3fb1184a88",
                     "CyberAgent icon source must be the exact original Commons SVG")
             require("prepare_svg cyberagent 6e364a261c7cfc57a6f434fee0aeff3fb1184a88" in prep,
@@ -392,7 +392,7 @@ if logo_registry_path.is_file():
                     "Missing PKU original source SHA pin")
             require(record.get("render_asset") == "pku.pdf",
                     "PKU must use the original square seal, not a text wordmark")
-    require({x[4] for x in brand_uses} == {"pku", "cyberagent"},
+    require({x[4] for x in brand_uses} == {"pku", "cyberagent-symbol"},
             "No additional logo marks may be enabled without explicit audit")
 
 require("CVPR-style" not in (PAPER / "README.md").read_text(encoding="utf-8"),
