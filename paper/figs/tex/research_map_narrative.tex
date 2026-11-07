@@ -1,5 +1,5 @@
 % Original author-drawn map. Representative selection; no causal or citation edges.
-% Institution name badges are verified affiliations, not official logos.
+% Two compact institution marks identify the original COLE/OpenCOLE study nodes only.
 \documentclass[tikz,border=5pt]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -20,22 +20,6 @@
 \definecolor{agent}{HTML}{775BAE}
 \definecolor{struct}{HTML}{268B7B}
 \definecolor{edit}{HTML}{AF4877}
-% T16: Optional original institution marks, enabled individually only after the
-% corresponding source asset and redistribution/trademark review have cleared.
-% Keep the zero-valued defaults for anonymous-review PDFs until then.
-% Source: figs/tex/logo_asset_candidates.csv; expected vector PDF assets:
-% figs/assets/logos/{bit,adobe,msra,pku,cyberagent}.pdf.
-\newcommand{\AffilBrand}[4]{%
-  \ifnum#1=1\relax
-    \IfFileExists{figs/assets/logos/#2.pdf}{\raisebox{-0.04cm}{\includegraphics[height=#3,keepaspectratio]{figs/assets/logos/#2.pdf}}}{#4}%
-  \else #4\fi%
-}
-% For emblem-only marks, keep the actual institution label alongside its seal.
-\newcommand{\AffilBrandNamed}[4]{%
-  \ifnum#1=1\relax
-    \IfFileExists{figs/assets/logos/#2.pdf}{\raisebox{-0.04cm}{\includegraphics[height=#3,keepaspectratio]{figs/assets/logos/#2.pdf}}\hspace{1.5pt}#4}{#4}%
-  \else #4\fi%
-}
 \newcommand{\MapPaper}[8]{%
   \node[anchor=north west,draw=#7,fill=white,rounded corners=2pt,line width=.80pt,
    text width=3.12cm,inner xsep=4.1pt,inner ysep=1.6pt,align=left]
@@ -43,9 +27,18 @@
    {\fontsize{6.2}{7}\selectfont '#3}\\[-1pt]
    {\color{muted}\fontsize{6.35}{7.1}\selectfont #8}};%
 }
+% T16: real compact identity symbols live INSIDE their own study card.
+% Each logo uses the same 0.46cm square layout slot; no affiliation footer.
+% Actual original vectors are prepared and SHA-pinned by the build script.
+% This is a draft scholarly attribution, not an endorsement or legal clearance.
+\newcommand{\MapPaperBrand}[9]{%
+  \MapPaper{#1}{\hspace*{.53cm}#2}{#3}{#4}{#5}{#6}{#7}{\hspace*{.53cm}#8}%
+  \node[anchor=center,inner sep=0pt] at ($(#5,#6)+(0.36,-0.33)$)
+    {\includegraphics[width=.46cm,height=.46cm,keepaspectratio]{figs/assets/logos/#9.pdf}};%
+}
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily]
-\fill[white] (0,-.58) rectangle (19.08,13.0);
+\fill[white] (0,.19) rectangle (19.08,13.0);
 \fill[navy,rounded corners=3pt] (.23,12.05) rectangle (18.83,12.82);
 \node[anchor=west,text=white,font=\bfseries\fontsize{13}{14}\selectfont] at (.56,12.46) {From layout prediction to editable graphic-design systems};
 \node[anchor=west,text=muted,font=\fontsize{8}{9}\selectfont] at (.52,11.71) {Selected studies grouped by cited reference year and primary task};
@@ -102,8 +95,8 @@
 \MapPaper{B}{InnoAds}{26}{innoads2026}{15.00}{7.89}{agent}{text and style control}
 \MapPaper{C}{DeepSVG}{20}{deepsvg2020}{3.18}{6.84}{struct}{vector sequences}
 \MapPaper{C}{VectorFusion}{23}{vectorfusion2023}{7.12}{6.84}{diff}{diffusion-to-SVG}
-\MapPaper{C}{COLE}{23}{cole2023}{7.12}{6.02}{agent}{editable layers}
-\MapPaper{C}{OpenCOLE}{24}{opencole2024}{11.06}{6.84}{agent}{open hierarchical design}
+\MapPaperBrand{C}{COLE}{23}{cole2023}{7.12}{6.02}{agent}{editable layers}{pku}
+\MapPaperBrand{C}{OpenCOLE}{24}{opencole2024}{11.06}{6.84}{agent}{open hierarchical design}{cyberagent-symbol}
 \MapPaper{C}{LayerD}{25}{layerd2025}{11.06}{6.02}{edit}{raster-to-layers}
 \MapPaper{C}{DesignAsCode}{26}{designascode2026}{15.00}{6.84}{agent}{code-native objects}
 \MapPaper{C}{MiLDEdit}{26}{mildedit2026}{15.00}{6.02}{edit}{multilayer instructions}
@@ -144,20 +137,7 @@
 \node[anchor=west,text=ink,font=\bfseries\fontsize{7.5}{8.2}\selectfont] at (15.67,2.45) {Native file};
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.97) {Object tree};
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.66) {Validate edits};
-% Institution-mark rail; 0 = evidence-backed text fallback, not an official logo.
-% CyberAgent and PKU 1-slots are draft-only factual identification previews;
-% scripts/prepare_affiliation_logos.sh verifies both original SVG SHA-1 values,
-% using the actual downloaded PKU file digest rather than stale Commons metadata.
-% This is not trademark authorization or author publication sign-off.
-% The two draft exceptions fetch originals and check SHA-1 during figure builds;
-% all other organizations remain 0 until publication rights are reviewed.
-% Do not enable any other asset without its source and rights audit.
-\fill[navy!5,rounded corners=2pt] (.48,-.36) rectangle (18.72,.16);
-\node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,-.10) {Affiliation provenance:};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,-.10) {LayoutGAN / \AffilBrand{0}{bit}{.21cm}{BIT} + \AffilBrand{0}{adobe}{.21cm}{Adobe}};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (9.47,-.10) {COLE / \AffilBrand{0}{msra}{.21cm}{MSRA} + \AffilBrandNamed{1}{pku}{.30cm}{PKU}};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,-.10) {OpenCOLE / \AffilBrand{1}{cyberagent}{.28cm}{CyberAgent}};
-% A reserved, non-overlapping legend row beneath the output examples.
+% Compact technique legend below the examples; no detached logo footer.
 \node[anchor=west,text=ink,font=\bfseries\fontsize{6.5}{7.2}\selectfont] at (.64,.53) {Technique emphasis:};
 % Independent model-family coding, intentionally distinct from lane color.
 \node[anchor=west,text=muted,font=\fontsize{6.5}{7.1}\selectfont] at (4.38,.53) {
