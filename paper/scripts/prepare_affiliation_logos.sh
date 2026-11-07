@@ -37,7 +37,18 @@ prepare_svg() {
   echo "$stem: original SVG converted to vector PDF (draft affiliation identification only)."
 }
 
-if grep -Fq '\MapPaperBrand{C}{OpenCOLE}{24}{opencole2024}' "$figure"; then
+# Two compact, period-appropriate symbols (2012 Microsoft four-square mark,
+# 2015 Google G) are independent original icons, not squeezed wordmarks.
+if grep -Fq '}{google}' "$figure"; then
+  prepare_svg google 2cc789a02534557380d92124e2f8b9483d198fb3 \
+    'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg'
+fi
+if grep -Fq '}{microsoft}' "$figure"; then
+  prepare_svg microsoft 0000000000000000000000000000000000000000 \
+    'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg'
+fi
+
+if grep -Fq '}{cyberagent-symbol}' "$figure"; then
   prepare_svg cyberagent 6e364a261c7cfc57a6f434fee0aeff3fb1184a88 \
     https://upload.wikimedia.org/wikipedia/commons/a/ae/CyberAgent_logo.svg
   # Make an exactly square, *vector* CA mark tile from the unchanged, source-
@@ -49,7 +60,7 @@ if grep -Fq '\MapPaperBrand{C}{OpenCOLE}{24}{opencole2024}' "$figure"; then
     rm -f cyberagent-symbol.aux cyberagent-symbol.log
   )
 fi
-if grep -Fq '\MapPaperBrand{C}{COLE}{23}{cole2023}' "$figure"; then
+if grep -Fq '}{pku}' "$figure"; then
   prepare_svg pku 14ffd592f63fb7231f71639e37b586467be667ea \
     https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg
 fi
