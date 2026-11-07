@@ -25,7 +25,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         self.assertIn(r"\setlength{\MapCardRowHeight}{.095\MapCardWidth}", self.source)
         self.assertEqual(self.source.count(r"\vbox to \MapCardRowHeight"), 2)
         self.assertIn(r"\parbox[c][\MapCardLogoHeight][c]{\MapCardTextWidth}", self.source)
-        self.assertIn(r"\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}", self.source)
+        self.assertIn(r"\makebox[\MapCardLogoWidth][c]{\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering\mbox{}#4}}", self.source)
 
     def test_all_card_positions_use_relative_grid(self):
         self.assertIn(r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}", self.source)
