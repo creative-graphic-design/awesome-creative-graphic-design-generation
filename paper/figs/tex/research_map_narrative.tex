@@ -1,5 +1,6 @@
 % Original author-drawn map. Representative selection; no causal or citation edges.
-% Two compact institution marks identify the original COLE/OpenCOLE study nodes only.
+% Study-specific, square-shaped logos are selected from the per-node affiliation audit.
+% These are draft identification marks, not evidence of organizational sponsorship.
 \documentclass[tikz,border=5pt]{standalone}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -79,26 +80,26 @@
 \node[anchor=west,text=muted,font=\fontsize{6.8}{7.5}\selectfont] at (.55,3.82) {slides and figures};
 \draw[rule] (2.93,3.58)--(2.93,4.95);
 \MapPaper{A}{LayoutGAN}{19}{layoutgan2019}{3.18}{10.58}{gan}{wireframe GAN}
-\MapPaper{A}{VTN}{21}{vtn2021}{3.18}{9.76}{latent}{variational transformer}
-\MapPaper{A}{LayoutDM}{23}{layoutdm2023}{7.12}{10.58}{diff}{discrete diffusion}
-\MapPaper{A}{LayoutFormer++}{23}{layoutformerpp2023}{7.12}{9.76}{agent}{serialized constraints}
+\MapPaperBrand{A}{VTN}{21}{vtn2021}{3.18}{9.76}{latent}{variational transformer}{google}
+\MapPaperBrand{A}{LayoutDM}{23}{layoutdm2023}{7.12}{10.58}{diff}{discrete diffusion}{cyberagent-symbol}
+\MapPaperBrand{A}{LayoutFormer++}{23}{layoutformerpp2023}{7.12}{9.76}{agent}{serialized constraints}{microsoft}
 \MapPaper{A}{LayoutFlow}{24}{layoutflow2024}{11.06}{10.58}{diff}{flow matching}
-\MapPaper{A}{CoLay}{24}{colay2024}{11.06}{9.76}{diff}{multi-condition design}
+\MapPaperBrand{A}{CoLay}{24}{colay2024}{11.06}{9.76}{diff}{multi-condition design}{google}
 \MapPaper{A}{iPoster}{26}{iposter2026}{15.00}{10.58}{diff}{graph-enhanced diffusion}
-\MapPaper{A}{ReLayout}{26}{relayoutedit2026}{15.00}{9.76}{edit}{geometric editing}
+\MapPaperBrand{A}{ReLayout}{26}{relayoutedit2026}{15.00}{9.76}{edit}{geometric editing}{microsoft}
 \MapPaper{B}{Vinci}{21}{vinci2021}{3.18}{8.71}{edit}{human feedback}
 \MapPaper{B}{CGL-GAN}{22}{cglgan2022}{7.12}{8.71}{gan}{background conditioning}
-\MapPaper{B}{PosterLayout}{23}{posterlayout2023}{7.12}{7.89}{gan}{conditional sequence GAN}
+\MapPaperBrand{B}{PosterLayout}{23}{posterlayout2023}{7.12}{7.89}{gan}{conditional sequence GAN}{pku}
 \MapPaper{B}{LayoutDETR}{24}{layoutdetr2024}{11.06}{8.71}{latent}{multimodal transformer}
 \MapPaper{B}{POSTA}{25}{posta2025}{11.06}{7.89}{agent}{poster planning}
 \MapPaper{B}{PosterOmni}{26}{posteromni2026}{15.00}{8.71}{edit}{local + global editing}
 \MapPaper{B}{InnoAds}{26}{innoads2026}{15.00}{7.89}{agent}{text and style control}
 \MapPaper{C}{DeepSVG}{20}{deepsvg2020}{3.18}{6.84}{struct}{vector sequences}
 \MapPaper{C}{VectorFusion}{23}{vectorfusion2023}{7.12}{6.84}{diff}{diffusion-to-SVG}
-\MapPaperBrand{C}{COLE}{23}{cole2023}{7.12}{6.02}{agent}{editable layers}{pku}
+\MapPaperBrand{C}{COLE}{23}{cole2023}{7.12}{6.02}{agent}{editable layers}{microsoft}
 \MapPaperBrand{C}{OpenCOLE}{24}{opencole2024}{11.06}{6.84}{agent}{open hierarchical design}{cyberagent-symbol}
-\MapPaper{C}{LayerD}{25}{layerd2025}{11.06}{6.02}{edit}{raster-to-layers}
-\MapPaper{C}{DesignAsCode}{26}{designascode2026}{15.00}{6.84}{agent}{code-native objects}
+\MapPaperBrand{C}{LayerD}{25}{layerd2025}{11.06}{6.02}{edit}{raster-to-layers}{cyberagent-symbol}
+\MapPaperBrand{C}{DesignAsCode}{26}{designascode2026}{15.00}{6.84}{agent}{code-native objects}{microsoft}
 \MapPaper{C}{MiLDEdit}{26}{mildedit2026}{15.00}{6.02}{edit}{multilayer instructions}
 \MapPaper{D}{AutoPresent}{25}{autopresent2025}{11.06}{4.97}{agent}{slide generation}
 \MapPaper{D}{PPTAgent}{25}{pptagent2025}{11.06}{4.15}{agent}{document-to-deck agent}
