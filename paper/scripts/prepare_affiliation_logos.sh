@@ -144,7 +144,26 @@ if grep -Fq '}{meituan-symbol}' "$figure"; then
       'https://s3plus.meituan.net/smart/22c45b30-80ba-4aa5-bfad-2bfaed7beb4e.zip' -o "$meituan_zip"
   fi
   printf '%s  %s\n' "$meituan_zip_sha" "$meituan_zip" | sha1sum -c
-  meituan_entry="$(unzip -Z -1 "$meituan_zip" | grep -v '^__MACOSX/' | grep -Ei '\\.ai$')"
+  meituan_entry="$(unzip -Z -1 "$meituan_zip" | grep -v '^__MACOSX/' | grep -Ei '\.ai)"
+  [ "$(printf '%s\n' "$meituan_entry" | wc -l)" -eq 1 ] || { echo 'Expected one Meituan original AI' >&2; exit 1; }
+  unzip -p "$meituan_zip" "$meituan_entry" >"$meituan_ai"
+  printf '%s  %s\n' "$meituan_ai_sha" "$meituan_ai" | sha1sum -c
+  head -c 5 "$meituan_ai" | grep -q '^%PDF-' || { echo 'Meituan original is no longer PDF-compatible' >&2; exit 1; }
+  cp "$meituan_ai" figs/assets/logos/meituan-original.pdf
+  (
+    cd figs/assets/logos
+    pdflatex -interaction=nonstopmode -halt-on-error meituan-symbol.tex >/dev/null
+    test -s meituan-symbol.pdf
+    rm -f meituan-symbol.aux meituan-symbol.log
+  )
+  echo "meituan-symbol: original parent-company square vector mark, draft only."
+fi
+
+if grep -Fq '}{pku}' "$figure"; then
+  prepare_svg pku 14ffd592f63fb7231f71639e37b586467be667ea \
+    https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg
+fi
+)"
   [ "$(printf '%s\n' "$meituan_entry" | wc -l)" -eq 1 ] || { echo 'Expected one Meituan original AI' >&2; exit 1; }
   unzip -p "$meituan_zip" "$meituan_entry" >"$meituan_ai"
   printf '%s  %s\n' "$meituan_ai_sha" "$meituan_ai" | sha1sum -c
