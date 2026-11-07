@@ -7,6 +7,12 @@ Section~\ref{sec:benchmarks} compares newer benchmark contracts and their scope.
 
 \input{tabs/tex/evaluation_metrics}
 
+\paragraph{Comparability conditions.}
+A score is comparable across systems only when the underlying task, input conditions, output representation, test split, and measurement implementation are compatible.
+For example, a layout-distribution metric cannot be compared directly with an image-distribution metric merely because both are called FID, and accurate alpha reconstruction does not measure the execution of a headline-replacement instruction.
+Even within one representation, synthesis from scratch, partial completion, reconstruction, and modification of an existing artifact pose different tasks and sources of error.
+We therefore interpret numerical results within their original experimental contracts and use cross-paper comparisons chiefly to establish which capabilities were actually measured.
+
 \subsection{Generation Fidelity and Geometry}
 \ac{layoutdm} evaluates discrete layout synthesis through distributional and geometry-aware measures, including \ac{fid} adapted to layout representations and maximum \ac{iou} under compatible element categories \citep{layoutdm2023}.
 The conditioned generation scenarios and the quality/diversity trade-off are central to interpretation.
