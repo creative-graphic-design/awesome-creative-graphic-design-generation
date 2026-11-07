@@ -408,7 +408,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\setlength{\MapCardTextWidth}{.75\linewidth}" in figure_source and
             r"\begin{tabular}[c]{@{}m{\MapCardLogoWidth}@{}m{\MapCardTextWidth}@{}}" in figure_source and
             figure_source.count(r"\vbox to \MapCardRowHeight") == 2 and
-            r"\includegraphics[width=.8\MapCardLogoWidth,height=.8\MapCardLogoHeight,keepaspectratio]" in figure_source and
+            r"\includegraphics[width=.64\MapCardLogoWidth,height=.72\MapCardLogoHeight,keepaspectratio,clip]" in figure_source and
             r"\setlength{\MapCardPaddingX}{.025\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardPaddingY}{.0125\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}" in figure_source and
