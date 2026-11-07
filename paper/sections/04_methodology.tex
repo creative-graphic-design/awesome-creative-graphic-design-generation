@@ -12,13 +12,14 @@ Table~\ref{tab:task-grounding} links representative application families to orig
 The working evidence register is seeded from a public research catalogue, prior surveys, original research proceedings, author project pages, and references within candidate papers.
 A publication and its preprint versions should be deduplicated as one research contribution after verifying their relationship.
 The catalogue is a living research index, not a final screened sample.
+The unit of bibliographic counting is a distinct research contribution rather than each preprint, publication version, or task performed by a system.
 We code multi-task papers on multiple analytical axes, even if they have only one primary catalogue category.
-Benchmark selection includes \ac{rico}, \ac{publaynet}, and \ac{doclaynet} as common layout and structured-document contexts, while distinguishing their domain and label differences rather than pooling results.
+Dataset and benchmark context includes \ac{rico}, \ac{publaynet}, and \ac{doclaynet}, whose application domains and annotation contracts differ; their reported results are not pooled.
 
 \paragraph{Verification levels.}
 We distinguish \emph{catalogue-only} entries, \emph{author/publisher abstract or indexed} entries, and works for which at least selected \emph{original methods or results} have been inspected.
 The last group is not necessarily a full-text audit of all appendices or an independent replication.
-The manuscript also maintains a citation-level audit register for all bibliography entries, but the new registry starts with unverified source-depth fields rather than transferring aggregate verification counts to unlinked citation keys.
+We maintain a citation-level audit for individual bibliography keys independently of the broader study register, without assigning evidence tiers from aggregate historical review counts.
 For each cited work, source-level verification must be linked to a primary-paper section or figure and reconciled against the broader study register before an evidence tier is promoted.
 Empirical statements require identifiable evidence such as a method section, table, figure, or publisher record.
 Missing evaluation details in an uninspected paper are not treated as evidence that no evaluation exists.
@@ -30,6 +31,8 @@ We maintain dated counts and reconciliation decisions in the accompanying eviden
 
 \paragraph{Coding protocol.}
 For each work, we record input and task, output representation, control mechanism, editing operation, measurement target, metric/protocol, and source depth.
+We distinguish a capability implied by the artifact format from an operation demonstrated in the source and from one evaluated on a specified test set.
+When a work reports multiple outputs or editing tasks, we assign evidence to the relevant operation rather than giving the entire system one undifferentiated editability label.
 Boundaries matter: \ac{svg} paths are not necessarily editable semantic text; raster inpainting is a real image-editing capability without implying Photoshop-style object layers; and a graphical user interface can be demonstrated without a controlled user study.
 
 \paragraph{Limitations of the review process.}
