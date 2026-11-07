@@ -163,3 +163,31 @@ if grep -Fq '}{pku}' "$figure"; then
   prepare_svg pku 14ffd592f63fb7231f71639e37b586467be667ea \
     https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg
 fi
+
+# Additional compact originals or unchanged short institutional wordmarks
+# identify individual studies in the 26-node draft. Preserve source SHA-1 and
+# treat institutional/trademark print permissions separately.
+if grep -Fq '}{utokyo}' "$figure"; then
+  prepare_svg utokyo 3d2c55ba43c606c9c7563677aca709b49a797d9 \
+    'https://upload.wikimedia.org/wikipedia/commons/d/d8/University_of_Tokyo_symbol.svg'
+fi
+if grep -Fq '}{berkeley}' "$figure"; then
+  prepare_svg berkeley c94fe3e801755937fab398b67bc3e86baa41a4e8 \
+    'https://upload.wikimedia.org/wikipedia/commons/6/6f/The_University_of_California_Berkeley_1868.svg'
+fi
+if grep -Fq '}{ucsd}' "$figure"; then
+  prepare_svg ucsd c4d91d3aa318092f553439fa8e3820f62efb996e \
+    'https://upload.wikimedia.org/wikipedia/commons/c/c1/Seal_of_the_University_of_California%2C_San_Diego.svg'
+fi
+if grep -Fq '}{adobe}' "$figure"; then
+  prepare_svg adobe 471dcc4a658857f96ea2b85f40dadfa15a455319 \
+    'https://upload.wikimedia.org/wikipedia/commons/b/b1/Adobe_Corporate_Horizontal_Red_HEX.svg'
+fi
+if grep -Fq '}{epfl}' "$figure"; then
+  prepare_svg epfl 5aae170a1e6c06178309e87d19cca7e2770dd9ec \
+    'https://upload.wikimedia.org/wikipedia/commons/9/95/Logo_EPFL_2019.svg'
+fi
+if grep -Fq '}{alibaba}' "$figure"; then
+  prepare_svg alibaba 42e5896c316a2394d5744812174641cb5710cbcd \
+    'https://upload.wikimedia.org/wikipedia/commons/4/41/Alibaba_en_logo.svg'
+fi
