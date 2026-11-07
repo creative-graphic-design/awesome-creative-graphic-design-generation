@@ -351,6 +351,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
     # spelled exactly alike in source papers: keep every alias explicit.
     institution_aliases = {
         "Google Research": "Google",
+        "The University of Tokyo": "University of Tokyo",
         "Microsoft": "Microsoft Research Asia",
         "Microsoft Research": "Microsoft Research Asia",
         "Adobe Research": "Adobe Inc.",
