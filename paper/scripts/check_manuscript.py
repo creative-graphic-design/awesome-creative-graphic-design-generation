@@ -398,12 +398,19 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             "Institution logos must not be placed in a separate affiliation footer")
     require(r"\includegraphics[width=.46cm,height=.46cm,keepaspectratio]" in figure_source,
             "All research-node marks require equal, aspect-preserving square layout slots")
-    require(r"\stepcounter{MapPaperNodeCounter}" in figure_source and
-            r"(mapPaperCard-\arabic{MapPaperNodeCounter})" in figure_source and
-            r"at ($(mapPaperCard-\arabic{MapPaperNodeCounter}.west)+(.36cm,0)$)" in figure_source,
-            "Every study logo must be centered vertically on its actual TikZ card bounds")
-    require(r"at ($(#5,#6)+(0.36,-0.33)$)" not in figure_source,
-            "Hard-coded logo y-offset is forbidden; use card center anchoring")
+    require(r"\usepackage{array}" in figure_source and
+            r"\newcommand{\MapPaperFrame}[4]" in figure_source and
+            r"\newcommand{\MapPaperText}[3]" in figure_source and
+            r"\begin{tabular}[c]{@{}m{.46cm}@{\hspace{.07cm}}m{2.59cm}@{}}" in figure_source and
+            r"\makebox[.46cm][c]{\includegraphics" in figure_source and
+            r"\parbox[c]{2.59cm}{\raggedright\MapPaperText{#2}{#3}{#8}}" in figure_source,
+            "Branded research card must use two actual centered m-columns, not overlay/indent")
+    require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 2,
+            "Plain and logo-bearing research cards must share the same outer frame")
+    require(r"at ($(mapPaperCard-" not in figure_source and
+            r"at ($(#5,#6)+(0.36,-0.33)$)" not in figure_source and
+            r"\hspace*{.53cm}" not in figure_source,
+            "Logo overlays and manually inserted title/subtitle indentation are forbidden")
     prep = tex("scripts/prepare_affiliation_logos.sh")
     require("cyberagent-symbol.tex" in prep and "pdflatex" in prep,
             "CA icon must use unchanged original logo in a square vector tile")
