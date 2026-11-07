@@ -395,7 +395,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "cyberagent-symbol": ("CyberAgent", "cyberagent", "6e364a261c7cfc57a6f434fee0aeff3fb1184a88"),
         "pku": ("Peking University", "pku", "14ffd592f63fb7231f71639e37b586467be667ea"),
         "google": ("Google", "google", "2cc789a02534557380d92124e2f8b9483d198fb3"),
-        "microsoft": ("Microsoft Research Asia", "microsoft", "0000000000000000000000000000000000000000"),
+        "microsoft": ("Microsoft Research Asia", "microsoft", "5b170117926ae5a5e451aa24676b5a124c2fa122"),
     }
     for stem in set(expected.values()):
         institution, source_stem, digest = to_registry[stem]
