@@ -25,6 +25,22 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         self.assertEqual(self.source.count(r"\vbox to \MapCardRowHeight"), 2)
         self.assertIn(r"\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering #4}", self.source)
 
+    def test_all_card_positions_use_relative_grid(self):
+        self.assertIn(r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}", self.source)
+        self.assertIn(r"\setlength{\MapCardRowPitch}{.244048\MapCardWidth}", self.source)
+        self.assertIn(r"\dimexpr\MapColOne+\MapCardWidth+\MapCardMarginX\relax", self.source)
+        self.assertIn(r"\dimexpr\MapRowATop-\MapCardRowPitch\relax", self.source)
+        import re
+
+        cards = re.findall(
+            r"^\\MapPaper(?:Brand)?\{[A-D]\}\{[^{}]+\}\{\d+\}\{[^{}]+\}"
+            r"\{\\MapCol(?:One|Two|Three|Four)\}"
+            r"\{\\MapRow(?:A|B|C|D)(?:Top|Bottom)\}",
+            self.source,
+            re.MULTILINE,
+        )
+        self.assertEqual(len(cards), 26)
+
     def test_logo_is_bounded_by_relative_width_and_height(self):
         self.assertIn(
             r"\includegraphics[width=.8\MapCardLogoWidth,height=.8\MapCardLogoHeight,keepaspectratio]",
