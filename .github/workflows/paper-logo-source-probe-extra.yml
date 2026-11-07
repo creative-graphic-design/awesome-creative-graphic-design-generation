@@ -1,0 +1,51 @@
+name: Paper Logo Extra Source Probe
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/paper-logo-source-probe-extra.yml'
+      - 'paper/figs/tex/research_map_affiliations.csv'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Fetch candidate original logo vector documents
+        shell: bash
+        run: |
+          mkdir -p original-mark-probe
+          fetch() {
+            label="$1"
+            url="$2"
+            ext="$3"
+            echo "PROBE ${label}: ${url}"
+            if curl --location --fail --silent --show-error --retry 2 --retry-all-errors --connect-timeout 10 --max-time 45 "$url" -o "original-mark-probe/${label}.${ext}"; then
+              sha1sum "original-mark-probe/${label}.${ext}"
+              file "original-mark-probe/${label}.${ext}"
+              if [ "$ext" = pdf ]; then pdfinfo "original-mark-probe/${label}.pdf" | grep -E 'Pages:|Page size:' || true; pdfimages -list "original-mark-probe/${label}.pdf" | head -5 || true; fi
+            else
+              echo "PROBE_FAILED ${label}"
+              rm -f "original-mark-probe/${label}.${ext}"
+            fi
+          }
+          fetch westlake https://mirrors.ibiblio.org/pub/mirrors/CTAN/macros/latex/contrib/westlakethesis/westlake-badge-en.pdf pdf
+          fetch tongji https://raw.githubusercontent.com/TJ-CSCCG/tongji-visual/main/eps/tongji-logo-blue.eps eps
+          fetch hkustgz https://brand.hkust.edu.hk/sites/default/files/bm_folder/HKUST_Brand_guideline.pdf pdf
+          fetch jd https://ir.jd.com/static-files/26afb5c0-41a8-4d14-b186-2616b9fda67e pdf
+          fetch casrules https://www.cas.cn/gzzd/kxcb/202107/P020210730538633854643.pdf pdf
+          if [ -s original-mark-probe/tongji.eps ]; then
+            epstopdf --outfile=original-mark-probe/tongji.pdf original-mark-probe/tongji.eps || true
+            pdfinfo original-mark-probe/tongji.pdf | grep -E 'Page size:' || true
+          fi
+      - name: Upload source samples for visual and vector verification
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: t16-extra-mark-source-probe
+          path: original-mark-probe/
+          retention-days: 7
