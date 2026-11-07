@@ -1,0 +1,66 @@
+name: Paper Original-Logo Source Probe
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/paper-logo-source-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    name: Verify genuine vector logo source artboards
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install original vector preview tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ghostscript poppler-utils file
+      - name: Inspect official Beijing Institute of Technology AI masters
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logo-source-probe
+          cd logo-source-probe
+          # From the university MAIN campus visual identity system:
+          # https://www.bit.edu.cn/gbxxgk/dqgz_sjb/vixx/bzxhgf/index.htm
+          # These are source inspection candidates, not publication-approved marks.
+          for item in \
+            'bit-a1-01|https://www.bit.edu.cn/docs//2026-03/4b2a694f4ee5496083873317e69b4669.ai' \
+            'bit-a1-02|https://www.bit.edu.cn/docs//2026-03/023888b516cb4b939a6a1103cfb356ce.ai'
+          do
+            name="${item%%|*}"
+            url="${item#*|}"
+            echo "=== ${name} ===" | tee -a source-audit.txt
+            if ! curl -fL --retry 2 --connect-timeout 15 --max-time 90 -o "${name}.ai" "$url"; then
+              echo "${name}: download unavailable" | tee -a source-audit.txt
+              continue
+            fi
+            file "${name}.ai" | tee -a source-audit.txt
+            sha1sum "${name}.ai" | tee -a source-audit.txt
+            wc -c "${name}.ai" | tee -a source-audit.txt
+            head -c 120 "${name}.ai" | strings | head -n 8 | tee -a source-audit.txt || true
+            if gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="${name}.pdf" "${name}.ai" >"${name}-convert.log" 2>&1; then
+              pdfinfo "${name}.pdf" | grep -E '^Pages:|^Page size:|^File size:' | tee -a source-audit.txt
+              pdftoppm -f 1 -l 1 -singlefile -scale-to 1400 -png "${name}.pdf" "${name}-proof" || true
+            else
+              echo "${name}: PostScript conversion failed; original untouched" | tee -a source-audit.txt
+              tail -n 12 "${name}-convert.log" | tee -a source-audit.txt
+            fi
+          done
+          echo "These are preliminary original-artboard probes, NOT vetted logo assets or redistribution rights." | tee -a source-audit.txt
+      - name: Upload inspected renders and digest evidence (not as survey assets)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: bit-official-vector-source-probe-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            logo-source-probe/source-audit.txt
+            logo-source-probe/*-proof.png
+            logo-source-probe/*-convert.log
