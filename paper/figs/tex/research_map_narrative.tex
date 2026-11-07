@@ -31,8 +31,20 @@
 % T16: real compact identity symbols live INSIDE their own study card.
 % Each logo uses the same 0.46cm square layout slot; no affiliation footer.
 % Actual original vectors are prepared and SHA-pinned by the build script.
+% Branded text has 3.12cm minus .53cm = 2.59cm of horizontal space.
+% Fail build instead of allowing an overlong label to intrude into a lane.
 % This is a draft scholarly attribution, not an endorsement or legal clearance.
+\newlength{\MapBrandSubtitleWidth}
+\newlength{\MapBrandTitleWidth}
 \newcommand{\MapPaperBrand}[9]{%
+  \settowidth{\MapBrandTitleWidth}{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #2}}%
+  \ifdim\MapBrandTitleWidth>2.15cm
+    \PackageError{researchmap}{#2: institution logo node title is too wide}{Shorten the label or redesign the branded card}%
+  \fi
+  \settowidth{\MapBrandSubtitleWidth}{{\sffamily\fontsize{6.35}{7.1}\selectfont #8}}%
+  \ifdim\MapBrandSubtitleWidth>2.59cm
+    \PackageError{researchmap}{#2: institution logo node subtitle is too wide}{Shorten the subtitle or redesign the branded card}%
+  \fi
   \MapPaper{#1}{\hspace*{.53cm}#2}{#3}{#4}{#5}{#6}{#7}{\hspace*{.53cm}#8}%
   \node[anchor=center,inner sep=0pt] at ($(#5,#6)+(0.36,-0.33)$)
     {\includegraphics[width=.46cm,height=.46cm,keepaspectratio]{figs/assets/logos/#9.pdf}};%
@@ -89,7 +101,7 @@
 \MapPaperBrand{A}{ReLayout}{26}{relayoutedit2026}{15.00}{9.76}{edit}{geometric editing}{microsoft}
 \MapPaper{B}{Vinci}{21}{vinci2021}{3.18}{8.71}{edit}{human feedback}
 \MapPaper{B}{CGL-GAN}{22}{cglgan2022}{7.12}{8.71}{gan}{background conditioning}
-\MapPaperBrand{B}{PosterLayout}{23}{posterlayout2023}{7.12}{7.89}{gan}{conditional sequence GAN}{pku}
+\MapPaperBrand{B}{PosterLayout}{23}{posterlayout2023}{7.12}{7.89}{gan}{content-aware GAN}{pku}
 \MapPaper{B}{LayoutDETR}{24}{layoutdetr2024}{11.06}{8.71}{latent}{multimodal transformer}
 \MapPaper{B}{POSTA}{25}{posta2025}{11.06}{7.89}{agent}{poster planning}
 \MapPaper{B}{PosterOmni}{26}{posteromni2026}{15.00}{8.71}{edit}{local + global editing}
