@@ -81,7 +81,7 @@
 \newcommand{\MapPaperContent}[4]{%
   \setlength{\MapCardLogoWidth}{.25\linewidth}%
   \setlength{\MapCardTextWidth}{.75\linewidth}%
-  \setlength{\MapCardRowHeight}{.08\linewidth}%
+  \setlength{\MapCardRowHeight}{.055\linewidth}%
   \setlength{\MapCardLogoHeight}{2\MapCardRowHeight}%
   \settowidth{\MapCardHeadingWidth}{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hspace{.15em}{\sffamily\fontsize{6.2}{7}\selectfont '#2}}%
   \settowidth{\MapCardSubtitleWidth}{{\sffamily\fontsize{6.35}{7.1}\selectfont #3}}%
@@ -106,7 +106,7 @@
 \newcommand{\MapPaperBrand}[9]{%
   \MapPaperFrame{#5}{#6}{#7}{%
     \MapPaperContent{#2}{#3}{#8}{%
-      \includegraphics[width=.8\MapCardLogoWidth,height=.8\MapCardLogoHeight,keepaspectratio]{figs/assets/logos/#9.pdf}%
+      \includegraphics[width=.64\MapCardLogoWidth,height=.72\MapCardLogoHeight,keepaspectratio,clip]{figs/assets/logos/#9.pdf}%
     }%
   }%
 }
