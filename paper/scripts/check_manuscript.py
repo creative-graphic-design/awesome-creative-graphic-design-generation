@@ -347,10 +347,23 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
                 for r in narrative_records}
     require(len(audit_keys) == 26 and audit_keys == map_keys,
             "Affiliation audit has missing/extra or duplicated research-map nodes")
+    # Primary affiliation names and a corporate group mark are not always
+    # spelled exactly alike in source papers: keep every alias explicit.
+    institution_aliases = {
+        "Google Research": "Google",
+        "Microsoft": "Microsoft Research Asia",
+        "Microsoft Research": "Microsoft Research Asia",
+        "Adobe Research": "Adobe Inc.",
+        "University of California Berkeley": "University of California, Berkeley",
+    }
     for row in affiliation_records:
         require(bool(row["selected_institution"]) and bool(row["evidence_url"]) and
                 bool(row["selection_role"]) and bool(row["verification_level"]),
                 f"Study lacks attribution source and selection rationale: {row['label']}")
+        canonical = institution_aliases.get(row["selected_institution"], row["selected_institution"])
+        require(canonical in logo_rows,
+                f"Missing compact-logo source/rights candidate for study {row['label']}: {canonical}")
+    require(len(logo_rows) >= 18, "Complete T16 source register should cover 18 distinct main institutions")
     # Audit states select an *unchanged compact original* for each verified
     # candidate, not a dynamically generated imitation of another institution.
     status_to_stem = {
