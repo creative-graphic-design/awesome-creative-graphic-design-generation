@@ -139,13 +139,16 @@
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.97) {Object tree};
 \node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.66) {Validate edits};
 % Institution-mark rail; 0 = evidence-backed text fallback, not an official logo.
+% The CyberAgent 1-slot is a draft-only factual identification preview;
+% scripts/prepare_affiliation_logos.sh verifies the original Commons SVG SHA-1.
+% This is not trademark authorization or author publication sign-off.
 % For each organization, replace 0 with 1 only after approval and adding its
 % unmodified original vector PDF to figs/assets/logos/ (see provenance CSV).
 \fill[navy!5,rounded corners=2pt] (.48,-.36) rectangle (18.72,.16);
 \node[anchor=west,text=ink,font=\bfseries\fontsize{6.3}{7.1}\selectfont] at (.62,-.10) {Affiliation provenance:};
 \node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (3.91,-.10) {LayoutGAN / \AffilBrand{0}{bit}{.21cm}{BIT} + \AffilBrand{0}{adobe}{.21cm}{Adobe}};
 \node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (9.47,-.10) {COLE / \AffilBrand{0}{msra}{.21cm}{MSRA} + \AffilBrand{0}{pku}{.21cm}{Peking Univ.}};
-\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,-.10) {OpenCOLE / \AffilBrand{1}{cyberagent}{.21cm}{CyberAgent}};
+\node[anchor=west,text=muted,font=\fontsize{6.2}{7}\selectfont] at (15.10,-.10) {OpenCOLE / \AffilBrand{1}{cyberagent}{.28cm}{CyberAgent}};
 % A reserved, non-overlapping legend row beneath the output examples.
 \node[anchor=west,text=ink,font=\bfseries\fontsize{6.5}{7.2}\selectfont] at (.64,.53) {Technique emphasis:};
 % Independent model-family coding, intentionally distinct from lane color.
