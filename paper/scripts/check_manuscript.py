@@ -362,8 +362,8 @@ if logo_registry_path.is_file():
     require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
             "Figure build must verify affiliation logo source pins")
     source_icon = tex("figs/assets/logos/cyberagent-symbol.tex")
-    require("trim=0bp 0bp 190bp 0bp,clip" in source_icon and
-            "minipage}[c][68bp][c]{68bp}" in source_icon,
+    require("trim=0bp 0bp 201bp 0bp,clip" in source_icon and
+            "minipage}[c][57bp][c]{57bp}" in source_icon,
             "CA square tile must preserve original vector paths and square dimensions")
     for lane, paper, year, citation, stem in brand_uses:
         institution = logo_stems.get(stem)
