@@ -24,6 +24,11 @@ A fair comparison must define the task and permitted output.
 Penalizing raster editing for not generating vector nodes, or rewarding any \ac{svg} solely because it contains paths, mixes two evaluation questions.
 We recommend separate leaderboards for semantic edit compliance, format validity, and visual result quality, with clear reporting of which dimensions are inapplicable to a given output contract.
 
+\paragraph{Evidence-aligned claims.}
+To make comparisons auditable, each claimed editing capability should be paired with the delivered file type, a concrete operation, and the relevant measurement or demonstrated workflow.
+For example, alpha-mask quality can support a claim about compositing readiness, but not one about replacing semantic text; correct SVG rendering can support visual validity, but not one about retaining object identity after a later edit.
+This pairing also reveals where new benchmarks are most valuable: the unmeasured step between an artifact's structural affordances and reliable execution of users' actual revision requests.
+
 \paragraph{Human-centred outcomes.}
 Designer workflows involve more than one-shot aesthetic ratings.
 Vinci provides an example of measuring editing efficiency \citep{vinci2021}.
