@@ -39,6 +39,30 @@ prepare_svg() {
 
 # Two compact, period-appropriate symbols (2012 Microsoft four-square mark,
 # 2015 Google G) are independent original icons, not squeezed wordmarks.
+# BIT main-campus 2026 A1-02 Illustrator master is in fact PDF 1.5.
+# Preserve the exact official bytes and crop *only the artboard viewport*
+# around the standalone emblem, not the logo paths themselves.
+if grep -Fq '}{bit-symbol}' "$figure"; then
+  bit_ai=figs/assets/logos/bit-original.ai
+  bit_pdf=figs/assets/logos/bit-original.pdf
+  bit_sha=6fcb6505b213d2f858e82ff51aab605a1771dc7c
+  mkdir -p figs/assets/logos
+  if [ ! -f "$bit_ai" ] || ! printf '%s  %s\n' "$bit_sha" "$bit_ai" | sha1sum -c -s; then
+    curl --fail --location --silent --show-error --retry 3 --connect-timeout 15 --max-time 120 \
+      'https://www.bit.edu.cn/docs//2026-03/023888b516cb4b939a6a1103cfb356ce.ai' -o "$bit_ai"
+  fi
+  printf '%s  %s\n' "$bit_sha" "$bit_ai" | sha1sum -c
+  head -c 5 "$bit_ai" | grep -q '^%PDF-' || { echo 'BIT source no longer PDF-compatible; reject changed original' >&2; exit 1; }
+  cp "$bit_ai" "$bit_pdf"
+  (
+    cd figs/assets/logos
+    pdflatex -interaction=nonstopmode -halt-on-error bit-symbol.tex >/dev/null
+    test -s bit-symbol.pdf
+    rm -f bit-symbol.aux bit-symbol.log
+  )
+  echo "bit-symbol: square artboard crop from source-pinned official BIT vector (draft only)."
+fi
+
 if grep -Fq '}{google}' "$figure"; then
   prepare_svg google 2cc789a02534557380d92124e2f8b9483d198fb3 \
     'https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg'
