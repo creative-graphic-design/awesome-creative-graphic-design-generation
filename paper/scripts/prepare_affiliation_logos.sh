@@ -128,6 +128,41 @@ if grep -Fq '}{cyberagent-symbol}' "$figure"; then
     rm -f cyberagent-symbol.aux cyberagent-symbol.log
   )
 fi
+
+# Official Meituan parent-company media archive (not delivery / Dianping marks).
+# Its PDF-compatible Illustrator vector contains both a square emblem and a
+# horizontal wordmark; preserve only the unaltered square using a TeX viewport.
+if grep -Fq '}{meituan-symbol}' "$figure"; then
+  command -v unzip >/dev/null 2>&1 || { echo 'unzip required for original Meituan AI' >&2; exit 1; }
+  meituan_zip=figs/assets/logos/meituan-official.zip
+  meituan_zip_sha=6817f88d95f95bb6e6b8238aa0c0e7d36dd93008
+  meituan_ai=figs/assets/logos/meituan-original.ai
+  meituan_ai_sha=0df68fc2b3b25ddbeaa7f4046c0f74b3aae2fb05
+  mkdir -p figs/assets/logos
+  if [ ! -f "$meituan_zip" ] || ! printf '%s  %s\n' "$meituan_zip_sha" "$meituan_zip" | sha1sum -c -s; then
+    curl --fail --location --silent --show-error --retry 3 --connect-timeout 15 --max-time 75 \
+      'https://s3plus.meituan.net/smart/22c45b30-80ba-4aa5-bfad-2bfaed7beb4e.zip' -o "$meituan_zip"
+  fi
+  printf '%s  %s\n' "$meituan_zip_sha" "$meituan_zip" | sha1sum -c
+  meituan_entry="$(unzip -Z -1 "$meituan_zip" | grep -v '^__MACOSX/' | grep -E '\.ai
+  prepare_svg pku 14ffd592f63fb7231f71639e37b586467be667ea \
+    https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg
+fi
+)"
+  [ "$(printf '%s\n' "$meituan_entry" | wc -l)" -eq 1 ] || { echo 'Expected one Meituan original AI' >&2; exit 1; }
+  unzip -p "$meituan_zip" "$meituan_entry" >"$meituan_ai"
+  printf '%s  %s\n' "$meituan_ai_sha" "$meituan_ai" | sha1sum -c
+  head -c 5 "$meituan_ai" | grep -q '^%PDF-' || { echo 'Meituan original is no longer PDF-compatible' >&2; exit 1; }
+  cp "$meituan_ai" figs/assets/logos/meituan-original.pdf
+  (
+    cd figs/assets/logos
+    pdflatex -interaction=nonstopmode -halt-on-error meituan-symbol.tex >/dev/null
+    test -s meituan-symbol.pdf
+    rm -f meituan-symbol.aux meituan-symbol.log
+  )
+  echo "meituan-symbol: original parent-company square vector mark, draft only."
+fi
+
 if grep -Fq '}{pku}' "$figure"; then
   prepare_svg pku 14ffd592f63fb7231f71639e37b586467be667ea \
     https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg
