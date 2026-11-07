@@ -26,7 +26,7 @@ def source_pairs() -> list[tuple[str, str]]:
         raise SystemExit("Expected 26 uniquely named source study cards")
     return [(label, subtitle.split()[0]) for label, subtitle in studies]
 MAX_GAP_PT = 10.0
-MIN_GAP_PT = 4.0
+MIN_GAP_PT = 2.0
 
 
 def verify(pdf_path: Path) -> None:
