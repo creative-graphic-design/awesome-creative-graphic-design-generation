@@ -436,7 +436,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         "salesforce": ("Salesforce Research", "salesforce", "a05d80d66796327adad13e0574c4fa78b526545c"),
         "meituan-symbol": ("Meituan", "meituan-original", "0df68fc2b3b25ddbeaa7f4046c0f74b3aae2fb05"),
         "utokyo": ("University of Tokyo", "utokyo", "3d2c55ba43c606c9c7563677aca709b49a797d9e"),
-        "berkeley": ("University of California, Berkeley", "berkeley", "c94fe3e801755937fab398b67bc3e86baa41a4e8"),
+        "berkeley": ("University of California, Berkeley", "berkeley", "dfb5fb42fc8533a6a6b0d07cf350770a3cb88d6a"),
         "ucsd": ("University of California San Diego", "ucsd", "c4d91d3aa318092f553439fa8e3820f62efb996e"),
         "adobe": ("Adobe Inc.", "adobe", "471dcc4a658857f96ea2b85f40dadfa15a455319"),
         "epfl": ("EPFL", "epfl", "5aae170a1e6c06178309e87d19cca7e2770dd9ec"),
