@@ -48,7 +48,7 @@ if grep -Fq '}{bit-symbol}' "$figure"; then
   bit_sha=6fcb6505b213d2f858e82ff51aab605a1771dc7c
   mkdir -p figs/assets/logos
   if [ ! -f "$bit_ai" ] || ! printf '%s  %s\n' "$bit_sha" "$bit_ai" | sha1sum -c -s; then
-    curl --fail --location --silent --show-error --retry 3 --connect-timeout 15 --max-time 120 \
+    curl --fail --location --silent --show-error --retry-all-errors --retry 3 --retry-delay 2 --connect-timeout 12 --max-time 50 \
       'https://www.bit.edu.cn/docs//2026-03/023888b516cb4b939a6a1103cfb356ce.ai' -o "$bit_ai"
   fi
   printf '%s  %s\n' "$bit_sha" "$bit_ai" | sha1sum -c
