@@ -356,9 +356,8 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
     status_to_stem = {
         "verified_square_ca": "cyberagent-symbol",
         "verified_square_pku": "pku",
-        "candidate_square_ms": "microsoft",
-        "candidate_square_google": "google",
-        "candidate_square_icon": "google",
+        "verified_square_ms": "microsoft",
+        "verified_square_google": "google",
     }
     figure_source = tex("figs/tex/research_map_narrative.tex")
     brand_uses = re.findall(
