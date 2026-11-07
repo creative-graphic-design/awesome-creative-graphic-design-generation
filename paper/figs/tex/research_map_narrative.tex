@@ -22,47 +22,51 @@
 \definecolor{agent}{HTML}{775BAE}
 \definecolor{struct}{HTML}{268B7B}
 \definecolor{edit}{HTML}{AF4877}
-% The ordinary card and the branded card share one frame and typography.
-% For branded cards, a genuine two-column TeX table holds the *actual* icon
-% and text in vertically centered columns; neither is overlaid on the other.
-% No manually inserted title/subtitle \hspace or absolute logo coordinates.
+% Every study uses a proportional 2x2 card grid.
+% Left 1/4: institutional logo (or reserved slot while provenance is audited).
+% Right 3/4: upper 1/2 paper name + year, lower 1/2 description.
+% All fractions below are relative to the INNER content width of the node;
+% there are no per-logo or per-study position offsets or fixed column widths.
 \newcounter{MapPaperNodeCounter}
+\newlength{\MapCardLogoWidth}
+\newlength{\MapCardTextWidth}
+\newlength{\MapCardRowHeight}
+\newlength{\MapCardHeadingWidth}
+\newlength{\MapCardSubtitleWidth}
 \newcommand{\MapPaperFrame}[4]{%
   \stepcounter{MapPaperNodeCounter}%
   \node[anchor=north west,draw=#3,fill=white,rounded corners=2pt,line width=.80pt,
-   text width=3.12cm,inner xsep=4.1pt,inner ysep=1.6pt,align=left]
+   text width=3.36cm,inner xsep=4.1pt,inner ysep=1.6pt,align=left]
    (mapPaperCard-\arabic{MapPaperNodeCounter}) at (#1,#2) {#4};%
 }
-\newcommand{\MapPaperText}[3]{%
-  {\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hfill
-  {\fontsize{6.2}{7}\selectfont '#2}\\[-4pt]
-  {\color{muted}\fontsize{6.35}{7.1}\selectfont #3}%
+\newcommand{\MapPaperContent}[4]{%
+  \setlength{\MapCardLogoWidth}{.25\linewidth}%
+  \setlength{\MapCardTextWidth}{.75\linewidth}%
+  \setlength{\MapCardRowHeight}{.08\linewidth}%
+  \settowidth{\MapCardHeadingWidth}{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hspace{.15em}{\sffamily\fontsize{6.2}{7}\selectfont '#2}}%
+  \settowidth{\MapCardSubtitleWidth}{{\sffamily\fontsize{6.35}{7.1}\selectfont #3}}%
+  \ifdim\MapCardHeadingWidth>\MapCardTextWidth
+    \PackageError{researchmap}{#1: relative card heading exceeds 75 percent text column}{Shorten study title or expand all cards}%
+  \fi
+  \ifdim\MapCardSubtitleWidth>\MapCardTextWidth
+    \PackageError{researchmap}{#1: relative card subtitle exceeds 75 percent text column}{Shorten study subtitle or expand all cards}%
+  \fi
+  \begin{tabular}[c]{@{}m{\MapCardLogoWidth}@{}m{\MapCardTextWidth}@{}}%
+    \makebox[\MapCardLogoWidth][c]{#4}%
+    &\vbox{%
+      \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hfil{\sffamily\fontsize{6.2}{7}\selectfont '#2}}\vfil}%
+      \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\color{muted}\fontsize{6.35}{7.1}\selectfont #3}\hfil}\vfil}%
+    }%
+  \end{tabular}%
 }
 \newcommand{\MapPaper}[8]{%
-  \MapPaperFrame{#5}{#6}{#7}{\MapPaperText{#2}{#3}{#8}}%
+  \MapPaperFrame{#5}{#6}{#7}{\MapPaperContent{#2}{#3}{#8}{}}%
 }
-% T16: source-pinned original company/university symbols occupy an authentic
-% 0.46cm square ICON COLUMN, followed by a 0.07cm gap and 2.59cm TEXT COLUMN.
-% The two m-columns in the same tabular row are vertically aligned by TeX;
-% adding/removing text cannot change the icon's optical slot alignment.
-% The complete node remains 3.12cm wide with the same outer padding as
-% non-branded study cards. Legal permission is a separate publication gate.
-\newlength{\MapBrandSubtitleWidth}
-\newlength{\MapBrandTitleWidth}
 \newcommand{\MapPaperBrand}[9]{%
-  \settowidth{\MapBrandTitleWidth}{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #2}}%
-  \ifdim\MapBrandTitleWidth>2.15cm
-    \PackageError{researchmap}{#2: institution logo node title is too wide}{Shorten the label or redesign the branded card}%
-  \fi
-  \settowidth{\MapBrandSubtitleWidth}{{\sffamily\fontsize{6.35}{7.1}\selectfont #8}}%
-  \ifdim\MapBrandSubtitleWidth>2.59cm
-    \PackageError{researchmap}{#2: institution logo node subtitle is too wide}{Shorten the subtitle or redesign the branded card}%
-  \fi
   \MapPaperFrame{#5}{#6}{#7}{%
-    \begin{tabular}[c]{@{}m{.46cm}@{\hspace{.07cm}}m{2.59cm}@{}}%
-      \makebox[.46cm][c]{\includegraphics[width=.46cm,height=.46cm,keepaspectratio]{figs/assets/logos/#9.pdf}}%
-      & \parbox[c]{2.59cm}{\raggedright\MapPaperText{#2}{#3}{#8}}%
-    \end{tabular}%
+    \MapPaperContent{#2}{#3}{#8}{%
+      \includegraphics[width=.76\MapCardLogoWidth,height=.76\MapCardLogoWidth,keepaspectratio]{figs/assets/logos/#9.pdf}%
+    }%
   }%
 }
 \begin{document}
