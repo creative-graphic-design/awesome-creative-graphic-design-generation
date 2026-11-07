@@ -91,6 +91,14 @@ jobs:
                                     x.filename.lower().endswith(('.svg','.eps','.pdf','.ai')) and
                                     any(t in x.filename.lower() for t in ('symbol','cloud','icon'))]
                       print(f"Compact-vector candidate count: {len(candidates)}", file=out)
+                      # Exact official 2026 RGB cloud art (not a third-party icon trace).
+                      rgb = next((x for x in items if
+                                  x.filename == "Salesforce-Corporate-Logo-All/Cloud Logo RGB/Salesforce-Corporate-Logo-Cloud-RBG.svg"), None)
+                      if rgb is not None:
+                          import hashlib
+                          data = zf.read(rgb)
+                          print(f"official_rgb_cloud_svg: size={len(data)} sha1={hashlib.sha1(data).hexdigest()}", file=out)
+                          Path("salesforce-cloud-original.svg").write_bytes(data)
                       for item in candidates[:12]:
                           data = zf.read(item)
                           import hashlib
@@ -114,5 +122,6 @@ jobs:
           path: |
             logo-source-probe/source-audit.txt
             logo-source-probe/salesforce-source-audit.txt
+            logo-source-probe/salesforce-cloud-original.svg
             logo-source-probe/*-proof.png
             logo-source-probe/*-convert.log
