@@ -34,7 +34,7 @@ jobs:
         with:
           root_file: figs/tex/research_map_narrative.tex
           working_directory: paper
-          extra_system_packages: 'rsvg-convert curl'
+          extra_system_packages: 'rsvg-convert curl python3'
           pre_compile: |
             sh scripts/build_figures.sh
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
