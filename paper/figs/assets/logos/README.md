@@ -6,7 +6,7 @@ The map's company/university logos belong **inside the individual study card**, 
 
 All 26 studies have an independently auditable *institution choice*, author/project evidence URL, affiliation role, and logo readiness state in [research_map_affiliations.csv](../../tex/research_map_affiliations.csv). All **18 distinct primary organizations** have a separate asset/rights record in [logo_asset_candidates.csv](../../tex/logo_asset_candidates.csv). Source attribution does **not** establish trademark reproduction rights; all current displayed brands are **draft-only nominative examples**, not approved publication artifacts.
 
-## Implemented original compact vector marks (11 research cards)
+## Implemented original compact vector marks (12 research cards)
 
 | Organization mark | Study cards | Exact original source / build |
 | --- | --- | --- |
@@ -14,11 +14,12 @@ All 26 studies have an independently auditable *institution choice*, author/proj
 | Microsoft four-square company symbol, identifying Microsoft Research Asia (MSRA) | **COLE**, LayoutFormer++, ReLayout, DesignAsCode | [Microsoft SVG original](https://commons.wikimedia.org/wiki/File:Microsoft_logo.svg); upstream **272-byte** source SHA-1 `5b170117926ae5a5e451aa24676b5a124c2fa122`; `microsoft.pdf` |
 | CyberAgent independent CA symbol, NOT horizontal wordmark | OpenCOLE, LayoutDM, LayerD | [CyberAgent SVG original](https://commons.wikimedia.org/wiki/File:CyberAgent_logo.svg); SHA-1 `6e364a261c7cfc57a6f434fee0aeff3fb1184a88`; original CA vector paths preserved in a **57bp square** preview, rendered `cyberagent-symbol.pdf` |
 | Google standalone G symbol | VTN, CoLay | [Google G SVG original](https://commons.wikimedia.org/wiki/File:Google_%22G%22_logo.svg); SHA-1 `2cc789a02534557380d92124e2f8b9483d198fb3`; `google.pdf` |
+| Salesforce original blue cloud glyph (no wordmark) | **LayoutDETR** | [Official Brand Central instructions](https://help.salesforce.com/s/articleView?id=001115548&language=en_US&type=1) explicitly require symbol-only below 2cm wide; [official Salesforce corporate RGB master ZIP](https://salesforce.widen.net/s/mzhhvlhsdg/salesforce-corporate-logo-all) is 6,167,457 bytes with SHA-1 `b8cca7fa6290153156dc0d260095079d0cb0708c`. Its original RGB cloud SVG is 6,663 bytes with SHA-1 `a05d80d66796327adad13e0574c4fa78b526545c`; the exact blue cloud `path d` is preserved, white wordmark paths omitted, and the path is placed into a square viewport in `salesforce.pdf`. **Draft only:** separate trademark/publication approval and proof of 2024 identity consistency remain open. |
 | Peking University round seal | **PosterLayout** (not COLE) | [PKU seal SVG](https://commons.wikimedia.org/wiki/File:Peking_University_seal.svg); actual downloaded SHA-1 `14ffd592f63fb7231f71639e37b586467be667ea`; `pku.pdf` |
 
 **Important COLE correction:** [COLE's official project page](https://graphic-design-generation.github.io/) lists both Microsoft Research Asia and Peking University, but Microsoft Research's own [publication record](https://www.microsoft.com/en-us/research/) identifies the Microsoft research project. For the sole representative institution symbol per node, use **Microsoft/MSRA**, not PKU. Peking University is an actual contributor and remains recorded as such in the [study provenance](../../tex/research_map_affiliations.csv); its seal represents **PosterLayout** elsewhere in the map. A generic corporate four-square logo is explicitly a Microsoft **parent-brand identifier**, not a special MSRA-only seal.
 
-## Remaining 15 paper cards
+## Remaining 14 paper cards
 
 All remaining text-only papers have their original organizations indexed in the two registers, but no approved compact mark has been enabled. These are **unresolved logo assets/permissions**, *not* missing papers or unverified exclusions.
 
@@ -34,4 +35,4 @@ All remaining text-only papers have their original organizations indexed in the 
 4. Update the exact study-to-logo mapping in `scripts/check_manuscript.py`, then run `python3 paper/scripts/check_manuscript.py` and the [Paper Figure Preview workflow](../../../.github/workflows/paper-figure-preview.yml). CI enforces **26 study keys**, **18 organization rights records**, square render slots, correct paper–institution matching and no raster images in the final map. It also pins the exact BIT source SHA-1 and crops the official square emblem from its original PDF-compatible Illustrator artboard.
 5. Open the **actual generated standalone PDF and the full manuscript PDF** at publication scale. Check logo/title/year/subtitle overlap, no misleading endorsement, stable vectors, and a legible legend before calling a node finished.
 
-**Status:** 26 institutional selections audited; 11 compact marks source-verified and enabled for draft figure rendering; remaining 15 need source, minimum-size and/or rights verification. The new BIT source is PDF-compatible Illustrator; a separate [official-source probe](../../../.github/workflows/paper-logo-source-probe.yml) verifies the original artboard before rendering. University/brand legal approval and final publisher compatibility **remain open for all ten displayed marks**.
+**Status:** 26 institutional selections audited; 12 compact marks source-verified and enabled for draft figure rendering; remaining 14 need source, minimum-size and/or rights verification. The new BIT source is PDF-compatible Illustrator; a separate [official-source probe](../../../.github/workflows/paper-logo-source-probe.yml) verifies the original artboard before rendering. University/brand legal approval and final publisher compatibility **remain open for all ten displayed marks**.
