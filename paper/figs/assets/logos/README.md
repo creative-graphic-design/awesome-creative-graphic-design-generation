@@ -1,28 +1,31 @@
-# Original university/company marks for the narrative research map
+# Original institution marks in individual research nodes (T16)
 
-**Status (2026-11-07): CyberAgent's wordmark and Peking University's seal are enabled for anonymous draft preview; neither is publication-approved.** No official mark binary is checked into the repository. When enabled, `scripts/prepare_affiliation_logos.sh` downloads the original Commons SVGs, verifies CyberAgent SHA-1 `6e364a261c7cfc57a6f434fee0aeff3fb1184a88` and PKU SHA-1 `14ffd592f63fb7231f71639e37b586467be667ea` (**35,658 bytes; verified from the actual upstream SVG download in CI**, not the mismatching Commons structured-data checksum), and converts each to a vector PDF. Three other institution slots (BIT, Adobe, MSRA) remain text-only. The map retains source-checked institution names. This directory is the reserved asset location for the author's T16 request; see [candidate rights table](../../tex/logo_asset_candidates.csv) and [affiliation evidence](../../tex/affiliation_logo_provenance.csv).
+**Figure-design contract (2026-11-07):** place the institution identity mark **inside the corresponding study card**, beside the paper name and citation year. Do not create a detached, footnote-like "Affiliation provenance" strip. All enabled marks occupy an identical **0.46 cm × 0.46 cm square layout slot**, with `keepaspectratio` (no stretching, recoloring or invented redraws). If no suitable square icon exists, keep that institution as plain text in the provenance registry; do not squeeze a horizontal wordmark into the card.
 
-The vector-only, source-editable TikZ figure at [research_map_narrative.tex](../../tex/research_map_narrative.tex) has **five explicit rights-gated institution slots** tied to three research cases:
+The current author-drawn narrative map uses only two prototype marks for factual study identification:
 
-- LayoutGAN (2019): Beijing Institute of Technology (`bit.pdf`) and Adobe (`adobe.pdf`).
-- COLE (2023): Microsoft Research Asia (`msra.pdf`) and Peking University (`pku.pdf`).
-- OpenCOLE (2024): CyberAgent (`cyberagent.pdf`).
+| Study node | Mark | Vector artifact | Source / verification | Publication status |
+| --- | --- | --- | --- | --- |
+| OpenCOLE (2024) | CyberAgent independent **CA symbol** (not horizontal wordmark) | `cyberagent-symbol.pdf` | [2015 original combined SVG](https://commons.wikimedia.org/wiki/File:CyberAgent_logo.svg), SHA-1 `6e364a261c7cfc57a6f434fee0aeff3fb1184a88`; source PDF's intact left-hand CA mark clipped without distorting or redrawing into a **68 bp square vector canvas** using `cyberagent-symbol.tex` | **Draft only**; corporate trademark review open |
+| COLE (2023) | Peking University **square seal** | `pku.pdf` | [Original-VIS-derived SVG](https://commons.wikimedia.org/wiki/File:Peking_University_seal.svg), actual downloaded SVG SHA-1 `14ffd592f63fb7231f71639e37b586467be667ea` (35,658 bytes) | **Draft only**; university emblem reuse review open |
 
-Files are not distributed merely because an external site shows a downloadable logo. For each institution, independently check the **paper-date author affiliation**, authoritative asset/version, copyright and trademark/identity restrictions, permitted context, attribution, and whether use would wrongly suggest endorsement. **Do not draw, recolor, alter, approximate, or scrape a mark in its place.** A Commons `PD-textlogo` claim is not a corporate trademark license.
+No original company/university binaries are checked into Git. The CI runner downloads only the two enabled SVGs, verifies their exact byte hashes, converts them to vector PDFs, and derives the square CA preview with `pdflatex`. **The crop affects only the viewport around the CA symbol, not its paths or colors.** A separate symbol file is also listed by [CompaniesLogo](https://companieslogo.com/cyberagent/logo/), but this build deliberately avoids depending on that third-party download and retains a cryptographically pinned original.
 
-## Current reviewed examples
+Other institution affiliations are source-indexed but their logo assets are **not enabled**:
 
-- **Adobe:** [official trademark policy](https://www.adobe.com/legal/permissions/trademarks.html) requires a specific license/authorization for Adobe logos. **Blocked pending permission**; a 2020 Commons logo is also not evidence of a 2019 affiliation-time mark.
-- **Peking University:** [Commons' official-VIS-derived seal SVG](https://commons.wikimedia.org/wiki/File:Peking_University_seal.svg) is marked public domain in China and the United States, **but Commons independently flags university-insignia and trademark restrictions**. It is enabled as a **draft-only attributed academic label** with adjacent `PKU` text; the [official university visual identity downloads](https://vim.pku.edu.cn/xzzq/) mention noncommercial application forms. This is not final authorization.
-- **Beijing Institute of Technology:** [official identity/mark specification](https://www.bit.edu.cn/gbxxgk/dqgz_sjb/vixx/bzxhgf/index.htm) provides usage rules; rights for third-party scholarly reuse are not yet cleared.
-- **UC Berkeley (future node):** [official asset toolkit](https://brand.berkeley.edu/downloads/brand-essentials-toolkit/) states that the primary logo is available only in limited instances with permission.
-- **CyberAgent:** [historically relevant 2015 brand SVG](https://commons.wikimedia.org/wiki/File:CyberAgent_logo.svg) is indexed as `PD-textlogo` by Commons but remains trademarked. The current **draft-only figure preview** uses the unaltered SHA-1-pinned SVG solely as a factual OpenCOLE affiliation identifier. This is **not corporate authorization or a final publication-rights decision**; the author must review its publication context.
+- LayoutGAN (2019): Beijing Institute of Technology and Adobe. Adobe's [brand policy](https://www.adobe.com/legal/permissions/trademarks.html) requires permissions to reproduce the logo, and the [BIT identity guidance](https://www.bit.edu.cn/gbxxgk/dqgz_sjb/vixx/bzxhgf/index.htm) needs further use review.
+- COLE (2023): Microsoft Research Asia. The dated original square/compact mark and use terms have not yet been verified.
+- Berkeley's primary logo, if needed in a later study, is [permission-restricted](https://brand.berkeley.edu/downloads/brand-essentials-toolkit/).
 
-## Integration and reproducibility
+Provenance and per-institution decisions are recorded in [logo_asset_candidates.csv](../../tex/logo_asset_candidates.csv) and [affiliation_logo_provenance.csv](../../tex/affiliation_logo_provenance.csv).
 
-1. Record authorization/approved nominative usage and attribution in `paper/figs/tex/logo_asset_candidates.csv` as `status=cleared_for_scholarly_use`. Keep a link to the specific authority and original asset.
-2. Add the **unaltered** approved original vector PDF to `paper/figs/assets/logos/<stem>.pdf`; keep original SVG (if permitted by distribution terms) as an editable companion `<stem>.svg`. The PDF should be a faithful vector conversion, not a bitmap screenshot, with no asset format change altering colors or proportions.
-3. Change **only that institution's** `\\AffilBrand{0}{stem}{.21cm}{label}` call to `\\AffilBrand{1}{stem}{.21cm}{label}`; emblem-only symbols must use `\\AffilBrandNamed` to retain the institution name. The manuscript linter will fail if an unapproved or missing logo PDF is enabled.
-4. Run `python3 paper/scripts/check_manuscript.py`, `cd paper && make pdf`, inspect the compiled 26-node map at full manuscript print width, both maps and the anonymous PDF; verify no clipping, unintended logo substitutions, endorsement impression, or attribution omissions. Update the figure caption only for marks actually incorporated.
+## Implementation and acceptance
 
-**Non-endorsement:** organization marks (when authorized) identify the author affiliations of individual works. They do not imply institutional endorsement of this survey or the other papers.
+1. Verify the exact *original-paper author* affiliation (not just project sponsorship), publication-year-appropriate identity mark, authoritative vector source and copyright/trademark permission context.
+2. Prefer an **authentic symbol/seal variant with an approximately 1:1 bounding box**. Do not use horizontal wordmarks, rasterized screenshots, stretched/cropped arbitrary text, or manually redrawn lookalikes.
+3. Pin the upstream bytes. For CA, `cyberagent-symbol.tex` uses a square canvas around the original CA symbol; if the official identity changes, re-audit its glyph boundary instead of silently reusing the crop.
+4. Add the new identity to the corresponding `\MapPaperBrand` study node, not an unrelated caption/footer. Keep the node name and year readable. Keep all other study nodes untouched.
+5. Run `python3 paper/scripts/check_manuscript.py` and `cd paper && make pdf`, extract the **actual** generated vector map and check at manuscript print size for overlaps and small unreadable marks.
+6. Before final publication, independently review authorization, university insignia law, trademark/nominative identification, attribution, and non-endorsement. Commons `PD-textlogo` or public-domain copyright status **does not** grant trademark permissions.
+
+**Non-endorsement:** marks, if validly used, identify the affiliated author organizations of individual studies; they do not endorse the survey or other listed papers. The current two marks are **provisional review-draft prototypes**, not permission sign-off.
