@@ -370,7 +370,7 @@ if logo_registry_path.is_file():
                 require("prepare_affiliation_logos.sh" in tex("scripts/build_figures.sh"),
                         "Figure build must run logo pin verification")
             elif stem == "pku" and status == "draft_nominative_review":
-                require(record.get("asset_sha1") == "965d9a8bdc1c391b75a0f88d729d54ea775ce180",
+                require(record.get("asset_sha1") == "14ffd592f63fb7231f71639e37b586467be667ea",
                         "Draft PKU seal SHA-1 differs from Commons original")
                 require(record.get("asset_url") == "https://upload.wikimedia.org/wikipedia/commons/f/f4/Peking_University_seal.svg",
                         "Draft PKU seal must use original source")
