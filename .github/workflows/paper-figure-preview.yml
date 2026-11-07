@@ -50,7 +50,7 @@ jobs:
           pdfinfo paper/figs/assets/logos/cyberagent-symbol.pdf | tee paper/ca-symbol-info.txt
           pdfinfo paper/figs/assets/logos/pku.pdf | tee paper/pku-info.txt
           pdfinfo paper/figs/pdf/research_map_narrative.pdf | tee paper/map-info.txt
-          grep -Eq 'Page size:[[:space:]]+68 x 68 pts' paper/ca-symbol-info.txt
+          grep -Eq 'Page size:[[:space:]]+57 x 57 pts' paper/ca-symbol-info.txt
           pdftotext paper/figs/pdf/research_map_narrative.pdf paper/map-text.txt
           grep -Fq 'OpenCOLE' paper/map-text.txt
           grep -Fq 'COLE' paper/map-text.txt
