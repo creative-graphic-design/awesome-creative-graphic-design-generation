@@ -31,6 +31,17 @@ jobs:
         with:
           persist-credentials: false
 
+      # Preserve only verified upstream masters between workflows. Their
+      # complete SHA-1 values are rechecked inside the figure build itself.
+      - name: Restore source-pinned institution logo masters
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+        with:
+          path: |
+            paper/figs/assets/logos/bit-original.ai
+            paper/figs/assets/logos/salesforce-official.zip
+            paper/figs/assets/logos/meituan-official.zip
+          key: institution-master-assets-v1-bit6fcb6505-salesforceb8cca7fa-meituan6817f88d
+
       # PR path filters compare the whole branch with main, so they cannot
       # distinguish a documentation-only update inside a long-running PR.
       # The synchronize/push event provides the exact before/after push range.
