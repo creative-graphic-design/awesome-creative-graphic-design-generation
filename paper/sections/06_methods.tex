@@ -39,14 +39,15 @@ ReLayout reasons about content regions, margins, and element relations for condi
 Scan-and-Print instead investigates efficient patch selection and training augmentation for content-aware poster layouts \citep{scanprint2025}.
 These approaches require matched input constraints and output granularity before their geometric metrics can support a comparison.
 
-\paragraph{Additional layout-control paradigms.}
-\ac{vtn} uses a variational transformer to model global layout design rules, while \ac{ldgm} decouples diffusion over element attributes to support multiple generation conditions.
-\ac{play} takes design guidelines as parametric controls for latent diffusion, whereas \ac{parsethenplace} first extracts structured constraints from textual design requirements.
-\ac{icvt} aligns image geometry with visual-textual elements, and \ac{textlap} adapts language models to instruction-based layout planning.
-\ac{lggpt} uses compact task instructions to unify layouts across domains, while \ac{unilaydiff} models background content and relational layout constraints jointly.
-\ac{vascar} iteratively evaluates rendered layouts with a vision-language model, and \ac{sega} combines coarse-to-fine layout reasoning with a design prior.
-\ac{aesthetiq} uses preference alignment to target aesthetic layout judgments, whereas \ac{postero} represents generalized poster layouts as hierarchical \ac{svg} trees and \ac{posterllava} uses multimodal instruction-tuned structured layout outputs.
-These approaches provide evidence for different generation-time control contracts, but they do not establish equivalent post-export edit operations.
+\paragraph{Control mechanisms and their limits.}
+Layout-control methods differ in whether conditions are embedded in a learned generator, parsed from an instruction, or enforced during subsequent refinement.
+\ac{vtn} models global design rules with a variational transformer and \ac{ldgm} decouples diffusion over element attributes, while \ac{play} exposes parametric guidelines as latent-diffusion controls.
+By contrast, \ac{parsethenplace} first converts textual requirements into structured constraints, and \ac{textlap} and \ac{lggpt} use language-model interfaces for layout planning.
+\ac{icvt} addresses correspondence between image geometry and visual-textual elements, whereas \ac{unilaydiff} models background and relational constraints jointly.
+Evaluation-time intervention is another distinct approach: \ac{vascar} uses vision-language feedback on rendered layouts, \ac{sega} combines coarse-to-fine reasoning with a design prior, and \ac{aesthetiq} targets preference-aligned aesthetics.
+Finally, \ac{postero} builds hierarchical \ac{svg} poster structures and \ac{posterllava} produces multimodal instruction-conditioned layouts, changing the output contract as well as the control interface.
+Because these families expose different constraints, feedback signals, and artifact granularity, reported control performance should not be interpreted as a common measure of post-export editing.
+
 \paragraph{Synthesis: what layout control establishes.}
 Across adversarial, autoregressive, diffusion, optimization, and language-model approaches, controllability must be interpreted against the constraints available at inference time.
 An unconditional layout sample, a content-conditioned poster arrangement, and a layout that satisfies explicit user constraints are not interchangeable experimental outcomes.
@@ -74,11 +75,11 @@ Design Your Ad models personalized image-and-text advertising based on user hist
 These signals target different qualities: engagement, text correctness, product identity, and human aesthetic preference cannot be conflated.
 \ac{brief2design} supports requirements clarification, element exploration, and recombination from professional briefs rather than treating the completed image as the only useful output.
 
-\paragraph{Commercial creative generation and personalization.}
-\ac{planningrendering} separates product-poster layout planning from background rendering, whereas \ac{refadgen} conditions advertising synthesis on product masks and features.
-\ac{dreamposter} generates posters using image and text conditions, and a personalized e-commerce banner pipeline uses user interactions to derive image prompts \citep{ecommercebanners2024}.
-\ac{cg4ctr} optimizes advertising image synthesis toward click-through rewards, a different construct from native editing accuracy.
-Their output contracts must be compared separately before interpreting downstream design-editability claims.
+\paragraph{Personalization objectives versus artifact control.}
+Commercial-generation methods also differ in what feedback optimizes: \ac{planningrendering} separates layout planning from background rendering, while \ac{refadgen} uses product masks and features to constrain visual identity.
+\ac{dreamposter} conditions generation on image and text, and personalized e-commerce banners derive prompts from recorded user interactions \citep{ecommercebanners2024}.
+\ac{cg4ctr} instead optimizes an advertising image toward click-through rewards, which does not measure preservation of editable elements or instruction-following accuracy.
+These systems therefore require comparison of product fidelity, personalization objectives, and returned source files rather than assuming that business-response gains imply easier design revision.
 
 \paragraph{Template and full-poster generation.}
 \ac{desigen} explicitly iterates between background generation and layout prediction, while \ac{designdiffusion} generates complete design imagery directly from text without relying on an exported object hierarchy.
