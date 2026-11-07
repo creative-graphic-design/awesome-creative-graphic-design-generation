@@ -66,6 +66,21 @@ jobs:
           pdftoppm -f 1 -l 1 -singlefile -r 350 -png paper/figs/assets/logos/cyberagent-symbol.pdf paper/ca-square-preview
           test -s paper/research-map-preview.png
           test -s paper/ca-square-preview.png
+          # The original company wordmark begins to the right of its CA glyph.
+          # Fail if any black wordmark pixels leak into the square symbol tile.
+          pdftoppm -f 1 -l 1 -singlefile -r 120 paper/figs/assets/logos/cyberagent-symbol.pdf paper/ca-square-audit
+          python3 - <<'PY'
+          from pathlib import Path
+          data = Path("paper/ca-square-audit.ppm").read_bytes()
+          assert data.startswith(b"P6\\n"), "Expected binary RGB PPM"
+          parts = data.split(b"\\n", 3)
+          assert len(parts) == 4 and parts[2] == b"255", "Unexpected PPM header"
+          rgb = parts[3]
+          assert len(rgb) % 3 == 0, "Unexpected RGB payload"
+          black = sum(1 for i in range(0, len(rgb), 3) if max(rgb[i:i+3]) < 90)
+          assert black == 0, f"CA symbol crop still includes {black} black wordmark pixels"
+          print("PASS: compact CA logo has no black wordmark text pixels")
+          PY
       - name: Upload figure PDFs and proof PNGs
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
