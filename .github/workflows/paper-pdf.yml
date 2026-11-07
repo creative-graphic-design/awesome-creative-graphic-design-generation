@@ -76,7 +76,9 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Enforce manuscript writing checklist
-        run: python3 paper/scripts/check_manuscript.py
+        run: |
+          sh -n paper/scripts/prepare_affiliation_logos.sh
+          python3 paper/scripts/check_manuscript.py
 
       - name: Test one-sentence-per-line checker (including a failing fixture)
         run: python3 -m unittest discover -s paper/scripts/tests -p 'test_*.py'
@@ -104,7 +106,7 @@ jobs:
           working_directory: paper
           # The LaTeX Action uses Alpine; use its built-in package mechanism.
           # rsvg-convert preserves vector paths when rendering a pinned SVG PDF.
-          extra_system_packages: 'rsvg-convert curl python3'
+          extra_system_packages: 'rsvg-convert curl python3 unzip'
           pre_compile: |
             sh scripts/build_figures.sh
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
