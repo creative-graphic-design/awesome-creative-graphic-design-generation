@@ -177,6 +177,31 @@ Recovery quality can be measured against a known source decomposition, whereas e
 Methods that return native documents additionally need reopenability and object-type checks; a stack of raster layers cannot be assumed to preserve text semantics or vector paths.
 Accordingly, compositing, reconstruction, and instruction-driven revision should remain separate evidence categories in comparative tables.
 
+\subsection{Cross-Family Synthesis: Control, Artifact, and Revision}
+\paragraph{Layout control is not complete-document control.}
+Layout generation methods define distributions over object categories, boxes, or geometric relations, often conditioned on partial layouts or content.
+Methods such as \ac{layoutdm} and \ac{layoutformerpp} provide distinct ways of producing or constraining arrangements, but the layout alone does not specify whether typography, source assets, and object identities survive in a revisable document \citep{layoutdm2023}.
+Content-conditioned poster systems such as \ac{posterlayout} incorporate visual context, but their placement objectives should not be interpreted as tests of subsequent natural-language editing \citep{posterlayout2023}.
+The controlled variables and the delivered object types must be reported independently.
+
+\paragraph{Layer separability is not semantic object recovery.}
+Transparent foreground synthesis, foreground--background decomposition, and layered-document reconstruction have different starting points and evaluation denominators.
+For instance, \ac{tkgdm} and \ac{alfie} address transparent-image or foreground construction, whereas \ac{layeringdiff} and \ac{uniworlddesign} report distinct decomposition, reconstruction, or layer-synthesis protocols.
+A separable \ac{rgba} component can support compositing while still requiring manual work to change a word, recover a font, or rebind the original assets.
+A layer-quality score can thus establish a prerequisite for certain edits without measuring semantic edit execution.
+
+\paragraph{Structured output is an affordance, not an edit-success score.}
+A vector path or code-native document may expose parameters for modification, whereas a flattened image may require image-space regeneration.
+However, an \ac{svg} file with outlined letters need not allow semantic text replacement, and editable \ac{html}/\ac{css} does not guarantee that a requested edit preserves unrelated layout constraints.
+Evidence should therefore distinguish source-file validity, an illustrated edit, and a held-out editing measurement.
+This also avoids underestimating raster editing methods evaluated for instruction adherence and non-target preservation, including tasks covered by \ac{postertextbench}.
+
+\paragraph{Workflow systems require end-to-end attribution.}
+Agentic and document-scale systems combine planning, asset selection, rendering, critique, and revision, so improved final appearance cannot automatically be attributed to a single component or editing mechanism.
+Evaluations should identify which stages receive the original document, which operate only on rendered images, and whether the delivered file can be reopened and modified.
+A comparison with a geometry-only generator can be meaningful on a shared placement subtask, not as an unrestricted ranking of end-to-end document quality.
+Across families, the defensible comparison unit is a task--input--artifact--operation--measurement tuple rather than a model name or an undifferentiated editability label.
+
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.
 \ac{autopresent} generates structured slide visuals from natural-language specifications and compares image-level generation with programmatic outputs.
