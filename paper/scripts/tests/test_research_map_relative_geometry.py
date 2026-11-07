@@ -14,7 +14,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
     def test_padding_is_derived_from_shared_width(self):
         self.assertIn(r"\setlength{\MapCardPaddingX}{.025\MapCardWidth}", self.source)
         self.assertIn(r"\setlength{\MapCardPaddingY}{.0125\MapCardWidth}", self.source)
-        self.assertIn(r"\dimexpr\MapCardWidth-2\MapCardPaddingX\relax", self.source)
+        self.assertIn(r"\setlength{\MapCardContentWidth}{\MapCardWidth}", self.source)
         self.assertIn(r"inner xsep=\MapCardPaddingX", self.source)
         self.assertIn(r"inner ysep=\MapCardPaddingY", self.source)
 
