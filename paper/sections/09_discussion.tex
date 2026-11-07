@@ -19,15 +19,12 @@ An image preview cannot certify that a \ac{pdf}, \ac{svg}, \ac{pptx}, \ac{psd}, 
 Reliable evaluation should include a round-trip: reopen the saved result in a target editor or renderer, inspect whether objects retain the expected type, perform a controlled edit, then render again.
 This is especially important for code-native agents that may output visually convincing pages with brittle styles or missing assets \citep{designascode2026,editablevisual2026}.
 
-\paragraph{Representation-aware comparisons.}
-A fair comparison must define the task and permitted output.
-Penalizing raster editing for not generating vector nodes, or rewarding any \ac{svg} solely because it contains paths, mixes two evaluation questions.
-We recommend separate leaderboards for semantic edit compliance, format validity, and visual result quality, with clear reporting of which dimensions are inapplicable to a given output contract.
-
-\paragraph{Evidence-aligned claims.}
-To make comparisons auditable, each claimed editing capability should be paired with the delivered file type, a concrete operation, and the relevant measurement or demonstrated workflow.
-For example, alpha-mask quality can support a claim about compositing readiness, but not one about replacing semantic text; correct SVG rendering can support visual validity, but not one about retaining object identity after a later edit.
-This pairing also reveals where new benchmarks are most valuable: the unmeasured step between an artifact's structural affordances and reliable execution of users' actual revision requests.
+\paragraph{Evidence-aligned comparisons.}
+Cross-system comparisons must start with the task, permitted inputs, delivered artifact, and operations actually measured.
+Penalizing raster editing for not exporting vector nodes, or rewarding any \ac{svg} merely because it contains paths, confuses format requirements with edit-task success.
+Every editing-capability claim should therefore be linked to an output format, a concrete operation, and the relevant workflow demonstration or measurement.
+For example, alpha-mask quality supports compositing readiness but not semantic text replacement; successful SVG rendering establishes visual validity but not object-identity preservation after a later edit.
+We recommend reporting instruction compliance, protected-content preservation, artifact validity, visual quality, and editing effort separately, with inapplicable dimensions explicitly identified rather than silently scored as failures.
 
 \paragraph{A minimal cross-representation editing test.}
 A useful paired evaluation would start from the same rendered design and specify the same user intent---for example, replace a headline while preserving a logo and an unrelated caption---but allow each system to operate on its declared input and output representation.
