@@ -28,13 +28,15 @@ jobs:
         with:
           persist-credentials: false
       - name: Enforce institutional logo and figure rules
-        run: python3 paper/scripts/check_manuscript.py
+        run: |
+          sh -n paper/scripts/prepare_affiliation_logos.sh
+          python3 paper/scripts/check_manuscript.py
       - name: Build standalone figures only
         uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
         with:
           root_file: figs/tex/research_map_narrative.tex
           working_directory: paper
-          extra_system_packages: 'rsvg-convert curl python3'
+          extra_system_packages: 'rsvg-convert curl python3 unzip'
           pre_compile: |
             sh scripts/build_figures.sh
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
