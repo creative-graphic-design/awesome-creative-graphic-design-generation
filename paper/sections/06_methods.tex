@@ -47,6 +47,12 @@ These approaches require matched input constraints and output granularity before
 \ac{vascar} iteratively evaluates rendered layouts with a vision-language model, and \ac{sega} combines coarse-to-fine layout reasoning with a design prior.
 \ac{aesthetiq} uses preference alignment to target aesthetic layout judgments, whereas \ac{postero} represents generalized poster layouts as hierarchical \ac{svg} trees and \ac{posterllava} uses multimodal instruction-tuned structured layout outputs.
 These approaches provide evidence for different generation-time control contracts, but they do not establish equivalent post-export edit operations.
+\paragraph{Synthesis: what layout control establishes.}
+Across adversarial, autoregressive, diffusion, optimization, and language-model approaches, controllability must be interpreted against the constraints available at inference time.
+An unconditional layout sample, a content-conditioned poster arrangement, and a layout that satisfies explicit user constraints are not interchangeable experimental outcomes.
+Likewise, geometric validity or aesthetic preference measured at generation time does not demonstrate that a completed design can accept a later semantic edit without disturbing protected content.
+Thus, the appropriate cross-family comparison is a matched constraint-to-layout task, followed by a separate test of post-generation revisions if editability is claimed.
+
 \subsection{Multi-Stage Graphic Design and Agents}
 Integrated poster generation must coordinate language, asset production, layout decisions, and visual verification.
 \ac{cole} and \ac{opencole} use hierarchical design decomposition \citep{cole2023,opencole2024}.
@@ -79,6 +85,12 @@ Their output contracts must be compared separately before interpreting downstrea
 \ac{postermaker} couples product-preserving scene generation with targeted visual text rendering, and \ac{recontraster} plans and critiques posters using regional contrast.
 \ac{graphimind} instead provides a conversational and direct-manipulation environment for information-graphics authoring rather than solely a one-shot image generator.
 These methods should be compared by input requirements, the granularity of their final artifact, and the type of control or user action that their evaluations actually exercise.
+\paragraph{Synthesis: feedback timing and artifact ownership.}
+Multi-stage workflows differ in whether visual critique is used before the initial design is delivered or after a user requests a revision.
+A generator that revises its own intermediate rendering may improve initial quality without providing a persistent, externally editable source artifact.
+Conversely, a structured output can support direct manipulation while leaving autonomous instruction-following success unmeasured.
+Comparisons should therefore report the revision trigger, retained source objects, and who performs the operation, in addition to final image quality.
+
 \subsection{Typography and Vector Synthesis}
 Text rendering poses constraints not captured by photographic image fidelity.
 \ac{textdiffuser} and \ac{textdiffuser2} make text layout a first-class part of image generation; \ac{glyphdraw2} targets stylized, multilingual glyph-aware poster generation; \ac{glyphcontrol} and \ac{anytext} provide complementary glyph-conditioned and multilingual visual text generation/editing approaches.
@@ -159,6 +171,12 @@ Its sequential multi-foreground examples (Figure 7) demonstrate compositing affo
 Layer--instruction binding attention and layer-indexed positions link prompts to output slots, while PSD-derived semantic trees preserve occluded source pixels and provide top-level, recursive, and target-extraction supervision (Sections 3.4--3.5).
 The paper illustrates recursive decomposition (Figure 6) and external-agent manipulation of persistent raster layer states (Figure 2), but does not establish a native PSD/SVG document-export contract or a controlled multi-turn edit-operation success rate.
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
+\paragraph{Synthesis: decomposition is not equivalent to editing.}
+Directly generating transparent layers and reconstructing layers from a flattened image solve different inference problems, even when both return compositable assets.
+Recovery quality can be measured against a known source decomposition, whereas editing performance requires specifying a subsequent modification and scoring its effects.
+Methods that return native documents additionally need reopenability and object-type checks; a stack of raster layers cannot be assumed to preserve text semantics or vector paths.
+Accordingly, compositing, reconstruction, and instruction-driven revision should remain separate evidence categories in comparative tables.
+
 \subsection{Slides, Infographics, and Scientific Figures}
 Presentation slides form a distinct task family rather than a synonym for a poster.
 \ac{autopresent} generates structured slide visuals from natural-language specifications and compares image-level generation with programmatic outputs.
