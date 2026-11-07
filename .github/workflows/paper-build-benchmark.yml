@@ -1,0 +1,68 @@
+name: Paper PDF Build Benchmark
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'paper/scripts/benchmark_pdf_builds.sh'
+      - '.github/workflows/paper-build-benchmark.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: paper-build-benchmark-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    name: Compare normal and no-index PDF builds
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout manuscript
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Cache original logo masters
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+        with:
+          path: |
+            paper/figs/assets/logos/bit-original.ai
+            paper/figs/assets/logos/salesforce-official.zip
+            paper/figs/assets/logos/meituan-official.zip
+          key: institution-master-assets-v1-bit6fcb6505-salesforceb8cca7fa-meituan6817f88d
+      - name: Time fresh LaTeX/BibTeX builds
+        uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
+        with:
+          root_file: main-fast.tex
+          working_directory: paper
+          extra_system_packages: 'rsvg-convert curl python3 unzip time bash'
+          pre_compile: |
+            sh scripts/build_figures.sh
+            bash scripts/benchmark_pdf_builds.sh
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
+      - name: Publish timing results
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f paper/build-timings/main.time ]]; then
+            echo '### Normal build' >> "$GITHUB_STEP_SUMMARY"
+            cat paper/build-timings/main.time >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [[ -f paper/build-timings/main-fast.time ]]; then
+            echo '### Without printed acro lists' >> "$GITHUB_STEP_SUMMARY"
+            cat paper/build-timings/main-fast.time >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload logs and benchmark PDFs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: paper-pdf-build-benchmark
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            paper/build-timings/*
+            paper/main.pdf
+            paper/main-fast.pdf
