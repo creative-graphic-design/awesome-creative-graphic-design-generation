@@ -1,5 +1,11 @@
 # Graphic-design generation survey (working draft)
 
+## Single-column review PDF
+
+The manuscript has **two layouts from the same source**. Use `make pdf` for the official CVPR-style **two-column** `main.pdf`, and `make pdf-onecolumn` for a continuous **single-column** `main-onecolumn.pdf` (title, abstract, contents, body, figures, acronym indexes, and references).
+
+The single-column entry point `main-onecolumn.tex` defines a review-only switch and then inputs `main.tex`; it does not duplicate manuscript text or modify the vendored `cvpr.sty`. The review PDF is **not submission-compliant**. A standard Paper PDF CI run compiles both variants, checks that each output exists and contains the anonymous title and abbreviation index, and uploads both PDFs and first-page previews in the same artifact.
+
 This directory contains an initial **research-survey manuscript**, not a submitted CVPR paper. The taxonomy, references, screening criteria, and claims must be reviewed before publication.
 
 ## Draft PDF without printed acro lists (2026-11-08)
