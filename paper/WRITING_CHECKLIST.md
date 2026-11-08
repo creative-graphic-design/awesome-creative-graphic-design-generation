@@ -67,6 +67,9 @@
 
 ## acro citations, occurrence pages, and PDF deliverables
 
+- [ ] Prefer `\\ac{key}` alone for ordinary named-system mentions: `cite = {bibtex_key}` with `cite/display = first` automatically emits the first-use citation. Do not immediately append an identical `\\citep{bibtex_key}`; `check_manuscript.py` rejects that duplicate. Preserve separate `\\citep` when it independently supports a factual claim, quantitative result, or multiple-paper comparison; check the rendered first occurrence.
+
+
 - [ ] Give every named-system `\DeclareAcronym` a `cite = {bibtex_key}` tied to its original work; use `cite/cmd = \citep` with first-use citations and do not misread group citations as experimental evidence.
 - [ ] Enable `pages/display = all` to report every page where a named system or abbreviation appears, and inspect all three printed acro lists in the generated PDF.
 - [ ] After manuscript changes, build and inspect the updated anonymous PDF; **include the actual generated PDF and key figure PDF links in the user-facing response every time**, not only the GitHub PR or TeX source.
