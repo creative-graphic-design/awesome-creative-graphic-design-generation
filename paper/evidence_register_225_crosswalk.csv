@@ -201,7 +201,7 @@ working_register_id,bibtex_key,match_method,citation_status,editorial_decision,e
 "CGD-200","supersvg2024","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-201","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
 "CGD-202","infocolorizer2021","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
-"CGD-203","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
+"CGD-203","qiu2023multipalette","arxiv_id","linked","included","Original Sections 3-4 and Tables 1-5 inspected; color prediction/recoloring distinguished from generalized edit success"
 "CGD-204","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
 "CGD-205","dsfusion2023","arxiv_id","linked","pending","Identity linked via arxiv_id; evidence tier not promoted"
 "CGD-206","","","needs_review","pending","Unmatched original source requires manual review; NOT excluded"
