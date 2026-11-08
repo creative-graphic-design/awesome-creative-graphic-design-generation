@@ -116,7 +116,9 @@ jobs:
         if: steps.pdf_scope.outputs.build_pdf == 'true'
         uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
         with:
-          root_file: main.tex
+          root_file: |
+            main.tex
+            main-onecolumn.tex
           working_directory: paper
           # The LaTeX Action uses Alpine; use its built-in package mechanism.
           # rsvg-convert preserves vector paths when rendering a pinned SVG PDF.
@@ -131,6 +133,7 @@ jobs:
         run: |
           set -euo pipefail
           test -s paper/main.pdf
+          test -s paper/main-onecolumn.pdf
           test -s paper/figs/pdf/overview.pdf
           test -s paper/figs/pdf/edit_protocol.pdf
           test -s paper/figs/pdf/research_map.pdf
@@ -143,7 +146,12 @@ jobs:
           sudo apt-get install -y -qq poppler-utils
           pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
           pdftotext paper/main.pdf paper/main.txt
+          pdftotext paper/main-onecolumn.pdf paper/main-onecolumn.txt
+          pdfinfo paper/main-onecolumn.pdf | tee paper/pdfinfo-onecolumn.txt
           test -s paper/main.txt
+          test -s paper/main-onecolumn.txt
+          grep -qi 'Anonymous CVPR submission' paper/main-onecolumn.txt
+          grep -Fq 'Abbreviations' paper/main-onecolumn.txt
           if grep -Eq 'similaritypp\.|paper\)p\.' paper/main.txt; then
             echo 'Acronym index description and occurrence-page text are joined.' >&2
             exit 1
@@ -162,8 +170,10 @@ jobs:
             exit 1
           fi
           pdftoppm -f 1 -l 1 -singlefile -r 120 -png paper/main.pdf paper/first-page
+          pdftoppm -f 1 -l 1 -singlefile -r 120 -png paper/main-onecolumn.pdf paper/onecolumn-first-page
           pdftoppm -f 1 -l 1 -singlefile -r 200 -png paper/figs/pdf/research_map_narrative.pdf paper/research-map-print-preview
           test -s paper/first-page.png
+          test -s paper/onecolumn-first-page.png
           test -s paper/research-map-print-preview.png
           if pdfimages -list paper/figs/pdf/research_map_narrative.pdf | tail -n +3 | grep -q .; then
             echo 'Institution symbols in the paper research map must remain vector-only' >&2
@@ -184,8 +194,9 @@ jobs:
             echo 'The PDF and first-page preview are available under **Artifacts** at the bottom of this workflow run.'
             echo ''
             echo '- Artifact: survey-paper-${{ github.sha }}'
-            echo '- PDF: paper/main.pdf'
-            echo '- Preview: paper/first-page.png'
+            echo '- CVPR two-column PDF: paper/main.pdf'
+            echo '- Single-column review PDF: paper/main-onecolumn.pdf'
+            echo '- Preview: paper/first-page.png and paper/onecolumn-first-page.png'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload PDF, preview, and diagnostics
@@ -197,9 +208,14 @@ jobs:
           retention-days: 14
           path: |
             paper/main.pdf
+            paper/main-onecolumn.pdf
             paper/figs/pdf/*.pdf
             paper/first-page.png
+            paper/onecolumn-first-page.png
             paper/research-map-print-preview.png
             paper/main.txt
+            paper/main-onecolumn.txt
             paper/main.log
+            paper/main-onecolumn.log
             paper/pdfinfo.txt
+            paper/pdfinfo-onecolumn.txt
