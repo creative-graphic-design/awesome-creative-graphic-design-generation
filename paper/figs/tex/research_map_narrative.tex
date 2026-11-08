@@ -43,6 +43,7 @@
 \newlength{\MapCardRowHeight}
 \newlength{\MapCardTextOffset}
 \newlength{\MapCardLogoCenterX}
+\newlength{\MapCardTextPull}
 \newlength{\MapCardTitleOffset}
 \newlength{\MapCardDetailOffset}
 \newlength{\MapCardHeadingWidth}
@@ -52,8 +53,11 @@
 \setlength{\MapCardRowHeight}{.5\MapCardContentHeight}
 \setlength{\MapCardTextOffset}{\dimexpr\MapCardPaddingX+\MapCardLogoWidth\relax}
 \setlength{\MapCardLogoCenterX}{\dimexpr\MapCardPaddingX+.5\MapCardLogoWidth\relax}
-\setlength{\MapCardTitleOffset}{\dimexpr\MapCardPaddingY+.42\MapCardRowHeight\relax}
-\setlength{\MapCardDetailOffset}{\dimexpr\MapCardPaddingY+1.58\MapCardRowHeight\relax}
+% Pull both labels toward the shared boundary without changing the 50/50 rows.
+% The pull is proportional to row height, never a per-card absolute offset.
+\setlength{\MapCardTextPull}{.08\MapCardRowHeight}
+\setlength{\MapCardTitleOffset}{\dimexpr\MapCardPaddingY+.5\MapCardRowHeight+\MapCardTextPull\relax}
+\setlength{\MapCardDetailOffset}{\dimexpr\MapCardPaddingY+1.5\MapCardRowHeight-\MapCardTextPull\relax}
 % Repeated grid positions derive from a single width and common pitches.
 \newlength{\MapCardMarginX}
 \newlength{\MapCardRowPitch}
