@@ -18,12 +18,13 @@
   \node[measure] (c) at (5.76,-.18) {Native artifact validity\\$m_{\rm valid}$};
   \node[measure] (d) at (8.46,-.18) {Visual quality\\$m_{\rm visual}$};
   \node[measure] (e) at (11.16,-.18) {User / model effort\\$m_{\rm effort}$};
-  \draw[->,dashed,figMuted] (judge.south) -- ++(0,-.65) -| (e.north);
-  \draw[figRule] (0.36,.42) -- (11.16,.42);
-  \foreach \n in {a,b,c,d} {
-    \draw[->,dashed,figMuted] (judge.south) -- ++(0,-.65) -| (\n.north);
+  % One branching evaluation bus avoids five overlapping elbow arrows.
+  \draw[dashed,figMuted] (judge.south) -- (10.84,.52);
+  \draw[dashed,figMuted] (.36,.52) -- (11.16,.52);
+  \foreach \n/\xx in {a/.36,b/3.06,c/5.76,d/8.46,e/11.16} {
+    \draw[->,dashed,figMuted] (\xx,.52) -- (\n.north);
   }
   \node[font=\sffamily\small\itshape,align=center,text=figMuted] at (5.77,-1.24)
-  {Report which dimensions were actually evaluated; do not substitute FID, CLIP, or reconstruction error for editing success.};
+  {Measure edit success and preservation; visual fidelity alone is not sufficient.};
 \end{tikzpicture}
 \end{document}
