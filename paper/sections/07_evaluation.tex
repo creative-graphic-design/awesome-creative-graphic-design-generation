@@ -17,7 +17,7 @@ We therefore interpret numerical results within their original experimental cont
 \paragraph{Metric-specific trade-offs in foundational layout systems.}
 In \ac{layoutgan}'s original ICLR experiment, a wireframe-based discriminator reduces document-layout box overlap from 1.52\% to 1.17\% and alignment deviation from 6.4\% to 3.4\% compared with a relation-only discriminator (original Table~2) \citep{layoutgan2019}.
 Both remain above the corresponding real-layout overlap of 0.05\% and alignment deviation of 0.5\%, and none of these metrics measures revision of a rendered design.
-On the PKU \ac{posterlayout} evaluation, DS-GAN improves validity from 0.7066 to 0.8788 and reduces overlay from 0.0605 to 0.0220 relative to \ac{cglgan}, but has worse loose-underlay effectiveness (0.8315 vs. 0.8624) and saliency occlusion (0.2088 vs. 0.1546; lower is better) \citep{posterlayout2023}.
+On the PKU \ac{posterlayout} evaluation, \ac{dsgan} improves validity from 0.7066 to 0.8788 and reduces overlay from 0.0605 to 0.0220 relative to \ac{cglgan}, but has worse loose-underlay effectiveness (0.8315 vs. 0.8624) and saliency occlusion (0.2088 vs. 0.1546; lower is better) \citep{posterlayout2023}.
 These are layout-geometry and visual-saliency proxies on non-empty poster backgrounds, not direct evidence of retained text semantics or tested post-export editing.
 
 \paragraph{Matched-split diffusion and flow evaluations.}
@@ -92,9 +92,9 @@ The relevant interaction contracts also include mobile-shopping scenarios \citep
 Advertising creative generation \citep{wang2022creagan} and retrieval-augmented agentic composition \citep{forouzandehmehr2025calrag} optimize different production pipelines; the ability to request another layout is not equivalent to measured preservation of unrelated objects after editing a saved design.
 
 \paragraph{Verification gaps despite editable design programs.}
-CreatiPoster \citep{zhang2025creatiposter} produces an editable JSON program containing text and asset layers and supports canvas-conditioned completion and re-layout (Sec.~3.4 and Table~1 of the source).
+\ac{creatiposter} \citep{zhang2025creatiposter} produces an editable JSON program containing text and asset layers and supports canvas-conditioned completion and re-layout (Sec.~3.4 and Table~1 of the source).
 Its 90-case test collection separates 45 prompt-only cases, 39 single-asset cases, and six multi-asset cases, with VLM rubric scores for layout, color, style, and compliance and ten volunteers' overall ratings.
-The asset-conditioned comparison excludes the six multi-asset cases, leaving 84 cases; its authors report a higher human overall mean for CreatiPoster-S than Canva (2.82 versus 2.33), but the Canva layout score is higher in that setting (2.84 versus 2.41 for CreatiPoster-S).
+The asset-conditioned comparison excludes the six multi-asset cases, leaving 84 cases; its authors report a higher human overall mean for \ac{creatiposters} than Canva (2.82 versus 2.33), but the Canva layout score is higher in that setting (2.84 versus 2.41 for \ac{creatiposters}).
 Thus evidence for an editable source protocol and preference-based image quality should be presented separately from measured post-export edit instruction success.
 
 \paragraph{Layer-aware editing demonstration versus measured edit success.}
