@@ -47,7 +47,9 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         self.assertIn(r"at (.30\MapCardLogoWidth,.69\MapCardContentHeight)", self.source)
         self.assertIn(r"at (.70\MapCardLogoWidth,.31\MapCardContentHeight)", self.source)
         self.assertIn(r"\path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight)", self.source)
-        self.assertIn(r"width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio", self.source)
+        self.assertIn(r"width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio", self.source)
+        self.assertIn(r"\setlength{\MapPairLogoSize}{.38\MapCardLogoWidth}", self.source)
+        self.assertEqual(self.source.count(r"minimum width=\MapPairLogoSize,minimum height=\MapPairLogoSize"), 2)
 
     def test_card_margins_are_relative(self):
         source = self.source
