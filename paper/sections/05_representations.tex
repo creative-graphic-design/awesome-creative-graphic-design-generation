@@ -12,9 +12,9 @@ Table~\ref{tab:representation} summarizes common affordances and the evidence th
 Such systems provide useful structural arrangements, but layout coordinates need not include the image and text assets needed for a fully editable poster.
 Content-aware layout systems additionally place foreground elements in visual context \citep{cglgan2022,layoutdetr2024}.
 
-Raster generation delivers an integrated rendering.
+Raster-oriented design generation produces integrated image renderings, including diffusion-based design images \citep{designdiffusion2025}, product posters with rendered typography \citep{postermaker2025}, and images with visually generated text \citep{textdiffuser22024}.
 A \ac{png} image can retain an alpha channel, but the file format alone does not preserve independently editable text or design objects.
-A clean appearance is valuable, but targeted changes and preservation of neighboring content constitute a separate image-editing problem.
+Visual quality and text-rendering accuracy are valuable outcomes, but they do not measure whether a later requested edit preserves unrelated regions or text objects.
 SAWNA exemplifies a boundary: it enforces user-reserved blank regions during image synthesis to support later composition \citep{sawna2025}.
 Those regions are useful but do not establish post-export semantic object manipulation.
 \ac{postertext} targets localized rendered text patches; its \ac{html} structure is used to construct annotated training pairs, not exported as a native editable document by the generation model (Section 3 and Figure 3).
@@ -35,7 +35,7 @@ Layer-wise image vectorization instead aims to infer multiple stylized regions a
 The existence of vector paths does not establish instruction-driven edit accuracy or unchanged-object preservation.
 
 Hierarchical systems including \ac{cole} and \ac{opencole} generate designs through intermediate composition steps.
-\ac{layerd} reconstructs layered structure from flattened designs.
+In contrast to directly generating layers, \ac{layerd} reconstructs a layer stack from a flattened design; decomposition accuracy does not establish the success of a subsequent semantic edit \citep{layerd2025}.
 \ac{layerfusion} instead jointly synthesizes transparent foreground and background layers, while \ac{igd} combines predicted layer attributes with generated image assets.
 \ac{alfie} instead obtains a transparent raster foreground by estimating an alpha matte from diffusion-transformer attention maps, enabling placement in an external composition but not independent editing of internal text or vector objects.
 A portable \ac{rgba} illustration is therefore a compositing affordance, not evidence of a native multi-object design hierarchy.
