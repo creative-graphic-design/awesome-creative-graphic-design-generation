@@ -99,6 +99,12 @@ A generator that revises its own intermediate rendering may improve initial qual
 Conversely, a structured output can support direct manipulation while leaving autonomous instruction-following success unmeasured.
 Comparisons should therefore report the revision trigger, retained source objects, and who performs the operation, in addition to final image quality.
 
+\paragraph{Joint generation, progressive planning, and design adaptation.}
+Joint generation from a design intent changes the input contract relative to placement-only methods: \citet{yang2026interil} couple background generation and element layout, while \citet{yang2026contenteditedlayout} add source-image adaptation alongside layout prediction.
+In contrast, \citet{lee2026playground} work from supplied visual and textual elements and repeatedly plan against the accepted rendered canvas, yielding explicit layout attributes but not automatically demonstrating post-export document revision.
+The agentic feedback mechanisms also differ: \citet{wang2025mimo} reflect on rendered advertising banners, while \citet{du2026designerrsi} adapt procedural memories of design-software actions rather than a single design image.
+Design-conditioned human insertion \citep{hou2026humanaware} further illustrates that controllable geometric or visual composition need not imply native text or object editing.
+
 \subsection{Typography and Vector Synthesis}
 Text rendering poses constraints not captured by photographic image fidelity.
 \ac{textdiffuser} and \ac{textdiffuser2} make text layout a first-class part of image generation; \ac{glyphdraw2} targets stylized, multilingual glyph-aware poster generation; \ac{glyphcontrol} and \ac{anytext} provide complementary glyph-conditioned and multilingual visual text generation/editing approaches.

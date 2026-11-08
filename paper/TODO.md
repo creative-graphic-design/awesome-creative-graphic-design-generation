@@ -267,3 +267,11 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] **CGD-203 / multi-palette color recommendation:** Re-read the live Evidence Matrix 225, Citation and R-E-V Coverage, and Source Tier Reconciliation rows 204, and checked the original arXiv paper [2209.10820](https://arxiv.org/abs/2209.10820) Sections 3–4 and Tables 1–5. Reconciled its bibliographic identity in references.bib, both crosswalks, the manuscript evaluation discussion and the citation-level audit. Removed its row from the unresolved identity queue only after matching the primary arXiv identity.
 - [x] **Evidence limits:** Top-1 masked-color accuracy 0.36 on 2,278 held-out designs; 84-person preference evaluation and 12-designer interview concern color recommendations and interactive recoloring, not arbitrary post-export editing-command success. Table 5 shows the one-to-five masked-color accuracy decline (0.36 to 0.17). Do not infer a general native SVG/PSD authoring guarantee.
 - [ ] Final local validators, full anonymous PDF and author scientific acceptance remain open; this note is an evidence-integration checkpoint rather than acceptance of final typography or publication readiness.
+
+## P2 batch abstract-level identity reconciliation — 2026-11-08
+
+- [x] Reconciled all **12 remaining P2** bibliographic identities by original arXiv IDs, publisher proceedings records or DOI pages, retaining their exact working study IDs and distinct original versions.
+- [x] Updated BibTeX, the citation-level audit, both identity crosswalks, manuscript comparisons and the unresolved-ID queue together in one consolidated Git tree change.
+- [ ] **Scientific evidence depth remains open for all 12:** publisher/author abstracts establish the task, broad method and publication identity; individual experimental tables, appendix details, quantitative claims and output-format round-trips have **not** been audited. These entries remain `abstract_index` with claim-specific checks `not_verified` rather than being falsely promoted to original-methods/results review.
+- [ ] The remaining **P3** cases require a separate original-source review and careful scope/version adjudication; unresolved identity does **not** mean excluded.
+- [ ] Final independent author scientific approval, CI checks and PDF visual acceptance are not implied by source identity reconciliation.
