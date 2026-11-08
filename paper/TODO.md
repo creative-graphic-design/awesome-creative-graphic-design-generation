@@ -333,3 +333,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Extended Methods/Evaluation prose to distinguish vector reconstruction, interpolation, retrieval and text-to-SVG caption alignment from native semantic editing.
 - [x] Fixed `posterlayout` acro DOI metadata after reading the Paper PDF CI log: `ERROR: DOI differs from BibTeX: posterlayout`. This is a bibliographic consistency fix, not a research-map/logo modification.
 - [ ] Confirm the Paper PDF writing-checklist job passes on this revision; original paper PDF screenshots were unavailable; final manuscript visual inspection and systematic search are outstanding.
+
+## Evidence crosswalk CI regression repair — 2026-11-08
+
+- [x] Investigated Paper PDF failure in workflow run 42440268168; the source-level unit tests assumed the old 173-linked / 52-unresolved baseline, and attempted `pop()` and `rows[0]` when the unresolved queue was correctly empty.
+- [x] Rebased the unchanged-baseline test to **225 linked / 0 unresolved**, replaced empty-queue-negative cases with injected stale queue rows, preserved stale-priority regression coverage, and added explicit stale-link-status rejection.
+- [x] Audited the frozen 225-ID snapshot against BibTeX using the validator's exact identity-priority algorithm. Corrected **five stale `match_method` fields** (CGD-008, CGD-013, CGD-017: DOI→URL; CGD-189, CGD-207: URL→DOI). No citation keys or author-review decisions changed.
+- [ ] Re-run repository CI to verify this set on GitHub. Research-map and institutional-logo rules are outside this task and have not been modified.

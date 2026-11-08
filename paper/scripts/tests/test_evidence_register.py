@@ -49,8 +49,8 @@ class EvidenceRegisterTest(unittest.TestCase):
         errors, counts = validator.validate(self.paper)
         self.assertEqual(errors, [])
         self.assertEqual(counts["sheet_studies"], 225)
-        self.assertEqual(counts["linked"], 173)
-        self.assertEqual(counts["needs_review"], 52)
+        self.assertEqual(counts["linked"], 225)
+        self.assertEqual(counts["needs_review"], 0)
 
     def test_old_spreadsheet_review_is_rejected(self) -> None:
         manifest = self.paper / "evidence_register_snapshot_manifest.json"
@@ -71,17 +71,60 @@ class EvidenceRegisterTest(unittest.TestCase):
         errors, _ = validator.validate(self.paper)
         self.assertTrue(any("Stale/missing BibTeX link" in e for e in errors))
 
-    def test_missing_unresolved_queue_row_is_rejected(self) -> None:
-        self.rewrite("evidence_review_queue.csv", lambda rows: rows.pop())
+    def inject_queue_row(self, priority: str) -> None:
+        """Model a stale unresolved queue row after all 225 identities are linked."""
+        with (self.paper / "evidence_register_225_snapshot.csv").open(
+            encoding="utf-8", newline=""
+        ) as handle:
+            source = next(csv.DictReader(handle))
+        row = {
+            "working_register_id": source["working_register_id"],
+            "paper_title": source["paper_title"],
+            "primary_task": source["primary_task"],
+            "primary_url": source["primary_url"],
+            "evidence_tier": source["evidence_tier_sheet"],
+            "source_recheck_level": source["source_recheck_level_sheet"],
+            "review_priority": priority,
+            "next_action": "Investigate stale row",
+            "editorial_status": "pending",
+        }
+        path = self.paper / "evidence_review_queue.csv"
+        with path.open(encoding="utf-8", newline="") as handle:
+            fields = csv.DictReader(handle).fieldnames
+        assert fields is not None
+        with path.open("a", encoding="utf-8", newline="") as handle:
+            csv.DictWriter(handle, fieldnames=fields).writerow(row)
+
+    def test_spurious_unresolved_queue_row_is_rejected(self) -> None:
+        self.inject_queue_row("P1-primary-source")
         errors, _ = validator.validate(self.paper)
         self.assertTrue(any("Review queue must contain exactly" in e for e in errors))
 
     def test_changed_priority_is_rejected(self) -> None:
-        def corrupt(rows):
-            rows[0]["review_priority"] = "P3-catalogue"
-        self.rewrite("evidence_review_queue.csv", corrupt)
+        with (self.paper / "evidence_register_225_snapshot.csv").open(
+            encoding="utf-8", newline=""
+        ) as handle:
+            source = next(csv.DictReader(handle))
+        tier = (source["evidence_tier_sheet"] + " " +
+                source["source_recheck_level_sheet"]).lower()
+        import re
+        if re.search(r"primary.methods|methods.results|full.sections|selected.method|original.section|checked.main|paper.text.verified", tier):
+            expected = "P1-primary-source"
+        elif re.search(r"abstract|publisher|author|mirror", tier):
+            expected = "P2-abstract-source"
+        else:
+            expected = "P3-catalogue"
+        wrong = "P3-catalogue" if expected != "P3-catalogue" else "P1-primary-source"
+        self.inject_queue_row(wrong)
         errors, _ = validator.validate(self.paper)
         self.assertTrue(any("Stale source-tier review priority" in e for e in errors))
+
+    def test_stale_link_status_is_rejected_with_empty_queue(self) -> None:
+        def corrupt(rows):
+            rows[0]["citation_status"] = "needs_review"
+        self.rewrite("evidence_register_225_crosswalk.csv", corrupt)
+        errors, _ = validator.validate(self.paper)
+        self.assertTrue(any("Stale citation status" in e for e in errors))
 
     def test_tkgdm_preprint_alias_regression_is_rejected(self) -> None:
         bib = self.paper / "references.bib"
