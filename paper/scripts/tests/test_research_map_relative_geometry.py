@@ -16,7 +16,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         source = self.source
         for token in (
             r"\setlength{\MapCardHeight}{.20\MapCardWidth}",
-            r"\setlength{\MapCardPaddingX}{.025\MapCardWidth}",
+            r"\setlength{\MapCardPaddingX}{.04\MapCardWidth}",
             r"\setlength{\MapCardPaddingY}{.016\MapCardWidth}",
             r"\dimexpr\MapCardWidth-2\MapCardPaddingX\relax",
             r"\dimexpr\MapCardHeight-2\MapCardPaddingY\relax",
@@ -44,7 +44,10 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
     def test_layoutflow_pair_stays_inside_logo_quarter(self):
         self.assertIn(r"\MapPaperBrandPair{A}{LayoutFlow}{24}{layoutflow2024}", self.source)
         self.assertIn(r"\MapLogoPair{utokyo}{cyberagent-symbol}", self.source)
-        self.assertIn(r"width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio", self.source)
+        self.assertIn(r"at (.30\MapCardLogoWidth,.69\MapCardContentHeight)", self.source)
+        self.assertIn(r"at (.70\MapCardLogoWidth,.31\MapCardContentHeight)", self.source)
+        self.assertIn(r"\path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight)", self.source)
+        self.assertIn(r"width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio", self.source)
 
     def test_card_margins_are_relative(self):
         source = self.source
