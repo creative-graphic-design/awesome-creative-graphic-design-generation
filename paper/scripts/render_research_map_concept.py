@@ -84,6 +84,25 @@ def main() -> None:
             subprocess.run(["pdftocairo", "-svg", str(source), str(target)],
                            check=True, stdout=subprocess.DEVNULL)
             symbol = ET.parse(target).getroot()
+        # Cairo reuses IDs such as "clip-0" and "source-5" for each PDF.
+        # Scope every SVG definition and every reference to this placement;
+        # otherwise embedded logos may share the wrong clipping paths.
+        prefix = f"mark-{stem.replace('-', '_')}-{int(x)}-{int(y)}-"
+        remap = {}
+        for element in symbol.iter():
+            original = element.get("id")
+            if original:
+                remap[original] = prefix + original
+        for element in symbol.iter():
+            for key, value in list(element.attrib.items()):
+                if key == "id" and value in remap:
+                    element.set(key, remap[value])
+                else:
+                    for old_id, new_id in remap.items():
+                        value = value.replace(f"url(#{old_id})", f"url(#{new_id})")
+                        if value == f"#{old_id}":
+                            value = f"#{new_id}"
+                    element.set(key, value)
         symbol.set("x", str(x))
         symbol.set("y", str(y))
         symbol.set("width", str(size))
