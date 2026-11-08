@@ -7,9 +7,10 @@ This directory contains an initial **research-survey manuscript**, not a submitt
 For an optional local draft, run `cd paper && make pdf-fast` (output: `paper/main-fast.pdf`).
 This preserves the complete `acro` registry, `\ac{...}` references, and first-use citation behavior, but omits the three printed acronym/system/evaluation lists.
 Run `make pdf` for the canonical `paper/main.pdf`, including all three `acro` lists and occurrence-page indexes; CI continues to build and validate this full variant.
-The fast target is a diagnostic and writing aid, not a published manuscript or a verified speedup: benchmark it before attributing build latency to `acro`.
-For a reproducible local comparison after `make figures`, run `bash scripts/benchmark_pdf_builds.sh` inside `paper/`; it cleans both TeX targets, times fresh runs, records LaTeX logs under `paper/build-timings/`, and excludes figure compilation from the timed region.
-Both targets still build/check figures, and changing the draft's page count can affect reference convergence.
+The draft uses a single `pdflatex` pass when `main-fast.aux` and `main-fast.bbl` already exist; the first run bootstraps citations and forward references with additional passes.
+It reuses already-generated figure PDFs and skips the source-check suite, so run `make figures` once if an input figure is missing.
+This is an intentionally non-converged writing preview: after adding references or changing layout significantly, use `make pdf` for the fully checked, converged manuscript.
+The benchmark workflow records a warm `pdf-fast` invocation separately from the canonical build; it does not attribute any difference to the `acro` package alone.
 
 ## Latest acro typography correction — compiled and inspected (2026-11-05)
 
