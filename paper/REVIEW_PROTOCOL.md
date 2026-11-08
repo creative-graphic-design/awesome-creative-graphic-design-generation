@@ -77,3 +77,11 @@ Its fixed initial generator followed by **trained FBDD/HFA decomposition** produ
 The current selected citation register has **200** works, **171/225** identities linked and **54** unresolved; the separate public 207-item catalogue matches 154.
 I verified the source PDF and maps from [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), artifact 13379065431, and recorded evidence/limits in [T04 audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md).
 The planned multi-database search, deduplication and PRISMA screening flow **have not been executed**.
+
+## Evidence depth after bibliographic closure — 2026-11-08
+
+The frozen register contains **225 linked working study IDs with no unresolved bibliographic identity**, while the bibliography and separate citation-level audit contain **254 citations**. This is not a systematic-search or inclusion/exclusion flow.
+
+At this dated checkpoint, citation-level evidence depths are **9 methods/results**, **98 abstract/index**, **3 catalogue-only** and **144 not verified in the citation-level register**. Earlier method-specific workbooks may contain additional source reading that has not yet been transferred. These are citation counts, not accepted systematic-review study counts.
+
+Source-specific experimental statements require the original method or evaluation section, table, figure, or appendix locator. The remaining verification backlog must be audited in batches without falsely converting linked or abstract-only papers into primary-results verification. Bibliographic version aliases, systematic search/screening logs and author decisions remain separate unfinished steps.

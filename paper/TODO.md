@@ -289,3 +289,11 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Reconciled the **last 26 previously unmatched study identities**, including historical graphical-presentation work, content-aware poster layouts, and recent scientific-poster systems. Full provenance and depth caveats are in [P3_BATCH_IDENTITY_AUDIT_20261108.md](P3_BATCH_IDENTITY_AUDIT_20261108.md).
 - [x] Synchronized 26 BibTeX entries, 26 citation-level audit entries, 225-ID identity crosswalk, public-catalogue matching where present, manuscript comparisons and unresolved-identity queue as one atomic multi-file commit.
 - [ ] The **225 working IDs now have bibliographic links** but this does **not** mean 225 original full texts were read, 225 studies were systematically included, or every numerical/evaluation claim was verified. Scientific review, duplicate version adjudication, reproducible systematic search, author approvals and visual QA remain open. Do not convert archival identity reconciliation into a final systematic-screening count.
+
+## Scientific evidence depth and publication metadata — 2026-11-08
+
+- [x] Updated the methodology and review protocol to distinguish 225 linked IDs from 254 bibliography entries and from source-level scientific verification.
+- [x] Confirmed citation-depth totals: 9 methods/results, 98 abstract/index, 3 catalogue-only, 144 not verified in the citation-level audit; historical study-level reading is not silently promoted.
+- [x] Updated WACV 2023 Multi-Palette publication DOI 10.1109/WACV56688.2023.00361 and official pages 3621–3629, and synchronized its citation audit.
+- [x] Added a validator guard against declaring empirical claims verified when the citation source-depth is below methods/results.
+- [ ] Further primary-source audits, prospective systematic search execution, independent author decisions and final manuscript PDF review remain open. Figures and logos are handled in another workstream.

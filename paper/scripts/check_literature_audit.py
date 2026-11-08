@@ -70,6 +70,14 @@ for row in rows:
     for column in ("empirical_claim_audit", "representation_audit", "editability_audit", "evaluation_audit"):
         if row.get(column) not in CHECK_STATES:
             errors.append(f"Invalid {column} for {key}")
+    # Empirical claims must be grounded in inspected original methods/results.
+    if row.get("source_depth") != "methods_results" and row.get("empirical_claim_audit") == "verified":
+        errors.append(f"Empirical result marked verified without methods/results audit: {key}")
+    if row.get("source_depth") == "catalogue_only" and any(
+        row.get(column) == "verified"
+        for column in ("representation_audit", "editability_audit", "evaluation_audit")
+    ):
+        errors.append(f"Catalogue-only record cannot verify representation/edit/evaluation: {key}")
     if row.get("source_depth") == "methods_results" and not row.get("source_section_locator"):
         errors.append(f"Methods/results audit needs a source locator: {key}")
     if any(row.get(column) == "verified" for column in (
