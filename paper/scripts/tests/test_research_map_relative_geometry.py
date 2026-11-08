@@ -41,6 +41,11 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         ):
             self.assertIn(token, source)
 
+    def test_layoutflow_pair_stays_inside_logo_quarter(self):
+        self.assertIn(r"\\MapPaperBrandPair{A}{LayoutFlow}{24}{layoutflow2024}", self.source)
+        self.assertIn(r"\\MapLogoPair{utokyo}{cyberagent-symbol}", self.source)
+        self.assertIn(r"width=.44\\MapCardLogoWidth,height=.66\\MapCardContentHeight,keepaspectratio", self.source)
+
     def test_card_margins_are_relative(self):
         source = self.source
         self.assertIn(r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}", source)
@@ -48,7 +53,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
         self.assertIn(r"\dimexpr\MapColOne+\MapCardWidth+\MapCardMarginX\relax", source)
         self.assertIn(r"\dimexpr\MapRowATop-\MapCardRowPitch\relax", source)
         cards = re.findall(
-            r"^\\MapPaper(?:Brand)?\{[A-D]\}\{[^{}]+\}\{\d+\}\{[^{}]+\}"
+            r"^\\MapPaper(?:Brand|BrandPair)?\{[A-D]\}\{[^{}]+\}\{\d+\}\{[^{}]+\}"
             r"\{\\MapCol(?:One|Two|Three|Four)\}"
             r"\{\\MapRow(?:A|B|C|D)(?:Top|Bottom)\}",
             source,
