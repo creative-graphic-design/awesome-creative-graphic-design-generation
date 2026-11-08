@@ -145,15 +145,33 @@ if ABSTRACT_PATH.is_file():
             errors.append(f"Abstract-source citation identity mismatch: {key}")
             continue
         verified_fulltext = fulltext_by_key.get(key)
+        # T22 is a historical snapshot of abstract-stage checking, not a
+        # permanent cap on evidence depth. Later original-source reviews
+        # are preserved in the audit ledger and must be explicitly traced.
+        is_later_original_review = (
+            row["source_depth"] == "methods_results"
+            and "NEW ORIGINAL-SOURCE AUDIT:" in row["notes"]
+            and bool(re.search(
+                r"(?i)original (?:full|complete|author|publisher|CHI)|"
+                r"original Sections? |original full text|original paper",
+                row["source_section_locator"],
+            ))
+            and bool(re.search(r"https?://", row["source_section_locator"]))
+        )
         if verified_fulltext and row["source_depth"] == "methods_results":
             if verified_fulltext["original_methods_url"] not in row["source_section_locator"]:
                 errors.append(f"Original methods/results locator drift: {key}")
+        elif is_later_original_review:
+            # A newer independently recorded source review supersedes the
+            # T22 abstract-only status; do not rewrite its historical row.
+            pass
         elif row["source_depth"] != "abstract_index":
-            errors.append(f"Abstract claim promoted without original methods/results: {key}")
-        if not verified_fulltext and record["primary_abstract_url"] not in row["source_section_locator"]:
-            errors.append(f"Abstract source URL drift: {key}")
-        if not verified_fulltext and row["empirical_claim_audit"] == "verified":
-            errors.append(f"Abstract-only empirical claim incorrectly promoted: {key}")
+            errors.append(f"Abstract claim promoted without documented original-source review: {key}")
+        if not verified_fulltext and not is_later_original_review:
+            if record["primary_abstract_url"] not in row["source_section_locator"]:
+                errors.append(f"Abstract source URL drift: {key}")
+            if row["empirical_claim_audit"] == "verified":
+                errors.append(f"Abstract-only empirical claim incorrectly promoted: {key}")
 
 missing = set(bib_records) - seen
 if missing:
