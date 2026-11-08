@@ -1,0 +1,88 @@
+% Working survey manuscript. Official CVPR2027-v1 author kit, see README.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[review]{cvpr}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\usepackage{acro}
+\input{acronyms}
+\acsetup{cite/cmd = \citep, cite/display = first, pages/display = all, pages/name = true, pages/seq/use = false, pages/fill = {\nobreakspace\acrodotfill}}
+\def\confName{CVPR}
+\def\confYear{2027}
+\title{Beyond Visual Fidelity: A Survey of Representation, Editability, and Evaluation in Generative Graphic Design}
+%%%%%%%%% AUTHORS: official template's dummy data for blind review.
+% cvpr.sty replaces this block with "Anonymous CVPR submission" in review mode.
+% Only insert actual identities when preparing the final camera-ready version.
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\tt\small secondauthor@i2.org}
+}
+\begin{document}
+% The separate main-onecolumn.tex entry point selects an author-review layout.
+% Keep the article class's official twocolumn option for CVPR template checks.
+\ifdefined\surveyonecolumn
+  \onecolumn
+\fi
+\maketitle
+\input{sections/01_abstract}
+% Long-form survey navigation: one readable, hyperlinked contents page.
+% Use the standard article table of contents; restore columns only for submission mode.
+\clearpage
+\onecolumn
+\setcounter{tocdepth}{2}
+\tableofcontents
+\clearpage
+\ifdefined\surveyonecolumn
+  % Keep the body in one column for long-form scholarly review.
+\else
+  \twocolumn
+\fi
+\input{figs/tex/overview_figure}
+\input{figs/tex/edit_protocol_figure}
+\input{sections/02_introduction}
+\input{figs/tex/research_map_narrative_figure}
+\input{figs/tex/research_map_figure}
+\input{sections/03_related_surveys}
+\input{sections/04_methodology}
+\input{sections/05_representations}
+\input{sections/06_methods}
+\input{sections/07_evaluation}
+\input{sections/08_benchmarks}
+\input{sections/09_discussion}
+\input{sections/10_conclusion}
+% Keep all acro definitions and first-use citations in both modes.
+% The fast draft omits only the three printed acro indexes.
+\ifdefined\skipacrolists
+\else
+\section*{Abbreviations}
+\phantomsection
+\addcontentsline{toc}{section}{Abbreviations}
+\printacronyms[include=abbreviations,heading=none,display=all]
+\section*{Selected Systems and Terminology}
+\phantomsection
+\addcontentsline{toc}{section}{Selected Systems and Terminology}
+\printacronyms[include=systems,heading=none,display=all]
+\section*{Evaluation Resources}
+\phantomsection
+\addcontentsline{toc}{section}{Evaluation Resources}
+\printacronyms[include=evaluation,heading=none,display=all]
+\fi
+{\small
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{ieeenat_fullname}
+\bibliography{references}
+}
+\end{document}

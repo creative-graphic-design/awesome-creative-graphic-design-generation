@@ -1,0 +1,271 @@
+% Original author-drawn map. Representative selection; no causal or citation edges.
+% Study-specific, square-shaped logos are selected from the per-node affiliation audit.
+% These are draft identification marks, not evidence of organizational sponsorship.
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usepackage{graphicx}
+% Frames and contents are independent TikZ nodes (no table baseline).
+\usetikzlibrary{calc,arrows.meta}
+\input{figs/tex/figure_style}
+\colorlet{navy}{figNavy}
+\colorlet{ink}{figInk}
+\colorlet{muted}{figMuted}
+\colorlet{rule}{figRule}
+\colorlet{layout}{figBlue}
+\colorlet{poster}{figOrange}
+\colorlet{artifact}{figGreen}
+\colorlet{document}{figViolet}
+\definecolor{gan}{HTML}{C06849}
+\definecolor{latent}{HTML}{647F9E}
+\definecolor{diff}{HTML}{2675B4}
+\definecolor{agent}{HTML}{775BAE}
+\definecolor{struct}{HTML}{268B7B}
+\colorlet{edit}{figPink}
+% All card geometry is proportional to one width token.
+% The frame is a fixed-height TikZ rectangle; its contents are independent nodes.
+% MARGIN is the empty space between frames; PADDING is inside each frame.
+% Content columns: logo 1/4, text 3/4. Text rows: name 1/2, detail 1/2.
+\newlength{\MapCardWidth}
+\setlength{\MapCardWidth}{3.36cm}
+\newlength{\MapCardHeight}
+\setlength{\MapCardHeight}{.20\MapCardWidth}
+\newlength{\MapCardPaddingX}
+\newlength{\MapCardPaddingY}
+\setlength{\MapCardPaddingX}{.04\MapCardWidth}
+\setlength{\MapCardPaddingY}{.016\MapCardWidth}
+\newlength{\MapCardContentWidth}
+\setlength{\MapCardContentWidth}{\dimexpr\MapCardWidth-2\MapCardPaddingX\relax}
+\newlength{\MapCardContentHeight}
+\setlength{\MapCardContentHeight}{\dimexpr\MapCardHeight-2\MapCardPaddingY\relax}
+\newlength{\MapCardLogoWidth}
+\newlength{\MapCardTextWidth}
+\newlength{\MapCardTextStackHeight}
+\newlength{\MapCardRowHeight}
+\newlength{\MapCardTextOffset}
+\newlength{\MapCardLogoCenterX}
+\newlength{\MapCardTitleOffset}
+\newlength{\MapCardDetailOffset}
+\newlength{\MapCardHeadingWidth}
+\newlength{\MapCardSubtitleWidth}
+\setlength{\MapCardLogoWidth}{.25\MapCardContentWidth}
+\setlength{\MapCardTextWidth}{.75\MapCardContentWidth}
+% Center a compact stack in the full card: its equal halves retain 50/50 geometry.
+% The stack is shorter than the content height so the two baselines are close.
+\setlength{\MapCardTextStackHeight}{.84\MapCardContentHeight}
+\setlength{\MapCardRowHeight}{.5\MapCardTextStackHeight}
+\setlength{\MapCardTextOffset}{\dimexpr\MapCardPaddingX+\MapCardLogoWidth\relax}
+\setlength{\MapCardLogoCenterX}{\dimexpr\MapCardPaddingX+.5\MapCardLogoWidth\relax}
+% Both labels are centered in their own half of a compact two-row stack.
+% This is symmetric around the full card center (no top or bottom anchoring).
+\setlength{\MapCardTitleOffset}{\dimexpr.5\MapCardHeight-.5\MapCardRowHeight\relax}
+\setlength{\MapCardDetailOffset}{\dimexpr.5\MapCardHeight+.5\MapCardRowHeight\relax}
+% Repeated grid positions derive from a single width and common pitches.
+\newlength{\MapCardMarginX}
+\newlength{\MapCardRowPitch}
+\setlength{\MapCardMarginX}{.172619\MapCardWidth}
+\setlength{\MapCardRowPitch}{.232\MapCardWidth}
+\newlength{\MapColOne}
+\newlength{\MapColTwo}
+\newlength{\MapColThree}
+\newlength{\MapColFour}
+\setlength{\MapColOne}{3.18cm}
+\setlength{\MapColTwo}{\dimexpr\MapColOne+\MapCardWidth+\MapCardMarginX\relax}
+\setlength{\MapColThree}{\dimexpr\MapColTwo+\MapCardWidth+\MapCardMarginX\relax}
+\setlength{\MapColFour}{\dimexpr\MapColThree+\MapCardWidth+\MapCardMarginX\relax}
+\newlength{\MapRowATop}
+\newlength{\MapRowABottom}
+\newlength{\MapRowBTop}
+\newlength{\MapRowBBottom}
+\newlength{\MapRowCTop}
+\newlength{\MapRowCBottom}
+\newlength{\MapRowDTop}
+\newlength{\MapRowDBottom}
+\setlength{\MapRowATop}{10.58cm}
+\setlength{\MapRowABottom}{\dimexpr\MapRowATop-\MapCardRowPitch\relax}
+\setlength{\MapRowBTop}{8.71cm}
+\setlength{\MapRowBBottom}{\dimexpr\MapRowBTop-\MapCardRowPitch\relax}
+\setlength{\MapRowCTop}{6.84cm}
+\setlength{\MapRowCBottom}{\dimexpr\MapRowCTop-\MapCardRowPitch\relax}
+\setlength{\MapRowDTop}{4.97cm}
+\setlength{\MapRowDBottom}{\dimexpr\MapRowDTop-\MapCardRowPitch\relax}
+\newcounter{MapPaperNodeCounter}
+\newcommand{\MapPaperFrame}[4]{%
+  \stepcounter{MapPaperNodeCounter}%
+  \node[anchor=north west,draw=#3,fill=white,rounded corners=2pt,
+    line width=.80pt,inner sep=0pt,outer sep=0pt,
+    minimum width=\MapCardWidth,minimum height=\MapCardHeight]
+    (mapPaperCard-\arabic{MapPaperNodeCounter}) at (#1,#2) {};%
+  #4%
+}
+\newcommand{\MapPaperContent}[4]{%
+  \settowidth{\MapCardHeadingWidth}{{\sffamily\bfseries\fontsize{7.0}{7.8}\selectfont #1}\hspace{.35em}{\sffamily\fontsize{6.2}{7}\selectfont '#2}}%
+  \settowidth{\MapCardSubtitleWidth}{{\sffamily\fontsize{6.35}{7.1}\selectfont #3}}%
+  \ifdim\MapCardHeadingWidth>\MapCardTextWidth
+    \PackageError{researchmap}{#1: heading exceeds proportional text column}{Shorten the title}%
+  \fi
+  \ifdim\MapCardSubtitleWidth>\MapCardTextWidth
+    \PackageError{researchmap}{#1: description exceeds proportional text column}{Shorten the subtitle}%
+  \fi
+  \node[anchor=center,inner sep=0pt,outer sep=0pt] at
+    ($(mapPaperCard-\arabic{MapPaperNodeCounter}.north west)+(\MapCardLogoCenterX,-.5\MapCardHeight)$) {#4};%
+  \node[anchor=west,inner sep=0pt,outer sep=0pt] at
+    ($(mapPaperCard-\arabic{MapPaperNodeCounter}.north west)+(\MapCardTextOffset,-\MapCardTitleOffset)$)
+    {\hbox to \MapCardTextWidth{{\sffamily\bfseries\fontsize{7.0}{7.8}\selectfont #1}\hfil{\sffamily\fontsize{6.2}{7}\selectfont '#2}}};%
+  \node[anchor=west,inner sep=0pt,outer sep=0pt] at
+    ($(mapPaperCard-\arabic{MapPaperNodeCounter}.north west)+(\MapCardTextOffset,-\MapCardDetailOffset)$)
+    {\hbox to \MapCardTextWidth{{\sffamily\color{muted}\fontsize{6.35}{7.1}\selectfont #3}\hfil}};%
+}
+\newcommand{\MapPaper}[8]{%
+  \MapPaperFrame{#5}{#6}{#7}{\MapPaperContent{#2}{#3}{#8}{}}%
+}
+% Single logos use the same fixed quarter-column viewport as paired logos.
+% Align the visible logo leftward by a shared proportional offset; text stays fixed.
+\newcommand{\MapLogoSingle}[1]{%
+  \begin{tikzpicture}[inner sep=0pt,outer sep=0pt]
+    \path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight);
+    \node[anchor=center,inner sep=0pt,outer sep=0pt]
+      at (.40\MapCardLogoWidth,.50\MapCardContentHeight)
+      {\includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#1.pdf}};
+  \end{tikzpicture}%
+}
+\newcommand{\MapPaperBrand}[9]{%
+  \MapPaperFrame{#5}{#6}{#7}{%
+    \MapPaperContent{#2}{#3}{#8}{\MapLogoSingle{#9}}%
+  }%
+}
+% Two actual affiliation emblems share the existing 25% logo column.
+% Width and height constraints apply independently; no extra card width is used.
+% Two affiliation marks share one identical square-size constraint.
+% The size token is relative to the 25% logo column; no independent x/y scaling.
+\newlength{\MapPairLogoSize}
+\setlength{\MapPairLogoSize}{.38\MapCardLogoWidth}
+\newcommand{\MapLogoPair}[2]{%
+  \begin{tikzpicture}[inner sep=0pt,outer sep=0pt]
+    \path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight);
+    \node[anchor=center,inner sep=0pt,outer sep=0pt,minimum width=\MapPairLogoSize,minimum height=\MapPairLogoSize]
+      at (.19\MapCardLogoWidth,.69\MapCardContentHeight)
+      {\includegraphics[width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio]{figs/assets/logos/#1.pdf}};
+    \node[anchor=center,inner sep=0pt,outer sep=0pt,minimum width=\MapPairLogoSize,minimum height=\MapPairLogoSize]
+      at (.59\MapCardLogoWidth,.31\MapCardContentHeight)
+      {\includegraphics[width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio]{figs/assets/logos/#2.pdf}};
+  \end{tikzpicture}%
+}
+\newcommand{\MapPaperBrandPair}[9]{%
+  \MapPaperFrame{#5}{#6}{#7}{%
+    \MapPaperContent{#2}{#3}{#8}{#9}%
+  }%
+}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily]
+\fill[white] (0,.19) rectangle (19.08,13.0);
+\fill[navy,rounded corners=3pt] (.23,12.05) rectangle (18.83,12.82);
+\node[anchor=west,text=white,font=\bfseries\fontsize{13}{14}\selectfont] at (.56,12.46) {From layout prediction to editable graphic-design systems};
+\node[anchor=west,text=muted,font=\fontsize{8}{9}\selectfont] at (.52,11.71) {Selected studies grouped by cited reference year and primary task};
+\fill[navy!6,rounded corners=2pt] (3.03,10.83) rectangle (6.85,11.50);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{8.4}{9.2}\selectfont] at (3.18,11.24) {2019--2021};
+\node[anchor=west,text=muted,font=\fontsize{6.0}{7}\selectfont] at (3.18,10.98) {LEARNED GEOMETRY};
+\fill[navy!6,rounded corners=2pt] (6.98,10.83) rectangle (10.8,11.50);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{8.4}{9.2}\selectfont] at (7.13,11.24) {2022--2023};
+\node[anchor=west,text=muted,font=\fontsize{6.0}{7}\selectfont] at (7.13,10.98) {CONDITIONS + DIFFUSION};
+\fill[navy!6,rounded corners=2pt] (10.93,10.83) rectangle (14.75,11.50);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{8.4}{9.2}\selectfont] at (11.08,11.24) {2024--2025};
+\node[anchor=west,text=muted,font=\fontsize{6.0}{7}\selectfont] at (11.08,10.98) {INTEGRATED DESIGN};
+\fill[navy!6,rounded corners=2pt] (14.88,10.83) rectangle (18.7,11.50);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{8.4}{9.2}\selectfont] at (15.03,11.24) {2026};
+\node[anchor=west,text=muted,font=\fontsize{6.0}{7}\selectfont] at (15.03,10.98) {EDITING + DOCUMENTS};
+\fill[layout!7,rounded corners=2pt] (.25,9.07) rectangle (18.82,10.68);
+\fill[layout] (.25,9.07) rectangle (.38,10.68);
+\node[anchor=north west,text=layout,font=\bfseries\fontsize{12}{13}\selectfont] at (.56,10.52) {01};
+\node[anchor=west,text=ink,font=\bfseries\fontsize{7.1}{8.1}\selectfont] at (.55,9.72) {LAYOUT};
+\node[anchor=west,text=muted,font=\fontsize{6.3}{7}\selectfont] at (.55,9.43) {box geometry};
+\draw[rule] (2.93,9.19)--(2.93,10.56);
+\fill[poster!7,rounded corners=2pt] (.25,7.2) rectangle (18.82,8.81);
+\fill[poster] (.25,7.2) rectangle (.38,8.81);
+\node[anchor=north west,text=poster,font=\bfseries\fontsize{12}{13}\selectfont] at (.56,8.65) {02};
+\node[anchor=west,text=ink,font=\bfseries\fontsize{6.4}{7.4}\selectfont] at (.55,7.85) {COMPOSITION};
+\node[anchor=west,text=muted,font=\fontsize{6.8}{7.5}\selectfont] at (.55,7.56) {posters and ads};
+\draw[rule] (2.93,7.32)--(2.93,8.69);
+\fill[artifact!7,rounded corners=2pt] (.25,5.33) rectangle (18.82,6.94);
+\fill[fill=artifact] (.25,5.33) rectangle (.38,6.94);
+\node[anchor=north west,text=artifact,font=\bfseries\fontsize{12}{13}\selectfont] at (.56,6.78) {03};
+\node[anchor=west,text=ink,font=\bfseries\fontsize{8}{9}\selectfont] at (.55,5.98) {STRUCTURE};
+\node[anchor=west,text=muted,font=\fontsize{6.8}{7.5}\selectfont] at (.55,5.69) {SVG and layered assets};
+\draw[rule] (2.93,5.45)--(2.93,6.82);
+\fill[document!7,rounded corners=2pt] (.25,3.46) rectangle (18.82,5.07);
+\fill[document] (.25,3.46) rectangle (.38,5.07);
+\node[anchor=north west,text=document,font=\bfseries\fontsize{12}{13}\selectfont] at (.56,4.91) {04};
+\node[anchor=west,text=ink,font=\bfseries\fontsize{8}{9}\selectfont] at (.55,4.11) {DOCUMENTS};
+\node[anchor=west,text=muted,font=\fontsize{6.8}{7.5}\selectfont] at (.55,3.82) {slides and figures};
+\draw[rule] (2.93,3.58)--(2.93,4.95);
+\MapPaperBrand{A}{LayoutGAN}{19}{layoutgan2019}{\MapColOne}{\MapRowATop}{gan}{wireframe GAN}{bit-symbol}
+\MapPaperBrand{A}{VTN}{21}{vtn2021}{\MapColOne}{\MapRowABottom}{latent}{variational transformer}{google}
+\MapPaperBrand{A}{LayoutDM}{23}{layoutdm2023}{\MapColTwo}{\MapRowATop}{diff}{discrete diffusion}{cyberagent-symbol}
+\MapPaperBrand{A}{LayoutFormer++}{23}{layoutformerpp2023}{\MapColTwo}{\MapRowABottom}{agent}{serialized constraints}{microsoft}
+\MapPaperBrandPair{A}{LayoutFlow}{24}{layoutflow2024}{\MapColThree}{\MapRowATop}{diff}{flow matching}{\MapLogoPair{utokyo}{cyberagent-symbol}}
+\MapPaperBrand{A}{CoLay}{24}{colay2024}{\MapColThree}{\MapRowABottom}{diff}{multi-condition design}{google}
+\MapPaperBrand{A}{iPoster}{26}{iposter2026}{\MapColFour}{\MapRowATop}{diff}{graph-enhanced diffusion}{bit-symbol}
+\MapPaperBrand{A}{ReLayout}{26}{relayoutedit2026}{\MapColFour}{\MapRowABottom}{edit}{geometric editing}{microsoft}
+\MapPaper{B}{Vinci}{21}{vinci2021}{\MapColOne}{\MapRowBTop}{edit}{human feedback}
+\MapPaperBrand{B}{CGL-GAN}{22}{cglgan2022}{\MapColTwo}{\MapRowBTop}{gan}{background conditioning}{alibaba}
+\MapPaperBrand{B}{PosterLayout}{23}{posterlayout2023}{\MapColTwo}{\MapRowBBottom}{gan}{content-aware GAN}{pku}
+\MapPaperBrand{B}{LayoutDETR}{24}{layoutdetr2024}{\MapColThree}{\MapRowBTop}{latent}{multimodal DETR}{salesforce}
+\MapPaper{B}{POSTA}{25}{posta2025}{\MapColThree}{\MapRowBBottom}{agent}{poster planning}
+\MapPaperBrand{B}{PosterOmni}{26}{posteromni2026}{\MapColFour}{\MapRowBTop}{edit}{local + global editing}{meituan-symbol}
+\MapPaper{B}{InnoAds}{26}{innoads2026}{\MapColFour}{\MapRowBBottom}{agent}{text and style control}
+\MapPaperBrand{C}{DeepSVG}{20}{deepsvg2020}{\MapColOne}{\MapRowCTop}{struct}{vector sequences}{epfl}
+\MapPaperBrand{C}{VectorFusion}{23}{vectorfusion2023}{\MapColTwo}{\MapRowCTop}{diff}{diffusion-to-SVG}{berkeley}
+\MapPaperBrand{C}{COLE}{23}{cole2023}{\MapColTwo}{\MapRowCBottom}{agent}{editable layers}{microsoft}
+\MapPaperBrand{C}{OpenCOLE}{24}{opencole2024}{\MapColThree}{\MapRowCTop}{agent}{open hierarchical design}{cyberagent-symbol}
+\MapPaperBrand{C}{LayerD}{25}{layerd2025}{\MapColThree}{\MapRowCBottom}{edit}{raster-to-layers}{cyberagent-symbol}
+\MapPaperBrand{C}{DesignAsCode}{26}{designascode2026}{\MapColFour}{\MapRowCTop}{agent}{code-native objects}{microsoft}
+\MapPaperBrand{C}{MiLDEdit}{26}{mildedit2026}{\MapColFour}{\MapRowCBottom}{edit}{multilayer instructions}{adobe}
+\MapPaperBrand{D}{AutoPresent}{25}{autopresent2025}{\MapColThree}{\MapRowDTop}{agent}{slide generation}{berkeley}
+\MapPaper{D}{PPTAgent}{25}{pptagent2025}{\MapColThree}{\MapRowDBottom}{agent}{document-to-deck agent}
+\MapPaperBrand{D}{InfoEdit}{26}{yang2026infoedit}{\MapColFour}{\MapRowDTop}{edit}{dependent reflow}{ucsd}
+\MapPaper{D}{AutoFigure}{26}{autofigure2026}{\MapColFour}{\MapRowDBottom}{agent}{scientific illustration}
+
+% Four original schematic artifact examples, not screenshots of research outputs.
+\node[anchor=west,text=ink,font=\bfseries\fontsize{8.4}{9.3}\selectfont] at (.54,3.20) {FOUR OUTPUT CONTRACTS};
+\foreach \xa/\xb in {.48/4.78,4.97/9.27,9.46/13.76,13.95/18.73}{
+ \fill[white,draw=rule,rounded corners=2pt] (\xa,.94) rectangle (\xb,2.97);
+}
+\fill[layout!12] (.72,1.18) rectangle (2.08,2.70);
+\draw[layout,line width=.65pt] (.84,2.27) rectangle (1.92,2.56);
+\draw[layout,line width=.65pt] (.84,1.76) rectangle (1.82,2.13);
+\draw[layout,line width=.65pt] (.84,1.36) rectangle (1.42,1.62);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{7.5}{8.2}\selectfont] at (2.27,2.45) {Layout boxes};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (2.27,1.97) {Geometry};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (2.27,1.66) {Separate assets};
+\fill[poster!19] (5.19,1.18) rectangle (6.55,2.70);
+\fill[poster!72] (5.38,1.37) rectangle (6.35,1.99);
+\node[text=white,font=\bfseries\fontsize{7.7}{8.5}\selectfont] at (5.87,1.69) {SALE};
+\fill[orange!68] (5.89,2.32) circle (.23);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{7.5}{8.2}\selectfont] at (6.74,2.45) {Raster};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (6.74,1.97) {Appearance};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (6.74,1.66) {Possibly flat};
+\fill[artifact!14] (9.70,1.35) rectangle (10.83,2.44);
+\draw[artifact,line width=1.0pt] (9.79,2.18) .. controls (10.35,2.67) and (10.51,1.23) .. (10.93,1.73);
+\draw[artifact,dashed,line width=.6pt] (9.94,1.51) rectangle (11.09,2.64);
+\node[anchor=west,text=ink,font=\bfseries\fontsize{7.5}{8.2}\selectfont] at (11.35,2.45) {SVG / layers};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (11.35,1.97) {Objects};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (11.35,1.66) {Variable semantics};
+\draw[document,line width=.9pt] (14.21,1.22) rectangle (15.44,2.69);
+\fill[document!17] (14.35,2.38) rectangle (15.30,2.55);
+\foreach \yy in {2.12,1.90,1.68} {\draw[document!65,line width=.65pt] (14.36,\yy)--(15.28,\yy);}
+\node[anchor=west,text=ink,font=\bfseries\fontsize{7.5}{8.2}\selectfont] at (15.67,2.45) {Native file};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.97) {Object tree};
+\node[anchor=west,text=muted,font=\fontsize{6.4}{7.1}\selectfont] at (15.67,1.66) {Validate edits};
+% Compact technique legend below the examples; no detached logo footer.
+\node[anchor=west,text=ink,font=\bfseries\fontsize{6.5}{7.2}\selectfont] at (.64,.53) {Technique emphasis:};
+% Independent model-family coding, intentionally distinct from lane color.
+\node[anchor=west,text=muted,font=\fontsize{6.5}{7.1}\selectfont] at (4.38,.53) {
+\textcolor{gan}{\rule{5pt}{5pt}} GAN \quad
+\textcolor{latent}{\rule{5pt}{5pt}} VAE/Transformer \quad
+\textcolor{diff}{\rule{5pt}{5pt}} diffusion/flow \quad
+\textcolor{agent}{\rule{5pt}{5pt}} LM/agent \quad
+\textcolor{struct}{\rule{5pt}{5pt}} vector/code \quad
+\textcolor{edit}{\rule{5pt}{5pt}} editing};
+\end{tikzpicture}
+\end{document}

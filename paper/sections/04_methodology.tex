@@ -1,0 +1,52 @@
+\section{Scope and Evidence Method}
+\label{sec:scope}
+\paragraph{Unit of analysis.}
+We consider research on compositional layouts, design-specific visual text, vector or layered artifact construction, document editing and reconstruction, and design-specific evaluation.
+The intended domain is defined by the communication and composition task, rather than the appearance of a design-themed image.
+We retain generic image-generation work only when an explicit graphic-design constraint, component structure, or evaluation is central.
+Table~\ref{tab:task-grounding} distinguishes representative graphic-design tasks by their typical input and delivered artifact.
+The listed studies exemplify these tasks, but their outputs and evaluation protocols must be inspected individually before drawing conclusions about editing performance.
+
+\input{tabs/tex/task_grounding}
+
+\paragraph{Discovery and selection.}
+The working evidence register is seeded from a public research catalogue, prior surveys, original research proceedings, author project pages, and references within candidate papers.
+A publication and its preprint versions should be deduplicated as one research contribution after verifying their relationship.
+The catalogue is a living research index, not a final screened sample.
+The unit of bibliographic counting is a distinct research contribution rather than each preprint, publication version, or task performed by a system.
+We code multi-task papers on multiple analytical axes, even if they have only one primary catalogue category.
+Dataset and benchmark context includes \ac{rico}, \ac{publaynet}, and \ac{doclaynet}, whose application domains and annotation contracts differ; their reported results are not pooled.
+
+\paragraph{Verification levels.}
+We distinguish \emph{catalogue-only} entries, \emph{author/publisher abstract or indexed} entries, and works for which at least selected \emph{original methods or results} have been inspected.
+The last group is not necessarily a full-text audit of all appendices or an independent replication.
+We maintain a citation-level audit for individual bibliography keys independently of the broader study register, without assigning evidence tiers from aggregate historical review counts.
+For each cited work, source-level verification must be linked to a primary-paper section or figure and reconciled against the broader study register before an evidence tier is promoted.
+Empirical statements require identifiable evidence such as a method section, table, figure, or publisher record.
+Missing evaluation details in an uninspected paper are not treated as evidence that no evaluation exists.
+
+The provisional research register contains 225 working study identifiers, assembled from several sources rather than from a completed database-search and screening procedure.
+Its historical verification-depth labels and the manuscript's citation-level evidence audit are separate records: matching a study identifier to a bibliography entry does not establish that the original methods and results were inspected.
+Similarly, an unresolved catalogue-to-bibliography match is an identity or coverage question, not a screened exclusion.
+At the 2026-11-08 editorial checkpoint, all 225 frozen working identifiers had bibliographic links, but this is an identity-reconciliation result rather than evidence that 225 contributions passed systematic screening.
+
+The citation-level ledger covers a broader bibliographic universe than the provisional 225-study register.
+At the 2026-11-08 checkpoint, the bibliography and citation-level audit contain 260 entries, including related surveys, datasets, and contextual citations outside the frozen study register.
+Citation-level source depth remains separate from these counts: abstract-level identity verification is not verification of experiments, and a linked register is not a reproducible included-study sample.
+As of the 2026-11-08 citation-audit snapshot, 126 of 260 entries have bounded original methods/results evidence recorded, 130 have author/publisher abstracts or index-level evidence, three have catalogue-level bibliographic information only, and one remains unverified.
+These are source-review record states, not 126 independently reproduced experiments or 260 systematically included works.
+
+These counts are editorial snapshots rather than claims about a stable, systematically screened corpus.
+We maintain dated counts and reconciliation decisions in the accompanying evidence registers and audit logs, rather than treating changing editorial checkpoints as stable characteristics of the reviewed literature.
+
+\paragraph{Coding protocol.}
+For each work, we record input and task, output representation, control mechanism, editing operation, measurement target, metric/protocol, and source depth.
+We distinguish a capability implied by the artifact format from an operation demonstrated in the source and from one evaluated on a specified test set.
+When a work reports multiple outputs or editing tasks, we assign evidence to the relevant operation rather than giving the entire system one undifferentiated editability label.
+Boundaries matter: \ac{svg} paths are not necessarily editable semantic text; raster inpainting is a real image-editing capability without implying Photoshop-style object layers; and a graphical user interface can be demonstrated without a controlled user study.
+
+\paragraph{Limitations of the review process.}
+This is an initial narrative survey with structured coding, \emph{not yet} a reproducible systematic review.
+Search strings, database query dates, deduplication logs, exclusion rules, independent screening decisions, and reviewer agreement must be finalized before presenting complete coverage.
+The bibliography is deliberately representative rather than a claim to cite every study in the current registry.
+In the remainder, we avoid pooling incomparable metrics into a single leaderboard.

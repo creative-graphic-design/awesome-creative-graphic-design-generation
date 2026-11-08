@@ -1,0 +1,106 @@
+\section{Benchmark Coverage and Validity}
+\label{sec:benchmarks}
+A graphic-design benchmark is only informative relative to its \emph{input contract}, \emph{output contract}, \emph{task}, and \emph{scoring target}.
+Table~\ref{tab:benchmarks} separates generation, visual judgment, and editing.
+Their numerical results must not be aggregated into a cross-task leaderboard without calibration.
+
+\input{tabs/tex/benchmark_coverage}
+
+\subsection{What a Benchmark Measures}
+\paragraph{Generation preference and text-editing affordance are not equivalent.}
+The original \ac{opencole} workshop evaluation uses 200 \ac{designerintention} prompts and a proprietary GPT-4V five-axis visual judgment protocol (original Table~1) \citep{opencole2024}.
+The reported average for \ac{opencole} is 6.3 compared with \ac{cole}'s 6.0, whereas SDXL scores 7.2 and DALL-E~3 scores 7.9 as rendered-image baselines.
+Within the text-editable systems, \ac{opencole}'s typography/color score of 5.6 is slightly below \ac{cole}'s 5.7, while its layout score of 6.3 exceeds \ac{cole}'s 6.0.
+The authors note that some high-scoring raster baselines omit editable text and that the VLM judge can reward designs with missing text.
+We therefore distinguish this design-image preference score from source-text correctness, downstream editor interoperability, and measured success of protected-object edits.
+
+\ac{svgeditbench} evaluates changes to \ac{svg} code, whereas \ac{vectorgym} covers generation from text and sketches, vector editing, and \ac{svg} captioning \citep{svgeditbench2024,vectorgym2026}.
+The \ac{svgeditbench} dataset repository specifies six editing tasks built from 100 Twemoji source graphics, with \ac{svg}-code prompts and reference answer images; this design evaluates the resulting edit but should not be generalized to arbitrary professional document revision \citep{svgeditbench2024}.
+\ac{vectorgym} instead defines VG-Sketch, VG-Edit, VG-Text, and VG-Cap as four separate tasks with expert-authored annotations, and its \ac{vlm}-based judgment should be interpreted alongside the task-specific rendering and similarity measures \citep{vectorgym2026}.
+
+Multi-layer editing requires its own input contract and scoring protocol.
+\ac{mildedit} introduces editing of multi-layer documents with dedicated assessment axes \citep{mildedit2026}.
+Its original benchmark reports more than 20,000 layered-design cases and evaluates instruction following, layout consistency, aesthetics, and text rendering.
+In the original comparison table, the rendered-image-only editing baseline GPT-Image-1 scores 25.46\% on instruction following compared with Bagel's 14.23\%; this is a task-specific comparison, not a general native-document editing success rate.
+Crucially, the image-editing baselines receive a rendered document and document-level instruction rather than direct access to the editable layer structure, so their scores do not measure the advantages of native object manipulation.
+These studies refute an overly broad claim that there is no quantitative editing evaluation.
+
+Raster poster text editing evaluates different interventions and non-target regions from the SVG and layered-document benchmarks.
+\ac{postertextbench} measures poster generation and three distinct rendered-text patch operations, with string fidelity, masked non-target change and VLM quality interpreted separately (Section 4, Table 1).
+\ac{postertext320k} provides the automatically constructed \ac{html} patch annotations and training pairs, but these are not native document outputs evaluated by the benchmark.
+Deletion has no target-string accuracy, and poster generation uses VLM-scored subject preservation rather than masked perceptual distance.
+The remaining challenge is \emph{cross-representation comparability}: the permitted editing operations and document structures differ.
+
+\ac{graphicdesignbench} probes multiple professional design capabilities in both understanding and generation settings.
+\ac{bizgeneval} evaluates commercial visual generation in five document domains with four capability axes and human-verified constraint checks.
+Its five domains are slides, charts, webpages, posters, and scientific figures, crossed with text rendering, layout control, attribute binding, and knowledge reasoning; these are generation-side constraint checks rather than measurements of subsequent source-file editing \citep{li2026bizgeneval}.
+\ac{aesevalbench} focuses on whether visual-language models can assess aesthetic quality, including localized judgments.
+These evaluations provide valuable but different evidence.
+In particular, aesthetics-judge agreement, typography fidelity, valid code, and instruction-following should be reported separately.
+The arXiv abstract and software repository for \ac{graphicdesignbench} currently disagree about task count (50 versus 49), so a definitive count requires version reconciliation.
+
+\paragraph{Vector-code, visual-checklist, and preference evaluations.}
+Structured-code editing, rendered-image constraint satisfaction, and layout preference classification require distinct evaluation denominators.
+\ac{graphicdesignbench} compares SVG understanding, bug repair, code optimization, and style modification in its original code-only Table~23 \citep{deganutti2026gdb}.
+Its semantic SVG Q\&A favors GPT-5.4 over Gemini-3.1 (0.937 versus 0.900), but SVG repair similarity favors Gemini-3.1 (0.932 versus 0.793).
+\ac{bizgeneval} instead evaluates 8,000 human-checked constraints for 400 prompts spanning five commercial visual domains, without testing post-export edit transactions \citep{li2026bizgeneval}.
+\ac{designsense} scores four-class human layout preferences and reports Macro F1 0.456 against a proprietary baseline of 0.295 in its source-specific setting \citep{designsense2026}.
+A cross-domain benchmark should therefore identify whether the tested unit is SVG code, a rendered image, a human design preference, or a saved document revision.
+
+\paragraph{Structured-diagram evaluation.}
+\ac{diagramgenbenchmark} comprises eight diagram categories, requiring tests of semantic relations and code structure rather than treating output as a natural image alone.
+
+\subsection{Protected Content Versus Necessary Reflow}
+The advice to edit only the specified object is incomplete when the artifact encodes relationships.
+\ac{infoedit} studies infographics where an expanded text block or inserted element may force global layout \emph{reflow} \citep{yang2026infoedit}.
+Its released benchmark describes 1,000 infographics from eight logical-relation families and 4,000 instructions across four edit tasks; the scale and logical relations make it a distinct test of dependent changes, not evidence that all output formats support native-object editing \citep{yang2026infoedit}.
+An evaluation can specify the intended target set $T$, permitted dependent changes $R(D,u,T)$, and explicitly protected content $P$:
+\begin{equation}
+\mathcal{U}=T\cup R(D,u,T),\qquad P\cap\mathcal{U}=\emptyset.
+\label{eq:reflow}
+\end{equation}
+Here $\mathcal{U}$ denotes the allowed change scope.
+A successful edit may require adjusting elements in $R$ while preserving the semantic content or geometry of $P$.
+In a raster image, protected items may be regions or propositions rather than identifiable object IDs; in code-native documents they may be \ac{dom} nodes or layer dependencies.
+This partition is a recommended evaluation abstraction, not a metric claimed by the source papers.
+
+\ac{mptcbench} studies poster localization across markets, where typography and aesthetic conventions can change while a film's identity must remain stable.
+It likewise demonstrates why minimal pixel deviation is an inadequate generic objective.
+
+\subsection{Minimum Reporting Contract}
+For comparable evaluations, studies should disclose input artifacts, allowed editing actions/tools, output and file validity requirements, the scope of target/dependent/protected content, the treatment of invalid outputs, and calibration of any human or \ac{vlm} judge.
+Successful rendering of a preview does not by itself show that the saved layered, vector, or code-native artifact remains valid.
+
+\subsection{Domain-Specific Understanding and Scientific Validity}
+\ac{designprobe} examines visual-language-model understanding of graphic-design elements, style, and metaphor.
+Scientific illustration benchmarks introduce additional correctness constraints: \ac{sridbench} assesses whether a generated graphic communicates scientific concepts faithfully, and GENFIG1 tests graphical summary generation from research-paper content \citep{genfig12026}.
+\ac{sciflowbench} reverse-parses generated scientific diagrams into graphs to measure structural recoverability rather than merely visual resemblance.
+These benchmarks evaluate different stages of a scientific communication pipeline, so high performance on recognition or aesthetics does not imply correct arrows, graphs, or native editable objects.
+
+\paragraph{Structured design and content-transfer benchmarks.}
+Hybrid SVG/raster synthesis \citep{gupta2026layercanvas} preserves a vector layout and typographic source while diffusing the appearance of other elements, an output contract distinct from purely flattened poster imagery.
+Any2Poster \citep{vinaykumar2026any2poster} assesses poster generation from heterogeneous input files using content-recovery questions and visual criteria, whereas \ac{scipostgen} focuses on paper-conditioned poster-layout data and retrieval \citep{inadumi2025scipostgen}.
+\ac{spire} formulates slide personalization as inverse planning through structural denoising, but performance on personalized layout generation is not automatically evidence that a revised presentation can be reopened and modified in its native editor \citep{liu2026spire}.
+These tasks require distinct denominators for content retention, layout quality, native artifact validity, and subsequent revision.
+
+\paragraph{Scientific-poster artifact contracts.}
+Scientific-poster generation includes corpus-driven content-to-layout modeling \citep{zhong2025scienceposter} and systems promising editable presentation artifacts, such as \ac{postermeld} and \ac{postervisor} \citep{hu2026postermeld,li2026postervisor}.
+\ac{postermeld} evaluates request-level print-readiness across 621 paper requests, reporting an 81.3\% Print-Ready Rate against 24.2\% for P2P, 15.8\% for \ac{postergen}, and 85.2\% for the raster-only GPT-Image-2 baseline (original Table~1).
+Its reported 3.247 Craftsmanship--Harmony--Expressiveness score is conditional on print-ready outputs, unlike the request-level denominator of Print-Ready Rate, while the reported \$0.38 mean cost includes failed requests.
+The original paper treats native editable text and figure elements as a separate artifact property and tests its VLM judge against human annotations (Table~3), but does not establish a controlled post-export text-replacement success rate.
+An author-reported \ac{pptx} or \ac{html}/CSS output affords a different downstream workflow from a flattened poster, but the format claim is not itself a measurement of successful semantic editing or a validated reopen--modify--save cycle.
+Poster comparisons should separate scientific-content correctness, print readiness, native file validity and revision cost rather than collapsing them into image preference.
+
+\paragraph{A direct comparison of evaluated editing contracts.}
+Quantitative editing studies should be grouped by what the benchmark replays or judges, rather than only by the delivered file extension.
+\ac{redesign} evaluates edit replay on 909 recovered Figma designs and 14,796 controlled instructions, comparing the rendered effects of text, layout, and color operations on original and reconstructed documents \citep{redesign2026}.
+Its edited-render similarity and OCR text recovery measure action-effect fidelity, but a whole-image score does not by itself establish strict invariance of every non-target object.
+\ac{apex}-Bench instead gathers 514 academic-poster editing instructions and uses a VLM-as-judge rubric with instruction fulfillment, modification scope, and visual consistency \citep{apex2026}.
+Those VLM judgments include assessments of collateral modification and are not numerically interchangeable with \ac{redesign}'s paired edit replay.
+\ac{vectorgym} supplies expert-authored multi-step SVG-edit pairs and separately reports sketch-to-SVG, text-to-SVG and captioning evaluations \citep{vectorgym2026}.
+Its SVG edit metrics target code-based vector modifications, not the same typographic and native document operations as an academic-poster editing interface.
+
+\subsection{Document-Scale Editing}
+\ac{pptarena} measures in-place modifications of real presentation decks under natural-language requests, including structural and visual assessment.
+Unlike a screenshot comparison, an editing evaluation should inspect the original document tree, the requested change, and whether the revised file remains valid and manipulable.
+This setting complements the multi-layer design-editing tasks of \ac{mildedit} and the infographic reflow scenarios of \ac{infoedit} \citep{mildedit2026,yang2026infoedit}.

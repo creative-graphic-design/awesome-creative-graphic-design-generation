@@ -1,0 +1,30 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\input{figs/tex/figure_style}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily\scriptsize,>=Latex,
+  nodebox/.style={figpanel,text=figInk,align=center,minimum height=.84cm,inner sep=5pt},
+  measure/.style={draw=figGreen!65,fill=figGreenTint,text=figInk,rounded corners=3pt,align=center,minimum width=2.45cm,minimum height=.72cm,inner sep=3pt}]
+  \node[nodebox,minimum width=2.55cm] (input) at (0,1.75) {\textbf{Original document}\\$D$ plus edit request $u$};
+  \node[nodebox,minimum width=2.55cm,fill=figOrangeTint] (editor) at (3.55,1.75) {\textbf{Editing system}\\$f(D,u)$};
+  \node[nodebox,minimum width=2.55cm] (output) at (7.10,1.75) {\textbf{Result artifact}\\$D'$ in required format};
+  \node[nodebox,minimum width=2.85cm,fill=figGreenTint] (judge) at (10.84,1.75) {\textbf{Independent checks}\\Target, non-target, format};
+  \draw[figflow] (input) -- (editor);
+  \draw[figflow] (editor) -- (output);
+  \draw[figflow] (output) -- (judge);
+  \node[measure] (a) at (.36,-.18) {Target compliance\\$m_{\rm target}$};
+  \node[measure] (b) at (3.06,-.18) {Preservation\\$m_{\rm preserve}$};
+  \node[measure] (c) at (5.76,-.18) {Native artifact validity\\$m_{\rm valid}$};
+  \node[measure] (d) at (8.46,-.18) {Visual quality\\$m_{\rm visual}$};
+  \node[measure] (e) at (11.16,-.18) {User / model effort\\$m_{\rm effort}$};
+  % One branching evaluation bus avoids five overlapping elbow arrows.
+  \draw[dashed,figMuted] (judge.south) -- (10.84,.52);
+  \draw[dashed,figMuted] (.36,.52) -- (11.16,.52);
+  \foreach \n/\xx in {a/.36,b/3.06,c/5.76,d/8.46,e/11.16} {
+    \draw[->,dashed,figMuted] (\xx,.52) -- (\n.north);
+  }
+  \node[font=\sffamily\small\itshape,align=center,text=figMuted] at (5.77,-1.24)
+  {Measure edit success and preservation; visual fidelity alone is not sufficient.};
+\end{tikzpicture}
+\end{document}

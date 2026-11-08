@@ -1,0 +1,44 @@
+% Task grounding table: one row per distinct research task.
+% \acsetup prevents automatic duplicate citation; explicit \citep is retained.
+\begin{table*}[t]
+\acsetup{cite/display=none}
+\centering
+\caption{Representative graphic-design generation and editing tasks, organized by the delivered artifact rather than the model architecture.
+Examples illustrate task coverage; they do not imply equivalent editability or directly comparable evaluation protocols.}
+\label{tab:task-grounding}
+\footnotesize
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\textwidth}{@{}p{0.24\textwidth}p{0.37\textwidth}X@{}}
+\toprule
+\textbf{Research task} & \textbf{Typical input $\rightarrow$ output} & \textbf{Representative studies}\\
+\midrule
+Graphic layout generation
+& Background, content and constraints $\rightarrow$ element categories and positions
+& \ac{posterlayout} \citep{posterlayout2023}; \ac{cglgan} \citep{cglgan2022}; \ac{layoutdetr} \citep{layoutdetr2024}\\
+\addlinespace[0.35em]
+Poster and advertising creation
+& Design brief and assets $\rightarrow$ composed poster or advertising creative
+& \ac{vinci} \citep{vinci2021}; \ac{autoposter} \citep{autoposter2023}; \ac{posteragent} \citep{posteragent2026}\\
+\addlinespace[0.35em]
+Presentation generation
+& Topic or source document $\rightarrow$ slide or slide deck
+& \ac{autopresent} \citep{autopresent2025}; \ac{pptagent} \citep{pptagent2025}\\
+\addlinespace[0.35em]
+Infographic generation
+& Article or information brief $\rightarrow$ infographic
+& \ac{bizgen} \citep{bizgen2025}\\
+\addlinespace[0.35em]
+Infographic editing
+& Existing infographic and instruction $\rightarrow$ revised infographic
+& \ac{infoedit} \citep{yang2026infoedit}\\
+\addlinespace[0.35em]
+Scientific figures and posters
+& Scientific content $\rightarrow$ figure or academic poster
+& \ac{autofigure} \citep{autofigure2026}; \ac{postergen} \citep{postergen2026}\\
+\addlinespace[0.35em]
+Typography and vector icons
+& Text or concept $\rightarrow$ rendered lettering or vector paths
+& \ac{textdiffuser} \citep{textdiffuser2023}; \ac{wordasimage} \citep{wordasimage2023}; \ac{iconshop} \citep{iconshop2023}\\
+\bottomrule
+\end{tabularx}
+\end{table*}

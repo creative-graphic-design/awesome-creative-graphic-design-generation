@@ -1,0 +1,327 @@
+\section{Technical Research Lines}
+\label{sec:methods}
+A useful taxonomy has at least two independent layers: the graphic-design problem being solved and the computational mechanism used.
+The same representation may be produced by diffusion, autoregressive models, optimization, or multi-stage agents, while the same mechanism may produce several kinds of artifact.
+
+\paragraph{Comparing mechanisms through output and control contracts.}
+The research lines can be compared by asking what content and constraints are supplied, which artifact is delivered, and which downstream operation is supported or evaluated.
+For instance, predicting boxes under spatial constraints can provide placement control while leaving typography and image assets unspecified; a layered raster composite may permit recomposition without preserving semantic text; and generated code can expose source objects without proving that a later edit preserves unrelated content.
+Architectural labels such as diffusion, autoregression, optimization, or agents are therefore not substitutes for input--output and evaluation contracts.
+We apply this distinction across the following families rather than treating them as an ordinal progression toward greater editability.
+
+\subsection{Constraint-Aware Layout Generation}
+Layout generation predicts discrete elements and their geometric attributes.
+This includes unconstrained synthesis, category-conditioned generation, partial completion, and constraint-aware refinement.
+Adversarial layout methods use \ac{gan} objectives to model distributions over element arrangements \citep{layoutgan2019,aclayoutgan2020,cglgan2022}.
+In the original \ac{layoutgan}, a differentiable wireframe renderer exposes overlap and alignment to the discriminator, but its generated representation remains sets of element types and bounding-box parameters (Sec.~4.2).
+The wireframe discriminator lowers document-layout overlap and misalignment relative to a relation-only discriminator in the authors' experiment, without exporting authoring-software text or image objects.
+
+Content-conditioned methods introduce background imagery and foreground assets as additional constraints.
+\ac{cglgan} conditions advertising layouts on visual context; \ac{layoutdetr} applies detection-transformer-style conditioning to foreground composition \citep{layoutdetr2024}.
+\ac{layoutdetr} conditions predicted foreground text/image bounding boxes on a background canvas and corresponding source assets, encoding text length and class to control size and placement (original Secs.~3.1--3.3).
+Its renderer and graphical interface demonstrate design generation and preference comparisons, but the generated layout boxes do not themselves prove a reusable native document with semantically editable text.
+
+Beyond adversarial prediction, diffusion and other sequence models offer alternative mechanisms for generating layout geometry.
+\ac{layoutdm} and \ac{layoutdiffusion} illustrate diffusion over discrete layout attributes \citep{layoutdm2023}, while \ac{layoutflow} addresses continuous geometry \citep{layoutflow2024}.
+Early and intermediate directions include wireframe discrimination in \ac{layoutgan}, \ac{vae}-based document reconstruction in \ac{canvasvae}, self-attentive scene completion in \ac{layouttransformer}, latent-space constraint optimization built on \ac{layoutganpp}, diffusion with explicit aesthetic constraints in \ac{lace}, and in-context layout generation with \ac{layoutprompter}.
+\ac{layoutgpt} uses language models for visual planning across domains.
+
+Poster-specific layout generation makes the distinction between placement geometry and a complete design artifact particularly clear.
+\ac{posterlayout} supplies a benchmark and method for content-aware visual-textual arrangement \citep{posterlayout2023}.
+Its PKU \ac{posterlayout} benchmark contains 9,974 layout--poster pairs and 905 background canvases, with text, logo, and underlay boxes laid out by a content-conditioned design-sequence GAN.
+The output is box placement on an already non-empty image, rather than a proof that the resulting design is editable as semantically typed objects in a native document.
+Importantly, the name ``\ac{layoutdiffusion}'' is also used for a distinct layout-to-image synthesis method \citep{layoutdiffusion_l2i2023}; its image-generation results should not be mixed with the discrete graphic-layout model \citep{layoutdiffusion2023}.
+In comparing these systems, the allowed conditions and datasets must be matched: unconditional realism, completion, and relational constraint satisfaction are not equivalent tasks.
+
+\paragraph{Conditional layout families.}
+\ac{layoutvae} samples arrangements from object-label sets rather than solving fully specified graphic-design tasks, whereas \ac{blt} iteratively completes masked attributes with a bidirectional transformer.
+Coarse-to-Fine layout generation predicts a global arrangement before refining detailed element positions \citep{coarsetofine2022}.
+\ac{layoutformerpp} serializes heterogeneous geometric constraints and restricts decoding, while \ac{dlt} models discrete categories and continuous coordinates jointly.
+\ac{dolfin} studies diffusion layout transformers without a separate autoencoder, whereas \ac{flexdm} predicts masked fields including text, styling, and images in multimodal design documents.
+\ac{colay} supports combinations of text, guidelines, element categories, and partial layout conditions, while \ac{layoutcorrector} repairs defective diffusion samples in the generation process.
+\ac{layoutrectifier} uses a separate geometric optimization pass to reduce alignment, overlap, and containment errors, whereas \ac{structlayoutformer} generates explicit hierarchical layout structures.
+These are distinct condition contracts, not interchangeable measurements of controllable design.
+
+\paragraph{Code, retrieval, and spatial reasoning.}
+\ac{layoutnuwa} formulates layout completion as \ac{html} code generation, while \ac{posterllama} applies code-formatted layouts and augmentation to content-aware poster design.
+\ac{ralf} retrieves similar designs to guide image-conditioned generation, and \ac{radm} jointly models visual-textual and geometric relations.
+\ac{relayoutreason} reasons about content regions, margins, and element relations for conditional placement \citep{relayoutreason2025}, while \ac{layspa} adds reward-guided spatial reasoning to language-model layout planning.
+\ac{unilayout} combines generation and human-feedback-aligned assessment, whereas \ac{iposter} emphasizes interactive specification of partial constraints.
+Scan-and-Print instead investigates efficient patch selection and training augmentation for content-aware poster layouts \citep{scanprint2025}.
+These approaches require matched input constraints and output granularity before their geometric metrics can support a comparison.
+
+\paragraph{Control mechanisms and their limits.}
+Layout-control methods differ in whether conditions are embedded in a learned generator, parsed from an instruction, or enforced during subsequent refinement.
+\ac{vtn} models global design rules with a variational transformer and \ac{ldgm} decouples diffusion over element attributes, while \ac{play} exposes parametric guidelines as latent-diffusion controls.
+By contrast, \ac{parsethenplace} first converts textual requirements into structured constraints, and \ac{textlap} and \ac{lggpt} use language-model interfaces for layout planning.
+\ac{icvt} addresses correspondence between image geometry and visual-textual elements, whereas \ac{unilaydiff} models background and relational constraints jointly.
+Evaluation-time intervention is another distinct approach: \ac{vascar} uses vision-language feedback on rendered layouts, \ac{sega} combines coarse-to-fine reasoning with a design prior, and \ac{aesthetiq} targets preference-aligned aesthetics.
+Finally, \ac{postero} builds hierarchical \ac{svg} poster structures and \ac{posterllava} produces multimodal instruction-conditioned layouts, changing the output contract as well as the control interface.
+Because these families expose different constraints, feedback signals, and artifact granularity, reported control performance should not be interpreted as a common measure of post-export editing.
+
+\paragraph{Synthesis: what layout control establishes.}
+Across adversarial, autoregressive, diffusion, optimization, and language-model approaches, controllability must be interpreted against the constraints available at inference time.
+An unconditional layout sample, a content-conditioned poster arrangement, and a layout that satisfies explicit user constraints are not interchangeable experimental outcomes.
+Likewise, geometric validity or aesthetic preference measured at generation time does not demonstrate that a completed design can accept a later semantic edit without disturbing protected content.
+Thus, the appropriate cross-family comparison is a matched constraint-to-layout task, followed by a separate test of post-generation revisions if editability is claimed.
+
+\paragraph{Implicit composition versus staged advertising.}
+\ac{miseenscene} adapts an image-editing diffusion transformer to compose supplied assets and then match the original high-resolution elements to the draft, obtaining independently rearrangeable raster layers.
+The exact reuse of original assets is a structural affordance, while the reported aesthetic and geometry scores are not held-out post-export editing success rates.
+In contrast, \ac{creativeads} organizes multi-product advertising around pairing, size-aware layout, and background generation, with user controls for revising generation parameters.
+Their model-based and perceptual evaluations concern rendered advertising images rather than native source-document editing.
+These systems illustrate different control and artifact contracts, neither of which alone proves editable semantic text, native round-trip validity, or measured protected-object preservation.
+
+\paragraph{Layout conditions and source-preserving construction.}
+Sketch-conditioned synthesis \citep{brioschi2025sketchtolayout}, shared latent search and generation \citep{manandhar2025class}, and jointly trained graph--layout inference \citep{weng2023learnsample} each expose different layout control contracts.
+The name \ac{layoutdm} denotes at least two distinct 2023 contributions: the transformer-denoiser formulation of \citet{chai2023transformerlayoutdm} should not be conflated with the discrete-layout diffusion study already described above \citep{layoutdm2023}.
+Wireframe-based error localization \citep{lin2024spoterror} adds iterative correction to a layout-token model, which still differs from editing a saved composite design.
+In content-aware advertising, \citet{yoshitake2025adbanner} plan placements from an analyzed image and render \ac{html} layouts, while \citet{zhang2025creatiposter} generate an editable JSON text-and-asset layer protocol alongside a separately synthesized background.
+The latter's canvas-conditioned completion and re-layout are source-supported operations, but the source's aesthetic/user-study results should not be interpreted as independently measured arbitrary post-export edit success.
+
+\paragraph{From presentation rules to constrained synthesis.}
+Early design automation treated composition as a knowledge-driven task: graphical-presentation theory for interfaces \citep{mackinlay1988gui}, interactive automatic presentation knowledge \citep{roth1994interactive}, adaptive document grids \citep{jacobs2003adaptivegrid}, and demonstration-driven label placement \citep{vollick2007labelstyles} offered explicit but heterogeneous control mechanisms.
+Stylistic manga panels \citep{cao2012mangalayout} and learned single-page layouts \citep{odonovan2014singlepage} extended geometric and stylistic modeling, rather than establishing universal native document-edit metrics.
+Later synthesis incorporates coarse-to-fine predictions \citep{jiang2022coarsefine}, action-sequence modeling \citep{yang2023layoutaction}, learned design feedback \citep{ishiyama2023appropriateness}, progressive aesthetic policies \citep{patnaik2026idesign}, and layout knowledge retrieval \citep{tang2024layoutkag}.
+These systems differ in which constraints are explicit, which representations are produced, and whether user actions are inputs, evaluations, or outputs; a shared layout-generation label does not make their measurements commensurate.
+
+\paragraph{Advertiser-facing generation is not equivalent to design-object editing.}
+Product-poster pipelines often separate planning, text placement, image rendering and automatic quality improvement, but their optimized targets are not identical.
+Two-stage plan-and-render work \citep{planningrendering2023}, product-poster optimization \citep{autopp2025}, autoregressive personalization \citep{designyourad2026}, and multi-condition diffusion \citep{innoads2026} differ in whether inputs include a product image, prior layout, preferred text, or engagement feedback.
+Other systems prioritize reference-product preservation \citep{refadgen2026}, reducing subject extension \citep{simpleposter2026}, advertisement availability through feedback training \citep{reliablead2024}, or click-through-rate uplift \citep{cg4ctr2024}.
+Aesthetic and relevance studies of personalized banners \citep{ecommercebanners2024} measure consumer-facing rendered images, while layer datasets \citep{prismlayers2025} address transparent-image training resources rather than executed edits to a saved document.
+Comparisons require keeping rendering accuracy, geometric/product preservation, online engagement and downstream source-file editability as separate evidence dimensions.
+
+\subsection{Multi-Stage Graphic Design and Agents}
+Integrated poster generation must coordinate language, asset production, layout decisions, and visual verification.
+\ac{cole} and \ac{opencole} use hierarchical design decomposition \citep{cole2023,opencole2024}.
+\ac{opencole} replaces \ac{cole}'s separately generated background/object imagery with a one-stage text-free image synthesized from the plan, then predicts typographic attributes and renders text in a separate pass (original Secs.~2.1--2.3).
+Its public Crello-derived training design and released pipeline improve inspectability of the implementation, but do not independently certify successful edits to exported native design documents.
+In \ac{cole}, intent-to-JSON planning, separate background and foreground synthesis, and typography attribute prediction feed an SVG-based multilayer renderer, followed by demonstrated manual repositioning and text-format edits in an editor (original Secs.~3.1--3.6).
+Its \ac{designerintention} experiment evaluates roughly 500 category prompts plus 50 creative prompts through a VLM judge and a smaller user comparison, rather than recording the correctness and non-target preservation of a held-out sequence of document-editing instructions.
+The original qualitative editor examples support available operations on layered text and objects, but not a measured general editing success rate.
+
+A broader family of poster systems combines content planning with asset production and user-facing control.
+\ac{creatidesign} develops multi-conditional visual generation across primary content and decorative or textual components \citep{creatidesign2026}.
+\ac{vinci} combines data-driven poster creation with interactive editing feedback and user evaluations \citep{vinci2021}.
+\ac{autoposter} extends content-aware ad generation through layout, taglines, and predicted style attributes \citep{autoposter2023}; \ac{graphist} infers ordering and spatial arrangements over unordered input assets; and \ac{banneragency} produces component-based banners from brand requirements.
+\ac{postercraft} addresses raster poster generation with text-focused and aesthetic objectives.
+
+Agentic and code-native systems shift the point of control from a rendered poster toward intermediate plans, source documents, and feedback loops.
+Code-oriented systems increasingly produce the design document itself, as in \ac{designascode} and \ac{editablevisual}; \ac{psdesigner} targets layered editor workflows.
+\ac{posteragent} studies staged draft generation and refinement through agentic reinforcement learning \citep{posteragent2026}.
+Visual-feedback refinement and \ac{ocr}-aware reinforcement learning are investigated in VFLM \citep{guo2026visualfeedback}.
+We separate \emph{reflection during generation} from an edit request received after a completed artifact is delivered.
+
+\paragraph{Commercial, personalized, and artistic workflows.}
+T-Stars-Poster combines prompt preparation, layout, background generation, and rendering for product advertising \citep{tstarsposter2025}, while reliable ad generation uses feedback-driven inspection to identify unsuitable outputs \citep{reliablead2024}.
+\ac{posta} separates background, layout, and rendering for customized artistic posters \citep{posta2025}, whereas \ac{posterverse} develops a commercial poster workflow with \ac{html}-oriented text rendering.
+\ac{simpleposter} studies product preservation and constrained text rendering through image inpainting, while \ac{innoads} jointly conditions product content, text, and style.
+Design Your Ad models personalized image-and-text advertising based on user histories \citep{designyourad2026}, and \ac{autopp} introduces poster optimization informed by online feedback.
+These signals target different qualities: engagement, text correctness, product identity, and human aesthetic preference cannot be conflated.
+\ac{brief2design} supports requirements clarification, element exploration, and recombination from professional briefs rather than treating the completed image as the only useful output.
+
+\paragraph{Personalization objectives versus artifact control.}
+Commercial-generation methods also differ in what feedback optimizes: \ac{planningrendering} separates layout planning from background rendering, while \ac{refadgen} uses product masks and features to constrain visual identity.
+\ac{dreamposter} conditions generation on image and text, and personalized e-commerce banners derive prompts from recorded user interactions \citep{ecommercebanners2024}.
+\ac{cg4ctr} instead optimizes an advertising image toward click-through rewards, which does not measure preservation of editable elements or instruction-following accuracy.
+These systems therefore require comparison of product fidelity, personalization objectives, and returned source files rather than assuming that business-response gains imply easier design revision.
+
+\paragraph{Template and full-poster generation.}
+\ac{desigen} explicitly iterates between background generation and layout prediction, while \ac{designdiffusion} generates complete design imagery directly from text without relying on an exported object hierarchy.
+\ac{postermaker} couples product-preserving scene generation with targeted visual text rendering, and \ac{recontraster} plans and critiques posters using regional contrast.
+\ac{graphimind} instead provides a conversational and direct-manipulation environment for information-graphics authoring rather than solely a one-shot image generator.
+These methods should be compared by input requirements, the granularity of their final artifact, and the type of control or user action that their evaluations actually exercise.
+\paragraph{Synthesis: feedback timing and artifact ownership.}
+Multi-stage workflows differ in whether visual critique is used before the initial design is delivered or after a user requests a revision.
+A generator that revises its own intermediate rendering may improve initial quality without providing a persistent, externally editable source artifact.
+Conversely, a structured output can support direct manipulation while leaving autonomous instruction-following success unmeasured.
+Comparisons should therefore report the revision trigger, retained source objects, and who performs the operation, in addition to final image quality.
+
+\paragraph{Joint generation, progressive planning, and design adaptation.}
+Joint generation from a design intent changes the input contract relative to placement-only methods: \citet{yang2026interil} couple background generation and element layout, while \citet{yang2026contenteditedlayout} add source-image adaptation alongside layout prediction.
+In contrast, \citet{lee2026playground} work from supplied visual and textual elements and repeatedly plan against the accepted rendered canvas, yielding explicit layout attributes but not automatically demonstrating post-export document revision.
+The agentic feedback mechanisms also differ: \citet{wang2025mimo} reflect on rendered advertising banners, while \citet{du2026designerrsi} adapt procedural memories of design-software actions rather than a single design image.
+Design-conditioned human insertion \citep{hou2026humanaware} further illustrates that controllable geometric or visual composition need not imply native text or object editing.
+
+\subsection{Typography and Vector Synthesis}
+Text rendering poses constraints not captured by photographic image fidelity.
+\ac{textdiffuser} and \ac{textdiffuser2} make text layout a first-class part of image generation; \ac{glyphdraw2} targets stylized, multilingual glyph-aware poster generation; \ac{glyphcontrol} and \ac{anytext} provide complementary glyph-conditioned and multilingual visual text generation/editing approaches.
+\ac{textpainter} conditions poster typography on both local visual context and language semantics.
+\ac{wordasimage} optimizes letter shapes to communicate meaning while retaining legibility and font resemblance.
+\ac{derendering} instead infers editable rendering parameters from a flattened text image.
+A replacement of semantic text, a modification of glyph outlines, and a reconstruction of font/effect parameters are three different editing operations.
+
+Targeted raster typography editing is distinct from recovering or manipulating native font objects.
+\ac{postertext} unifies full poster generation, text-patch addition, deletion and modification through image-conditioned instructions and optional reference-patch styling (Sections 3--4).
+Its four training stages combine text-rendering pretraining, supervised instruction following, preference-aligned reinforcement learning and \ac{sgsd} that distills mask-guided spatial localization into mask-free inference.
+\ac{postertext320k} includes 120K editing-task posters and 200K generation-task posters, with OCR/VLM and \ac{html} extraction used to construct structured text-patch annotation and operation pairs (Section 3 and Figure 3).
+The \ac{html} encodes training supervision, while the delivered model output remains a raster poster rather than editable \ac{html}/CSS or native typographic objects.
+
+Vector-centric work generates or embeds shape/path sequences.
+\ac{deepsvg} and \ac{svgformer} learn vector representations \citep{deepsvg2020,svgformer2023}, whereas \ac{vectorfusion} and \ac{iconshop} synthesize vectors conditioned on textual prompts \citep{vectorfusion2023,iconshop2023}.
+\ac{deepsvg} predicts hierarchical path-command sequences, evaluates SVG icon reconstruction and interpolates latent icon representations; \ac{svgformer} instead embeds continuous path coordinates with medial-axis segment guidance and tests classification and retrieval.
+\ac{vectorfusion} directly optimizes SVG paths using a diffusion distillation objective for text-conditioned graphic synthesis, but optimizing Bézier-path geometry does not retain high-level text semantics or document object identity by itself.
+Neural-path generation explicitly models shape structure \citep{neuralpath2024}, while \ac{layertracer} synthesizes layered \ac{svg} designs through staged diffusion and vectorization.
+Code-generation approaches such as \ac{starvector} and \ac{chat2svg} explore additional \ac{svg} primitives and text-conditioned editing workflows \citep{chat2svg2025}.
+Their visual or semantic generation scores should not be interpreted as evidence for the broader class of targeted design edits.
+
+\paragraph{Vectorization and object-level control.}
+\ac{svgdreamer} combines diffusion-guided \ac{svg} synthesis with foreground/background separation and attention-based primitive control.
+\ac{supersvg} addresses a different task, accelerating raster-to-vector reconstruction through superpixel-based decomposition.
+Both can produce vector paths, but the ability to open an \ac{svg} is not evidence of semantic text replacement, preservation of object identity, or reliably executing an instruction.
+
+\paragraph{Stylized typography and layered composition.}
+\ac{text2poster} arranges extracted or generated text over retrieved background imagery with attention to style and location.
+\ac{glyphdraw} targets intricate spatial glyph layouts, while \ac{dsfusion} stylizes letterforms using discriminated diffusion objectives.
+These studies extend simple \ac{ocr}-like text correctness to stylization and visual integration, but their rendered glyphs need not remain editable as semantic text.
+\ac{text2layer} studies compositional transparent-layer synthesis with latent diffusion, connecting text-conditioned object synthesis to the separate task of layered document creation.
+
+\paragraph{Additional text-generation and editing controls.}
+\ac{utdesign} couples transparent stylized-text rendering and conditioned text synthesis, supporting both text editing and design generation.
+\ac{freetext} improves text placement and glyph rendering by exploiting diffusion-transformer attention without retraining.
+Neither text accuracy in a rendered image nor the ability to manipulate a text-shaped region alone establishes that semantic characters survive export as native editable text.
+\paragraph{Additional vector and text-layout directions.}
+\ac{gldesigner} generates glyph arrangements in structured JSON from multimodal design constraints, while \ac{llm4svg} learns semantic tokens for SVG comprehension and generation.
+\ac{introsvg} uses a generator--critic loop to refine vector code from rendered feedback, but this is not automatically a scored test of independent user edit instructions.
+
+\paragraph{Synthesis: typography versus editable text.}
+Typography methods expose at least three distinct control surfaces: raster glyph appearance, vector letterform geometry, and semantic text with editable styling parameters.
+A method that renders exact characters into pixels may be appropriate for compositional poster edits, while an approach that reconstructs font or renderer settings serves a different downstream workflow.
+Vector paths offer geometric manipulation, but do not automatically retain the character strings, font associations, or text-box behavior required for copy changes.
+Fair evaluation should therefore separate transcription correctness, visual styling, localization of the requested edit, preservation of surrounding design elements, and survival of native text objects after export.
+
+\subsection{Reconstruction and Explicit Editing}
+Another line starts from an existing artifact.
+\ac{layerd} decomposes rendered designs into layers \citep{layerd2025}; \ac{accordion} generates layered designs by planning and decomposing a complete visual reference; \ac{postercopilot} reasons about composition and repeated layer-sensitive changes.
+\ac{mildedit} explicitly addresses instruction-driven modifications of multi-layer design documents, presenting a dedicated benchmark and evaluation framework.
+\ac{posteromni} spans local raster-image editing and global poster creation.
+\ac{revisionmatters} uses human revision trajectories for iterative layout generation rather than treating the first output as a final design.
+These tasks are meaningfully editing-oriented, but a pixel-space editing benchmark does not establish that the result is an editable \ac{psd} or \ac{dom} structure.
+Each study must be coded against its actual inputs, outputs, and scoring procedure.
+
+\paragraph{Contrast-aware background revision.}
+Appearance-oriented background editing can improve legibility without recovering source-document objects.
+For example, \ac{neuralcontrast} uses diffusion-based background revisions to improve foreground-text contrast.
+Its outputs support a visual intervention, but do not establish editable font objects or vector paths; these require different evidence.
+
+\paragraph{Layer synthesis, transparency, and recovery.}
+\ac{ladeco} composes supplied visual and textual elements by planning semantic layers, while \ac{layerdiffuse} introduces transparent \ac{rgba} images through latent transparency.
+\ac{prismlayers} contributes multilayer transparent training data and a corresponding synthesis framework, and \ac{omnipsd} studies both text-to-\ac{psd} construction and raster-to-layer decomposition.
+\ac{lade} generates a variable number of semantically meaningful design layers, whereas an alternative layered framework explicitly models shadows and reflections to reduce drift after an edit \citep{layeredfx2026}.
+\ac{creatiparser} recovers text, background, and decoration-like layers from raster designs; \ac{redesign} assembles an editable hierarchy through an agentic decomposition-and-verification process.
+The systems differ substantially in whether layers are generated directly, inferred from a raster input, or reconstructed with semantic text preserved.
+\ac{relayoutedit}'s structure-preserving editing task modifies geometry according to an explicit instruction while conserving the relationships of unchanged elements \citep{relayoutedit2026}.
+This task directly tests edit operations and should be evaluated separately from visually plausible layer decomposition.
+
+\paragraph{Native layers and markup documents.}
+Native-layer synthesis exposes separate compositable components at generation time.
+\ac{art} generates variable numbers of transparent layers, while \ac{psdiffusion} models their joint appearance and spatial interactions.
+These systems differ from raster-to-layer reconstruction, which must infer components from a finished rendering.
+
+Image-to-layer reconstruction predicts separated raster components from a completed rendering.
+\ac{qwenimagelayered} decomposes an RGB image into a variable number of semantically separated \ac{rgba} layers using an RGBA-VAE, a variable-layer diffusion transformer, and PSD-derived training data \citep{qwenimagelayered2026}.
+Its original evaluation measures layer reconstruction and alpha fidelity, while demonstrated resizing, recoloring, and replacement do not establish preservation of native text or SVG objects.
+\ac{pixelart} instead trains a pixel-space rectified-flow transformer from scratch to denoise RGBA patches and uses terminal-boosted timestep sampling to emphasize early layer assignment \citep{jia2026pixelart}.
+Unlike \ac{qwenimagelayered}'s unconstrained input interface, the published comparison conditions \ac{pixelart} on predicted bounding boxes and layer ordering, so the two decomposition scores are not obtained from identical inputs.
+
+Other layer-recovery systems account for appearance interactions or explicitly model edits between intermediate layers.
+\ac{layerdecomp} explicitly considers shadows and reflections during foreground/background recovery.
+\ac{mrt} unifies text-to-layer generation, image-to-layer decomposition, and layer-to-layer editing through selective masking.
+\ac{markupdm} instead completes typed content and attributes inside multimodal markup documents, demonstrating that layer synthesis and document-level semantic completion have different editing interfaces.
+
+Transparency-oriented pipelines instead focus on usable foreground assets and background separation, without necessarily producing semantic design objects.
+\ac{taue} produces foreground, background, and composite images without model fine-tuning, using intermediate latent transplantation and cross-layer attention for visual coherence.
+Its examples illustrate layout control, multiple-object composition, and background replacement, but do not establish native editable text or vector-object manipulation after export.
+\ac{tkgdm} instead controls a chroma-key background using channel-wise initial-noise shifts and a Gaussian spatial mask, generating foreground content without fine-tuning.
+The resulting color-keyed raster image can facilitate background extraction and compositing, but the reported output is not an exported native text, vector, or editable object hierarchy.
+\ac{alfie} uses inference-time subject centering in a pretrained diffusion transformer, combines cross- and self-attention for alpha estimation, and cleans the foreground mask using \ac{grabcut} (Section 4 and Figure 3).
+Unlike chroma-key synthesis, this pipeline outputs a foreground \ac{rgba} illustration, not a layered native document or a collection of separately editable semantic objects.
+Its application as an input to a collage generator (Figure 7) demonstrates compositing utility rather than verified post-export instruction-edit success.
+
+Multi-layer raster decomposition presents another recovery contract: separated images can be recomposed even if their underlying typography is not reconstructed.
+\ac{layeringdiff} first synthesizes a composite image, then determines a prompted foreground through detection, segmentation, and matting, and uses foreground/background diffusion decomposition and high-frequency alignment to reconstruct separate raster layers (Sections 3.1--3.3).
+Although its pretrained initial composite generator remains fixed, the decomposition and alignment modules are trained on 20,000 synthetic composites (Section 3.4), so the full method is not training-free.
+Its sequential multi-foreground examples (Figure 7) demonstrate compositing affordances rather than native object semantics or measured post-export edit-command accuracy.
+
+Prompt-bound layer recovery can leverage semantic and occlusion information learned from authoring files.
+\ac{uniworlddesign} separates text-to-\ac{rgba} asset generation (T2RGBA) from instruction-controlled image-to-layer recovery (I2L), the latter jointly predicting ordered semantic \ac{rgba} layers conditioned on a finished raster, a global instruction, and per-layer prompts (Sections 3.3--3.4).
+Layer--instruction binding attention and layer-indexed positions link prompts to output slots, while PSD-derived semantic trees preserve occluded source pixels and provide top-level, recursive, and target-extraction supervision (Sections 3.4--3.5).
+The paper illustrates recursive decomposition (Figure 6) and external-agent manipulation of persistent raster layer states (Figure 2), but does not establish a native PSD/SVG document-export contract or a controlled multi-turn edit-operation success rate.
+For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
+
+\paragraph{Synthesis: decomposition is not equivalent to editing.}
+The central distinction among layered methods is not the number of layers returned, but which subsequent operations those layers can support.
+Direct synthesis creates separate assets, while decomposition recovers them from flattened imagery; both can be assessed for image quality or recovery fidelity.
+Editing adds a separate question: whether a requested change succeeds and unrelated content remains intact.
+For promised native documents, reopenability and preservation of semantic text and vector objects are further requirements.
+Hence, compositing, reconstruction, and instruction-driven revision require distinct evidence categories.
+
+\subsection{Cross-Family Synthesis: Control, Artifact, and Revision}
+\paragraph{Layout control is not complete-document control.}
+Layout generation methods define distributions over object categories, boxes, or geometric relations, often conditioned on partial layouts or content.
+Methods such as \ac{layoutdm} and \ac{layoutformerpp} provide distinct ways of producing or constraining arrangements, but the layout alone does not specify whether typography, source assets, and object identities survive in a revisable document \citep{layoutdm2023}.
+Content-conditioned poster systems such as \ac{posterlayout} incorporate visual context, but their placement objectives should not be interpreted as tests of subsequent natural-language editing \citep{posterlayout2023}.
+The controlled variables and the delivered object types must be reported independently.
+
+\paragraph{Layer separability is not semantic object recovery.}
+Transparent foreground synthesis, foreground--background decomposition, and layered-document reconstruction have different starting points and evaluation denominators.
+For instance, \ac{tkgdm} and \ac{alfie} address transparent-image or foreground construction, whereas \ac{layeringdiff} and \ac{uniworlddesign} report distinct decomposition, reconstruction, or layer-synthesis protocols.
+A separable \ac{rgba} component can support compositing while still requiring manual work to change a word, recover a font, or rebind the original assets.
+A layer-quality score can thus establish a prerequisite for certain edits without measuring semantic edit execution.
+
+\paragraph{Structured output is an affordance, not an edit-success score.}
+A vector path or code-native document may expose parameters for modification, whereas a flattened image may require image-space regeneration.
+However, an \ac{svg} file with outlined letters need not allow semantic text replacement, and editable \ac{html}/\ac{css} does not guarantee that a requested edit preserves unrelated layout constraints.
+Evidence should therefore distinguish source-file validity, an illustrated edit, and a held-out editing measurement.
+This also avoids underestimating raster editing methods evaluated for instruction adherence and non-target preservation, including tasks covered by \ac{postertextbench}.
+
+\paragraph{Workflow systems require end-to-end attribution.}
+Agentic and document-scale systems combine planning, asset selection, rendering, critique, and revision, so improved final appearance cannot automatically be attributed to a single component or editing mechanism.
+Evaluations should identify which stages receive the original document, which operate only on rendered images, and whether the delivered file can be reopened and modified.
+A comparison with a geometry-only generator can be meaningful on a shared placement subtask, not as an unrestricted ranking of end-to-end document quality.
+Across families, the defensible comparison unit is a task--input--artifact--operation--measurement tuple rather than a model name or an undifferentiated editability label.
+
+\subsection{Slides, Infographics, and Scientific Figures}
+Presentation slides form a distinct task family rather than a synonym for a poster.
+\ac{autopresent} generates structured slide visuals from natural-language specifications and compares image-level generation with programmatic outputs.
+\ac{pptagent} converts source documents into presentations using reference-based planning and editing actions, and evaluates content, design and cross-slide coherence.
+This distinction matters: the visual fidelity of one slide and the logical coherence of an entire deck are separate observables.
+
+Infographics also demand more than pleasing composition.
+\ac{bizgen} studies article-level visual text rendering in densely structured infographics, where correct long-form text and layout binding are central.
+\ac{infoedit} instead starts from an existing information graphic and evaluates editing instructions that can require neighboring components to reflow.
+The former is a generation problem; the latter tests post-generation editing.
+Their metrics and output contracts should not be pooled.
+
+Scientific figures and academic posters convey factual research content, introducing constraints on semantic correctness and reading order.
+\ac{autofigure} creates scientific illustrations from extended source material, while \ac{postergen} creates research posters through content selection, layout, typography and rendering agents.
+\ac{drawwiththought} reconstructs scientific diagrams into editable mxGraph \ac{xml} with reasoning-guided structure generation, a different output contract from one-shot raster synthesis.
+The shared \ac{rev} axes remain useful across domains, but comparisons must respect whether the delivered artifact is a vector, a presentation document, or merely a rendered image.
+
+\paragraph{Synthesis: document-scale constraints and revision.}
+Automatic layout planning for visually rich documents \citep{zhu2024visuallyrichplanning} predicts arrangements from canvas dimensions, document purpose, and multimodal user instructions; the original abstract evaluates layout generation rather than native post-export document editing.
+Across slides, information graphics, and scientific figures, the output must preserve relationships that extend beyond local visual quality.
+For presentations, a visually valid page may still break cross-slide narrative structure; for infographics, correcting one value may require coordinated reflow; and for scientific diagrams, a plausible rendering may encode an incorrect relation.
+The intervention contract must therefore specify whether dependent movement is permitted and which facts, labels, and object relations are protected.
+Evaluations of first-pass synthesis, source-file reconstruction, and later instruction-driven revision should remain distinct even when they operate on the same document format.
+
+\paragraph{Document-level scientific communication and revision.}
+\ac{postdoc} selects multimodal information from long research documents for poster synthesis, while \ac{posterforest} introduces a hierarchical poster-tree representation for document content and composition.
+\ac{p2p} combines agent-based paper-to-poster rendering with a task-specific fine-grained benchmark; its \ac{html} poster output and assessment should not be equated with native editable slide decks.
+\ac{slidetailor} conditions presentation generation on user preference examples, while \ac{deepslides} separates slide-page planning from the subsequent code implementation.
+\ac{slidegen} coordinates narrative, source figures, and geometry when producing editable presentation slides.
+In contrast to initial drafting, \ac{apex} takes existing academic posters and uses structured editing actions followed by visual assessment.
+\paragraph{Structured diagram generation and editing.}
+\ac{diagramagent} combines a planner, code generator, checking agent, and diagram-to-code agent, while its companion \ac{diagramgenbenchmark} covers eight diagram categories.
+Diagram relations, code validity and independent edit-preservation tests remain distinct evaluation targets.
+
+\paragraph{Scientific communication workflows.}
+\ac{paperbanana} combines reference retrieval, content planning, illustration rendering, and iterative critique, whereas \ac{scifig} generates revisable methodology diagrams using an explicit structure.
+\ac{autofigureedit} adds native \ac{svg} manipulation and style references to scientific illustration workflows.
+\ac{sciforma} evaluates component, arrow, and text correctness in scientific diagrams as mutually necessary structural dimensions.
+\ac{paper2poster} couples long-document content extraction to poster composition and evaluates more than appearance.
+\ac{scipostlayout} supplies scientific poster layouts and document-poster pairs for analysis and content-conditioned generation, while \ac{arcdeck} reconstructs a paper's argument as a presentation narrative.
+\ac{figuresasprograms} constructs scientific figures as recursive \ac{svg} programs for local source-level corrections, whereas \ac{genga} produces hierarchical vector graphical abstracts and proposes an editability-related structural-independence measure.
+\ac{paperbananainteract} evaluates multi-turn refinement of scientific diagrams, where retaining previously satisfied requirements matters alongside visual improvements.
+Such applications broaden graphic design to fact-sensitive and document-scale communication, but their metrics must distinguish narrative fidelity, component geometry, editing behavior, and artifact portability.

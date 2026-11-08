@@ -1,0 +1,45 @@
+# Install once: uvx pre-commit install (run from repository root).
+# The same paper checks also run in the GitHub Actions PDF workflow.
+repos:
+  - repo: local
+    hooks:
+      - id: manuscript-guidelines
+        name: Check manuscript review rules and TeX paths
+        entry: python3 paper/scripts/check_manuscript.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
+      - id: manuscript-bibtex
+        name: Check manuscript citation and BibTeX integrity
+        entry: python3 paper/scripts/check_bibliography.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
+
+      - id: manuscript-literature-audit
+        name: Check manuscript literature-audit register
+        entry: python3 paper/scripts/check_literature_audit.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\\.github/workflows/paper-pdf\\.yml$|\\.pre-commit-config\\.yaml$)
+
+      - id: manuscript-catalog-crosswalk
+        name: Check bibliography coverage against the public paper catalog
+        entry: python3 paper/scripts/check_catalog_crosswalk.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|data/resources\.csv$|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
+
+      - id: manuscript-225-source-crosswalk
+        name: Reconcile all 225 evidence spreadsheet IDs with BibTeX
+        entry: python3 paper/scripts/check_evidence_register.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)
+
+      - id: manuscript-sentence-lines
+        name: Keep one sentence per TeX source line
+        entry: python3 paper/scripts/check_sentence_lines.py
+        language: system
+        pass_filenames: false
+        files: ^(paper/|\.github/workflows/paper-pdf\.yml$|\.pre-commit-config\.yaml$)

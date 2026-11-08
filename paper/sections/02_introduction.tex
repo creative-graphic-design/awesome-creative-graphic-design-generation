@@ -1,0 +1,38 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Automating graphic design requires coordinating visual organization with the information a composition is intended to communicate.
+Graphic designs convey information through typography, imagery, color, and spatial relationships \citep{huang2023survey,zou2025fragment}.
+Foundational work formalized criteria for effective graphical presentations and explored interactive design using presentation knowledge \citep{mackinlay1986,roth1994interactive}.
+Subsequent work investigated adaptive document layout, learned composition of single-page designs, and interactive layout suggestions \citep{jacobs2003adaptivegrid,odonovan2014singlepage,designscape2015}.
+This challenge spans content-aware poster and advertisement composition \citep{posterlayout2023,cglgan2022,autoposter2023} and presentation slide generation from documents or specifications \citep{autopresent2025,pptagent2025,deepslides2026}.
+Related research addresses text-rich infographics \citep{bizgen2025,gupta2026layercanvas} and the generation of scientific illustrations or academic posters \citep{autofigure2026,scifig2026,postergen2026}.
+Although these artifacts differ in their conventions and content, successful generation must account for both the meaning of individual elements and their relationships within the overall composition.
+
+For design workflows that involve subsequent revisions, the usefulness of a generated artifact depends on more than its initial visual appearance.
+Interviews with graphic designers document how generative tools fit into creative practice \citep{tang2024designinterviews}, while an interactive poster-design study evaluates assistance during design revision \citep{vinci2021}.
+Image-based methods synthesize rendered graphic designs and visual text, including prompt-conditioned design images \citep{designdiffusion2025}, product posters \citep{postermaker2025}, and text rendering within images \citep{textdiffuser22024}.
+Other methods produce representations with more explicit structure, including element-level layouts \citep{layoutgan2019,layoutdm2023}, vector graphics \citep{vectorfusion2023,starvector2025,chat2svg2025}, layered compositions \citep{cole2023,opencole2024}, and code-based design documents \citep{designascode2026,editablevisual2026}.
+These research lines are complementary rather than stages in a universal progression from raster to vector generation.
+Raster-to-layer decomposition provides a different route to revisable results by reconstructing separate visual layers from flattened designs \citep{layerd2025,qwenimagelayered2026,jia2026pixelart}.
+However, neither the presence of separable raster layers nor the availability of vector paths or document objects demonstrates that a later semantic edit will succeed, as editing-specific evaluations investigate independently \citep{svgeditbench2024,mildedit2026}.
+
+The presence of editable structure does not, by itself, demonstrate reliable editing performance.
+Layered and code-based artifacts can expose manipulable elements \citep{cole2023,editablevisual2026}, whereas a benchmark of edits to multi-layer designs evaluates instruction following and layout preservation even for baseline editors that receive only a rendered image and a document-level instruction \citep{mildedit2026}.
+Furthermore, changing one element can require legitimate adjustments to surrounding content, rather than leaving every other element fixed \citep{yang2026infoedit}.
+A meaningful account of editability must consequently distinguish the operations an artifact permits from the revisions a system has demonstrated or evaluated.
+
+Differences in evaluation protocols further complicate comparisons of generated designs.
+Rendered-design synthesis can be evaluated for visual quality and text accuracy \citep{designdiffusion2025,postermaker2025}, while layout and vector generation use measures of spatial arrangement or rendered similarity \citep{layoutdm2023,vectorfusion2023}.
+By contrast, interactive design research can evaluate human editing effort \citep{vinci2021}, while dedicated benchmarks assess instruction-driven edits to \ac{svg} graphics \citep{svgeditbench2024,vectorgym2026} or multi-layer documents \citep{mildedit2026}.
+Because these protocols measure different outcomes, visual fidelity, structural affordances, and measured editing performance should not be treated as interchangeable evidence.
+
+Existing surveys provide complementary ways to organize graphic design research, motivating an explicit comparison of representation, revision operations, and evaluation evidence.
+Broad reviews examine representation, understanding, perception, generation, and aspects of creative workflows \citep{huang2023survey,zou2025fragment}.
+More focused surveys examine layout generation \citep{shi2023layoutsurvey}, vector-graphics representations \citep{tian2024vectorsurvey}, and language-model-based \ac{svg} generation and editing \citep{malashenko2025svgreview}.
+Rather than treating editability as a property inferred from an output format or task label, we compare the operations supported by delivered artifacts with the evidence used to assess those operations.
+
+This survey develops a representation--editability--evaluation (\ac{rev}) framework to connect these three dimensions of generative graphic design.
+We classify delivered artifacts separately from the operations they make possible, and distinguish format-level affordances from demonstrated workflows and quantitatively evaluated edits.
+We then compare evaluation practices across representations and identify open challenges involving instruction adherence, dependent layout reflow, preservation of non-target content, artifact validity, and human workflows.
+Figures~\ref{fig:rev} and \ref{fig:protocol} provide overviews of the framework and the corresponding evaluation questions.

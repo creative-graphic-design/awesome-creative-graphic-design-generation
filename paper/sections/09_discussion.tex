@@ -1,0 +1,51 @@
+\section{Research Gaps and Directions}
+\label{sec:discussion}
+\paragraph{Measuring non-target preservation.}
+Image-quality metrics are insensitive to many design-specific failures: a corrected headline can shift a logo, modify a brand color, or alter the line breaks of an unrelated paragraph.
+Editing benchmarks should include protected-object masks, semantic content checks, and explicit layout tolerances.
+Preservation must be evaluated on the correct level: pixels for raster methods, paths for \ac{svg}, object identities for layered documents, and \ac{dom}/content structure for code-native artifacts.
+However, some non-target movement is necessary: \ac{infoedit} demonstrates that infographic editing may require coordinated global reflow \citep{yang2026infoedit}.
+An evaluation protocol should distinguish permitted dependent changes from changes to explicitly protected content (Eq.~\ref{eq:reflow}).
+
+\paragraph{Representation-dependent evidence gaps.}
+A generated layout may satisfy geometric constraints without carrying the text and image assets needed for document revision.
+A separated raster layer stack may support recomposition while losing semantic text or stable design-object identities, as illustrated by raster-to-layer decomposition \citep{layerd2025}.
+Conversely, vector paths or code-native objects may remain manipulable even when reported evaluation emphasizes appearance or document validity rather than edit-execution accuracy \citep{vectorfusion2023,designascode2026}.
+The relevant question is therefore not whether a system is simply ``editable'', but which operations its delivered representation permits, which operations the authors demonstrate, and which of those operations receive quantitative evaluation.
+An image-space editor may satisfy a controlled edit instruction without offering native document export; the image-input baselines in \ac{mildedit} highlight why this format limitation should not be confused with failure at the evaluated raster editing task \citep{mildedit2026}.
+
+\paragraph{Native artifact validity.}
+An image preview cannot certify that a \ac{pdf}, \ac{svg}, \ac{pptx}, \ac{psd}, or \ac{html}/\ac{css} design remains editable.
+Reliable evaluation should include a round-trip: reopen the saved result in a target editor or renderer, inspect whether objects retain the expected type, perform a controlled edit, then render again.
+This is especially important for code-native agents that may output visually convincing pages with brittle styles or missing assets \citep{designascode2026,editablevisual2026}.
+
+\paragraph{Evidence-aligned comparisons.}
+Cross-system comparisons must start with the task, permitted inputs, delivered artifact, and operations actually measured.
+Penalizing raster editing for not exporting vector nodes, or rewarding any \ac{svg} merely because it contains paths, confuses format requirements with edit-task success.
+Every editing-capability claim should therefore be linked to an output format, a concrete operation, and the relevant workflow demonstration or measurement.
+For example, alpha-mask quality supports compositing readiness but not semantic text replacement; successful SVG rendering establishes visual validity but not object-identity preservation after a later edit.
+We recommend reporting instruction compliance, protected-content preservation, artifact validity, visual quality, and editing effort separately, with inapplicable dimensions explicitly identified rather than silently scored as failures.
+
+\paragraph{A minimal cross-representation editing test.}
+A useful paired evaluation would start from the same rendered design and specify the same user intent---for example, replace a headline while preserving a logo and an unrelated caption---but allow each system to operate on its declared input and output representation.
+The test must record whether a method receives only an image, a layer stack, or the original source document, since these inputs expose different information.
+Each submission should return both a rendered result and, where its output contract promises one, a reopenable native artifact.
+Scoring should distinguish exact text correctness, permissible downstream reflow, changes to explicitly protected objects, and format-validity failures.
+Results should be reported by representation and intervention type before any aggregate is attempted; an unavailable native-file dimension should be marked inapplicable rather than silently scored as an editing failure.
+This proposal defines a future comparison protocol, not an experiment conducted in this survey.
+
+\paragraph{Human-centred outcomes.}
+Designer workflows involve more than one-shot aesthetic ratings.
+\ac{vinci} provides an example of measuring editing efficiency \citep{vinci2021}.
+Future comparisons should additionally test task completion time, correction burden, how easily users can localize an error, compatibility with editing software, and designer trust across multiple changes.
+User expertise and task familiarity should be treated as experimental variables.
+
+\paragraph{Reliable evidence synthesis.}
+Evaluation descriptions found in abstracts should not automatically be mapped to specific numerical scores.
+Full experimental tables and appendix details can reveal sample-size limits, unreported exclusions, or test conditions that change the interpretation.
+The remaining survey work therefore includes systematically logged searches and source audits, explicit boundary adjudication, bibliographic reconciliation, and separate flags for measured versus merely claimed editing capability.
+
+\paragraph{Reproducibility and provenance.}
+Source code, weights, evaluation data, and proprietary \ac{api} dependencies introduce independent reproducibility constraints.
+A system may publicly release an inference pipeline without the training recipe or may require a paid closed model at evaluation time.
+These attributes should be tracked separately from whether a final artifact is editable, and should not be inferred merely from an available project-page link.

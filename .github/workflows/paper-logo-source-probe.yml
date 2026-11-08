@@ -1,0 +1,258 @@
+name: Paper Original-Logo Source Probe
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/paper-logo-source-probe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    name: Verify genuine vector logo source artboards
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install original vector preview tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ghostscript poppler-utils file
+      - name: Inspect official Beijing Institute of Technology AI masters
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logo-source-probe
+          cd logo-source-probe
+          # From the university MAIN campus visual identity system:
+          # https://www.bit.edu.cn/gbxxgk/dqgz_sjb/vixx/bzxhgf/index.htm
+          # These are source inspection candidates, not publication-approved marks.
+          for item in \
+            'bit-a1-01|https://www.bit.edu.cn/docs//2026-03/4b2a694f4ee5496083873317e69b4669.ai' \
+            'bit-a1-02|https://www.bit.edu.cn/docs//2026-03/023888b516cb4b939a6a1103cfb356ce.ai'
+          do
+            name="${item%%|*}"
+            url="${item#*|}"
+            echo "=== ${name} ===" | tee -a source-audit.txt
+            if ! curl -fL --retry 2 --connect-timeout 15 --max-time 90 -o "${name}.ai" "$url"; then
+              echo "${name}: download unavailable" | tee -a source-audit.txt
+              continue
+            fi
+            file "${name}.ai" | tee -a source-audit.txt
+            sha1sum "${name}.ai" | tee -a source-audit.txt
+            wc -c "${name}.ai" | tee -a source-audit.txt
+            head -c 120 "${name}.ai" | strings | head -n 8 | tee -a source-audit.txt || true
+            # BIT's downloaded ".ai" originals have a PDF 1.5 header.
+            # Preserve them as PDFs rather than incorrectly feeding them to gs as PostScript.
+            if head -c 5 "${name}.ai" | grep -q '^%PDF-'; then
+              cp "${name}.ai" "${name}.pdf"
+              echo "${name}: PDF-compatible Illustrator master; original bytes preserved" | tee -a source-audit.txt
+              : >"${name}-convert.log"
+            elif gs -q -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sOutputFile="${name}.pdf" "${name}.ai" >"${name}-convert.log" 2>&1; then
+              echo "${name}: genuine PostScript converted to PDF" | tee -a source-audit.txt
+            fi
+            if test -s "${name}.pdf"; then
+              pdfinfo "${name}.pdf" | grep -E '^Pages:|^Page size:|^File size:' | tee -a source-audit.txt
+              pdftoppm -f 1 -l 1 -singlefile -scale-to 1400 -png "${name}.pdf" "${name}-proof" || true
+            else
+              echo "${name}: PostScript conversion failed; original untouched" | tee -a source-audit.txt
+              tail -n 12 "${name}-convert.log" | tee -a source-audit.txt
+            fi
+          done
+          echo "These are preliminary original-artboard probes, NOT vetted logo assets or redistribution rights." | tee -a source-audit.txt
+      - name: Inspect official Salesforce corporate logo source ZIP for symbol-only art
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logo-source-probe
+          cd logo-source-probe
+          # Official 2026 Salesforce Brand Central "Download logos" link.
+          # Only inspect provenance and filenames; do not automatically insert
+          # a wordmark or derivative unapproved compact mark into our map.
+          url='https://salesforce.widen.net/s/mzhhvlhsdg/salesforce-corporate-logo-all'
+          if curl --fail --location --retry 2 --connect-timeout 20 --max-time 120 --silent --show-error "$url" -o salesforce-official.zip; then
+            sha1sum salesforce-official.zip | tee salesforce-source-audit.txt
+            wc -c salesforce-official.zip | tee -a salesforce-source-audit.txt
+            python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, BadZipFile
+          path = Path("salesforce-official.zip")
+          try:
+              with ZipFile(path) as zf:
+                  items = sorted(zf.infolist(), key=lambda x: x.filename.lower())
+                  with Path("salesforce-source-audit.txt").open("a") as out:
+                      print(f"Official package: {len(items)} files", file=out)
+                      for item in items:
+                          print(f"{item.filename}  ({item.file_size} bytes)", file=out)
+                      candidates = [x for x in items if
+                                    not x.is_dir() and
+                                    x.filename.lower().endswith(('.svg','.eps','.pdf','.ai')) and
+                                    any(t in x.filename.lower() for t in ('symbol','cloud','icon'))]
+                      print(f"Compact-vector candidate count: {len(candidates)}", file=out)
+                      # Exact official 2026 RGB cloud art (not a third-party icon trace).
+                      rgb = next((x for x in items if
+                                  x.filename == "Salesforce-Corporate-Logo-All/Cloud Logo RGB/Salesforce-Corporate-Logo-Cloud-RBG.svg"), None)
+                      if rgb is not None:
+                          import hashlib
+                          data = zf.read(rgb)
+                          print(f"official_rgb_cloud_svg: size={len(data)} sha1={hashlib.sha1(data).hexdigest()}", file=out)
+                          Path("salesforce-cloud-original.svg").write_bytes(data)
+                      for item in candidates[:12]:
+                          data = zf.read(item)
+                          import hashlib
+                          print(f"candidate {item.filename}: sha1={hashlib.sha1(data).hexdigest()}", file=out)
+                          if item.filename.lower().endswith('.svg') and len(data) < 1000000:
+                              Path("salesforce-candidate-%02d.svg" % candidates.index(item)).write_bytes(data)
+          except BadZipFile:
+              with Path("salesforce-source-audit.txt").open("a") as out:
+                  print("ERROR: response was not a valid ZIP archive", file=out)
+          PY
+          else
+            echo "Official logo download did not complete; do not substitute a third-party mark" | tee salesforce-source-audit.txt
+          fi
+      - name: Identify official Meituan parent-brand vector download
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logo-source-probe
+          # Only enumerate URLs; do not run arbitrary code embedded by the site
+          # or substitute a food-delivery/product-app icon for Meituan Group.
+          if ! curl -fL --retry 2 --connect-timeout 12 --max-time 45 \
+              --silent --show-error 'https://www.meituan.com/media' \
+              -o logo-source-probe/meituan-media.html; then
+            echo "Official Meituan media page could not be fetched" > logo-source-probe/meituan-source-audit.txt
+            exit 0
+          fi
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urljoin
+          import re
+          data = Path("logo-source-probe/meituan-media.html").read_text(errors="replace")
+          class Links(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.out = []
+              def handle_starttag(self, tag, attrs):
+                  if tag not in ("a", "link", "script", "img"):
+                      return
+                  for key, value in attrs:
+                      if value and key in ("href", "src", "download", "data-url"):
+                          self.out.append(urljoin("https://www.meituan.com/media", value))
+          l = Links()
+          l.feed(data)
+          candidates = sorted(set(x for x in l.out if
+                                  any(t in x.lower() for t in
+                                      ("logo", "brand", "media", "download", "zip", "ai", "svg"))))
+          inline = sorted(set(re.findall(
+              r'https?://[^"\'\s<>]+(?:\.zip|\.ai|\.svg|\.pdf)(?:\?[^"\'\s<>]*)?',
+              data, re.I)))
+          audit = Path("logo-source-probe/meituan-source-audit.txt")
+          audit.write_text(
+              f"Official Meituan media page: {len(data)} chars\n"
+              + f"Extracted {len(l.out)} links, {len(candidates)} candidate URLs, {len(inline)} direct vector/archive URLs\n"
+              + "\n".join(candidates[:50] + inline[:50]) + "\n"
+              + "No binary was enabled as a brand logo by this probe.\n"
+          )
+          print(audit.read_text()[:9000])
+          PY
+      - name: Inspect official Meituan media ZIP contents without redistribution
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p logo-source-probe
+          # This exact ZIP link was extracted from the original official
+          # /media HTML in the prior source probe. Its identity must be
+          # confirmed from its contents; do not assume it is Meituan Group.
+          src='https://s3plus.meituan.net/smart/22c45b30-80ba-4aa5-bfad-2bfaed7beb4e.zip'
+          audit=logo-source-probe/meituan-zip-audit.txt
+          if curl -fL --retry 2 --connect-timeout 12 --max-time 60 \
+              --max-filesize 50000000 --silent --show-error \
+              "$src" -o logo-source-probe/meituan-candidate.zip; then
+            python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, BadZipFile
+          import hashlib
+          path = Path("logo-source-probe/meituan-candidate.zip")
+          with Path("logo-source-probe/meituan-zip-audit.txt").open("w") as out:
+              b = path.read_bytes()
+              print(f"Candidate source ZIP: size={len(b)} sha1={hashlib.sha1(b).hexdigest()}",file=out)
+              try:
+                  with ZipFile(path) as zf:
+                      infos = zf.infolist()
+                      print(f"Total entries: {len(infos)}",file=out)
+                      for x in infos[:100]:
+                          print(f"{x.filename} ({x.file_size} bytes)",file=out)
+                      eligible = [x for x in infos if not x.is_dir() and
+                                  x.filename.lower().endswith((".svg",".ai",".eps",".pdf"))]
+                      print(f"Vector candidates: {len(eligible)}",file=out)
+                      # Do not auto-enable or export source binaries.
+              except BadZipFile:
+                  print("Not a ZIP archive; source cannot be enabled",file=out)
+          print(Path("logo-source-probe/meituan-zip-audit.txt").read_text()[:7000])
+          PY
+          else
+            echo "Media archive unavailable; no source asset enabled" > "$audit"
+          fi
+      - name: Render original Meituan parent-brand AI to assess compact-symbol eligibility
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test ! -s logo-source-probe/meituan-candidate.zip; then
+            echo "No official parent-brand ZIP, cannot inspect compact original" >> logo-source-probe/meituan-zip-audit.txt
+            exit 0
+          fi
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          import hashlib
+          path = Path("logo-source-probe/meituan-candidate.zip")
+          with ZipFile(path) as z:
+              candidates = [item for item in z.infolist()
+                            if not item.is_dir() and
+                            not item.filename.startswith("__MACOSX/") and
+                            item.filename.lower().endswith(".ai") and
+                            0 < item.file_size < 20000000]
+              if len(candidates) != 1:
+                  raise SystemExit(f"Expected exactly one original AI from parent-brand archive, got {len(candidates)}")
+              raw = z.read(candidates[0])
+          Path("logo-source-probe/meituan-original.ai").write_bytes(raw)
+          with Path("logo-source-probe/meituan-zip-audit.txt").open("a") as out:
+              print(f"Original parent-brand AI: size={len(raw)} sha1={hashlib.sha1(raw).hexdigest()}", file=out)
+              print(f"AI header magic: {raw[:60]!r}", file=out)
+          PY
+          (
+            cd logo-source-probe
+            file meituan-original.ai | tee -a meituan-zip-audit.txt
+            if head -c 5 meituan-original.ai | grep -q '^%PDF-'; then
+              cp meituan-original.ai meituan-original.pdf
+            elif head -c 16 meituan-original.ai | grep -q '^%!PS-Adobe'; then
+              gs -q -dBATCH -dNOPAUSE -dEPSCrop -sDEVICE=pdfwrite \
+                -sOutputFile=meituan-original.pdf meituan-original.ai >meituan-convert.log 2>&1 || true
+            fi
+            if test -s meituan-original.pdf; then
+              pdfinfo meituan-original.pdf | grep -E '^Pages:|^Page size:|^File size:' | tee -a meituan-zip-audit.txt
+              pdftoppm -f 1 -l 1 -singlefile -scale-to 1400 -png \
+                meituan-original.pdf meituan-original-proof || true
+            else
+              echo "No non-destructive vector rendering available for this master" | tee -a meituan-zip-audit.txt
+            fi
+          )
+      - name: Upload inspected renders and digest evidence (not as survey assets)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: bit-official-vector-source-probe-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            logo-source-probe/source-audit.txt
+            logo-source-probe/salesforce-source-audit.txt
+            logo-source-probe/meituan-source-audit.txt
+            logo-source-probe/meituan-zip-audit.txt
+            logo-source-probe/salesforce-cloud-original.svg
+            logo-source-probe/*-proof.png
+            logo-source-probe/meituan-convert.log
+            logo-source-probe/*-convert.log

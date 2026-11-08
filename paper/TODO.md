@@ -1,0 +1,426 @@
+# Survey manuscript TODO — batched scientific completion
+
+This is the **operational work queue** for [PR #135](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/pull/135).
+Use [WRITING_CHECKLIST.md](WRITING_CHECKLIST.md) for permanent author instructions, [evidence_review_queue.csv](evidence_review_queue.csv) for the **complete** unresolved-paper list, and [REVIEW_PROTOCOL.md](REVIEW_PROTOCOL.md) for screening rules.
+**Work through independent science, citation and CI tasks in coherent batches; stop only for a genuinely required author scientific decision.**
+Update this TODO in the same commit as the work it tracks; do not check an item merely because code was written.
+
+## 0. Verified baseline — 2026-11-04
+
+- [x] Read the live 225-study evidence workbook and check in its snapshot/identity crosswalk.
+- [x] Record **225** working IDs / **196** BibTeX entries / **185** acro entries.
+- [x] Reconcile **167** working IDs to references; keep **58** unresolved and explicitly **not excluded**.
+- [x] Keep the remaining queue complete: **8 P1 / 13 P2 / 37 P3**.
+- [x] Confirm Paper PDF, Catalog Check and Awesome Lint passed for source commit `bf56534a653e5143dad7a9b065ba3bf4d94a47f1`, [Paper PDF run #41840326573](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41840326573).
+- [x] Retrieve the **28-page** PDF and visually inspect the manuscript's research-map page 3.
+- [ ] **Author review:** approve this incremental work order before moving beyond the first study.
+
+These numbers are a dated checkpoint, **not** a systematic-search flow, a complete primary-paper audit, or a fixed citation target.
+Before a new citation batch, re-open the actual Google Sheet and confirm whether its content changed; GitHub CI only sees the frozen snapshot.
+
+## 1. NEXT — review one P1 study at a time
+
+- [ ] **T01 · CGD-091 · TAUE** — confirm same-work/preprint identity, original task and output, editing claim, evaluation evidence/section locator, and inclusion decision.
+  - Source audit prepared for author review (2026-11-04): original Sections 3–6, Table 2 and Figure 6, plus CVPR 2026 Findings metadata; details in [T01 source audit](T01_TAUE_SOURCE_AUDIT.md). Keep unchecked until sign-off.
+- [x] **T02 · CGD-092 · TKG-DM** — original Sections 3–7, Table 1 and Figures 2/10 independently audited in [T02_TKGDM_SOURCE_AUDIT.md](T02_TKGDM_SOURCE_AUDIT.md); author scientific approval remains pending.
+- [x] **T03 · CGD-159 · Alfie** — original §§4–5.1, Table 1 and Figs. 3/5–7 checked in [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md). A compositable RGBA bitmap is not native design-object editing; PDF and author-approval gates remain open.
+- [x] **T04 · CGD-174 · LayeringDiff** — original §§3–5, Tables 1–4 and Figs 1/7/8 audited in [T04 source audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md); pending PDF validation and author scientific review are tracked below.
+- [x] **T05 · CGD-184 · UniWorld-Design — primary-source/output-contract audit completed.** Original §§3–5, Tables 1–4 and Appendix B distinguish PSD training supervision from generated ordered semantic RGBA layers; Table 1 I2L and Table 4 T2RGBA have separate evaluation denominators, with non-dominant alpha-cleanliness and FID results. The source audit and earlier PDF QA are recorded in [T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md). **Scientific author sign-off and the final current-revision PDF remain pending independently.**
+- [x] **T06 · CGD-103 · PosterText** — inspected raster text-patch editing evidence separately from native document editability; main-paper v2/v3 tables and method are now source-verified. **Scientific author approval and a separate supplement audit remain pending**.
+- [ ] **T07 · CGD-072 · Mise-en-Scène** — resolve paper identity and actual generation/editing task.
+  - [x] **2026-11-08 original methods/results checkpoint:** I read the [arXiv original full-text rendering](https://arxiv.org/abs/2608.19000) of Xu, Murdock, and Michieli (2026), Sections 4.1–4.2, 5.1–5.6 and Tables 1–2. Mise-en-Scène synthesizes an **element-conditioned composition**: a LoRA-adapted image-editing DiT drafts placement, and a VLM-guided deterministic match-and-place stage reinstates the original RGBA source assets as individually rearrangeable raster layers. It does not establish editable semantic text, vector paths or a specific native PSD/PPTX export.
+  - [x] **Original experiment and limits recorded:** PrismLayersPlus contains about 97K designs, with TEST1000 drawn from 21 styles and at most four foreground layers. Section 5.1 and Table 1 compare LaDeCo and FlexDM with matched grounding/rendering, using Qwen3-VL-8B aesthetic judging and geometric validity/overlap/alignment. The full system reports 6.99 overall aesthetic score versus 6.79 (LaDeCo) and 6.66 (FlexDM), and ground-truth deviation 0.046 versus 0.240/0.371. These are **generation and compositional-quality scores**, not measured downstream edit-instruction accuracy. Section 5.5 Table 2 shows that dropping match-and-place changes ground-truth aesthetic deviation from 0.046 to 0.248. Section 5.6 explicitly states that no interactive designer study validates the human--AI co-creation claim; grounding errors and the maximum element count constrain the output.
+  - [ ] **T07 source-and-register reconciliation (completed 2026-11-08):** I re-read the live 225-study workbook rows 73–74, linked the arXiv identity to BibTeX, added methods-level prose and named-system acro entries, reconciled both crosswalks and the citation-level audit, and removed only these matched IDs from the unresolved queue. Scientific author approval and final PDF acceptance remain separate gates.
+- [ ] **T08 · CGD-073 · Multi-Object Advertisement Creative Generation** — check compositional constraints and evaluation.
+  - [x] **2026-11-08 bounded original-source review:** I read [the original arXiv v1 HTML](https://arxiv.org/html/2603.13745), Sections 3–6 and its appendix structure. The paper (Gao et al., arXiv:2603.13745, submitted March 2026) proposes CreativeAds for multi-product furniture lifestyle advertising, separating pairing (Section 4.3), dimension-aware positioning (Section 4.4), and masked/background generation with ControlNet (Sections 4.5–4.6). The interface's layout slider and revised background prompt are **scenario walkthroughs** in Section 5.1 and Figures 10–11, not quantitatively scored post-export design-object editing.
+  - [x] **Original evaluation boundary recorded:** The 200-image pilot described in Section 3.1 receives expert labels from two authors; it is distinct from the later Section 5.2 ablation of **40 examples per condition, 200 in total**. Tables 1–5 report CLIP, LAION aesthetic prediction, and scores from GPT-4o/GPT-4.5-preview, with and without Set-of-Mark prompts. Table 4 explicitly shows evaluator-dependent reversals in layout quality. In Table 2, disabling structural conditioning (A4) hurts judged product authenticity, whereas Table 3 often favors A4 in visual appeal: this is a trade-off, not a universal performance gain. Sections 6.1–6.2 acknowledge limitations in automatic evaluation and furniture-only scope. No controlled native PSD/SVG/PPTX round-trip, semantic text-edit success, or independent user editing-time experiment was located in these reviewed sections.
+  - [ ] **T08 source-and-register reconciliation (completed 2026-11-08):** I re-read the live workbook and updated BibTeX, method comparisons, CreativeAds acro entry, citation-level evidence audit, both crosswalks, and pending identity queue. Original experiment limitations are preserved. Scientific author approval, supplement verification, and final manuscript PDF acceptance remain open.
+
+**Per-study definition of done (all required):**
+
+1. Record original publisher/arXiv link, canonical title, authors, relevant year, version aliases, and exact methods/results/table/figure locations in the evidence notes.
+2. Record **scope and editorial decision with a reason**; allow `pending`, and never turn an unlinked source into an automatic exclusion.
+3. Distinguish **format affordance / demonstrated editing / quantitatively scored editing / evaluation target**. Mark unverified claims `not_verified`.
+4. If justified by evidence, update `references.bib`, manuscript discussion, `acronyms.tex`, `literature_citation_audit.csv`, both identity crosswalks and `evidence_review_queue.csv` together. If no citation is warranted, explicitly document why.
+5. Run the evidence-register validator, literature-audit/bibliography checks and negative tests; **build and visually inspect the resulting PDF and maps**; provide links and ask for confirmation before the next ticket.
+
+## T01 source-audit checkpoint — 2026-11-04
+
+- [x] Source review and synchronized records: 225 working IDs / **197 references / 188 acro / 168 linked / 57 unresolved (7 P1, 13 P2, 37 P3)**.
+- [x] Confirmed all three CI checks passed at source commit `9545d800babd0235e6b512efe836bb19480a470a` ([Paper PDF run #41850864927](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41850864927)); retrieved the **29-page** PDF, inspected research map p. 3, TAUE evidence pp. 11–12, acro p. 21 and reference p. 26, and verified no unresolved citations or TeX box warnings in the log.
+- [ ] Author sign-off on T01 before processing T02.
+
+## 2. Remaining paper queue (do not bulk-add citations)
+
+- [ ] **T09 · P2 abstract/index evidence — 13 records:** verify one by one in `evidence_review_queue.csv`, promoting a record only with its original source locator.
+- [ ] **T10 · P3 catalogue evidence — 37 records:** start with identity/deduplication and scope; schedule full reading only when justified.
+- [ ] **T11 · Resolve title/arXiv/proceedings aliases:** prevent two citations for the same contribution.
+- [ ] **T12 · Validate source depth of linked studies:** an automatic match among the 167 is **not** a verified scientific claim.
+- [ ] **T13 · Compare prior surveys:** log exact coverage, selection method and original figure references; preserve Zou (2025)'s unresolved 500-vs-267 discrepancy.
+  - [x] **2026-11-06 source-denominator audit:** original [Zou et al.](https://doi.org/10.3390/jimaging11090289) **p. 3 Table 1 = 267**, **pp. 3–4 methodology final dataset = 500**, and **p. 37 final bibliography item = [261]**; these represent distinct, unreconciled reported/printed denominators, not proof of a 500→267 systematic screening process. Contrasted [Li et al. (2024)](https://doi.org/10.1016/j.heliyon.2024.e40037) **§2.3 and Fig. 1**, which explicitly distinguish **552 identified** from **33 included**. I recorded the primary locators, scope caveats and manuscript policy in [T13 source denominator audit](T13_PRIOR_SURVEY_DENOMINATOR_AUDIT.md), after a read-only recheck of the live Evidence Matrix 225 and prior-survey/citation/source-tier tabs. Existing survey prose already retains 500 versus 267 without equating them, so I did **not** edit TeX, bibliography, source tiers or the 225 snapshot.
+  - [x] **2026-11-07 figure-locator checkpoint (bounded):** visually inspected Zou (2025) original published PDF **Figs. 1–3 on pp. 2/4/7**, including Fig. 3's four **document-layout analysis** approaches (not generation/editing). Checked Li et al. (2024) original article **§3.2 Fig. 4 technology roadmap, §3.3 Fig. 5 four paradigms/coded categories, and §4.4 Fig. 6 proposed design-process path** against figure captions and surrounding explanation; its **figure images/PDF have not been visually inspected** and remain open. Revised `sections/03_related_surveys.tex` to distinguish these meanings and documented source locators and limitations in [T13 audit](T13_PRIOR_SURVEY_DENOMINATOR_AUDIT.md). **No** new denominator reconciliation, screening flow, primary scientific approval, or T07 work.
+  - [ ] **T13 remains open:** survey-by-survey inclusion/figure/source comparison and actual prospective database-search execution are separate; do not report a completed PRISMA flow without reproducible identified/deduplicated/screened/included records.
+- [ ] **T14 · Check empirical comparisons:** validate original tables, datasets, measured outputs, experimental settings and limitations.
+
+## 3. Presentation and publication-readiness
+
+- [ ] **T15 · Research figures:** verify every research-map node, publication year and method-family encoding against original sources; compare at actual PDF size.
+- [ ] **T16 · Original university/company logos across all 26 research milestones:** respect accurate original-paper affiliations, square original identity marks, and final print/rights restrictions.
+  - [x] **2026-11-07, 26-paper audit:** I built `figs/tex/research_map_affiliations.csv` with 26 unique BibTeX-linked study keys, main and additional author organizations, roles, exact evidence links and logo decisions; extended `logo_asset_candidates.csv` to **all 18 distinct selected institutions**, including source blockers. CI rejects absent or duplicate study affiliations and a missing institutional source/rights row.
+  - [x] **COLE/MSRA correction:** the primary COLE map mark is Microsoft/MSRA (not PKU). The original collaborative Peking University affiliation is still recorded. Its square seal now labels **PosterLayout**, a PKU-led study.
+  - [x] **10 compact marks in genuine study nodes:** I added **Microsoft ×4** (COLE, LayoutFormer++, ReLayout, DesignAsCode), **CyberAgent ×3** (OpenCOLE, LayoutDM, LayerD), **Google ×2** (VTN, CoLay), and **Peking University ×1** (PosterLayout). Each uses a **0.46cm aspect-preserving square slot** and original source-pinned SVG/unchanged vector paths. Original SHA-1 values, including the **272-byte Microsoft square** `5b170117926ae5a5e451aa24676b5a124c2fa122`, were checked by actual GitHub CI downloads. No detached logo footer.
+  - [x] **Source and rendered map QA:** [Figure Preview #42365362060](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42365362060) succeeded, and I downloaded and visually inspected its 10-logo PDF. I found **PosterLayout's text wraps and its card intrudes into the next lane**; fix and re-render are required before visual acceptance.
+  - [x] **Figure-only layout fix:** Shortened PosterLayout subtitle, added a TeX-time width gate for branded card text, compiled eleven-logo standalone map, and visually confirmed zero label/neighboring-lane overlap and no embedded raster images (Figure Preview #42367964221).
+  - [x] **2026-11-08 true two-column card layout:** I removed the separate TikZ logo overlay and the synthetic `\\hspace*{.53cm}` prefixes from both branded text lines. Every logo-bearing study now uses a single real tabular row with **0.46cm vertically centered icon + 0.07cm gap + 2.59cm vertically centered title/year/description**, sharing the original `\\MapPaperFrame` and `\\MapPaperText` with text-only studies. [Figure Preview #42389733647](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42389733647) passed, and I downloaded/rendered the vector PDF to inspect full 26-card map and a before/after LayerD crop. This is an independently verified figure artifact; a new full-paper placement check remains open. The CI checks the two-column structure and all 26 PDF title/subtitle gaps.
+  - [ ] **Whole-manuscript print QA:** Build and visually inspect the latest anonymous **14-logo** paper PDF for figure placement, caption readability and printed text issues; Figure Preview #42369070411 already passed the standalone vector/color/raster audit.
+
+  - [x] **2026-11-07 official BIT Illustrator source / 11th original:** I found the [Beijing Institute of Technology MAIN-campus A1 visual identity master](https://www.bit.edu.cn/gbxxgk/dqgz_sjb/vixx/bzxhgf/index.htm), downloaded its original A1-02 Illustrator source in CI and verified the bytes are actually **PDF 1.5** (1,615,856 bytes, SHA-1 6fcb6505b213d2f858e82ff51aab605a1771dc7c). I rendered the original artwork and selected the authentic standalone green university symbol, cropping only the A4 source viewport to a **307pt square vector canvas** in bit-symbol.tex—no path modification, redraw or rasterization. I placed it inside the LayoutGAN node, extended CI source-pin/paper-affiliation checks, and downloaded/visually inspected [Figure Preview #42367964221](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42367964221): the new original BIT mark, study-card placement, text and vector output passed. The source is **2026 official brand art**, not proven identical to the 2019-era identity; final publication permissions remain open.
+  - [x] **2026-11-07 additional seven-institution official-source review:** Upgraded rights/source metadata in logo_asset_candidates.csv for BIT, Tongji, Salesforce Research, HKUST(GZ), Meituan, JD.com and CAS. Salesforce's own Brand Central requires **cloud SYMBOL only** when printed smaller than 2cm; I added an official Salesforce logo ZIP source probe instead of shrinking its wordmark. A GitHub community-made Tongji vector explicitly disclaims official status and restricts redistribution; do **not** ship it as an original institutional mark.
+  - [x] **2026-11-07 Salesforce original corporate-cloud logo / 12th mark:** I downloaded and inspected the [official Salesforce corporate logo ZIP](https://salesforce.widen.net/s/mzhhvlhsdg/salesforce-corporate-logo-all), **6,167,457 bytes**, SHA-1 `b8cca7fa6290153156dc0d260095079d0cb0708c`. Within the official RGB/cloud variant, I isolated the single original blue cloud SVG path (**6,663-byte original**, SHA-1 `a05d80d66796327adad13e0574c4fa78b526545c`), preserving its exact path data while omitting only the white wordmark paths, as [Salesforce Brand Central](https://help.salesforce.com/s/articleView?id=001115548&language=en_US&type=1) requires the **cloud without text at printed widths below 2cm**. I added it to the **LayoutDETR** research node and pinned both package and source SVG hashes in `prepare_affiliation_logos.sh` and CI. The exported cloud was visual-QA'd and the complete [Figure Preview #42369070411](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42369070411) **passed**; its source vector map embeds **zero bitmap images**. The 2026 brand download does not establish the 2024-era original variant or permission to reproduce this corporate mark in the final publisher PDF.
+  - [x] **2026-11-07 iPoster / 14th compact mark:** I inspected [the original iPoster arXiv title page](https://arxiv.org/pdf/2603.29469) and verified all four authors list Beijing Institute of Technology. Reused the already SHA-1-verified **2026 original BIT square emblem** in the iPoster research node; updated its exact author-evidence URL, the BIT asset-to-study register and the 26-study CI crosswalk. [Figure Preview #42374898949](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42374898949) succeeded, and I downloaded and inspected its 14-logo vector map (0 embedded bitmap images). Full manuscript PDF still needs the corresponding final print-scale check.
+  - [ ] **12 pending compact-original marks:** resolve original institute symbols, official minimum print sizes and trademark permissions where applicable; do not substitute a product brand, tiny university seal, raster screenshot or fictional monogram. UTokyo's official **6mm printed symbol minimum** and UC Berkeley's official **1.25-inch seal minimum** conflict with our 4.6mm base icon slot. Adobe, Alibaba, Westlake and HKUST(GZ) have separate source/reuse restrictions. Keep those study nodes text-only until appropriate.
+  - [ ] **Publication acceptance:** verify non-endorsement/trademark/insignia rights for all displayed company/university marks; a Commons public-domain copyright tag is not sufficient by itself.
+
+- [x] **T17 · acro print index:** the **198-entry registry** (27/151/20) and its compact source-linked output are preserved, PDF CI succeeded at source `0dbe879` ([Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385)), and I compared actual index pp. 18/22/24, including year/source/URL/usage pages. Long Task/Representation descriptions remain stored as metadata, not printed in the two-column index. Final publication-page-budget curation and author scientific approval remain open.
+- [x] **T18 · Label historical overview counts:** I revised README / acro audit headings and tense so old **2026-11-03/04 snapshots** (180/186 BibTeX, 175/185 acro, 148/157 matches and initial 22/130/16 acro distribution) are explicitly historical, not current coverage. I also corrected the README's stale reference to **two** acro lists: the current paper has **three**. Current validated source stage remains **225 / 202 BibTeX / 198 acro (27/151/20) / 173 linked / 52 pending**. Historical numbers are preserved for provenance.
+- [ ] **T19 · Search reproducibility:** execute and log actual multi-database searches, deduplication, inclusion/exclusion decisions and a screening flow before claiming systematic completeness.
+- [ ] **T20 · Final PDF review:** build anonymous manuscript, inspect all figures and acro lists, validate citation resolution and provide latest manuscript + both map PDFs.
+
+**Operating rule:** Report only (a) the ticket just checked, (b) evidence and decision, (c) changed files/CI/PDF, and (d) the *single next ticket*. Do not expand all 58 unresolved studies in one turn.
+
+## T02 primary-source checkpoint — 2026-11-05
+
+- [x] Directly re-opened live Evidence Matrix 225 row 93, citation/source-tier tabs and prior-survey methodology.
+- [x] Checked CVPR 2025 proceedings metadata, 2024 arXiv version, original Sections 3–7 and Table 1; no unsupported SDXL superiority claim.
+- [x] Synchronized **225 records / 198 references / 189 acro / 169 linked / 56 unresolved (6 P1, 13 P2, 37 P3)**, including the pending queue and regression test.
+- [x] At source commit `aa9579f80a71700eeff58817a361775909f033c3`, [Paper PDF #41857746475](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41857746475), Catalog Check and Awesome Lint **all succeeded**. Retrieved artifact **13339058432** (`survey-paper-ca1cabe08bf759c8e93715968f83620722dec331`): **29-page** anonymous manuscript; rendered and inspected manuscript pp. **3, 11–12, 21 and 26** and both standalone **26- and 67-study** research-map PDFs, with no apparent overlap or clipping in these inspected pages. The TeX log has no unresolved-citation/reference or overfull/underfull box messages.
+- [ ] Author scientific review of T02 before T03 / CGD-159 / Alfie.
+
+## T03 primary-source checkpoint — 2026-11-05
+
+- [x] Re-read live Evidence Matrix 225 row 160, 225 Citation and R-E-V Coverage, 225 Source Tier Reconciliation, and Prior Survey and Screening; no newer sheet modification than the dated committed snapshot review.
+- [x] Compared [original arXiv §§4–5.1](https://arxiv.org/html/2408.14826) with [Springer LNCS 15627](https://doi.org/10.1007/978-3-031-92808-6_3); 2024 preprint/workshop and 2025 publication describe the same contribution.
+- [x] Synchronized **225 working IDs / 199 references / 190 acro / 170 linked / 55 unresolved (5 P1 / 13 P2 / 37 P3)**, including a negative arXiv-alias regression test.
+- [x] **T03 source PDF accepted:** for source `0e308af`, [Paper PDF #41871516836](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41871516836), Catalog Check and Awesome Lint all passed. Downloaded artifact **13345402864**: **29-page anonymous PDF**; rendered and inspected pp. **3, 7, 11–12, 17, 27**, plus the standalone **26-study narrative** and **67-study atlas** PDFs; no visible clipping/overlap in these inspected locations and no unresolved citation/reference, acro, overfull or underfull box warnings in the final log. Details in [T03 source audit](T03_ALFIE_SOURCE_AUDIT.md).
+- [ ] Author scientific review of T03 before **T04 / CGD-174 / LayeringDiff**. The user's instruction to continue permitted starting T03, but was not treated as unconditional scientific sign-off.
+
+## T04 primary-source checkpoint — 2026-11-05
+
+- [x] Re-read live Evidence Matrix 225 row 175, Citation and R-E-V Coverage, Source Tier Reconciliation, and Prior Survey and Screening; original sheet timestamp 2026-11-03T06:03:55Z predates the frozen 2026-11-04 snapshot review.
+- [x] Rechecked [LayeringDiff original arXiv](https://arxiv.org/html/2501.01197) §§3–5, Tables 1–4 and Figures 1/4/6–8. Only the initial composite generator is fixed; FBDD/HFA require 20,000 training composites.
+- [x] Synchronized **225 IDs / 200 references / 193 acro / 171 linked / 54 unresolved (4 P1 / 13 P2 / 37 P3)**, with an arXiv identity negative regression test.
+- [x] **T04 original-source PDF QA passed:** for source `1750e184`, [Paper PDF #41944766288](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41944766288), Catalog Check and Awesome Lint passed. I retrieved artifact **13379065431** (**30-page** anonymous PDF), inspected pp. 3, 7, 11, 12, 17, 19, 22, 25, 30 and both 26-/67-study standalone maps; no visible overlap/clipping on inspected output or unresolved citation/acro/box warnings. Details: [T04 audit](T04_LAYERINGDIFF_SOURCE_AUDIT.md).
+- [ ] Author scientific review of T04 before **T05 / CGD-184 / UniWorld-Design**. This request to continue authorizes work on T04, not automatic approval of T03 or T04 scientific claims.
+
+## T05 primary-source checkpoint — 2026-11-05
+
+- [x] Re-read live Evidence Matrix 225 row 185, Citation and R-E-V Coverage, Source Tier Reconciliation and Prior Survey and Screening; Drive modified 2026-11-03T06:03:55Z before the source snapshot review.
+- [x] Check [UniWorld-Design §§3–5, Tables 1–4 and Appendix B](https://arxiv.org/html/2608.03971); PSD training material is not native PSD output, and VLM structural proxies are not observed edit-instruction success.
+- [x] Source-stage synchrony: **225 IDs / 201 BibTeX / 194 acro / 172 linked / 53 unresolved (3 P1/13 P2/37 P3)**; public catalogue **155/207 linked**, new arXiv negative regression test, unresolved ceiling **53**.
+- [x] Verified scholarly-source commit `fb1f41e`: [Paper PDF #41989947985](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41989947985), Catalog Check and Awesome Lint all passed. Downloaded artifact **13398466465**, 30-page anonymous PDF; visually inspected pp. **3, 7, 11, 13, 22, 26** and both 26-/67-study vector maps; no visible clipping/overlap in inspected regions or unresolved citation/acro/box warnings. Details: [T05 source audit](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md).
+- [ ] Keep scientific sign-off open for T04 and T05; do not begin T06 / CGD-103 / PosterText before this gate.
+
+## T06 primary-source checkpoint — 2026-11-05
+
+- [x] With the user's latest instruction to continue, re-read the live Evidence Matrix 225 row **104**, Citation and R-E-V Coverage, Source Tier Reconciliation, and Prior Survey and Screening; its Drive modified time **2026-11-03T06:03:55Z** predates the committed source snapshot.
+- [x] Audit [PosterText original arXiv v2](https://arxiv.org/html/2608.16289v2) Sections 3–4, Figure 3 and Tables 1–2; verify that arXiv v3 is later and retain the final numerical-version check.
+- [x] Distinguish **quantitatively evaluated raster text-patch editing** from the HTML **dataset annotation**, as well as task-specific OCR fidelity, non-target Masked-LPIPS, VLM judging and worse modification text accuracy compared with Nano Banana 2; see [T06 original-source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+- [x] Synchronize **225 studies / 202 BibTeX / 198 acro (27/151/20) / 173 linked / 52 unresolved (2 P1 / 13 P2 / 37 P3)** and public catalogue **156/207 linked / 51 pending**, with new negative arXiv identity test and a CI ceiling of **52**.
+- [x] **T06 PDF/map artifact gate:** scientific source `729c2343` passed [Paper PDF #41997058915](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/41997058915), Catalog Check, and Awesome Lint. I downloaded exact artifact **13401199657**: the **31-page** anonymous PDF and both standalone **26-/67-study** maps; rendered the full manuscript at overview resolution, inspected original map (p. 3), representation (p. 7), method (p. 10), editing results (p. 14), benchmark (pp. 15–16), SGSD (p. 18), PosterText (p. 22), PosterText-320K/Bench (p. 24) and reference [99] (p. 27), plus both maps at 200 DPI. No evident clipping in inspected regions, log citation/acro/box warnings, or text-word boxes outside page boundaries. See [T06 audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+- [ ] **T04/T05/T06 author scientific approval** remains pending. The **v3 main-paper** Tables 1–2, Figure 3, methods and metric definitions were directly compared with v2 on 2026-11-06; **supplementary implementation details are not independently verified**. **T07 / CGD-072 / Mise-en-Scène has not started.**
+
+## T06 acro wrapping / typesetting correction — 2026-11-05
+
+- [x] Diagnose the full-justified `description`-based `survey-rich` index and awkward intra-word line breaks on the actual T06 PDF.
+- [x] Preserve every source-backed display field and all **198** entries, but use ragged-right copy and disable automatic word-hyphenation in the index, with a mechanical CI regression guard.
+- [x] Compile/render an independent four-system `acro` specimen before changing the paper template.
+- [x] The first ragged-right-only PDF built successfully at [#42025690265](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42025690265) and was inspected, but the odd metadata breaks remained; its typography was superseded by the **compact index** in `0dbe879`, verified in [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385) and recorded in the later acro second-pass checkpoint below.
+- [ ] Author scientific approval remains open; the former v3 main-paper numerical/source-claim check was resolved in the 2026-11-06 primary-PDF comparison, but a separate supplement remains unverified. No T07 work has started.
+
+## acro second-pass: remaining awkward line wraps (2026-11-05)
+
+- [x] Recheck the **actual** success-status [Paper PDF #42025690265](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42025690265), artifact and 31-page output at pp. **22 and 24**. The ragged-right-only change did **not** eliminate excessive wraps in long Task/Representation paragraphs.
+- [x] Keep the full 198-entry registry and custom Task/Representation **data**, but make the **printed** index compact: short label, description, year/venue, original source, paper/DOI link and use pages. Do not silently remove provenance or source-linked entries.
+- [x] Strengthen `check_manuscript.py` to forbid verbose Task/Representation data in the narrow two-column printed template while preserving underlying `\\DeclareAcroProperty` declarations.
+- [x] Prototype the compact layout with a two-column `acro` LaTeX fixture and visually inspect it.
+- [x] Scientific-layout source `0dbe879` passed [Paper PDF #42033969385](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42033969385), Awesome Lint and Catalog Check. I downloaded exact artifact **13417988514**, visually compared the **31-page** revised anonymous PDF at acro **pp. 18, 22, 24** against the earlier full PDF, verified PosterText/BENCH citations and usage pages and the transition to References (p. 24), scanned page-text bounding boxes (0 outside), and checked the final log (no unresolved citation, acro or TeX box warnings).
+
+## Compact acro index: final heading wrap (2026-11-05)
+
+- [x] Visually inspect the complete printed `acro` index pages **17–24**, including system/bibliography transitions, not just individual PosterText entries.
+- [x] Identify the residual `Re-`/`sources` split in the long evaluation-group heading on p. **23**, shorten it to `Evaluation Resources`, and protect that title with the manuscript source CI.
+- [ ] Verify a fresh full-paper PDF after this heading-only change, download its artifact and inspect actual p. 23 and overall page count before marking this final layout issue closed.
+
+## acro PDF link-target fix (2026-11-05)
+
+- [x] Diagnose actual old PDF link dictionaries: `paper` hyperlinks target escaped LaTeX text as external files and DOI hyperlinks contain literal `\\acrowrite`, despite visible blue labels. Prior 'working link' confidence was unjustified.
+- [x] Fix the `survey-rich` template with expansion-safe `\\acrofield` targets; compile a local proof and verify its native PDF `LINK_URI` annotations, including repeated paper links and DOI.
+- [x] Add structural and compiled-PDF CI regression checks for **all 171 paper URLs and 25 DOI URLs**, including repeated paper targets, with five positive/negative unit tests.
+- [ ] Confirm updated **source-commit Paper PDF** CI succeeds, download full PDF and inspect real link actions/acro page headings and index; do not claim publication or author scientific approval based on PDF build alone.
+
+## acro index: variable-width label spacing root cause — 2026-11-06
+
+- [x] Screenshot the actual previous **p. 19** at high resolution; identify that `description` with `\\item[short]` uses mismatched start positions for first and continuation lines. The earlier ragged-right/metadata/heading/link fixes did **not** fix this structural alignment issue.
+- [x] Compare locally compiled, real two-column eight-entry `acro` specimens of old `description` and new zero-indentation `list`, including long names, a paper link and a DOI link.
+- [x] Apply the structural `list` index template without changing `acronyms.tex`, `references.bib`, scholarly prose, research maps or paper DOI/URL fields; guard against the original markup in CI.
+- [ ] Confirm the complete newly built anonymous PDF, screenshot **pp. 18–24** (particularly p. 19), check output link URIs and original index entries, and update PR only after visual acceptance. Author scientific approval remains separate.
+
+## Reset printed acro to the built-in template — 2026-11-06
+
+- [x] Confirm in a locally compiled two-column `acro` specimen that the stock list works with full `short`/`long` descriptions and `display=all`; use that before any custom format design.
+- [x] Remove the project-specific `survey-rich` printing template, keep all three stock `\\printacronyms` groups and 198 registered entries. Keep original metadata values stored but not printed as custom bibliography paragraphs.
+- [x] Adapt CI from testing custom print layout and custom 196 PDF index hyperlinks to testing the **standard acro interface** plus original-source metadata consistency.
+- [x] Verified [Paper PDF #42062616167](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42062616167) and artifact **13433601126**, actual **28-page** anonymous manuscript: rendered pp. 17–22, confirmed all three acro groups on pp. 17–21, including the previously problematic middle systems list (pp. 19–20), and inspected references transition on p. 21. Checked 0 off-page text words across the 28 pages and no undefined citation, acro or TeX box warnings. Standard template does not print custom source/year/URL/DOI/page-use metadata; registry source provenance remains intact. The 26-/67-study standalone vector maps are in the same artifact. Author scientific approval and PosterText v3 primary-source verification still remain pending.
+
+## Default acro occurrence-page index — 2026-11-06
+
+- [x] Confirm the stock `acro` v3.8 option `pages/display=all` records and prints occurrences in the ordinary `\\printacronyms` default template; test it after multiple LaTeX runs with usage pages 1 and 2.
+- [x] Set `pages/display=all,pages/name=true,pages/seq/use=false` in the main paper's existing `\\acsetup` and add a CI source invariant. Preserve the stock three-list layout and complete 198-item acronym registry; no `survey-rich` custom template.
+- [x] The successful [Paper PDF #42153100997](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42153100997) PDF (artifact **13473718306**) was inspected at all three index groups on pp. **17–22**. PosterText, UniWorld-Design and PosterText-Bench show explicit `pp.` usage pages without the old custom-renderer alignment defect; research maps and bibliography were retained. This is layout acceptance, not scientific author approval.
+
+## Real-paper default acro pages: latexmk convergence (2026-11-06)
+
+- [x] Retrieved failed [Paper PDF #42150444462](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42150444462) output and actual **29-page** last-pass PDF. Confirmed valid-looking stock page index: PosterText **pp. 7, 10, 14**, UniWorld-Design **pp. 7, 11, 13**, PosterText-Bench **pp. 14, 15**. The failure was **latexmk default 5-pass maximum**, not a TeX parse error.
+- [x] Added `paper/.latexmkrc` with `$max_repeat=8;` to allow a finite number of BibTeX/acro crossreference convergence passes while preserving the stock list.
+- [x] Verified `117f247` source-run [Paper PDF #42153100997](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42153100997) **success**; downloaded artifact **13473718306**, 29-page anonymous PDF, inspected pp. **17–22** and both research-map PDFs. Appearance-page text matches original manuscript uses, including PosterText `pp. 7, 10, 14`, UniWorld-Design `pp. 7, 11, 13`, PosterText-Bench `pp. 14, 15`; zero off-page text words and no undefined-citation, `acro` or box warnings. No custom list template was reintroduced.
+
+## Native acro bibliography-link pilot (2026-11-06)
+
+- [x] Reproduce `extra` + `\\citealp` + native clickable `\\href` in a two-column LaTeX/PDF sample while preserving page-occurrence lists.
+- [x] Add only four representative pilot entries: LayoutGAN, PosterText, UniWorld-Design and PosterText-Bench. Validate each added cite/URL against the existing BibTeX-aligned acro metadata using the existing manuscript checker.
+- [x] Verified all three source-commit checks for `dd1ee78`, [Paper PDF #42159374944](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42159374944), downloaded artifact **13476423122** (29-page manuscript and two standalone maps), and inspected actual index pp. **19–22** side-by-side with the previous stock version. Exactly **four** valid PDF URI annotations link to the source-registered arXiv URLs; `p.`/`pp.` occurrence pages are retained; no out-of-page text or citation/acro/box warnings. Keep this a **four-entry pilot** pending author design feedback before any bulk additional source fields.
+
+## PosterText v3 supplementary availability audit (2026-11-06)
+
+- [x] Recheck the [arXiv v3 record](https://arxiv.org/abs/2608.16289), [official v3 HTML](https://arxiv.org/html/2608.16289v3) and nine-page PDF for appendix/supplement links; search exact-title/author/arXiv-ID and PosterText-320K/Bench code/dataset release leads. Document inspected surfaces and limitations in [the T06 audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+- [x] Record **not obtained / not independently verified**, **not** `no supplement exists`: the main paper references supplementary implementation details, but no independent supplement or official code/data release was identified from these searches. The arXiv source archive could not be inspected in this environment.
+- [ ] If a verified original supplementary artifact or author-designated release becomes accessible, audit implementation details (LoRA and schedules, RL reward weights, SGSD teacher/student settings), data provenance/validation and benchmark VLM judging before promoting supplemental reproducibility claims.
+- [ ] Keep T04–T06 author scientific review and documented systematic screening separate; do not start T07 on the strength of the main-paper v3 check.
+
+## PosterText v3 main-paper reconciliation (2026-11-06)
+
+- [x] Visually compare the version-identified **v2** and **v3** nine-page original arXiv PDFs, especially Table 1/Table 2 (PDF p. 7), Figure 3 and evaluation definitions (PDF p. 5), and four-stage method descriptions; record numeric and representation outcomes in [T06 source audit](T06_POSTERTEXT_SOURCE_AUDIT.md).
+- [x] Confirm that all audited v2 Table 1–2 values still match v3 and that the model's deliverable is a **raster image**, not a native editable HTML/PSD/SVG/text-layer document. No numerical changes to the TeX manuscript or 225/202/198/173 source-stage snapshot were justified.
+- [ ] Retrieve and review the independently available **supplementary implementation** details referenced by the nine-page main paper; the main PDF ends in references, without an appendix.
+- [ ] Preserve separate T04–T06 **author scientific approval** and systematic literature-search gates; do not begin T07 on the strength of this main-paper comparison.
+
+## T04–T06 author scientific-decision packet (2026-11-06)
+
+This is a **review agenda**, not author approval and not a new source-depth claim. Source records: [T04 LayeringDiff](T04_LAYERINGDIFF_SOURCE_AUDIT.md), [T05 UniWorld-Design](T05_UNIWORLD_DESIGN_SOURCE_AUDIT.md), and [T06 PosterText](T06_POSTERTEXT_SOURCE_AUDIT.md). For each row, the author can explicitly choose **accept current scope / request wording change / require more primary evidence**; no choice has been recorded as approved.
+
+| Item | Existing bounded survey claim | Specific scientific decision still needed |
+| --- | --- | --- |
+| **T04 · CGD-174 · LayeringDiff** | Generation-then-disassembly produces compositable **raster foreground RGBA and background RGB**, not verified native design-object editing. FBDD/HFA are trained, despite a frozen initial image generator. | Confirm that the survey does not treat layer recovery as measured object editing, or claim training-free operation. Preserve conflicting results (composite FID **121.05** vs **134.51** better, foreground FID **133.76** vs **127.14** worse), model/backbone differences, **24**-participant preference-study scope, and alpha/shadow failure modes. |
+| **T05 · CGD-184 · UniWorld-Design** | T2RGBA/I2L produce **ordered semantic RGBA layers**; PSD design files are training supervision, not demonstrated native PSD/text/vector export. Editability is a layer compositing affordance, not measured edit-operation success. | Confirm the representation/export boundary and the different test denominators (**512** held-out designs, **479** paired layer prompts, **1,000** reference layers). Preserve alpha-cleanliness (**2.90** vs **3.33**) and T2RGBA FID (**117.14** vs **87.86**) weaknesses, VLM-judge limitations and unmatched resolution settings. |
+| **T06 · CGD-103 · PosterText** | Four operations are evaluated as **raster text-patch generation/editing**; HTML is used in dataset construction. v3 Table 1 and Table 2 reproduce the audited main-paper figures. | Confirm that editability is qualified as **instruction-driven pixel output**, not a live editable typography/object tree; distinguish per-task addition accuracy **0.763** from ablation aggregate **0.767**; preserve worse modification SenAcc (**0.771** vs **0.819**) and deletion VLM quality (**4.78** vs **4.91**). Separately decide whether to defer any implementation-reproducibility discussion until an original supplement is obtained. |
+
+**Shared release gate:** [ ] Author scientific decisions for **all three** records are recorded individually, with requested manuscript amendments (if any) and their actual source locators. [ ] Any changed TeX/BibTeX/evidence-register claim receives the normal checks plus source-commit PDF and vector-map QA. [ ] Systematic retrieval/screening protocol status stays distinct from these three case audits. **T07 is not started.**
+
+### Manuscript claim-to-source crosscheck (2026-11-06)
+
+I checked the **current PR branch's actual TeX sentences**, not only the source-audit summaries. These are convenient points for an author to inspect; the line numbers refer to source-commit `0eecd3c` and can shift with later edits.
+
+| Study | Source-backed TeX claim locations | Original-paper evidence | Provisional editorial verdict |
+| --- | --- | --- | --- |
+| T04 LayeringDiff | [representations L42–43](sections/05_representations.tex), [methods L149–151](sections/06_methods.tex), [evaluation L28–32](sections/07_evaluation.tex) | Original [§§3–5, Tables 1–4, Figs. 1/7/8](https://arxiv.org/html/2501.01197) | **No corrective TeX change identified**: trained FBDD/HFA, raster decomposition, heterogeneous FID, reconstruction metrics and failure modes are scoped explicitly. |
+| T05 UniWorld-Design | [representations L44–46](sections/05_representations.tex), [methods L152–154](sections/06_methods.tex), [evaluation L33–38](sections/07_evaluation.tex) | Original [§§3–5, Appendix B, Tables 1–4](https://arxiv.org/html/2608.03971) | **No corrective TeX change identified**: PSD is training provenance; RGBA is output; layer reconstruction and VLM proxies are not native object-edit success. |
+| T06 PosterText | [representations L20–21](sections/05_representations.tex), [methods L83–86](sections/06_methods.tex), [evaluation L46–51](sections/07_evaluation.tex), [benchmarks L15–16](sections/08_benchmarks.tex) | [arXiv v3](https://arxiv.org/html/2608.16289v3) §§3–4, Table 1, Table 2, Fig. 3 | **No corrective TeX change identified**: v3 main-paper task metrics, aggregate-ablation distinction, HTML training annotations and raster-output limit are correctly differentiated. Separate supplement remains unobtained. |
+
+**Live-sheet reconciliation (read-only):** I re-read the actual [Evidence Matrix 225 workbook](https://docs.google.com/spreadsheets/d/1PJtvX34FYoOnF8LS4-0WHpiR3B_KQ6n5fqRBtTeF3Zc/edit), **rows 104 (CGD-103), 175 (CGD-174) and 185 (CGD-184)**, and their same-row entries in **225 Citation and R-E-V Coverage** and **225 Source Tier Reconciliation**, plus the **Prior Survey and Screening** tab. The workbook's legacy evidence label `C: catalog-derived` is distinct from its later `paper_text_verified` or `selected_method_and_results_sections` recheck. Those historical labels are **not promoted** to current verified claim-level evidence automatically. In particular, PosterText's older `Editable Unit / Affordance = Text parameter (format affordance)` must **not** be read as proof of native editable font/text objects: the same row codes `raster_composite` as output and `quantitative_targeted_raster_edit` as edit evidence, consistent with its original paper.
+
+I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerical records or evidence tiers**: this is a source-to-claim comparison and a scientific author-review handoff only. The arXiv **TeX Source** endpoint advertises an archive but a retrieval attempt returned an unsupported gzip response in the web reader; the separate local download attempt failed, so **the PosterText supplementary archive remains uninspected**, rather than being marked absent.
+
+### Individual author decisions to record
+
+- [ ] **T04** — Accept the generation-then-disassembly / raster-layer scope and the non-dominant comparison, or specify wording and primary-source locator for a revision.
+- [ ] **T05** — Accept the PSD-supervision versus RGBA-output boundary and unequal evaluation denominators, or specify a source-grounded correction.
+- [ ] **T06** — Accept verified v3 main-paper raster-edit claims while marking any supplementary implementation-level claims **not verified**, or specify a source-grounded correction.
+- [ ] Record the author decision for each study before declaring T04–T06 scientifically approved; keep the PR Draft and T07 unstarted in the interim.
+
+
+
+## Complete stock-acro author citations and paper links (2026-11-06)
+
+- [x] Inspect the **198-term** `acro` registry: **171** named systems/evaluation resources have registered original `cite` keys and `paperurl` values, **4** already used a native `extra` citation/link pilot, and **167** lacked it. The other **27** are general abbreviations; no unverified URLs were invented for them (SGSD may cite PosterText as a prose abbreviation, not a separate linked resource).
+- [x] Replace the 4 pilot `\citealp` index citations with **`\citet`** and add the same native `extra = {\citet{bibkey}; \href{paperurl}{paper}}` to the remaining 167, preserving **all 198 terms**, bibliography identity, existing custom registry properties, three **stock** lists and built-in `p.`/`pp.` occurrence pages. No `\NewAcroTemplate` or custom index formatter.
+- [x] Strengthen the **existing** `paper/scripts/check_manuscript.py` so **every** named system and evaluation resource requires exactly the corresponding source-key `\citet` plus registered original-paper `\href`, and no source-link subset can silently fall out of the print list.
+- [x] Compile an independent `acro` + natbib + hyperref two-column specimen with `\citet`, stock list and occurrence pages. It compiled and produced two exact URI annotations. **Stock-format confirmation:** with author–year natbib, `\citet` prints `Author (Year)` inside acro's `extra` parentheses, but with the **numeric natbib setting used by the paper**, it prints `Author [N]`, yielding `(Author [N]; paper)`. I compiled an independent numeric two-column specimen with correct link destinations and occurrence pages. Inspect the actual CVPR PDF before design acceptance.
+- [x] I downloaded and checked exact latest-source [Paper PDF #42231751692](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42231751692), artifact **13510498476** (PR test-merge artifact `survey-paper-dc6a1d4a4a6a72eeaa9261839af1d6500ae89a98`), after source commit **`9a80b31`** changed the 171 stock-acro `paper` labels to `\mbox{paper}`. This **29-page anonymous** PDF contains **171 URI annotations for 171 indexed resource links** (167 distinct destinations), compared with **175 annotations** before the change; the only eliminated extra annotations are two each for **UniWorld-Design** and **Rico**, with **no destination loss**. All URI links lie on index pp. **18–22**. I rendered/inspected the full index **pp. 17–22**, including the three group headings, representative `\citet` author/number labels, `p.`/`pp.` usage pages, and the reference-list transition on p. 22. No word bounding boxes fall outside 29 page rectangles. The final TeX log has **zero** undefined citation/reference, `acro` warning, or overfull/underfull box warnings; anonymous PDF metadata contains no author. I rendered and inspected the unchanged standalone **67-study atlas** and **26-study narrative** vector maps; neither has off-page words. This verifies **typesetting/artifact quality**, not author scientific approval.
+
+## Paper PDF CI: skip Markdown-only push ranges (2026-11-06)
+
+- [x] Confirm from official GitHub Actions documentation that `pull_request.paths` evaluates the **entire PR diff against its base**, not only the latest push, so a long-running manuscript PR still triggers the workflow on Markdown-only pushes.
+- [x] Update [the existing Paper PDF workflow](../.github/workflows/paper-pdf.yml) to examine the event's **before/after commit range** on `pull_request.synchronize` or `push`; run all existing manuscript, sentence, citation, literature, evidence-register and crosswalk checks regardless of changes. Only skip LaTeX, compiled-PDF validation and artifact upload when **every changed path is `paper/*.md`**.
+- [x] Fail safely to the full PDF build for unknown/missing SHAs, unavailable git refs, empty diffs, initial/reopened PRs, manual `workflow_dispatch`, or **any non-Markdown file**, including TeX, BibTeX, figure sources, scripts and workflow YAML; preserve the existing 30-minute cap and three CI check identities.
+- [x] Verified actual Markdown-only commit `d3d5eb2`: [Paper PDF #42230414981](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42230414981) **succeeded** in about 10 seconds of runner activity. Manuscript, sentence, citation, literature, register and crosswalk checks all succeeded; `Build LaTeX and BibTeX`, PDF validation, summary and artifact upload were **skipped**; no new artifact was created. The preceding workflow-YAML change started the full LaTeX step, then its run was cancelled by the newer push (expected concurrency). A future source-changing commit or manual dispatch should still receive full-PDF acceptance.
+- [x] Verified the **full-build branch** on TeX source change `9a80b31`: [Paper PDF #42231751692](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42231751692), Catalog Check and Awesome Lint all **succeeded**. The PDF artifact was uploaded and its actual 171 links and layout were checked; Markdown-only commits previously exercised the other, fast branch.
+- [ ] Maintain this explicit distinction: a successful **docs-only** CI run produces **no new PDF artifact**; the last scientifically identical, successful full-PDF artifact remains the current rendering. Do not mistake the fast-path job's green status for a freshly compiled PDF.
+
+## T07–T08 reconciled citation checkpoint — 2026-11-08
+
+- [x] Original-paper identities checked against the native Evidence Matrix 225 and Citation and R-E-V Coverage rows 73–74; matched arXiv 2608.19000 and 2603.13745 to canonical BibTeX entries.
+- [x] Updated manuscript comparison, named-system acro registry, citation-level primary-source locators, 225-ID crosswalk, public-catalogue crosswalk, and unresolved identity queue without excluding either study.
+- [ ] Run full literature/bibliography/queue validators and inspect the current compiled PDF as a final batch gate. No author scientific endorsement is inferred from identity matching or source-audit notes.
+
+## P2 source-to-citation checkpoint — 2026-11-08
+
+- [x] **CGD-203 / multi-palette color recommendation:** Re-read the live Evidence Matrix 225, Citation and R-E-V Coverage, and Source Tier Reconciliation rows 204, and checked the original arXiv paper [2209.10820](https://arxiv.org/abs/2209.10820) Sections 3–4 and Tables 1–5. Reconciled its bibliographic identity in references.bib, both crosswalks, the manuscript evaluation discussion and the citation-level audit. Removed its row from the unresolved identity queue only after matching the primary arXiv identity.
+- [x] **Evidence limits:** Top-1 masked-color accuracy 0.36 on 2,278 held-out designs; 84-person preference evaluation and 12-designer interview concern color recommendations and interactive recoloring, not arbitrary post-export editing-command success. Table 5 shows the one-to-five masked-color accuracy decline (0.36 to 0.17). Do not infer a general native SVG/PSD authoring guarantee.
+- [ ] Final local validators, full anonymous PDF and author scientific acceptance remain open; this note is an evidence-integration checkpoint rather than acceptance of final typography or publication readiness.
+
+## P2 batch abstract-level identity reconciliation — 2026-11-08
+
+- [x] Reconciled all **12 remaining P2** bibliographic identities by original arXiv IDs, publisher proceedings records or DOI pages, retaining their exact working study IDs and distinct original versions.
+- [x] Updated BibTeX, the citation-level audit, both identity crosswalks, manuscript comparisons and the unresolved-ID queue together in one consolidated Git tree change.
+- [ ] **Scientific evidence depth remains open for all 12:** publisher/author abstracts establish the task, broad method and publication identity; individual experimental tables, appendix details, quantitative claims and output-format round-trips have **not** been audited. These entries remain `abstract_index` with claim-specific checks `not_verified` rather than being falsely promoted to original-methods/results review.
+- [ ] The remaining **P3** cases require a separate original-source review and careful scope/version adjudication; unresolved identity does **not** mean excluded.
+- [ ] Final independent author scientific approval, CI checks and PDF visual acceptance are not implied by source identity reconciliation.
+
+## P3 batch original-identity verification — 2026-11-08
+
+- [x] Reconciled **11** additional P3 research identities from original arXiv/IEEE-CVF/IJCAI abstracts: CGD-194, 140, 142, 143, 151, 154, 038, 113, 119, 125, 057.
+- [x] Synchronized BibTeX, claim-level citation audit, both identity crosswalks, the pending identity queue, and relevant comparisons in Methods/Benchmarks.
+- [x] Also corrected four public-catalogue title/alias matches left open in the P2 batch (PlayGround, Designer-RSI, Human-aware Design Generation, InterIL). VectorArk has no public-catalogue counterpart in this particular snapshot, so no fabricated catalogue row was created.
+- [ ] All eleven newly linked P3 studies remain **abstract-level** pending original experimental tables, supplements, formal author decisions, and manuscript/PDF validation.
+- [ ] The remaining P3 queue is for source and citation identity verification; unlinked entries are neither excluded nor promoted on a catalogue title alone.
+
+## P3 final identity batch — 2026-11-08
+
+- [x] Reconciled the **last 26 previously unmatched study identities**, including historical graphical-presentation work, content-aware poster layouts, and recent scientific-poster systems. Full provenance and depth caveats are in [P3_BATCH_IDENTITY_AUDIT_20261108.md](P3_BATCH_IDENTITY_AUDIT_20261108.md).
+- [x] Synchronized 26 BibTeX entries, 26 citation-level audit entries, 225-ID identity crosswalk, public-catalogue matching where present, manuscript comparisons and unresolved-identity queue as one atomic multi-file commit.
+- [ ] The **225 working IDs now have bibliographic links** but this does **not** mean 225 original full texts were read, 225 studies were systematically included, or every numerical/evaluation claim was verified. Scientific review, duplicate version adjudication, reproducible systematic search, author approvals and visual QA remain open. Do not convert archival identity reconciliation into a final systematic-screening count.
+
+## Scientific evidence depth and publication metadata — 2026-11-08
+
+- [x] Updated the methodology and review protocol to distinguish 225 linked IDs from 254 bibliography entries and from source-level scientific verification.
+- [x] Confirmed citation-depth totals: 9 methods/results, 98 abstract/index, 3 catalogue-only, 144 not verified in the citation-level audit; historical study-level reading is not silently promoted.
+- [x] Updated WACV 2023 Multi-Palette publication DOI 10.1109/WACV56688.2023.00361 and official pages 3621–3629, and synchronized its citation audit.
+- [x] Added a validator guard against declaring empirical claims verified when the citation source-depth is below methods/results.
+- [ ] Further primary-source audits, prospective systematic search execution, independent author decisions and final manuscript PDF review remain open. Figures and logos are handled in another workstream.
+
+## T13 primary-survey evidence transfer — 2026-11-08
+
+- [x] Transferred the already-recorded primary survey-method/figure audit of **Zou (2025)** and **Li (2024)** from [T13_PRIOR_SURVEY_DENOMINATOR_AUDIT.md](T13_PRIOR_SURVEY_DENOMINATOR_AUDIT.md) into the citation-level audit with exact locators and strict boundaries; no new underlying empirical source received verification status.
+- [x] Strengthened the prior-survey discussion to contrast Li's explicit **552 identified / 33 included** screening stages with Zou's **500 / 267 unreconciled** survey-size claims.
+- [x] Added `scripts/report_citation_evidence.py` to output a reproducible priority-ordered backlog rather than manually recopying or claiming all 254 cited sources are verified.
+- [ ] **T13 scientific approval and systematic searches remain open:** Li Figs. 4–6 image panels and other prior surveys' source/figure comparisons, original database search exports, screening decisions and author approval have not been completed. No research-map/logo work was changed in this batch.
+
+## Source-based corrections: CreatiPoster / PosterMELD — 2026-11-08
+
+- [x] Read original arXiv v2 CreatiPoster §§3–5, Tables 1–4, and original arXiv v1 PosterMELD §§3–5, Tables 1–3; record output contracts, evaluation denominators and adverse comparisons in [the source audit](T08_POSTERMELD_CREATIPOSTER_SOURCE_AUDIT.md).
+- [x] Corrected CreatiPoster's BibTeX author list to the eight authors explicitly shown by the inspected 2026 v2 source; original 2025 first-publication year preserved.
+- [x] Updated two citation-level source-depth entries to `methods_results` **only for bounded verified claims**, retaining `editability_audit=not_verified` for unmeasured downstream editing success and round-trips.
+- [x] Expanded Methods, Evaluation and Benchmarks comparisons with counterexamples where commercial models score higher on individual dimensions.
+- [ ] Full supplements, direct native-editor reopening, independent reproduction, author approval and a final paper-PDF check are outside this bounded source audit.
+
+## Core methods source audit — 2026-11-08
+
+- [x] Read primary source methods and quantitative tables for **LayoutDM (Inoue et al. 2023), LayoutFlow (Guerreiro et al. 2024), and COLE (Jia et al. 2023)**. Visually inspected original LayoutDM CVPR Table 1 on its PDF page. Record the limitations and verified source locators in [T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md](T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md).
+- [x] Promoted exactly these three citation-audit rows to `methods_results` without promoting controlled post-export edit instruction success or author signoff.
+- [x] Corrected prose to distinguish same-paper matched-split FID from incompatible historical runs, and source-demonstrated SVG layer editing from editing benchmark success.
+- [ ] Continue source-specific methods/results audit of other cited core works and systematically log original-search/screening decisions; do not infer an experiment was run solely because the bibliography is linked.
+
+## T15 core research-lines evidence batch — 2026-11-08
+
+- [x] Read original LayoutGAN, PosterLayout and OpenCOLE methods and empirical comparison tables. Updated corresponding citation-level entries to `methods_results`, retaining `editability_audit=not_verified` and scientific `pending` status.
+- [x] Corrected PosterLayout's CVPR 2023 DOI 10.1109/CVPR52729.2023.00583 and proceedings pages 6018--6026 in BibTeX and citation audit.
+- [x] Added source-specific trade-offs in Methods, Evaluation and Benchmarks, including adverse metrics and differing output contracts; see [T15 source audit](T15_LAYOUTGAN_POSTERLAYOUT_OPENCOLE_SOURCE_AUDIT.md).
+- [ ] Original PDF image-level checks did not complete because screenshot requests failed. Final paper PDF, systematic screening, remaining primary-source backlog and scientific author approval remain open; research map and logos were not modified.
+
+## T16 original vector method audits and manuscript DOI repair — 2026-11-08
+
+- [x] Audited original DeepSVG, SVGformer and VectorFusion methods and quantitative tables; updated citation-level rows with exact source locators and experimental caveats while leaving editing-success verification and author approval pending.
+- [x] Extended Methods/Evaluation prose to distinguish vector reconstruction, interpolation, retrieval and text-to-SVG caption alignment from native semantic editing.
+- [x] Fixed `posterlayout` acro DOI metadata after reading the Paper PDF CI log: `ERROR: DOI differs from BibTeX: posterlayout`. This is a bibliographic consistency fix, not a research-map/logo modification.
+- [ ] Confirm the Paper PDF writing-checklist job passes on this revision; original paper PDF screenshots were unavailable; final manuscript visual inspection and systematic search are outstanding.
+
+## Evidence crosswalk CI regression repair — 2026-11-08
+
+- [x] Investigated Paper PDF failure in workflow run 42440268168; the source-level unit tests assumed the old 173-linked / 52-unresolved baseline, and attempted `pop()` and `rows[0]` when the unresolved queue was correctly empty.
+- [x] Rebased the unchanged-baseline test to **225 linked / 0 unresolved**, replaced empty-queue-negative cases with injected stale queue rows, preserved stale-priority regression coverage, and added explicit stale-link-status rejection.
+- [x] Audited the frozen 225-ID snapshot against BibTeX using the validator's exact identity-priority algorithm. Corrected **five stale `match_method` fields** (CGD-008, CGD-013, CGD-017: DOI→URL; CGD-189, CGD-207: URL→DOI). No citation keys or author-review decisions changed.
+- [ ] Re-run repository CI to verify this set on GitHub. Research-map and institutional-logo rules are outside this task and have not been modified.
+
+## LayoutDETR / LayoutFormer++ verification — 2026-11-08
+
+- [x] Read original LayoutDETR paper §§3–5.3 and supplement HTML, checked its experimental dataset denominators (7,196 / 59,978 / 32,063), 308-banner human preference experiment and output-contract limitations. See [T17 original source audit](T17_LAYOUTDETR_SOURCE_AUDIT.md).
+- [x] Promoted only `layoutdetr2024` to `methods_results`; numeric results unavailable from the original HTML table were deliberately not copied from secondary sources.
+- [x] Reconciled LayoutFormer++'s original CVPR 2023 publisher abstract and held its citation tier to `abstract_index`, without claiming original quantitative table checks.
+- [x] Updated Methods and Evaluation to distinguish multimodal layout generation and rendered preference judgments from native document edit success.
+- [ ] Original LayoutDETR Table 3 quantitative cells, LayoutFormer++ numerical results and all remaining citation-level source audits remain open, alongside full PDF CI confirmation and author scientific sign-off.
+
+## Missing-citation and author-order repair — 2026-11-08
+
+- [x] Analyzed failed Paper PDF workflow 42443118646: citation checker reported unused `zhu2024visuallyrichplanning`. Added a source-bounded citation in the manuscript's document-scale planning discussion.
+- [x] Corrected original arXiv 2404.15271 author order to Wanrong Zhu, Jennifer Healey, Ruiyi Zhang, William Yang Wang, Tong Sun and kept its audit at `abstract_index`.
+- [ ] Confirm that the next Paper PDF CI succeeds before claiming successful typesetting or final visual acceptance.
+
+## Historical source-review evidence migration — 2026-11-08
+
+- [x] Reopened the live Evidence Matrix 225 and seven primary-source review tabs and transferred 40 unique prior original methods/results records into the citation-level audit with exact original-paper locators and caveats; this is provenance migration, not fresh independent source review.
+- [x] Added the frozen [transfer manifest](PRIMARY_SOURCE_EVIDENCE_TRANSFERS_20261108.csv) and audit-validator checks for citation-ID and source-locator consistency.
+- [x] Removed old per-paper/one-commit queue instructions, retaining historical checkpoints for provenance.
+- [ ] Remaining unverified citations, quantitative claim audits, systematic search logs, author adjudication and source-commit PDF validation remain open. Research-map and logo tasks are handled in a separate session.
+
+## Additional batch primary-source transfer and operation benchmarks — 2026-11-08
+
+- [x] Transferred 12 additional original source audits from the Wave2 Fulltext, Remaining 13, Remaining 30 and Figure Table Trace tabs, using only previously documented first-party source sections/tables/figures.
+- [x] Added a direct scientific comparison of ReDesign, APEX and VectorGym's distinct edit-operation evaluation protocols without pooling unlike metrics.
+- [ ] Source-level validation for all remaining citations, author scientific decisions, prospective systematic search and final PDF visual QA remain outstanding; map and logo files were untouched.
+
+## T18 whole-manuscript quantitative-claim review and CI repair — 2026-11-08
+
+- [x] Scanned explicit citation-bearing sentences across 9 numbered source sections and 4 tables. Found one overt metric-related statement citing a `not_verified` reference, IconShop, and checked its original original-article evaluation Table 2 before upgrading that row to `methods_results`.
+- [x] Corrected IconShop's FID definition (CLIP features) and documented the adverse uniqueness result, avoiding a false blanket metric win.
+- [x] Read Paper PDF CI run 42445310737 and wrapped all seven newly added registered model names with stock `acro` commands in Evaluation and Benchmarks. No figure or logo modification.
+- [ ] Confirm that a following Paper PDF CI passes, and complete manual validation of narrative claims that lack literal citations on the same physical TeX line.
+
+## Full-manuscript citation-line audit and six further prior-study transfers — 2026-11-08
+
+- [x] Transferred six previously inspected original-source items (CGD-090, 149, 150, 181, 185, 190) with original section/table locators and limitations; strengthened the Vinci human-study distinction in Evaluation.
+- [x] Added `python3 paper/scripts/report_claim_evidence.py --summary` to report literal claim/citation pairs across all source sections and table TeX files, rather than stopping at bibliography-key coverage alone.
+- [ ] Interpret all numerical-claim warnings with primary tables before clearing; this report is triage only, and the remaining original-source reading / final author scientific signoff remains open.
+
+## T19 original methods/evaluation verification batch — 2026-11-08
+
+- [x] Checked original author HTML for LayoutNUWA, PosterVerse, LayerDiffuse, Qwen-Image-Layered, TextDiffuser-2 and Paper2Poster, and original supplemental evaluation methods for PosterLLaVa; synchronized seven citation-level audit entries with section/table locators and limits.
+- [x] Recorded source-specific outputs and measured constructs without conflating object-level editing and appearance-based scores; [T19 audit](T19_PRIMARY_LAYOUT_LAYER_AND_DOCUMENT_AUDIT.md).
+- [ ] PosterLLaVa main-paper experimental results, remaining source-depth backlog, systematic search/screening and final PDF checking still require evidence. No logo/map edits were performed.
+
+## T20 benchmark audit of five high-frequency citations — 2026-11-08
+
+- [x] Checked original tables in SVGEditBench, CGL-GAN and discrete LayoutDiffusion; updated citation-level methods/results audit and metric-specific manuscript interpretations.
+- [x] Checked publisher/author abstracts of InfoEdit and MiLDEdit without falsely promoting their original main numerical tables.
+- [ ] Continue original-method/results source inspections, native edit-operation reproduction, systematic screening, author approval and final PDF CI acceptance.
+
+## T21 ten original product/poster results audits — 2026-11-08
+
+- [x] Checked method and original experiment sections for AutoPP, Design Your Ad, InnoAds-Composer, Planning and Rendering, RefAdGen, SIMPLEPOSTER, reliable ad generation, PrismLayers, personalized e-commerce banners and CG4CTR; updated citation-level audit and claim-specific section/table locators.
+- [x] Added a cross-method discussion distinguishing product retention, artistic quality, consumer relevance, online CTR and native editor operations.
+- [ ] CGD-061 Brief2Design, CGD-081 T-Stars-Poster and CGD-178 Text2Layer require original full sections; no inferred methods/results tier assigned. Systematic search screening and author approval remain pending.
+
+## T22 batch original-abstract verification — 2026-11-08
+
+- [x] Opened and verified 75 original author/publisher abstracts (including layout, scientific-illustration, editing-benchmark and prior-survey research) and preserved every original source link in [T22](T22_ABSTRACT_SOURCE_RECONCILIATION_20261108.csv).
+- [x] Classified these as `abstract_index` and kept all quantitative empirical and editability claims `not_verified`, without inventing source-specific method/results locators or creating false systematic inclusion decisions.
+- [x] Added CI consistency checks that prevent a future abstract-only key from acquiring methods/results status without updating its source-evidence manifest.
+- [ ] The remaining first-party source access gaps require publisher/author originals; main methods/results checks for abstract-level sources remain scientific work. Logos and research maps were not modified in this scientific workstream.
+
+## T23 final primary abstract-source reconciliation — 2026-11-08
+
+- [x] Verified original ACM/author sources for Rico, DocLayNet, 1986 Mackinlay, and official CVF abstract for VFLM with source URLs; promoted only four entries to `abstract_index`, keeping empirical results and document editing unverified.
+- [ ] `liu2024graphiclayoutsurvey` original publisher/author abstract is not yet verifiable through a retrieved first-party record and remains `not_verified`. Do not forge `methods_results` source evidence.
+
+## Scientific-readiness reconciliation (2026-11-08)
+
+- [x] Fixed obsolete 254-reference number in Methodology to the current 259 and separated bibliographic identity, abstract, original methods/results and systematic screening denominators.
+- [x] Wrote [SCIENTIFIC_READINESS_AUDIT_20261108.md](SCIENTIFIC_READINESS_AUDIT_20261108.md) with source accounting, verified scientific limitations and exact unperformed tasks.
+- [ ] One publisher primary abstract is still unavailable: `liu2024graphiclayoutsurvey` (CSCWD 2024).
+- [ ] Additional method/results source audits, author scientific approval, systematic database search and latest source-commit PDF render validation remain pending. No maps/logos changed in this scientific workstream.
+
+## T24 original methods/results audits — 2026-11-08
+
+- [x] Inspected first-party original sections/tables for LayoutDiffusion layout-to-image, TextDiffuser, LayoutFormer++, an SVG/LLM survey, GraphicDesignBench, BizGenEval and DesignSense; recorded exact original sources and experimental caveats in T24.
+- [x] Reconciled T22 abstract-provenance validation with the later T24 fulltext methods/result upgrades so CI accepts only source-supported promotions.
+- [x] Added comparative evaluation examples with adverse metric cases and distinct editor-vs-image-vs-preference scoring targets.
+- [ ] Remaining original fulltext audits, latest PDF CI and author scientific signoff remain open.

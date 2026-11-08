@@ -5,11 +5,23 @@ This repository is a curated, generated research index for creative graphic desi
 ## Read Before Editing
 
 - Read `CONTRIBUTING.md` for scope, taxonomy, publication-date rules, method classification, implementation metadata semantics, and contribution requirements.
+- Before writing or committing anything under `paper/**`, read `paper/AGENTS.md` and `paper/WRITING_CHECKLIST.md`; use the paper's manuscript and bibliography checks.
 - Read `data/README.md` for the canonical CSV/data model and its current metadata-scope constraints.
 - Read `.github/workflows/catalog-check.yml` and `.github/workflows/awesome-lint.yml` before changing or naming repository validation gates.
 - Treat this file as repository-level workflow guidance, not as a second copy of `CONTRIBUTING.md` or the data schema.
 
 ## Sources of Truth
+
+## Standard Features Before Custom Implementations
+
+For tooling, templates, formatters, index generation, and CI integration:
+1. **Read the installed/version-specific upstream documentation first.** Check defaults and existing built-in options against the user's actual requirements before proposing a custom template, wrapper, parser, or validator.
+2. **Prototype the smallest built-in solution and inspect its real output** (e.g. compiled PDF pages, screenshots, generated files), including any requested functionality that a simpler setup might accidentally drop. A green CI status is not visual acceptance.
+3. Use custom code **only for a documented gap** the built-in features cannot satisfy; explain the concrete tradeoff before adding bespoke behavior or CI guards that lock it in.
+4. If simplifying an implementation, explicitly compare the old and new **user-visible capabilities** and restore supported built-in equivalents before declaring success.
+
+The manuscript's **acro-specific, author-approved default/page-index contract** is owned by `paper/AGENTS.md` and `paper/WRITING_CHECKLIST.md`, not by a new bespoke index renderer.
+
 
 - `data/resources.csv` owns all curated resource records, primary task/output taxonomy placement, and publication dates.
 - `data/paper_methods.csv` owns the orthogonal multi-label method/architecture taxonomy for papers.

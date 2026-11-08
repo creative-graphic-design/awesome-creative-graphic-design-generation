@@ -1,0 +1,231 @@
+\section{Evaluation: What Is Actually Measured?}
+\label{sec:evaluation}
+Evaluation connects representation and editability claims to observations.
+The field currently reports geometric similarity, semantic image-text compatibility, aesthetic judgments, reconstruction accuracy, user-task efficiency, and editing fidelity.
+These outcomes should not be combined without establishing that they measure the same construct.
+Section~\ref{sec:benchmarks} compares newer benchmark contracts and their scope.
+
+\input{tabs/tex/evaluation_metrics}
+
+\paragraph{Comparability conditions.}
+A score is comparable across systems only when the underlying task, input conditions, output representation, test split, and measurement implementation are compatible.
+For example, a layout-distribution metric cannot be compared directly with an image-distribution metric merely because both are called FID, and accurate alpha reconstruction does not measure the execution of a headline-replacement instruction.
+Even within one representation, synthesis from scratch, partial completion, reconstruction, and modification of an existing artifact pose different tasks and sources of error.
+We therefore interpret numerical results within their original experimental contracts and use cross-paper comparisons chiefly to establish which capabilities were actually measured.
+
+\subsection{Generation Fidelity and Geometry}
+\paragraph{Layout constraints and text fidelity should not be conflated.}
+The quality of rendered text can improve even when the whole-image distribution metric deteriorates.
+In the original \ac{textdiffuser} comparison, the OCR F-measure is 0.7824 versus DeepFloyd's 0.1762, while the reported image FID is worse (38.758 versus 34.902; original Table~4) \citep{textdiffuser2023}.
+Constraint-conditioned placement is a different measurement target: \ac{layoutformerpp} filters layouts to at most 20 elements and reports \ac{rico} completion mIoU 0.732 versus \ac{layouttransformer}'s 0.363 (original Table~1) \citep{layoutformerpp2023}.
+Neither measurement constitutes execution of a semantic editing operation on an exported native graphic-design document.
+
+\paragraph{Layout fidelity is metric- and dataset-specific.}
+Content-conditioned poster layouts may reduce visual subject occlusion while sacrificing geometric alignment \citep{cglgan2022}.
+In the original \ac{cglgan} Table~1, subject-occlusion scores improve from 1.143 to 0.816 relative to ContentGAN, while alignment deviation worsens from 0.0071 to 0.0098.
+Discrete layout diffusion improves several layout-distribution metrics with a categorical/coordinate-aware noise process \citep{layoutdiffusion2023}.
+Its original \ac{rico} Table~2 reports layout-FID 2.490 against 3.174 for a uniform coordinate corruption variant, but neither score is comparable to image-space Inception-FID or measures revision of native text objects.
+
+\paragraph{Metric-specific trade-offs in foundational layout systems.}
+In \ac{layoutgan}'s original ICLR experiment, a wireframe-based discriminator reduces document-layout box overlap from 1.52\% to 1.17\% and alignment deviation from 6.4\% to 3.4\% compared with a relation-only discriminator (original Table~2) \citep{layoutgan2019}.
+Both remain above the corresponding real-layout overlap of 0.05\% and alignment deviation of 0.5\%, and none of these metrics measures revision of a rendered design.
+On the PKU \ac{posterlayout} evaluation, \ac{dsgan} improves validity from 0.7066 to 0.8788 and reduces overlay from 0.0605 to 0.0220 relative to \ac{cglgan}, but has worse loose-underlay effectiveness (0.8315 vs. 0.8624) and saliency occlusion (0.2088 vs. 0.1546; lower is better) \citep{posterlayout2023}.
+These are layout-geometry and visual-saliency proxies on non-empty poster backgrounds, not direct evidence of retained text semantics or tested post-export editing.
+
+\paragraph{Matched-split diffusion and flow evaluations.}
+In its original CVPR evaluation, discrete \ac{layoutdm} compares six tasks on \ac{rico} and \ac{publaynet} with training-data preprocessing and a shared layout-feature FID model \citep{layoutdm2023}.
+For category-conditioned size-and-position generation on \ac{rico}, its FID is 3.55 compared with 3.97 for BART and 6.84 for \ac{layoutganpp}, but in completion its 9.00 is worse than \ac{layouttransformer} at 3.71 (Table~1).
+This trade-off prevents a claim of universal superiority and illustrates that completion evaluates reconstruction of missing layout attributes rather than semantic authoring operations.
+
+Flow-based layout results must also be evaluated under the splits and feature extractors used in the reported comparisons.
+\ac{layoutflow} studies a different training split and explicitly retrains selected baselines for comparison (Sec.~5.1) \citep{layoutflow2024}.
+In its matched-split unconditional Table~1, \ac{layoutflow} obtains \ac{rico} FID 2.37 against \ac{layoutdiffusion} at 2.49, while on \ac{publaynet} it obtains 8.87 against \ac{layoutdiffusion} at 8.63.
+Moreover, \ac{rico} alignment is 0.150 for \ac{layoutflow} against 0.069 for \ac{layoutdiffusion}; the improvement in one distributional score is not a simultaneous improvement in all geometric measures.
+Its original Appendix~0.E separately reports sensitivity to differing element-count filters, dataset splits, and learned FID feature models.
+Consequently, numerical results from the two papers should not be merged into a direct head-to-head comparison unless preprocessing, representation, conditions and evaluation implementation are matched.
+
+\ac{layoutdm} evaluates discrete layout synthesis through distributional and geometry-aware measures, including \ac{fid} adapted to layout representations and maximum \ac{iou} under compatible element categories \citep{layoutdm2023}.
+The conditioned generation scenarios and the quality/diversity trade-off are central to interpretation.
+Such metrics concern the arrangement of design elements; even a strong score does not measure the usability of an exported creative file.
+
+Evaluation of vector generation often concerns the rendered SVG rather than a later source-level edit.
+For example, \ac{vectorfusion} assesses prompt consistency with \ac{clip} similarity and \ac{clip} R-Precision over 128 caption prompts, as well as sensitivity to initialization and primitive count \citep{vectorfusion2023}.
+These results establish visual-semantic correspondence, whereas subsequent vector-representation studies ask how accurately shapes can be reconstructed or organized.
+
+Vector representation learning measures whether a model reconstructs or organizes shapes, not whether it obeys a subsequent design instruction.
+By contrast, \ac{deepsvg} studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; \ac{svgformer} reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}.
+On 100 icon interpolation pairs ranked by ten participants, \ac{deepsvg}'s ordered hierarchical model receives 44.8\% first-place votes versus 25.8\% for Hungarian matching and 9.7\% for an autoregressive baseline, while its test reconstruction error is 0.012 (original Table~2).
+These are SVG icon interpolation judgments and geometric reconstruction results, not a controlled evaluation of editing existing design content.
+For \ac{svgformer}, font-family classification reaches 69.7\% versus 35.2\% for \ac{deepsvg} and icon Chamfer reconstruction error decreases from 15.6 to 6.3 in the authors' Table~2.
+Its original limitation section notes that complex style interpolation can lack latent linearity and smoothness despite favorable reconstruction results.
+
+Text-to-vector synthesis instead emphasizes correspondence between a prompt and a rendered SVG.
+\ac{vectorfusion} uses 128 caption prompts and 64 optimized vector paths; its best reranked variant obtains \ac{clip} L/14 R-Precision 81.3 under four-sample selection, whereas the directly \ac{clip}-optimized \ac{clipdraw} baseline obtains 85.2 without the same diffusion objective (original Table~1).
+\ac{clip} retrieval and text-image similarity characterize visual-semantic consistency of rendered SVGs but do not test whether typographic objects can be reopened and edited as text.
+Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
+
+Layer-synthesis benchmarks commonly measure visual coherence and reconstruction without testing subsequent object manipulation.
+For example, \ac{taue} reports \ac{fid}, image/text alignment, and foreground/background reconstruction using \ac{psnr}, \ac{ssim}, and \ac{lpips} on 1,770 filtered \ac{mscoco} examples (Section 4.2 and Table 2).
+Its layout and background-replacement examples (Figure 6) demonstrate potential interventions, but the acknowledged preservation limitations (Section 6) and reconstruction metrics do not establish held-out edit-instruction success.
+
+Chroma-key foreground generation is evaluated primarily as image synthesis rather than native-object editing.
+\ac{tkgdm} evaluates chroma-key images generated for 3,000 MAGICK-derived prompts with \ac{fid}, mask-based FID, and image/text \ac{clip} alignment scores (Section 5.2 and Table 1), rather than measuring operations on native editing objects.
+Crucially, the reported SDXL FID is 41.81 for \ac{tkgdm} versus 29.34 for \ac{layerdiffuse} in the same table, so the paper does not establish universal superiority over fine-tuned layer-generation approaches.
+Its 100-participant two-alternative preference study (Section 5.5) measures perceived foreground quality and text alignment, not controlled graphic-design edit success.
+
+Foreground extraction without training introduces evaluation targets such as border completeness and alpha quality.
+In \ac{alfie}, the fraction of 3,000 generated illustrations with an empty four-pixel border on all sides rises from 53.10\% under a prompt-suffix baseline to 96.50\% with subject centering (Table 1); this is a border-based proxy for uncropped assets, not a measurement of semantic editability.
+A separate ten-person study on 100 images prefers \ac{alfie}'s alpha mattes over \ac{vitmatte} approximately 63\% of the time (Section 5.1 and Figure 6), while Figure 7 illustrates downstream collage compatibility without quantitative instruction-edit evaluation.
+The authors explicitly omit \ac{fid} and \ac{kid} for \ac{rgba} outputs because an appropriately matched transparent-image reference set is unavailable (Section 5), so the missing scores must not be inferred from \ac{clip}-S or border statistics.
+
+Layer decomposition methods report a mixture of image quality, layer reconstruction, and user preference metrics.
+In contrast, \ac{layeringdiff} measures 572 generated foreground/background/composite prompt triplets with \ac{fid}, \ac{kid}, \ac{clip} score and a detector-derived \ac{fgmiou} metric (Section 4.1 and Table 1).
+Its composite \ac{fid} of 121.05 improves on \ac{layerdiffuse} T2L's 134.51 under the reported setup, while its foreground \ac{fid} of 133.76 is worse than the baseline's 127.14, so the work does not dominate every layer-wise metric.
+Table 3 measures image quality and prompt alignment from 24 participant ratings, and Table 4 reports reconstruction error on 1,000 synthetic composites, not instruction-based post-export edit performance.
+For background recovery, Table 4 reports an improved \ac{lpips} of 21.80 versus 28.73 for the Germer baseline, but worse MSE of 17.52 versus 12.76, demonstrating that perceptual and pixel-reconstruction metrics answer distinct questions.
+Its Section 5 also reports alpha-estimation errors and shadows remaining in background layers as failure modes that can constrain later compositing.
+
+Reconstruction benchmarks compare recovered layer stacks with reference layers, not the success of a subsequent user edit.
+\ac{uniworlddesign} evaluates I2L on 512 held-out Crello designs with four predicted layers, aligned to source stacks by \ac{layerd} before scoring (Section 4.1 and Table 1).
+Against \ac{qwenimagelayered}, per-layer RGB L1 decreases from 0.2014 to 0.1264 and Alpha Soft \ac{iou} increases from 0.5454 to 0.7325, but these are reconstruction and alpha-overlap measures rather than executed edit requests.
+
+\ac{pixelart} and \ac{qwenimagelayered} also illustrate why reconstruction scores require explicit disclosure of the conditioning supplied to each model.
+Separately, \ac{pixelart} reports composite \ac{psnr} of 36.92 dB versus 32.46 dB for \ac{qwenimagelayered} on Design-Multi-Layer-Bench, alongside efficiency improvements, under a protocol in which \ac{pixelart} receives predicted layout boxes and layer ordering that the Qwen baseline does not receive \citep{jia2026pixelart}.
+Composite reconstruction quality therefore cannot alone establish superiority at semantic editing, and the unequal input contract must accompany any numerical comparison.
+The Stable-Layers-derived structural proxy \emph{Bad Layers} declines from 1.69 to 1.32 per design (Table 2), while five-axis VLM judging raises the total from 17.60 to 20.43 out of 25 but lowers alpha cleanliness from 3.33 to 2.90 (Table 3 and Appendix B).
+The VLM sees the input, recomposition and predicted-layer contact sheet, not a human-operated editor performing a controlled downstream text or object change.
+
+The text-to-transparent-asset setting uses a different set of outcomes from image-to-layer recovery.
+For T2RGBA, 512 design-element prompts yield a mean \ac{clip} Score of 33.03 versus \ac{omnialpha}'s 31.00, whereas \ac{omnialpha} has better FID (87.86 versus 117.14) and white-composite \ac{lpips} (0.462 versus 0.537) under their respective setup (Table 4).
+The paper reports alpha-edge and dense-typography failures (Section 5), limiting any inference from layer separability to unrestricted native document editing.
+
+\subsection{Appearance, Text, and Reconstruction}
+Typography introduces additional evaluation dimensions: correct character identity, readability, style consistency, and editable text parameters.
+\ac{derendering} reports reconstruction L1/\ac{psnr} and illustrates text or styling changes using recovered renderer parameters \citep{derendering2021}.
+Those numerical measurements indicate reconstruction fidelity, not a rate of successful edit instructions.
+\ac{wordasimage} includes a perceptual study measuring whether semantic concepts remain recognizable, letters remain legible, and typography resembles the input font \citep{wordasimage2023}.
+The same dimensions should not be conflated with free-form replacement of textual content.
+
+Instruction-driven raster text editing introduces direct measurements of the requested change and unintended alteration.
+\ac{postertextbench} evaluates targeted raster-image edits, not only text rendering, with OCR-based sentence accuracy and normalized edit distance for insertion and modification, masked \ac{lpips} for non-target preservation, and VLM instruction/visual-quality scoring (Section 4 and Table 1).
+In patch addition, \ac{postertext} obtains sentence accuracy 0.763, normalized edit distance 0.899 and masked \ac{lpips} 0.039, versus Nano Banana 2's 0.500, 0.635 and 0.064.
+For patch modification, its sentence accuracy 0.771 and normalized edit distance 0.902 are lower than Nano Banana 2's 0.819 and 0.907, even as masked \ac{lpips} improves to 0.028 versus 0.034.
+For deletion, \ac{postertext} reports masked \ac{lpips} 0.040 and VLM instruction-following 4.70, while Nano Banana Pro has higher VLM visual quality 4.91 versus 4.78.
+Table 2's full-training sentence accuracy 0.767 and masked \ac{lpips} 0.036 aggregate different subsets of editing tasks rather than describing a single operation.
+These image-level results demonstrate measured instruction-guided raster editing, not human editing time, export validity or preservation of native font and vector objects.
+
+\paragraph{Color, geometry, and typography are different revision targets.}
+For icon colorization, \citet{li2022iconcolorization} synthesize flat-color pixels from sketches and style conditions, which assesses image colorization rather than vector-layer edit validity.
+By contrast, \citet{chen2023primitiveassembly} predict editable parametric primitives, and \citet{gehlaut2026vectorark} reconstruct rounded-polygon vector graphics from raster inputs; both deliver structured geometry, but neither task by itself scores semantic text replacement.
+For typographic imagery, \citet{wang2022textlogo} predict glyph arrangements from linguistic and visual cues, whereas \citet{wang2023anythingtoglyph} synthesize artistic letter appearances.
+Aesthetics++ \citep{kong2023aestheticspp} instead ranks design-principle-guided revisions of existing slide designs according to learned human preferences.
+These examples should not share a single editability or quality score: pixel colorization, primitive manipulation, glyph design, and preference-ranked slide refinement have different inputs, outputs and judged operations.
+
+\paragraph{Visual-text placement and constraint-aware design.}
+Content-conditioned poster generation ranges from adversarial background-aware layout \citep{zheng2019contentgan} through element-aware positioning \citep{li2024designelementposter}, density-based layout conditioning \citep{hsu2023densitylayout}, and priority-sensitive control \citep{yang2026priorityposter}.
+Text placement over natural images \citep{li2022smarttext} and staged poster layout inference \citep{chai2023twostageposter} further change the target objects and aesthetic objectives.
+The relevant interaction contracts also include mobile-shopping scenarios \citep{jing2023mobilshopping}, multi-constraint interactive layout \citep{chen2024iris}, and user-guided image-aware placement \citep{xu2025imageaware}.
+Advertising creative generation \citep{wang2022creagan} and retrieval-augmented agentic composition \citep{forouzandehmehr2025calrag} optimize different production pipelines; the ability to request another layout is not equivalent to measured preservation of unrelated objects after editing a saved design.
+
+\paragraph{Verification gaps despite editable design programs.}
+\ac{creatiposter} produces an editable JSON program containing text and asset layers and supports canvas-conditioned completion and re-layout (Sec.~3.4 and Table~1 of the source) \citep{zhang2025creatiposter}.
+Its 90-case test collection separates 45 prompt-only cases, 39 single-asset cases, and six multi-asset cases, with VLM rubric scores for layout, color, style, and compliance and ten volunteers' overall ratings.
+The asset-conditioned comparison excludes the six multi-asset cases, leaving 84 cases; its authors report a higher human overall mean for \ac{creatiposters} than Canva (2.82 versus 2.33), but the Canva layout score is higher in that setting (2.84 versus 2.41 for \ac{creatiposters}).
+Thus evidence for an editable source protocol and preference-based image quality should be presented separately from measured post-export edit instruction success.
+
+\paragraph{Layer-aware editing demonstration versus measured edit success.}
+\ac{cole} demonstrates a multilayer SVG compilation and editor workflow with object and text-box adjustments \citep{cole2023}.
+However, its benchmark chiefly reports generated-design visual quality and text placement, including a Crello multi-text-box \ac{iou} of 17.2 (Table~3), which is not the success rate of revising an already delivered design.
+Its own limitations note restricted editable visual-element coverage and typography color diversity.
+Thus a demonstration of SVG-based layer adjustment supports a narrower editability claim than a validated native-editor reopen--modify--save benchmark with protected-object preservation.
+
+\paragraph{Evaluation targets must follow the requested intervention.}
+A successful edit to a reconstructed design must preserve both the intended content change and any explicitly protected content, but not every source provides object-identity annotations or permits object-level testing.
+For example, rendered post-edit SSIM and OCR text recall in \ac{redesign}, VLM-assessed modification scope in \ac{apex}, and human-authored SVG edit benchmarks in \ac{vectorgym} answer overlapping yet non-identical questions \citep{redesign2026,apex2026,vectorgym2026}.
+Future comparisons should report the evaluation unit (pixel, typed object, source file, or user transaction), which interventions can be replayed, which collateral changes are permitted, and whether the original and edited native file can both be reopened.
+
+\subsection{Editability Affordance Versus Editing Performance}
+Three complementary examples clarify the evidence distinction.
+\ac{vinci} uses a controlled within-subject study for poster resizing and reports the time and number of editing operations with and without feedback support \citep{vinci2021}.
+Its study includes 20 design students resizing posters with and without visual feedback over twelve tasks, reporting statistically significant time/action-count differences for tasks 2--12 but not task 1 (original Secs.~6.3--6.4, Fig.~13 and Table~1).
+These results bear on human workflow efficiency under assisted resizing, rather than edit-instruction fulfillment or preservation of unrelated native objects.
+That is direct evidence about \emph{human workflow efficiency}, not about autonomous editing.
+
+Structured source artifacts support another evidence tier: authors can demonstrate manipulable objects without estimating editing reliability.
+\ac{editablevisual} shows that output \ac{html}/\ac{css} can expose separate \ac{dom} objects and editable text in a set of case studies \citep{editablevisual2026}.
+This demonstrates a useful workflow and format affordance but does not by itself constitute a randomized user study or an instruction-edit accuracy estimate.
+
+Vector path models likewise require care when interpreting generation scores as evidence about editing.
+\ac{iconshop} demonstrates \ac{svg} icon-path manipulation while reporting \ac{fid}, \ac{clip}-based scores, and icon quality judgments for its synthesis task \citep{iconshop2023}.
+In its original text-conditioned icon experiment, \ac{iconshop} achieves CLIP-feature FID 4.65 compared with \ac{deepsvg}+GAN's 12.01, and CLIP alignment 25.74 compared with 21.78 (original Table~2).
+However, its reported text-conditioned uniqueness is 68.29\% compared with \ac{deepsvg}+GAN's 97.59\%, so quality and diversity should not be collapsed into a single dominance claim.
+The paper computes FID with a CLIP image encoder rather than an Inception feature extractor, making comparisons with layout-specific FID or natural-image Inception-FID invalid without recalibration.
+Its infill-based vector editing examples illustrate path-level capabilities but do not quantify non-target preservation or edit-command success.
+The quantitative evaluation primarily concerns synthesis, not editing.
+
+Dedicated editing benchmarks merit distinct treatment.
+\ac{svgeditbench} directly evaluates \ac{llm}-driven \ac{svg} code edits on curated instructions \citep{svgeditbench2024}, while \ac{vectorgym} extends evaluation to four tasks, including expert-authored complex \ac{svg} edits, sketch conversion, text-based vector generation, and captioning \citep{vectorgym2026}.
+The original \ac{svgeditbench} applies six code-edit operations to 100 Twemoji source SVGs per task (600 prompts per evaluated model).
+In Table~1, GPT-4 has lower color-change MSE than GPT-3.5 (\(6.88\times10^{-5}\) versus 0.0134), but higher compression-task MSE (0.0071 versus 0.0023).
+Because invalid or multiple SVG outputs are excluded from these task averages, a separate valid-output denominator is needed before treating conditional MSE as end-to-end instruction success.
+
+These are more appropriate counterexamples to any blanket claim that quantitative vector-editing evaluation is missing.
+\ac{mildedit} describes evaluation axes for instruction following, design layout, aesthetics, and text on multi-layer documents \citep{mildedit2026}.
+\ac{posteromni} combines local editing and global poster construction, so evidence must be separated by task and output representation \citep{posteromni2026}.
+A paper can evaluate image-editing ability even when it delivers flattened raster output.
+The appropriate criticism is not a lack of object-level export per se, but whether the representation and evaluation support the proposed downstream claim.
+
+\paragraph{Generation feedback versus editing performance.}
+\ac{introsvg} refines SVG code through rendered-image critique and \ac{diagramagent} generates revisable diagrams, but neither output affordance by itself establishes post-export protected-object preservation.
+
+\subsection{An Operational Evaluation Protocol}
+Figure~\ref{fig:protocol} shows the separation of target modification, protected content, artifact validity, visual quality, and effort.
+We recommend reporting editing performance as a vector of outcomes, rather than a single unqualified quality score.
+For an input artifact $D$, edit instruction $u$, and target set $T$, a system returns $D'$.
+At minimum, evaluation should address:
+\begin{equation}
+\mathbf{m}(D,u,D') =
+\left[
+m_{\mathrm{target}},\
+m_{\mathrm{preserve}},\
+m_{\mathrm{valid}},\
+m_{\mathrm{visual}},\
+m_{\mathrm{effort}}
+\right].
+\label{eq:metrics}
+\end{equation}
+Here target adherence tests the requested change; preservation checks non-target elements, structure, and content; validity tests whether the native artifact still opens and renders; visual quality assesses the edited output; and effort quantifies human or computational cost.
+These are \emph{recommended evaluation dimensions}, not a claim that a common benchmark already provides all five.
+
+A protocol should publish the initial design and target edit, the required output format, permitted tools, allowed untouched regions, failure handling, and the evaluation judge.
+It should also distinguish an edit that preserves visual appearance by flattening the design from one that preserves editability.
+For automated judges, human calibration, judge variance, and adversarial failure cases are necessary, especially when aesthetics are being rated.
+
+\paragraph{Structural layout distances and color-assistance criteria.}
+\ac{ltsim} measures layout similarity through transportation of labeled and geometric elements, and therefore asks a different question from a learned-feature distributional distance such as layout \ac{fid}.
+\ac{infocolorizer} studies interactive palette recommendation and designer-facing controllability for information graphics \citep{infocolorizer2021}.
+\citet{qiu2023multipalette} instead predict masked colors across image, SVG, and text palettes in vector graphic documents.
+On 2,278 held-out Crello designs, their multi-palette model reports top-1 masked-color accuracy of 0.36 against 0.23 without segment embeddings and 0.03 for a Word2Vec-based comparison (Table 2).
+Their qualitative evaluation involves 84 participants, and their interactive recoloring system was separately discussed with 12 professional designers (Sections 4.2--4.3).
+These results demonstrate color prediction and designer-facing recoloring, but do not establish the success rate of arbitrary post-export semantic editing requests.
+The top-1 accuracy falls from 0.36 for one masked color to 0.17 for five (Table 5), indicating a limitation of simultaneous multi-color recommendations.
+Color agreement, geometric matching, and task completion should be reported as independent evaluation dimensions, particularly when a design system supports human adjustments.
+
+\paragraph{What pairwise banner preference measures.}
+\ac{layoutdetr} reports an Amazon Mechanical Turk preference study on 308 rendered ad-banner samples with three annotators per binary comparison (original Sec.~5.3 and Table~4) \citep{layoutdetr2024}.
+The question asks which of two rendered designs looks better, with no predefined scoring dimension, and thus measures comparative visual preference rather than whether a participant successfully edited a saved design or preserved its unrelated content.
+Its separate geometry and distributional comparisons (Sec.~5.2 and Table~3) must also be distinguished from these pairwise human judgments.
+
+\paragraph{Business response and model generation metrics have different denominators.}
+Design-quality comparisons based on rendered posters should not be conflated with commercial click-through metrics or edit-command correctness.
+In the original product-poster comparison, an optimized generator increases sentence accuracy to 65.19 from a baseline's 57.87 and reduces poster FID to 43.19 from 49.76 \citep{autopp2025}.
+In contrast, an online advertising-creative study reports aggregate click-through uplifts of 10.4/9.7\% for its iterated system versus 4.2/3.8\% without self-cycling under two reported campaign settings \citep{cg4ctr2024}.
+A separate user study finds the product-name prompt baseline's mean relevance score (2.413) above an LLM-chained prompt baseline (2.077) among 24 raters over 15 products, while also reporting substantial variance \citep{ecommercebanners2024}.
+Such scores vary in measured unit, sampling and intervention, and none certifies that a delivered design can be edited successfully without collateral changes.
+
+\subsection{Human Preferences and Design-Principle Judges}
+Graphic-design evaluation must distinguish aesthetic preference, layout-rule compliance, and whether a model can identify a design fault.
+\citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a \ac{vlm}'s score as ground truth.
+\ac{designometer} instead learns to evaluate and suggest refinements to graphic-design compositions, whereas \ac{designsense} collects human preferences for layout transformations and trains an evaluation signal in that domain.
+\ac{posterreward} focuses specifically on the typography, layout, and visual quality of generated posters.
+These studies provide complementary evidence for evaluation-model behavior and do not demonstrate the accuracy of a fully autonomous editing agent.

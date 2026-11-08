@@ -1,0 +1,61 @@
+\section{Positioning Against Prior Surveys}
+\label{sec:related}
+Prior surveys already provide substantial coverage of the design domain.
+The distinctive question for the present review is therefore not whether another model-family taxonomy can be drawn, but how evidence of \emph{post-generation editability} varies with the delivered representation and the actual evaluation protocol.
+
+Prior technical surveys classify design tasks and model families, but these classifications do not directly establish which delivered artifacts can be revised.
+\citet{huang2023survey} organize design intelligence into representation, understanding, and generation at element and whole-design levels; their Fig.~1 relates these dimensions to creative practice.
+By comparison, \citet{shi2023layoutsurvey} focus on layout representations, generative architectures, conditioning tasks, and metrics, with Fig.~9 distinguishing model families, content dependence, and applications.
+Their complementary scope motivates a separate analysis of delivered structure, supported revisions, and evaluation evidence.
+
+Discussion of interactive design in prior surveys does not imply that the surveyed systems have undergone a common editing evaluation.
+\citet{liu2024graphiclayoutsurvey} cover implementation and interactive considerations alongside graphic-layout generation.
+We therefore use this coverage to identify relevant tasks rather than to infer post-export edit success across the surveyed methods.
+
+Vector-representation and design-process reviews cover distinct dimensions that a generative-system taxonomy alone cannot summarize.
+\citet{tian2024vectorsurvey} provide a mathematically grounded survey of smooth vector representations and the creation--rasterization--vectorization pipeline.
+Their emphasis on unified notation is particularly useful for separating vector editing affordances from bitmap reconstruction.
+\citet{li2024criticalsurvey} apply critical interpretive synthesis, starting with a literature-screening flow (Fig.~1).
+Their Fig.~4 maps underlying technologies, applications, and design-process stages, Fig.~5 relates four \ac{ai}-in-design paradigms to 17 coded categories, and Fig.~6 proposes how the paradigms connect to stages of a design workflow.
+Their synthesis of 33 included studies has a different scope and methodological purpose from a model-centric survey.
+Importantly, the reported 552 identified records and 33 included studies correspond to explicitly different selection stages, while the four-paradigm coding categories describe a qualitative design-process synthesis rather than measured capabilities of individual graphic-editing systems.
+
+\citet{zou2025fragment} divide the field into perception and generation, with detailed subsections for visual objects, typography, aesthetics, and layout.
+Their Fig.~1 sketches an instruction-to-artwork \ac{ai} graphic-design pipeline, and Fig.~2 visualizes task distributions across design elements, image/SVG recognition and generation, and publication years.
+Their Fig.~3 classifies document-layout analysis into top-down, bottom-up, hybrid, and multi-scale approaches; it is not a taxonomy of layout-generation or editing methods.
+The paper also compares preceding surveys and tabulates technologies.
+Its methodology describes a 500-paper research set, whereas the prior-survey comparison table lists 267 papers for its own survey; the 261 numbered references are a third bibliographic count.
+Because these quantities refer to different reporting contexts, we do not interpret any one of them as a directly comparable screened-study denominator.
+\citet{malashenko2025svgreview} focus on \ac{llm}-driven \ac{svg} generation, editing, and understanding, connecting a task taxonomy to benchmarks and empirical evaluations.
+
+Technical generation metrics alone cannot establish the usefulness of a system in a designer's revision workflow.
+Through semi-structured interviews with seven graphic designers, \citet{tang2024designinterviews} examine how generative tools are incorporated into creative practice.
+Their findings motivate studying correction burden, design control, and workflow utility, while remaining distinct from a controlled benchmark of automatic editing.
+
+\paragraph{Analytical distinction from previous taxonomies.}
+A task taxonomy answers which design problem a system addresses, whereas an architecture taxonomy answers how the system is constructed.
+Neither alone determines what an author can change after the system delivers an artifact, or whether that change was empirically tested.
+This distinction is important when comparing layout-generation surveys with vector-oriented reviews: a vector output may expose editable paths without preserving semantic text, while a raster editor may obey a localized instruction without exporting separable objects.
+Our crosswalk therefore treats delivered representation, requested operation, and observed evaluation as separate axes rather than inferring any one from another.
+This is a claim-level synthesis, not a new experimental ranking: a claim about editability requires evidence of a specific operation, whereas a claim about reliable editing requires a corresponding measurement protocol.
+
+Table~\ref{tab:surveys} summarizes the differing research scopes, treatments of revision, and evaluation perspectives of prior surveys.
+The comparison shows why evidence about design generation, format-level manipulation, and measured editing outcomes must be analyzed separately.
+
+\input{tabs/tex/prior_surveys}
+
+\paragraph{Illustrated research landscape.}
+Figure~\ref{fig:research_map_narrative} selects 26 representative milestones across layout prediction, graphic composition, structured artifact creation, and document workflows, with an independent encoding of each work's dominant computational mechanism.
+Its schematic output examples make explicit the difference between geometry, rasterized appearance, vector or layered structure, and native document objects, without asserting that the illustrated studies all guarantee downstream semantic editing.
+The small institutional labels identify documented collaborations or affiliations, not official institutional marks or a complete organizational census.
+
+\paragraph{Chronological research map.}
+The complementary 67-work atlas in Figure~\ref{fig:research_map} places a broader selection on a common cited-reference-year axis, with separate tracks for layouts, posters, typography and vectors, structured artifacts, document workflows, and synthesis or evaluation.
+Layout-generation milestones include \ac{layoutgan}, \ac{layoutdm}, and \ac{layoutflow}, while poster systems such as \ac{posterlayout}, \ac{autoposter}, and \ac{posteragent} illustrate a distinct content-aware design trajectory \citep{autoposter2023}.
+Vector synthesis and typography development can be traced through \ac{deepsvg}, \ac{vectorfusion}, and \ac{chat2svg}.
+Separately, \ac{cole}, \ac{layerd}, and \ac{designascode} illustrate attention to layered or code-native output \citep{cole2023,designascode2026}, while \ac{svgeditbench} and \ac{vectorgym} exemplify evaluation targeting structured vector operations.
+The document workflow track distinguishes slide creation, presentation-deck editing, infographic rendering, and infographic revision \citep{autopresent2025,pptagent2025,bizgen2025,pptarena2025,yang2026infoedit}.
+The map provides orientation rather than a complete census or a causal citation graph: two methods near one another need not derive from each other, and cited-reference year does not establish direct methodological dependence.
+For version-sensitive papers, first-preprint dates and later publication dates are distinct: for instance, \ac{layoutdetr} was publicly available in 2022 but appears here under its 2024 proceedings year.
+
+
