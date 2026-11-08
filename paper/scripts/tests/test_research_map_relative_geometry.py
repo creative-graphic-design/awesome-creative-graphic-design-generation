@@ -42,9 +42,9 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
             self.assertIn(token, source)
 
     def test_layoutflow_pair_stays_inside_logo_quarter(self):
-        self.assertIn(r"\\MapPaperBrandPair{A}{LayoutFlow}{24}{layoutflow2024}", self.source)
-        self.assertIn(r"\\MapLogoPair{utokyo}{cyberagent-symbol}", self.source)
-        self.assertIn(r"width=.44\\MapCardLogoWidth,height=.66\\MapCardContentHeight,keepaspectratio", self.source)
+        self.assertIn(r"\MapPaperBrandPair{A}{LayoutFlow}{24}{layoutflow2024}", self.source)
+        self.assertIn(r"\MapLogoPair{utokyo}{cyberagent-symbol}", self.source)
+        self.assertIn(r"width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio", self.source)
 
     def test_card_margins_are_relative(self):
         source = self.source
