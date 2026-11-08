@@ -155,7 +155,7 @@ def main() -> None:
                 marks = logos.get(name, ())
                 title_x = x + (41 if marks else 12)
                 # Keep titles within the card even when a source logo is present.
-                title_size = 11 if marks and len(name)>=11 else 12 if len(name)>15 else 14
+                title_size = 13 if marks and len(name)>=11 else 12 if len(name)>15 else 14
                 label(title_x, cy+26, name, title_size, "#213B53", 700)
                 label(x+12, cy+53, detail, 11 if len(detail)<=23 else 10, "#698097")
                 label(x+card_w-27, cy+15, f"'{year}", 9, "#8B9BAC")
