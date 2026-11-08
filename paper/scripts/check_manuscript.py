@@ -57,8 +57,7 @@ for stem in ("overview", "edit_protocol", "research_map", "research_map_narrativ
     root = tex(f"figs/tex/{stem}.tex")
     wrapper = tex(f"figs/tex/{stem}_figure.tex")
     require(r"\documentclass" in root and r"\begin{tikzpicture}" in root, f"{stem} must be standalone TikZ")
-    expected_pdf = "research_landscape" if stem == "research_map" else stem
-    require(f"figs/pdf/{expected_pdf}.pdf" in wrapper, f"{stem} wrapper must include generated vector PDF")
+    require(f"figs/pdf/{stem}.pdf" in wrapper, f"{stem} wrapper must include generated vector PDF")
     require(r"\caption{" in wrapper and r"\label{" in wrapper, f"{stem} wrapper needs caption and label")
     require(f"figs/tex/{stem}_figure" in main, f"main.tex must input {stem} wrapper")
     require(not (PAPER / "figures" / f"{stem}.tex").exists(), f"Remove legacy figures/{stem}.tex")
