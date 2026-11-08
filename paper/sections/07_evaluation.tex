@@ -41,7 +41,7 @@ On 100 icon interpolation pairs ranked by ten participants, \ac{deepsvg}'s order
 These are SVG icon interpolation judgments and geometric reconstruction results, not a controlled evaluation of editing existing design content.
 For \ac{svgformer}, font-family classification reaches 69.7\% versus 35.2\% for \ac{deepsvg} and icon Chamfer reconstruction error decreases from 15.6 to 6.3 in the authors' Table~2.
 Its original limitation section notes that complex style interpolation can lack latent linearity and smoothness despite favorable reconstruction results.
-\ac{vectorfusion} uses 128 caption prompts and 64 optimized vector paths; its best reranked variant obtains \ac{clip} L/14 R-Precision 81.3 under four-sample selection, whereas the directly \ac{clip}-optimized CLIPDraw baseline obtains 85.2 without the same diffusion objective (original Table~1).
+\ac{vectorfusion} uses 128 caption prompts and 64 optimized vector paths; its best reranked variant obtains \ac{clip} L/14 R-Precision 81.3 under four-sample selection, whereas the directly \ac{clip}-optimized \ac{clipdraw} baseline obtains 85.2 without the same diffusion objective (original Table~1).
 \ac{clip} retrieval and text-image similarity characterize visual-semantic consistency of rendered SVGs but do not test whether typographic objects can be reopened and edited as text.
 Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
 
@@ -51,7 +51,7 @@ Its Figure 6 shows layout and background-replacement demonstrations, but Section
 Crucially, the reported SDXL FID is 41.81 for \ac{tkgdm} versus 29.34 for \ac{layerdiffuse} in the same table, so the paper does not establish universal superiority over fine-tuned layer-generation approaches.
 Its 100-participant two-alternative preference study (Section 5.5) measures perceived foreground quality and text alignment, not controlled graphic-design edit success.
 In \ac{alfie}, the fraction of 3,000 generated illustrations with an empty four-pixel border on all sides rises from 53.10\% under a prompt-suffix baseline to 96.50\% with subject centering (Table 1); this is a border-based proxy for uncropped assets, not a measurement of semantic editability.
-A separate ten-person study on 100 images prefers \ac{alfie}'s alpha mattes over ViTMatte approximately 63\% of the time (Section 5.1 and Figure 6), while Figure 7 illustrates downstream collage compatibility without quantitative instruction-edit evaluation.
+A separate ten-person study on 100 images prefers \ac{alfie}'s alpha mattes over \ac{vitmatte} approximately 63\% of the time (Section 5.1 and Figure 6), while Figure 7 illustrates downstream collage compatibility without quantitative instruction-edit evaluation.
 The authors explicitly omit \ac{fid} and \ac{kid} for \ac{rgba} outputs because an appropriately matched transparent-image reference set is unavailable (Section 5), so the missing scores must not be inferred from \ac{clip}-S or border statistics.
 In contrast, \ac{layeringdiff} measures 572 generated foreground/background/composite prompt triplets with \ac{fid}, \ac{kid}, \ac{clip} score and a detector-derived \ac{fgmiou} metric (Section 4.1 and Table 1).
 Its composite \ac{fid} of 121.05 improves on \ac{layerdiffuse} T2L's 134.51 under the reported setup, while its foreground \ac{fid} of 133.76 is worse than the baseline's 127.14, so the work does not dominate every layer-wise metric.
@@ -62,7 +62,7 @@ Its Section 5 also reports alpha-estimation errors and shadows remaining in back
 Against \ac{qwenimagelayered}, per-layer RGB L1 decreases from 0.2014 to 0.1264 and Alpha Soft IoU increases from 0.5454 to 0.7325, but these are reconstruction and alpha-overlap measures rather than executed edit requests.
 The Stable-Layers-derived structural proxy \emph{Bad Layers} declines from 1.69 to 1.32 per design (Table 2), while five-axis VLM judging raises the total from 17.60 to 20.43 out of 25 but lowers alpha cleanliness from 3.33 to 2.90 (Table 3 and Appendix B).
 The VLM sees the input, recomposition and predicted-layer contact sheet, not a human-operated editor performing a controlled downstream text or object change.
-For T2RGBA, 512 design-element prompts yield a mean \ac{clip} Score of 33.03 versus OmniAlpha's 31.00, whereas OmniAlpha has better FID (87.86 versus 117.14) and white-composite \ac{lpips} (0.462 versus 0.537) under their respective setup (Table 4).
+For T2RGBA, 512 design-element prompts yield a mean \ac{clip} Score of 33.03 versus \ac{omnialpha}'s 31.00, whereas \ac{omnialpha} has better FID (87.86 versus 117.14) and white-composite \ac{lpips} (0.462 versus 0.537) under their respective setup (Table 4).
 The paper reports alpha-edge and dense-typography failures (Section 5), limiting any inference from layer separability to unrestricted native document editing.
 
 \subsection{Appearance, Text, and Reconstruction}
