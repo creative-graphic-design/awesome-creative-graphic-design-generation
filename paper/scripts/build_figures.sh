@@ -11,7 +11,6 @@ for stem in overview edit_protocol research_map research_map_narrative; do
   test -s "figs/pdf/${stem}.pdf"
 done
 
-# Data-driven 67-study landscape, generated separately from the legacy TikZ atlas.
-python3 scripts/render_research_landscape.py
-rsvg-convert --format pdf --output figs/pdf/research_landscape.pdf figs/pdf/research_landscape.svg
-test -s figs/pdf/research_landscape.pdf
+# Experimental 67-study SVG atlas: run separately when reviewing alternatives.
+# python3 scripts/render_research_landscape.py
+# rsvg-convert -f pdf -o figs/pdf/research_landscape.pdf figs/pdf/research_landscape.svg
