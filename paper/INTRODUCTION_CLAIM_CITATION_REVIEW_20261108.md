@@ -15,11 +15,19 @@ Scope: PR #135, `paper/sections/02_introduction.tex`. This review covers argumen
 
 - Each of six paragraphs opens with one bounded topic sentence; supporting sentences substantiate that sentence instead of starting a named-model review.
 - Coherent progression: visual communication → revision in workflows → format affordances versus execution → evaluation heterogeneity → prior surveys → this survey's contribution.
-- Introduction now uses 26 distinct BibTeX citations and 33 reference occurrences; citation count is descriptive and not a target.
+- Introduction now uses 40 distinct BibTeX citations and 51 reference occurrences (as of this revision); citation count is descriptive and not a target.
 - All cited keys were checked against `references.bib`; TeX source uses one prose sentence per line.
 - The universal editability-importance claim was limited to workflows that require revisions. The too-strong prior-survey novelty claim was narrowed.
 - The first-hand original records consulted include Huang (arXiv:2309.01371), Zou (J. Imaging 11(9):289), Mackinlay (ACM TOG 1986), Shi (Information Fusion 2023), Tian (IEEE TVCG 2024), Tang (arXiv:2406.13436), CGL-GAN (IJCAI 2022), AutoPresent and BizGen (CVPR 2025), AutoFigure (arXiv:2602.03828), Editable Visual Design (arXiv:2609.04034), SVGEditBench (CVPRW 2024), MiLDEdit (arXiv:2601.04589), VectorGym and InfoEdit (EMNLP 2026). Remaining key-to-claim matches rely in part on existing in-repository evidence records. This does **not** upgrade `not_verified` study records to full-text audited.
 
 ## Outcome
 
-The Introduction's paragraph-level academic-writing and claim–citation review is complete. Full methods/results verification of each cited study, live spreadsheet reconciliation, and survey-wide experimental-evidence review remain separate tasks. PDF visual QA is excluded here at the author's request.
+The Introduction's paragraph-level academic-writing and claim–citation review has been updated through the raster-versus-structured comparison. Citation coverage is subject to further source-level verification. Full methods/results verification of each cited study, live spreadsheet reconciliation, and survey-wide experimental-evidence review remain separate tasks. PDF visual QA is excluded here at the author's request.
+
+## Required comparison and citation check for subsequent edits
+
+- For every contrast such as raster versus vector, generative output versus document, or visual quality versus edit accuracy, identify the **evidence on both sides** before making a comparative claim.
+- Check that the cited sources actually study the claimed output artifact or measurement; do not use an image generator as evidence for native editing, nor treat format-level affordances as measured edit success.
+- Check for omitted research families (raster image synthesis, spatial layouts, vector paths, decomposed layers, code-native documents) whenever summarizing the breadth of generation approaches.
+- After editing a supporting sentence, reread the complete paragraph and its topic sentence, then reevaluate claim scope and citation placement across all sentences.
+- Source examples checked directly for the raster side: DesignDiffusion (CVPR 2025, direct design-image synthesis); PosterMaker (CVPR 2025, image/text product posters); TextDiffuser-2 (ECCV 2024, text rendering in images); LayerD (ICCV 2025, raster design decomposition into layers). This is evidence for the scoped claims in the Introduction, not a full independent replication.
