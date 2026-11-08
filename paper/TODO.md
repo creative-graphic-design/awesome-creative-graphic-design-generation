@@ -380,3 +380,9 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Transferred six previously inspected original-source items (CGD-090, 149, 150, 181, 185, 190) with original section/table locators and limitations; strengthened the Vinci human-study distinction in Evaluation.
 - [x] Added `python3 paper/scripts/report_claim_evidence.py --summary` to report literal claim/citation pairs across all source sections and table TeX files, rather than stopping at bibliography-key coverage alone.
 - [ ] Interpret all numerical-claim warnings with primary tables before clearing; this report is triage only, and the remaining original-source reading / final author scientific signoff remains open.
+
+## T19 original methods/evaluation verification batch — 2026-11-08
+
+- [x] Checked original author HTML for LayoutNUWA, PosterVerse, LayerDiffuse, Qwen-Image-Layered, TextDiffuser-2 and Paper2Poster, and original supplemental evaluation methods for PosterLLaVa; synchronized seven citation-level audit entries with section/table locators and limits.
+- [x] Recorded source-specific outputs and measured constructs without conflating object-level editing and appearance-based scores; [T19 audit](T19_PRIMARY_LAYOUT_LAYER_AND_DOCUMENT_AUDIT.md).
+- [ ] PosterLLaVa main-paper experimental results, remaining source-depth backlog, systematic search/screening and final PDF checking still require evidence. No logo/map edits were performed.
