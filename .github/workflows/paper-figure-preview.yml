@@ -66,6 +66,8 @@ jobs:
           extra_system_packages: 'rsvg-convert curl python3 unzip'
           pre_compile: |
             sh scripts/build_figures.sh
+            python3 scripts/render_research_map_concept.py
+            rsvg-convert --format pdf --output figs/pdf/research_map_concept.pdf figs/pdf/research_map_concept.svg
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Confirm square logos and vector research map
         shell: bash
@@ -158,6 +160,7 @@ jobs:
             paper/figs/assets/logos/meituan-symbol.pdf
             paper/research-map-preview.png
             paper/figs/pdf/research_map_concept.svg
+            paper/figs/pdf/research_map_concept.pdf
             paper/ca-square-preview.png
             paper/map-info.txt
             paper/ca-symbol-info.txt
