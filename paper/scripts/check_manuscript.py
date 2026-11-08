@@ -432,7 +432,10 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\MapCardLogoCenterX,-.5\MapCardHeight" in figure_source and
             r"\MapCardTextOffset,-\MapCardTitleOffset" in figure_source and
             r"\MapCardTextOffset,-\MapCardDetailOffset" in figure_source and
-            r"\includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]" in figure_source,
+            r"\includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]" in figure_source and
+            r"\newcommand{\MapLogoSingle}[1]" in figure_source and
+            r"at (.40\MapCardLogoWidth,.50\MapCardContentHeight)" in figure_source and
+            r"\MapPaperContent{#2}{#3}{#8}{\MapLogoSingle{#9}}" in figure_source,
             "Every study card must use independent anchored contents within fixed proportional frames")
     require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 3 and
             figure_source.count(r"\MapPaperContent{#2}{#3}{#8}{") == 3,
