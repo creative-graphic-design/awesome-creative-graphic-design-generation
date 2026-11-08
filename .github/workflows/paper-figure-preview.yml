@@ -131,6 +131,14 @@ jobs:
           assert black == 0, f"CA symbol crop still includes {black} black wordmark pixels"
           print("PASS: compact CA logo has no black wordmark text pixels")
           PY
+      - name: Package reproducible manuscript source snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -czf paper/paper-source-snapshot.tar.gz -C paper \
+            main.tex main-fast.tex acronyms.tex references.bib \
+            cvpr.sty ieeenat_fullname.bst .latexmkrc sections tabs/tex figs/tex
+          test -s paper/paper-source-snapshot.tar.gz
       - name: Upload figure PDFs and proof PNGs
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -161,3 +169,7 @@ jobs:
             paper/meituan-symbol-info.txt
             paper/salesforce-square-preview.png
             paper/bit-square-preview.png
+            paper/paper-source-snapshot.tar.gz
+            paper/figs/pdf/overview.pdf
+            paper/figs/pdf/edit_protocol.pdf
+            paper/figs/pdf/research_map.pdf
