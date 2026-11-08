@@ -59,7 +59,7 @@ Table 3 measures image quality and prompt alignment from 24 participant ratings,
 For background recovery, Table 4 reports an improved \ac{lpips} of 21.80 versus 28.73 for the Germer baseline, but worse MSE of 17.52 versus 12.76, demonstrating that perceptual and pixel-reconstruction metrics answer distinct questions.
 Its Section 5 also reports alpha-estimation errors and shadows remaining in background layers as failure modes that can constrain later compositing.
 \ac{uniworlddesign} evaluates I2L on 512 held-out Crello designs with four predicted layers, aligned to source stacks by \ac{layerd} before scoring (Section 4.1 and Table 1).
-Against \ac{qwenimagelayered}, per-layer RGB L1 decreases from 0.2014 to 0.1264 and Alpha Soft IoU increases from 0.5454 to 0.7325, but these are reconstruction and alpha-overlap measures rather than executed edit requests.
+Against \ac{qwenimagelayered}, per-layer RGB L1 decreases from 0.2014 to 0.1264 and Alpha Soft \ac{iou} increases from 0.5454 to 0.7325, but these are reconstruction and alpha-overlap measures rather than executed edit requests.
 The Stable-Layers-derived structural proxy \emph{Bad Layers} declines from 1.69 to 1.32 per design (Table 2), while five-axis VLM judging raises the total from 17.60 to 20.43 out of 25 but lowers alpha cleanliness from 3.33 to 2.90 (Table 3 and Appendix B).
 The VLM sees the input, recomposition and predicted-layer contact sheet, not a human-operated editor performing a controlled downstream text or object change.
 For T2RGBA, 512 design-element prompts yield a mean \ac{clip} Score of 33.03 versus \ac{omnialpha}'s 31.00, whereas \ac{omnialpha} has better FID (87.86 versus 117.14) and white-composite \ac{lpips} (0.462 versus 0.537) under their respective setup (Table 4).
@@ -99,7 +99,7 @@ Thus evidence for an editable source protocol and preference-based image quality
 
 \paragraph{Layer-aware editing demonstration versus measured edit success.}
 \ac{cole} demonstrates a multilayer SVG compilation and editor workflow with object and text-box adjustments \citep{cole2023}.
-However, its benchmark chiefly reports generated-design visual quality and text placement, including a Crello multi-text-box IoU of 17.2 (Table~3), which is not the success rate of revising an already delivered design.
+However, its benchmark chiefly reports generated-design visual quality and text placement, including a Crello multi-text-box \ac{iou} of 17.2 (Table~3), which is not the success rate of revising an already delivered design.
 Its own limitations note restricted editable visual-element coverage and typography color diversity.
 Thus a demonstration of SVG-based layer adjustment supports a narrower editability claim than a validated native-editor reopen--modify--save benchmark with protected-object preservation.
 
