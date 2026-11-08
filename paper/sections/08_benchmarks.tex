@@ -64,12 +64,12 @@ These benchmarks evaluate different stages of a scientific communication pipelin
 
 \paragraph{Structured design and content-transfer benchmarks.}
 Hybrid SVG/raster synthesis \citep{gupta2026layercanvas} preserves a vector layout and typographic source while diffusing the appearance of other elements, an output contract distinct from purely flattened poster imagery.
-Any2Poster \citep{vinaykumar2026any2poster} assesses poster generation from heterogeneous input files using content-recovery questions and visual criteria, whereas \ac{scipostgen} \citep{inadumi2025scipostgen} focuses on paper-conditioned poster-layout data and retrieval.
-\ac{spire} \citep{liu2026spire} formulates slide personalization as inverse planning through structural denoising, but performance on personalized layout generation is not automatically evidence that a revised presentation can be reopened and modified in its native editor.
+Any2Poster \citep{vinaykumar2026any2poster} assesses poster generation from heterogeneous input files using content-recovery questions and visual criteria, whereas \ac{scipostgen} focuses on paper-conditioned poster-layout data and retrieval.
+\ac{spire} formulates slide personalization as inverse planning through structural denoising, but performance on personalized layout generation is not automatically evidence that a revised presentation can be reopened and modified in its native editor.
 These tasks require distinct denominators for content retention, layout quality, native artifact validity, and subsequent revision.
 
 \paragraph{Scientific-poster artifact contracts.}
-Scientific-poster generation includes corpus-driven content-to-layout modeling \citep{zhong2025scienceposter} and systems promising editable presentation artifacts, such as \ac{postermeld} \citep{hu2026postermeld} and \ac{postervisor} \citep{li2026postervisor}.
+Scientific-poster generation includes corpus-driven content-to-layout modeling \citep{zhong2025scienceposter} and systems promising editable presentation artifacts, such as \ac{postermeld} and \ac{postervisor}.
 \ac{postermeld} evaluates request-level print-readiness across 621 paper requests, reporting an 81.3\% Print-Ready Rate against 24.2\% for P2P, 15.8\% for \ac{postergen}, and 85.2\% for the raster-only GPT-Image-2 baseline (original Table~1).
 Its reported 3.247 Craftsmanship--Harmony--Expressiveness score is conditional on print-ready outputs, unlike the request-level denominator of Print-Ready Rate, while the reported \$0.38 mean cost includes failed requests.
 The original paper treats native editable text and figure elements as a separate artifact property and tests its VLM judge against human annotations (Table~3), but does not establish a controlled post-export text-replacement success rate.
