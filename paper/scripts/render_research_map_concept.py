@@ -19,9 +19,9 @@ PAPER = Path(__file__).resolve().parents[1]
 TEX = PAPER / "figs/tex/research_map_narrative.tex"
 AUDIT = PAPER / "figs/tex/research_map_narrative_sources.csv"
 OUTPUT = PAPER / "figs/pdf/research_map_concept.svg"
-W, H = 1050, 1080
+W, H = 1050, 1140
 X0, STEP = 260, 190
-Y0, LANE_STEP = 248, 180
+Y0, LANE_STEP = 318, 174
 ERAS = ((2019, 2021), (2022, 2023), (2024, 2025), (2026, 2026))
 LANES = (
     ("A", "LAYOUT GENERATION", "Geometry and constraints", "#2C86B6"),
@@ -125,15 +125,29 @@ def main() -> None:
     # Layout geometry derives from a four-period grid, never study-specific x/y.
     add(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
     rect(0, 0, W, H, "#F8FAFD")
-    rect(0, 0, W, 122, "#173552")
+    rect(0, 0, W, 116, "#173552")
     label(31, 48, "RESEARCH LANDSCAPE OF GENERATIVE GRAPHIC DESIGN", 20, "#FFFFFF", 700)
     label(32, 82, "A chronological overview across research tasks and method families", 15, "#C4D6E5")
-    rect(20, 146, W-40, 70, "#E8EEF5", radius=10)
-    label(38, 184, "REFERENCE PERIOD", 13, "#647D92", 700)
+    # An interpretive trajectory above the study atlas, not paper-to-paper ancestry.
+    rect(20, 129, W-40, 91, "#FFFFFF", radius=9)
+    label(37, 149, "RESEARCH EXPANSION  ·  INTERPRETIVE OVERVIEW", 11, "#647D92", 700)
+    phases = (
+        ("LEARNED LAYOUTS", "element geometry"),
+        ("CONDITIONED DESIGN", "visual + text inputs"),
+        ("STRUCTURED OUTPUTS", "vectors + layers"),
+        ("NATIVE WORKFLOWS", "revision + reflow"),
+    )
+    for i, (title, subtitle) in enumerate(phases):
+        px = 35 + i*247
+        rect(px, 158, 231, 48, "#ECF2F8" if i%2==0 else "#F1F5FA", "#DBE5EF", radius=6)
+        label(px+12, 177, title, 12, "#23425D", 700)
+        label(px+12, 194, subtitle, 10, "#6A8095")
+    rect(20, 231, W-40, 63, "#E8EEF5", radius=10)
+    label(38, 268, "REFERENCE PERIOD", 12, "#647D92", 700)
     for period, (first, last) in enumerate(ERAS):
         x = X0 + STEP*period
         year_text = str(first) if first == last else f"{first}–{last}"
-        label(x+10, 187, year_text, 17, "#29455E", 700)
+        label(x+10, 268, year_text, 17, "#29455E", 700)
 
     for lane, (track, title, description, accent) in enumerate(LANES):
         y = Y0 + lane*LANE_STEP
@@ -145,6 +159,20 @@ def main() -> None:
         for period in range(len(ERAS)):
             x = X0 + period*STEP + 3
             cards = buckets[(track, period)]
+            # The two blank early document cells are used for conceptual context,
+            # not fictitious papers. Other cells remain purely data-driven.
+            if track == "D" and period == 0:
+                rect(x, y+8, 364, 137, "#F5F2FA", "#DDD5EA", radius=8)
+                label(x+15, y+32, "EDITABILITY IS MORE THAN AN IMAGE", 12, "#6B5598", 700)
+                label(x+15, y+56, "Layered objects", 12, "#4A6178")
+                label(x+177, y+56, "→", 16, "#8067BA", 700)
+                label(x+218, y+56, "native documents", 12, "#4A6178")
+                for ix, yy, ww in ((16,77,85),(23,86,85),(30,95,85)):
+                    rect(x+ix, y+yy, ww, 18, "#FFFFFF", "#AA99C7", radius=3)
+                rect(x+220, y+79, 76, 53, "#FFFFFF", "#AA99C7", radius=3)
+                for dy in (91,102,113):
+                    rect(x+232, y+dy, 50, 4, "#C8BBDA", radius=2)
+                label(x+123, y+132, "structure retained for later edits", 10, "#826E9F")
             assert len(cards) <= 2, (track, period, cards)
             for index, (name, family, detail, year) in enumerate(cards):
                 cy = y + 8 + index*78
