@@ -15,7 +15,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
     def test_frame_and_content_geometry(self):
         source = self.source
         for token in (
-            r"\setlength{\MapCardHeight}{.218\MapCardWidth}",
+            r"\setlength{\MapCardHeight}{.20\MapCardWidth}",
             r"\setlength{\MapCardPaddingX}{.025\MapCardWidth}",
             r"\setlength{\MapCardPaddingY}{.016\MapCardWidth}",
             r"\dimexpr\MapCardWidth-2\MapCardPaddingX\relax",
@@ -41,7 +41,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
     def test_card_margins_are_relative(self):
         source = self.source
         self.assertIn(r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}", source)
-        self.assertIn(r"\setlength{\MapCardRowPitch}{.244048\MapCardWidth}", source)
+        self.assertIn(r"\setlength{\MapCardRowPitch}{.232\MapCardWidth}", source)
         self.assertIn(r"\dimexpr\MapColOne+\MapCardWidth+\MapCardMarginX\relax", source)
         self.assertIn(r"\dimexpr\MapRowATop-\MapCardRowPitch\relax", source)
         cards = re.findall(
