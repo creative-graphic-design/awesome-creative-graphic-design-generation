@@ -9,7 +9,7 @@ These metrics characterize different tasks, not comparable scores on one leaderb
 \toprule
 \textbf{Measured target} & \textbf{Example protocol or metric} & \textbf{Unsupported inference without further testing}\\
 \midrule
-Layout fidelity/diversity & Layout FID, maximum IoU, constraint-satisfaction checks \citep{layoutdm2023}. & Correct typography, image quality, or downstream editability.\\
+Layout fidelity/diversity & Layout FID, maximum \ac{iou}, constraint-satisfaction checks \citep{layoutdm2023}. & Correct typography, image quality, or downstream editability.\\
 Text-to-vector alignment & CLIP similarity, CLIP R-Precision on rendered SVG captions \citep{vectorfusion2023}. & Path-level editing success or preserved non-target geometry.\\
 Vector representation quality & Chamfer-derived reconstruction error, interpolation smoothness \citep{deepsvg2020}. & Instruction-controlled vector edits or high-quality semantic text.\\
 Typography fidelity & Re-rendered reconstruction L1/PSNR \citep{derendering2021}; human legibility judgments \citep{wordasimage2023}. & Accurate arbitrary text replacement or the preservation of document structure.\\
