@@ -6,7 +6,7 @@
 \usepackage{lmodern}
 \usepackage{tikz}
 \usepackage{graphicx}
-\usepackage{array} % true vertically centered m-column layout in paper cards
+% Frames and contents are independent TikZ nodes (no table baseline).
 \usetikzlibrary{calc,arrows.meta}
 \definecolor{navy}{HTML}{162F4C}
 \definecolor{ink}{HTML}{253A53}
@@ -22,20 +22,39 @@
 \definecolor{agent}{HTML}{775BAE}
 \definecolor{struct}{HTML}{268B7B}
 \definecolor{edit}{HTML}{AF4877}
-% All card dimensions are derived from a common card-width design token.
-% MARGIN: the free space between cards is controlled by shared grid pitches.
-% PADDING: the frame's inner x/y separation, independent of card margins.
-% CONTENT: logo 1/4; text 3/4; text split into two equal-height rows.
+% All card geometry is proportional to one width token.
+% The frame is a fixed-height TikZ rectangle; its contents are independent nodes.
+% MARGIN is the empty space between frames; PADDING is inside each frame.
+% Content columns: logo 1/4, text 3/4. Text rows: name 1/2, detail 1/2.
 \newlength{\MapCardWidth}
 \setlength{\MapCardWidth}{3.36cm}
+\newlength{\MapCardHeight}
+\setlength{\MapCardHeight}{.218\MapCardWidth}
 \newlength{\MapCardPaddingX}
 \newlength{\MapCardPaddingY}
 \setlength{\MapCardPaddingX}{.025\MapCardWidth}
-\setlength{\MapCardPaddingY}{.008\MapCardWidth}
+\setlength{\MapCardPaddingY}{.016\MapCardWidth}
 \newlength{\MapCardContentWidth}
-\setlength{\MapCardContentWidth}{\MapCardWidth}
-% Grid MARGINS are relative to card width (separate from inner PADDING).
-% Shared pitches prevent ad-hoc card-by-card offsets.
+\setlength{\MapCardContentWidth}{\dimexpr\MapCardWidth-2\MapCardPaddingX\relax}
+\newlength{\MapCardContentHeight}
+\setlength{\MapCardContentHeight}{\dimexpr\MapCardHeight-2\MapCardPaddingY\relax}
+\newlength{\MapCardLogoWidth}
+\newlength{\MapCardTextWidth}
+\newlength{\MapCardRowHeight}
+\newlength{\MapCardTextOffset}
+\newlength{\MapCardLogoCenterX}
+\newlength{\MapCardTitleOffset}
+\newlength{\MapCardDetailOffset}
+\newlength{\MapCardHeadingWidth}
+\newlength{\MapCardSubtitleWidth}
+\setlength{\MapCardLogoWidth}{.25\MapCardContentWidth}
+\setlength{\MapCardTextWidth}{.75\MapCardContentWidth}
+\setlength{\MapCardRowHeight}{.5\MapCardContentHeight}
+\setlength{\MapCardTextOffset}{\dimexpr\MapCardPaddingX+\MapCardLogoWidth\relax}
+\setlength{\MapCardLogoCenterX}{\dimexpr\MapCardPaddingX+.5\MapCardLogoWidth\relax}
+\setlength{\MapCardTitleOffset}{\dimexpr\MapCardPaddingY+.5\MapCardRowHeight\relax}
+\setlength{\MapCardDetailOffset}{\dimexpr\MapCardPaddingY+1.5\MapCardRowHeight\relax}
+% Repeated grid positions derive from a single width and common pitches.
 \newlength{\MapCardMarginX}
 \newlength{\MapCardRowPitch}
 \setlength{\MapCardMarginX}{.172619\MapCardWidth}
@@ -65,40 +84,31 @@
 \setlength{\MapRowDTop}{4.97cm}
 \setlength{\MapRowDBottom}{\dimexpr\MapRowDTop-\MapCardRowPitch\relax}
 \newcounter{MapPaperNodeCounter}
-\newlength{\MapCardLogoWidth}
-\newlength{\MapCardTextWidth}
-\newlength{\MapCardRowHeight}
-\newlength{\MapCardLogoHeight}
-\newlength{\MapCardHeadingWidth}
-\newlength{\MapCardSubtitleWidth}
 \newcommand{\MapPaperFrame}[4]{%
   \stepcounter{MapPaperNodeCounter}%
-  \node[anchor=north west,draw=#3,fill=white,rounded corners=2pt,line width=.80pt,
-   text width=\MapCardContentWidth,inner xsep=\MapCardPaddingX,
-   inner ysep=\MapCardPaddingY,align=left]
-   (mapPaperCard-\arabic{MapPaperNodeCounter}) at (#1,#2) {#4};%
+  \node[anchor=north west,draw=#3,fill=white,rounded corners=2pt,
+    line width=.80pt,inner sep=0pt,outer sep=0pt,
+    minimum width=\MapCardWidth,minimum height=\MapCardHeight]
+    (mapPaperCard-\arabic{MapPaperNodeCounter}) at (#1,#2) {};%
+  #4%
 }
 \newcommand{\MapPaperContent}[4]{%
-  \setlength{\MapCardLogoWidth}{.25\linewidth}%
-  \setlength{\MapCardTextWidth}{.75\linewidth}%
-  \setlength{\MapCardRowHeight}{.095\MapCardWidth}%
-  \setlength{\MapCardLogoHeight}{2\MapCardRowHeight}%
   \settowidth{\MapCardHeadingWidth}{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hspace{.15em}{\sffamily\fontsize{6.2}{7}\selectfont '#2}}%
   \settowidth{\MapCardSubtitleWidth}{{\sffamily\fontsize{6.35}{7.1}\selectfont #3}}%
   \ifdim\MapCardHeadingWidth>\MapCardTextWidth
-    \PackageError{researchmap}{#1: relative card heading exceeds 75 percent text column}{Shorten study title or expand all cards}%
+    \PackageError{researchmap}{#1: heading exceeds proportional text column}{Shorten the title}%
   \fi
   \ifdim\MapCardSubtitleWidth>\MapCardTextWidth
-    \PackageError{researchmap}{#1: relative card subtitle exceeds 75 percent text column}{Shorten study subtitle or expand all cards}%
+    \PackageError{researchmap}{#1: description exceeds proportional text column}{Shorten the subtitle}%
   \fi
-  % Fixed-height columns avoid tabular's implicit strut and unwanted vertical growth.
-  \noindent\hbox to \linewidth{%
-    \makebox[\MapCardLogoWidth][c]{\parbox[c][\MapCardLogoHeight][c]{\MapCardLogoWidth}{\centering\mbox{}#4}}%
-    \parbox[c][\MapCardLogoHeight][c]{\MapCardTextWidth}{%
-      \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hfil{\sffamily\fontsize{6.2}{7}\selectfont '#2}}\vfil}%
-      \vbox to \MapCardRowHeight{\vfil\hbox to \MapCardTextWidth{{\sffamily\color{muted}\fontsize{6.35}{7.1}\selectfont #3}\hfil}\vfil}%
-    }%
-  }%
+  \node[anchor=center,inner sep=0pt,outer sep=0pt] at
+    ($(mapPaperCard-\arabic{MapPaperNodeCounter}.north west)+(\MapCardLogoCenterX,-.5\MapCardHeight)$) {#4};%
+  \node[anchor=west,inner sep=0pt,outer sep=0pt] at
+    ($(mapPaperCard-\arabic{MapPaperNodeCounter}.north west)+(\MapCardTextOffset,-\MapCardTitleOffset)$)
+    {\hbox to \MapCardTextWidth{{\sffamily\bfseries\fontsize{7.3}{8.1}\selectfont #1}\hfil{\sffamily\fontsize{6.2}{7}\selectfont '#2}}};%
+  \node[anchor=west,inner sep=0pt,outer sep=0pt] at
+    ($(mapPaperCard-\arabic{MapPaperNodeCounter}.north west)+(\MapCardTextOffset,-\MapCardDetailOffset)$)
+    {\hbox to \MapCardTextWidth{{\sffamily\color{muted}\fontsize{6.35}{7.1}\selectfont #3}\hfil}};%
 }
 \newcommand{\MapPaper}[8]{%
   \MapPaperFrame{#5}{#6}{#7}{\MapPaperContent{#2}{#3}{#8}{}}%
@@ -106,7 +116,7 @@
 \newcommand{\MapPaperBrand}[9]{%
   \MapPaperFrame{#5}{#6}{#7}{%
     \MapPaperContent{#2}{#3}{#8}{%
-      \includegraphics[width=.64\MapCardLogoWidth,height=.72\MapCardLogoHeight,keepaspectratio,clip]{figs/assets/logos/#9.pdf}%
+      \includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#9.pdf}%
     }%
   }%
 }
