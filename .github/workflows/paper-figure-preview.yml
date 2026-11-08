@@ -7,6 +7,7 @@ on:
       - 'paper/figs/**'
       - 'paper/scripts/prepare_affiliation_logos.sh'
       - 'paper/scripts/build_figures.sh'
+      - 'paper/scripts/render_research_map_concept.py'
       - '.github/workflows/paper-figure-preview.yml'
   workflow_dispatch:
 
@@ -43,6 +44,20 @@ jobs:
           sh -n paper/scripts/prepare_affiliation_logos.sh
           python3 paper/scripts/check_manuscript.py
           python3 -m unittest discover -s paper/scripts/tests -p 'test_research_map_relative_geometry.py'
+      - name: Render auditable experimental map before LaTeX
+        run: |
+          python3 paper/scripts/render_research_map_concept.py
+          python3 - <<'PY'
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          svg = Path("paper/figs/pdf/research_map_concept.svg")
+          tree = ET.parse(svg)
+          texts = ["".join(n.itertext()) for n in tree.iter() if n.tag.endswith("text")]
+          for name in ("LayoutGAN", "LayoutFlow", "COLE", "OpenCOLE", "AutoFigure"):
+              assert name in texts, f"Missing audited method: {name}"
+          assert len(tree.findall(".//{http://www.w3.org/2000/svg}rect")) >= 26
+          print("Validated experimental map XML and representative milestones")
+          PY
       - name: Build standalone figures only
         uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b # v4
         with:
@@ -142,6 +157,7 @@ jobs:
             paper/figs/assets/logos/salesforce.pdf
             paper/figs/assets/logos/meituan-symbol.pdf
             paper/research-map-preview.png
+            paper/figs/pdf/research_map_concept.svg
             paper/ca-square-preview.png
             paper/map-info.txt
             paper/ca-symbol-info.txt
