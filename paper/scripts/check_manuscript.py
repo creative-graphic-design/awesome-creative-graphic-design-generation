@@ -235,8 +235,17 @@ require(acro_list_sources == n_systems + n_evaluation,
 acro_sources = sorted((PAPER / "sections").glob("*.tex"))
 acro_sources += sorted((PAPER / "tabs" / "tex").glob("*.tex"))
 acro_sources += sorted((PAPER / "figs" / "tex").glob("*_figure.tex"))
+registered_cites = {
+    key: citation.group(1)
+    for key, options in definitions
+    if (citation := re.search(r"(?m)^\\s*cite\\s*=\\s*\\{([^}]+)\\}", options))
+}
 for source_file in acro_sources:
     data = source_file.read_text(encoding="utf-8")
+    for matched in re.finditer(r"\\\\ac\\{([^}]+)\\}[ \\t]*~?[ \\t]*\\\\citep\\{([^}]+)\\}", data):
+        acronym_key, cited_key = matched.groups()
+        require(registered_cites.get(acronym_key) != cited_key,
+                f"{source_file.relative_to(PAPER)}: redundant \\ac{{{acronym_key}}} \\citep{{{cited_key}}}; use acro's first-use citation")
     for ref in re.findall(r"\\ac(?:p|f|s|l)?\{([^}]+)\}", data):
         require(ref in keys, f"{source_file.relative_to(PAPER)}: undefined acro key {ref}")
     require(not re.search(r"\\gls(?:pl|first|firstplural)?\{", data),
