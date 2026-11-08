@@ -41,7 +41,7 @@ jobs:
         with:
           root_file: main-fast.tex
           working_directory: paper
-          extra_system_packages: 'rsvg-convert curl python3 unzip time bash poppler-utils'
+          extra_system_packages: 'rsvg-convert poppler-utils curl python3 unzip time bash poppler-utils'
           pre_compile: |
             sh scripts/build_figures.sh
             mkdir -p build-timings
