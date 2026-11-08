@@ -14,7 +14,8 @@ Interviews with graphic designers document how generative tools fit into creativ
 Raster-oriented research generates visually integrated designs and typographic imagery, including text-to-design image synthesis \citep{designdiffusion2025}, product poster generation \citep{postermaker2025}, and text rendering in generated images \citep{textdiffuser22024}.
 Complementary research explores structured outputs, including element-level layouts \citep{layoutgan2019,layoutdm2023}, vector graphics \citep{vectorfusion2023,starvector2025,chat2svg2025}, layered compositions \citep{cole2023,opencole2024,layerd2025}, and code-based design documents \citep{designascode2026,editablevisual2026}.
 These approaches represent complementary output choices rather than a single chronological progression from raster to vector graphics.
-A rendered preview alone does not reveal whether text, graphical elements, or spatial relationships remain independently manipulable, so visually similar results may provide different opportunities for revision.
+A flattened raster output does not directly retain the source document's element boundaries, motivating research that reconstructs editable layers from raster graphic designs \citep{layerd2025}.
+Conversely, the presence of vector paths or document objects does not by itself establish which semantic edits can be performed reliably.
 
 The presence of editable structure does not, by itself, demonstrate reliable editing performance.
 Layered and code-based artifacts can expose individually manipulable elements \citep{cole2023,editablevisual2026}, while instruction-driven multi-layer editing studies explicitly test whether requested modifications are carried out \citep{mildedit2026}.
@@ -22,7 +23,7 @@ Furthermore, changing one element can require legitimate adjustments to surround
 A meaningful account of editability must consequently distinguish the operations an artifact permits from the revisions a system has demonstrated or evaluated.
 
 Differences in evaluation protocols further complicate comparisons of generated designs.
-Spatial-layout generation and vector synthesis are commonly evaluated using geometric, distributional, or visual criteria \citep{layoutdm2023,vectorfusion2023}.
+Design-image synthesis and poster generation assess visual quality, text rendering, or product fidelity \citep{designdiffusion2025,postermaker2025}, while spatial-layout generation and vector synthesis report geometric, distributional, or visual criteria \citep{layoutdm2023,vectorfusion2023}.
 By contrast, interactive design research can evaluate human editing effort \citep{vinci2021}, while dedicated benchmarks assess instruction-driven edits to \ac{svg} graphics \citep{svgeditbench2024,vectorgym2026} or multi-layer documents \citep{mildedit2026}.
 Because these protocols measure different outcomes, visual fidelity, structural affordances, and measured editing performance should not be treated as interchangeable evidence.
 
