@@ -392,3 +392,9 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Checked original tables in SVGEditBench, CGL-GAN and discrete LayoutDiffusion; updated citation-level methods/results audit and metric-specific manuscript interpretations.
 - [x] Checked publisher/author abstracts of InfoEdit and MiLDEdit without falsely promoting their original main numerical tables.
 - [ ] Continue original-method/results source inspections, native edit-operation reproduction, systematic screening, author approval and final PDF CI acceptance.
+
+## T21 ten original product/poster results audits — 2026-11-08
+
+- [x] Checked method and original experiment sections for AutoPP, Design Your Ad, InnoAds-Composer, Planning and Rendering, RefAdGen, SIMPLEPOSTER, reliable ad generation, PrismLayers, personalized e-commerce banners and CG4CTR; updated citation-level audit and claim-specific section/table locators.
+- [x] Added a cross-method discussion distinguishing product retention, artistic quality, consumer relevance, online CTR and native editor operations.
+- [ ] CGD-061 Brief2Design, CGD-081 T-Stars-Poster and CGD-178 Text2Layer require original full sections; no inferred methods/results tier assigned. Systematic search screening and author approval remain pending.

@@ -185,6 +185,13 @@ Color agreement, geometric matching, and task completion should be reported as i
 The question asks which of two rendered designs looks better, with no predefined scoring dimension, and thus measures comparative visual preference rather than whether a participant successfully edited a saved design or preserved its unrelated content.
 Its separate geometry and distributional comparisons (Sec.~5.2 and Table~3) must also be distinguished from these pairwise human judgments.
 
+\paragraph{Business response and model generation metrics have different denominators.}
+Design-quality comparisons based on rendered posters should not be conflated with commercial click-through metrics or edit-command correctness.
+In the original product-poster comparison, an optimized generator increases sentence accuracy to 65.19 from a baseline's 57.87 and reduces poster FID to 43.19 from 49.76 \citep{autopp2025}.
+In contrast, an online advertising-creative study reports aggregate click-through uplifts of 10.4/9.7\% for its iterated system versus 4.2/3.8\% without self-cycling under two reported campaign settings \citep{cg4ctr2024}.
+A separate user study finds the product-name prompt baseline's mean relevance score (2.413) above an LLM-chained prompt baseline (2.077) among 24 raters over 15 products, while also reporting substantial variance \citep{ecommercebanners2024}.
+Such scores vary in measured unit, sampling and intervention, and none certifies that a delivered design can be edited successfully without collateral changes.
+
 \subsection{Human Preferences and Design-Principle Judges}
 Graphic-design evaluation must distinguish aesthetic preference, layout-rule compliance, and whether a model can identify a design fault.
 \citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a \ac{vlm}'s score as ground truth.

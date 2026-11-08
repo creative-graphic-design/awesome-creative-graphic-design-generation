@@ -145,3 +145,7 @@ Seven citation-level entries from original arXiv HTML (including a PosterLLaVa s
 ## T20 high-frequency original benchmark sources — 2026-11-08
 
 I inspected primary original methods/result tables for SVGEditBench, CGL-GAN and discrete LayoutDiffusion. Their metrics, source locators and adverse comparisons are recorded in [T20_CORE_EVALUATION_SOURCE_AUDIT.md](T20_CORE_EVALUATION_SOURCE_AUDIT.md). For InfoEdit and MiLDEdit only publisher/author abstracts were inspected, so they remain `abstract_index` without claiming original main-table verification. SVGEditBench measures six bounded code-based SVG edits, not arbitrary professional document editing or an independent reopen-save check.
+
+## T21 ten original advertising/poster source audits — 2026-11-08
+
+Ten original arXiv HTML manuscripts were inspected for their method sections and original evaluation tables: CGD-059, 065, 069, 075, 079, 080, 082, 088, 131 and 153. Their exact locators, task and metric limits are recorded in [T21_POSTER_ADVERTISING_PRIMARY_AUDIT.md](T21_POSTER_ADVERTISING_PRIMARY_AUDIT.md). Key interpretive risks include CTR vs image quality, human preferences with small samples, subject extension vs native editing, and training RGBA layer data vs semantic text objects. The three additional historical candidates CGD-061/081/178 remain pending absent obtainable original method/result sections.
