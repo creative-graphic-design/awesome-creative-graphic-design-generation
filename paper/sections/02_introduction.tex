@@ -1,41 +1,35 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Graphic design communicates information and intent through the deliberate composition of text, images, shapes, and color under spatial and aesthetic constraints \citep{huang2023survey,zou2025fragment}.
-Effective compositions must make their content legible, direct attention to important elements, and establish a coherent visual hierarchy.
-Producing such designs requires more than selecting attractive individual assets: designers must decide what to communicate, create or retrieve suitable visual elements, arrange them in relation to one another, and refine the result in response to changing requirements.
-Automating this process is therefore a problem of both visual generation and structured composition.
+Recent advances in generative modeling have enabled the automatic creation of graphic designs across a wide range of applications, including posters and advertisements \citep{posterlayout2023,cglgan2022,layoutdetr2024}, presentation slides \citep{autopresent2025,pptagent2025}, infographics \citep{bizgen2025}, and scientific illustrations and academic posters \citep{autofigure2026,postergen2026}.
+Beyond arranging visual elements, poster-creation systems such as Vinci and \ac{autoposter} address broader stages of the design workflow \citep{vinci2021}.
+Although these applications differ in content and visual conventions, they share the challenge of coordinating text, imagery, geometry, and typography under semantic and aesthetic constraints.
 
-Early knowledge-based work in graphical presentation emphasized constraints on expressiveness and effectiveness rather than photographic resemblance \citep{mackinlay1986}.
-Interactive design-assistance systems subsequently explored adaptive placement suggestions and retained human control \citep{designscape2015}.
-Research on generative graphic design has developed across a range of communication artifacts.
-For posters and advertisements, content-aware layout methods arrange text, logos, and other foreground elements against existing imagery \citep{posterlayout2023,cglgan2022,layoutdetr2024}, while systems such as Vinci and \ac{autoposter} address larger parts of the poster-creation workflow \citep{vinci2021}.
-Related work generates presentation slides from natural-language instructions or source documents \citep{autopresent2025,pptagent2025}, composes text-rich infographics \citep{bizgen2025}, and produces scientific illustrations and academic posters \citep{autofigure2026,postergen2026}.
-Although these applications differ in content and visual conventions, they share the challenge of coordinating semantic content with geometry, typography, and appearance.
+Research in generative graphic design builds on earlier work in knowledge-based graphical presentation and interactive design assistance \citep{mackinlay1986,designscape2015}.
+Generative approaches initially emphasized geometric arrangements of design elements, using adversarial, autoregressive, and diffusion-based models \citep{layoutgan2019,layoutdm2023,layoutdiffusion2023}.
+More recent systems integrate planning, text and image synthesis, and iterative rendering to construct more complete designs \citep{cole2023,opencole2024,designascode2026}.
+In parallel, methods for vector synthesis and layer decomposition explore representations that preserve more than rasterized appearance \citep{vectorfusion2023,iconshop2023,layerd2025}.
+Consequently, methods now differ not only in the images they produce but also in the structures and operations their outputs support.
 
-The technical scope has consequently expanded beyond predicting element positions.
-Early approaches model graphic layouts as collections of objects and geometric attributes, using adversarial, autoregressive, or diffusion-based generation \citep{layoutgan2019,layoutdm2023,layoutdiffusion2023}.
-More recent systems integrate planning, text and image synthesis, and iterative rendering to construct complete designs \citep{cole2023,opencole2024,designascode2026}.
-Other lines of work produce vector graphics or infer separable layers, seeking representations that retain more of the structure of the resulting artwork \citep{vectorfusion2023,iconshop2023,layerd2025}.
-These developments make it increasingly difficult to characterize a method solely by its generative architecture or the visual appearance of its output.
+This representational diversity raises a central question: to what extent can a generated design be \emph{revised}?
+In practical workflows, text may need to be replaced, a logo moved, an aspect ratio changed, or a composition adapted to a different medium.
+A raster image, a set of layout boxes, and a document containing editable text or vector paths may look similar when rendered while offering markedly different ways to modify their contents.
+\ac{cole} demonstrates a multi-layer design workflow, whereas \ac{designascode} uses \ac{html}/\ac{css} to enable structural manipulation and visual refinement.
+Nevertheless, the presence of a structured representation does not by itself establish whether a system can execute a requested edit correctly.
+Conversely, image-space editing can satisfy a visual instruction without yielding independently manipulable design objects.
+Infographic-editing methods further illustrate that a local edit can require neighboring elements to reflow \citep{yang2026infoedit}, complicating the notion that all non-target content should remain fixed.
 
-An important distinction is whether the resulting design can be \emph{revised}.
-In practical workflows, text may need to be replaced, a logo moved, an aspect ratio changed, or a composition adapted to a new medium.
-A high-fidelity raster image, a set of layout boxes, and a document containing editable text or vector paths may render similarly but support different subsequent operations.
-\ac{cole} demonstrates a multi-layer design workflow, while \ac{designascode} represents designs as \ac{html}/\ac{css} to support structural manipulation and visual refinement.
-However, producing a structured artifact does not by itself establish that a system can perform a requested edit correctly.
-Conversely, image-space editing may satisfy a user's visual request without yielding independently manipulable design objects.
-Methods for infographic editing further show that a local change may legitimately require neighboring elements to reflow \citep{yang2026infoedit}, complicating simple notions of preserving everything outside an edited region.
+These differences matter for evaluation as well as generation.
+Layout-generation studies often assess geometric or distributional properties \citep{layoutdm2023}, whereas text-conditioned vector synthesis can be evaluated through agreement between a prompt and a rendered image \citep{vectorfusion2023}.
+Such measurements address different questions from controlled human editing studies \citep{vinci2021} and instruction-following benchmarks for \ac{svg} or multi-layer documents \citep{svgeditbench2024,mildedit2026}.
+Without specifying the delivered representation, allowed operations, and observed results, comparisons risk conflating \emph{visual fidelity}, \emph{structural editability}, and \emph{editing performance}.
 
-These distinctions also affect evaluation.
-Layout-generation studies typically measure geometric or distributional properties \citep{layoutdm2023}, and text-conditioned vector synthesis may be evaluated through agreement between a prompt and its rendered image \citep{vectorfusion2023}.
-Such measurements answer different questions from those addressed by controlled human editing studies \citep{vinci2021} or instruction-following benchmarks for \ac{svg} and multi-layer documents \citep{svgeditbench2024,mildedit2026}.
-Without an explicit account of the delivered representation, permitted edits, and measured outcomes, comparisons can conflate \emph{visual fidelity}, \emph{structural editability}, and \emph{editing performance}.
+Existing surveys provide important but complementary accounts of this field.
+\citet{huang2023survey} organize graphic design intelligence around representation, understanding, and generation, while \citet{zou2025fragment} examine perception and generation across design elements and workflows.
+Surveys focused on layout generation \citep{shi2023layoutsurvey} and vector graphics \citep{tian2024vectorsurvey} offer deeper treatment of particular representations.
+However, these perspectives do not by themselves provide a common framework for comparing the editability of delivered artifacts with the evidence that systems can perform requested revisions.
 
-Existing surveys provide valuable but complementary perspectives.
-\citet{huang2023survey} organize graphic design intelligence around representation, understanding, and generation; \citet{zou2025fragment} examine perception and generation across design elements and workflows.
-Surveys focused on layout generation \citep{shi2023layoutsurvey} and vector graphics \citep{tian2024vectorsurvey} provide greater depth within their respective representations.
-Building on these accounts, we examine \ac{rev} across generative graphic design systems.
-We first organize the artifacts that methods deliver and the operations those artifacts afford, then distinguish demonstrated editing workflows from capabilities supported by quantitative evidence.
-Finally, we compare evaluation protocols across representations and identify open problems in instruction adherence, required layout reflow, non-target preservation, native-artifact validity, and human design workflows.
+To address this gap, we examine \ac{rev} across generative graphic design systems.
+We organize the artifacts that methods deliver and the operations those artifacts afford, and distinguish demonstrated editing workflows from capabilities supported by quantitative evidence.
+We then compare evaluation protocols across representations and identify open problems in instruction adherence, required layout reflow, non-target preservation, native-artifact validity, and human design workflows.
 Figures~\ref{fig:rev} and \ref{fig:protocol} summarize these complementary views.
