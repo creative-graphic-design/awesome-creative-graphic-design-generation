@@ -17,11 +17,15 @@ We therefore distinguish this design-image preference score from source-text cor
 \ac{svgeditbench} evaluates changes to \ac{svg} code, whereas \ac{vectorgym} covers generation from text and sketches, vector editing, and \ac{svg} captioning \citep{svgeditbench2024,vectorgym2026}.
 The \ac{svgeditbench} dataset repository specifies six editing tasks built from 100 Twemoji source graphics, with \ac{svg}-code prompts and reference answer images; this design evaluates the resulting edit but should not be generalized to arbitrary professional document revision \citep{svgeditbench2024}.
 \ac{vectorgym} instead defines VG-Sketch, VG-Edit, VG-Text, and VG-Cap as four separate tasks with expert-authored annotations, and its \ac{vlm}-based judgment should be interpreted alongside the task-specific rendering and similarity measures \citep{vectorgym2026}.
+
+Multi-layer editing requires its own input contract and scoring protocol.
 \ac{mildedit} introduces editing of multi-layer documents with dedicated assessment axes \citep{mildedit2026}.
 Its original benchmark reports more than 20,000 layered-design cases and evaluates instruction following, layout consistency, aesthetics, and text rendering.
 In the original comparison table, the rendered-image-only editing baseline GPT-Image-1 scores 25.46\% on instruction following compared with Bagel's 14.23\%; this is a task-specific comparison, not a general native-document editing success rate.
 Crucially, the image-editing baselines receive a rendered document and document-level instruction rather than direct access to the editable layer structure, so their scores do not measure the advantages of native object manipulation.
 These studies refute an overly broad claim that there is no quantitative editing evaluation.
+
+Raster poster text editing evaluates different interventions and non-target regions from the SVG and layered-document benchmarks.
 \ac{postertextbench} measures poster generation and three distinct rendered-text patch operations, with string fidelity, masked non-target change and VLM quality interpreted separately (Section 4, Table 1).
 \ac{postertext320k} provides the automatically constructed \ac{html} patch annotations and training pairs, but these are not native document outputs evaluated by the benchmark.
 Deletion has no target-string accuracy, and poster generation uses VLM-scored subject preservation rather than masked perceptual distance.
