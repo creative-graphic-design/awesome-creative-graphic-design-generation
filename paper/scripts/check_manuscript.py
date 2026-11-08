@@ -397,8 +397,8 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\setlength{\MapPairLogoSize}{.38\MapCardLogoWidth}" in figure_source and
             figure_source.count(r"minimum width=\MapPairLogoSize,minimum height=\MapPairLogoSize") == 2 and
             r"width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio" in figure_source and
-            r"at (.12\MapCardLogoWidth,.69\MapCardContentHeight)" in figure_source and
-            r"at (.52\MapCardLogoWidth,.31\MapCardContentHeight)" in figure_source,
+            r"at (.19\MapCardLogoWidth,.69\MapCardContentHeight)" in figure_source and
+            r"at (.59\MapCardLogoWidth,.31\MapCardContentHeight)" in figure_source,
             "Multiple affiliation symbols must be proportionally bounded within the logo column")
     seen = {(lane, label, "20"+year, key): stem
             for lane, label, year, key, stem in brand_uses}
