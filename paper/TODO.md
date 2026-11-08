@@ -398,3 +398,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Checked method and original experiment sections for AutoPP, Design Your Ad, InnoAds-Composer, Planning and Rendering, RefAdGen, SIMPLEPOSTER, reliable ad generation, PrismLayers, personalized e-commerce banners and CG4CTR; updated citation-level audit and claim-specific section/table locators.
 - [x] Added a cross-method discussion distinguishing product retention, artistic quality, consumer relevance, online CTR and native editor operations.
 - [ ] CGD-061 Brief2Design, CGD-081 T-Stars-Poster and CGD-178 Text2Layer require original full sections; no inferred methods/results tier assigned. Systematic search screening and author approval remain pending.
+
+## T22 batch original-abstract verification — 2026-11-08
+
+- [x] Opened and verified 75 original author/publisher abstracts (including layout, scientific-illustration, editing-benchmark and prior-survey research) and preserved every original source link in [T22](T22_ABSTRACT_SOURCE_RECONCILIATION_20261108.csv).
+- [x] Classified these as `abstract_index` and kept all quantitative empirical and editability claims `not_verified`, without inventing source-specific method/results locators or creating false systematic inclusion decisions.
+- [x] Added CI consistency checks that prevent a future abstract-only key from acquiring methods/results status without updating its source-evidence manifest.
+- [ ] The remaining first-party source access gaps require publisher/author originals; main methods/results checks for abstract-level sources remain scientific work. Logos and research maps were not modified in this scientific workstream.

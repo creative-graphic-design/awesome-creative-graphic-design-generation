@@ -110,6 +110,30 @@ if TRANSFER_PATH.is_file():
         if not transfer.get("original_audit_workbook_tab"):
             errors.append(f"Prior-source transfer missing workbook provenance: {key}")
 
+# Frozen audit log of original abstract-only source checks, distinct from
+# original methods/results inspection. Never infer experimental verification.
+ABSTRACT_PATH = PAPER / "T22_ABSTRACT_SOURCE_RECONCILIATION_20261108.csv"
+if ABSTRACT_PATH.is_file():
+    with ABSTRACT_PATH.open(encoding="utf-8", newline="") as handle:
+        abstract_records = list(csv.DictReader(handle))
+    ledger = {r["bibtex_key"]: r for r in rows}
+    seen_abstracts: set[str] = set()
+    for record in abstract_records:
+        key = record["bibtex_key"]
+        if key in seen_abstracts:
+            errors.append(f"Duplicate abstract-source check: {key}")
+        seen_abstracts.add(key)
+        row = ledger.get(key)
+        if row is None or row["working_register_id"] != record["working_register_id"]:
+            errors.append(f"Abstract-source citation identity mismatch: {key}")
+            continue
+        if row["source_depth"] != "abstract_index":
+            errors.append(f"Abstract-level citation unexpectedly promoted: {key}")
+        if record["primary_abstract_url"] not in row["source_section_locator"]:
+            errors.append(f"Abstract-source original URL drift: {key}")
+        if row["empirical_claim_audit"] == "verified":
+            errors.append(f"Abstract-only empirical claim promoted without results: {key}")
+
 missing = set(bib_records) - seen
 if missing:
     errors.append("BibTeX entries missing from audit: " + ", ".join(sorted(missing)))
