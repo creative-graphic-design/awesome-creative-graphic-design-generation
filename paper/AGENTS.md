@@ -4,6 +4,8 @@ Applies to every manuscript file under `paper/**` in addition to the repository-
 
 **Before editing and before every commit:** read `paper/WRITING_CHECKLIST.md` in full. It is the source of truth for author comments accumulated across manuscript revisions. Do not duplicate or bypass it.
 
+**Before changing acronym markup, source citations, or the printed indexes:** read [`paper/ACRO_CONVENTIONS.md`](ACRO_CONVENTIONS.md). It records the distinction between first-use citations in prose and explicit provenance in standalone tables, as well as the standard-package and appearance-page requirements.
+
 **Source-of-truth gate for literature work:** First read the live Google Sheet and its Evidence Matrix 225, citation coverage, prior-survey, and source-tier tabs. Refresh the frozen 225-study snapshot and crosswalk when the workbook changes, run scripts/check_evidence_register.py and the negative tests, then review citations. CI has no direct access to the private live Sheet. See EVIDENCE_REGISTER_RECONCILIATION.md.
 
 For manuscript changes:
