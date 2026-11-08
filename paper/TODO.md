@@ -283,3 +283,9 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Also corrected four public-catalogue title/alias matches left open in the P2 batch (PlayGround, Designer-RSI, Human-aware Design Generation, InterIL). VectorArk has no public-catalogue counterpart in this particular snapshot, so no fabricated catalogue row was created.
 - [ ] All eleven newly linked P3 studies remain **abstract-level** pending original experimental tables, supplements, formal author decisions, and manuscript/PDF validation.
 - [ ] The remaining P3 queue is for source and citation identity verification; unlinked entries are neither excluded nor promoted on a catalogue title alone.
+
+## P3 final identity batch — 2026-11-08
+
+- [x] Reconciled the **last 26 previously unmatched study identities**, including historical graphical-presentation work, content-aware poster layouts, and recent scientific-poster systems. Full provenance and depth caveats are in [P3_BATCH_IDENTITY_AUDIT_20261108.md](P3_BATCH_IDENTITY_AUDIT_20261108.md).
+- [x] Synchronized 26 BibTeX entries, 26 citation-level audit entries, 225-ID identity crosswalk, public-catalogue matching where present, manuscript comparisons and unresolved-identity queue as one atomic multi-file commit.
+- [ ] The **225 working IDs now have bibliographic links** but this does **not** mean 225 original full texts were read, 225 studies were systematically included, or every numerical/evaluation claim was verified. Scientific review, duplicate version adjudication, reproducible systematic search, author approvals and visual QA remain open. Do not convert archival identity reconciliation into a final systematic-screening count.
