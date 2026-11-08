@@ -13,18 +13,18 @@ We apply this distinction across the following families rather than treating the
 Layout generation predicts discrete elements and their geometric attributes.
 This includes unconstrained synthesis, category-conditioned generation, partial completion, and constraint-aware refinement.
 Adversarial layout methods use \ac{gan} objectives to model distributions over element arrangements \citep{layoutgan2019,aclayoutgan2020,cglgan2022}.
-In the original LayoutGAN, a differentiable wireframe renderer exposes overlap and alignment to the discriminator, but its generated representation remains sets of element types and bounding-box parameters (Sec.~4.2).
+In the original \ac{layoutgan}, a differentiable wireframe renderer exposes overlap and alignment to the discriminator, but its generated representation remains sets of element types and bounding-box parameters (Sec.~4.2).
 The wireframe discriminator lowers document-layout overlap and misalignment relative to a relation-only discriminator in the authors' experiment, without exporting authoring-software text or image objects.
 \ac{cglgan} conditions advertising layouts on visual context; \ac{layoutdetr} applies detection-transformer-style conditioning to foreground composition \citep{layoutdetr2024}.
-LayoutDETR conditions predicted foreground text/image bounding boxes on a background canvas and corresponding source assets, encoding text length and class to control size and placement (original Secs.~3.1--3.3).
+\ac{layoutdetr} conditions predicted foreground text/image bounding boxes on a background canvas and corresponding source assets, encoding text length and class to control size and placement (original Secs.~3.1--3.3).
 Its renderer and graphical interface demonstrate design generation and preference comparisons, but the generated layout boxes do not themselves prove a reusable native document with semantically editable text.
 \ac{layoutdm} and \ac{layoutdiffusion} illustrate diffusion over discrete layout attributes \citep{layoutdm2023}, while \ac{layoutflow} addresses continuous geometry \citep{layoutflow2024}.
 Early and intermediate directions include wireframe discrimination in \ac{layoutgan}, \ac{vae}-based document reconstruction in \ac{canvasvae}, self-attentive scene completion in \ac{layouttransformer}, latent-space constraint optimization built on \ac{layoutganpp}, diffusion with explicit aesthetic constraints in \ac{lace}, and in-context layout generation with \ac{layoutprompter}.
 \ac{layoutgpt} uses language models for visual planning across domains.
 \ac{posterlayout} supplies a benchmark and method for content-aware visual-textual arrangement \citep{posterlayout2023}.
-Its PKU PosterLayout benchmark contains 9,974 layout--poster pairs and 905 background canvases, with text, logo, and underlay boxes laid out by a content-conditioned design-sequence GAN.
+Its PKU \ac{posterlayout} benchmark contains 9,974 layout--poster pairs and 905 background canvases, with text, logo, and underlay boxes laid out by a content-conditioned design-sequence GAN.
 The output is box placement on an already non-empty image, rather than a proof that the resulting design is editable as semantically typed objects in a native document.
-Importantly, the name ``LayoutDiffusion'' is also used for a distinct layout-to-image synthesis method \citep{layoutdiffusion_l2i2023}; its image-generation results should not be mixed with the discrete graphic-layout model \citep{layoutdiffusion2023}.
+Importantly, the name ``\ac{layoutdiffusion}'' is also used for a distinct layout-to-image synthesis method \citep{layoutdiffusion_l2i2023}; its image-generation results should not be mixed with the discrete graphic-layout model \citep{layoutdiffusion2023}.
 In comparing these systems, the allowed conditions and datasets must be matched: unconditional realism, completion, and relational constraint satisfaction are not equivalent tasks.
 
 
@@ -69,9 +69,9 @@ These systems illustrate different control and artifact contracts, neither of wh
 
 \paragraph{Layout conditions and source-preserving construction.}
 Sketch-conditioned synthesis \citep{brioschi2025sketchtolayout}, shared latent search and generation \citep{manandhar2025class}, and jointly trained graph--layout inference \citep{weng2023learnsample} each expose different layout control contracts.
-The name LayoutDM denotes at least two distinct 2023 contributions: the transformer-denoiser formulation of \citet{chai2023transformerlayoutdm} should not be conflated with the discrete-layout diffusion study already described above \citep{layoutdm2023}.
+The name \ac{layoutdm} denotes at least two distinct 2023 contributions: the transformer-denoiser formulation of \citet{chai2023transformerlayoutdm} should not be conflated with the discrete-layout diffusion study already described above \citep{layoutdm2023}.
 Wireframe-based error localization \citep{lin2024spoterror} adds iterative correction to a layout-token model, which still differs from editing a saved composite design.
-In content-aware advertising, \citet{yoshitake2025adbanner} plan placements from an analyzed image and render HTML layouts, while \citet{zhang2025creatiposter} generate an editable JSON text-and-asset layer protocol alongside a separately synthesized background.
+In content-aware advertising, \citet{yoshitake2025adbanner} plan placements from an analyzed image and render \ac{html} layouts, while \citet{zhang2025creatiposter} generate an editable JSON text-and-asset layer protocol alongside a separately synthesized background.
 The latter's canvas-conditioned completion and re-layout are source-supported operations, but the source's aesthetic/user-study results should not be interpreted as independently measured arbitrary post-export edit success.
 
 \paragraph{From presentation rules to constrained synthesis.}
@@ -83,13 +83,13 @@ These systems differ in which constraints are explicit, which representations ar
 \subsection{Multi-Stage Graphic Design and Agents}
 Integrated poster generation must coordinate language, asset production, layout decisions, and visual verification.
 \ac{cole} and \ac{opencole} use hierarchical design decomposition \citep{cole2023,opencole2024}.
-OpenCOLE replaces COLE's separately generated background/object imagery with a one-stage text-free image synthesized from the plan, then predicts typographic attributes and renders text in a separate pass (original Secs.~2.1--2.3).
+\ac{opencole} replaces \ac{cole}'s separately generated background/object imagery with a one-stage text-free image synthesized from the plan, then predicts typographic attributes and renders text in a separate pass (original Secs.~2.1--2.3).
 Its public Crello-derived training design and released pipeline improve inspectability of the implementation, but do not independently certify successful edits to exported native design documents.
-In COLE, intent-to-JSON planning, separate background and foreground synthesis, and typography attribute prediction feed an SVG-based multilayer renderer, followed by demonstrated manual repositioning and text-format edits in an editor (original Secs.~3.1--3.6).
+In \ac{cole}, intent-to-JSON planning, separate background and foreground synthesis, and typography attribute prediction feed an SVG-based multilayer renderer, followed by demonstrated manual repositioning and text-format edits in an editor (original Secs.~3.1--3.6).
 Its DesignerIntention experiment evaluates roughly 500 category prompts plus 50 creative prompts through a VLM judge and a smaller user comparison, rather than recording the correctness and non-target preservation of a held-out sequence of document-editing instructions.
 The original qualitative editor examples support available operations on layered text and objects, but not a measured general editing success rate.
 CreatiDesign develops multi-conditional visual generation across primary content and decorative or textual components \citep{creatidesign2026}.
-Vinci combines data-driven poster creation with interactive editing feedback and user evaluations \citep{vinci2021}.
+\ac{vinci} combines data-driven poster creation with interactive editing feedback and user evaluations \citep{vinci2021}.
 \ac{autoposter} extends content-aware ad generation through layout, taglines, and predicted style attributes \citep{autoposter2023}; \ac{graphist} infers ordering and spatial arrangements over unordered input assets; and \ac{banneragency} produces component-based banners from brand requirements.
 \ac{postercraft} addresses raster poster generation with text-focused and aesthetic objectives.
 Code-oriented systems increasingly produce the design document itself, as in \ac{designascode} and \ac{editablevisual}; \ac{psdesigner} targets layered editor workflows.
@@ -138,13 +138,13 @@ Text rendering poses constraints not captured by photographic image fidelity.
 A replacement of semantic text, a modification of glyph outlines, and a reconstruction of font/effect parameters are three different editing operations.
 \ac{postertext} unifies full poster generation, text-patch addition, deletion and modification through image-conditioned instructions and optional reference-patch styling (Sections 3--4).
 Its four training stages combine text-rendering pretraining, supervised instruction following, preference-aligned reinforcement learning and \ac{sgsd} that distills mask-guided spatial localization into mask-free inference.
-\ac{postertext320k} includes 120K editing-task posters and 200K generation-task posters, with OCR/VLM and HTML extraction used to construct structured text-patch annotation and operation pairs (Section 3 and Figure 3).
-The HTML encodes training supervision, while the delivered model output remains a raster poster rather than editable HTML/CSS or native typographic objects.
+\ac{postertext320k} includes 120K editing-task posters and 200K generation-task posters, with OCR/VLM and \ac{html} extraction used to construct structured text-patch annotation and operation pairs (Section 3 and Figure 3).
+The \ac{html} encodes training supervision, while the delivered model output remains a raster poster rather than editable \ac{html}/CSS or native typographic objects.
 
 Vector-centric work generates or embeds shape/path sequences.
 \ac{deepsvg} and \ac{svgformer} learn vector representations \citep{deepsvg2020,svgformer2023}, whereas \ac{vectorfusion} and \ac{iconshop} synthesize vectors conditioned on textual prompts \citep{vectorfusion2023,iconshop2023}.
-DeepSVG predicts hierarchical path-command sequences, evaluates SVG icon reconstruction and interpolates latent icon representations; SVGformer instead embeds continuous path coordinates with medial-axis segment guidance and tests classification and retrieval.
-VectorFusion directly optimizes SVG paths using a diffusion distillation objective for text-conditioned graphic synthesis, but optimizing Bézier-path geometry does not retain high-level text semantics or document object identity by itself.
+\ac{deepsvg} predicts hierarchical path-command sequences, evaluates SVG icon reconstruction and interpolates latent icon representations; \ac{svgformer} instead embeds continuous path coordinates with medial-axis segment guidance and tests classification and retrieval.
+\ac{vectorfusion} directly optimizes SVG paths using a diffusion distillation objective for text-conditioned graphic synthesis, but optimizing Bézier-path geometry does not retain high-level text semantics or document object identity by itself.
 Neural-path generation explicitly models shape structure \citep{neuralpath2024}, while \ac{layertracer} synthesizes layered \ac{svg} designs through staged diffusion and vectorization.
 Code-generation approaches such as \ac{starvector} and \ac{chat2svg} explore additional \ac{svg} primitives and text-conditioned editing workflows \citep{chat2svg2025}.
 Their visual or semantic generation scores should not be interpreted as evidence for the broader class of targeted design edits.
@@ -213,7 +213,7 @@ Its application as an input to a collage generator (Figure 7) demonstrates compo
 \ac{layeringdiff} first synthesizes a composite image, then determines a prompted foreground through detection, segmentation, and matting, and uses foreground/background diffusion decomposition and high-frequency alignment to reconstruct separate raster layers (Sections 3.1--3.3).
 Although its pretrained initial composite generator remains fixed, the decomposition and alignment modules are trained on 20,000 synthetic composites (Section 3.4), so the full method is not training-free.
 Its sequential multi-foreground examples (Figure 7) demonstrate compositing affordances rather than native object semantics or measured post-export edit-command accuracy.
-\ac{uniworlddesign} separates text-to-RGBA asset generation (T2RGBA) from instruction-controlled image-to-layer recovery (I2L), the latter jointly predicting ordered semantic RGBA layers conditioned on a finished raster, a global instruction, and per-layer prompts (Sections 3.3--3.4).
+\ac{uniworlddesign} separates text-to-\ac{rgba} asset generation (T2RGBA) from instruction-controlled image-to-layer recovery (I2L), the latter jointly predicting ordered semantic \ac{rgba} layers conditioned on a finished raster, a global instruction, and per-layer prompts (Sections 3.3--3.4).
 Layer--instruction binding attention and layer-indexed positions link prompts to output slots, while PSD-derived semantic trees preserve occluded source pixels and provide top-level, recursive, and target-extraction supervision (Sections 3.4--3.5).
 The paper illustrates recursive decomposition (Figure 6) and external-agent manipulation of persistent raster layer states (Figure 2), but does not establish a native PSD/SVG document-export contract or a controlled multi-turn edit-operation success rate.
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
