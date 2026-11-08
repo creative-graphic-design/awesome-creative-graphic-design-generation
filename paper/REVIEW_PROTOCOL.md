@@ -97,3 +97,7 @@ Generate the still-unverified citation backlog with `python3 paper/scripts/repor
 ## Two original experiment-table audits (2026-11-08)
 
 See [T08_POSTERMELD_CREATIPOSTER_SOURCE_AUDIT.md](T08_POSTERMELD_CREATIPOSTER_SOURCE_AUDIT.md) for the exact v2 CreatiPoster and v1 PosterMELD method/results locators. These change two citation-level rows from `abstract_index` to `methods_results`; neither converts the claimed editable output format into measured protected-object editing success. A bibliographic alias revision changed CreatiPoster's eight listed authors in v2; do not reuse the previous nine-author string.
+
+## Core technique original-source audits — 2026-11-08
+
+The source audit of LayoutDM, LayoutFlow, and COLE is documented in [T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md](T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md). Their exact original table/section locators justify upgrading the three cited keys from `not_verified` to `methods_results`, without changing study-screening status. In particular, source-specific FID feature backbones, element-count filters, and training splits differ across publications; COLE's editor demonstration does not quantify non-target preservation in post-export edits. Source-based comparisons in the manuscript explicitly state these distinctions.

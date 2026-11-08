@@ -312,3 +312,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Updated two citation-level source-depth entries to `methods_results` **only for bounded verified claims**, retaining `editability_audit=not_verified` for unmeasured downstream editing success and round-trips.
 - [x] Expanded Methods, Evaluation and Benchmarks comparisons with counterexamples where commercial models score higher on individual dimensions.
 - [ ] Full supplements, direct native-editor reopening, independent reproduction, author approval and a final paper-PDF check are outside this bounded source audit.
+
+## Core methods source audit — 2026-11-08
+
+- [x] Read primary source methods and quantitative tables for **LayoutDM (Inoue et al. 2023), LayoutFlow (Guerreiro et al. 2024), and COLE (Jia et al. 2023)**. Visually inspected original LayoutDM CVPR Table 1 on its PDF page. Record the limitations and verified source locators in [T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md](T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md).
+- [x] Promoted exactly these three citation-audit rows to `methods_results` without promoting controlled post-export edit instruction success or author signoff.
+- [x] Corrected prose to distinguish same-paper matched-split FID from incompatible historical runs, and source-demonstrated SVG layer editing from editing benchmark success.
+- [ ] Continue source-specific methods/results audit of other cited core works and systematically log original-search/screening decisions; do not infer an experiment was run solely because the bibliography is linked.

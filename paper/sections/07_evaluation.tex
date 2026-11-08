@@ -14,6 +14,16 @@ Even within one representation, synthesis from scratch, partial completion, reco
 We therefore interpret numerical results within their original experimental contracts and use cross-paper comparisons chiefly to establish which capabilities were actually measured.
 
 \subsection{Generation Fidelity and Geometry}
+\paragraph{Matched-split diffusion and flow evaluations.}
+In its original CVPR evaluation, discrete LayoutDM compares six tasks on Rico and PubLayNet with training-data preprocessing and a shared layout-feature FID model \citep{layoutdm2023}.
+For category-conditioned size-and-position generation on Rico, its FID is 3.55 compared with 3.97 for BART and 6.84 for LayoutGAN++, but in completion its 9.00 is worse than LayoutTrans at 3.71 (Table~1).
+This trade-off prevents a claim of universal superiority and illustrates that completion evaluates reconstruction of missing layout attributes rather than semantic authoring operations.
+LayoutFlow \citep{layoutflow2024} studies a different training split and explicitly retrains selected baselines for comparison (Sec.~5.1).
+In its matched-split unconditional Table~1, LayoutFlow obtains Rico FID 2.37 against LayoutDiffusion at 2.49, while on PubLayNet it obtains 8.87 against LayoutDiffusion at 8.63.
+Moreover, Rico alignment is 0.150 for LayoutFlow against 0.069 for LayoutDiffusion; the improvement in one distributional score is not a simultaneous improvement in all geometric measures.
+Its original Appendix~0.E separately reports sensitivity to differing element-count filters, dataset splits, and learned FID feature models.
+Consequently, numerical results from the two papers should not be merged into a direct head-to-head comparison unless preprocessing, representation, conditions and evaluation implementation are matched.
+
 \ac{layoutdm} evaluates discrete layout synthesis through distributional and geometry-aware measures, including \ac{fid} adapted to layout representations and maximum \ac{iou} under compatible element categories \citep{layoutdm2023}.
 The conditioned generation scenarios and the quality/diversity trade-off are central to interpretation.
 Such metrics concern the arrangement of design elements; even a strong score does not measure the usability of an exported creative file.
@@ -74,6 +84,12 @@ CreatiPoster \citep{zhang2025creatiposter} produces an editable JSON program con
 Its 90-case test collection separates 45 prompt-only cases, 39 single-asset cases, and six multi-asset cases, with VLM rubric scores for layout, color, style, and compliance and ten volunteers' overall ratings.
 The asset-conditioned comparison excludes the six multi-asset cases, leaving 84 cases; its authors report a higher human overall mean for CreatiPoster-S than Canva (2.82 versus 2.33), but the Canva layout score is higher in that setting (2.84 versus 2.41 for CreatiPoster-S).
 Thus evidence for an editable source protocol and preference-based image quality should be presented separately from measured post-export edit instruction success.
+
+\paragraph{Layer-aware editing demonstration versus measured edit success.}
+COLE demonstrates a multilayer SVG compilation and editor workflow with object and text-box adjustments \citep{cole2023}.
+However, its benchmark chiefly reports generated-design visual quality and text placement, including a Crello multi-text-box IoU of 17.2 (Table~3), which is not the success rate of revising an already delivered design.
+Its own limitations note restricted editable visual-element coverage and typography color diversity.
+Thus a demonstration of SVG-based layer adjustment supports a narrower editability claim than a validated native-editor reopen--modify--save benchmark with protected-object preservation.
 
 \subsection{Editability Affordance Versus Editing Performance}
 Three complementary examples clarify the evidence distinction.

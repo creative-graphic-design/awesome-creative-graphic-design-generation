@@ -77,6 +77,9 @@ These systems differ in which constraints are explicit, which representations ar
 \subsection{Multi-Stage Graphic Design and Agents}
 Integrated poster generation must coordinate language, asset production, layout decisions, and visual verification.
 \ac{cole} and \ac{opencole} use hierarchical design decomposition \citep{cole2023,opencole2024}.
+In COLE, intent-to-JSON planning, separate background and foreground synthesis, and typography attribute prediction feed an SVG-based multilayer renderer, followed by demonstrated manual repositioning and text-format edits in an editor (original Secs.~3.1--3.6).
+Its DesignerIntention experiment evaluates roughly 500 category prompts plus 50 creative prompts through a VLM judge and a smaller user comparison, rather than recording the correctness and non-target preservation of a held-out sequence of document-editing instructions.
+The original qualitative editor examples support available operations on layered text and objects, but not a measured general editing success rate.
 CreatiDesign develops multi-conditional visual generation across primary content and decorative or textual components \citep{creatidesign2026}.
 Vinci combines data-driven poster creation with interactive editing feedback and user evaluations \citep{vinci2021}.
 \ac{autoposter} extends content-aware ad generation through layout, taglines, and predicted style attributes \citep{autoposter2023}; \ac{graphist} infers ordering and spatial arrangements over unordered input assets; and \ac{banneragency} produces component-based banners from brand requirements.
