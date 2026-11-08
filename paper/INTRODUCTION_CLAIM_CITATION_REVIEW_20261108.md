@@ -15,7 +15,7 @@ Scope: PR #135, `paper/sections/02_introduction.tex`. This review covers argumen
 
 - Each of six paragraphs opens with one bounded topic sentence; supporting sentences substantiate that sentence instead of starting a named-model review.
 - Coherent progression: visual communication → revision in workflows → format affordances versus execution → evaluation heterogeneity → prior surveys → this survey's contribution.
-- Introduction now uses 40 distinct BibTeX citations and 50 reference occurrences (as of this revision); citation count is descriptive and not a target.
+- Introduction now uses 42 distinct BibTeX citations and 54 reference occurrences (as of this revision); citation count is descriptive and not a target.
 - All cited keys were checked against `references.bib`; TeX source uses one prose sentence per line.
 - The universal editability-importance claim was limited to workflows that require revisions. The too-strong prior-survey novelty claim was narrowed.
 - The first-hand original records consulted include Huang (arXiv:2309.01371), Zou (J. Imaging 11(9):289), Mackinlay (ACM TOG 1986), Shi (Information Fusion 2023), Tian (IEEE TVCG 2024), Tang (arXiv:2406.13436), CGL-GAN (IJCAI 2022), AutoPresent and BizGen (CVPR 2025), AutoFigure (arXiv:2602.03828), Editable Visual Design (arXiv:2609.04034), SVGEditBench (CVPRW 2024), MiLDEdit (arXiv:2601.04589), VectorGym and InfoEdit (EMNLP 2026). Remaining key-to-claim matches rely in part on existing in-repository evidence records. This does **not** upgrade `not_verified` study records to full-text audited.
@@ -34,7 +34,7 @@ The Introduction's paragraph-level academic-writing and claim–citation review 
 
 ## Complete Introduction evidence matrix (current cited keys)
 
-The following matrix checks **all 40 distinct keys** used in Introduction against the existing `literature_citation_audit.csv`. Evidence-depth labels reflect the recorded ledger, **not** a new claim that we independently reviewed every complete source. `abstract_index` is insufficient to confirm detailed experimental results. **Counts:** abstract_index=0; methods_results=40.
+The following matrix checks **all 42 distinct keys** used in Introduction against the existing `literature_citation_audit.csv`. Evidence-depth labels reflect the recorded ledger, **not** a new claim that we independently reviewed every complete source. `abstract_index` is insufficient to confirm detailed experimental results. **Counts:** abstract_index=0; methods_results=42.
 
 | Citation key | Intro paragraph(s) | Claim this work is used to support | Ledger source depth |
 | --- | --- | --- | --- |
@@ -71,6 +71,8 @@ The following matrix checks **all 40 distinct keys** used in Introduction agains
 | `designascode2026` | P2 | HTML/CSS design and structure | methods_results |
 | `editablevisual2026` | P2, P3 | Code-native editable representations | methods_results |
 | `layerd2025` | P2 | Raster-to-layer recovery, NOT layered generation | methods_results |
+| `qwenimagelayered2026` | Empirical system | P2 | Variable-layer RGBA decomposition from input raster, using pretrained T2I diffusion and RGBA-VAE | Layer reconstruction, RGB and alpha fidelity; qualitative edit demos | Raster layers do not preserve native font or guarantee edit-command performance | https://arxiv.org/html/2512.15603 original sections 3-4, Tables 1-3 |
+| `jia2026pixelart` | Empirical system | P2 | Pixel-space rectified-flow decomposition conditioned on detected boxes and z-order | Design-Multi-Layer-Bench composite PSNR 36.92 dB versus 32.46 dB for Qwen-Image-Layered | Different layout input contract; reconstructed image quality is not measured semantic edit success | https://arxiv.org/abs/2609.22789 original Sections 3-4 and comparison tables |
 | `mildedit2026` | P3, P4 | Instruction-driven multilayer editing | methods_results |
 | `yang2026infoedit` | P3 | Infographic edit and reflow | methods_results |
 | `svgeditbench2024` | P4 | SVG editing benchmark | methods_results |
@@ -88,7 +90,7 @@ The following matrix checks **all 40 distinct keys** used in Introduction agains
 5. **Prior surveys**: Zou covers graphic-design workflows, and Malashenko includes SVG editing. The distinct aim of R–E–V is to cross-reference output representation, allowed operations and measured evidence, not to claim editing has never been surveyed.
 
 
-## Original-source methods and results audit: all 40 Introduction citations (2026-11-08)
+## Original-source methods and results audit: all 42 Introduction citations (2026-11-08)
 
 This section records the **method, evaluation outcome (or non-empirical synthesis), and the safe claim boundary for every cited original source**. The first 24 rows were grounded in the existing original-paper ledger; the remaining 16 sources were re-examined at full-paper method/results level and their audit details added to `literature_citation_audit.csv` in commit `a459022`. `methods_results` denotes source-content depth, **not** that a survey or theory paper performed a new controlled experiment. Evidence is from authors' reported experiments; numerical outcomes have not been independently replicated.
 
@@ -137,7 +139,11 @@ This section records the **method, evaluation outcome (or non-empirical synthesi
 
 ### Completion and safeguards
 
-- **40 of 40** cited papers have source-depth `methods_results` with method, evaluation or non-empirical synthesis recorded in `literature_citation_audit.csv`.
+- **42 of 42** cited papers have source-depth `methods_results` with method, evaluation or non-empirical synthesis recorded in `literature_citation_audit.csv`.
 - Every citation has a specific controlling claim role and an exclusion boundary (e.g. no unmeasured native-edit success from geometry, pixels, DOM, or SVG alone).
 - For surveys, foundational theory, or descriptive prototypes, no imaginary quantitative result is ascribed; `not_applicable` describes a non-existent original experiment.
 - Source verification is **not** model retraining, independent replication, native-file reopen tests, live evidence-sheet synchronization, or blanket adjudication of the entire catalog.
+
+## PixelART coverage and comparison scope (2026-11-08)
+
+PixelART (arXiv:2609.22789) is cited alongside Qwen-Image-Layered and LayerD in the Introduction, and discussed in the representation, methods, and evaluation sections. PixelART depends on predicted bounding boxes and z-order in the authors' evaluation, unlike the Qwen baseline input contract. Composite reconstruction PSNR is evidence of reconstruction, not native editable font reconstruction or reliable instruction-driven editing. Its arXiv preprint is not presented as a peer-reviewed proceedings publication.
