@@ -2,6 +2,7 @@
 check:
 	python3 scripts/check_sentence_lines.py
 	python3 -m unittest discover -s scripts/tests -p 'test_*.py'
+	python3 scripts/check_acro_names.py
 	python3 scripts/check_manuscript.py
 	python3 scripts/check_bibliography.py
 figures: check
