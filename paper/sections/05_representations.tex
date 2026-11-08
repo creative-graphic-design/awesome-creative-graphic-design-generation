@@ -36,7 +36,8 @@ The existence of vector paths does not establish instruction-driven edit accurac
 
 Hierarchical systems including \ac{cole} and \ac{opencole} generate designs through intermediate composition steps.
 In contrast to directly generating layers, \ac{layerd} reconstructs a layer stack from a flattened design, while \ac{qwenimagelayered} predicts a variable number of semantically separated raster \ac{rgba} layers from an input image \citep{layerd2025,qwenimagelayered2026}.
-Both support layer-level manipulation, but reconstruction metrics and qualitative editing examples do not establish native text-object preservation or measured success on arbitrary editing instructions.
+\ac{pixelart} offers another image-to-layer approach, using a pixel-space rectified-flow transformer and layout-box conditioning instead of a pretrained text-to-image backbone and an RGBA autoencoder \citep{jia2026pixelart}.
+These approaches support layer-level manipulation, but reconstruction metrics and qualitative editing examples do not establish native text-object preservation or measured success on arbitrary editing instructions.
 \ac{layerfusion} instead jointly synthesizes transparent foreground and background layers, while \ac{igd} combines predicted layer attributes with generated image assets.
 \ac{alfie} instead obtains a transparent raster foreground by estimating an alpha matte from diffusion-transformer attention maps, enabling placement in an external composition but not independent editing of internal text or vector objects.
 A portable \ac{rgba} illustration is therefore a compositing affordance, not evidence of a native multi-object design hierarchy.
