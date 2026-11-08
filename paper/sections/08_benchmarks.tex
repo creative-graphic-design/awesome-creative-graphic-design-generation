@@ -55,6 +55,12 @@ Scientific illustration benchmarks introduce additional correctness constraints:
 \ac{sciflowbench} reverse-parses generated scientific diagrams into graphs to measure structural recoverability rather than merely visual resemblance.
 These benchmarks evaluate different stages of a scientific communication pipeline, so high performance on recognition or aesthetics does not imply correct arrows, graphs, or native editable objects.
 
+\paragraph{Structured design and content-transfer benchmarks.}
+Hybrid SVG/raster synthesis \citep{gupta2026layercanvas} preserves a vector layout and typographic source while diffusing the appearance of other elements, an output contract distinct from purely flattened poster imagery.
+Any2Poster \citep{vinaykumar2026any2poster} assesses poster generation from heterogeneous input files using content-recovery questions and visual criteria, whereas SciPostGen \citep{inadumi2025scipostgen} focuses on paper-conditioned poster-layout data and retrieval.
+SPIRE \citep{liu2026spire} formulates slide personalization as inverse planning through structural denoising, but performance on personalized layout generation is not automatically evidence that a revised presentation can be reopened and modified in its native editor.
+These tasks require distinct denominators for content retention, layout quality, native artifact validity, and subsequent revision.
+
 \subsection{Document-Scale Editing}
 \ac{pptarena} measures in-place modifications of real presentation decks under natural-language requests, including structural and visual assessment.
 Unlike a screenshot comparison, an editing evaluation should inspect the original document tree, the requested change, and whether the revised file remains valid and manipulable.

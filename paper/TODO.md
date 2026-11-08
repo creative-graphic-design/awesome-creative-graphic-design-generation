@@ -275,3 +275,11 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [ ] **Scientific evidence depth remains open for all 12:** publisher/author abstracts establish the task, broad method and publication identity; individual experimental tables, appendix details, quantitative claims and output-format round-trips have **not** been audited. These entries remain `abstract_index` with claim-specific checks `not_verified` rather than being falsely promoted to original-methods/results review.
 - [ ] The remaining **P3** cases require a separate original-source review and careful scope/version adjudication; unresolved identity does **not** mean excluded.
 - [ ] Final independent author scientific approval, CI checks and PDF visual acceptance are not implied by source identity reconciliation.
+
+## P3 batch original-identity verification — 2026-11-08
+
+- [x] Reconciled **11** additional P3 research identities from original arXiv/IEEE-CVF/IJCAI abstracts: CGD-194, 140, 142, 143, 151, 154, 038, 113, 119, 125, 057.
+- [x] Synchronized BibTeX, claim-level citation audit, both identity crosswalks, the pending identity queue, and relevant comparisons in Methods/Benchmarks.
+- [x] Also corrected four public-catalogue title/alias matches left open in the P2 batch (PlayGround, Designer-RSI, Human-aware Design Generation, InterIL). VectorArk has no public-catalogue counterpart in this particular snapshot, so no fabricated catalogue row was created.
+- [ ] All eleven newly linked P3 studies remain **abstract-level** pending original experimental tables, supplements, formal author decisions, and manuscript/PDF validation.
+- [ ] The remaining P3 queue is for source and citation identity verification; unlinked entries are neither excluded nor promoted on a catalogue title alone.
