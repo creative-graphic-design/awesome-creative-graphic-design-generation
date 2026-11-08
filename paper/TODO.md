@@ -1,8 +1,8 @@
-# Survey manuscript TODO — review one small item at a time
+# Survey manuscript TODO — batched scientific completion
 
 This is the **operational work queue** for [PR #135](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/pull/135).
 Use [WRITING_CHECKLIST.md](WRITING_CHECKLIST.md) for permanent author instructions, [evidence_review_queue.csv](evidence_review_queue.csv) for the **complete** unresolved-paper list, and [REVIEW_PROTOCOL.md](REVIEW_PROTOCOL.md) for screening rules.
-**Do not start another study while the current study is awaiting author review.**
+**Work through independent science, citation and CI tasks in coherent batches; stop only for a genuinely required author scientific decision.**
 Update this TODO in the same commit as the work it tracks; do not check an item merely because code was written.
 
 ## 0. Verified baseline — 2026-11-04
@@ -354,3 +354,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Analyzed failed Paper PDF workflow 42443118646: citation checker reported unused `zhu2024visuallyrichplanning`. Added a source-bounded citation in the manuscript's document-scale planning discussion.
 - [x] Corrected original arXiv 2404.15271 author order to Wanrong Zhu, Jennifer Healey, Ruiyi Zhang, William Yang Wang, Tong Sun and kept its audit at `abstract_index`.
 - [ ] Confirm that the next Paper PDF CI succeeds before claiming successful typesetting or final visual acceptance.
+
+## Historical source-review evidence migration — 2026-11-08
+
+- [x] Reopened the live Evidence Matrix 225 and seven primary-source review tabs and transferred 40 unique prior original methods/results records into the citation-level audit with exact original-paper locators and caveats; this is provenance migration, not fresh independent source review.
+- [x] Added the frozen [transfer manifest](PRIMARY_SOURCE_EVIDENCE_TRANSFERS_20261108.csv) and audit-validator checks for citation-ID and source-locator consistency.
+- [x] Removed old per-paper/one-commit queue instructions, retaining historical checkpoints for provenance.
+- [ ] Remaining unverified citations, quantitative claim audits, systematic search logs, author adjudication and source-commit PDF validation remain open. Research-map and logo tasks are handled in a separate session.

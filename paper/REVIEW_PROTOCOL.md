@@ -113,3 +113,11 @@ The original result tables of DeepSVG, SVGformer and VectorFusion were checked a
 ## T17 multimodal layout original methods and human preference audit — 2026-11-08
 
 LayoutDETR's original HTML manuscript (§§3–5, Supplement B–C) and ECCV publication identity were checked with exact source locators in [T17_LAYOUTDETR_SOURCE_AUDIT.md](T17_LAYOUTDETR_SOURCE_AUDIT.md). It is credited only for source-verified multimodal layout input/output, training populations and pairwise design preference, not editing success. LayoutFormer++ is kept at abstract-level verification pending original experiments. No image/map or institutional-logo files were changed.
+
+## Transfer of historical primary-source review (2026-11-08)
+
+I inspected the live private Evidence Matrix 225 workbook and seven associated historical fulltext-review tabs, then transferred **40 distinct previously reviewed research entries** with original source URLs and section/table/figure locators to the citation-level register. The complete per-study provenance, prior evaluation description and caution are frozen in [PRIMARY_SOURCE_EVIDENCE_TRANSFERS_20261108.csv](PRIMARY_SOURCE_EVIDENCE_TRANSFERS_20261108.csv).
+
+These are **prior fulltext-review records, not 40 freshly read sources in the current operation**. Source depths reflect the earlier review and should not be interpreted as independent replication or a completed systematic-search protocol. Abstract-only records, metadata-only cases, and insufficiently localized source records were not promoted. Editing-audit verification was retained only for specific previously assessed operations (ReDesign, ReLayout, APEX and DiagramAgent); this is not a general guarantee of native edit success, protected-object preservation or file round-trip. All scientific screening/adjudication remains pending.
+
+The mandatory citation-audit validator now checks that transferred IDs, keys and original source locators do not drift. CI operates on this frozen transfer manifest without access to the private live workbook.

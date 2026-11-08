@@ -85,6 +85,31 @@ for row in rows:
     )) and not row.get("source_section_locator"):
         errors.append(f"Verified claim needs source locator: {key}")
 
+# A frozen transfer manifest protects citations from drifting after evidence
+# originally checked in a private workbook is copied into this registry.
+TRANSFER_PATH = PAPER / "PRIMARY_SOURCE_EVIDENCE_TRANSFERS_20261108.csv"
+if TRANSFER_PATH.is_file():
+    with TRANSFER_PATH.open(encoding="utf-8", newline="") as handle:
+        transfers = list(csv.DictReader(handle))
+    by_key = {row["bibtex_key"]: row for row in rows}
+    seen_transfers: set[str] = set()
+    for transfer in transfers:
+        key = transfer["bibtex_key"]
+        if key in seen_transfers:
+            errors.append(f"Duplicate prior-source transfer: {key}")
+        seen_transfers.add(key)
+        linked = by_key.get(key)
+        if not linked or linked["working_register_id"] != transfer["working_register_id"]:
+            errors.append(f"Stale prior-source transfer key or study: {key}")
+            continue
+        if linked["source_depth"] != "methods_results":
+            errors.append(f"Prior-source transfer lost methods/results depth: {key}")
+        for column in ("primary_source_url", "original_section_or_table_locator"):
+            if not transfer.get(column) or transfer[column] not in linked["source_section_locator"]:
+                errors.append(f"Prior-source transfer locator mismatch: {key}: {column}")
+        if not transfer.get("original_audit_workbook_tab"):
+            errors.append(f"Prior-source transfer missing workbook provenance: {key}")
+
 missing = set(bib_records) - seen
 if missing:
     errors.append("BibTeX entries missing from audit: " + ", ".join(sorted(missing)))
