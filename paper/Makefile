@@ -8,9 +8,10 @@ figures: check
 	sh scripts/build_figures.sh
 pdf: figures
 	latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex
-# Draft-only: acro definitions/citations stay active, but three indexes are omitted.
-pdf-fast: figures
-	latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main-fast.tex
+# Draft-only: skip repeated checks/figure generation and use one TeX pass when warm.
+# Run make figures once to generate any missing assets.
+pdf-fast:
+	bash scripts/build_pdf_fast.sh
 clean:
 	latexmk -C main.tex
 	latexmk -C main-fast.tex
