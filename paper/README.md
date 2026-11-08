@@ -8,7 +8,7 @@ For an optional local draft, run `cd paper && make pdf-fast` (output: `paper/mai
 This preserves the complete `acro` registry, `\ac{...}` references, and first-use citation behavior, but omits the three printed acronym/system/evaluation lists.
 Run `make pdf` for the canonical `paper/main.pdf`, including all three `acro` lists and occurrence-page indexes; CI continues to build and validate this full variant.
 The draft uses a single `pdflatex` pass when `main-fast.aux` and `main-fast.bbl` already exist; the first run bootstraps citations and forward references with additional passes.
-It reuses already-generated figure PDFs and skips the source-check suite, so run `make figures` once if an input figure is missing.
+It reuses already-generated figure PDFs and skips the source-check suite; when figures are missing on a fresh checkout it generates them once automatically.
 This is an intentionally non-converged writing preview: after adding references or changing layout significantly, use `make pdf` for the fully checked, converged manuscript.
 The benchmark workflow records a warm `pdf-fast` invocation separately from the canonical build; it does not attribute any difference to the `acro` package alone.
 
