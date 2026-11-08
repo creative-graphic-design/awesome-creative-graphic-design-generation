@@ -126,6 +126,19 @@
     }%
   }%
 }
+% Two actual affiliation emblems share the existing 25% logo column.
+% Width and height constraints apply independently; no extra card width is used.
+\newcommand{\MapLogoPair}[2]{%
+  \hbox to \MapCardLogoWidth{%
+    \hfil\includegraphics[width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#1.pdf}%
+    \hfil\includegraphics[width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#2.pdf}\hfil%
+  }%
+}
+\newcommand{\MapPaperBrandPair}[9]{%
+  \MapPaperFrame{#5}{#6}{#7}{%
+    \MapPaperContent{#2}{#3}{#8}{#9}%
+  }%
+}
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm,font=\sffamily]
 \fill[white] (0,.19) rectangle (19.08,13.0);
@@ -172,7 +185,7 @@
 \MapPaperBrand{A}{VTN}{21}{vtn2021}{\MapColOne}{\MapRowABottom}{latent}{variational transformer}{google}
 \MapPaperBrand{A}{LayoutDM}{23}{layoutdm2023}{\MapColTwo}{\MapRowATop}{diff}{discrete diffusion}{cyberagent-symbol}
 \MapPaperBrand{A}{LayoutFormer++}{23}{layoutformerpp2023}{\MapColTwo}{\MapRowABottom}{agent}{serialized constraints}{microsoft}
-\MapPaperBrand{A}{LayoutFlow}{24}{layoutflow2024}{\MapColThree}{\MapRowATop}{diff}{flow matching}{utokyo}
+\MapPaperBrandPair{A}{LayoutFlow}{24}{layoutflow2024}{\MapColThree}{\MapRowATop}{diff}{flow matching}{\MapLogoPair{utokyo}{cyberagent-symbol}}
 \MapPaperBrand{A}{CoLay}{24}{colay2024}{\MapColThree}{\MapRowABottom}{diff}{multi-condition design}{google}
 \MapPaperBrand{A}{iPoster}{26}{iposter2026}{\MapColFour}{\MapRowATop}{diff}{graph-enhanced diffusion}{bit-symbol}
 \MapPaperBrand{A}{ReLayout}{26}{relayoutedit2026}{\MapColFour}{\MapRowABottom}{edit}{geometric editing}{microsoft}
