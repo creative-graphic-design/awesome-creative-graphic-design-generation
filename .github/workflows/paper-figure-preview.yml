@@ -8,6 +8,7 @@ on:
       - 'paper/scripts/prepare_affiliation_logos.sh'
       - 'paper/scripts/build_figures.sh'
       - 'paper/scripts/render_research_map_concept.py'
+      - 'paper/scripts/check_research_map_concept.py'
       - '.github/workflows/paper-figure-preview.yml'
   workflow_dispatch:
 
@@ -73,6 +74,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 paper/scripts/check_research_map_concept.py
           test -s paper/figs/assets/logos/cyberagent-symbol.pdf
           test -s paper/figs/assets/logos/pku.pdf
           test -s paper/figs/assets/logos/google.pdf
