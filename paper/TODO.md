@@ -319,3 +319,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Promoted exactly these three citation-audit rows to `methods_results` without promoting controlled post-export edit instruction success or author signoff.
 - [x] Corrected prose to distinguish same-paper matched-split FID from incompatible historical runs, and source-demonstrated SVG layer editing from editing benchmark success.
 - [ ] Continue source-specific methods/results audit of other cited core works and systematically log original-search/screening decisions; do not infer an experiment was run solely because the bibliography is linked.
+
+## T15 core research-lines evidence batch — 2026-11-08
+
+- [x] Read original LayoutGAN, PosterLayout and OpenCOLE methods and empirical comparison tables. Updated corresponding citation-level entries to `methods_results`, retaining `editability_audit=not_verified` and scientific `pending` status.
+- [x] Corrected PosterLayout's CVPR 2023 DOI 10.1109/CVPR52729.2023.00583 and proceedings pages 6018--6026 in BibTeX and citation audit.
+- [x] Added source-specific trade-offs in Methods, Evaluation and Benchmarks, including adverse metrics and differing output contracts; see [T15 source audit](T15_LAYOUTGAN_POSTERLAYOUT_OPENCOLE_SOURCE_AUDIT.md).
+- [ ] Original PDF image-level checks did not complete because screenshot requests failed. Final paper PDF, systematic screening, remaining primary-source backlog and scientific author approval remain open; research map and logos were not modified.

@@ -101,3 +101,7 @@ See [T08_POSTERMELD_CREATIPOSTER_SOURCE_AUDIT.md](T08_POSTERMELD_CREATIPOSTER_SO
 ## Core technique original-source audits — 2026-11-08
 
 The source audit of LayoutDM, LayoutFlow, and COLE is documented in [T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md](T14_CORE_LAYOUT_AND_COLE_SOURCE_AUDIT.md). Their exact original table/section locators justify upgrading the three cited keys from `not_verified` to `methods_results`, without changing study-screening status. In particular, source-specific FID feature backbones, element-count filters, and training splits differ across publications; COLE's editor demonstration does not quantify non-target preservation in post-export edits. Source-based comparisons in the manuscript explicitly state these distinctions.
+
+## T15 bounded original-source synthesis — 2026-11-08
+
+LayoutGAN (CGD-022), PosterLayout (CGD-046), and OpenCOLE (CGD-074) have original-methods/results locators documented in [T15_LAYOUTGAN_POSTERLAYOUT_OPENCOLE_SOURCE_AUDIT.md](T15_LAYOUTGAN_POSTERLAYOUT_OPENCOLE_SOURCE_AUDIT.md). Evaluation-specific trade-offs and methodological denominators are retained; `editability_audit=not_verified` remains for all three. Native PDF screenshot requests did not succeed, so original table text was inspected without claiming image-level figure validation.

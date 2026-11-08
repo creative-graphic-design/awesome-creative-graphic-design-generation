@@ -13,11 +13,15 @@ We apply this distinction across the following families rather than treating the
 Layout generation predicts discrete elements and their geometric attributes.
 This includes unconstrained synthesis, category-conditioned generation, partial completion, and constraint-aware refinement.
 Adversarial layout methods use \ac{gan} objectives to model distributions over element arrangements \citep{layoutgan2019,aclayoutgan2020,cglgan2022}.
+In the original LayoutGAN, a differentiable wireframe renderer exposes overlap and alignment to the discriminator, but its generated representation remains sets of element types and bounding-box parameters (Sec.~4.2).
+The wireframe discriminator lowers document-layout overlap and misalignment relative to a relation-only discriminator in the authors' experiment, without exporting authoring-software text or image objects.
 \ac{cglgan} conditions advertising layouts on visual context; \ac{layoutdetr} applies detection-transformer-style conditioning to foreground composition \citep{layoutdetr2024}.
 \ac{layoutdm} and \ac{layoutdiffusion} illustrate diffusion over discrete layout attributes \citep{layoutdm2023}, while \ac{layoutflow} addresses continuous geometry \citep{layoutflow2024}.
 Early and intermediate directions include wireframe discrimination in \ac{layoutgan}, \ac{vae}-based document reconstruction in \ac{canvasvae}, self-attentive scene completion in \ac{layouttransformer}, latent-space constraint optimization built on \ac{layoutganpp}, diffusion with explicit aesthetic constraints in \ac{lace}, and in-context layout generation with \ac{layoutprompter}.
 \ac{layoutgpt} uses language models for visual planning across domains.
 \ac{posterlayout} supplies a benchmark and method for content-aware visual-textual arrangement \citep{posterlayout2023}.
+Its PKU PosterLayout benchmark contains 9,974 layout--poster pairs and 905 background canvases, with text, logo, and underlay boxes laid out by a content-conditioned design-sequence GAN.
+The output is box placement on an already non-empty image, rather than a proof that the resulting design is editable as semantically typed objects in a native document.
 Importantly, the name ``LayoutDiffusion'' is also used for a distinct layout-to-image synthesis method \citep{layoutdiffusion_l2i2023}; its image-generation results should not be mixed with the discrete graphic-layout model \citep{layoutdiffusion2023}.
 In comparing these systems, the allowed conditions and datasets must be matched: unconditional realism, completion, and relational constraint satisfaction are not equivalent tasks.
 
@@ -77,6 +81,8 @@ These systems differ in which constraints are explicit, which representations ar
 \subsection{Multi-Stage Graphic Design and Agents}
 Integrated poster generation must coordinate language, asset production, layout decisions, and visual verification.
 \ac{cole} and \ac{opencole} use hierarchical design decomposition \citep{cole2023,opencole2024}.
+OpenCOLE replaces COLE's separately generated background/object imagery with a one-stage text-free image synthesized from the plan, then predicts typographic attributes and renders text in a separate pass (original Secs.~2.1--2.3).
+Its public Crello-derived training design and released pipeline improve inspectability of the implementation, but do not independently certify successful edits to exported native design documents.
 In COLE, intent-to-JSON planning, separate background and foreground synthesis, and typography attribute prediction feed an SVG-based multilayer renderer, followed by demonstrated manual repositioning and text-format edits in an editor (original Secs.~3.1--3.6).
 Its DesignerIntention experiment evaluates roughly 500 category prompts plus 50 creative prompts through a VLM judge and a smaller user comparison, rather than recording the correctness and non-target preservation of a held-out sequence of document-editing instructions.
 The original qualitative editor examples support available operations on layered text and objects, but not a measured general editing success rate.

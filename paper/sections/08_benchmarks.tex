@@ -7,6 +7,13 @@ Their numerical results must not be aggregated into a cross-task leaderboard wit
 \input{tabs/tex/benchmark_coverage}
 
 \subsection{What a Benchmark Measures}
+\paragraph{Generation preference and text-editing affordance are not equivalent.}
+The original OpenCOLE workshop evaluation uses 200 DESIGNERINTENTION prompts and a proprietary GPT-4V five-axis visual judgment protocol (original Table~1) \citep{opencole2024}.
+The reported average for OpenCOLE is 6.3 compared with COLE's 6.0, whereas SDXL scores 7.2 and DALL-E~3 scores 7.9 as rendered-image baselines.
+Within the text-editable systems, OpenCOLE's typography/color score of 5.6 is slightly below COLE's 5.7, while its layout score of 6.3 exceeds COLE's 6.0.
+The authors note that some high-scoring raster baselines omit editable text and that the VLM judge can reward designs with missing text.
+We therefore distinguish this design-image preference score from source-text correctness, downstream editor interoperability, and measured success of protected-object edits.
+
 \ac{svgeditbench} evaluates changes to \ac{svg} code, whereas \ac{vectorgym} covers generation from text and sketches, vector editing, and \ac{svg} captioning \citep{svgeditbench2024,vectorgym2026}.
 The \ac{svgeditbench} dataset repository specifies six editing tasks built from 100 Twemoji source graphics, with \ac{svg}-code prompts and reference answer images; this design evaluates the resulting edit but should not be generalized to arbitrary professional document revision \citep{svgeditbench2024}.
 \ac{vectorgym} instead defines VG-Sketch, VG-Edit, VG-Text, and VG-Cap as four separate tasks with expert-authored annotations, and its \ac{vlm}-based judgment should be interpreted alongside the task-specific rendering and similarity measures \citep{vectorgym2026}.

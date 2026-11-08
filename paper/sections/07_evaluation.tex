@@ -14,6 +14,12 @@ Even within one representation, synthesis from scratch, partial completion, reco
 We therefore interpret numerical results within their original experimental contracts and use cross-paper comparisons chiefly to establish which capabilities were actually measured.
 
 \subsection{Generation Fidelity and Geometry}
+\paragraph{Metric-specific trade-offs in foundational layout systems.}
+In LayoutGAN's original ICLR experiment, a wireframe-based discriminator reduces document-layout box overlap from 1.52\% to 1.17\% and alignment deviation from 6.4\% to 3.4\% compared with a relation-only discriminator (original Table~2) \citep{layoutgan2019}.
+Both remain above the corresponding real-layout overlap of 0.05\% and alignment deviation of 0.5\%, and none of these metrics measures revision of a rendered design.
+On the PKU PosterLayout evaluation, DS-GAN improves validity from 0.7066 to 0.8788 and reduces overlay from 0.0605 to 0.0220 relative to CGL-GAN, but has worse loose-underlay effectiveness (0.8315 vs. 0.8624) and saliency occlusion (0.2088 vs. 0.1546; lower is better) \citep{posterlayout2023}.
+These are layout-geometry and visual-saliency proxies on non-empty poster backgrounds, not direct evidence of retained text semantics or tested post-export editing.
+
 \paragraph{Matched-split diffusion and flow evaluations.}
 In its original CVPR evaluation, discrete LayoutDM compares six tasks on Rico and PubLayNet with training-data preprocessing and a shared layout-feature FID model \citep{layoutdm2023}.
 For category-conditioned size-and-position generation on Rico, its FID is 3.55 compared with 3.97 for BART and 6.84 for LayoutGAN++, but in completion its 9.00 is worse than LayoutTrans at 3.71 (Table~1).
