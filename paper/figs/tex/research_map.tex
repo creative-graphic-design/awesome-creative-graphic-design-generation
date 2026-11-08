@@ -3,21 +3,24 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{tikz}
-\definecolor{navy}{HTML}{1C2F47}
-\definecolor{muted}{HTML}{65758A}
-\definecolor{paperbg}{HTML}{FAFBFD}
-\definecolor{rule}{HTML}{E4E9F1}
-\definecolor{trackA}{HTML}{2779A6}
-\definecolor{trackB}{HTML}{D45E68}
-\definecolor{trackC}{HTML}{BA7B28}
-\definecolor{trackD}{HTML}{358772}
-\definecolor{trackE}{HTML}{7762A6}
-\definecolor{trackF}{HTML}{267D88}
+\usetikzlibrary{arrows.meta}
+\input{figs/tex/figure_style}
+\colorlet{navy}{figNavy}
+\colorlet{muted}{figMuted}
+\colorlet{paperbg}{figPaper}
+\colorlet{rule}{figRule}
+\colorlet{trackA}{figBlue}
+\colorlet{trackB}{figOrange}
+\colorlet{trackC}{figOrange}
+\colorlet{trackD}{figGreen}
+\colorlet{trackE}{figViolet}
+\colorlet{trackF}{figPink}
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \fill[paperbg,rounded corners=3pt] (0,-2.07) rectangle (17.69,13.65);
-\node[anchor=west, text=navy,font=\sffamily\bfseries\fontsize{13.5}{15}\selectfont] at (.40,13.13) {A research landscape of generative graphic design};
-\node[anchor=west,text=muted,font=\sffamily\fontsize{7.8}{9}\selectfont] at (.41,12.67) {Representative studies by research task and cited reference year};
+\fill[figNavy,rounded corners=2pt] (0,12.35) rectangle (17.69,13.65);
+\node[anchor=west, text=white,font=\sffamily\bfseries\fontsize{13.5}{15}\selectfont] at (.40,13.13) {A research landscape of generative graphic design};
+\node[anchor=west,text=white!75,font=\sffamily\fontsize{7.8}{9}\selectfont] at (.41,12.67) {Representative studies by research task and cited reference year};
 \draw[rule,line width=.6pt] (.4,12.30)--(17.26,12.30);
 \fill[navy!6,rounded corners=2pt] (2.90,11.50) rectangle (6.30,12.17);
 \node[anchor=west,font=\sffamily\bfseries\fontsize{8.6}{10}\selectfont,text=navy] at (3.05,11.93) {2019–2021};
