@@ -127,9 +127,9 @@ def main() -> None:
     rect(0, 0, W, H, "#F8FAFD")
     rect(0, 0, W, 122, "#173552")
     label(31, 48, "RESEARCH LANDSCAPE OF GENERATIVE GRAPHIC DESIGN", 20, "#FFFFFF", 700)
-    label(32, 82, "From learned layouts to editable documents and native artifacts", 15, "#C4D6E5")
+    label(32, 82, "A chronological overview across research tasks and method families", 15, "#C4D6E5")
     rect(20, 146, W-40, 70, "#E8EEF5", radius=10)
-    label(38, 184, "CITED YEAR", 13, "#647D92", 700)
+    label(38, 184, "REFERENCE PERIOD", 13, "#647D92", 700)
     for period, (first, last) in enumerate(ERAS):
         x = X0 + STEP*period
         year_text = str(first) if first == last else f"{first}–{last}"
@@ -158,7 +158,8 @@ def main() -> None:
                 title_size = 13 if marks and len(name)>=11 else 12 if len(name)>15 else 14
                 label(title_x, cy+26, name, title_size, "#213B53", 700)
                 label(x+12, cy+53, detail, 11 if len(detail)<=23 else 10, "#698097")
-                label(x+card_w-27, cy+15, f"'{year}", 9, "#8B9BAC")
+                # The period header already carries chronology. Duplicating a
+                # two-digit year inside each card collides with longer names.
                 if len(marks) == 1:
                     assert logo_at(marks[0], x+12, cy+7, 24), (name, marks)
                 elif len(marks) == 2:
@@ -175,7 +176,7 @@ def main() -> None:
         legend_y = footer_y + 23 + 19*(i // 3)
         rect(legend_x, legend_y, 13, 13, "#FFFFFF", color, radius=2)
         label(legend_x+19, legend_y+11, family_name, 10, "#36536B", 600)
-    label(38, footer_y+76, "X = cited-reference period; row = primary task; border = method family; logos = audited affiliations.", 11, "#60798F")
+    label(38, footer_y+76, "Columns = reference periods; lanes = tasks; borders = methods; marks = attributed institutions.", 11, "#60798F")
     label(38, footer_y+94, "Representative milestones, not a census. Proximity does not imply citation or causal influence.", 11, "#60798F")
     add("</svg>")
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
