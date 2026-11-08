@@ -8,7 +8,7 @@
 ![Datasets and Benchmarks](https://img.shields.io/badge/datasets%20%26%20benchmarks-40-informational)
 ![Reproducibility Audited](https://img.shields.io/badge/reproducibility%20audited-188-informational)
 
-![Awesome Creative Graphic Design Generation teaser](.github/teaser.svg)
+![Awesome Creative Graphic Design Generation teaser](.github/teaser.webp)
 
 <!-- This file is generated from data/*.csv by scripts/generate_readme.py. Do not edit it directly. -->
 
