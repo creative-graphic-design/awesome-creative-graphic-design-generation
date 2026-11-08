@@ -89,6 +89,7 @@ jobs:
       - name: Enforce manuscript writing checklist
         run: |
           sh -n paper/scripts/prepare_affiliation_logos.sh
+          python3 paper/scripts/check_acro_names.py
           python3 paper/scripts/check_manuscript.py
 
       - name: Test one-sentence-per-line checker (including a failing fixture)
