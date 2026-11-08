@@ -72,6 +72,11 @@
 - [ ] After manuscript changes, build and inspect the updated anonymous PDF; **include the actual generated PDF and key figure PDF links in the user-facing response every time**, not only the GitHub PR or TeX source.
 - [ ] Treat the public catalogue crosswalk (207 papers, 64 currently unresolved matches) as a conservative ID/title lookup, not an exclusion audit; run `python3 paper/scripts/check_catalog_crosswalk.py`.
 
+## Automated named-resource consistency
+
+- [ ] Run `python3 paper/scripts/check_acro_names.py` before committing. It checks registered system/benchmark names in section prose, tables and figure captions, and flags plain names that should use `\\ac{key}`. Tests run in `make check` and Paper PDF CI. It does not replace source review and deliberately does not rewrite content.
+- [ ] When adding a named model, add the original-source `\\DeclareAcronym` metadata and use its key consistently. Inspect new names or aliases that are **not yet registered** manually; the checker cannot infer their identity from plain text.
+
 ## Comprehensive acro registry (2026-11-04)
 
 - [ ] Keep three distinct `acro` tags: `abbreviations` for genuine short forms, `systems` for research models and systems, and `evaluation` for benchmarks, datasets and evaluation metrics.
