@@ -40,7 +40,7 @@ These are distinct condition contracts, not interchangeable measurements of cont
 \paragraph{Code, retrieval, and spatial reasoning.}
 \ac{layoutnuwa} formulates layout completion as \ac{html} code generation, while \ac{posterllama} applies code-formatted layouts and augmentation to content-aware poster design.
 \ac{ralf} retrieves similar designs to guide image-conditioned generation, and \ac{radm} jointly models visual-textual and geometric relations.
-ReLayout reasons about content regions, margins, and element relations for conditional placement \citep{relayoutreason2025}, while \ac{layspa} adds reward-guided spatial reasoning to language-model layout planning.
+\ac{relayoutreason} reasons about content regions, margins, and element relations for conditional placement \citep{relayoutreason2025}, while \ac{layspa} adds reward-guided spatial reasoning to language-model layout planning.
 \ac{unilayout} combines generation and human-feedback-aligned assessment, whereas \ac{iposter} emphasizes interactive specification of partial constraints.
 Scan-and-Print instead investigates efficient patch selection and training augmentation for content-aware poster layouts \citep{scanprint2025}.
 These approaches require matched input constraints and output granularity before their geometric metrics can support a comparison.
@@ -195,7 +195,7 @@ Each study must be coded against its actual inputs, outputs, and scoring procedu
 \ac{lade} generates a variable number of semantically meaningful design layers, whereas an alternative layered framework explicitly models shadows and reflections to reduce drift after an edit \citep{layeredfx2026}.
 \ac{creatiparser} recovers text, background, and decoration-like layers from raster designs; \ac{redesign} assembles an editable hierarchy through an agentic decomposition-and-verification process.
 The systems differ substantially in whether layers are generated directly, inferred from a raster input, or reconstructed with semantic text preserved.
-ReLayout's structure-preserving editing task modifies geometry according to an explicit instruction while conserving the relationships of unchanged elements \citep{relayoutedit2026}.
+\ac{relayoutedit}'s structure-preserving editing task modifies geometry according to an explicit instruction while conserving the relationships of unchanged elements \citep{relayoutedit2026}.
 This task directly tests edit operations and should be evaluated separately from visually plausible layer decomposition.
 
 \paragraph{Native layers and markup documents.}
