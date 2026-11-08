@@ -62,6 +62,16 @@ jobs:
         run: |
           set -euo pipefail
           python3 paper/scripts/check_research_map_concept.py
+          test -s paper/figs/pdf/research_map_concept.pdf
+          pdftotext paper/figs/pdf/research_map_concept.pdf paper/research-map-concept.txt
+          for name in LayoutGAN PosterLayout COLE OpenCOLE AutoFigure; do
+            grep -Fq "$name" paper/research-map-concept.txt
+          done
+          if pdfimages -list paper/figs/pdf/research_map_concept.pdf | tail -n +3 | grep -q .; then
+            echo "Research map must remain vector-only" >&2
+            exit 1
+          fi
+          pdftoppm -f 1 -l 1 -singlefile -r 150 -png paper/figs/pdf/research_map_concept.pdf paper/research-map-concept-preview
           test -s paper/figs/assets/logos/cyberagent-symbol.pdf
           test -s paper/figs/assets/logos/pku.pdf
           test -s paper/figs/assets/logos/google.pdf
@@ -158,6 +168,8 @@ jobs:
             paper/research-map-preview.png
             paper/figs/pdf/research_map_concept.svg
             paper/figs/pdf/research_map_concept.pdf
+            paper/research-map-concept-preview.png
+            paper/research-map-concept.txt
             paper/ca-square-preview.png
             paper/map-info.txt
             paper/ca-symbol-info.txt
