@@ -374,3 +374,9 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Corrected IconShop's FID definition (CLIP features) and documented the adverse uniqueness result, avoiding a false blanket metric win.
 - [x] Read Paper PDF CI run 42445310737 and wrapped all seven newly added registered model names with stock `acro` commands in Evaluation and Benchmarks. No figure or logo modification.
 - [ ] Confirm that a following Paper PDF CI passes, and complete manual validation of narrative claims that lack literal citations on the same physical TeX line.
+
+## Full-manuscript citation-line audit and six further prior-study transfers — 2026-11-08
+
+- [x] Transferred six previously inspected original-source items (CGD-090, 149, 150, 181, 185, 190) with original section/table locators and limitations; strengthened the Vinci human-study distinction in Evaluation.
+- [x] Added `python3 paper/scripts/report_claim_evidence.py --summary` to report literal claim/citation pairs across all source sections and table TeX files, rather than stopping at bibliography-key coverage alone.
+- [ ] Interpret all numerical-claim warnings with primary tables before clearing; this report is triage only, and the remaining original-source reading / final author scientific signoff remains open.

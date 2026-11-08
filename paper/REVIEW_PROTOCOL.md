@@ -131,3 +131,9 @@ I also directly inspected the original HTML articles for **ReDesign**, **APEX**,
 ## T18 original SVG-icon experiment check — 2026-11-08
 
 The source-claim audit for IconShop is documented in [T18_ICONSHOP_SOURCE_AUDIT.md](T18_ICONSHOP_SOURCE_AUDIT.md). Its original Table 2 uses CLIP-feature FID and has a quality/diversity trade-off. The original source was read in extracted full PDF text, but the screenshot request failed. Infill demonstrations do not establish downstream editing-operation success; the citation-level `editability_audit` stays `not_verified`.
+
+## Additional bounded historical methods/experiment transfer (2026-11-08)
+
+I transferred six existing primary-source audit entries (CGD-090, 149, 150, 181, 185 and 190) from the live **225 Source Tier Reconciliation** and **Remaining 13 Trace Audit** tabs, with explicit previously recorded source sections/tables/figures. These were originally checked in the prior source review, rather than freshly read or reproduced here. In particular, Vinci's 20-student resizing evaluation concerns editing efficiency rather than arbitrary instruction-following, and the recovered textual/raster pipelines are not automatically equivalent to native document editing. The complete citations and limitations are in the frozen transfer CSV. This action does not change a scientific inclusion/exclusion decision or imply final source review of all cited studies.
+
+A new read-only `paper/scripts/report_claim_evidence.py` script enumerates manuscript citation-bearing lines and highlights explicitly numerical/table-based claims that still depend on citations without `methods_results` audit entries. This is a lexical triage, not a factual validity proof. It also reports named-system citations obtained through `acro`.
