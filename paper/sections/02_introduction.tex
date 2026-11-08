@@ -7,9 +7,9 @@ Earlier research formulated criteria for effective graphical presentations \cite
 The same coordination problem arises across posters and advertisements \citep{posterlayout2023,cglgan2022}, presentation slides \citep{autopresent2025,pptagent2025}, infographics \citep{bizgen2025}, and scientific illustrations \citep{autofigure2026}.
 Although these artifacts differ in their conventions and content, successful generation must account for both the meaning of individual elements and their relationships within the overall composition.
 
-The practical value of a generated design depends on what can be changed after its initial creation, not only on how it looks.
+For design workflows that involve subsequent revisions, the usefulness of a generated artifact depends on more than its initial visual appearance.
 Interviews with graphic designers document how generative tools fit into creative practice \citep{tang2024designinterviews}, while an interactive poster-design study evaluates assistance during design revision \citep{vinci2021}.
-Research spans spatial layout generation \citep{layoutgan2019,layoutdm2023} as well as systems that deliver layered assets or code-based compositions \citep{cole2023,opencole2024,designascode2026,editablevisual2026}.
+Existing generation research produces different kinds of artifacts, ranging from spatial element arrangements \citep{layoutgan2019,layoutdm2023} to layered compositions and code-based documents \citep{cole2023,opencole2024,designascode2026,editablevisual2026}.
 However, a rendered image does not reveal whether its text, graphics, and spatial relationships remain independently manipulable.
 Visually similar designs can therefore offer substantially different possibilities for subsequent revision.
 
@@ -23,10 +23,10 @@ Spatial-layout generation and vector synthesis are commonly evaluated using geom
 By contrast, interactive design research can evaluate human editing effort \citep{vinci2021}, while dedicated benchmarks assess instruction-driven edits to \ac{svg} graphics \citep{svgeditbench2024,vectorgym2026} or multi-layer documents \citep{mildedit2026}.
 Because these protocols measure different outcomes, visual fidelity, structural affordances, and measured editing performance should not be treated as interchangeable evidence.
 
-Existing surveys establish important perspectives on graphic design generation, but their organizing axes do not directly resolve this comparison.
-Broad reviews organize graphic design research around representation, understanding, perception, and generation \citep{huang2023survey,zou2025fragment}.
-More focused surveys examine layout generation \citep{shi2023layoutsurvey} or vector graphics \citep{tian2024vectorsurvey}.
-These perspectives motivate an additional analysis connecting the form of a delivered artifact to the revisions it affords and the evidence available for those revisions.
+Existing surveys provide complementary ways to organize graphic design research, motivating an explicit comparison of representation, revision operations, and evaluation evidence.
+Broad reviews examine representation, understanding, perception, generation, and aspects of creative workflows \citep{huang2023survey,zou2025fragment}.
+More focused surveys examine layout generation \citep{shi2023layoutsurvey}, vector-graphics representations \citep{tian2024vectorsurvey}, and language-model-based \ac{svg} generation and editing \citep{malashenko2025svgreview}.
+Rather than treating editability as a property inferred from an output format or task label, we compare the operations supported by delivered artifacts with the evidence used to assess those operations.
 
 This survey develops a representation--editability--evaluation (\ac{rev}) framework to connect these three dimensions of generative graphic design.
 We classify delivered artifacts separately from the operations they make possible, and distinguish format-level affordances from demonstrated workflows and quantitatively evaluated edits.
