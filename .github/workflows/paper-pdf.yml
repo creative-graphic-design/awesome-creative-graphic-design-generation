@@ -26,7 +26,7 @@ jobs:
   build:
     name: Build survey PDF
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout manuscript
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -144,6 +144,10 @@ jobs:
           pdfinfo paper/main.pdf | tee paper/pdfinfo.txt
           pdftotext paper/main.pdf paper/main.txt
           test -s paper/main.txt
+          if grep -Eq 'similaritypp\.|paper\)p\.' paper/main.txt; then
+            echo 'Acronym index description and occurrence-page text are joined.' >&2
+            exit 1
+          fi
           grep -qi 'Anonymous CVPR submission' paper/main.txt
           grep -Fq 'Abbreviations' paper/main.txt
           grep -Fq 'Selected Systems and Terminology' paper/main.txt
