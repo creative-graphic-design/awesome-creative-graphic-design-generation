@@ -128,17 +128,19 @@
 }
 % Two actual affiliation emblems share the existing 25% logo column.
 % Width and height constraints apply independently; no extra card width is used.
-% Two affiliation symbols sit diagonally in the same 25% logo slot.
-% Explicit proportional bounding box guarantees equal external padding.
+% Two affiliation marks share one identical square-size constraint.
+% The size token is relative to the 25% logo column; no independent x/y scaling.
+\newlength{\MapPairLogoSize}
+\setlength{\MapPairLogoSize}{.38\MapCardLogoWidth}
 \newcommand{\MapLogoPair}[2]{%
   \begin{tikzpicture}[inner sep=0pt,outer sep=0pt]
     \path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight);
     \node[anchor=center,inner sep=0pt,outer sep=0pt]
       at (.30\MapCardLogoWidth,.69\MapCardContentHeight)
-      {\includegraphics[width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#1.pdf}};
+      {\includegraphics[width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio]{figs/assets/logos/#1.pdf}};
     \node[anchor=center,inner sep=0pt,outer sep=0pt]
       at (.70\MapCardLogoWidth,.31\MapCardContentHeight)
-      {\includegraphics[width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#2.pdf}};
+      {\includegraphics[width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio]{figs/assets/logos/#2.pdf}};
   \end{tikzpicture}%
 }
 \newcommand{\MapPaperBrandPair}[9]{%
