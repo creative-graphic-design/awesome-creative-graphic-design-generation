@@ -407,7 +407,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\setlength{\MapCardHeight}{.20\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardLogoWidth}{.25\MapCardContentWidth}" in figure_source and
             r"\setlength{\MapCardTextWidth}{.75\MapCardContentWidth}" in figure_source and
-            r"\setlength{\MapCardTextStackHeight}{.70\MapCardContentHeight}" in figure_source and
+            r"\setlength{\MapCardTextStackHeight}{.84\MapCardContentHeight}" in figure_source and
             r"\setlength{\MapCardRowHeight}{.5\MapCardTextStackHeight}" in figure_source and
             r"\MapCardTitleOffset}{\dimexpr.5\MapCardHeight-.5\MapCardRowHeight\relax}" in figure_source and
             r"\MapCardDetailOffset}{\dimexpr.5\MapCardHeight+.5\MapCardRowHeight\relax}" in figure_source and
