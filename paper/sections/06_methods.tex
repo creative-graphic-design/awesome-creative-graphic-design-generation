@@ -33,7 +33,6 @@ The output is box placement on an already non-empty image, rather than a proof t
 Importantly, the name ``\ac{layoutdiffusion}'' is also used for a distinct layout-to-image synthesis method \citep{layoutdiffusion_l2i2023}; its image-generation results should not be mixed with the discrete graphic-layout model \citep{layoutdiffusion2023}.
 In comparing these systems, the allowed conditions and datasets must be matched: unconditional realism, completion, and relational constraint satisfaction are not equivalent tasks.
 
-
 \paragraph{Conditional layout families.}
 \ac{layoutvae} samples arrangements from object-label sets rather than solving fully specified graphic-design tasks, whereas \ac{blt} iteratively completes masked attributes with a bidirectional transformer.
 Coarse-to-Fine layout generation predicts a global arrangement before refining detailed element positions \citep{coarsetofine2022}.
@@ -114,7 +113,6 @@ Code-oriented systems increasingly produce the design document itself, as in \ac
 Visual-feedback refinement and \ac{ocr}-aware reinforcement learning are investigated in VFLM \citep{guo2026visualfeedback}.
 We separate \emph{reflection during generation} from an edit request received after a completed artifact is delivered.
 
-
 \paragraph{Commercial, personalized, and artistic workflows.}
 T-Stars-Poster combines prompt preparation, layout, background generation, and rendering for product advertising \citep{tstarsposter2025}, while reliable ad generation uses feedback-driven inspection to identify unsuitable outputs \citep{reliablead2024}.
 \ac{posta} separates background, layout, and rendering for customized artistic posters \citep{posta2025}, whereas \ac{posterverse} develops a commercial poster workflow with \ac{html}-oriented text rendering.
@@ -168,12 +166,10 @@ Neural-path generation explicitly models shape structure \citep{neuralpath2024},
 Code-generation approaches such as \ac{starvector} and \ac{chat2svg} explore additional \ac{svg} primitives and text-conditioned editing workflows \citep{chat2svg2025}.
 Their visual or semantic generation scores should not be interpreted as evidence for the broader class of targeted design edits.
 
-
 \paragraph{Vectorization and object-level control.}
 \ac{svgdreamer} combines diffusion-guided \ac{svg} synthesis with foreground/background separation and attention-based primitive control.
 \ac{supersvg} addresses a different task, accelerating raster-to-vector reconstruction through superpixel-based decomposition.
 Both can produce vector paths, but the ability to open an \ac{svg} is not evidence of semantic text replacement, preservation of object identity, or reliably executing an instruction.
-
 
 \paragraph{Stylized typography and layered composition.}
 \ac{text2poster} arranges extracted or generated text over retrieved background imagery with attention to style and location.
@@ -204,9 +200,10 @@ Another line starts from an existing artifact.
 These tasks are meaningfully editing-oriented, but a pixel-space editing benchmark does not establish that the result is an editable \ac{psd} or \ac{dom} structure.
 Each study must be coded against its actual inputs, outputs, and scoring procedure.
 
-
 \paragraph{Contrast-aware background revision.}
-\ac{neuralcontrast} applies diffusion-based background revisions to improve foreground text contrast, without demonstrating native editable font objects.
+Appearance-oriented background editing can improve legibility without recovering source-document objects.
+For example, \ac{neuralcontrast} uses diffusion-based background revisions to improve foreground-text contrast.
+Its outputs support a visual intervention, but do not establish editable font objects or vector paths; these require different evidence.
 
 \paragraph{Layer synthesis, transparency, and recovery.}
 \ac{ladeco} composes supplied visual and textual elements by planning semantic layers, while \ac{layerdiffuse} introduces transparent \ac{rgba} images through latent transparency.
@@ -218,7 +215,9 @@ The systems differ substantially in whether layers are generated directly, infer
 This task directly tests edit operations and should be evaluated separately from visually plausible layer decomposition.
 
 \paragraph{Native layers and markup documents.}
-\ac{art} generates variable numbers of transparent layers, while \ac{psdiffusion} models their joint appearance and spatial interactions in a shared synthesis process.
+Native-layer synthesis exposes separate compositable components at generation time.
+\ac{art} generates variable numbers of transparent layers, while \ac{psdiffusion} models their joint appearance and spatial interactions.
+These systems differ from raster-to-layer reconstruction, which must infer components from a finished rendering.
 
 Image-to-layer reconstruction predicts separated raster components from a completed rendering.
 \ac{qwenimagelayered} decomposes an RGB image into a variable number of semantically separated \ac{rgba} layers using an RGBA-VAE, a variable-layer diffusion transformer, and PSD-derived training data \citep{qwenimagelayered2026}.
@@ -252,10 +251,11 @@ The paper illustrates recursive decomposition (Figure 6) and external-agent mani
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
 
 \paragraph{Synthesis: decomposition is not equivalent to editing.}
-Directly generating transparent layers and reconstructing layers from a flattened image solve different inference problems, even when both return compositable assets.
-Recovery quality can be measured against a known source decomposition, whereas editing performance requires specifying a subsequent modification and scoring its effects.
-Methods that return native documents additionally need reopenability and object-type checks; a stack of raster layers cannot be assumed to preserve text semantics or vector paths.
-Accordingly, compositing, reconstruction, and instruction-driven revision should remain separate evidence categories in comparative tables.
+The central distinction among layered methods is not the number of layers returned, but which subsequent operations those layers can support.
+Direct synthesis creates separate assets, while decomposition recovers them from flattened imagery; both can be assessed for image quality or recovery fidelity.
+Editing adds a separate question: whether a requested change succeeds and unrelated content remains intact.
+For promised native documents, reopenability and preservation of semantic text and vector objects are further requirements.
+Hence, compositing, reconstruction, and instruction-driven revision require distinct evidence categories.
 
 \subsection{Cross-Family Synthesis: Control, Artifact, and Revision}
 \paragraph{Layout control is not complete-document control.}
@@ -298,7 +298,6 @@ Scientific figures and academic posters convey factual research content, introdu
 \ac{autofigure} creates scientific illustrations from extended source material, while \ac{postergen} creates research posters through content selection, layout, typography and rendering agents.
 \ac{drawwiththought} reconstructs scientific diagrams into editable mxGraph \ac{xml} with reasoning-guided structure generation, a different output contract from one-shot raster synthesis.
 The shared \ac{rev} axes remain useful across domains, but comparisons must respect whether the delivered artifact is a vector, a presentation document, or merely a rendered image.
-
 
 \paragraph{Synthesis: document-scale constraints and revision.}
 Automatic layout planning for visually rich documents \citep{zhu2024visuallyrichplanning} predicts arrangements from canvas dimensions, document purpose, and multimodal user instructions; the original abstract evaluates layout generation rather than native post-export document editing.
