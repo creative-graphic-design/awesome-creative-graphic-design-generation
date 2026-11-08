@@ -431,7 +431,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]" in figure_source,
             "Every study card must use independent anchored contents within fixed proportional frames")
     require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 3 and
-            figure_source.count(r"\MapPaperContent{#2}{#3}{#8}{") == 2,
+            figure_source.count(r"\MapPaperContent{#2}{#3}{#8}{") == 3,
             "Branded and unbranded study cards must share the proportional layout component")
     require(r"\hspace*{.53cm}" not in figure_source and
             r"m{.46cm}" not in figure_source and
