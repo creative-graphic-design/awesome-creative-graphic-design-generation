@@ -394,7 +394,9 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
     require(dual_brand_uses == [("A", "LayoutFlow", "24", "layoutflow2024", "utokyo", "cyberagent-symbol")],
             "LayoutFlow must show both verified University of Tokyo and CyberAgent icons")
     require(r"\newcommand{\MapLogoPair}[2]" in figure_source and
-            r"width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio" in figure_source and
+            r"\setlength{\MapPairLogoSize}{.38\MapCardLogoWidth}" in figure_source and
+            figure_source.count(r"minimum width=\MapPairLogoSize,minimum height=\MapPairLogoSize") == 2 and
+            r"width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio" in figure_source and
             r"at (.30\MapCardLogoWidth,.69\MapCardContentHeight)" in figure_source and
             r"at (.70\MapCardLogoWidth,.31\MapCardContentHeight)" in figure_source,
             "Multiple affiliation symbols must be proportionally bounded within the logo column")
