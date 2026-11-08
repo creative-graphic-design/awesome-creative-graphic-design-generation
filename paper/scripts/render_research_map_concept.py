@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Experimental SSII-style narrative research map.
+"""Source-audited, print-legible graphic-design research map.
 
 Reads the 26 audited node declarations rather than maintaining hand-tuned
-coordinates for individual papers. Intentionally not the manuscript figure
-until its design and attribution are approved.
+coordinates for individual papers. The same output is used by the manuscript and CI.
 """
 from __future__ import annotations
 
@@ -20,9 +19,10 @@ PAPER = Path(__file__).resolve().parents[1]
 TEX = PAPER / "figs/tex/research_map_narrative.tex"
 AUDIT = PAPER / "figs/tex/research_map_narrative_sources.csv"
 OUTPUT = PAPER / "figs/pdf/research_map_concept.svg"
-W, H = 1680, 1330
-X0, STEP = 320, 164
-Y0, LANE_STEP = 252, 191
+W, H = 1050, 1070
+X0, STEP = 260, 190
+Y0, LANE_STEP = 248, 180
+ERAS = ((2019, 2021), (2022, 2023), (2024, 2025), (2026, 2026))
 LANES = (
     ("A", "LAYOUT GENERATION", "Element geometry and conditional placement", "#2C86B6"),
     ("B", "POSTERS & ADS", "Text, imagery and composition", "#CB7A47"),
@@ -76,7 +76,9 @@ def main() -> None:
     assert len(logos) == 21, f"Expected affiliation marks for 21 audited cards, got {len(logos)}"
     buckets = defaultdict(list)
     for track, name, year, key, family, detail in entries:
-        buckets[(track, 2000 + int(year))].append((name, family, detail))
+        reference_year = 2000 + int(year)
+        period = next(i for i, (lo, hi) in enumerate(ERAS) if lo <= reference_year <= hi)
+        buckets[(track, period)].append((name, family, detail, year))
     out: list[str] = []
     def add(x: str) -> None: out.append(x)
     def rect(x, y, w, h, fill, stroke="none", radius=0, sw=1):
@@ -120,86 +122,59 @@ def main() -> None:
         add(ET.tostring(symbol, encoding="unicode"))
         return True
 
+    # Layout geometry derives from a four-period grid, never study-specific x/y.
     add(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
     rect(0, 0, W, H, "#F8FAFD")
-    rect(0, 0, W, 132, "#173552")
-    label(42, 58, "RESEARCH LANDSCAPE OF GRAPHIC DESIGN GENERATION", 26, "#FFFFFF", 700)
-    label(43, 92, "From layout prediction to compositional and editable design systems", 17, "#C4D6E5")
-    rect(24, 154, 1632, 66, "#E8EEF5", radius=12)
-    label(46, 186, "CITED YEAR", 13, "#647D92", 700)
-    for year in range(2019, 2027):
-        x = X0 + STEP*(year-2019)
-        label(x+8, 195, year, 20, "#29455E", 700)
-        line(x, 204, x, 1018)
-    for i, (track, title, caption, accent) in enumerate(LANES):
-        y = Y0 + i*LANE_STEP
-        rect(24, y-17, 1632, LANE_STEP-8, "#FFFFFF", radius=12)
-        rect(24, y-17, 6, LANE_STEP-8, accent, radius=3)
-        label(44, y+29, f"0{i+1}", 27, accent, 700)
-        label(44, y+66, title, 16, "#234059", 700)
-        label(44, y+89, caption, 12, "#73889D")
-        if track == "D":
-            rect(324, y-2, 590, 118, "#F5F1FA", stroke="#D9CDEA", radius=10)
-            label(345, y+27, "DOCUMENT-LEVEL COMPOSITION", 14, "#775C9E", 700)
-            label(345, y+56, "Native slides, structured figures, and", 14, "#4B6077")
-            label(345, y+79, "revision-aware document workflows.", 14, "#4B6077")
-        for year in range(2019, 2027):
-            x = X0 + STEP*(year-2019) + 4
-            group = buckets[(track, year)]
-            assert len(group) <= 2, (track, year, group)
-            for idx, (name, family, detail) in enumerate(group):
-                yy = y + 8 + idx*73
-                border, family_name = STYLES[family]
-                rect(x, yy, 151, 65, "#FFFFFF", border, radius=8, sw=1.5)
-                rect(x, yy, 5, 65, border, radius=2)
-                affiliations = logos.get(name, ())
-                title_x = x + (40 if affiliations else 12)
-                label(title_x, yy+23, name,
-                      11 if affiliations and len(name)>=11 else 12 if len(name)>15 else 14,
-                      "#1F3951", 700)
-                label(x+12, yy+48, detail, 10 if len(detail)>22 else 11, "#6B8197")
-                if len(affiliations) == 1:
-                    logo_at(affiliations[0], x+12, yy+7, 23)
-                elif len(affiliations) == 2:
-                    logo_at(affiliations[0], x+10, yy+5, 15)
-                    logo_at(affiliations[1], x+22, yy+17, 15)
-    label(41, 1042, "REPRESENTATION & EDITING TARGETS", 15, "#27445D", 700)
-    label(41, 1064, "Illustrative formats, not reproduced system outputs", 11, "#71849B")
-    examples = [
-        ("LAYOUT", "Element positions", "#2C86B6"),
-        ("POSTER", "Composed artwork", "#CB7A47"),
-        ("VECTOR", "Editable paths", "#368B7B"),
-        ("DOCUMENT", "Object hierarchy", "#8067BA"),
-    ]
-    for i, (name, sub, tint) in enumerate(examples):
-        x = 360 + i*322
-        rect(x, 1020, 298, 122, "#FFFFFF", "#DCE5EE", radius=9)
-        rect(x+13, 1032, 84, 94, "#F5F8FB", "#DCE5EE", radius=4)
-        if i == 0:
-            for xx,yy,ww,hh in [(x+22,1042,64,15),(x+22,1063,25,23),(x+54,1063,32,23),(x+22,1092,64,23)]:
-                rect(xx,yy,ww,hh,"#E0EBF3",tint,radius=2)
-        elif i == 1:
-            rect(x+25, 1040, 60, 76, "#F1E0D3",radius=2)
-            rect(x+30, 1048, 50, 38, "#D6AB8E")
-            label(x+36, 1104, "SALE", 12, "#A0694A",700)
-        elif i == 2:
-            add(f'<path d="M{x+22} 1103 Q{x+33} 1041 {x+55} 1084 T{x+86} 1050" fill="none" stroke="{tint}" stroke-width="3"/>')
-            rect(x+19, 1100, 6, 6, "#FFFFFF", tint)
-        else:
-            rect(x+28,1042,54,75,"#FFFFFF","#AD9EC9",radius=2)
-            rect(x+34,1052,42,10,"#D8CDE9",radius=2)
-            for row in range(3): line(x+34,1074+row*10,x+73,1074+row*10,"#B7A9D1",2)
-        label(x+110, 1070, name, 15, "#304961", 700)
-        label(x+110, 1093, sub, 12, "#708499")
-    rect(24, 1170, 1632, 124, "#E8EEF5", radius=12)
-    label(42, 1201, "METHOD FAMILY", 13, "#60798F", 700)
-    xpos = 230
-    for family, (color, title) in STYLES.items():
-        rect(xpos, 1186, 15, 15, "#FFFFFF", color, radius=3)
-        label(xpos+22, 1200, title, 12, "#36536B", 600)
-        xpos += len(title)*7 + 58
-    label(42, 1240, "Position = research task × cited-reference year; border = method family. Nearby studies are not necessarily related.", 12, "#6A8196")
-    label(42, 1264, "This is a representative narrative selection, not a complete publication census or a citation/influence network.", 12, "#6A8196")
+    rect(0, 0, W, 122, "#173552")
+    label(31, 48, "RESEARCH LANDSCAPE OF GENERATIVE GRAPHIC DESIGN", 20, "#FFFFFF", 700)
+    label(32, 82, "From learned layouts to editable documents and native artifacts", 15, "#C4D6E5")
+    rect(20, 146, W-40, 70, "#E8EEF5", radius=10)
+    label(38, 184, "CITED YEAR", 13, "#647D92", 700)
+    for period, (first, last) in enumerate(ERAS):
+        x = X0 + STEP*period
+        year_text = str(first) if first == last else f"{first}–{last}"
+        label(x+10, 187, year_text, 17, "#29455E", 700)
+
+    for lane, (track, title, description, accent) in enumerate(LANES):
+        y = Y0 + lane*LANE_STEP
+        rect(20, y-17, W-40, LANE_STEP-7, "#FFFFFF", radius=10)
+        rect(20, y-17, 6, LANE_STEP-7, accent, radius=3)
+        label(39, y+23, f"0{lane+1}", 23, accent, 700)
+        label(39, y+57, title, 15, "#234059", 700)
+        label(39, y+80, description, 11, "#73889D")
+        for period in range(len(ERAS)):
+            x = X0 + period*STEP + 3
+            cards = buckets[(track, period)]
+            assert len(cards) <= 2, (track, period, cards)
+            for index, (name, family, detail, year) in enumerate(cards):
+                cy = y + 8 + index*78
+                color, _family_name = STYLES[family]
+                card_w, card_h = 179, 69
+                rect(x, cy, card_w, card_h, "#FFFFFF", color, radius=7, sw=1.5)
+                rect(x, cy, 5, card_h, color, radius=2)
+                marks = logos.get(name, ())
+                title_x = x + (41 if marks else 12)
+                # Keep titles within the card even when a source logo is present.
+                title_size = 11 if marks and len(name)>=11 else 12 if len(name)>15 else 14
+                label(title_x, cy+26, name, title_size, "#213B53", 700)
+                label(x+12, cy+53, detail, 11 if len(detail)<=23 else 10, "#698097")
+                label(x+card_w-27, cy+15, f"'{year}", 9, "#8B9BAC")
+                if len(marks) == 1:
+                    assert logo_at(marks[0], x+12, cy+7, 24), (name, marks)
+                elif len(marks) == 2:
+                    assert logo_at(marks[0], x+10, cy+5, 17), (name, marks)
+                    assert logo_at(marks[1], x+23, cy+18, 17), (name, marks)
+
+    footer_y = Y0 + (len(LANES)-1)*LANE_STEP + LANE_STEP - 3
+    rect(20, footer_y+14, W-40, 95, "#E8EEF5", radius=10)
+    label(38, footer_y+43, "METHOD FAMILY", 12, "#60798F", 700)
+    legend_x = 190
+    for color, family_name in STYLES.values():
+        rect(legend_x, footer_y+31, 13, 13, "#FFFFFF", color, radius=2)
+        label(legend_x+19, footer_y+42, family_name, 10, "#36536B", 600)
+        legend_x += len(family_name)*6+35
+    label(38, footer_y+69, "X = cited-reference period; row = primary task; border = method family; logos = audited affiliations.", 11, "#60798F")
+    label(38, footer_y+87, "Representative milestones, not a census. Proximity does not imply citation or causal influence.", 11, "#60798F")
     add("</svg>")
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text("\n".join(out)+"\n", encoding="utf-8")
