@@ -348,3 +348,9 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Reconciled LayoutFormer++'s original CVPR 2023 publisher abstract and held its citation tier to `abstract_index`, without claiming original quantitative table checks.
 - [x] Updated Methods and Evaluation to distinguish multimodal layout generation and rendered preference judgments from native document edit success.
 - [ ] Original LayoutDETR Table 3 quantitative cells, LayoutFormer++ numerical results and all remaining citation-level source audits remain open, alongside full PDF CI confirmation and author scientific sign-off.
+
+## Missing-citation and author-order repair — 2026-11-08
+
+- [x] Analyzed failed Paper PDF workflow 42443118646: citation checker reported unused `zhu2024visuallyrichplanning`. Added a source-bounded citation in the manuscript's document-scale planning discussion.
+- [x] Corrected original arXiv 2404.15271 author order to Wanrong Zhu, Jennifer Healey, Ruiyi Zhang, William Yang Wang, Tong Sun and kept its audit at `abstract_index`.
+- [ ] Confirm that the next Paper PDF CI succeeds before claiming successful typesetting or final visual acceptance.
