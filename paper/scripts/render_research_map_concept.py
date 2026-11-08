@@ -166,7 +166,7 @@ def main() -> None:
         paper_sample(px+13,191,i,accent)
         label(px+111,217,head,18,"#27445B",700)
         label(px+111,245,question,14,"#5B7487")
-        label(px+111,276,("layout prediction","visual/text constraints","vectors and layers","slide and figure objects")[i],12,"#7C90A0")
+        label(px+111,276,("LayoutGAN / VTN","CGL-GAN / PosterLayout","COLE / OpenCOLE","AutoPresent / AutoFigure")[i],12,"#7C90A0")
 
     # Each row is a stream of research questions; the horizontal axis supplies
     # dates, and border colors convey the *model family*. The faint directional
