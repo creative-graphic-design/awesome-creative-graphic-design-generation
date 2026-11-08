@@ -1,5 +1,11 @@
 # Figure sources
 
+## Shared design system
+
+All four manuscript figures consume the canonical palette and TikZ primitives in `figure_style.tex`. The SVG research-map renderer reads the same hex values directly from that file; do not duplicate hex colors in the Python renderer. Keep typography sans-serif, border lines muted, rounded cards restrained, and use the same semantic accent assignments across figures: blue for geometry, orange for composition/operations, green for structured assets/verification, violet for document workflows, and pink for editing benchmarks. Figure 3 uses a dark-navy full-width title bar; Figure 4 now uses the same title treatment. Conceptual Figures 1–2 use the same typography, outlines, and semantic colors on compact diagrams rather than duplicating the research-map masthead.
+
+After updating a figure, run `make figures` and compile the manuscript, then visually inspect each figure in the full-page PDF at print scale (including labels, caption fit, arrows, card alignment and visual contrast). A successful TikZ build alone is not a design review.
+
 `overview.tex`, `edit_protocol.tex`, and `research_map.tex` are self-contained standalone TikZ figures. Their manuscript float wrappers (`*_figure.tex`) store captions and labels, and include the generated PDFs in `../pdf/`. Run `make figures` to render all three vector PDFs.
 
 The research map's 67 labels are linked to their cited bibliography entries in `research_map_sources.csv`. `paper/scripts/check_manuscript.py` checks this correspondence and each citation year. See `paper/RESEARCH_MAP_AUDIT.md` for selection, known preprint-versus-venue year differences, and limits of evidence.
