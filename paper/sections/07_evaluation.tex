@@ -20,13 +20,11 @@ In the original \ac{textdiffuser} comparison, the OCR F-measure is 0.7824 versus
 Constraint-conditioned placement is a different measurement target: \ac{layoutformerpp} filters layouts to at most 20 elements and reports \ac{rico} completion mIoU 0.732 versus \ac{layouttransformer}'s 0.363 (original Table~1) \citep{layoutformerpp2023}.
 Neither measurement constitutes execution of a semantic editing operation on an exported native graphic-design document.
 
-
 \paragraph{Layout fidelity is metric- and dataset-specific.}
 Content-conditioned poster layouts may reduce visual subject occlusion while sacrificing geometric alignment \citep{cglgan2022}.
 In the original \ac{cglgan} Table~1, subject-occlusion scores improve from 1.143 to 0.816 relative to ContentGAN, while alignment deviation worsens from 0.0071 to 0.0098.
 Discrete layout diffusion improves several layout-distribution metrics with a categorical/coordinate-aware noise process \citep{layoutdiffusion2023}.
 Its original \ac{rico} Table~2 reports layout-FID 2.490 against 3.174 for a uniform coordinate corruption variant, but neither score is comparable to image-space Inception-FID or measures revision of native text objects.
-
 
 \paragraph{Metric-specific trade-offs in foundational layout systems.}
 In \ac{layoutgan}'s original ICLR experiment, a wireframe-based discriminator reduces document-layout box overlap from 1.52\% to 1.17\% and alignment deviation from 6.4\% to 3.4\% compared with a relation-only discriminator (original Table~2) \citep{layoutgan2019}.
@@ -50,8 +48,9 @@ Consequently, numerical results from the two papers should not be merged into a 
 The conditioned generation scenarios and the quality/diversity trade-off are central to interpretation.
 Such metrics concern the arrangement of design elements; even a strong score does not measure the usability of an exported creative file.
 
-\ac{vectorfusion} evaluates prompt consistency using \ac{clip} similarity and \ac{clip} R-Precision over 128 caption prompts and analyzes the effect of vector primitive count and initialization \citep{vectorfusion2023}.
-These experiments measure semantic correspondence of the rendered graphic.
+Evaluation of vector generation often concerns the rendered SVG rather than a later source-level edit.
+For example, \ac{vectorfusion} assesses prompt consistency with \ac{clip} similarity and \ac{clip} R-Precision over 128 caption prompts, as well as sensitivity to initialization and primitive count \citep{vectorfusion2023}.
+These results establish visual-semantic correspondence, whereas subsequent vector-representation studies ask how accurately shapes can be reconstructed or organized.
 
 Vector representation learning measures whether a model reconstructs or organizes shapes, not whether it obeys a subsequent design instruction.
 By contrast, \ac{deepsvg} studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; \ac{svgformer} reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}.
@@ -65,8 +64,9 @@ Text-to-vector synthesis instead emphasizes correspondence between a prompt and 
 \ac{clip} retrieval and text-image similarity characterize visual-semantic consistency of rendered SVGs but do not test whether typographic objects can be reopened and edited as text.
 Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
 
-For layered synthesis, \ac{taue} studies 1,770 filtered \ac{mscoco} samples using \ac{fid}, image/text alignment, and foreground/background reconstruction through \ac{psnr}, \ac{ssim}, and \ac{lpips} (Section 4.2 and Table 2).
-Its Figure 6 shows layout and background-replacement demonstrations, but Section 6 acknowledges pixel-level foreground-preservation limitations, and its reconstruction scores do not measure held-out edit-instruction success.
+Layer-synthesis benchmarks commonly measure visual coherence and reconstruction without testing subsequent object manipulation.
+For example, \ac{taue} reports \ac{fid}, image/text alignment, and foreground/background reconstruction using \ac{psnr}, \ac{ssim}, and \ac{lpips} on 1,770 filtered \ac{mscoco} examples (Section 4.2 and Table 2).
+Its layout and background-replacement examples (Figure 6) demonstrate potential interventions, but the acknowledged preservation limitations (Section 6) and reconstruction metrics do not establish held-out edit-instruction success.
 
 Chroma-key foreground generation is evaluated primarily as image synthesis rather than native-object editing.
 \ac{tkgdm} evaluates chroma-key images generated for 3,000 MAGICK-derived prompts with \ac{fid}, mask-based FID, and image/text \ac{clip} alignment scores (Section 5.2 and Table 1), rather than measuring operations on native editing objects.
@@ -169,7 +169,6 @@ The original \ac{svgeditbench} applies six code-edit operations to 100 Twemoji s
 In Table~1, GPT-4 has lower color-change MSE than GPT-3.5 (\(6.88\times10^{-5}\) versus 0.0134), but higher compression-task MSE (0.0071 versus 0.0023).
 Because invalid or multiple SVG outputs are excluded from these task averages, a separate valid-output denominator is needed before treating conditional MSE as end-to-end instruction success.
 
-
 These are more appropriate counterexamples to any blanket claim that quantitative vector-editing evaluation is missing.
 \ac{mildedit} describes evaluation axes for instruction following, design layout, aesthetics, and text on multi-layer documents \citep{mildedit2026}.
 \ac{posteromni} combines local editing and global poster construction, so evidence must be separated by task and output representation \citep{posteromni2026}.
@@ -201,7 +200,6 @@ These are \emph{recommended evaluation dimensions}, not a claim that a common be
 A protocol should publish the initial design and target edit, the required output format, permitted tools, allowed untouched regions, failure handling, and the evaluation judge.
 It should also distinguish an edit that preserves visual appearance by flattening the design from one that preserves editability.
 For automated judges, human calibration, judge variance, and adversarial failure cases are necessary, especially when aesthetics are being rated.
-
 
 \paragraph{Structural layout distances and color-assistance criteria.}
 \ac{ltsim} measures layout similarity through transportation of labeled and geometric elements, and therefore asks a different question from a learned-feature distributional distance such as layout \ac{fid}.
