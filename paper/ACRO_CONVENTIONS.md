@@ -40,6 +40,8 @@ This locally suppresses `acro`'s **automatic** citation, avoiding a duplicate wh
 
 ### Index and metadata preservation
 
+The stock `acro` setting `pages/fill = {\nobreakspace\acrodotfill}` adds a minimum separation before appearance-page references. This is necessary when a long expansion or source link fills a CVPR column; otherwise `pp.` may visually touch the preceding word. The existing `description` template remains unchanged. This option was validated in a compiled two-column example before applying it to the manuscript.
+
 Keep the three stock `\printacronyms[include=...,heading=none,display=all]` lists (abbreviations, systems, evaluation) and all occurrence-page indexes. Maintain original-source BibTeX keys, URLs, years and other metadata stored in `acronyms.tex`. Do not reintroduce `survey-rich`, `\NewAcroTemplate`, or a handwritten acronym list to solve a feature the stock package already supports. Source-linked metadata in the registry is not a claim that every field prints in the default list.
 
 ### Review and verification
