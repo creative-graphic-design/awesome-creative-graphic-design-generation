@@ -155,7 +155,7 @@ def main() -> None:
                 affiliations = logos.get(name, ())
                 title_x = x + (40 if affiliations else 12)
                 label(title_x, yy+23, name,
-                      11 if affiliations and len(name)>12 else 12 if len(name)>15 else 14,
+                      11 if affiliations and len(name)>=11 else 12 if len(name)>15 else 14,
                       "#1F3951", 700)
                 label(x+12, yy+48, detail, 10 if len(detail)>22 else 11, "#6B8197")
                 if len(affiliations) == 1:
