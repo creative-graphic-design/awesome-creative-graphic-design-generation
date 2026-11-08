@@ -34,30 +34,32 @@ Visual Layout Composer explicitly models a coupled image/vector diffusion proces
 Layer-wise image vectorization instead aims to infer multiple stylized regions and corresponding vector shapes from an input raster \citep{live2022}.
 The existence of vector paths does not establish instruction-driven edit accuracy or unchanged-object preservation.
 
-Hierarchical systems including \ac{cole} and \ac{opencole} generate designs through intermediate composition steps.
+Layered design synthesis and raster-to-layer reconstruction should be distinguished because they can expose similar compositing operations while solving different inference problems.
+Hierarchical systems such as \ac{cole} and \ac{opencole} construct layered designs through intermediate composition decisions.
 
-Raster-to-layer recovery addresses a different task from generating a layered composition from scratch.
-In contrast to directly generating layers, \ac{layerd} reconstructs a layer stack from a flattened design, while \ac{qwenimagelayered} predicts a variable number of semantically separated raster \ac{rgba} layers from an input image \citep{layerd2025,qwenimagelayered2026}.
-\ac{pixelart} offers another image-to-layer approach, using a pixel-space rectified-flow transformer and layout-box conditioning instead of a pretrained text-to-image backbone and an RGBA autoencoder \citep{jia2026pixelart}.
-These approaches support layer-level manipulation, but reconstruction metrics and qualitative editing examples do not establish native text-object preservation or measured success on arbitrary editing instructions.
+Raster-to-layer recovery begins with a finished rendering rather than a design brief.
+\ac{layerd} reconstructs layers from flattened designs, while \ac{qwenimagelayered} predicts a variable number of raster \ac{rgba} layers \citep{layerd2025,qwenimagelayered2026}.
+\ac{pixelart} explores pixel-space rectified-flow decomposition with additional layout conditioning \citep{jia2026pixelart}.
+Although these outputs can expose separable content for recomposition, reconstruction metrics and qualitative edits do not establish native text-object preservation or reliable semantic revision.
 
 Transparent-asset generation provides compositing control even when a design-object hierarchy is absent.
 \ac{layerfusion} instead jointly synthesizes transparent foreground and background layers, while \ac{igd} combines predicted layer attributes with generated image assets.
 \ac{alfie} instead obtains a transparent raster foreground by estimating an alpha matte from diffusion-transformer attention maps, enabling placement in an external composition but not independent editing of internal text or vector objects.
 A portable \ac{rgba} illustration is therefore a compositing affordance, not evidence of a native multi-object design hierarchy.
 
-Other pipelines infer reusable raster layers from a composite image without recovering the original authoring objects.
-\ac{layeringdiff} disassembles an initially generated composite into foreground RGB plus alpha, reconstructed background RGB, and final recomposited image (Section 3 and Figure 1).
-Figure 7 illustrates iterative decomposition into several foreground raster layers, but neither this application nor the base two-layer output preserves independently editable font or vector objects.
+Recovering reusable layers from a raster composite is not equivalent to recovering the original document hierarchy.
+\ac{layeringdiff} separates a composite into foreground RGB and alpha, reconstructed background RGB, and a recomposed image (Section 3 and Figure 1).
+Its iterative examples (Figure 7) demonstrate further foreground separation but not recovery of original font or vector objects.
+Consequently, a reconstruction evaluation should not be interpreted as proof of native semantic editing.
 
 Instruction-conditioned recovery can also target ordered, partially occluded design components.
 \ac{uniworlddesign} generates standalone transparent assets and recovers ordered, complete semantic \ac{rgba} layers from a flattened image using global and per-layer instructions (Sections 3.3--3.5).
 Although designer-authored \ac{psd} files supply its layer-tree supervision, the reported model output is an \ac{rgba} stack, not an exported editable PSD document with native font, vector, or typography objects.
 A complete occluded raster object may be moved and recomposed, but that format affordance is not itself a measured success rate for post-export semantic design edits.
 
-Code-native designs introduce a separate class of manipulation: source-level access to structured text and elements.
-Code-native systems represent text and assets with manipulable \ac{html}/\ac{css} elements \citep{designascode2026,editablevisual2026}.
-Their artifact format provides substantial leverage for editing, yet success under a controlled editing protocol remains an independent empirical question.
+Code-native designs afford a different form of control because text and layout can be addressed through document structure rather than image regions.
+Systems that deliver \ac{html}/\ac{css} expose individually manipulable elements and properties \citep{designascode2026,editablevisual2026}.
+This source-level access broadens the possible editing operations, but only a controlled edit protocol can establish whether requested changes succeed without collateral damage.
 
 \subsection{Four Types of Evidence}
 We distinguish: \emph{format affordance}, where structure permits a type of manipulation; \emph{workflow demonstration}, where authors show specific edits; \emph{human editing efficiency}, where users are measured completing a design task; and \emph{quantitative edit-operation evaluation}, where target change and unintended changes are scored.
