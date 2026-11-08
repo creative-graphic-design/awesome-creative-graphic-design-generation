@@ -22,7 +22,7 @@ These are layout-geometry and visual-saliency proxies on non-empty poster backgr
 
 \paragraph{Matched-split diffusion and flow evaluations.}
 In its original CVPR evaluation, discrete \ac{layoutdm} compares six tasks on \ac{rico} and \ac{publaynet} with training-data preprocessing and a shared layout-feature FID model \citep{layoutdm2023}.
-For category-conditioned size-and-position generation on \ac{rico}, its FID is 3.55 compared with 3.97 for BART and 6.84 for \ac{layoutganpp}, but in completion its 9.00 is worse than LayoutTrans at 3.71 (Table~1).
+For category-conditioned size-and-position generation on \ac{rico}, its FID is 3.55 compared with 3.97 for BART and 6.84 for \ac{layoutganpp}, but in completion its 9.00 is worse than \ac{layouttransformer} at 3.71 (Table~1).
 This trade-off prevents a claim of universal superiority and illustrates that completion evaluates reconstruction of missing layout attributes rather than semantic authoring operations.
 \ac{layoutflow} \citep{layoutflow2024} studies a different training split and explicitly retrains selected baselines for comparison (Sec.~5.1).
 In its matched-split unconditional Table~1, \ac{layoutflow} obtains \ac{rico} FID 2.37 against \ac{layoutdiffusion} at 2.49, while on \ac{publaynet} it obtains 8.87 against \ac{layoutdiffusion} at 8.63.
