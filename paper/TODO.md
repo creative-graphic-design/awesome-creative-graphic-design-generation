@@ -340,3 +340,11 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Rebased the unchanged-baseline test to **225 linked / 0 unresolved**, replaced empty-queue-negative cases with injected stale queue rows, preserved stale-priority regression coverage, and added explicit stale-link-status rejection.
 - [x] Audited the frozen 225-ID snapshot against BibTeX using the validator's exact identity-priority algorithm. Corrected **five stale `match_method` fields** (CGD-008, CGD-013, CGD-017: DOI→URL; CGD-189, CGD-207: URL→DOI). No citation keys or author-review decisions changed.
 - [ ] Re-run repository CI to verify this set on GitHub. Research-map and institutional-logo rules are outside this task and have not been modified.
+
+## LayoutDETR / LayoutFormer++ verification — 2026-11-08
+
+- [x] Read original LayoutDETR paper §§3–5.3 and supplement HTML, checked its experimental dataset denominators (7,196 / 59,978 / 32,063), 308-banner human preference experiment and output-contract limitations. See [T17 original source audit](T17_LAYOUTDETR_SOURCE_AUDIT.md).
+- [x] Promoted only `layoutdetr2024` to `methods_results`; numeric results unavailable from the original HTML table were deliberately not copied from secondary sources.
+- [x] Reconciled LayoutFormer++'s original CVPR 2023 publisher abstract and held its citation tier to `abstract_index`, without claiming original quantitative table checks.
+- [x] Updated Methods and Evaluation to distinguish multimodal layout generation and rendered preference judgments from native document edit success.
+- [ ] Original LayoutDETR Table 3 quantitative cells, LayoutFormer++ numerical results and all remaining citation-level source audits remain open, alongside full PDF CI confirmation and author scientific sign-off.

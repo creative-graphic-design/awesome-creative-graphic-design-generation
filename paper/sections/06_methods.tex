@@ -16,6 +16,8 @@ Adversarial layout methods use \ac{gan} objectives to model distributions over e
 In the original LayoutGAN, a differentiable wireframe renderer exposes overlap and alignment to the discriminator, but its generated representation remains sets of element types and bounding-box parameters (Sec.~4.2).
 The wireframe discriminator lowers document-layout overlap and misalignment relative to a relation-only discriminator in the authors' experiment, without exporting authoring-software text or image objects.
 \ac{cglgan} conditions advertising layouts on visual context; \ac{layoutdetr} applies detection-transformer-style conditioning to foreground composition \citep{layoutdetr2024}.
+LayoutDETR conditions predicted foreground text/image bounding boxes on a background canvas and corresponding source assets, encoding text length and class to control size and placement (original Secs.~3.1--3.3).
+Its renderer and graphical interface demonstrate design generation and preference comparisons, but the generated layout boxes do not themselves prove a reusable native document with semantically editable text.
 \ac{layoutdm} and \ac{layoutdiffusion} illustrate diffusion over discrete layout attributes \citep{layoutdm2023}, while \ac{layoutflow} addresses continuous geometry \citep{layoutflow2024}.
 Early and intermediate directions include wireframe discrimination in \ac{layoutgan}, \ac{vae}-based document reconstruction in \ac{canvasvae}, self-attentive scene completion in \ac{layouttransformer}, latent-space constraint optimization built on \ac{layoutganpp}, diffusion with explicit aesthetic constraints in \ac{lace}, and in-context layout generation with \ac{layoutprompter}.
 \ac{layoutgpt} uses language models for visual planning across domains.

@@ -157,6 +157,11 @@ These results demonstrate color prediction and designer-facing recoloring, but d
 The top-1 accuracy falls from 0.36 for one masked color to 0.17 for five (Table 5), indicating a limitation of simultaneous multi-color recommendations.
 Color agreement, geometric matching, and task completion should be reported as independent evaluation dimensions, particularly when a design system supports human adjustments.
 
+\paragraph{What pairwise banner preference measures.}
+LayoutDETR reports an Amazon Mechanical Turk preference study on 308 rendered ad-banner samples with three annotators per binary comparison (original Sec.~5.3 and Table~4) \citep{layoutdetr2024}.
+The question asks which of two rendered designs looks better, with no predefined scoring dimension, and thus measures comparative visual preference rather than whether a participant successfully edited a saved design or preserved its unrelated content.
+Its separate geometry and distributional comparisons (Sec.~5.2 and Table~3) must also be distinguished from these pairwise human judgments.
+
 \subsection{Human Preferences and Design-Principle Judges}
 Graphic-design evaluation must distinguish aesthetic preference, layout-rule compliance, and whether a model can identify a design fault.
 \citet{haraguchi2024gptdesign} compare GPT-based judgment of design principles against heuristic scores and human assessments rather than treating a \ac{vlm}'s score as ground truth.

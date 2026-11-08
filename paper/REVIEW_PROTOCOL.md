@@ -109,3 +109,7 @@ LayoutGAN (CGD-022), PosterLayout (CGD-046), and OpenCOLE (CGD-074) have origina
 ## T16 vector evidence and DOI synchronization (2026-11-08)
 
 The original result tables of DeepSVG, SVGformer and VectorFusion were checked against the papers and documented in [T16_VECTOR_REPRESENTATION_SOURCE_AUDIT.md](T16_VECTOR_REPRESENTATION_SOURCE_AUDIT.md). Their evaluation concerns interpolation, vector reconstruction/classification/retrieval, and caption alignment, not measured post-export edit-command performance. The PosterLayout citation's DOI was added to the acro metadata to match the official CVPR DOI already added to its BibTeX entry, resolving the concrete manuscript-checker mismatch on commit `a4dd3dc`. This does not resolve unrelated figure/logo CI checks.
+
+## T17 multimodal layout original methods and human preference audit — 2026-11-08
+
+LayoutDETR's original HTML manuscript (§§3–5, Supplement B–C) and ECCV publication identity were checked with exact source locators in [T17_LAYOUTDETR_SOURCE_AUDIT.md](T17_LAYOUTDETR_SOURCE_AUDIT.md). It is credited only for source-verified multimodal layout input/output, training populations and pairwise design preference, not editing success. LayoutFormer++ is kept at abstract-level verification pending original experiments. No image/map or institutional-logo files were changed.
