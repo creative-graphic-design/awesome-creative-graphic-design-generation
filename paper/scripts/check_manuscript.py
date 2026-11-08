@@ -387,9 +387,19 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
         r"\\MapPaperBrand\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}\{([a-z0-9]+)\}\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{[^{}]+\}\{([a-z-]+)\}",
         figure_source,
     )
+    dual_brand_uses = re.findall(
+        r"\\MapPaperBrandPair\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}\{([a-z0-9]+)\}\{[^{}]+\}\{[^{}]+\}\{[a-z]+\}\{[^{}]+\}\{\\MapLogoPair\{([a-z-]+)\}\{([a-z-]+)\}\}",
+        figure_source,
+    )
+    require(dual_brand_uses == [("A", "LayoutFlow", "24", "layoutflow2024", "utokyo", "cyberagent-symbol")],
+            "LayoutFlow must show both verified University of Tokyo and CyberAgent icons")
+    require(r"\newcommand{\MapLogoPair}[2]" in figure_source and
+            r"width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio" in figure_source,
+            "Multiple affiliation symbols must be proportionally bounded within the logo column")
     seen = {(lane, label, "20"+year, key): stem
             for lane, label, year, key, stem in brand_uses}
-    require(len(seen) == len(brand_uses), "Duplicate identity logos for a study")
+    seen.update({(lane, label, "20"+year, key): primary for lane, label, year, key, primary, secondary in dual_brand_uses})
+    require(len(seen) == len(brand_uses) + len(dual_brand_uses), "Duplicate identity logos for a study")
     expected = {}
     for rec in affiliation_records:
         stem = status_to_stem.get(rec["logo_review_state"])
@@ -420,7 +430,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\MapCardTextOffset,-\MapCardDetailOffset" in figure_source and
             r"\includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]" in figure_source,
             "Every study card must use independent anchored contents within fixed proportional frames")
-    require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 2 and
+    require(figure_source.count(r"\MapPaperFrame{#5}{#6}{#7}{") == 3 and
             figure_source.count(r"\MapPaperContent{#2}{#3}{#8}{") == 2,
             "Branded and unbranded study cards must share the proportional layout component")
     require(r"\hspace*{.53cm}" not in figure_source and
