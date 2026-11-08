@@ -44,8 +44,8 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
     def test_layoutflow_pair_stays_inside_logo_quarter(self):
         self.assertIn(r"\MapPaperBrandPair{A}{LayoutFlow}{24}{layoutflow2024}", self.source)
         self.assertIn(r"\MapLogoPair{utokyo}{cyberagent-symbol}", self.source)
-        self.assertIn(r"at (.12\MapCardLogoWidth,.69\MapCardContentHeight)", self.source)
-        self.assertIn(r"at (.52\MapCardLogoWidth,.31\MapCardContentHeight)", self.source)
+        self.assertIn(r"at (.19\MapCardLogoWidth,.69\MapCardContentHeight)", self.source)
+        self.assertIn(r"at (.59\MapCardLogoWidth,.31\MapCardContentHeight)", self.source)
         self.assertIn(r"\path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight)", self.source)
         self.assertIn(r"width=\MapPairLogoSize,height=\MapPairLogoSize,keepaspectratio", self.source)
         self.assertIn(r"\setlength{\MapPairLogoSize}{.38\MapCardLogoWidth}", self.source)
