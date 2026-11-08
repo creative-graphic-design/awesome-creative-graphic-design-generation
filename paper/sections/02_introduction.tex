@@ -1,35 +1,29 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Recent advances in generative modeling have enabled the automatic creation of graphic designs across a wide range of applications, including posters and advertisements \citep{posterlayout2023,cglgan2022,layoutdetr2024}, presentation slides \citep{autopresent2025,pptagent2025}, infographics \citep{bizgen2025}, and scientific illustrations and academic posters \citep{autofigure2026,postergen2026}.
-Beyond arranging visual elements, poster-creation systems such as \ac{vinci} and \ac{autoposter} address broader stages of the design workflow \citep{vinci2021}.
-Although these applications differ in content and visual conventions, they share the challenge of coordinating text, imagery, geometry, and typography under semantic and aesthetic constraints.
+Graphic design communicates information through the coordinated use of typography, imagery, color, and spatial organization \citep{huang2023survey,zou2025fragment}.
+Creating a coherent composition involves decisions about what content to present, how to establish visual hierarchy, and how to adapt a design to its intended medium.
+Recent research has brought generative methods to a growing range of such tasks, including posters and advertisements \citep{posterlayout2023,cglgan2022}, presentation slides \citep{autopresent2025,pptagent2025}, infographics \citep{bizgen2025}, and scientific illustrations \citep{autofigure2026}.
+Despite their different conventions, these tasks share a need to align semantic content with visual organization.
 
-Research in generative graphic design builds on earlier work in knowledge-based graphical presentation and interactive design assistance \citep{mackinlay1986,designscape2015}.
-A substantial body of research has addressed the geometric arrangement of design elements \citep{layoutgan2019,layoutdm2023,layoutdiffusion2023}.
-Other research considers broader design generation workflows, including content synthesis, composition, and refinement \citep{cole2023,opencole2024,designascode2026}.
-In parallel, methods for vector synthesis and layer decomposition explore representations that preserve more than rasterized appearance \citep{vectorfusion2023,iconshop2023,layerd2025}.
-Consequently, methods now differ not only in the images they produce but also in the structures and operations their outputs support.
+A central challenge is that a graphic design is not only an image to be viewed, but often an artifact to be revised.
+Designers may replace text, reposition visual elements, adjust hierarchy, or adapt a composition to a new format while retaining other parts of the work.
+Generative approaches address different parts of this process, from spatial composition \citep{layoutgan2019,layoutdm2023} to fuller design synthesis and structured representations \citep{cole2023,opencole2024,designascode2026}.
+Yet the appearance of the rendered result alone does not reveal what can be changed afterward.
+Two visually similar designs may have very different underlying structures and, consequently, very different affordances for further editing.
 
-This representational diversity raises a central question: to what extent can a generated design be \emph{revised}?
-In practical workflows, text may need to be replaced, a logo moved, an aspect ratio changed, or a composition adapted to a different medium.
-A raster image, a set of layout boxes, and a document containing editable text or vector paths may look similar when rendered while offering markedly different ways to modify their contents.
-Structured formats can preserve separately editable objects, text, and spatial relationships, but the available editing operations depend on how those structures are represented and exposed \citep{cole2023,designascode2026}.
-Nevertheless, the presence of a structured representation does not by itself establish whether a system can execute a requested edit correctly.
-Conversely, image-space editing can satisfy a visual instruction without yielding independently manipulable design objects.
-Moreover, local edits can require neighboring elements to reflow \citep{yang2026infoedit}, complicating the notion that all non-target content should remain fixed.
+This distinction matters because \emph{editability} is not a single property.
+A format may expose individual elements without providing a reliable way to carry out a requested change, while an image-based editing system may satisfy a visual instruction without delivering separable objects.
+Some edits also require dependent changes to neighboring content, so preserving everything outside a target region is not always the appropriate objective \citep{yang2026infoedit}.
+Assessing revision therefore requires attention to the delivered artifact, the operations it permits, and the evidence that those operations succeed.
 
-These differences matter for evaluation as well as generation.
-Layout-generation studies often assess geometric or distributional properties \citep{layoutdm2023}, whereas text-conditioned vector synthesis can be evaluated through agreement between a prompt and a rendered image \citep{vectorfusion2023}.
-Such measurements address different questions from controlled human editing studies \citep{vinci2021} and instruction-following benchmarks for \ac{svg} or multi-layer documents \citep{svgeditbench2024,mildedit2026}.
-Without specifying the delivered representation, allowed operations, and observed results, comparisons risk conflating \emph{visual fidelity}, \emph{structural editability}, and \emph{editing performance}.
+Evaluation practices make these differences difficult to compare.
+Studies of spatial composition often report geometric or distributional quality \citep{layoutdm2023}, whereas other work assesses perceptual alignment, usability, or instruction-following edits \citep{vectorfusion2023,vinci2021,svgeditbench2024}.
+These measurements can be valuable for their intended tasks, but they do not establish the same claim about a design's usability after generation.
+In particular, visual fidelity, structural editability, and measured editing performance should not be treated as interchangeable outcomes.
 
-Existing surveys provide important but complementary accounts of this field.
-\citet{huang2023survey} organize graphic design intelligence around representation, understanding, and generation, while \citet{zou2025fragment} examine perception and generation across design elements and workflows.
-Surveys focused on layout generation \citep{shi2023layoutsurvey} and vector graphics \citep{tian2024vectorsurvey} offer deeper treatment of particular representations.
-However, these perspectives do not by themselves provide a common framework for comparing the editability of delivered artifacts with the evidence that systems can perform requested revisions.
-
-To address this gap, we examine \ac{rev} across generative graphic design systems.
-We organize the artifacts that methods deliver and the operations those artifacts afford, and distinguish demonstrated editing workflows from capabilities supported by quantitative evidence.
-We then compare evaluation protocols across representations and identify open problems in instruction adherence, required layout reflow, non-target preservation, native-artifact validity, and human design workflows.
-Figures~\ref{fig:rev} and \ref{fig:protocol} summarize these complementary views.
+Existing surveys offer broad perspectives on graphic design intelligence and generation \citep{huang2023survey,zou2025fragment}, as well as focused accounts of layout generation \citep{shi2023layoutsurvey} and vector graphics \citep{tian2024vectorsurvey}.
+Their task- and representation-oriented analyses provide essential context, but a cross-cutting comparison must also distinguish what a generated artifact makes possible from what an editing workflow has actually demonstrated or measured.
+This survey addresses that distinction through a representation--editability--evaluation (\ac{rev}) framework for generative graphic design.
+We examine delivered artifact types, the revision operations they support, and the evidence used to evaluate those operations, before identifying outstanding challenges in instruction adherence, reflow, preservation, artifact validity, and human workflows.
+Figures~\ref{fig:rev} and \ref{fig:protocol} illustrate the framework and the associated evaluation questions.
