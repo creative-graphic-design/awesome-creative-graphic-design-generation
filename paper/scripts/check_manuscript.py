@@ -245,7 +245,7 @@ for source_file in acro_sources:
         acronym_key, cited_key = matched.groups()
         require(registered_cites.get(acronym_key) != cited_key,
                 f"{source_file.relative_to(PAPER)}: redundant \\ac{{{acronym_key}}} \\citep{{{cited_key}}}; use acro's first-use citation")
-    for match in re.finditer(r"\\\\ac\\*\\{([^}]+)\\}\\s*\\\\citep\\{([^}]+)\\}", data):
+    for match in re.finditer(r"\\ac\*\{([^}]+)\}\s*\\citep\{([^}]+)\}", data):
         acronym_key, cited_key = match.groups()
         require(registered_cites.get(acronym_key) == cited_key,
                 f"{source_file.relative_to(PAPER)}: starred acro resource {acronym_key} must cite its registered source")
