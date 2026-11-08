@@ -405,3 +405,8 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Classified these as `abstract_index` and kept all quantitative empirical and editability claims `not_verified`, without inventing source-specific method/results locators or creating false systematic inclusion decisions.
 - [x] Added CI consistency checks that prevent a future abstract-only key from acquiring methods/results status without updating its source-evidence manifest.
 - [ ] The remaining first-party source access gaps require publisher/author originals; main methods/results checks for abstract-level sources remain scientific work. Logos and research maps were not modified in this scientific workstream.
+
+## T23 final primary abstract-source reconciliation — 2026-11-08
+
+- [x] Verified original ACM/author sources for Rico, DocLayNet, 1986 Mackinlay, and official CVF abstract for VFLM with source URLs; promoted only four entries to `abstract_index`, keeping empirical results and document editing unverified.
+- [ ] `liu2024graphiclayoutsurvey` original publisher/author abstract is not yet verifiable through a retrieved first-party record and remains `not_verified`. Do not forge `methods_results` source evidence.
