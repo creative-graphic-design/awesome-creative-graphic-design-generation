@@ -241,7 +241,7 @@ registered_cites = {
 }
 for source_file in acro_sources:
     data = source_file.read_text(encoding="utf-8")
-    for matched in re.finditer(r"\\\\ac\\{([^}]+)\\}[ \\t]*~?[ \\t]*\\\\citep\\{([^}]+)\\}", data):
+    for matched in re.finditer(r"\\ac\{([^}]+)\}[ \t]*~?[ \t]*\\citep\{([^}]+)\}", data):
         acronym_key, cited_key = matched.groups()
         require(registered_cites.get(acronym_key) != cited_key,
                 f"{source_file.relative_to(PAPER)}: redundant \\ac{{{acronym_key}}} \\citep{{{cited_key}}}; use acro's first-use citation")
