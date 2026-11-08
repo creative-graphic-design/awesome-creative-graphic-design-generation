@@ -30,5 +30,6 @@ When introducing an acronym or a named model, add an entry to `paper/acronyms.te
 Use `\ac{key}` (or `\acp{key}` for plurals) in prose.
 Keep separate abbreviation and named-system tags; use `first-style=short` for named systems, avoiding invented backronyms.
 The manuscript and CI checks must validate all keys, and the rendered lists and first mentions must be visually reviewed.
+Run `python3 paper/scripts/check_acro_names.py` for unwrapped registered names; it is included in `make check` and checks section prose, tables and figure captions.
 
 For literature edits, update the per-study unresolved `evidence_review_queue.csv` whenever the source crosswalk changes, preserving stable ID and original provenance. The source-checked priority tiers are triage hints, not verified evidence status. The `check_evidence_register.py` gate validates the queue and 30-day snapshot freshness; do not bypass its negative tests.
