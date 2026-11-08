@@ -394,7 +394,9 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
     require(dual_brand_uses == [("A", "LayoutFlow", "24", "layoutflow2024", "utokyo", "cyberagent-symbol")],
             "LayoutFlow must show both verified University of Tokyo and CyberAgent icons")
     require(r"\newcommand{\MapLogoPair}[2]" in figure_source and
-            r"width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio" in figure_source,
+            r"width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio" in figure_source and
+            r"at (.30\MapCardLogoWidth,.69\MapCardContentHeight)" in figure_source and
+            r"at (.70\MapCardLogoWidth,.31\MapCardContentHeight)" in figure_source,
             "Multiple affiliation symbols must be proportionally bounded within the logo column")
     seen = {(lane, label, "20"+year, key): stem
             for lane, label, year, key, stem in brand_uses}
@@ -422,7 +424,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             r"\MapCardTitleOffset}{\dimexpr.5\MapCardHeight-.5\MapCardRowHeight\relax}" in figure_source and
             r"\MapCardDetailOffset}{\dimexpr.5\MapCardHeight+.5\MapCardRowHeight\relax}" in figure_source and
             r"minimum width=\MapCardWidth,minimum height=\MapCardHeight" in figure_source and
-            r"\setlength{\MapCardPaddingX}{.025\MapCardWidth}" in figure_source and
+            r"\setlength{\MapCardPaddingX}{.04\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardPaddingY}{.016\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardMarginX}{.172619\MapCardWidth}" in figure_source and
             r"\MapCardLogoCenterX,-.5\MapCardHeight" in figure_source and
