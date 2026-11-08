@@ -297,3 +297,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Updated WACV 2023 Multi-Palette publication DOI 10.1109/WACV56688.2023.00361 and official pages 3621–3629, and synchronized its citation audit.
 - [x] Added a validator guard against declaring empirical claims verified when the citation source-depth is below methods/results.
 - [ ] Further primary-source audits, prospective systematic search execution, independent author decisions and final manuscript PDF review remain open. Figures and logos are handled in another workstream.
+
+## T13 primary-survey evidence transfer — 2026-11-08
+
+- [x] Transferred the already-recorded primary survey-method/figure audit of **Zou (2025)** and **Li (2024)** from [T13_PRIOR_SURVEY_DENOMINATOR_AUDIT.md](T13_PRIOR_SURVEY_DENOMINATOR_AUDIT.md) into the citation-level audit with exact locators and strict boundaries; no new underlying empirical source received verification status.
+- [x] Strengthened the prior-survey discussion to contrast Li's explicit **552 identified / 33 included** screening stages with Zou's **500 / 267 unreconciled** survey-size claims.
+- [x] Added `scripts/report_citation_evidence.py` to output a reproducible priority-ordered backlog rather than manually recopying or claiming all 254 cited sources are verified.
+- [ ] **T13 scientific approval and systematic searches remain open:** Li Figs. 4–6 image panels and other prior surveys' source/figure comparisons, original database search exports, screening decisions and author approval have not been completed. No research-map/logo work was changed in this batch.
