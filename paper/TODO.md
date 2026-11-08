@@ -367,3 +367,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Transferred 12 additional original source audits from the Wave2 Fulltext, Remaining 13, Remaining 30 and Figure Table Trace tabs, using only previously documented first-party source sections/tables/figures.
 - [x] Added a direct scientific comparison of ReDesign, APEX and VectorGym's distinct edit-operation evaluation protocols without pooling unlike metrics.
 - [ ] Source-level validation for all remaining citations, author scientific decisions, prospective systematic search and final PDF visual QA remain outstanding; map and logo files were untouched.
+
+## T18 whole-manuscript quantitative-claim review and CI repair — 2026-11-08
+
+- [x] Scanned explicit citation-bearing sentences across 9 numbered source sections and 4 tables. Found one overt metric-related statement citing a `not_verified` reference, IconShop, and checked its original original-article evaluation Table 2 before upgrading that row to `methods_results`.
+- [x] Corrected IconShop's FID definition (CLIP features) and documented the adverse uniqueness result, avoiding a false blanket metric win.
+- [x] Read Paper PDF CI run 42445310737 and wrapped all seven newly added registered model names with stock `acro` commands in Evaluation and Benchmarks. No figure or logo modification.
+- [ ] Confirm that a following Paper PDF CI passes, and complete manual validation of narrative claims that lack literal citations on the same physical TeX line.

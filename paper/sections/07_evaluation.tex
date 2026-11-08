@@ -105,7 +105,7 @@ Thus a demonstration of SVG-based layer adjustment supports a narrower editabili
 
 \paragraph{Evaluation targets must follow the requested intervention.}
 A successful edit to a reconstructed design must preserve both the intended content change and any explicitly protected content, but not every source provides object-identity annotations or permits object-level testing.
-For example, rendered post-edit SSIM and OCR text recall in ReDesign \citep{redesign2026}, VLM-assessed modification scope in APEX \citep{apex2026}, and human-authored SVG edit benchmarks in VectorGym \citep{vectorgym2026} answer overlapping yet non-identical questions.
+For example, rendered post-edit SSIM and OCR text recall in \ac{redesign} \citep{redesign2026}, VLM-assessed modification scope in \ac{apex} \citep{apex2026}, and human-authored SVG edit benchmarks in \ac{vectorgym} \citep{vectorgym2026} answer overlapping yet non-identical questions.
 Future comparisons should report the evaluation unit (pixel, typed object, source file, or user transaction), which interventions can be replayed, which collateral changes are permitted, and whether the original and edited native file can both be reopened.
 
 \subsection{Editability Affordance Versus Editing Performance}
@@ -115,6 +115,10 @@ That is direct evidence about \emph{human workflow efficiency}, not about autono
 \ac{editablevisual} shows that output \ac{html}/\ac{css} can expose separate \ac{dom} objects and editable text in a set of case studies \citep{editablevisual2026}.
 This demonstrates a useful workflow and format affordance but does not by itself constitute a randomized user study or an instruction-edit accuracy estimate.
 \ac{iconshop} demonstrates \ac{svg} icon-path manipulation while reporting \ac{fid}, \ac{clip}-based scores, and icon quality judgments for its synthesis task \citep{iconshop2023}.
+In its original text-conditioned icon experiment, \ac{iconshop} achieves CLIP-feature FID 4.65 compared with DeepSVG+GAN's 12.01, and CLIP alignment 25.74 compared with 21.78 (original Table~2).
+However, its reported text-conditioned uniqueness is 68.29\% compared with DeepSVG+GAN's 97.59\%, so quality and diversity should not be collapsed into a single dominance claim.
+The paper computes FID with a CLIP image encoder rather than an Inception feature extractor, making comparisons with layout-specific FID or natural-image Inception-FID invalid without recalibration.
+Its infill-based vector editing examples illustrate path-level capabilities but do not quantify non-target preservation or edit-command success.
 The quantitative evaluation primarily concerns synthesis, not editing.
 
 Dedicated editing benchmarks merit distinct treatment.

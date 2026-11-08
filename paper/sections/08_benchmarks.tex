@@ -78,11 +78,11 @@ Poster comparisons should separate scientific-content correctness, print readine
 
 \paragraph{A direct comparison of evaluated editing contracts.}
 Quantitative editing studies should be grouped by what the benchmark replays or judges, rather than only by the delivered file extension.
-ReDesign evaluates edit replay on 909 recovered Figma designs and 14,796 controlled instructions, comparing the rendered effects of text, layout, and color operations on original and reconstructed documents \citep{redesign2026}.
+\ac{redesign} evaluates edit replay on 909 recovered Figma designs and 14,796 controlled instructions, comparing the rendered effects of text, layout, and color operations on original and reconstructed documents \citep{redesign2026}.
 Its edited-render similarity and OCR text recovery measure action-effect fidelity, but a whole-image score does not by itself establish strict invariance of every non-target object.
-APEX-Bench instead gathers 514 academic-poster editing instructions and uses a VLM-as-judge rubric with instruction fulfillment, modification scope, and visual consistency \citep{apex2026}.
-Those VLM judgments include assessments of collateral modification and are not numerically interchangeable with ReDesign's paired edit replay.
-VectorGym supplies expert-authored multi-step SVG-edit pairs and separately reports sketch-to-SVG, text-to-SVG and captioning evaluations \citep{vectorgym2026}.
+\ac{apex}-Bench instead gathers 514 academic-poster editing instructions and uses a VLM-as-judge rubric with instruction fulfillment, modification scope, and visual consistency \citep{apex2026}.
+Those VLM judgments include assessments of collateral modification and are not numerically interchangeable with \ac{redesign}'s paired edit replay.
+\ac{vectorgym} supplies expert-authored multi-step SVG-edit pairs and separately reports sketch-to-SVG, text-to-SVG and captioning evaluations \citep{vectorgym2026}.
 Its SVG edit metrics target code-based vector modifications, not the same typographic and native document operations as an academic-poster editing interface.
 
 \subsection{Document-Scale Editing}
