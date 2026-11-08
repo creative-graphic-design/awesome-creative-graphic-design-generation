@@ -9,19 +9,19 @@ The table identifies studied tasks; it does not claim that every metric has been
 \toprule
 \textbf{Benchmark} & \textbf{Artifact / task} & \textbf{Assessed capability} & \textbf{Evidence boundary}\\
 \midrule
-\ac{svgeditbench} \citep{svgeditbench2024} & SVG code editing & Prompt-directed SVG modifications & Does not establish native edit quality in raster/PSD/DOM.\\
-\ac{postertextbench} \citep{postertext2026} & Raster e-commerce posters & Text-patch add/delete/modify and full-poster generation & OCR, masked region fidelity and VLM scores do not establish native text-object editing.\\
-\ac{vectorgym} \citep{vectorgym2026} & SVG; text/sketch/code & SVG generation, editing, sketch conversion, captioning & Four tasks and their metrics are not interchangeable.\\
-\ac{mildedit} \citep{mildedit2026} & Multi-layer design documents & Instruction, layout, aesthetics, text & Abstract-level evidence for the four axes does not establish universal scoring.\\
-\ac{infoedit} \citep{yang2026infoedit} & Infographics; edit requests & Semantic edit and layout \emph{reflow} & Rigidly unchanged non-target pixels can be an incorrect target.\\
-\ac{mptcbench} \citep{lin2026mptc} & Movie-poster adaptation & Film-identity retention; typography; target-market fit & Market adaptation changes content in ways pure similarity misses.\\
-\ac{graphicdesignbench} \citep{deganutti2026gdb} & Layered, SVG, text, animation & Spatial accuracy, text fidelity, semantic/structural validity & Task counts depend on the version of paper and project.\\
-\ac{bizgeneval} \citep{li2026bizgeneval} & Rendered commercial visuals & Layout, typography, attributes, knowledge checklists & Successful raster rendering does not guarantee editable source objects.\\
-\ac{aesevalbench} \citep{an2026aeseval} & Graphic-design aesthetic assessment & Aesthetic judgment, region selection, localization & Judge performance is not design editing performance.\\
-\ac{designprobe} \citep{designprobe2024} & Design understanding & Attribute recognition, style and semantic reasoning & Understanding is not execution of a design modification.\\
-\ac{posterreward} \citep{posterreward2026}; \ac{designsense} \citep{designsense2026} & Layout / poster preference & Human-aligned aesthetics and quality judgments & Preference models require calibration and do not score edit correctness.\\
-\ac{pptarena} \citep{pptarena2025} & Editable presentation decks & Real-slide edits, structural and visual validation & Native slide editing is not equivalent to static single-slide rendering.\\
-\ac{sciflowbench} \citep{sciflowbench2026} & Scientific diagram images & Diagram connectivity via inverse parsing & Structural graph validity and raster similarity are different dimensions.\\
+\ac{svgeditbench} & SVG code editing & Prompt-directed SVG modifications & Does not establish native edit quality in raster/PSD/DOM.\\
+\ac{postertextbench} & Raster e-commerce posters & Text-patch add/delete/modify and full-poster generation & OCR, masked region fidelity and VLM scores do not establish native text-object editing.\\
+\ac{vectorgym} & SVG; text/sketch/code & SVG generation, editing, sketch conversion, captioning & Four tasks and their metrics are not interchangeable.\\
+\ac{mildedit} & Multi-layer design documents & Instruction, layout, aesthetics, text & Abstract-level evidence for the four axes does not establish universal scoring.\\
+\ac{infoedit} & Infographics; edit requests & Semantic edit and layout \emph{reflow} & Rigidly unchanged non-target pixels can be an incorrect target.\\
+\ac{mptcbench} & Movie-poster adaptation & Film-identity retention; typography; target-market fit & Market adaptation changes content in ways pure similarity misses.\\
+\ac{graphicdesignbench} & Layered, SVG, text, animation & Spatial accuracy, text fidelity, semantic/structural validity & Task counts depend on the version of paper and project.\\
+\ac{bizgeneval} & Rendered commercial visuals & Layout, typography, attributes, knowledge checklists & Successful raster rendering does not guarantee editable source objects.\\
+\ac{aesevalbench} & Graphic-design aesthetic assessment & Aesthetic judgment, region selection, localization & Judge performance is not design editing performance.\\
+\ac{designprobe} & Design understanding & Attribute recognition, style and semantic reasoning & Understanding is not execution of a design modification.\\
+\ac{posterreward}; \ac{designsense} & Layout / poster preference & Human-aligned aesthetics and quality judgments & Preference models require calibration and do not score edit correctness.\\
+\ac{pptarena} & Editable presentation decks & Real-slide edits, structural and visual validation & Native slide editing is not equivalent to static single-slide rendering.\\
+\ac{sciflowbench} & Scientific diagram images & Diagram connectivity via inverse parsing & Structural graph validity and raster similarity are different dimensions.\\
 \bottomrule
 \end{tabularx}
 \end{table*}
