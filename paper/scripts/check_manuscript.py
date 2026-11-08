@@ -404,7 +404,7 @@ if affiliations_path.is_file() and logo_registry_path.is_file():
             "Institution logos must not be placed in a separate affiliation footer")
     require(r"\newcommand{\MapPaperFrame}[4]" in figure_source and
             r"\newcommand{\MapPaperContent}[4]" in figure_source and
-            r"\setlength{\MapCardHeight}{.218\MapCardWidth}" in figure_source and
+            r"\setlength{\MapCardHeight}{.20\MapCardWidth}" in figure_source and
             r"\setlength{\MapCardLogoWidth}{.25\MapCardContentWidth}" in figure_source and
             r"\setlength{\MapCardTextWidth}{.75\MapCardContentWidth}" in figure_source and
             r"\setlength{\MapCardRowHeight}{.5\MapCardContentHeight}" in figure_source and
