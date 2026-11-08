@@ -386,3 +386,9 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Checked original author HTML for LayoutNUWA, PosterVerse, LayerDiffuse, Qwen-Image-Layered, TextDiffuser-2 and Paper2Poster, and original supplemental evaluation methods for PosterLLaVa; synchronized seven citation-level audit entries with section/table locators and limits.
 - [x] Recorded source-specific outputs and measured constructs without conflating object-level editing and appearance-based scores; [T19 audit](T19_PRIMARY_LAYOUT_LAYER_AND_DOCUMENT_AUDIT.md).
 - [ ] PosterLLaVa main-paper experimental results, remaining source-depth backlog, systematic search/screening and final PDF checking still require evidence. No logo/map edits were performed.
+
+## T20 benchmark audit of five high-frequency citations — 2026-11-08
+
+- [x] Checked original tables in SVGEditBench, CGL-GAN and discrete LayoutDiffusion; updated citation-level methods/results audit and metric-specific manuscript interpretations.
+- [x] Checked publisher/author abstracts of InfoEdit and MiLDEdit without falsely promoting their original main numerical tables.
+- [ ] Continue original-method/results source inspections, native edit-operation reproduction, systematic screening, author approval and final PDF CI acceptance.

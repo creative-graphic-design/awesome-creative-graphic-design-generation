@@ -141,3 +141,7 @@ A new read-only `paper/scripts/report_claim_evidence.py` script enumerates manus
 ## T19 bounded original-source methods / evaluation (2026-11-08)
 
 Seven citation-level entries from original arXiv HTML (including a PosterLLaVa supplemental-only source) received source-specific methods/results audit locators; see [T19_PRIMARY_LAYOUT_LAYER_AND_DOCUMENT_AUDIT.md](T19_PRIMARY_LAYOUT_LAYER_AND_DOCUMENT_AUDIT.md). The PosterLLaVa main-paper numerical tables remain unverified; its `empirical_claim_audit` is kept `not_verified`. No arbitrary post-export editor operation or independent file round-trip was verified for any of the seven. These are original-source audits, not additions to the historical workbook-transfer CSV.
+
+## T20 high-frequency original benchmark sources — 2026-11-08
+
+I inspected primary original methods/result tables for SVGEditBench, CGL-GAN and discrete LayoutDiffusion. Their metrics, source locators and adverse comparisons are recorded in [T20_CORE_EVALUATION_SOURCE_AUDIT.md](T20_CORE_EVALUATION_SOURCE_AUDIT.md). For InfoEdit and MiLDEdit only publisher/author abstracts were inspected, so they remain `abstract_index` without claiming original main-table verification. SVGEditBench measures six bounded code-based SVG edits, not arbitrary professional document editing or an independent reopen-save check.

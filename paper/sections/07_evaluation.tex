@@ -14,6 +14,13 @@ Even within one representation, synthesis from scratch, partial completion, reco
 We therefore interpret numerical results within their original experimental contracts and use cross-paper comparisons chiefly to establish which capabilities were actually measured.
 
 \subsection{Generation Fidelity and Geometry}
+\paragraph{Layout fidelity is metric- and dataset-specific.}
+Content-conditioned poster layouts may reduce visual subject occlusion while sacrificing geometric alignment \citep{cglgan2022}.
+In the original CGL-GAN Table~1, subject-occlusion scores improve from 1.143 to 0.816 relative to ContentGAN, while alignment deviation worsens from 0.0071 to 0.0098.
+Discrete layout diffusion improves several layout-distribution metrics with a categorical/coordinate-aware noise process \citep{layoutdiffusion2023}.
+Its original Rico Table~2 reports layout-FID 2.490 against 3.174 for a uniform coordinate corruption variant, but neither score is comparable to image-space Inception-FID or measures revision of native text objects.
+
+
 \paragraph{Metric-specific trade-offs in foundational layout systems.}
 In \ac{layoutgan}'s original ICLR experiment, a wireframe-based discriminator reduces document-layout box overlap from 1.52\% to 1.17\% and alignment deviation from 6.4\% to 3.4\% compared with a relation-only discriminator (original Table~2) \citep{layoutgan2019}.
 Both remain above the corresponding real-layout overlap of 0.05\% and alignment deviation of 0.5\%, and none of these metrics measures revision of a rendered design.
@@ -125,6 +132,11 @@ The quantitative evaluation primarily concerns synthesis, not editing.
 
 Dedicated editing benchmarks merit distinct treatment.
 \ac{svgeditbench} directly evaluates \ac{llm}-driven \ac{svg} code edits on curated instructions \citep{svgeditbench2024}, while \ac{vectorgym} extends evaluation to four tasks, including expert-authored complex \ac{svg} edits, sketch conversion, text-based vector generation, and captioning \citep{vectorgym2026}.
+The original \ac{svgeditbench} applies six code-edit operations to 100 Twemoji source SVGs per task (600 prompts per evaluated model).
+In Table~1, GPT-4 has lower color-change MSE than GPT-3.5 (\(6.88\times10^{-5}\) versus 0.0134), but higher compression-task MSE (0.0071 versus 0.0023).
+Because invalid or multiple SVG outputs are excluded from these task averages, a separate valid-output denominator is needed before treating conditional MSE as end-to-end instruction success.
+
+
 These are more appropriate counterexamples to any blanket claim that quantitative vector-editing evaluation is missing.
 \ac{mildedit} describes evaluation axes for instruction following, design layout, aesthetics, and text on multi-layer documents \citep{mildedit2026}.
 \ac{posteromni} combines local editing and global poster construction, so evidence must be separated by task and output representation \citep{posteromni2026}.
