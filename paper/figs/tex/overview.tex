@@ -4,7 +4,7 @@
 \input{figs/tex/figure_style}
 \begin{document}
 \begin{tikzpicture}[font=\sffamily\scriptsize, x=1cm, y=1cm,
-  panel/.style={figpanel},
+  panel/.style={draw=figRule,fill=none,rounded corners=3pt,line width=.65pt},
   item/.style={figitem,minimum width=3.56cm,minimum height=.42cm,align=center,inner sep=2pt},
   flowarrow/.style={figflow}]
   \fill[figBlueTint,rounded corners=3pt] (-.2,-.6) rectangle (4.02,4.15);
