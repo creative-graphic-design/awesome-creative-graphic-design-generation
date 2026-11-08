@@ -209,6 +209,8 @@ This task directly tests edit operations and should be evaluated separately from
 \ac{art} generates variable numbers of transparent layers, while \ac{psdiffusion} models their joint appearance and spatial interactions in a shared synthesis process.
 \ac{qwenimagelayered} decomposes an RGB image into a variable number of semantically separated \ac{rgba} layers using an RGBA-VAE, a variable-layer diffusion transformer, and PSD-derived training data \citep{qwenimagelayered2026}.
 Its original evaluation measures layer reconstruction and alpha fidelity, while demonstrated resizing, recoloring, and replacement do not establish preservation of native text or SVG objects.
+\ac{pixelart} instead trains a pixel-space rectified-flow transformer from scratch to denoise RGBA patches and uses terminal-boosted timestep sampling to emphasize early layer assignment \citep{jia2026pixelart}.
+Unlike \ac{qwenimagelayered}'s unconstrained input interface, the published comparison conditions \ac{pixelart} on predicted bounding boxes and layer ordering, so the two decomposition scores are not obtained from identical inputs.
 \ac{layerdecomp} explicitly considers shadows and reflections during foreground/background recovery.
 \ac{mrt} unifies text-to-layer generation, image-to-layer decomposition, and layer-to-layer editing through selective masking.
 \ac{markupdm} instead completes typed content and attributes inside multimodal markup documents, demonstrating that layer synthesis and document-level semantic completion have different editing interfaces.
