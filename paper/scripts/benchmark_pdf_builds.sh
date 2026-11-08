@@ -7,12 +7,19 @@ if [[ ! -s figs/pdf/overview.pdf || ! -s figs/pdf/edit_protocol.pdf || ! -s figs
   exit 1
 fi
 mkdir -p build-timings
-for base in main main-fast; do
+for base in main-fast main; do
   latexmk -C "$base.tex" >/dev/null
   start=$(date +%s)
-  /usr/bin/time -f 'elapsed_seconds=%e max_rss_kb=%M' -o "build-timings/$base.time" \
+  if /usr/bin/time -f 'elapsed_seconds=%e max_rss_kb=%M' -o "build-timings/$base.time" \
     latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode "$base.tex" \
-    >"build-timings/$base.build.log" 2>&1
+    >"build-timings/$base.build.log" 2>&1; then
+    echo "$base: build successful"
+  else
+    status=$?
+    echo "$base: latexmk failed with exit code $status" >&2
+    tail -n 100 "build-timings/$base.build.log" >&2
+    exit "$status"
+  fi
   end=$(date +%s)
   echo "$base wall_seconds=$((end-start)) $(cat "build-timings/$base.time")"
   grep -c "Run number .* of rule 'pdflatex'" "build-timings/$base.build.log" || true
