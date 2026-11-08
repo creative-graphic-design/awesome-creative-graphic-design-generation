@@ -108,6 +108,28 @@ require(not any(re.search(r"\b[A-Z][A-Za-z-]* et al\.(?:~|\s+)(?:20\d{2}\s+)?\\c
 
 
 
+# Long prose blocks often hide several independent claims. This conservative
+# guard detects paragraph bloat, but cannot establish paragraph unity or coherence.
+# Reviewers must still inspect topic sentences, evidence and transitions.
+MAX_SECTION_PARAGRAPH_WORDS = 190
+for section_file in sorted((PAPER / "sections").glob("*.tex")):
+    source = section_file.read_text(encoding="utf-8")
+    for paragraph in re.split(r"\n\s*\n", source):
+        prose = [
+            line.strip() for line in paragraph.splitlines()
+            if line.strip()
+            and not line.lstrip().startswith("%")
+            and not line.lstrip().startswith("\\")
+        ]
+        if not prose:
+            continue
+        count = len(" ".join(prose).split())
+        require(
+            count <= MAX_SECTION_PARAGRAPH_WORDS,
+            f"{section_file.name}: overlong prose paragraph ({count} words > {MAX_SECTION_PARAGRAPH_WORDS}); split by claim and add transitions",
+        )
+
+
 acro_source = tex("acronyms.tex")
 require(r"\usepackage{acro}" in main, "Use the CTAN acro package")
 require(r"\input{acronyms}" in main, "Load acro definitions in the preamble")
