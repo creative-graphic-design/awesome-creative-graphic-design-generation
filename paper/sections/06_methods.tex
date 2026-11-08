@@ -207,7 +207,9 @@ This task directly tests edit operations and should be evaluated separately from
 
 \paragraph{Native layers and markup documents.}
 \ac{art} generates variable numbers of transparent layers, while \ac{psdiffusion} models their joint appearance and spatial interactions in a shared synthesis process.
-\ac{qwenimagelayered} decomposes raster images into semantically separated \ac{rgba} layers, and \ac{layerdecomp} explicitly considers shadows and reflections during foreground/background recovery.
+\ac{qwenimagelayered} decomposes an RGB image into a variable number of semantically separated \ac{rgba} layers using an RGBA-VAE, a variable-layer diffusion transformer, and PSD-derived training data \citep{qwenimagelayered2026}.
+Its original evaluation measures layer reconstruction and alpha fidelity, while demonstrated resizing, recoloring, and replacement do not establish preservation of native text or SVG objects.
+\ac{layerdecomp} explicitly considers shadows and reflections during foreground/background recovery.
 \ac{mrt} unifies text-to-layer generation, image-to-layer decomposition, and layer-to-layer editing through selective masking.
 \ac{markupdm} instead completes typed content and attributes inside multimodal markup documents, demonstrating that layer synthesis and document-level semantic completion have different editing interfaces.
 \ac{taue} produces foreground, background, and composite images without model fine-tuning, using intermediate latent transplantation and cross-layer attention for visual coherence.
