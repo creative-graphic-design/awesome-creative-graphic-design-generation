@@ -16,9 +16,9 @@ SOURCE = ROOT / "figs/tex/research_map_sources.csv"
 OUTPUT = ROOT / "figs/pdf/research_landscape.svg"
 
 # Shared design tokens; these are the ONLY spatial values to change in a redesign.
-WIDTH, HEIGHT = 1830, 1330
+WIDTH, HEIGHT = 1830, 1750
 LEFT, TOP = 320, 168
-CELL_W, ROW_H = 355, 167
+CELL_W, ROW_H = 355, 218
 COL_GAP, ROW_GAP = 15, 15
 CARD_H, CARD_GAP = 27, 5
 PADDING = 18
