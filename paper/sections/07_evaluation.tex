@@ -38,6 +38,8 @@ These are layout-geometry and visual-saliency proxies on non-empty poster backgr
 In its original CVPR evaluation, discrete \ac{layoutdm} compares six tasks on \ac{rico} and \ac{publaynet} with training-data preprocessing and a shared layout-feature FID model \citep{layoutdm2023}.
 For category-conditioned size-and-position generation on \ac{rico}, its FID is 3.55 compared with 3.97 for BART and 6.84 for \ac{layoutganpp}, but in completion its 9.00 is worse than \ac{layouttransformer} at 3.71 (Table~1).
 This trade-off prevents a claim of universal superiority and illustrates that completion evaluates reconstruction of missing layout attributes rather than semantic authoring operations.
+
+Flow-based layout results must also be evaluated under the splits and feature extractors used in the reported comparisons.
 \ac{layoutflow} studies a different training split and explicitly retrains selected baselines for comparison (Sec.~5.1) \citep{layoutflow2024}.
 In its matched-split unconditional Table~1, \ac{layoutflow} obtains \ac{rico} FID 2.37 against \ac{layoutdiffusion} at 2.49, while on \ac{publaynet} it obtains 8.87 against \ac{layoutdiffusion} at 8.63.
 Moreover, \ac{rico} alignment is 0.150 for \ac{layoutflow} against 0.069 for \ac{layoutdiffusion}; the improvement in one distributional score is not a simultaneous improvement in all geometric measures.
@@ -50,11 +52,15 @@ Such metrics concern the arrangement of design elements; even a strong score doe
 
 \ac{vectorfusion} evaluates prompt consistency using \ac{clip} similarity and \ac{clip} R-Precision over 128 caption prompts and analyzes the effect of vector primitive count and initialization \citep{vectorfusion2023}.
 These experiments measure semantic correspondence of the rendered graphic.
+
+Vector representation learning measures whether a model reconstructs or organizes shapes, not whether it obeys a subsequent design instruction.
 By contrast, \ac{deepsvg} studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; \ac{svgformer} reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}.
 On 100 icon interpolation pairs ranked by ten participants, \ac{deepsvg}'s ordered hierarchical model receives 44.8\% first-place votes versus 25.8\% for Hungarian matching and 9.7\% for an autoregressive baseline, while its test reconstruction error is 0.012 (original Table~2).
 These are SVG icon interpolation judgments and geometric reconstruction results, not a controlled evaluation of editing existing design content.
 For \ac{svgformer}, font-family classification reaches 69.7\% versus 35.2\% for \ac{deepsvg} and icon Chamfer reconstruction error decreases from 15.6 to 6.3 in the authors' Table~2.
 Its original limitation section notes that complex style interpolation can lack latent linearity and smoothness despite favorable reconstruction results.
+
+Text-to-vector synthesis instead emphasizes correspondence between a prompt and a rendered SVG.
 \ac{vectorfusion} uses 128 caption prompts and 64 optimized vector paths; its best reranked variant obtains \ac{clip} L/14 R-Precision 81.3 under four-sample selection, whereas the directly \ac{clip}-optimized \ac{clipdraw} baseline obtains 85.2 without the same diffusion objective (original Table~1).
 \ac{clip} retrieval and text-image similarity characterize visual-semantic consistency of rendered SVGs but do not test whether typographic objects can be reopened and edited as text.
 Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
