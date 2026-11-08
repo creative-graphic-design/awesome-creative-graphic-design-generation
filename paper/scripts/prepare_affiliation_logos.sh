@@ -167,7 +167,7 @@ fi
 # Additional compact originals or unchanged short institutional wordmarks
 # identify individual studies in the 26-node draft. Preserve source SHA-1 and
 # treat institutional/trademark print permissions separately.
-if grep -Fq '}{utokyo}' "$figure" || grep -Fq '\\MapLogoPair{utokyo}{cyberagent-symbol}' "$figure"; then
+if grep -Fq '}{utokyo}' "$figure" || grep -Fq '\MapLogoPair{utokyo}{cyberagent-symbol}' "$figure"; then
   prepare_svg utokyo 3d2c55ba43c606c9c7563677aca709b49a797d9e \
     'https://upload.wikimedia.org/wikipedia/commons/d/d8/University_of_Tokyo_symbol.svg'
 fi
