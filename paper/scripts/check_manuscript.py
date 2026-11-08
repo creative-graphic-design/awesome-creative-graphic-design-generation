@@ -237,7 +237,7 @@ acro_sources += sorted((PAPER / "figs" / "tex").glob("*_figure.tex"))
 registered_cites = {
     key: citation.group(1)
     for key, options in definitions
-    if (citation := re.search(r"(?m)^\\s*cite\\s*=\\s*\\{([^}]+)\\}", options))
+    if (citation := re.search(r"(?m)^\s*cite\s*=\s*\{([^}]+)\}", options))
 }
 for source_file in acro_sources:
     data = source_file.read_text(encoding="utf-8")
