@@ -178,7 +178,7 @@ def main() -> None:
         label(x+12,350,yr,19,"#26455E",700)
     for lane, (track, name, description, accent) in enumerate(LANES):
         y=Y0+lane*LANE_STEP
-        rect(21,y-42,W-42,164,"#FFFFFF",radius=11,stroke="#E3EAF0")
+        rect(21,y-42,W-42,174,"#FFFFFF",radius=11,stroke="#E3EAF0")
         rect(21,y-42,7,164,accent,radius=3)
         label(40,y-9,name,16,"#29465B",700)
         label(40,y+16,description,12,"#6D8498")
