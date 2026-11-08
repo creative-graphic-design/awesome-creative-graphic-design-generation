@@ -3,13 +3,14 @@
 Prior surveys already provide substantial coverage of the design domain.
 The distinctive question for the present review is therefore not whether another model-family taxonomy can be drawn, but how evidence of \emph{post-generation editability} varies with the delivered representation and the actual evaluation protocol.
 
-\citet{huang2023survey} organize graphic design intelligence into representation, understanding, and generation, at both element and whole-design levels.
-Their overview illustration (Fig.~1) relates those capabilities to the creative process, while their task examples and dataset table support the taxonomy.
-\citet{shi2023layoutsurvey} instead center layout representation, deep generative model families, task conditions, datasets, and metrics.
-Their Fig.~9 uses multiple independent taxonomic axes: model family, content dependence, and application setting.
+Prior technical surveys classify design tasks and model families, but these classifications do not directly establish which delivered artifacts can be revised.
+\citet{huang2023survey} organize design intelligence into representation, understanding, and generation at element and whole-design levels; their Fig.~1 relates these dimensions to creative practice.
+By comparison, \citet{shi2023layoutsurvey} focus on layout representations, generative architectures, conditioning tasks, and metrics, with Fig.~9 distinguishing model families, content dependence, and applications.
+Their complementary scope motivates a separate analysis of delivered structure, supported revisions, and evaluation evidence.
 
-\citet{liu2024graphiclayoutsurvey} survey the status and future of graphic-layout generation, including implementation and interactive design considerations.
-We discuss its coverage of implementation and interactive design without treating its scope as evidence of measured post-export edit success.
+Discussion of interactive design in prior surveys does not imply that the surveyed systems have undergone a common editing evaluation.
+\citet{liu2024graphiclayoutsurvey} cover implementation and interactive considerations alongside graphic-layout generation.
+We therefore use this coverage to identify relevant tasks rather than to infer post-export edit success across the surveyed methods.
 
 Vector-representation and design-process reviews cover distinct dimensions that a generative-system taxonomy alone cannot summarize.
 \citet{tian2024vectorsurvey} provide a mathematically grounded survey of smooth vector representations and the creation--rasterization--vectorization pipeline.
@@ -27,8 +28,9 @@ Its methodology describes a 500-paper research set, whereas the prior-survey com
 Because these quantities refer to different reporting contexts, we do not interpret any one of them as a directly comparable screened-study denominator.
 \citet{malashenko2025svgreview} focus on \ac{llm}-driven \ac{svg} generation, editing, and understanding, connecting a task taxonomy to benchmarks and empirical evaluations.
 
-\citet{tang2024designinterviews} conduct semi-structured interviews with seven graphic designers about how image-generation tools are used in creative workflows.
-This practitioner study complements technical surveys by motivating attention to correction burden, design control, and workflow utility without itself measuring automatic edit success.
+Technical generation metrics alone cannot establish the usefulness of a system in a designer's revision workflow.
+Through semi-structured interviews with seven graphic designers, \citet{tang2024designinterviews} examine how generative tools are incorporated into creative practice.
+Their findings motivate studying correction burden, design control, and workflow utility, while remaining distinct from a controlled benchmark of automatic editing.
 
 \paragraph{Analytical distinction from previous taxonomies.}
 A task taxonomy answers which design problem a system addresses, whereas an architecture taxonomy answers how the system is constructed.
