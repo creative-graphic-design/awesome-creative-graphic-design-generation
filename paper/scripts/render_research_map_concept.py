@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+"""Experimental SSII-style narrative research map.
+
+Reads the 26 audited node declarations rather than maintaining hand-tuned
+coordinates for individual papers. Intentionally not the manuscript figure
+until its design and attribution are approved.
+"""
+from __future__ import annotations
+
+import csv
+import html
+import re
+from collections import defaultdict
+from pathlib import Path
+
+PAPER = Path(__file__).resolve().parents[1]
+TEX = PAPER / "figs/tex/research_map_narrative.tex"
+AUDIT = PAPER / "figs/tex/research_map_narrative_sources.csv"
+OUTPUT = PAPER / "figs/pdf/research_map_concept.svg"
+W, H = 1680, 1330
+X0, STEP = 320, 164
+Y0, LANE_STEP = 252, 191
+LANES = (
+    ("A", "LAYOUT GENERATION", "Element geometry and conditional placement", "#2C86B6"),
+    ("B", "POSTERS & ADS", "Text, imagery and composition", "#CB7A47"),
+    ("C", "STRUCTURED ARTIFACTS", "Paths, layers and editable objects", "#368B7B"),
+    ("D", "DOCUMENT WORKFLOWS", "Slides, scientific figures and reflow", "#8067BA"),
+)
+STYLES = {
+    "gan": ("#C07553", "GAN"),
+    "latent": ("#6583A7", "VAE / TRANSFORMER"),
+    "diff": ("#3289C1", "DIFFUSION / FLOW"),
+    "agent": ("#8A69B6", "LM / AGENT"),
+    "struct": ("#329783", "VECTOR / CODE"),
+    "edit": ("#B85C81", "EDITING"),
+}
+# Matches either single-logo, dual-logo, or logo-free source declarations.
+NODE = re.compile(
+    r"^\\MapPaper(?:Brand|BrandPair)?\{([A-D])\}\{([^{}]+)\}\{(\d{2})\}"
+    r"\{([a-z0-9]+)\}\{\\MapCol[^{}]+\}\{\\MapRow[^{}]+\}"
+    r"\{([a-z]+)\}\{([^{}]+)\}", re.M
+)
+
+def esc(value: object) -> str:
+    return html.escape(str(value), quote=True)
+
+def main() -> None:
+    entries = NODE.findall(TEX.read_text(encoding="utf-8"))
+    with AUDIT.open(encoding="utf-8", newline="") as handle:
+        audited = {(r["track"], r["label"], r["bibtex_key"], r["reference_year"], r["method_family"]) for r in csv.DictReader(handle)}
+    actual = {(track, name, key, "20"+year, family) for track, name, year, key, family, _ in entries}
+    assert len(entries) == 26 and actual == audited, "Narrative nodes differ from audited CSV"
+    buckets = defaultdict(list)
+    for track, name, year, key, family, detail in entries:
+        buckets[(track, 2000 + int(year))].append((name, family, detail))
+    out: list[str] = []
+    def add(x: str) -> None: out.append(x)
+    def rect(x, y, w, h, fill, stroke="none", radius=0, sw=1):
+        add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{radius}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>')
+    def line(x1, y1, x2, y2, color="#DDE6EE", width=1):
+        add(f'<path d="M{x1} {y1} L{x2} {y2}" fill="none" stroke="{color}" stroke-width="{width}"/>')
+    def label(x, y, value, size=14, color="#253D56", weight=400):
+        add(f'<text x="{x}" y="{y}" font-family="DejaVu Sans,Arial,sans-serif" font-size="{size}" font-weight="{weight}" fill="{color}">{esc(value)}</text>')
+    add(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
+    rect(0, 0, W, H, "#F8FAFD")
+    rect(0, 0, W, 132, "#173552")
+    label(42, 58, "RESEARCH LANDSCAPE OF GRAPHIC DESIGN GENERATION", 26, "#FFFFFF", 700)
+    label(43, 92, "From layout prediction to compositional and editable design systems", 17, "#C4D6E5")
+    rect(24, 154, 1632, 66, "#E8EEF5", radius=12)
+    label(46, 186, "CITED YEAR", 13, "#647D92", 700)
+    for year in range(2019, 2027):
+        x = X0 + STEP*(year-2019)
+        label(x+8, 195, year, 20, "#29455E", 700)
+        line(x, 204, x, 1018)
+    for i, (track, title, caption, accent) in enumerate(LANES):
+        y = Y0 + i*LANE_STEP
+        rect(24, y-17, 1632, LANE_STEP-8, "#FFFFFF", radius=12)
+        rect(24, y-17, 6, LANE_STEP-8, accent, radius=3)
+        label(44, y+29, f"0{i+1}", 27, accent, 700)
+        label(44, y+66, title, 16, "#234059", 700)
+        label(44, y+89, caption, 12, "#73889D")
+        if track == "D":
+            rect(324, y-2, 819, 118, "#F5F1FA", stroke="#D9CDEA", radius=10)
+            label(345, y+27, "DOCUMENT-LEVEL COMPOSITION", 14, "#775C9E", 700)
+            label(345, y+56, "Selected work spans native slides, editable figures,", 14, "#4B6077")
+            label(345, y+79, "object hierarchies, and revision-aware documents.", 14, "#4B6077")
+        for year in range(2019, 2027):
+            x = X0 + STEP*(year-2019) + 4
+            group = buckets[(track, year)]
+            assert len(group) <= 2, (track, year, group)
+            for idx, (name, family, detail) in enumerate(group):
+                yy = y + 8 + idx*73
+                border, family_name = STYLES[family]
+                rect(x, yy, 151, 65, "#FFFFFF", border, radius=8, sw=1.5)
+                rect(x, yy, 5, 65, border, radius=2)
+                label(x+12, yy+23, name, 12 if len(name)>15 else 14, "#1F3951", 700)
+                label(x+12, yy+48, detail, 10 if len(detail)>22 else 11, "#6B8197")
+    label(41, 1042, "REPRESENTATION & EDITING TARGETS", 15, "#27445D", 700)
+    label(41, 1064, "Illustrative formats, not reproduced system outputs", 11, "#71849B")
+    examples = [
+        ("LAYOUT", "Element positions", "#2C86B6"),
+        ("POSTER", "Composed artwork", "#CB7A47"),
+        ("VECTOR", "Editable paths", "#368B7B"),
+        ("DOCUMENT", "Object hierarchy", "#8067BA"),
+    ]
+    for i, (name, sub, tint) in enumerate(examples):
+        x = 360 + i*322
+        rect(x, 1020, 298, 122, "#FFFFFF", "#DCE5EE", radius=9)
+        rect(x+13, 1032, 84, 94, "#F5F8FB", "#DCE5EE", radius=4)
+        if i == 0:
+            for xx,yy,ww,hh in [(x+22,1042,64,15),(x+22,1063,25,23),(x+54,1063,32,23),(x+22,1092,64,23)]:
+                rect(xx,yy,ww,hh,"#E0EBF3",tint,radius=2)
+        elif i == 1:
+            rect(x+25, 1040, 60, 76, "#F1E0D3",radius=2)
+            rect(x+30, 1048, 50, 38, "#D6AB8E")
+            label(x+36, 1104, "SALE", 12, "#A0694A",700)
+        elif i == 2:
+            add(f'<path d="M{x+22} 1103 Q{x+33} 1041 {x+55} 1084 T{x+86} 1050" fill="none" stroke="{tint}" stroke-width="3"/>')
+            rect(x+19, 1100, 6, 6, "#FFFFFF", tint)
+        else:
+            rect(x+28,1042,54,75,"#FFFFFF","#AD9EC9",radius=2)
+            rect(x+34,1052,42,10,"#D8CDE9",radius=2)
+            for row in range(3): line(x+34,1074+row*10,x+73,1074+row*10,"#B7A9D1",2)
+        label(x+110, 1070, name, 15, "#304961", 700)
+        label(x+110, 1093, sub, 12, "#708499")
+    rect(24, 1170, 1632, 124, "#E8EEF5", radius=12)
+    label(42, 1201, "METHOD FAMILY", 13, "#60798F", 700)
+    xpos = 230
+    for family, (color, title) in STYLES.items():
+        rect(xpos, 1186, 15, 15, "#FFFFFF", color, radius=3)
+        label(xpos+22, 1200, title, 12, "#36536B", 600)
+        xpos += len(title)*7 + 58
+    label(42, 1240, "Position = research task × cited-reference year; border = method family. Nearby studies are not necessarily related.", 12, "#6A8196")
+    label(42, 1264, "This is a representative narrative selection, not a complete publication census or a citation/influence network.", 12, "#6A8196")
+    add("</svg>")
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text("\n".join(out)+"\n", encoding="utf-8")
+    print(f"Generated {len(entries)} audited narrative nodes: {OUTPUT}")
+
+if __name__ == "__main__":
+    main()
