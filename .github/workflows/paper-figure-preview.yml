@@ -62,16 +62,6 @@ jobs:
         run: |
           set -euo pipefail
           python3 paper/scripts/check_research_map_concept.py
-          test -s paper/figs/pdf/research_map_concept.pdf
-          pdftotext paper/figs/pdf/research_map_concept.pdf paper/research-map-concept.txt
-          for name in LayoutGAN PosterLayout COLE OpenCOLE AutoFigure; do
-            grep -Fq "$name" paper/research-map-concept.txt
-          done
-          if pdfimages -list paper/figs/pdf/research_map_concept.pdf | tail -n +3 | grep -q .; then
-            echo "Research map must remain vector-only" >&2
-            exit 1
-          fi
-          pdftoppm -f 1 -l 1 -singlefile -r 150 -png paper/figs/pdf/research_map_concept.pdf paper/research-map-concept-preview
           test -s paper/figs/assets/logos/cyberagent-symbol.pdf
           test -s paper/figs/assets/logos/pku.pdf
           test -s paper/figs/assets/logos/google.pdf
@@ -82,6 +72,16 @@ jobs:
           test -s paper/figs/pdf/research_map_narrative.pdf
           sudo apt-get update -qq
           sudo apt-get install -y -qq poppler-utils
+          test -s paper/figs/pdf/research_map_concept.pdf
+          pdftotext paper/figs/pdf/research_map_concept.pdf paper/research-map-concept.txt
+          for name in LayoutGAN PosterLayout COLE OpenCOLE AutoFigure; do
+            grep -Fq "$name" paper/research-map-concept.txt
+          done
+          if pdfimages -list paper/figs/pdf/research_map_concept.pdf | tail -n +3 | grep -q .; then
+            echo "Research map must remain vector-only" >&2
+            exit 1
+          fi
+          pdftoppm -f 1 -l 1 -singlefile -r 150 -png paper/figs/pdf/research_map_concept.pdf paper/research-map-concept-preview
           pdfinfo paper/figs/assets/logos/cyberagent-symbol.pdf | tee paper/ca-symbol-info.txt
           pdfinfo paper/figs/assets/logos/pku.pdf | tee paper/pku-info.txt
           pdfinfo paper/figs/assets/logos/google.pdf | tee paper/google-info.txt
