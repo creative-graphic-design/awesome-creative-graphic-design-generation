@@ -15,7 +15,7 @@ NS = "{http://www.w3.org/2000/svg}"
 
 root = ET.parse(SVG).getroot()
 assert root.tag == NS + "svg", "Expected valid root SVG"
-assert root.attrib["viewBox"] == "0 0 1680 1330", "Unexpected canvas bounds"
+assert root.attrib["viewBox"] == "0 0 1050 1080", "Unexpected canvas bounds"
 with AUDIT.open(encoding="utf-8", newline="") as handle:
     entries = list(csv.DictReader(handle))
 assert len(entries) == 26 and len({row["bibtex_key"] for row in entries}) == 26
