@@ -304,3 +304,11 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Strengthened the prior-survey discussion to contrast Li's explicit **552 identified / 33 included** screening stages with Zou's **500 / 267 unreconciled** survey-size claims.
 - [x] Added `scripts/report_citation_evidence.py` to output a reproducible priority-ordered backlog rather than manually recopying or claiming all 254 cited sources are verified.
 - [ ] **T13 scientific approval and systematic searches remain open:** Li Figs. 4–6 image panels and other prior surveys' source/figure comparisons, original database search exports, screening decisions and author approval have not been completed. No research-map/logo work was changed in this batch.
+
+## Source-based corrections: CreatiPoster / PosterMELD — 2026-11-08
+
+- [x] Read original arXiv v2 CreatiPoster §§3–5, Tables 1–4, and original arXiv v1 PosterMELD §§3–5, Tables 1–3; record output contracts, evaluation denominators and adverse comparisons in [the source audit](T08_POSTERMELD_CREATIPOSTER_SOURCE_AUDIT.md).
+- [x] Corrected CreatiPoster's BibTeX author list to the eight authors explicitly shown by the inspected 2026 v2 source; original 2025 first-publication year preserved.
+- [x] Updated two citation-level source-depth entries to `methods_results` **only for bounded verified claims**, retaining `editability_audit=not_verified` for unmeasured downstream editing success and round-trips.
+- [x] Expanded Methods, Evaluation and Benchmarks comparisons with counterexamples where commercial models score higher on individual dimensions.
+- [ ] Full supplements, direct native-editor reopening, independent reproduction, author approval and a final paper-PDF check are outside this bounded source audit.

@@ -93,3 +93,7 @@ Two original source audits, already documented in [T13_PRIOR_SURVEY_DENOMINATOR_
 The citation-level `empirical_claim_audit=verified` for these two items means **survey-methodology statements in the cited review were checked against its own original article**, not that all underlying studies' experimental results were replicated. Keep that restriction in the `notes` field and do not transfer the status to other bibliography keys by analogy.
 
 Generate the still-unverified citation backlog with `python3 paper/scripts/report_citation_evidence.py` (optional `--limit 25` or `--json`). This is a read-only status report; it does not promote evidence automatically. Prioritize manuscripts' claims with numerical outcomes, representation-specific editing operations and survey denominator comparisons, and read their original table/figure before changing `source_depth`.
+
+## Two original experiment-table audits (2026-11-08)
+
+See [T08_POSTERMELD_CREATIPOSTER_SOURCE_AUDIT.md](T08_POSTERMELD_CREATIPOSTER_SOURCE_AUDIT.md) for the exact v2 CreatiPoster and v1 PosterMELD method/results locators. These change two citation-level rows from `abstract_index` to `methods_results`; neither converts the claimed editable output format into measured protected-object editing success. A bibliographic alias revision changed CreatiPoster's eight listed authors in v2; do not reuse the previous nine-author string.

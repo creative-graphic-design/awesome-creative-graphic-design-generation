@@ -63,6 +63,9 @@ These tasks require distinct denominators for content retention, layout quality,
 
 \paragraph{Scientific-poster artifact contracts.}
 Scientific-poster generation includes corpus-driven content-to-layout modeling \citep{zhong2025scienceposter} and systems promising editable presentation artifacts, such as PosterMELD \citep{hu2026postermeld} and PosterVisor \citep{li2026postervisor}.
+PosterMELD evaluates request-level print-readiness across 621 paper requests, reporting an 81.3\% Print-Ready Rate against 24.2\% for P2P, 15.8\% for PosterGen, and 85.2\% for the raster-only GPT-Image-2 baseline (original Table~1).
+Its reported 3.247 Craftsmanship--Harmony--Expressiveness score is conditional on print-ready outputs, unlike the request-level denominator of Print-Ready Rate, while the reported \$0.38 mean cost includes failed requests.
+The original paper treats native editable text and figure elements as a separate artifact property and tests its VLM judge against human annotations (Table~3), but does not establish a controlled post-export text-replacement success rate.
 An author-reported PPTX or HTML/CSS output affords a different downstream workflow from a flattened poster, but the format claim is not itself a measurement of successful semantic editing or a validated reopen--modify--save cycle.
 Poster comparisons should separate scientific-content correctness, print readiness, native file validity and revision cost rather than collapsing them into image preference.
 
