@@ -163,3 +163,7 @@ Original first-party source abstracts or originating dataset project records wer
 ## 2026-11-08 scientific readiness checkpoint
 
 See [SCIENTIFIC_READINESS_AUDIT_20261108.md](SCIENTIFIC_READINESS_AUDIT_20261108.md) for latest counts: 225 linked working-study IDs, 259 bibliography entries, 102 bounded original methods/results records, 153 author/publisher original abstracts, three bibliographic records, and one first-party abstract not obtained. Targeted workbook search logs exist but raw systematic database retrieval counts and full screening/exclusion records do not. This remains a structured narrative survey, not a completed PRISMA systematic review.
+
+## T24 audited original results after author-abstract checks (2026-11-08)
+
+Seven original research manuscripts and surveys were inspected at their primary methods and result tables, with exact citations and negative metric comparisons frozen in [T24_SELECTED_PRIMARY_RESULTS_20261108.csv](T24_SELECTED_PRIMARY_RESULTS_20261108.csv). Their earlier author-abstract source entries remain part of the T22 historical manifest. The validator now permits a T22 record to acquire `methods_results` only with an additional first-party methods/results source proof in T24. No abstract alone warrants numerical results, independent replication, or native editing success.

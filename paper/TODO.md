@@ -417,3 +417,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Wrote [SCIENTIFIC_READINESS_AUDIT_20261108.md](SCIENTIFIC_READINESS_AUDIT_20261108.md) with source accounting, verified scientific limitations and exact unperformed tasks.
 - [ ] One publisher primary abstract is still unavailable: `liu2024graphiclayoutsurvey` (CSCWD 2024).
 - [ ] Additional method/results source audits, author scientific approval, systematic database search and latest source-commit PDF render validation remain pending. No maps/logos changed in this scientific workstream.
+
+## T24 original methods/results audits — 2026-11-08
+
+- [x] Inspected first-party original sections/tables for LayoutDiffusion layout-to-image, TextDiffuser, LayoutFormer++, an SVG/LLM survey, GraphicDesignBench, BizGenEval and DesignSense; recorded exact original sources and experimental caveats in T24.
+- [x] Reconciled T22 abstract-provenance validation with the later T24 fulltext methods/result upgrades so CI accepts only source-supported promotions.
+- [x] Added comparative evaluation examples with adverse metric cases and distinct editor-vs-image-vs-preference scoring targets.
+- [ ] Remaining original fulltext audits, latest PDF CI and author scientific signoff remain open.

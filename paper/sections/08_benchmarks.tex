@@ -34,6 +34,14 @@ These evaluations provide valuable but different evidence.
 In particular, aesthetics-judge agreement, typography fidelity, valid code, and instruction-following should be reported separately.
 The arXiv abstract and software repository for \ac{graphicdesignbench} currently disagree about task count (50 versus 49), so a definitive count requires version reconciliation.
 
+\paragraph{Vector-code, visual-checklist, and preference evaluations.}
+Structured-code editing, rendered-image constraint satisfaction, and layout preference classification require distinct evaluation denominators.
+\ac{graphicdesignbench} compares SVG understanding, bug repair, code optimization, and style modification in its original code-only Table~23 \citep{deganutti2026gdb}.
+Its semantic SVG Q\&A favors GPT-5.4 over Gemini-3.1 (0.937 versus 0.900), but SVG repair similarity favors Gemini-3.1 (0.932 versus 0.793).
+\ac{bizgeneval} instead evaluates 8,000 human-checked constraints for 400 prompts spanning five commercial visual domains, without testing post-export edit transactions \citep{li2026bizgeneval}.
+\ac{designsense} scores four-class human layout preferences and reports Macro F1 0.456 against a proprietary baseline of 0.295 in its source-specific setting \citep{designsense2026}.
+A cross-domain benchmark should therefore identify whether the tested unit is SVG code, a rendered image, a human design preference, or a saved document revision.
+
 \paragraph{Structured-diagram evaluation.}
 \ac{diagramgenbenchmark} comprises eight diagram categories, requiring tests of semantic relations and code structure rather than treating output as a natural image alone.
 

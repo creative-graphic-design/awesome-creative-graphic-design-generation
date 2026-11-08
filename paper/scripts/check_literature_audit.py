@@ -112,6 +112,23 @@ if TRANSFER_PATH.is_file():
 
 # Frozen audit log of original abstract-only source checks, distinct from
 # original methods/results inspection. Never infer experimental verification.
+RESULTS_AUDIT = PAPER / "T24_SELECTED_PRIMARY_RESULTS_20261108.csv"
+fulltext_by_key: dict[str, dict[str, str]] = {}
+if RESULTS_AUDIT.is_file():
+    with RESULTS_AUDIT.open(encoding="utf-8", newline="") as handle:
+        fulltext_rows = list(csv.DictReader(handle))
+    audit_by_key = {row["bibtex_key"]: row for row in rows}
+    for item in fulltext_rows:
+        key = item["bibtex_key"]
+        if key in fulltext_by_key:
+            errors.append(f"Duplicated original methods review: {key}")
+        fulltext_by_key[key] = item
+        actual = audit_by_key.get(key)
+        if not actual or actual["source_depth"] != "methods_results":
+            errors.append(f"Original methods review missing methods/results tier: {key}")
+        elif not item["original_methods_locator"] or item["original_methods_url"] not in actual["source_section_locator"]:
+            errors.append(f"Original methods review source locator mismatch: {key}")
+
 ABSTRACT_PATH = PAPER / "T22_ABSTRACT_SOURCE_RECONCILIATION_20261108.csv"
 if ABSTRACT_PATH.is_file():
     with ABSTRACT_PATH.open(encoding="utf-8", newline="") as handle:
@@ -127,12 +144,16 @@ if ABSTRACT_PATH.is_file():
         if row is None or row["working_register_id"] != record["working_register_id"]:
             errors.append(f"Abstract-source citation identity mismatch: {key}")
             continue
-        if row["source_depth"] != "abstract_index":
-            errors.append(f"Abstract-level citation unexpectedly promoted: {key}")
-        if record["primary_abstract_url"] not in row["source_section_locator"]:
-            errors.append(f"Abstract-source original URL drift: {key}")
-        if row["empirical_claim_audit"] == "verified":
-            errors.append(f"Abstract-only empirical claim promoted without results: {key}")
+        verified_fulltext = fulltext_by_key.get(key)
+        if verified_fulltext and row["source_depth"] == "methods_results":
+            if verified_fulltext["original_methods_url"] not in row["source_section_locator"]:
+                errors.append(f"Original methods/results locator drift: {key}")
+        elif row["source_depth"] != "abstract_index":
+            errors.append(f"Abstract claim promoted without original methods/results: {key}")
+        if not verified_fulltext and record["primary_abstract_url"] not in row["source_section_locator"]:
+            errors.append(f"Abstract source URL drift: {key}")
+        if not verified_fulltext and row["empirical_claim_audit"] == "verified":
+            errors.append(f"Abstract-only empirical claim incorrectly promoted: {key}")
 
 missing = set(bib_records) - seen
 if missing:
