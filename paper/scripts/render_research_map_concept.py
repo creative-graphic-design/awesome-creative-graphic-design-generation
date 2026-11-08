@@ -80,10 +80,10 @@ def main() -> None:
         label(44, y+66, title, 16, "#234059", 700)
         label(44, y+89, caption, 12, "#73889D")
         if track == "D":
-            rect(324, y-2, 819, 118, "#F5F1FA", stroke="#D9CDEA", radius=10)
+            rect(324, y-2, 590, 118, "#F5F1FA", stroke="#D9CDEA", radius=10)
             label(345, y+27, "DOCUMENT-LEVEL COMPOSITION", 14, "#775C9E", 700)
-            label(345, y+56, "Selected work spans native slides, editable figures,", 14, "#4B6077")
-            label(345, y+79, "object hierarchies, and revision-aware documents.", 14, "#4B6077")
+            label(345, y+56, "Native slides, structured figures, and", 14, "#4B6077")
+            label(345, y+79, "revision-aware document workflows.", 14, "#4B6077")
         for year in range(2019, 2027):
             x = X0 + STEP*(year-2019) + 4
             group = buckets[(track, year)]
