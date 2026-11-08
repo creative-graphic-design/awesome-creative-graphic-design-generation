@@ -1,29 +1,33 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Graphic design communicates information through the coordinated use of typography, imagery, color, and spatial organization \citep{huang2023survey,zou2025fragment}.
-Creating a coherent composition involves decisions about what content to present, how to establish visual hierarchy, and how to adapt a design to its intended medium.
-Recent research has brought generative methods to a growing range of such tasks, including posters and advertisements \citep{posterlayout2023,cglgan2022}, presentation slides \citep{autopresent2025,pptagent2025}, infographics \citep{bizgen2025}, and scientific illustrations \citep{autofigure2026}.
-Despite their different conventions, these tasks share a need to align semantic content with visual organization.
+Automating graphic design requires coordinating visual organization with the information a composition is intended to communicate.
+Graphic designs convey information through typography, imagery, color, and spatial relationships \citep{huang2023survey,zou2025fragment}.
+The same coordination problem arises across posters and advertisements \citep{posterlayout2023,cglgan2022}, presentation slides \citep{autopresent2025,pptagent2025}, infographics \citep{bizgen2025}, and scientific illustrations \citep{autofigure2026}.
+Although these artifacts differ in their conventions and content, successful generation must account for both the meaning of individual elements and their relationships within the overall composition.
 
-A central challenge is that a graphic design is not only an image to be viewed, but often an artifact to be revised.
-Designers may replace text, reposition visual elements, adjust hierarchy, or adapt a composition to a new format while retaining other parts of the work.
-Generative approaches address different parts of this process, from spatial composition \citep{layoutgan2019,layoutdm2023} to fuller design synthesis and structured representations \citep{cole2023,opencole2024,designascode2026}.
-Yet the appearance of the rendered result alone does not reveal what can be changed afterward.
-Two visually similar designs may have very different underlying structures and, consequently, very different affordances for further editing.
+The practical value of a generated design depends on what can be changed after its initial creation, not only on how it looks.
+Design workflows routinely involve replacing text, repositioning elements, revising visual hierarchy, and adapting compositions to different formats.
+Research spans spatial layout generation \citep{layoutgan2019,layoutdm2023} and more comprehensive design synthesis and structured outputs \citep{cole2023,opencole2024,designascode2026}.
+However, a rendered image does not reveal whether its text, graphics, and spatial relationships remain independently manipulable.
+Visually similar designs can therefore offer substantially different possibilities for subsequent revision.
 
-This distinction matters because \emph{editability} is not a single property.
-A format may expose individual elements without providing a reliable way to carry out a requested change, while an image-based editing system may satisfy a visual instruction without delivering separable objects.
-Some edits also require dependent changes to neighboring content, so preserving everything outside a target region is not always the appropriate objective \citep{yang2026infoedit}.
-Assessing revision therefore requires attention to the delivered artifact, the operations it permits, and the evidence that those operations succeed.
+The presence of editable structure does not, by itself, demonstrate reliable editing performance.
+A document may expose individual elements while a system still fails to perform a requested change, whereas image-based editing may achieve a desired appearance without preserving independently editable objects.
+Furthermore, changing one element can require legitimate adjustments to surrounding content, rather than leaving every other element fixed \citep{yang2026infoedit}.
+A meaningful account of editability must consequently distinguish the operations an artifact permits from the revisions a system has demonstrated or evaluated.
 
-Evaluation practices make these differences difficult to compare.
-Studies of spatial composition often report geometric or distributional quality \citep{layoutdm2023}, whereas other work assesses perceptual alignment, usability, or instruction-following edits \citep{vectorfusion2023,vinci2021,svgeditbench2024}.
-These measurements can be valuable for their intended tasks, but they do not establish the same claim about a design's usability after generation.
-In particular, visual fidelity, structural editability, and measured editing performance should not be treated as interchangeable outcomes.
+Differences in evaluation protocols further complicate comparisons of generated designs.
+Spatial-layout studies commonly assess geometric or distributional properties \citep{layoutdm2023}, while vector synthesis, human design-assistance studies, and structured editing benchmarks assess other aspects of outputs or workflows \citep{vectorfusion2023,vinci2021,svgeditbench2024}.
+These assessments address distinct questions, and success on one does not necessarily establish success on another.
+In particular, visual fidelity, structural affordances, and measured editing performance should not be treated as interchangeable evidence.
 
-Existing surveys offer broad perspectives on graphic design intelligence and generation \citep{huang2023survey,zou2025fragment}, as well as focused accounts of layout generation \citep{shi2023layoutsurvey} and vector graphics \citep{tian2024vectorsurvey}.
-Their task- and representation-oriented analyses provide essential context, but a cross-cutting comparison must also distinguish what a generated artifact makes possible from what an editing workflow has actually demonstrated or measured.
-This survey addresses that distinction through a representation--editability--evaluation (\ac{rev}) framework for generative graphic design.
-We examine delivered artifact types, the revision operations they support, and the evidence used to evaluate those operations, before identifying outstanding challenges in instruction adherence, reflow, preservation, artifact validity, and human workflows.
-Figures~\ref{fig:rev} and \ref{fig:protocol} illustrate the framework and the associated evaluation questions.
+Existing surveys establish important perspectives on graphic design generation, but their organizing axes do not directly resolve this comparison.
+Broad reviews organize graphic design research around representation, understanding, perception, and generation \citep{huang2023survey,zou2025fragment}.
+More focused surveys examine layout generation \citep{shi2023layoutsurvey} or vector graphics \citep{tian2024vectorsurvey}.
+These perspectives motivate an additional analysis connecting the form of a delivered artifact to the revisions it affords and the evidence available for those revisions.
+
+This survey develops a representation--editability--evaluation (\ac{rev}) framework to connect these three dimensions of generative graphic design.
+We classify delivered artifacts separately from the operations they make possible, and distinguish format-level affordances from demonstrated workflows and quantitatively evaluated edits.
+We then compare evaluation practices across representations and identify open challenges involving instruction adherence, dependent layout reflow, preservation of non-target content, artifact validity, and human workflows.
+Figures~\ref{fig:rev} and \ref{fig:protocol} provide overviews of the framework and the corresponding evaluation questions.
