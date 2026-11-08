@@ -250,6 +250,7 @@ Prompt-bound layer recovery can leverage semantic and occlusion information lear
 Layer--instruction binding attention and layer-indexed positions link prompts to output slots, while PSD-derived semantic trees preserve occluded source pixels and provide top-level, recursive, and target-extraction supervision (Sections 3.4--3.5).
 The paper illustrates recursive decomposition (Figure 6) and external-agent manipulation of persistent raster layer states (Figure 2), but does not establish a native PSD/SVG document-export contract or a controlled multi-turn edit-operation success rate.
 For all of these approaches, the existence of separated layers or structured markup is an artifact affordance rather than automatic evidence for successful unrestricted edit instructions.
+
 \paragraph{Synthesis: decomposition is not equivalent to editing.}
 Directly generating transparent layers and reconstructing layers from a flattened image solve different inference problems, even when both return compositable assets.
 Recovery quality can be measured against a known source decomposition, whereas editing performance requires specifying a subsequent modification and scoring its effects.
