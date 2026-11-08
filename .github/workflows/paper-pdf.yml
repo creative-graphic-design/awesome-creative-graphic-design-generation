@@ -17,8 +17,10 @@ permissions:
   contents: read
 
 concurrency:
+  # Let a running PDF build finish even if another commit arrives.
+  # GitHub retains at most one pending run for this group (the newest).
   group: paper-pdf-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
