@@ -38,6 +38,9 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
             r"\MapCardTextOffset,-\MapCardTitleOffset",
             r"\MapCardTextOffset,-\MapCardDetailOffset",
             r"\includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]",
+            r"\newcommand{\MapLogoSingle}[1]",
+            r"at (.40\MapCardLogoWidth,.50\MapCardContentHeight)",
+            r"\MapPaperContent{#2}{#3}{#8}{\MapLogoSingle{#9}}",
         ):
             self.assertIn(token, source)
 
