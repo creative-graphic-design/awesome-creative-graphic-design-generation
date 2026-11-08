@@ -61,23 +61,35 @@ Their benchmarks are valuable within their tasks but do not evaluate instruction
 
 For layered synthesis, \ac{taue} studies 1,770 filtered \ac{mscoco} samples using \ac{fid}, image/text alignment, and foreground/background reconstruction through \ac{psnr}, \ac{ssim}, and \ac{lpips} (Section 4.2 and Table 2).
 Its Figure 6 shows layout and background-replacement demonstrations, but Section 6 acknowledges pixel-level foreground-preservation limitations, and its reconstruction scores do not measure held-out edit-instruction success.
+
+Chroma-key foreground generation is evaluated primarily as image synthesis rather than native-object editing.
 \ac{tkgdm} evaluates chroma-key images generated for 3,000 MAGICK-derived prompts with \ac{fid}, mask-based FID, and image/text \ac{clip} alignment scores (Section 5.2 and Table 1), rather than measuring operations on native editing objects.
 Crucially, the reported SDXL FID is 41.81 for \ac{tkgdm} versus 29.34 for \ac{layerdiffuse} in the same table, so the paper does not establish universal superiority over fine-tuned layer-generation approaches.
 Its 100-participant two-alternative preference study (Section 5.5) measures perceived foreground quality and text alignment, not controlled graphic-design edit success.
+
+Foreground extraction without training introduces evaluation targets such as border completeness and alpha quality.
 In \ac{alfie}, the fraction of 3,000 generated illustrations with an empty four-pixel border on all sides rises from 53.10\% under a prompt-suffix baseline to 96.50\% with subject centering (Table 1); this is a border-based proxy for uncropped assets, not a measurement of semantic editability.
 A separate ten-person study on 100 images prefers \ac{alfie}'s alpha mattes over \ac{vitmatte} approximately 63\% of the time (Section 5.1 and Figure 6), while Figure 7 illustrates downstream collage compatibility without quantitative instruction-edit evaluation.
 The authors explicitly omit \ac{fid} and \ac{kid} for \ac{rgba} outputs because an appropriately matched transparent-image reference set is unavailable (Section 5), so the missing scores must not be inferred from \ac{clip}-S or border statistics.
+
+Layer decomposition methods report a mixture of image quality, layer reconstruction, and user preference metrics.
 In contrast, \ac{layeringdiff} measures 572 generated foreground/background/composite prompt triplets with \ac{fid}, \ac{kid}, \ac{clip} score and a detector-derived \ac{fgmiou} metric (Section 4.1 and Table 1).
 Its composite \ac{fid} of 121.05 improves on \ac{layerdiffuse} T2L's 134.51 under the reported setup, while its foreground \ac{fid} of 133.76 is worse than the baseline's 127.14, so the work does not dominate every layer-wise metric.
 Table 3 measures image quality and prompt alignment from 24 participant ratings, and Table 4 reports reconstruction error on 1,000 synthetic composites, not instruction-based post-export edit performance.
 For background recovery, Table 4 reports an improved \ac{lpips} of 21.80 versus 28.73 for the Germer baseline, but worse MSE of 17.52 versus 12.76, demonstrating that perceptual and pixel-reconstruction metrics answer distinct questions.
 Its Section 5 also reports alpha-estimation errors and shadows remaining in background layers as failure modes that can constrain later compositing.
+
+Reconstruction benchmarks compare recovered layer stacks with reference layers, not the success of a subsequent user edit.
 \ac{uniworlddesign} evaluates I2L on 512 held-out Crello designs with four predicted layers, aligned to source stacks by \ac{layerd} before scoring (Section 4.1 and Table 1).
 Against \ac{qwenimagelayered}, per-layer RGB L1 decreases from 0.2014 to 0.1264 and Alpha Soft \ac{iou} increases from 0.5454 to 0.7325, but these are reconstruction and alpha-overlap measures rather than executed edit requests.
+
+PixelART and Qwen-Image-Layered also illustrate why reconstruction scores require explicit disclosure of the conditioning supplied to each model.
 Separately, \ac{pixelart} reports composite \ac{psnr} of 36.92 dB versus 32.46 dB for \ac{qwenimagelayered} on Design-Multi-Layer-Bench, alongside efficiency improvements, under a protocol in which \ac{pixelart} receives predicted layout boxes and layer ordering that the Qwen baseline does not receive \citep{jia2026pixelart}.
 Composite reconstruction quality therefore cannot alone establish superiority at semantic editing, and the unequal input contract must accompany any numerical comparison.
 The Stable-Layers-derived structural proxy \emph{Bad Layers} declines from 1.69 to 1.32 per design (Table 2), while five-axis VLM judging raises the total from 17.60 to 20.43 out of 25 but lowers alpha cleanliness from 3.33 to 2.90 (Table 3 and Appendix B).
 The VLM sees the input, recomposition and predicted-layer contact sheet, not a human-operated editor performing a controlled downstream text or object change.
+
+The text-to-transparent-asset setting uses a different set of outcomes from image-to-layer recovery.
 For T2RGBA, 512 design-element prompts yield a mean \ac{clip} Score of 33.03 versus \ac{omnialpha}'s 31.00, whereas \ac{omnialpha} has better FID (87.86 versus 117.14) and white-composite \ac{lpips} (0.462 versus 0.537) under their respective setup (Table 4).
 The paper reports alpha-edge and dense-typography failures (Section 5), limiting any inference from layer separability to unrestricted native document editing.
 
@@ -87,6 +99,8 @@ Typography introduces additional evaluation dimensions: correct character identi
 Those numerical measurements indicate reconstruction fidelity, not a rate of successful edit instructions.
 \ac{wordasimage} includes a perceptual study measuring whether semantic concepts remain recognizable, letters remain legible, and typography resembles the input font \citep{wordasimage2023}.
 The same dimensions should not be conflated with free-form replacement of textual content.
+
+Instruction-driven raster text editing introduces direct measurements of the requested change and unintended alteration.
 \ac{postertextbench} evaluates targeted raster-image edits, not only text rendering, with OCR-based sentence accuracy and normalized edit distance for insertion and modification, masked \ac{lpips} for non-target preservation, and VLM instruction/visual-quality scoring (Section 4 and Table 1).
 In patch addition, \ac{postertext} obtains sentence accuracy 0.763, normalized edit distance 0.899 and masked \ac{lpips} 0.039, versus Nano Banana 2's 0.500, 0.635 and 0.064.
 For patch modification, its sentence accuracy 0.771 and normalized edit distance 0.902 are lower than Nano Banana 2's 0.819 and 0.907, even as masked \ac{lpips} improves to 0.028 versus 0.034.
@@ -130,8 +144,12 @@ Three complementary examples clarify the evidence distinction.
 Its study includes 20 design students resizing posters with and without visual feedback over twelve tasks, reporting statistically significant time/action-count differences for tasks 2--12 but not task 1 (original Secs.~6.3--6.4, Fig.~13 and Table~1).
 These results bear on human workflow efficiency under assisted resizing, rather than edit-instruction fulfillment or preservation of unrelated native objects.
 That is direct evidence about \emph{human workflow efficiency}, not about autonomous editing.
+
+Structured source artifacts support another evidence tier: authors can demonstrate manipulable objects without estimating editing reliability.
 \ac{editablevisual} shows that output \ac{html}/\ac{css} can expose separate \ac{dom} objects and editable text in a set of case studies \citep{editablevisual2026}.
 This demonstrates a useful workflow and format affordance but does not by itself constitute a randomized user study or an instruction-edit accuracy estimate.
+
+Vector path models likewise require care when interpreting generation scores as evidence about editing.
 \ac{iconshop} demonstrates \ac{svg} icon-path manipulation while reporting \ac{fid}, \ac{clip}-based scores, and icon quality judgments for its synthesis task \citep{iconshop2023}.
 In its original text-conditioned icon experiment, \ac{iconshop} achieves CLIP-feature FID 4.65 compared with \ac{deepsvg}+GAN's 12.01, and CLIP alignment 25.74 compared with 21.78 (original Table~2).
 However, its reported text-conditioned uniqueness is 68.29\% compared with \ac{deepsvg}+GAN's 97.59\%, so quality and diversity should not be collapsed into a single dominance claim.
