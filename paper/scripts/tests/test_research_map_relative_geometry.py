@@ -22,7 +22,7 @@ class ResearchMapRelativeGeometryTests(unittest.TestCase):
             r"\dimexpr\MapCardHeight-2\MapCardPaddingY\relax",
             r"\setlength{\MapCardLogoWidth}{.25\MapCardContentWidth}",
             r"\setlength{\MapCardTextWidth}{.75\MapCardContentWidth}",
-            r"\setlength{\MapCardTextStackHeight}{.70\MapCardContentHeight}",
+            r"\setlength{\MapCardTextStackHeight}{.84\MapCardContentHeight}",
             r"\setlength{\MapCardRowHeight}{.5\MapCardTextStackHeight}",
             r"\MapCardTitleOffset}{\dimexpr.5\MapCardHeight-.5\MapCardRowHeight\relax}",
             r"\MapCardDetailOffset}{\dimexpr.5\MapCardHeight+.5\MapCardRowHeight\relax}",
