@@ -24,10 +24,10 @@ X0, STEP = 260, 190
 Y0, LANE_STEP = 248, 180
 ERAS = ((2019, 2021), (2022, 2023), (2024, 2025), (2026, 2026))
 LANES = (
-    ("A", "LAYOUT GENERATION", "Element geometry and conditional placement", "#2C86B6"),
-    ("B", "POSTERS & ADS", "Text, imagery and composition", "#CB7A47"),
-    ("C", "STRUCTURED ARTIFACTS", "Paths, layers and editable objects", "#368B7B"),
-    ("D", "DOCUMENT WORKFLOWS", "Slides, scientific figures and reflow", "#8067BA"),
+    ("A", "LAYOUT GENERATION", "Geometry and constraints", "#2C86B6"),
+    ("B", "POSTERS & ADS", "Text and imagery", "#CB7A47"),
+    ("C", "STRUCTURED ARTIFACTS", "Paths, layers and objects", "#368B7B"),
+    ("D", "DOCUMENT WORKFLOWS", "Slides, figures and reflow", "#8067BA"),
 )
 STYLES = {
     "gan": ("#C07553", "GAN"),
@@ -168,11 +168,10 @@ def main() -> None:
     footer_y = Y0 + (len(LANES)-1)*LANE_STEP + LANE_STEP - 3
     rect(20, footer_y+14, W-40, 95, "#E8EEF5", radius=10)
     label(38, footer_y+43, "METHOD FAMILY", 12, "#60798F", 700)
-    legend_x = 190
-    for color, family_name in STYLES.values():
+    for i, (color, family_name) in enumerate(STYLES.values()):
+        legend_x = 190 + 140*i
         rect(legend_x, footer_y+31, 13, 13, "#FFFFFF", color, radius=2)
         label(legend_x+19, footer_y+42, family_name, 10, "#36536B", 600)
-        legend_x += len(family_name)*6+35
     label(38, footer_y+69, "X = cited-reference period; row = primary task; border = method family; logos = audited affiliations.", 11, "#60798F")
     label(38, footer_y+87, "Representative milestones, not a census. Proximity does not imply citation or causal influence.", 11, "#60798F")
     add("</svg>")
