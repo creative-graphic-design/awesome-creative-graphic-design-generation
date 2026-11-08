@@ -40,24 +40,26 @@
 \setlength{\MapCardContentHeight}{\dimexpr\MapCardHeight-2\MapCardPaddingY\relax}
 \newlength{\MapCardLogoWidth}
 \newlength{\MapCardTextWidth}
+\newlength{\MapCardTextStackHeight}
 \newlength{\MapCardRowHeight}
 \newlength{\MapCardTextOffset}
 \newlength{\MapCardLogoCenterX}
-\newlength{\MapCardTextPull}
 \newlength{\MapCardTitleOffset}
 \newlength{\MapCardDetailOffset}
 \newlength{\MapCardHeadingWidth}
 \newlength{\MapCardSubtitleWidth}
 \setlength{\MapCardLogoWidth}{.25\MapCardContentWidth}
 \setlength{\MapCardTextWidth}{.75\MapCardContentWidth}
-\setlength{\MapCardRowHeight}{.5\MapCardContentHeight}
+% Center a compact stack in the full card: its equal halves retain 50/50 geometry.
+% The stack is shorter than the content height so the two baselines are close.
+\setlength{\MapCardTextStackHeight}{.70\MapCardContentHeight}
+\setlength{\MapCardRowHeight}{.5\MapCardTextStackHeight}
 \setlength{\MapCardTextOffset}{\dimexpr\MapCardPaddingX+\MapCardLogoWidth\relax}
 \setlength{\MapCardLogoCenterX}{\dimexpr\MapCardPaddingX+.5\MapCardLogoWidth\relax}
-% Pull both labels toward the shared boundary without changing the 50/50 rows.
-% The pull is proportional to row height, never a per-card absolute offset.
-\setlength{\MapCardTextPull}{.08\MapCardRowHeight}
-\setlength{\MapCardTitleOffset}{\dimexpr\MapCardPaddingY+.5\MapCardRowHeight+\MapCardTextPull\relax}
-\setlength{\MapCardDetailOffset}{\dimexpr\MapCardPaddingY+1.5\MapCardRowHeight-\MapCardTextPull\relax}
+% Both labels are centered in their own half of a compact two-row stack.
+% This is symmetric around the full card center (no top or bottom anchoring).
+\setlength{\MapCardTitleOffset}{\dimexpr.5\MapCardHeight-.5\MapCardRowHeight\relax}
+\setlength{\MapCardDetailOffset}{\dimexpr.5\MapCardHeight+.5\MapCardRowHeight\relax}
 % Repeated grid positions derive from a single width and common pitches.
 \newlength{\MapCardMarginX}
 \newlength{\MapCardRowPitch}
