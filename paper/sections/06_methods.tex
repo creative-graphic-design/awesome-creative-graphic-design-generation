@@ -131,6 +131,12 @@ Neither text accuracy in a rendered image nor the ability to manipulate a text-s
 \ac{gldesigner} generates glyph arrangements in structured JSON from multimodal design constraints, while \ac{llm4svg} learns semantic tokens for SVG comprehension and generation.
 \ac{introsvg} uses a generator--critic loop to refine vector code from rendered feedback, but this is not automatically a scored test of independent user edit instructions.
 
+\paragraph{Synthesis: typography versus editable text.}
+Typography methods expose at least three distinct control surfaces: raster glyph appearance, vector letterform geometry, and semantic text with editable styling parameters.
+A method that renders exact characters into pixels may be appropriate for compositional poster edits, while an approach that reconstructs font or renderer settings serves a different downstream workflow.
+Vector paths offer geometric manipulation, but do not automatically retain the character strings, font associations, or text-box behavior required for copy changes.
+Fair evaluation should therefore separate transcription correctness, visual styling, localization of the requested edit, preservation of surrounding design elements, and survival of native text objects after export.
+
 \subsection{Reconstruction and Explicit Editing}
 Another line starts from an existing artifact.
 \ac{layerd} decomposes rendered designs into layers \citep{layerd2025}; \ac{accordion} generates layered designs by planning and decomposing a complete visual reference; \ac{postercopilot} reasons about composition and repeated layer-sensitive changes.
@@ -220,6 +226,12 @@ Scientific figures and academic posters convey factual research content, introdu
 \ac{drawwiththought} reconstructs scientific diagrams into editable mxGraph \ac{xml} with reasoning-guided structure generation, a different output contract from one-shot raster synthesis.
 The shared \ac{rev} axes remain useful across domains, but comparisons must respect whether the delivered artifact is a vector, a presentation document, or merely a rendered image.
 
+
+\paragraph{Synthesis: document-scale constraints and revision.}
+Across slides, information graphics, and scientific figures, the output must preserve relationships that extend beyond local visual quality.
+For presentations, a visually valid page may still break cross-slide narrative structure; for infographics, correcting one value may require coordinated reflow; and for scientific diagrams, a plausible rendering may encode an incorrect relation.
+The intervention contract must therefore specify whether dependent movement is permitted and which facts, labels, and object relations are protected.
+Evaluations of first-pass synthesis, source-file reconstruction, and later instruction-driven revision should remain distinct even when they operate on the same document format.
 
 \paragraph{Document-level scientific communication and revision.}
 \ac{postdoc} selects multimodal information from long research documents for poster synthesis, while \ac{posterforest} introduces a hierarchical poster-tree representation for document content and composition.
