@@ -4,6 +4,7 @@ import unittest
 
 CITE_KEY = re.compile(r"(?m)^\s*cite\s*=\s*\{([^}]+)\}")
 DUPLICATE = re.compile(r"\\ac\{([^}]+)\}[ \t]*~?[ \t]*\\citep\{([^}]+)\}")
+TABLE_SOURCE = re.compile(r"\\ac\*\{([^}]+)\}\s*\\citep\{([^}]+)\}")
 
 
 class TestAcroFirstUseCitation(unittest.TestCase):
@@ -21,6 +22,17 @@ class TestAcroFirstUseCitation(unittest.TestCase):
 
     def test_plain_acro_is_valid(self):
         self.assertEqual(DUPLICATE.findall(r"\ac{cole}"), [])
+
+    def test_table_star_preserves_explicit_source(self):
+        self.assertEqual(TABLE_SOURCE.findall(r"\ac*{cole} \citep{cole2023}"),
+                         [("cole", "cole2023")])
+        self.assertEqual(DUPLICATE.findall(r"\ac*{cole} \citep{cole2023}"), [])
+
+    def test_table_source_mismatch_is_detectable(self):
+        registrations = {"cole": "cole2023"}
+        pairs = TABLE_SOURCE.findall(r"\ac*{cole} \citep{wrong2026}")
+        self.assertTrue(any(registrations.get(key) != ref for key, ref in pairs))
+
 
     def test_optional_tilde_spacing(self):
         self.assertEqual(DUPLICATE.findall(r"\ac{cole}~\citep{cole2023}"),
