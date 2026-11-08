@@ -67,6 +67,9 @@
 
 ## acro citations, occurrence pages, and PDF deliverables
 
+**Durable design rationale:** [`ACRO_CONVENTIONS.md`](ACRO_CONVENTIONS.md) describes why automatic first-use citations work for prose, why standalone study/benchmark tables must explicitly cite every row, and how to validate printed occurrence pages. Read it before modifying citation behavior.
+
+
 - [ ] Prefer `\\ac{key}` alone for ordinary named-system mentions: `cite = {bibtex_key}` with `cite/display = first` automatically emits the first-use citation. Do not immediately append an identical `\\citep{bibtex_key}`; `check_manuscript.py` rejects that duplicate. Preserve separate `\\citep` when it independently supports a factual claim, quantitative result, or multiple-paper comparison; check the rendered first occurrence.
 - [ ] In standalone primary-study and benchmark tables, keep `\\acsetup{cite/display=none}` scoped to the table and use `\\ac{key} \\citep{bibtex_key}` for explicit per-entry provenance. The stock `acro` option suppresses only automatic duplicate citation in that table, while recording its occurrence pages. Do **not** use `\\ac*{key}` in those tables: the starred form drops page occurrences from the printed acronym index (confirmed by a three-page LaTeX test). The source linter verifies exact BibTeX matching in such tables.
 
