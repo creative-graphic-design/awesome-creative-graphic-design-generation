@@ -141,6 +141,8 @@ The HTML encodes training supervision, while the delivered model output remains 
 
 Vector-centric work generates or embeds shape/path sequences.
 \ac{deepsvg} and \ac{svgformer} learn vector representations \citep{deepsvg2020,svgformer2023}, whereas \ac{vectorfusion} and \ac{iconshop} synthesize vectors conditioned on textual prompts \citep{vectorfusion2023,iconshop2023}.
+DeepSVG predicts hierarchical path-command sequences, evaluates SVG icon reconstruction and interpolates latent icon representations; SVGformer instead embeds continuous path coordinates with medial-axis segment guidance and tests classification and retrieval.
+VectorFusion directly optimizes SVG paths using a diffusion distillation objective for text-conditioned graphic synthesis, but optimizing Bézier-path geometry does not retain high-level text semantics or document object identity by itself.
 Neural-path generation explicitly models shape structure \citep{neuralpath2024}, while \ac{layertracer} synthesizes layered \ac{svg} designs through staged diffusion and vectorization.
 Code-generation approaches such as \ac{starvector} and \ac{chat2svg} explore additional \ac{svg} primitives and text-conditioned editing workflows \citep{chat2svg2025}.
 Their visual or semantic generation scores should not be interpreted as evidence for the broader class of targeted design edits.

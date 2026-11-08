@@ -105,3 +105,7 @@ The source audit of LayoutDM, LayoutFlow, and COLE is documented in [T14_CORE_LA
 ## T15 bounded original-source synthesis — 2026-11-08
 
 LayoutGAN (CGD-022), PosterLayout (CGD-046), and OpenCOLE (CGD-074) have original-methods/results locators documented in [T15_LAYOUTGAN_POSTERLAYOUT_OPENCOLE_SOURCE_AUDIT.md](T15_LAYOUTGAN_POSTERLAYOUT_OPENCOLE_SOURCE_AUDIT.md). Evaluation-specific trade-offs and methodological denominators are retained; `editability_audit=not_verified` remains for all three. Native PDF screenshot requests did not succeed, so original table text was inspected without claiming image-level figure validation.
+
+## T16 vector evidence and DOI synchronization (2026-11-08)
+
+The original result tables of DeepSVG, SVGformer and VectorFusion were checked against the papers and documented in [T16_VECTOR_REPRESENTATION_SOURCE_AUDIT.md](T16_VECTOR_REPRESENTATION_SOURCE_AUDIT.md). Their evaluation concerns interpolation, vector reconstruction/classification/retrieval, and caption alignment, not measured post-export edit-command performance. The PosterLayout citation's DOI was added to the acro metadata to match the official CVPR DOI already added to its BibTeX entry, resolving the concrete manuscript-checker mismatch on commit `a4dd3dc`. This does not resolve unrelated figure/logo CI checks.

@@ -37,6 +37,12 @@ Such metrics concern the arrangement of design elements; even a strong score doe
 \ac{vectorfusion} evaluates prompt consistency using \ac{clip} similarity and \ac{clip} R-Precision over 128 caption prompts and analyzes the effect of vector primitive count and initialization \citep{vectorfusion2023}.
 These experiments measure semantic correspondence of the rendered graphic.
 By contrast, \ac{deepsvg} studies reconstruction error, interpolation smoothness, and participants' preference rankings for icon interpolations \citep{deepsvg2020}; \ac{svgformer} reports representation-learning evaluations including reconstruction, classification, and retrieval \citep{svgformer2023}.
+On 100 icon interpolation pairs ranked by ten participants, DeepSVG's ordered hierarchical model receives 44.8\% first-place votes versus 25.8\% for Hungarian matching and 9.7\% for an autoregressive baseline, while its test reconstruction error is 0.012 (original Table~2).
+These are SVG icon interpolation judgments and geometric reconstruction results, not a controlled evaluation of editing existing design content.
+For SVGformer, font-family classification reaches 69.7\% versus 35.2\% for DeepSVG and icon Chamfer reconstruction error decreases from 15.6 to 6.3 in the authors' Table~2.
+Its original limitation section notes that complex style interpolation can lack latent linearity and smoothness despite favorable reconstruction results.
+VectorFusion uses 128 caption prompts and 64 optimized vector paths; its best reranked variant obtains CLIP L/14 R-Precision 81.3 under four-sample selection, whereas the directly CLIP-optimized CLIPDraw baseline obtains 85.2 without the same diffusion objective (original Table~1).
+CLIP retrieval and text-image similarity characterize visual-semantic consistency of rendered SVGs but do not test whether typographic objects can be reopened and edited as text.
 Their benchmarks are valuable within their tasks but do not evaluate instruction-following design edits.
 
 For layered synthesis, \ac{taue} studies 1,770 filtered MS-COCO samples using \ac{fid}, image/text alignment, and foreground/background reconstruction through \ac{psnr}, \ac{ssim}, and \ac{lpips} (Section 4.2 and Table 2).

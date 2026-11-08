@@ -326,3 +326,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Corrected PosterLayout's CVPR 2023 DOI 10.1109/CVPR52729.2023.00583 and proceedings pages 6018--6026 in BibTeX and citation audit.
 - [x] Added source-specific trade-offs in Methods, Evaluation and Benchmarks, including adverse metrics and differing output contracts; see [T15 source audit](T15_LAYOUTGAN_POSTERLAYOUT_OPENCOLE_SOURCE_AUDIT.md).
 - [ ] Original PDF image-level checks did not complete because screenshot requests failed. Final paper PDF, systematic screening, remaining primary-source backlog and scientific author approval remain open; research map and logos were not modified.
+
+## T16 original vector method audits and manuscript DOI repair — 2026-11-08
+
+- [x] Audited original DeepSVG, SVGformer and VectorFusion methods and quantitative tables; updated citation-level rows with exact source locators and experimental caveats while leaving editing-success verification and author approval pending.
+- [x] Extended Methods/Evaluation prose to distinguish vector reconstruction, interpolation, retrieval and text-to-SVG caption alignment from native semantic editing.
+- [x] Fixed `posterlayout` acro DOI metadata after reading the Paper PDF CI log: `ERROR: DOI differs from BibTeX: posterlayout`. This is a bibliographic consistency fix, not a research-map/logo modification.
+- [ ] Confirm the Paper PDF writing-checklist job passes on this revision; original paper PDF screenshots were unavailable; final manuscript visual inspection and systematic search are outstanding.
