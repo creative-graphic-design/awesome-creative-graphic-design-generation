@@ -32,7 +32,7 @@
 \setlength{\MapCardHeight}{.20\MapCardWidth}
 \newlength{\MapCardPaddingX}
 \newlength{\MapCardPaddingY}
-\setlength{\MapCardPaddingX}{.025\MapCardWidth}
+\setlength{\MapCardPaddingX}{.04\MapCardWidth}
 \setlength{\MapCardPaddingY}{.016\MapCardWidth}
 \newlength{\MapCardContentWidth}
 \setlength{\MapCardContentWidth}{\dimexpr\MapCardWidth-2\MapCardPaddingX\relax}
@@ -128,11 +128,18 @@
 }
 % Two actual affiliation emblems share the existing 25% logo column.
 % Width and height constraints apply independently; no extra card width is used.
+% Two affiliation symbols sit diagonally in the same 25% logo slot.
+% Explicit proportional bounding box guarantees equal external padding.
 \newcommand{\MapLogoPair}[2]{%
-  \hbox to \MapCardLogoWidth{%
-    \hfil\includegraphics[width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#1.pdf}%
-    \hfil\includegraphics[width=.44\MapCardLogoWidth,height=.66\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#2.pdf}\hfil%
-  }%
+  \begin{tikzpicture}[inner sep=0pt,outer sep=0pt]
+    \path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight);
+    \node[anchor=center,inner sep=0pt,outer sep=0pt]
+      at (.30\MapCardLogoWidth,.69\MapCardContentHeight)
+      {\includegraphics[width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#1.pdf}};
+    \node[anchor=center,inner sep=0pt,outer sep=0pt]
+      at (.70\MapCardLogoWidth,.31\MapCardContentHeight)
+      {\includegraphics[width=.43\MapCardLogoWidth,height=.52\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#2.pdf}};
+  \end{tikzpicture}%
 }
 \newcommand{\MapPaperBrandPair}[9]{%
   \MapPaperFrame{#5}{#6}{#7}{%
