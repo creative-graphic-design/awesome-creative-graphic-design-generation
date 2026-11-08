@@ -68,6 +68,7 @@
 ## acro citations, occurrence pages, and PDF deliverables
 
 - [ ] Prefer `\\ac{key}` alone for ordinary named-system mentions: `cite = {bibtex_key}` with `cite/display = first` automatically emits the first-use citation. Do not immediately append an identical `\\citep{bibtex_key}`; `check_manuscript.py` rejects that duplicate. Preserve separate `\\citep` when it independently supports a factual claim, quantitative result, or multiple-paper comparison; check the rendered first occurrence.
+- [ ] In standalone primary-study and benchmark tables, keep `\\acsetup{cite/display=none}` scoped to the table and use `\\ac{key} \\citep{bibtex_key}` for explicit per-entry provenance. The stock `acro` option suppresses only automatic duplicate citation in that table, while recording its occurrence pages. Do **not** use `\\ac*{key}` in those tables: the starred form drops page occurrences from the printed acronym index (confirmed by a three-page LaTeX test). The source linter verifies exact BibTeX matching in such tables.
 
 
 - [ ] Give every named-system `\DeclareAcronym` a `cite = {bibtex_key}` tied to its original work; use `cite/cmd = \citep` with first-use citations and do not misread group citations as experimental evidence.
