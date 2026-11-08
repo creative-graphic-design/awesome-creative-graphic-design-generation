@@ -4,8 +4,9 @@ import unittest
 
 CITE_KEY = re.compile(r"(?m)^\s*cite\s*=\s*\{([^}]+)\}")
 DUPLICATE = re.compile(r"\\ac\{([^}]+)\}[ \t]*~?[ \t]*\\citep\{([^}]+)\}")
-TABLE_SOURCE = re.compile(r"\\ac\*\{([^}]+)\}\s*\\citep\{([^}]+)\}")
 
+
+STARRED = re.compile(r"\\ac\*\{")
 
 class TestAcroFirstUseCitation(unittest.TestCase):
     def test_registered_source_is_parsed(self):
@@ -23,15 +24,19 @@ class TestAcroFirstUseCitation(unittest.TestCase):
     def test_plain_acro_is_valid(self):
         self.assertEqual(DUPLICATE.findall(r"\ac{cole}"), [])
 
-    def test_table_star_preserves_explicit_source(self):
-        self.assertEqual(TABLE_SOURCE.findall(r"\ac*{cole} \citep{cole2023}"),
-                         [("cole", "cole2023")])
-        self.assertEqual(DUPLICATE.findall(r"\ac*{cole} \citep{cole2023}"), [])
+    def test_table_local_citation_suppression_preserves_provenance(self):
+        table = r"\acsetup{cite/display=none}" + "\n" + r"\ac{cole} \citep{cole2023}"
+        self.assertIn(r"\acsetup{cite/display=none}", table)
+        self.assertEqual(DUPLICATE.findall(table), [("cole", "cole2023")])
 
     def test_table_source_mismatch_is_detectable(self):
         registrations = {"cole": "cole2023"}
-        pairs = TABLE_SOURCE.findall(r"\ac*{cole} \citep{wrong2026}")
+        pairs = DUPLICATE.findall(r"\ac{cole} \citep{wrong2026}")
         self.assertTrue(any(registrations.get(key) != ref for key, ref in pairs))
+
+    def test_starred_forms_drop_occurrence_tracking(self):
+        self.assertIsNotNone(STARRED.search(r"\ac*{cole}"))
+        self.assertIsNone(STARRED.search(r"\ac{cole} \citep{cole2023}"))
 
 
     def test_optional_tilde_spacing(self):
