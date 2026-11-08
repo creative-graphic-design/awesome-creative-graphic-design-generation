@@ -17,7 +17,7 @@ A \ac{png} image can retain an alpha channel, but the file format alone does not
 A clean appearance is valuable, but targeted changes and preservation of neighboring content constitute a separate image-editing problem.
 SAWNA exemplifies a boundary: it enforces user-reserved blank regions during image synthesis to support later composition \citep{sawna2025}.
 Those regions are useful but do not establish post-export semantic object manipulation.
-\ac{postertext} targets localized rendered text patches; its HTML structure is used to construct annotated training pairs, not exported as a native editable document by the generation model (Section 3 and Figure 3).
+\ac{postertext} targets localized rendered text patches; its \ac{html} structure is used to construct annotated training pairs, not exported as a native editable document by the generation model (Section 3 and Figure 3).
 Quantitative raster editing need not preserve independently manipulable original font, text or vector objects.
 
 \paragraph{Document structures and conditioned layouts.}
@@ -42,7 +42,7 @@ A portable \ac{rgba} illustration is therefore a compositing affordance, not evi
 \ac{layeringdiff} instead disassembles an initially generated composite into foreground RGB plus alpha, reconstructed background RGB, and final recomposited image (Section 3 and Figure 1).
 Figure 7 illustrates iterative decomposition into several foreground raster layers, but neither this application nor the base two-layer output preserves independently editable font or vector objects.
 \ac{uniworlddesign} generates standalone transparent assets and recovers ordered, complete semantic \ac{rgba} layers from a flattened image using global and per-layer instructions (Sections 3.3--3.5).
-Although designer-authored \ac{psd} files supply its layer-tree supervision, the reported model output is an RGBA stack, not an exported editable PSD document with native font, vector, or typography objects.
+Although designer-authored \ac{psd} files supply its layer-tree supervision, the reported model output is an \ac{rgba} stack, not an exported editable PSD document with native font, vector, or typography objects.
 A complete occluded raster object may be moved and recomposed, but that format affordance is not itself a measured success rate for post-export semantic design edits.
 Code-native systems represent text and assets with manipulable \ac{html}/\ac{css} elements \citep{designascode2026,editablevisual2026}.
 Their artifact format provides substantial leverage for editing, yet success under a controlled editing protocol remains an independent empirical question.
