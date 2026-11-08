@@ -168,12 +168,15 @@ def main() -> None:
     footer_y = Y0 + (len(LANES)-1)*LANE_STEP + LANE_STEP - 3
     rect(20, footer_y+14, W-40, 95, "#E8EEF5", radius=10)
     label(38, footer_y+43, "METHOD FAMILY", 12, "#60798F", 700)
+    # Two rows of three legend items, using a fixed column grid.
+    # Long family labels cannot consume the neighboring legend's padding.
     for i, (color, family_name) in enumerate(STYLES.values()):
-        legend_x = 190 + 140*i
-        rect(legend_x, footer_y+31, 13, 13, "#FFFFFF", color, radius=2)
-        label(legend_x+19, footer_y+42, family_name, 10, "#36536B", 600)
-    label(38, footer_y+69, "X = cited-reference period; row = primary task; border = method family; logos = audited affiliations.", 11, "#60798F")
-    label(38, footer_y+87, "Representative milestones, not a census. Proximity does not imply citation or causal influence.", 11, "#60798F")
+        legend_x = 190 + 270*(i % 3)
+        legend_y = footer_y + 23 + 19*(i // 3)
+        rect(legend_x, legend_y, 13, 13, "#FFFFFF", color, radius=2)
+        label(legend_x+19, legend_y+11, family_name, 10, "#36536B", 600)
+    label(38, footer_y+76, "X = cited-reference period; row = primary task; border = method family; logos = audited affiliations.", 11, "#60798F")
+    label(38, footer_y+94, "Representative milestones, not a census. Proximity does not imply citation or causal influence.", 11, "#60798F")
     add("</svg>")
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text("\n".join(out)+"\n", encoding="utf-8")
