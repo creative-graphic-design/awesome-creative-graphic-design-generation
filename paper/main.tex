@@ -32,6 +32,14 @@ First line of institution2 address\\
 \begin{document}
 \maketitle
 \input{sections/01_abstract}
+% Long-form survey navigation: one readable, hyperlinked contents page.
+% Use the standard article table of contents and return to the CVPR two-column body.
+\clearpage
+\onecolumn
+\setcounter{tocdepth}{2}
+\tableofcontents
+\clearpage
+\twocolumn
 \input{figs/tex/overview_figure}
 \input{figs/tex/edit_protocol_figure}
 \input{sections/02_introduction}
@@ -50,13 +58,21 @@ First line of institution2 address\\
 \ifdefined\skipacrolists
 \else
 \section*{Abbreviations}
+\phantomsection
+\addcontentsline{toc}{section}{Abbreviations}
 \printacronyms[include=abbreviations,heading=none,display=all]
 \section*{Selected Systems and Terminology}
+\phantomsection
+\addcontentsline{toc}{section}{Selected Systems and Terminology}
 \printacronyms[include=systems,heading=none,display=all]
 \section*{Evaluation Resources}
+\phantomsection
+\addcontentsline{toc}{section}{Evaluation Resources}
 \printacronyms[include=evaluation,heading=none,display=all]
 \fi
 {\small
+\phantomsection
+\addcontentsline{toc}{section}{References}
 \bibliographystyle{ieeenat_fullname}
 \bibliography{references}
 }
