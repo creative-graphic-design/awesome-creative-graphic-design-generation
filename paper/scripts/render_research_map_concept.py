@@ -19,15 +19,21 @@ PAPER = Path(__file__).resolve().parents[1]
 TEX = PAPER / "figs/tex/research_map_narrative.tex"
 AUDIT = PAPER / "figs/tex/research_map_narrative_sources.csv"
 OUTPUT = PAPER / "figs/pdf/research_map_concept.svg"
+# Consume the canonical TikZ palette so the SVG and PDF figures cannot drift.
+STYLE_FILE = PAPER / "figs/tex/figure_style.tex"
+_PALETTE = dict(re.findall(r"\\definecolor\{(fig[A-Za-z]+)\}\{HTML\}\{([0-9A-Fa-f]{6})\}", STYLE_FILE.read_text(encoding="utf-8")))
+def fig_color(name: str) -> str:
+    return "#" + _PALETTE[name]
+
 W, H = 1320, 1315
 X0, STEP = 264, 260
 Y0, LANE_STEP = 411, 174
 ERAS = ((2019, 2021), (2022, 2023), (2024, 2025), (2026, 2026))
 LANES = (
-    ("A", "LAYOUT GENERATION", "Geometry and constraints", "#2C86B6"),
-    ("B", "POSTERS & ADS", "Text and imagery", "#CB7A47"),
-    ("C", "STRUCTURED ARTIFACTS", "Paths, layers and objects", "#368B7B"),
-    ("D", "DOCUMENT WORKFLOWS", "Slides, figures and reflow", "#8067BA"),
+    ("A", "LAYOUT GENERATION", "Geometry and constraints", fig_color("figBlue")),
+    ("B", "POSTERS & ADS", "Text and imagery", fig_color("figOrange")),
+    ("C", "STRUCTURED ARTIFACTS", "Paths, layers and objects", fig_color("figGreen")),
+    ("D", "DOCUMENT WORKFLOWS", "Slides, figures and reflow", fig_color("figViolet")),
 )
 STYLES = {
     "gan": ("#C07553", "GAN"),
@@ -35,7 +41,7 @@ STYLES = {
     "diff": ("#3289C1", "DIFFUSION / FLOW"),
     "agent": ("#8A69B6", "LM / AGENT"),
     "struct": ("#329783", "VECTOR / CODE"),
-    "edit": ("#B85C81", "EDITING"),
+    "edit": (fig_color("figPink"), "EDITING"),
 }
 # Matches either single-logo, dual-logo, or logo-free source declarations.
 NODE = re.compile(
@@ -85,7 +91,7 @@ def main() -> None:
         add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{radius}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"/>')
     def line(x1, y1, x2, y2, color="#DDE6EE", width=1):
         add(f'<path d="M{x1} {y1} L{x2} {y2}" fill="none" stroke="{color}" stroke-width="{width}"/>')
-    def label(x, y, value, size=14, color="#253D56", weight=400):
+    def label(x, y, value, size=14, color=fig_color("figInk"), weight=400):
         add(f'<text x="{x}" y="{y}" font-family="DejaVu Sans,Arial,sans-serif" font-size="{size}" font-weight="{weight}" fill="{color}">{esc(value)}</text>')
     def logo_at(stem: str, x: float, y: float, size: float) -> bool:
         source = PAPER / "figs/assets/logos" / (stem + ".pdf")
@@ -125,8 +131,8 @@ def main() -> None:
     # Research-map layout: a dated interpretive technology map, not a paper table.
     # Major transitions are conceptual comparison labels, never causal arrows.
     add(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">')
-    rect(0, 0, W, H, "#F8FAFC")
-    rect(0, 0, W, 120, "#18364F")
+    rect(0, 0, W, H, fig_color("figPaper"))
+    rect(0, 0, W, 120, fig_color("figNavy"))
     label(35, 51, "GRAPHIC DESIGN GENERATION: A RESEARCH MAP", 30, "#FFFFFF", 700)
     label(37, 87, "Representative systems  ·  2019–2026  ·  research questions, models, and editable outputs", 17, "#C9DBE8")
 
@@ -135,10 +141,10 @@ def main() -> None:
     label(35, 152, "WHAT CHANGED?", 16, "#385773", 700)
     label(208, 152, "Illustrative themes — not a model genealogy", 13, "#73899B")
     themes = (
-        ("GEOMETRY", "Where do elements go?", "#DDECF6", "#2C86B6"),
-        ("CONDITIONING", "What guides composition?", "#FBEBE2", "#CB7A47"),
-        ("STRUCTURE", "What remains editable?", "#E3F1ED", "#368B7B"),
-        ("WORKFLOWS", "How are documents revised?", "#ECE8F8", "#8067BA"),
+        ("GEOMETRY", "Where do elements go?", "#DDECF6", fig_color("figBlue")),
+        ("CONDITIONING", "What guides composition?", "#FBEBE2", fig_color("figOrange")),
+        ("STRUCTURE", "What remains editable?", "#E3F1ED", fig_color("figGreen")),
+        ("WORKFLOWS", "How are documents revised?", "#ECE8F8", fig_color("figViolet")),
     )
     def paper_sample(px, py, kind, color):
         rect(px, py, 84, 84, "#FFFFFF", "#C9D6DF", radius=5)
@@ -161,7 +167,7 @@ def main() -> None:
                 rect(px+22,py+yy,38,4,"#B5AACF",radius=2)
     for i, (head, question, fill, accent) in enumerate(themes):
         px=25+i*324
-        rect(px, 174, 306, 131, "#FFFFFF", "#DCE6ED", radius=10)
+        rect(px, 174, 306, 131, "#FFFFFF", fig_color("figRule"), radius=10)
         rect(px, 174, 306, 7, accent, radius=3)
         paper_sample(px+13,191,i,accent)
         label(px+111,217,head,18,"#27445B",700)
