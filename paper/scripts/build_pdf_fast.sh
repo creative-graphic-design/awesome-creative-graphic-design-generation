@@ -4,8 +4,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 for figure in overview edit_protocol research_map research_map_narrative; do
   if [[ ! -s "figs/pdf/$figure.pdf" ]]; then
-    echo "Missing figures: run 'make figures' once before pdf-fast." >&2
-    exit 1
+    echo "One-time figure generation: $figure.pdf is missing"
+    sh scripts/build_figures.sh
+    break
   fi
 done
 flags=(-file-line-error -halt-on-error -interaction=nonstopmode)
