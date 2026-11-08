@@ -12,6 +12,22 @@
 - [x] **Why this exists:** earlier iterations repeatedly modified `survey-rich` rather than first checking `acro`'s documented built-in page-index support. The author ultimately accepted the **stock list plus occurrence pages**, and the original source-commit [Paper PDF #42153100997](https://github.com/creative-graphic-design/awesome-creative-graphic-design-generation/actions/runs/42153100997) was visually checked. The earlier design is a **superseded historical experiment**, not a recommended starting point.
 
 
+## Paragraph-level scholarly argument acceptance (2026-11-08)
+
+A prose paragraph is an argument unit, not a container of related citations. Before manuscript sign-off, read each paragraph in context and assess:
+
+- **Unity:** The opening states one interpretive claim about the research, not merely a model name, paper count, or category. Every following sentence develops this same claim.
+- **Evidence:** Original studies support the stated claim at their actual input/output and evaluation conditions. Avoid a succession of unconnected model summaries.
+- **Synthesis:** Explain the implication of the comparison, including counterexamples, trade-offs, and the distinction between output affordances and measured editing results.
+- **Progression:** The conclusion or transition makes clear why the next paragraph is needed. Avoid one-sentence orphan paragraphs that introduce an unsupported claim.
+- **Sentence economy:** Remove repetitive caveats, redundant restatements of the R--E--V distinction, and detail that belongs in a table instead of the argumentative narrative.
+
+The CI paragraph-size limit (190 prose words) detects a symptom, not quality. Passing it does not constitute evidence that paragraph unity, logical flow, or critical synthesis has been reviewed. The primary writing review must cover all sections in their rendered reading order, including captions and transition across headings.
+
+### 2026-11-08 corrective revision
+
+The oversized Methods and Evaluation blocks were reorganized by task and evidence contract. The later academic-writing pass rewrote representative paragraphs in Related Surveys, Representation, Methods, and Evaluation so that topic sentences state a comparative thesis, supporting studies substantiate it, and the final interpretation limits the warranted conclusion. This is a manuscript editing record rather than a claim of independent source reproduction or complete final editorial acceptance.
+
 ## Incremental review workflow
 
 - [ ] Review [T01 TAUE original source audit](T01_TAUE_SOURCE_AUDIT.md) for source Sections 3–6, Table 2 and Figure 6. Keep generation/layer reconstruction scores separate from edit-instruction success and require author sign-off before T02.
