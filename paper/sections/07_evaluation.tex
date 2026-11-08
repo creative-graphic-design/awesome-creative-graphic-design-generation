@@ -24,7 +24,7 @@ These are layout-geometry and visual-saliency proxies on non-empty poster backgr
 In its original CVPR evaluation, discrete \ac{layoutdm} compares six tasks on \ac{rico} and \ac{publaynet} with training-data preprocessing and a shared layout-feature FID model \citep{layoutdm2023}.
 For category-conditioned size-and-position generation on \ac{rico}, its FID is 3.55 compared with 3.97 for BART and 6.84 for \ac{layoutganpp}, but in completion its 9.00 is worse than \ac{layouttransformer} at 3.71 (Table~1).
 This trade-off prevents a claim of universal superiority and illustrates that completion evaluates reconstruction of missing layout attributes rather than semantic authoring operations.
-\ac{layoutflow} \citep{layoutflow2024} studies a different training split and explicitly retrains selected baselines for comparison (Sec.~5.1).
+\ac{layoutflow} studies a different training split and explicitly retrains selected baselines for comparison (Sec.~5.1).
 In its matched-split unconditional Table~1, \ac{layoutflow} obtains \ac{rico} FID 2.37 against \ac{layoutdiffusion} at 2.49, while on \ac{publaynet} it obtains 8.87 against \ac{layoutdiffusion} at 8.63.
 Moreover, \ac{rico} alignment is 0.150 for \ac{layoutflow} against 0.069 for \ac{layoutdiffusion}; the improvement in one distributional score is not a simultaneous improvement in all geometric measures.
 Its original Appendix~0.E separately reports sensitivity to differing element-count filters, dataset splits, and learned FID feature models.
@@ -92,7 +92,7 @@ The relevant interaction contracts also include mobile-shopping scenarios \citep
 Advertising creative generation \citep{wang2022creagan} and retrieval-augmented agentic composition \citep{forouzandehmehr2025calrag} optimize different production pipelines; the ability to request another layout is not equivalent to measured preservation of unrelated objects after editing a saved design.
 
 \paragraph{Verification gaps despite editable design programs.}
-\ac{creatiposter} \citep{zhang2025creatiposter} produces an editable JSON program containing text and asset layers and supports canvas-conditioned completion and re-layout (Sec.~3.4 and Table~1 of the source).
+\ac{creatiposter} produces an editable JSON program containing text and asset layers and supports canvas-conditioned completion and re-layout (Sec.~3.4 and Table~1 of the source).
 Its 90-case test collection separates 45 prompt-only cases, 39 single-asset cases, and six multi-asset cases, with VLM rubric scores for layout, color, style, and compliance and ten volunteers' overall ratings.
 The asset-conditioned comparison excludes the six multi-asset cases, leaving 84 cases; its authors report a higher human overall mean for \ac{creatiposters} than Canva (2.82 versus 2.33), but the Canva layout score is higher in that setting (2.84 versus 2.41 for \ac{creatiposters}).
 Thus evidence for an editable source protocol and preference-based image quality should be presented separately from measured post-export edit instruction success.
@@ -105,7 +105,7 @@ Thus a demonstration of SVG-based layer adjustment supports a narrower editabili
 
 \paragraph{Evaluation targets must follow the requested intervention.}
 A successful edit to a reconstructed design must preserve both the intended content change and any explicitly protected content, but not every source provides object-identity annotations or permits object-level testing.
-For example, rendered post-edit SSIM and OCR text recall in \ac{redesign} \citep{redesign2026}, VLM-assessed modification scope in \ac{apex} \citep{apex2026}, and human-authored SVG edit benchmarks in \ac{vectorgym} \citep{vectorgym2026} answer overlapping yet non-identical questions.
+For example, rendered post-edit SSIM and OCR text recall in \ac{redesign}, VLM-assessed modification scope in \ac{apex}, and human-authored SVG edit benchmarks in \ac{vectorgym} answer overlapping yet non-identical questions.
 Future comparisons should report the evaluation unit (pixel, typed object, source file, or user transaction), which interventions can be replayed, which collateral changes are permitted, and whether the original and edited native file can both be reopened.
 
 \subsection{Editability Affordance Versus Editing Performance}
