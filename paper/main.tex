@@ -30,16 +30,25 @@ First line of institution2 address\\
 {\tt\small secondauthor@i2.org}
 }
 \begin{document}
+% The separate main-onecolumn.tex entry point selects an author-review layout.
+% Keep the article class's official twocolumn option for CVPR template checks.
+\ifdefined\surveyonecolumn
+  \onecolumn
+\fi
 \maketitle
 \input{sections/01_abstract}
 % Long-form survey navigation: one readable, hyperlinked contents page.
-% Use the standard article table of contents and return to the CVPR two-column body.
+% Use the standard article table of contents; restore columns only for submission mode.
 \clearpage
 \onecolumn
 \setcounter{tocdepth}{2}
 \tableofcontents
 \clearpage
-\twocolumn
+\ifdefined\surveyonecolumn
+  % Keep the body in one column for long-form scholarly review.
+\else
+  \twocolumn
+\fi
 \input{figs/tex/overview_figure}
 \input{figs/tex/edit_protocol_figure}
 \input{sections/02_introduction}
