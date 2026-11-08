@@ -55,8 +55,6 @@ jobs:
           extra_system_packages: 'rsvg-convert curl python3 unzip poppler-utils'
           pre_compile: |
             sh scripts/build_figures.sh
-            python3 scripts/render_research_map_concept.py
-            rsvg-convert --format pdf --output figs/pdf/research_map_concept.pdf figs/pdf/research_map_concept.svg
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Confirm square logos and vector research map
         shell: bash
