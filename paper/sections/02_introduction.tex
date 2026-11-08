@@ -15,15 +15,15 @@ Image-based methods synthesize rendered graphic designs and visual text, includi
 Other methods produce representations with more explicit structure, including element-level layouts \citep{layoutgan2019,layoutdm2023}, vector graphics \citep{vectorfusion2023,starvector2025,chat2svg2025}, layered compositions \citep{cole2023,opencole2024}, and code-based design documents \citep{designascode2026,editablevisual2026}.
 These research lines are complementary rather than stages in a universal progression from raster to vector generation.
 Raster-to-layer decomposition provides a different route to revisable results by reconstructing separate visual layers from a flattened design \citep{layerd2025}.
-However, neither the presence of separable raster layers nor the availability of vector paths or document objects demonstrates that a later semantic edit will succeed.
+However, neither the presence of separable raster layers nor the availability of vector paths or document objects demonstrates that a later semantic edit will succeed, as editing-specific evaluations investigate independently \citep{svgeditbench2024,mildedit2026}.
 
 The presence of editable structure does not, by itself, demonstrate reliable editing performance.
-Layered and code-based artifacts can expose manipulable elements \citep{cole2023,editablevisual2026}, whereas instruction-driven multi-layer editing research directly evaluates requested changes to design documents \citep{mildedit2026}.
+Layered and code-based artifacts can expose manipulable elements \citep{cole2023,editablevisual2026}, whereas a benchmark of edits to multi-layer designs evaluates instruction following and layout preservation even for baseline editors that receive only a rendered image and a document-level instruction \citep{mildedit2026}.
 Furthermore, changing one element can require legitimate adjustments to surrounding content, rather than leaving every other element fixed \citep{yang2026infoedit}.
 A meaningful account of editability must consequently distinguish the operations an artifact permits from the revisions a system has demonstrated or evaluated.
 
 Differences in evaluation protocols further complicate comparisons of generated designs.
-Rendered-design synthesis can be evaluated for visual quality, text accuracy, or product fidelity \citep{designdiffusion2025,postermaker2025}, while layout and vector generation use measures of spatial arrangement or rendered similarity \citep{layoutdm2023,vectorfusion2023}.
+Rendered-design synthesis can be evaluated for visual quality and text accuracy \citep{designdiffusion2025,postermaker2025}, while layout and vector generation use measures of spatial arrangement or rendered similarity \citep{layoutdm2023,vectorfusion2023}.
 By contrast, interactive design research can evaluate human editing effort \citep{vinci2021}, while dedicated benchmarks assess instruction-driven edits to \ac{svg} graphics \citep{svgeditbench2024,vectorgym2026} or multi-layer documents \citep{mildedit2026}.
 Because these protocols measure different outcomes, visual fidelity, structural affordances, and measured editing performance should not be treated as interchangeable evidence.
 
