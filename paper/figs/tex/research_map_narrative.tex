@@ -8,20 +8,21 @@
 \usepackage{graphicx}
 % Frames and contents are independent TikZ nodes (no table baseline).
 \usetikzlibrary{calc,arrows.meta}
-\definecolor{navy}{HTML}{162F4C}
-\definecolor{ink}{HTML}{253A53}
-\definecolor{muted}{HTML}{67778B}
-\definecolor{rule}{HTML}{DCE5EE}
-\definecolor{layout}{HTML}{2B7CAC}
-\definecolor{poster}{HTML}{CA6A58}
-\definecolor{artifact}{HTML}{2D8B73}
-\definecolor{document}{HTML}{8064AD}
+\input{figs/tex/figure_style}
+\colorlet{navy}{figNavy}
+\colorlet{ink}{figInk}
+\colorlet{muted}{figMuted}
+\colorlet{rule}{figRule}
+\colorlet{layout}{figBlue}
+\colorlet{poster}{figOrange}
+\colorlet{artifact}{figGreen}
+\colorlet{document}{figViolet}
 \definecolor{gan}{HTML}{C06849}
 \definecolor{latent}{HTML}{647F9E}
 \definecolor{diff}{HTML}{2675B4}
 \definecolor{agent}{HTML}{775BAE}
 \definecolor{struct}{HTML}{268B7B}
-\definecolor{edit}{HTML}{AF4877}
+\colorlet{edit}{figPink}
 % All card geometry is proportional to one width token.
 % The frame is a fixed-height TikZ rectangle; its contents are independent nodes.
 % MARGIN is the empty space between frames; PADDING is inside each frame.
