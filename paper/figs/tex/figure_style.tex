@@ -1,0 +1,24 @@
+% Canonical figure palette and TikZ primitives (also read by SVG renderer).
+% Semantic colors: blue=geometry, orange=composition/operations,
+% green=structured assets/verification, violet=document workflows,
+% pink=editing benchmarks.
+\definecolor{figNavy}{HTML}{18364F}
+\definecolor{figInk}{HTML}{253D56}
+\definecolor{figMuted}{HTML}{627C91}
+\definecolor{figRule}{HTML}{DCE6ED}
+\definecolor{figPaper}{HTML}{F8FAFC}
+\definecolor{figBlue}{HTML}{2C86B6}
+\definecolor{figOrange}{HTML}{CB7A47}
+\definecolor{figGreen}{HTML}{368B7B}
+\definecolor{figViolet}{HTML}{8067BA}
+\definecolor{figPink}{HTML}{B85C81}
+\definecolor{figBlueTint}{HTML}{EAF3F9}
+\definecolor{figOrangeTint}{HTML}{FBF0E9}
+\definecolor{figGreenTint}{HTML}{EBF5F1}
+\definecolor{figVioletTint}{HTML}{F0EDFA}
+\definecolor{figPinkTint}{HTML}{F9EDF2}
+\tikzset{
+  figpanel/.style={draw=figRule,fill=white,rounded corners=3pt,line width=.65pt},
+  figitem/.style={draw=figRule,fill=white,rounded corners=2pt,line width=.55pt},
+  figflow/.style={-{Latex[length=2.4mm]},line width=.8pt,draw=figMuted}
+}
