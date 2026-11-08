@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - 'paper/main-fast.tex'
+      - 'paper/scripts/build_pdf_fast.sh'
+      - 'paper/Makefile'
       - 'paper/main.tex'
       - '.github/workflows/paper-build-benchmark.yml'
 
@@ -42,7 +44,15 @@ jobs:
           extra_system_packages: 'rsvg-convert curl python3 unzip time bash'
           pre_compile: |
             sh scripts/build_figures.sh
-            bash scripts/benchmark_pdf_builds.sh
+            mkdir -p build-timings
+            bash scripts/build_pdf_fast.sh > build-timings/fast-bootstrap.log 2>&1
+            /usr/bin/time -f 'elapsed_seconds=%e max_rss_kb=%M' -o build-timings/fast-warm.time \
+              bash scripts/build_pdf_fast.sh > build-timings/fast-warm.log 2>&1
+            cat build-timings/fast-warm.time
+            # Compare with the canonical build, retaining the draft build logs.
+            /usr/bin/time -f 'elapsed_seconds=%e max_rss_kb=%M' -o build-timings/main.time \
+              latexmk -pdf -file-line-error -halt-on-error -interaction=nonstopmode main.tex \
+              > build-timings/main.build.log 2>&1
           args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
       - name: Publish timing results
         if: always()
@@ -52,9 +62,9 @@ jobs:
             echo '### Normal build' >> "$GITHUB_STEP_SUMMARY"
             cat paper/build-timings/main.time >> "$GITHUB_STEP_SUMMARY"
           fi
-          if [[ -f paper/build-timings/main-fast.time ]]; then
-            echo '### Without printed acro lists' >> "$GITHUB_STEP_SUMMARY"
-            cat paper/build-timings/main-fast.time >> "$GITHUB_STEP_SUMMARY"
+          if [[ -f paper/build-timings/fast-warm.time ]]; then
+            echo '### Fast incremental draft' >> "$GITHUB_STEP_SUMMARY"
+            cat paper/build-timings/fast-warm.time >> "$GITHUB_STEP_SUMMARY"
           fi
       - name: Upload logs and benchmark PDFs
         if: always()
