@@ -6,18 +6,18 @@ Beyond arranging visual elements, poster-creation systems such as \ac{vinci} and
 Although these applications differ in content and visual conventions, they share the challenge of coordinating text, imagery, geometry, and typography under semantic and aesthetic constraints.
 
 Research in generative graphic design builds on earlier work in knowledge-based graphical presentation and interactive design assistance \citep{mackinlay1986,designscape2015}.
-Generative approaches initially emphasized geometric arrangements of design elements, using adversarial, autoregressive, and diffusion-based models \citep{layoutgan2019,layoutdm2023,layoutdiffusion2023}.
-More recent systems integrate planning, text and image synthesis, and iterative rendering to construct more complete designs \citep{cole2023,opencole2024,designascode2026}.
+A substantial body of research has addressed the geometric arrangement of design elements \citep{layoutgan2019,layoutdm2023,layoutdiffusion2023}.
+Other research considers broader design generation workflows, including content synthesis, composition, and refinement \citep{cole2023,opencole2024,designascode2026}.
 In parallel, methods for vector synthesis and layer decomposition explore representations that preserve more than rasterized appearance \citep{vectorfusion2023,iconshop2023,layerd2025}.
 Consequently, methods now differ not only in the images they produce but also in the structures and operations their outputs support.
 
 This representational diversity raises a central question: to what extent can a generated design be \emph{revised}?
 In practical workflows, text may need to be replaced, a logo moved, an aspect ratio changed, or a composition adapted to a different medium.
 A raster image, a set of layout boxes, and a document containing editable text or vector paths may look similar when rendered while offering markedly different ways to modify their contents.
-\ac{cole} demonstrates a multi-layer design workflow, whereas \ac{designascode} uses \ac{html}/\ac{css} to enable structural manipulation and visual refinement.
+Structured formats can preserve separately editable objects, text, and spatial relationships, but the available editing operations depend on how those structures are represented and exposed \citep{cole2023,designascode2026}.
 Nevertheless, the presence of a structured representation does not by itself establish whether a system can execute a requested edit correctly.
 Conversely, image-space editing can satisfy a visual instruction without yielding independently manipulable design objects.
-Infographic-editing methods further illustrate that a local edit can require neighboring elements to reflow \citep{yang2026infoedit}, complicating the notion that all non-target content should remain fixed.
+Moreover, local edits can require neighboring elements to reflow \citep{yang2026infoedit}, complicating the notion that all non-target content should remain fixed.
 
 These differences matter for evaluation as well as generation.
 Layout-generation studies often assess geometric or distributional properties \citep{layoutdm2023}, whereas text-conditioned vector synthesis can be evaluated through agreement between a prompt and a rendered image \citep{vectorfusion2023}.
