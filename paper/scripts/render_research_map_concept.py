@@ -163,7 +163,7 @@ def main() -> None:
         px=25+i*324
         rect(px, 174, 306, 131, "#FFFFFF", "#DCE6ED", radius=10)
         rect(px, 174, 306, 7, accent, radius=3)
-        paper_sample(px+13,py if False else 191,i,accent)
+        paper_sample(px+13,191,i,accent)
         label(px+111,217,head,18,"#27445B",700)
         label(px+111,245,question,14,"#5B7487")
         label(px+111,276,("layout prediction","visual/text constraints","vectors and layers","slide and figure objects")[i],12,"#7C90A0")
@@ -197,16 +197,24 @@ def main() -> None:
                 card_w,card_h=242,61
                 rect(x,cy,card_w,card_h,"#FFFFFF",color,radius=7,sw=1.7)
                 rect(x,cy,5,card_h,color,radius=2)
+                # Relative card geometry: first quarter is the emblem;
+                # the remaining three quarters split name/detail evenly.
+                emblem_w=card_w/4
+                text_x=x+emblem_w+11
+                rect(x+6,cy+5,emblem_w-7,card_h-10,"#F7F9FC",radius=5)
                 marks=logos.get(label_name,())
-                title_x=x+(48 if marks else 15)
-                title_size=16 if len(label_name)<=14 else 14
-                label(title_x,cy+23,label_name,title_size,"#213A4E",700)
-                label(x+15,cy+46,detail,13 if len(detail)<=24 else 12,"#6B8194")
+                title_size=15 if len(label_name)<=14 else 13
+                label(text_x,cy+24,label_name,title_size,"#213A4E",700)
+                label(text_x,cy+46,detail,12 if len(detail)<=23 else 11,"#6B8194")
                 if len(marks)==1:
-                    assert logo_at(marks[0],x+12,cy+6,29),(label_name,marks)
+                    assert logo_at(marks[0],x+11,cy+9,43),(label_name,marks)
                 elif len(marks)==2:
-                    assert logo_at(marks[0],x+9,cy+5,20),(label_name,marks)
-                    assert logo_at(marks[1],x+24,cy+21,20),(label_name,marks)
+                    assert logo_at(marks[0],x+9,cy+7,30),(label_name,marks)
+                    assert logo_at(marks[1],x+24,cy+22,30),(label_name,marks)
+                else:
+                    # Distinctive non-logo pictogram for unaffiliated nodes.
+                    for j in range(3):
+                        rect(x+16+j*8,cy+16+j*7,18,18,"none",color,radius=2)
 
     # Lower panel puts the representation question into graphic-document terms.
     foot_y=Y0+len(LANES)*LANE_STEP-36
