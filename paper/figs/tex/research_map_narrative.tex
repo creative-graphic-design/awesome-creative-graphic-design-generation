@@ -119,11 +119,19 @@
 \newcommand{\MapPaper}[8]{%
   \MapPaperFrame{#5}{#6}{#7}{\MapPaperContent{#2}{#3}{#8}{}}%
 }
+% Single logos use the same fixed quarter-column viewport as paired logos.
+% Align the visible logo leftward by a shared proportional offset; text stays fixed.
+\newcommand{\MapLogoSingle}[1]{%
+  \begin{tikzpicture}[inner sep=0pt,outer sep=0pt]
+    \path[use as bounding box] (0pt,0pt) rectangle (\MapCardLogoWidth,\MapCardContentHeight);
+    \node[anchor=center,inner sep=0pt,outer sep=0pt]
+      at (.40\MapCardLogoWidth,.50\MapCardContentHeight)
+      {\includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#1.pdf}};
+  \end{tikzpicture}%
+}
 \newcommand{\MapPaperBrand}[9]{%
   \MapPaperFrame{#5}{#6}{#7}{%
-    \MapPaperContent{#2}{#3}{#8}{%
-      \includegraphics[width=.72\MapCardLogoWidth,height=.77\MapCardContentHeight,keepaspectratio]{figs/assets/logos/#9.pdf}%
-    }%
+    \MapPaperContent{#2}{#3}{#8}{\MapLogoSingle{#9}}%
   }%
 }
 % Two actual affiliation emblems share the existing 25% logo column.
