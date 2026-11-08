@@ -410,3 +410,10 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 
 - [x] Verified original ACM/author sources for Rico, DocLayNet, 1986 Mackinlay, and official CVF abstract for VFLM with source URLs; promoted only four entries to `abstract_index`, keeping empirical results and document editing unverified.
 - [ ] `liu2024graphiclayoutsurvey` original publisher/author abstract is not yet verifiable through a retrieved first-party record and remains `not_verified`. Do not forge `methods_results` source evidence.
+
+## Scientific-readiness reconciliation (2026-11-08)
+
+- [x] Fixed obsolete 254-reference number in Methodology to the current 259 and separated bibliographic identity, abstract, original methods/results and systematic screening denominators.
+- [x] Wrote [SCIENTIFIC_READINESS_AUDIT_20261108.md](SCIENTIFIC_READINESS_AUDIT_20261108.md) with source accounting, verified scientific limitations and exact unperformed tasks.
+- [ ] One publisher primary abstract is still unavailable: `liu2024graphiclayoutsurvey` (CSCWD 2024).
+- [ ] Additional method/results source audits, author scientific approval, systematic database search and latest source-commit PDF render validation remain pending. No maps/logos changed in this scientific workstream.

@@ -159,3 +159,7 @@ An abstract is evidence of the authors' declared task/representation, not indepe
 ## T23 near-complete primary abstract identity inventory (2026-11-08)
 
 Original first-party source abstracts or originating dataset project records were independently located for Rico, DocLayNet, VFLM (Guo et al. CVPR 2026), and Mackinlay's 1986 graphical-presentation paper; see [T23_FINAL_PRIMARY_ABSTRACT_CLOSURE_20261108.csv](T23_FINAL_PRIMARY_ABSTRACT_CLOSURE_20261108.csv). The dataset counts and author-proposed contributions are not independent experiment replications. The IEEE CSCWD 2024 survey `liu2024graphiclayoutsurvey` remains a source-access gap, so it retains `not_verified` until its original author/publisher abstract can be inspected. The source-level registry is a citation review, not a PRISMA systematic selection or a universal performance ranking.
+
+## 2026-11-08 scientific readiness checkpoint
+
+See [SCIENTIFIC_READINESS_AUDIT_20261108.md](SCIENTIFIC_READINESS_AUDIT_20261108.md) for latest counts: 225 linked working-study IDs, 259 bibliography entries, 102 bounded original methods/results records, 153 author/publisher original abstracts, three bibliographic records, and one first-party abstract not obtained. Targeted workbook search logs exist but raw systematic database retrieval counts and full screening/exclusion records do not. This remains a structured narrative survey, not a completed PRISMA systematic review.
