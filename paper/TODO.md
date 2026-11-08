@@ -361,3 +361,9 @@ I **did not edit the live workbook, frozen 225-ID snapshot, manuscript, numerica
 - [x] Added the frozen [transfer manifest](PRIMARY_SOURCE_EVIDENCE_TRANSFERS_20261108.csv) and audit-validator checks for citation-ID and source-locator consistency.
 - [x] Removed old per-paper/one-commit queue instructions, retaining historical checkpoints for provenance.
 - [ ] Remaining unverified citations, quantitative claim audits, systematic search logs, author adjudication and source-commit PDF validation remain open. Research-map and logo tasks are handled in a separate session.
+
+## Additional batch primary-source transfer and operation benchmarks — 2026-11-08
+
+- [x] Transferred 12 additional original source audits from the Wave2 Fulltext, Remaining 13, Remaining 30 and Figure Table Trace tabs, using only previously documented first-party source sections/tables/figures.
+- [x] Added a direct scientific comparison of ReDesign, APEX and VectorGym's distinct edit-operation evaluation protocols without pooling unlike metrics.
+- [ ] Source-level validation for all remaining citations, author scientific decisions, prospective systematic search and final PDF visual QA remain outstanding; map and logo files were untouched.
